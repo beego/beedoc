@@ -6,7 +6,7 @@ You will need a functioning Go 1.1 installation for this to work.
 
 Beego is a "go get" able Go project: `go get github.com/astaxie/beego`
 
-You may also need Bee tool for developing: `go get github.com/astaxie/bee`
+You may also need [Bee](/docs/Reference_BeeTool) tool for developing: `go get github.com/astaxie/bee`
 
 Want to quick setup an application see if it works?
 
@@ -22,7 +22,7 @@ These commands help you:
 1. Install Beego into your $GOPATH.
 2. Install Bee tool in your computer.
 3. Create a new application called "hello".
-4. Start auto-compile.
+4. Start hot compile.
 
 Once it's running, open a browser to [http://localhost:8080/](http://localhost:8080/).
 

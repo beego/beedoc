@@ -1,8 +1,10 @@
+# Introduction
+
 This manual documents aspects of Beego web framework.
 
 ### New to Beego? 
 
-Read about the [concepts](/docs/concepts).
+Read about the [concepts](/docs/Overview_Concepts).
 
 ### Can’t find what you’re looking for? 
 
@@ -18,4 +20,8 @@ Open an [issue on github](https://github.com/astaxie/beego/issues).
 
 ### Want to be a contributor?
 
-Fork the [project](https://github.com/beego/beedoc), edit and pull request.
+Fork the [documentation project](https://github.com/beego/beedoc), edit and pull request.
+
+### Simple API documentation?
+
+Please visit [Go Walker](http://gowalker.org/github.com/astaxie/beego).

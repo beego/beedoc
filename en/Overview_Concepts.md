@@ -1,3 +1,5 @@
+# Concepts
+
 Beego makes it easy to build web applications using the Model-View-Controller (MVC) pattern by relying on conventions that require a certain structure in your application. In return, it is very light on configuration and enables an extremely fast development cycle.
 
 ### MVC
@@ -7,8 +9,6 @@ Here is a quick summary:
 - Models are the essential data objects that describe your application domain. Models also contain domain-specific logic for querying and updating the data.
 - Views describe how data is presented and manipulated. In our case, this is the template that is used to present data and controls to the user.
 - Controllers handle the request execution. They perform the user’s desired action, they decide which View to display, and they prepare and provide the necessary data to the View for rendering.
-
-There are many excellent overviews of MVC structure online. In particular, the one provided by Play! Framework matches our model exactly.
 
 ### Server
 
@@ -37,3 +37,5 @@ For example:
 	func (this *AppController) Get() {
 		..
 	}
+
+In this example, method `Get` will be called automatically when `AppController` accepts HTTP GET requests, so do `Post`, `Delete` and `Put`. Of course, you can use other names which is detailed in [Routing](/docs/Controllers_Routing).
