@@ -1,4 +1,6 @@
-# Installation
+# Quickstart
+
+## Installation
 
 Beego contains sample applications to help you learn and use Beego web framework.
 
@@ -26,7 +28,7 @@ These commands help you:
 
 Once it's running, open a browser to [http://localhost:8080/](http://localhost:8080/).
 
-# Simple example
+## Simple example
 
 The following example prints string "Hello world" to your browser, it shows how easy to build a web application with Beego.
 

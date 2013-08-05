@@ -1,4 +1,6 @@
-# 安装
+# 快速入门
+
+## 安装
 
 Beego 包含一些示例应用程序以帮您学习并使用 Beego Web 框架。
 
@@ -26,7 +28,7 @@ Beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/asta
 
 一旦程序开始运行，您就可以在浏览器中打开 [http://localhost:8080/](http://localhost:8080/) 进行访问。
 
-# 简单示例
+## 简单示例
 
 下面这个示例程序将会在浏览器中打印 “Hello world”，以此说明使用 Beego 构建 Web 应用程序是多么的简单！
 

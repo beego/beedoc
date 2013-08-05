@@ -1,4 +1,4 @@
-# Session/Flash
+# Session
 
 Beego has a built-in session module and supports four engines, including memory, file, MySQL and redis. You can implement your own engine based on the interface.
 
@@ -82,3 +82,67 @@ When the SessionProvider is redis, SessionSavePath is link address of redis, it 
 
 	beego.SessionProvider = "redis"
 	beego.SessionSavePath = "127.0.0.1:6379"
+
+## Falsh
+
+There is nothing to say between this flash and Adobe/Macromedia Flash. It's using for transmitting temporary data between two logic processes, and data that saved in flash will be deleted in the next logic. Generally, it's used to pass hints and error messages. It fits [Post/Redirect/Get](http://en.wikipedia.org/wiki/Post/Redirect/Get) modal.
+
+Let's see an example:
+
+	// Show setting information.
+	func (c *MainController) Get() {
+		flash:=beego.ReadFromRequest(c)
+		if n,ok:=flash.Data["notice"];ok{
+			// Succeed to show setting information.
+			c.TplNames = "set_success.html"
+		}else if n,ok=flash.Data["error"];ok{
+			// Show error.
+			c.TplNames = "set_error.html"
+		}else{
+			// Show default setting page.
+			this.Data["list"]=GetInfo()
+			c.TplNames = "setting_list.html"
+		}
+	}
+	
+	// Process setting information.
+	func (c *MainController) Post() {
+		flash:=beego.NewFlash()
+		setting:=Settings{}
+		valid := Validation{}
+		c.ParseForm(&setting)
+		if b, err := valid.Valid(setting);err!=nil {
+			flash.Error("Settings invalid!")
+			flash.Store(c)
+			c.Redirect("/setting",302)
+			return
+		}else if b!=nil{
+			flash.Error("validation err!")
+			flash.Store(c)
+			c.Redirect("/setting",302)
+			return
+		}	
+		saveSetting(setting)
+		flash.Notice("Settings saved!")
+		flash.Store(c)
+		c.Redirect("/setting",302)
+	}
+
+The general logic of code execution of above example as follows:
+
+1. Execute Get method, it shows setting page because of no flash data.
+2. Users submit setting information then execute Post method; initialize a new flash to store error messages, if setting successfully saved, then store success message.
+3. Redirect as a Get request.
+4. The Get request gets flash messages then execute corresponding logic to show corresponding flash data.
+
+The function `ReadFromRequest` implemented data read and write of flash as default, so you can access your flash data as follows:
+
+	{{.flash.error}}
+	{{.flash.warning}}
+	{{.flash.notice}}
+	
+flash objects have 3 levels:
+
+- Notice
+- Warning 
+- Error
