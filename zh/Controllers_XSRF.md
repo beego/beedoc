@@ -4,43 +4,44 @@
 
 beego有内建的XSRF的防范机制，要使用此机制，你需要在应用配置文件中加上enablexsrf设定：
 
-  enablexsrf = true
-  xsrfkey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o
+    enablexsrf = true
+    xsrfkey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o
 
 或者直接在main入口处这样设置：
 
-  beego.EnableXSRF = true
-  beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
+    beego.EnableXSRF = true
+    beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
 
 如果开启了XSRF，那么beego的Web应用将对所有用户设置一个`_xsrf`的 cookie 值，如果`POST PUT DELET`请求中没有这 个 cookie 值，那么这个请求会被直接拒绝。如果你开启了这个机制，那么在所有被提交的表单中，你都需要加上一个域来提供这个值。你可以通过在模板中使用 专门的函数 XsrfFormHtml() 来做到这一点：
 
 在Controller中这样设置数据
-  func (this *HomeController) Get(){
-      this.data["xsrfdata"]=this.XsrfFormHtml()
-  }
+
+    func (this *HomeController) Get(){
+        this.data["xsrfdata"]=this.XsrfFormHtml()
+    }
   
 然后在模板中这样设置：
 
-  <form action="/new_message" method="post">
-    {{ .xsrfdata }}
-    <input type="text" name="message"/>
-    <input type="submit" value="Post"/>
-  </form>
+    <form action="/new_message" method="post">
+      {{ .xsrfdata }}
+      <input type="text" name="message"/>
+      <input type="submit" value="Post"/>
+    </form>
   
 如果你提交的是AJAX的POST请求，你还是需要在每一个请求中通过脚本添加上 _xsrf 这个值。下面是在AJAX的POST请求，使用了jQuery函数来为所有请求组东添加_xsrf值：
 
-  function getCookie(name) {
-      var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
-      return r ? r[1] : undefined;
-  }
-  
-  jQuery.postJSON = function(url, args, callback) {
-      args._xsrf = getCookie("_xsrf");
-      $.ajax({url: url, data: $.param(args), dataType: "text", type: "POST",
-          success: function(response) {
-          callback(eval("(" + response + ")"));
-      }});
-  };
+    function getCookie(name) {
+        var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
+        return r ? r[1] : undefined;
+    }
+    
+    jQuery.postJSON = function(url, args, callback) {
+        args._xsrf = getCookie("_xsrf");
+        $.ajax({url: url, data: $.param(args), dataType: "text", type: "POST",
+            success: function(response) {
+            callback(eval("(" + response + ")"));
+        }});
+    };
   
 对于 PUT 和 DELETE 请求（以及不使用将form内容作为参数的POST请求）来说，你也可以在 HTTP 头中以 X-XSRFToken 这个参数传递 XSRF token。
 
