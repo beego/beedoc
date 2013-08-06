@@ -10,12 +10,14 @@ Beego is a "go get" able Go project: `go get github.com/astaxie/beego`
 
 You may also need [Bee](/docs/Reference_BeeTool) tool for developing: `go get github.com/astaxie/bee`
 
+>>> should add `$GOPATH/bin` into PATH
+
 Want to quick setup an application see if it works?
 
 	$ cd $GOPATH/src
-	$ ./bee new hello
+	$ bee new hello
 	$ cd hello
-	$ ./bee run hello
+	$ bee run hello
 
 These commands help you:
 
