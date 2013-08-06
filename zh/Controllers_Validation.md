@@ -61,16 +61,19 @@
 	// 各个函数之间用分号 ";" 分隔，分号后面可以有空格
 	// 参数用括号 "()" 括起来，多个参数之间用逗号 "," 分开，逗号后面可以有空格
 	// 正则函数(Match)的匹配模式用两斜杠 "/" 括起来
-	// 各个函数的key值为字段名
+	// 各个函数的结果的key值为字段名.验证函数名
 	type user struct {
-		Id   int
-		Name string `valid:"Required;Match(/^(test)?\\w*@;com$/)"` // 对Name段要Required和Match的验证
-		Age  int    `valid:"Required;Range(1, 140)"` // 对Age字段进行Required和Range的验证
+		Id     int
+		Name   string `valid:"Required;Match(/^Bee.*/)"` // Name 不能为空并且以Bee开头
+		Age    int    `valid:"Range(1, 140)"` // 1 <= Age <= 140，超出此范围即为不合法
+		Email  string `valid:"Email; MaxSize(100)"` // Email字段需要符合邮箱格式，并且最大长度不能大于100个字符
+		Mobile string `valid:"Mobile"` // Mobile必须为正确的手机号
+		IP     string `valid:"IP"` // IP必须为一个正确的IPv4地址
 	}
 
 	func main() {
 		valid := Validation{}
-		u := user{Name: "test", Age: 40}
+		u := user{Name: "Beego", Age: 2, Email: "dev@beego.me"}
 		b, err := valid.Valid(u)
 		if err != nil {
 			// handle error
@@ -78,6 +81,9 @@
 		if !b {
 			// validation does not pass
 			// blabla...
+			for _, err := range valid.Errors {
+				log.Println(err.Key, err.Message)
+			}
 		}
 	}
 
@@ -96,7 +102,7 @@ Struct Tag 可用的验证函数:
 * `Match(pattern string)` 正则匹配，有效类型:`string`，其他类型都将被转成字符串再匹配(fmt.Sprintf("%v", obj).Match)
 * `AlphaDash` alpha字符或数字或横杠`-_`，有效类型:`string`，其他类型都将不能通过验证
 * `Email` 邮箱格式，有效类型:`string`，其他类型都将不能通过验证
-* `IP`  IP格式，目前只支持IPV4格式验证，有效类型:`string`，其他类型都将不能通过验证
+* `IP`  IP格式，目前只支持IPv4格式验证，有效类型:`string`，其他类型都将不能通过验证
 * `Base64` base64编码，有效类型:`string`，其他类型都将不能通过验证
 * `Mobile` 手机号，有效类型:`string`，其他类型都将不能通过验证
 * `Tel` 固定电话号，有效类型:`string`，其他类型都将不能通过验证
