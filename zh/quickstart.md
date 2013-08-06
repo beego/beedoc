@@ -15,9 +15,9 @@ Beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/asta
 想要快速建立一个应用来检测安装？
 
 	$ cd $GOPATH/src
-	$ ./bee new hello
+	$ bee new hello
 	$ cd hello
-	$ ./bee run hello
+	$ bee run hello
 
 这些指令帮助您：
 
