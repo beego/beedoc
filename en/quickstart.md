@@ -53,7 +53,7 @@ The following example prints string "Hello world" to your browser, it shows how 
 
 Save file as "hello.go", build and run it:
 
-	$ go build main.go
+	$ go build hello.go
 	$ ./hello
 
 Open address [http://127.0.0.1:8080](http://127.0.0.1:8080) in your browser and you will see "hello world".

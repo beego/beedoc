@@ -53,7 +53,7 @@ Beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/asta
 
 把上面的代码保存为 hello.go，然后通过命令行进行编译并执行：
 
-	$ go build main.go
+	$ go build hello.go
 	$ ./hello
 
 这个时候你可以打开你的浏览器，通过这个地址浏览[http://127.0.0.1:8080](http://127.0.0.1:8080)返回 “hello world”。
