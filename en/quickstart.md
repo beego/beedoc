@@ -13,10 +13,8 @@ You may also need [Bee](/docs/Reference_BeeTool) tool for developing: `go get gi
 Want to quick setup an application see if it works?
 
 	$ cd $GOPATH/src
-	$ cp $GOPATH/bin/bee bee
 	$ ./bee new hello
 	$ cd hello
-	$ mv ../bee bee
 	$ ./bee run hello
 
 These commands help you:
