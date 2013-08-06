@@ -10,6 +10,8 @@ Beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/asta
 
 您或许希望安装 [Bee](/docs/Reference_BeeTool) 工具以协助您开发：`go get github.com/astaxie/bee`
 
+>>> 确保`$GOPATH/bin`加入了你的PATH
+
 想要快速建立一个应用来检测安装？
 
 	$ cd $GOPATH/src
