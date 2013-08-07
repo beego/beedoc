@@ -1,5 +1,32 @@
 # 发行部署
 
+### 开发模式
+
+通过bee创建的项目，beego默认情况下是开发模式。
+
+我们可以通过如下的方式改变我们的模式：
+
+	beego.RunMode = "prod"
+
+或者我们在conf/app.conf下面设置如下：
+
+	runmode = prod
+
+以上两种效果一样。
+
+开发模式中
+
+- 开发模式下，如果你的目录不存在views目录，那么会出现类似下面的错误提示：
+
+		2013/04/13 19:36:17 [W] [stat views: no such file or directory]
+
+- 模板每次使用都会重新加载，不进行缓存。
+- 如果服务端出错，那么就会在浏览器端显示如下类似的截图：
+
+![](https://raw.github.com/astaxie/beego/master/docs/en/images/dev.png)
+
+### 发行部署
+
 Go 语言的应用最后编译之后是一个二进制文件，你只需要 copy 这个应用到服务器上，运行起来就行。Beego 由于带有几个静态文件、配置文件、模板文件三个目录，所以用户部署的时候需要同时 copy 这三个目录到相应的部署应用之下，下面以我实际的应用部署为例：
 
 	$ mkdir /opt/app/beepkg

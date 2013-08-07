@@ -114,3 +114,20 @@ There are some built-in template functions:
 * htmlunquote
 
 	This functions implements basic invert-escape of HTML, use {{htmlunquote .unquote}} in template files.
+
+### Static files
+
+Go provides `http.ServeFile` for static files, Beego wrapped this function and use following way to register static file folder:
+
+	beego.SetStaticPath("/static","public")
+
+- The first argument is the path of your URL.
+- The second argument is the directory in your application path.
+
+Beego supports multiple static file directories as follows:
+
+	beego.SetStaticPath("/images","images")
+	beego.SetStaticPath("/css","css")
+	beego.SetStaticPath("/js","js")
+
+After you setting static directory, when users visit `/images/login/login.png`，Beego accesses `images/login/login.png` in related to your application directory. One more example, if users visit `/static/img/logo.png`, Beego accesses file `public/img/logo.png`.
