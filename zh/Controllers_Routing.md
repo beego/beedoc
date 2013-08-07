@@ -80,10 +80,10 @@
 
 以下是一个 RESTful 的设计如下
 
-- beego.Router("/api/list",&RestController{},"*:ListFood")
-- beego.Router("/api/create",&RestController{},"post:CreateFood")
-- beego.Router("/api/update",&RestController{},"put:UpdateFood")
-- beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
+	beego.Router("/api/list",&RestController{},"*:ListFood")
+	beego.Router("/api/create",&RestController{},"post:CreateFood")
+	beego.Router("/api/update",&RestController{},"put:UpdateFood")
+	beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
 
 以下是多个 HTTP Method 指向同一个函数
 	
