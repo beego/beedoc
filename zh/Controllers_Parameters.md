@@ -68,6 +68,7 @@ Controller里解析：
 1. 在配置文件里设置`copyrequestbody = true`
 2. 在Controller中
 
+```
 	func (this *ObejctController) Post() {
 		var ob models.Object
 		json.Unmarshal(this.Ctx.RequestBody, &ob)
@@ -75,4 +76,4 @@ Controller里解析：
 		this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
 		this.ServeJson()
 	}
-
+```
