@@ -17,7 +17,7 @@ If enablexsrf is set, the beego web application will set the _xsrf cookie for al
 first in controller you get the csrfdata
 
     func (this *HomeController) Get(){
-        this.data["xsrfdata"]=this.XsrfFormHtml()
+        this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
     }
 
 then writer template like this:
