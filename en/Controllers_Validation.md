@@ -76,25 +76,25 @@ Struct Tag Use:
 
 Struct Tag Functions:
 
-	Required
-	Min(min int)
-	Max(max int)
-	Range(min, max int)
-	MinSize(min int)
-	MaxSize(max int)
-	Length(length int)
-	Alpha
-	Numeric
-	AlphaNumeric
-	Match(pattern string)
-	AlphaDash
-	Email
-	IP
-	Base64
-	Mobile
-	Tel
-	Phone
-	ZipCode
+* `Required` Non-empty, which means value cannot be its type's zero-value.
+* `Min(min int)` Minimum value with type that has to be `int`.
+* `Max(max int)` Maximum value with type that has to be `int`.
+* `Range(min, max int)` Range of value with type that has to be `int`.
+* `MinSize(min int)` Minimum length of value with type that has to be `string` or `slice`.
+* `MaxSize(max int)` Maximum length of value with type that has to be `string` or `slice`.
+* `Length(length int)` Certain length of value with type that has to be `string` or `slice`.
+* `Alpha` alpha characters with type that has to be `string`.
+* `Numeric` number with type that has to be `string`.
+* `AlphaNumeric` alpha characters or number with type that has to be `string`.
+* `Match(pattern string)` Regexp match with type that has to be `string`, other types will be converted by `fmt.Sprintf("%v", obj).Match` before matching.
+* `AlphaDash` alpha characters or number or `-_` with type that has to be `string`.
+* `Email` email format with type that has to be `string`.
+* `IP`  IP format with type that has to be `string`, for now only support IPv4.
+* `Base64` base64 encode with type that has to be `string`.
+* `Mobile` phone number with type that has to be `string`.
+* `Tel` telephone number with type that has to be `string`.
+* `Phone` phone or telephone number with type that has to be `string`.
+* `ZipCode` zip code with type that has to be `string`.
 
 ### API documnetation
 

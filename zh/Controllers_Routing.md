@@ -2,7 +2,7 @@
 
 ### 默认路由 RESTFul 规则
 
-路由的主要功能是实现从请求地址到实现方法，Beego 中封装了 `Controller`，所以路由是从路径到`ControllerInterface` 的过程，`ControllerInterface` 的方法有如下：
+路由的主要功能是实现从请求地址到实现方法，Beego 中封装了 `Controller`，所以路由是从路径到`ControllerInterface` 的过程，`ControllerInterface` 的方法如下所示：
 
 	type ControllerInterface interface {
 		Init(ct *Context, cn string)
@@ -57,7 +57,7 @@
 	
 	string 类型设置方式 //匹配 :hi为string类型。框架帮你实现了正则([\w]+)
 
-如何在Controller中获取，上面的变量可以通过如下方式获取：
+可以在 Controlle 中通过如下方式获取上面的变量：
 
 	this.Ctx.Params[":id"]
 	this.Ctx.Params[":username"]
@@ -65,9 +65,9 @@
 	this.Ctx.Params[":path"]
 	this.Ctx.Params[":ext"]
 
-### 自定义方法及 RESTFul 规则
+### 自定义方法及 RESTful 规则
 
-上面列举的是默认的请求方法名（请求的method和函数名一致，例如 GET 请求执行 Get 函数，POST 请求执行 Post 函数），如果用户期望自定义函数名，那么可以使用如下方式：
+上面列举的是默认的请求方法名（请求的 method 和函数名一致，例如 GET 请求执行 `Get` 函数，POST 请求执行 `Post` 函数），如果用户期望自定义函数名，那么可以使用如下方式：
 
 	beego.Router("/",&IndexController{},"*:Index")
 	
@@ -76,20 +76,20 @@
 - *表示任意的 method 都执行该函数
 - 使用 `httpmethod:funcname` 格式来展示
 - 多个不同的格式使用 `;` 分割
-- 多个 method 对应同一个 funcname，method 之间通过 `,` 来分割	
+- 多个 method 对应同一个 funcname，method 之间通过 `,` 来分割
 
-以下是一个 RESTful 的设计如下
+以下是一个 RESTful 的设计示例：
 
 	beego.Router("/api/list",&RestController{},"*:ListFood")
 	beego.Router("/api/create",&RestController{},"post:CreateFood")
 	beego.Router("/api/update",&RestController{},"put:UpdateFood")
 	beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
 
-以下是多个 HTTP Method 指向同一个函数
+以下是多个 HTTP Method 指向同一个函数的示例：
 	
 	beego.Router("/api",&RestController{},"get,post:ApiFunc")
 
-一下是不同的 method 对应不同的函数，通过 `;` 进行分割
+一下是不同的 method 对应不同的函数，通过 `;` 进行分割的示例：
 
 	beego.Router("/simple",&SimpleController{},"get:GetFunc;post:PostFunc")
 	
@@ -104,7 +104,7 @@
 - options ：OPTIONS 请求
 - head	：HEAD 请求
 
-如果同时存在*和对应的 HTTP Method，那么优先执行 HTTP Method 的方法，例如同时注册了如下所示的路由：
+如果同时存在 * 和对应的 HTTP Method，那么优先执行 HTTP Method 的方法，例如同时注册了如下所示的路由：
 
 	beego.Router("/simple",&SimpleController{},"*:AllFunc;post:PostFunc")
 
@@ -121,9 +121,9 @@
 	/object/login   调用 ObjectController 中的 Login 方法
 	/object/logout  调用 ObjectController 中的 Logout 方法
 	
-除了前缀两个 /:controller/:method 的匹配之外，剩下的 url Beego会帮你自动化解析为参数，保存在 `this.Ctx.Params` 当中：
+除了前缀两个 `/:controller/:method` 的匹配之外，剩下的 url Beego会帮你自动化解析为参数，保存在 `this.Ctx.Params` 当中：
 
 	/object/blog/2013/09/12  调用 ObjectController 中的 Blog 方法，参数如下：map[0:2013 1:09 2:12]
 	
 	
-方法名在内部是保存了用户设置的，例如 Login，url 匹配的时候都会转化为小写，所以，/object/LOGIN 这样的 url 也一样可以路由到用户定义的 Login 方法中。
+方法名在内部是保存了用户设置的，例如 Login，url 匹配的时候都会转化为小写，所以，`/object/LOGIN` 这样的 url 也一样可以路由到用户定义的 Login 方法中。

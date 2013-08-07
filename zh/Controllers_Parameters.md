@@ -27,9 +27,9 @@
 
 ## 直接解析到 struct
 
-如果要把表单里的内容赋值到一个 struct 里，除了用上面的方法一个一个获取再赋值外，beego提供了通过另外一个更便捷的方式，就是通过 struct 的字段名或 tag 与表单字段对应直接解析到 struct。
+如果要把表单里的内容赋值到一个 struct 里，除了用上面的方法一个一个获取再赋值外，Beego提供了通过另外一个更便捷的方式，就是通过 struct 的字段名或 tag 与表单字段对应直接解析到 struct。
 
-定义struct:
+定义struct：
 
 	type user struct {
 		Id    int
@@ -47,7 +47,7 @@
 		<input type="submit" value="提交" />
 	</form>
 
-Controller里解析：
+Controller 里解析：
 
 	func (this *MainController) Post() {
 		u := user{}
@@ -58,15 +58,15 @@ Controller里解析：
 
 注意：
 
-* 定义struct时，字段名后如果有form这个tag，则会以把form表单里的name和tag的名称一样的字段赋值给这个字段，否则就会把form表单里与字段名一样的表单内容赋值给这个字段。如上面例子中，会把表单中的username和age分别赋值给user里的Name和Age字段，而Email里的内容则会赋给Email这个字段。
-* 调用Controller ParseForm这个方法的时候，传入的参数必须为一个struct的指针，否则对struct的赋值不会成功并返回`xx must be  a struct pointer`的错误。
+* 定义 struct 时，字段名后如果有 form 这个 tag，则会以把 form 表单里的 name 和 tag 的名称一样的字段赋值给这个字段，否则就会把 form 表单里与字段名一样的表单内容赋值给这个字段。如上面例子中，会把表单中的 username 和 age 分别赋值给 user 里的 Name 和 Age 字段，而 Email 里的内容则会赋给 Email 这个字段。
+* 调用 Controller ParseForm 这个方法的时候，传入的参数必须为一个 struct 的指针，否则对 struct 的赋值不会成功并返回 `xx must be  a struct pointer` 的错误。
 
-## 获取Request Body里的内容
+## 获取 Request Body 里的内容
 
-在API的开发中，我们经常会用到json或xml来作为数据交互的格式，如何在beego中获取Request Body里的json或xml的数据呢？
+在 API 的开发中，我们经常会用到 JSON 或 XML 来作为数据交互的格式，如何在 Beego 中获取 Request Body 里的 JSON 或 XML 的数据呢？
 
-1. 在配置文件里设置`copyrequestbody = true`
-2. 在Controller中
+1. 在配置文件里设置 `copyrequestbody = true`
+2. 在 Controller 中
 
 ```
 	func (this *ObejctController) Post() {
