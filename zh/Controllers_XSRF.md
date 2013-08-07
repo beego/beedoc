@@ -1,4 +1,6 @@
-[跨站伪造请求(Cross-site request forgery)](http://en.wikipedia.org/wiki/Cross-site_request_forgery)， 简称为 XSRF，是Web应用中常见的一个安全问题。前面的链接也详细讲述了XSRF攻击的实现方式。
+# 跨站请求伪造
+
+[跨站请求伪造(Cross-site request forgery)](http://en.wikipedia.org/wiki/Cross-site_request_forgery)， 简称为 XSRF，是Web应用中常见的一个安全问题。前面的链接也详细讲述了XSRF攻击的实现方式。
 
 当前防范XSRF的一种通用的方法，是对每一个用户都记录一个无法预知的cookie数据，然后要求所有提交的请求(POST/PUT/DELETE)中都必须带有这个cookie数据。如果此数据不匹配 ，那么这个请求就可能是被伪造的。
 

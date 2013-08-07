@@ -1,3 +1,5 @@
+# Cross-site request forgery
+
 [Cross-site request forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery), or XSRF, is a common problem for personalized web applications. See the Wikipedia article for more information on how XSRF works.
 
 The generally accepted solution to prevent XSRF is to cookie every user with an unpredictable value and include that value as an additional argument with every form submission(POST/GET/DELETE) on your site. If the cookie and the value in the form submission do not match, then the request is likely forged.
