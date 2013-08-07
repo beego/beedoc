@@ -1,27 +1,27 @@
 # 基本说明
 
-该手册详细描述了 Beego Web框架的各个方面。
+该手册详细描述了 Beego Web 框架的各个方面。
 
-### 新来的？
+### 新手指导
 
-请先阅读 [框架概念](/docs/Overview_Concepts)。
+如果您是首次了解 Beego，我们建议您先阅读 [框架概念](/docs/Overview_Concepts)。
 
-### 找不到文档？
+### 其它资源
 
-请在 [邮件列表 (beego-framework@googlegroups.com)](https://groups.google.com/forum/#!forum/beego-framework) 中搜索。
+如果您无法找到相关问题的满意答案，可以在 [邮件列表 (beego-framework@googlegroups.com)](https://groups.google.com/forum/#!forum/beego-framework) 中搜索。
 
-### 需要帮助？
+### 寻求帮助
 
-发送邮件到 [beego-framework@googlegroups.com](mailto:beego-framework@googlegroups.com)。
+如果您遇到无法解决的问题，可以发送邮件到 [beego-framework@googlegroups.com](mailto:beego-framework@googlegroups.com) 提问。
 
-### 发现 Bug？ 
+### 问题提交
 
-在 [Github](https://github.com/astaxie/beego/issues) 的问题列表中提出。
+如果您在使用过程中发现 Beego 有潜在的问题，请通过 [Github](https://github.com/astaxie/beego/issues) 上的问题列表提交。
 
-### 想要成为贡献者？
+### 完善文档
 
-派生 [文档项目](https://github.com/beego/beedoc)、编辑，然后提交合并请求。
+您可以通过派生 [文档项目](https://github.com/beego/beedoc)、编辑，然后提交合并请求。
 
-### 简单的 API 文档？
+### 简单的 API 文档
 
 请移步 [Go 步行者](http://gowalker.org/github.com/astaxie/beego)。

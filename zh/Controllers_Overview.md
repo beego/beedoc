@@ -1,4 +1,4 @@
-# 控制器（controller）
+# 控制器（Controllers）
 
 基于 Beego 的 Controller 设计，只需要匿名组合 `beego.Controller` 就可以了，如下所示：
 

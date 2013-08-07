@@ -1,6 +1,6 @@
 # Organization
 
-Beego requires itself and the user application to be installed into a GOPATH layout as prescribed by the go command line tool. (See “GOPATH Environment Variable” in the go command documentation)
+Beego requires itself and the user application to be installed into a $GOPATH layout as prescribed by the go command line tool. (See “GOPATH Environment Variable” in the go command documentation)
 
 ### Example layout
 

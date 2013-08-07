@@ -1,4 +1,4 @@
-# Controller
+# Controllers
 
 Use `beego.controller` as anonymous in your controller struct to implement the interface in Beego:
 
