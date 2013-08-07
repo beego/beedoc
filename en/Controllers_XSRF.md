@@ -6,13 +6,22 @@ beego comes with built-in XSRF protection. To include it in your site,set the ap
 
     enablexsrf = true
     xsrfkey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o
+    xsrfexpire = 3600 
 
 or set in the main.go
 
     beego.EnableXSRF = true
     beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
+    beego.XSRFExpire = 3600  //cookie expired time，default 60s
 
 If enablexsrf is set, the beego web application will set the _xsrf cookie for all users and reject all POST, PUT, and DELETE requests that do not contain a correct _xsrf value. If you turn this setting on, you need to instrument all forms that submit via POST to contain this field. You can do this with the special function XsrfFormHtml(), available in all templates:
+
+>>>sometime you can modify the cookie expired time in the controller,but not affect other controller's logic.
+
+>>>     func (this *HomeController) Get(){ 
+>>>         this.XSRFExpire = 7200    
+>>>         this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
+>>>     }
 
 first in controller you get the csrfdata
 
