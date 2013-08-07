@@ -17,7 +17,7 @@ beego有内建的XSRF的防范机制，要使用此机制，你需要在应用�
 在Controller中这样设置数据
 
     func (this *HomeController) Get(){
-        this.data["xsrfdata"]=this.XsrfFormHtml()
+        this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
     }
   
 然后在模板中这样设置：
