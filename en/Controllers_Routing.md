@@ -72,10 +72,10 @@ The 3rd argument indicates the corresponding HTTP method for your method and rou
 
 Here is a RESTful style design:
 
-- beego.Router("/api/list",&RestController{},"*:ListFood")
-- beego.Router("/api/create",&RestController{},"post:CreateFood")
-- beego.Router("/api/update",&RestController{},"put:UpdateFood")
-- beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
+	beego.Router("/api/list",&RestController{},"*:ListFood")
+	beego.Router("/api/create",&RestController{},"post:CreateFood")
+	beego.Router("/api/update",&RestController{},"put:UpdateFood")
+	beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
 
 An example of multiple HTTP method route to one method:
 
