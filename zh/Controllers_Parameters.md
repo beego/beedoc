@@ -58,7 +58,7 @@ Controller里解析：
 
 注意：
 
-* 定义struct时，字段名后如果有form这个tag，则会以把form表单里的name和tag的名称一样的字段赋值给这个字段，否则就会把form表单里与字段名一样的表单内容赋值给这个字段。如上面例子中的，会把表单中的username和age分别赋值给user里的Name和Age字段，而Email里的内容则会赋给Email这个字段。
+* 定义struct时，字段名后如果有form这个tag，则会以把form表单里的name和tag的名称一样的字段赋值给这个字段，否则就会把form表单里与字段名一样的表单内容赋值给这个字段。如上面例子中，会把表单中的username和age分别赋值给user里的Name和Age字段，而Email里的内容则会赋给Email这个字段。
 * 调用Controller ParseForm这个方法的时候，传入的参数必须为一个struct的指针，否则对struct的赋值不会成功并返回`xx must be  a struct pointer`的错误。
 
 ## 获取Request Body里的内容
@@ -75,3 +75,4 @@ Controller里解析：
 		this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
 		this.ServeJson()
 	}
+
