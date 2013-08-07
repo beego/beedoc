@@ -25,7 +25,7 @@ Go 语言的应用最后编译之后是一个二进制文件，你只需要 copy
 
 - Supervisord 
 
-	安装和配置见 [Supervisord](Supervisord.md)。
+	安装和配置见 [Supervisord](/docs/Operational_Supervisord)。
 
 - nohup方式
 

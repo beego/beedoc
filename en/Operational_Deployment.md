@@ -25,7 +25,7 @@ Now you can run your application in server, here are two good ways to manage you
 
 - Supervisord 
 
-	More information: [Supervisord](Supervisord.md).
+	More information: [Supervisord](/docs/Operational_Supervisord).
 
 - nohup
 

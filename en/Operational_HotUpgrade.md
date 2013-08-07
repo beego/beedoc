@@ -2,7 +2,7 @@
 
 ## What is hot update?
 
-If you have used nginx, you may know that nginx supports hot update, which means you can update your nginx without stopping and restarting it. It serves old connections with old version, and accepts new connections with new version. Notice that hot compiling is different from hot update, where hot compiling is monitoring your source files and recompile them when the content changes, it requires stop and restart your applications, `bee start` is a tool for hot compiling.
+If you have used nginx, you may know that nginx supports hot update, which means you can update your nginx without stopping and restarting it. It serves old connections with old version, and accepts new connections with new version. Notice that hot compiling is different from hot update, where hot compiling is monitoring your source files and recompile them when the content changes, it requires stop and restart your applications, `bee run` is a tool for hot compiling.
 
 
 ## Is hot update necessary?
