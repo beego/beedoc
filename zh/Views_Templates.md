@@ -78,10 +78,6 @@ Beego 支持用户定义模板函数，但是必须在 `beego.Run()` 调用之�
 
 目前 Beego 内置的模板函数如下所示：
 
-* markdown
-
-	实现了把 markdown 文本转化为 html 信息，使用方法 {{markdown .Content}}。
-
 * dateformat
 
 	实现了时间的格式化，返回字符串，使用方法 {{dateformat .Time "2006-01-02T15:04:05Z07:00"}}。
