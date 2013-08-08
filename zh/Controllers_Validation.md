@@ -51,10 +51,11 @@
 	}
 
 
-通过 struct tag 使用示例：
+通过 StructTag 使用示例：
 
 	import (
 		"github.com/astaxie/beego/validation"
+		"log"
 	)
 
 	// 验证函数写在 "valid" tag 的标签里
@@ -87,7 +88,7 @@
 		}
 	}
 
-Struct Tag 可用的验证函数：
+StructTag 可用的验证函数：
 
 * `Required` 不为空，即各个类型要求不为其零值
 * `Min(min int)` 最小值，有效类型：`int`，其他类型都将不能通过验证

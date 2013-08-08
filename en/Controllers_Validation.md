@@ -43,27 +43,36 @@ Direct Use:
 		if v := valid.Max(u.Age, 140); !v.Ok {
 			log.Println(v.Error.Key, v.Error.Message)
 		}
+		// specify a Message
+		minAge := 18
+		valid.Min(u.Age, minAge).Message("Children should not be")
+		// fmt Message
+		valid.Min(u.Age, minAge).Message("%d does not prohibit", minAge)
 	}
 
-Struct Tag Use:
+Use via StructTag:
 
 	import (
 		"github.com/astaxie/beego/validation"
+		"log"
 	)
 
 	// validation function follow with "valid" tag
 	// functions divide with ";"
 	// parameters in parentheses "()" and divide with ","
 	// Match function's pattern string must in "//"
+	// the Key of the ValidationError is the struct field's name + "." + funcname
 	type user struct {
-		Id   int
-		Name string `valid:"Required;Match(/^(test)?\\w*@;com$/)"`
-		Age  int    `valid:"Required;Range(1, 140)"`
+		Id     int
+		Name   string `valid:"Required;Match(/^Bee.*/)"` // Name must start with "Bee"
+		Age    int    `valid:"Range(1, 140)"` // 1 <= Age <= 140
+		Email  string `valid:"Email; MaxSize(100)"` // Email must be a valid Email address and the max length is 100
+		IP     string `valid:"IP"` // IP must be a valid IPv4 address
 	}
 
 	func main() {
 		valid := Validation{}
-		u := user{Name: "test", Age: 40}
+		u := user{Name: "Beego", Age: 2, Email: "dev@beego.me"}
 		b, err := valid.Valid(u)
 		if err != nil {
 			// handle error
@@ -71,10 +80,13 @@ Struct Tag Use:
 		if !b {
 			// validation does not pass
 			// blabla...
+			for _, err := range valid.Errors {
+				log.Println(err.Key, err.Message)
+			}
 		}
 	}
 
-Struct Tag Functions:
+StructTag Functions:
 
 * `Required` Non-empty, which means value cannot be its type's zero-value.
 * `Min(min int)` Minimum value with type that has to be `int`.
