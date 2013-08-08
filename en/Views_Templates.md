@@ -79,10 +79,6 @@ Then you can use this function in your template files:
 
 There are some built-in template functions:
 
-* markdown
-
-	This function converts markdown content to HTML format, use {{markdown .Content}} in template files.
-
 * dateformat
 
 	This function converts time to formatted string, use {{dateformat .Time "2006-01-02T15:04:05Z07:00"}} in template files.
