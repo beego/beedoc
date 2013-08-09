@@ -189,7 +189,7 @@ XML 数据直接输出，设置 `content-type` 为 `application/xml`：
 
 这样 `this.Abort("401")` 之后的代码不会再执行，而且会默认显示给用户如下页面：
 
-![](https://raw.github.com/astaxie/beego/master/docs/en/images/401.png)
+![](https://raw.github.com/astaxie/beego/master/docs/zh/images/401.png)
 
 Beego 框架默认支持 404、401、403、500、503 这几种错误的处理。用户可以自定义相应的错误处理，例如下面重新定义 404 页面：
 

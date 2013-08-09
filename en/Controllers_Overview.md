@@ -191,7 +191,7 @@ You can also throw an exception in your controller as follows:
 
 Then Beego will not execute rest code of the function body when you call `this.Abort("401")`, and gives following default page view to users:
 
-![](https://raw.github.com/astaxie/beego/master/docs/en/images/401.png)
+![](https://raw.github.com/astaxie/beego/master/docs/zh/images/401.png)
 
 Beego supports following error code: 404, 401, 403, 500 and 503, you can customize your error handle, for example, use following code to replace 404 error handle process:
 
