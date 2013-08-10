@@ -110,7 +110,7 @@ Beego 支持用户定义模板函数，但是必须在 `beego.Run()` 调用之�
 
 	实现了基本的反转移字符，使用方法 {{htmlunquote .unquote}}。
 
-* [ renderform](##renderform 使用)
+* [ renderform](##renderform-使用)
 
 	根据 StructTag 直接生成对应的表单，使用方法 {{&struct | renderform}}。
 
