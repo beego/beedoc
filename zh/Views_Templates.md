@@ -110,6 +110,10 @@ Beego 支持用户定义模板函数，但是必须在 `beego.Run()` 调用之�
 
 	实现了基本的反转移字符，使用方法 {{htmlunquote .unquote}}。
 
+* renderform
+
+	根据 StructTag 直接生成对应的表单，使用方法 {{&struct | renderform}}。
+
 ### 静态文件
 
 Go 语言内部其实已经提供了 `http.ServeFile`，通过这个函数可以实现静态文件的服务。Beego 针对这个功能进行了一层封装，通过下面的方式进行静态文件注册：
@@ -126,3 +130,40 @@ Beego 支持多个目录的静态文件注册，用户可以注册如下的静�
 	beego.SetStaticPath("/js","js")
 
 设置了如上的静态目录之后，用户访问 `/images/login/login.png`，那么就会访问应用对应的目录下面的 `images/login/login.png` 文件。如果是访问 `/static/img/logo.png`，那么就访问 `public/img/logo.png`文件。
+
+### renderform 使用
+
+定义 struct:
+
+	type User struct {
+		Id    int
+		Name  interface{} `form:"username"`
+		Age   int         `form:"age,text"`
+		Intro string `form:",textarea"`
+	}
+
+StructTag 的定义用的标签用为`form`，和 [ParseForm方法](Controllers_Parameters.md#直接解析到-strut) 共用一个标签，标签后面有两个可选参数，用`,`分割。第一个参数为表单中类型的`name`的值，如果为空，则以`struct field name`为值。第二个参数为表单组件的类型，如果为空，则为`text`。表单组件的标签为`struct field name`的值。
+
+controller：
+
+	func (this *AddController) Get() {
+	    this.Data["Form"] = &User{}
+	    this.TplNames = "index.tpl"
+	}
+
+Form 的参数必须是一个 struct 的指针。
+
+template:
+
+	<form action="" method="post">
+	{{.Form | renderform}}
+	</form>
+
+上面的代码生成的表单为：
+	
+```
+	Id: <input name="Id" type="text" value="0"></br>
+	Name: <input name="username" type="text" value="test"></br>
+	Age: <input name="age" type="text" value="0"></br>
+	Intro: <input name="Intro" type="textarea" value="">
+```
