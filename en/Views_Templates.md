@@ -40,7 +40,7 @@ If you enabled auto-render and you don't tell Beego which template file you are 
 
 	c.TplNames = c.ChildName + "/" + c.Ctx.Request.Method + "." + c.TplExt
 
-Which is `<corresponding controller name>/<request method name>.<template extension>`. For example, your controller name is `AddController` and the request method is POST, and the default file extension is `tpl`, so Beego will try to find file `/<viewpath>/AddController/POST.tpl`.
+Which is `<corresponding controller name>/<request method name>.<template extension>`. For example, your controller name is `AddController` and the request method is POST, and the default file extension is `tpl`, so Beego will try to find file `/<viewpath>/AddController/post.tpl`.
 
 ### Layout design
 
