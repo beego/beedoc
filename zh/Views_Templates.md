@@ -40,7 +40,7 @@ Beego 采用了 Go 语言内置的模板引擎，所有模板的语法和 Go 的
 
 	c.TplNames = c.ChildName + "/" + c.Ctx.Request.Method + "." + c.TplExt
 
-也就是你对应的 Controller 名字+请求方法名.模板后缀，也就是如果你的 Controller 名是 `AddController`，请求方法是 `POST`，默认的文件后缀是 `tpl`，那么就会默认请求 `/viewpath/AddController/POST.tpl` 文件。
+也就是你对应的 Controller 名字+请求方法名.模板后缀，也就是如果你的 Controller 名是 `AddController`，请求方法是 `POST`，默认的文件后缀是 `tpl`，那么就会默认请求 `/viewpath/AddController/post.tpl` 文件。
 
 ### Layout 设计
 
