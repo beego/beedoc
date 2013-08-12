@@ -138,13 +138,14 @@ Beego 支持多个目录的静态文件注册，用户可以注册如下的静�
 	type User struct {
 		Id    int         `form:"-"`
 		Name  interface{} `form:"username"`
-		Age   int         `form:"age,text"`
+		Age   int         `form:"age,text,年龄："`
 		Sex   string
 		Intro string `form:",textarea"`
 	}
 
-* StructTag 的定义用的标签用为`form`，和 [ParseForm方法](Controllers_Parameters.md#直接解析到-struct) 共用一个标签，标签后面有两个可选参数，用`,`分割。第一个参数为表单中类型的`name`的值，如果为空，则以`struct field name`为值。第二个参数为表单组件的类型，如果为空，则为`text`。表单组件的标签为`struct field name`的值。
-* 如果要忽略一个字段，有两种办法，一是：字段名小写开头，二是：form 标签的值主 `-`
+* StructTag 的定义用的标签用为`form`，和 [ParseForm方法](Controllers_Parameters.md#直接解析到-struct) 共用一个标签，标签后面有三个可选参数，用`,`分割。第一个参数为表单中类型的`name`的值，如果为空，则以`struct field name`为值。第二个参数为表单组件的类型，如果为空，则为`text`。表单组件的标签默认为`struct field name`的值，否则为第三个值。
+* 如果`form标签只有一个值，则为表单中类型`name`的值，除了最后一个值可以忽略外，其他位置的必须要有`,`号分割，如：`form:",,姓名："`
+* 如果要忽略一个字段，有两种办法，一是：字段名小写开头，二是：form 标签的值设置为 `-`
 
 controller：
 
@@ -165,7 +166,7 @@ template:
 	
 ```
 	Name: <input name="username" type="text" value="test"></br>
-	Age: <input name="age" type="text" value="0"></br>
+	年龄：<input name="age" type="text" value="0"></br>
 	Sex: <input name="Sex" type="text" value=""></br>
 	Intro: <input name="Intro" type="textarea" value="">
 ```
