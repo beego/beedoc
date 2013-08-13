@@ -25,3 +25,7 @@
 ### 简单的 API 文档
 
 请移步 [Go 步行者](http://gowalker.org/github.com/astaxie/beego)。
+
+### 网站源码
+
+请移步 [Beego Web](https://github.com/beego/beeweb)。
