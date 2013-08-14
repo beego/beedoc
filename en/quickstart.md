@@ -2,7 +2,7 @@
 
 ## Installation
 
-Beego contains sample applications to help you learn and use Beego web framework.
+Beego contains sample applications to help you learn and use beego App framework.
 
 You will need a functioning Go 1.1 installation for this to work.
 
