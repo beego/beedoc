@@ -31,13 +31,13 @@ more features please read the documentation.
 
 	go get github.com/astaxie/beego/orm
 
-## Changelog
+### Changelog
 
 * 2013-08-13: Update test for database types
 * 2013-08-13: Go types support, such as int8, uint8, byte, rune
 * 2013-08-13: Improve supoort of date / datetime timezone
 
-## Quick Start
+### Quick Start
 
 #### Simple Usage
 
