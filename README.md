@@ -1,6 +1,6 @@
 # What is this?
 
-An open source project for Beego documentation.
+An open source project for beego documentation.
 
 ## How to contribute?
 
