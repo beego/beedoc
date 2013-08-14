@@ -61,7 +61,7 @@ Controller 里解析：
 * StructTag form 的定义和 [renderform方法](Views_Templates.md#renderform-使用) 共用一个标签
 * 定义 struct 时，字段名后如果有 form 这个 tag，则会以把 form 表单里的 name 和 tag 的名称一样的字段赋值给这个字段，否则就会把 form 表单里与字段名一样的表单内容赋值给这个字段。如上面例子中，会把表单中的 username 和 age 分别赋值给 user 里的 Name 和 Age 字段，而 Email 里的内容则会赋给 Email 这个字段。
 * 调用 Controller ParseForm 这个方法的时候，传入的参数必须为一个 struct 的指针，否则对 struct 的赋值不会成功并返回 `xx must be  a struct pointer` 的错误。
-* 如果要忽略一个字段，有两种办法，一是：字段名小写开头，二是：form 标签的值主 `-`
+* 如果要忽略一个字段，有两种办法，一是：字段名小写开头，二是：`form` 标签的值设置为 `-`
 
 ## 获取 Request Body 里的内容
 
