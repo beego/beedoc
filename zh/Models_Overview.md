@@ -1,8 +1,8 @@
-# 模型（Models）－ Beego ORM
+# 模型（Models）－ beego ORM
 
 [![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest)
 
-Beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Django ORM 和 SQLAlchemy。
+beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Django ORM 和 SQLAlchemy。
 
 目前该框架仍处于开发阶段，可能发生任何导致不兼容的改动。
 
