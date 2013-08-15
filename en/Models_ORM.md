@@ -124,13 +124,11 @@ ORM converts time from database time to your setting local time when execute `Re
 
 ## RegisterModel
 
-如果使用 `orm.QuerySeter` 进行高级查询的话，这个是必须的。
+If you want to use query like `orm.QuerySeter`, you have to use this method; otherwise, you can directly use raw query or map struct without this step, more detail please see [Raw SQL](Models_RawSQL).
 
-反之，如果只使用 Raw 查询和 map struct，是无需这一步的。您可以去查看 [Raw SQL 查询](Models_RawSQL)
+The best practice for registering model is that register them in init function in the `models.go` file.
 
-将你定义的 Model 进行注册，最佳设计是有单独的 models.go 文件，在它的 init 函数中进行注册。
-
-迷你版 models.go
+Mini `models.go`:
 
 ```go
 package main
@@ -147,20 +145,20 @@ func init(){
 }
 ```
 
-`RegisterModel` 也可以同时注册多个 model：
+`RegisterModel` also can register many models at once:
 
 ```go
 orm.RegisterModel(new(User), new(Profile), new(Post))
 ```
 
-## ORM 接口使用
+## ORM interface
 
-使用 ORM 必然接触的 `Ormer` 接口，我们来熟悉一下
+The interface `Ormer` is an important part for using ORM, let's see how it works:
 
 ```go
 var o Ormer
 o = orm.NewOrm() // 创建一个 Ormer
-// NewOrm 的同时会执行 orm.BootStrap (整个 app 只执行一次)，用以验证模型之间的定义并缓存。
+// NewOrm will call orm.BootStrap(only once for single App) to verify model definition and cache them.
 ```
 
 * type Ormer interface {
@@ -183,18 +181,18 @@ o = orm.NewOrm() // 创建一个 Ormer
 
 ### QueryTable
 
-传入表名，或者 Modeler 对象，返回一个 [QuerySeter](Models_Query#queryseter)。
+Pass table name or use Modeler to return a [QuerySeter](Models_Query#queryseter).
 
 ```go
 o := orm.NewOrm()
 var qs QuerySeter
 qs = o.QueryTable("user")
-// 如果表没有定义过，会立刻 panic
+// Program panics if the table hasn't been registered.
 ```
 
 ### Using
 
-切换为其他数据库：
+Change to other databases:
 
 ```go
 orm.RegisterDataBase("db1", "mysql", "root:root@/orm_db2?charset=utf8", 30)
@@ -206,18 +204,17 @@ o1.Using("db1")
 o2 := orm.NewOrm()
 o2.Using("db2")
 
-// 切换为其他数据库以后
-// 这个 Ormer 对象的其下的 api 调用都将使用这个数据库
+// After you changed the database, all operations will be applied on the new one.
 
 ```
 
-默认使用 `default` 数据库，无需调用 Using。
+ORM uses `default` database as default, you don't need to use `Using` for that.
 
 ### Raw
 
-使用 SQL 语句直接进行操作。
+Use SQL statements to operate.
 
-Raw 函数，返回一个 [RawSeter](Models_RawSQL) 用以对设置的 SQL 语句和参数进行操作。
+Raw function returns a [RawSeter](Models_RawSQL) to set SQL statements and arguments for operations.
 
 ```go
 o := NewOrm()
@@ -227,7 +224,7 @@ r = o.Raw("UPDATE user SET name = ? WHERE name = ?", "testing", "slene")
 
 ### Driver
 
-返回当前 ORM 使用的 db 信息：
+It returns db information of current ORM:
 
 ```go
 type Driver interface {
@@ -254,11 +251,11 @@ fmt.Println(dr.Type() == orm.DR_Sqlite) // true
 
 ```
 
-## 调试模式打印查询语句
+## Print SQL in debug mode
 
-简单的设置 Debug 为 true 打印查询的语句
+Simply set `Debug` to true to print SQL.
 
-可能存在性能问题，不建议使用在产品模式。
+We do not recommend you to enable this feature in product mode.
 
 ```go
 func main() {
@@ -266,9 +263,9 @@ func main() {
 ...
 ```
 
-默认使用 `os.Stderr` 输出日志信息。
+Use `os.Stderr` to print information as default.
 
-改变输出到你自己的 `io.Writer`：
+You are able to change to print to any object that implemented interface `io.Writer`:
 
 ```go
 var w io.Writer
@@ -278,7 +275,7 @@ var w io.Writer
 orm.DebugLog = orm.NewLog(w)
 ```
 
-日志格式
+Log format:
 
 ```go
 [ORM] - 时间 - [Queries/数据库名] - [执行操作/执行时间] - [SQL语句] - 使用标点 `,` 分隔的参数列表 - 打印遇到的错误
@@ -295,4 +292,4 @@ orm.DebugLog = orm.NewLog(w)
 [ORM] - 2013-08-09 13:18:16 - [Queries/default] - [    db.Exec /     0.4ms] - [DELETE FROM `post` WHERE `id` IN (?)] - `68`
 ```
 
-日志内容包括 **所有的数据库操作** 、事务、Prepare 等。
+Log content including **all database operations**, transactions and Prepares, etc.
