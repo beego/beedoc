@@ -1,14 +1,14 @@
-# 模型定义
+# Models
 
-复杂的模型定义不是必须的，此功能用作数据库数据转换和自动建表。
+This feture is for database migration and auto-create tables.
 
-## Struct Tag 设置参数
+## Struct Tag 
 
 ```go
 orm:"null;rel(fk)"
 ```
-	
-通常每个 Field 的 StructTag 里包含两种类型的设置，类似 null 的 bool 型设置，还有 类似 rel(fk) 的指定值设置，bool 型默认为 false，指定以后即表示为 true。
+
+Every fisld of struct tag contains 2 kinds of setting types, 类似 null 的 bool 型设置，还有 类似 rel(fk) 的指定值设置，bool 型默认为 false，指定以后即表示为 true。
 
 多个设置间使用 `;` 分隔，设置的值如果是多个，使用 `,` 分隔。
 

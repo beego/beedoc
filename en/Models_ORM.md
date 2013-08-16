@@ -270,7 +270,7 @@ You are able to change to print to any object that implemented interface `io.Wri
 ```go
 var w io.Writer
 ...
-// 设置为你的 io.Writer
+// Set to your io.Writer
 ...
 orm.DebugLog = orm.NewLog(w)
 ```
@@ -278,7 +278,7 @@ orm.DebugLog = orm.NewLog(w)
 Log format:
 
 ```go
-[ORM] - 时间 - [Queries/数据库名] - [执行操作/执行时间] - [SQL语句] - 使用标点 `,` 分隔的参数列表 - 打印遇到的错误
+[ORM] - time - [Queries/database name] - [operation/time] - [SQL] - use `,` to separate arguments - errors
 ```
 
 ```go

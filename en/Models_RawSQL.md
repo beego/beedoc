@@ -1,15 +1,16 @@
-# 使用 SQL 语句进行查询
+# Use SQL statements
 
-* 使用 Raw SQL 查询，无需使用 ORM 表定义
-* 多数据库，都可直接使用占位符号 `?`，自动转换
-* 查询时的参数，支持使用 Model Struct 和 Slice, Array
+* Use Raw SQL query without defining table in ORM.
+* Support multiple databases.
+* Able to use symbol `?`.
+* Support to use Model Struct, Slice and Array.
 
 ```go
 ids := []int{1, 2, 3}
 p.Raw("SELECT name FROM user WHERE id IN (?, ?, ?)", ids)
 ```
 
-创建一个 **RawSeter**：
+Creat a **RawSeter**:
 
 ```go
 o := NewOrm()
@@ -30,7 +31,7 @@ r = o.Raw("UPDATE user SET name = ? WHERE name = ?", "testing", "slene")
 
 ### Exec
 
-执行sql语句：
+Execute SQL statements:
 
 ```go
 num, err := r.Exec()
@@ -46,9 +47,9 @@ TODO
 
 ### SetArgs
 
-改变 Raw(sql, args...) 中的 args 参数，返回一个新的 RawSeter，
+Change args in Raw(sql, args...) and return a new RawSeter.
 
-用于单条 sql 语句，重复利用，替换参数然后执行。
+This is for a single SQL statement with dynamic arguments:
 
 ```go
 num, err := r.SetArgs("arg1", "arg2").Exec()
@@ -58,11 +59,11 @@ num, err := r.SetArgs("arg1", "arg2").Exec()
 
 ### Values / ValuesList / ValuesFlat
 
-Raw SQL 查询获得的结果集 Value 为 `string` 类型，NULL 字段的值为空 ``。
+The results of values of Raw SQL are `string` type, NULL fields are represented with empty string.
 
 ### Values
 
-返回结果集的 key => value 值：
+Returns key => value result set:
 
 ```go
 var maps []orm.Params
@@ -74,7 +75,7 @@ if err == nil && num > 0 {
 
 ### ValuesList
 
-返回结果集 slice：
+Returns slice of result set:
 
 ```go
 var lists []orm.ParamsList
@@ -86,7 +87,7 @@ if err == nil && num > 0 {
 
 ### ValuesFlat
 
-返回单一字段的平铺 slice 数据：
+Returns the slice of single field:
 
 ```go
 var list orm.ParamsList
@@ -98,7 +99,7 @@ if err == nil && num > 0 {
 
 ### Prepare
 
-用于一次 prepare 多次 exec，以提高批量执行的速度。
+One prepare for multiple exec, to speed up:
 
 ```go
 p, err := o.Raw("UPDATE user SET name = ? WHERE name = ?").Prepare()
@@ -106,5 +107,5 @@ num, err := p.Exec("testing", "slene")
 num, err  = p.Exec("testing", "astaxie")
 ...
 ...
-p.Close() // 别忘记关闭 statement
+p.Close() // Do not forget close statement.
 ```

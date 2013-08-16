@@ -1,14 +1,13 @@
-# 事务处理
+# Transcation
 
-ORM 可以简单的进行事务操作：
+ORM can do simple transcations:
 
 ```go
 o := NewOrm()
 err := o.Begin()
-// 事务处理过程
 ...
 ...
-// 此过程中的所有使用 o Ormer 对象的查询都在事务处理范围内
+// All objects of o Ormer are in the range of transcation.
 if SomeError {
 	err = o.Rollback()
 } else {

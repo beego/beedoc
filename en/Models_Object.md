@@ -1,6 +1,6 @@
-# 对象的 CRUD 操作
+# CRUD operations of object
 
-对 object 操作简单的三个方法 Read / Insert / Update / Delete。
+There are 3 simple methods to operate objects: Read/Insert/Update/Delete.
 
 ```go
 o := orm.NewOrm()
@@ -24,9 +24,9 @@ user := User{Id: 1}
 err = o.Read(&user)
 
 if err == sql.ErrNoRows {
-	fmt.Println("查询不到")
+	fmt.Println("no result found")
 } else if err == orm.ErrMissPK {
-	fmt.Println("找不到主键")
+	fmt.Println("cannot find primary key")
 } else {
 	fmt.Println(user.Id, user.Name)
 }
@@ -44,7 +44,7 @@ fmt.Println(o.Insert(&user))
 fmt.Println(user.Id)
 ```
 
-创建后会自动对 auto 的 field 赋值。
+Field `auto` will be assigned value automatically.
 
 ## Update
 
@@ -64,6 +64,6 @@ o := orm.NewOrm()
 o.Delete(&User{Id: 1})
 ```
 
-Delete 操作会对反向关系进行操作，此例中 Post 拥有一个到 User 的外键。删除 User 的时候。如果 on_delete 设置为默认的级联操作，将删除对应的 Post。
+The `Delete` operation will do reverse relation operation, which in this case, `Post` has a outside key `User`; therefore, `Post` will be deleted when you deleted the `User` if you enabled `on_delete` option.
 
-删除以后会清除 auto field 的值。
+Value of `auto` will be clear as well.
