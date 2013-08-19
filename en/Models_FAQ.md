@@ -1,5 +1,5 @@
 # FAQ
 
-1. 我的 app 需要支持多类型数据库，如何在使用 Raw SQL 的时候判断当前使用的数据库类型。
+1. My App need to support multiple databases, how to check database type when I use raw SQL?
 
-使用 Ormer 的 [Driver方法](Models_ORM#driver) 可以进行判断。
+	Use [Driver](Models_ORM#driver) of Ormer to check.

@@ -4,7 +4,7 @@
 
 Bee Watch is an interactive debugger for the Go programming language.
 
-### Features
+## Features
 
 - Use `Critical`, `Info` and `Trace` three levels to change debugger behavior.
 - `Display()` variable values or `Printf()` with customized format.
@@ -12,7 +12,7 @@ Bee Watch is an interactive debugger for the Go programming language.
 - Call `AddWatchVars()` to monitor variables and show their information when the program calls `Break()`.
 - Configuration file with your customized settings(`beewatch.json`).
 
-### Installation
+## Installation
 
 Bee Watch is a "go get" able Go project, you can execute the following command to auto-install:
 
@@ -20,9 +20,9 @@ Bee Watch is a "go get" able Go project, you can execute the following command t
 
 **Attention** This project can only be installed by source code now.
 
-### Quick start
+## Quick start
 
-#### Usage
+### Usage
 
 	package main
 
@@ -83,7 +83,7 @@ Bee Watch is a "go get" able Go project, you can execute the following command t
 		beewatch.Critical().Break().Display("num", num)
 	}
 
-#### Connect
+### Connect
 
 Bee Watch debugger is automatically started on [http://localhost:23456](http://localhost:23456) when you use **WebSocket** mode, you can change port and other configuration by editing `beewatch.json`(copy default setting from Bee Watch source folder).
 
@@ -91,7 +91,7 @@ You browser has to support WebSocket, it has been tested with Chrome, Safari and
 
 ![Bee Watch demo](https://github.com/beego/beewatch/blob/master/tests/images/demo_beewatch.png?raw=true)
 
-### Examples and API documentation
+## Examples and API documentation
 
 [Go Walker](http://gowalker.org/github.com/beego/beewatch)
 

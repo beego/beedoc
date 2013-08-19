@@ -8,13 +8,11 @@ This feture is for database migration and auto-create tables.
 orm:"null;rel(fk)"
 ```
 
-Every fisld of struct tag contains 2 kinds of setting types, 类似 null 的 bool 型设置，还有 类似 rel(fk) 的指定值设置，bool 型默认为 false，指定以后即表示为 true。
+Every field of struct tag contains 2 kinds of setting types. Multiple settings use `;` to separate, or use `,` to separate multiple values.
 
-多个设置间使用 `;` 分隔，设置的值如果是多个，使用 `,` 分隔。
+### Omit fields
 
-### 忽略字段
-
-设置 `-` 即可忽略 struct 中的字段：
+Use `-` to omit fields of struct:
 
 ```go
 type User struct {
@@ -25,31 +23,31 @@ type User struct {
 
 ### auto
 
-设置为 Autoincrement Primary Key。
+Set as Auto-increment Primary Key.
 
 ### pk
 
-设置为 Primary Key。
+Set as Primary Key。
 
 ### null
 
-数据库表默认为 `NOT NULL`，设置 null 代表 `ALLOW NULL`。
+Database tables use `NOT NULL` as default, set them to null means `ALLOW NULL`.
 
 ### blank
 
-设置 string 类型的字段允许为空，否则 clean 会返回错误。
+Allow string type fields can be empty, otherwise error occurs when clean operation.
 
 ### index
 
-为字段增加索引。
+Add index for fields.
 
 ### unique
 
-为字段增加 unique 键。
+Add unique key for fields.
 
 ### column
 
-为字段设置 db 字段的名称：
+Set database column name for fields:
 
 ```go
 Name `orm:"column(user_name)"`
@@ -57,7 +55,7 @@ Name `orm:"column(user_name)"`
 
 ### default
 
-为字段设置默认值，类型必须符合：
+Set default value of fields with same type:
 
 ```go
 type User struct {
@@ -67,7 +65,7 @@ type User struct {
 
 ### size (string)
 
-string 类型字段设置 size 以后，db type 将使用 varchar：
+After setting size of string type fields, the type of fields will be varchar in database:
 
 ```go
 Title string `orm:"size(60)"`
@@ -75,13 +73,13 @@ Title string `orm:"size(60)"`
 
 ### digits / decimals
 
-设置 float32, float64 类型的浮点精度：
+Setting length and decimal of float32, float64:
 
 ```go
 Money float64 `orm:"digits(12);decimals(4)"`
 ```
 
-总长度 12 小数点后 4 位 eg: `99999999.9999`。
+Total length is 12 and 4 decimals: `99999999.9999`.
 
 ### auto_now / auto_now_add
 
@@ -90,20 +88,20 @@ Created     time.Time `auto_now_add`
 Updated     time.Time `auto_now`
 ```
 
-* auto_now 每次 model 保存时都会对时间自动更新
-* auto_now_add 第一次保存时才设置时间
+* auto_now: auto-update time when saved.
+* auto_now_add: update time once when created.
 
-对于批量的 update 此设置是不生效的。
+This setting will not work when you do batch update.
 
 ### type
 
-设置为 date, time.Time 字段的对应 db 类型使用 date：
+Type `date` and `time.Time` are mapping to `date` type in database:
 
 ```go
 Created time.Time `orm:"auto_now_add;type(date)"`
 ```
 
-## 表关系设置
+## Table relation
 
 ### rel / reverse
 
@@ -115,7 +113,7 @@ type User struct {
 	Profile *Profi	le `orm:"null;rel(one);on_delete(set_null)"`
 ```
 
-对应的反向关系 **RelReverseOne**:
+Corresponding reverse relation **RelReverseOne**:
 
 ```go
 type Profile struct {
@@ -131,7 +129,7 @@ type Post struct {
 	User*User `orm:"rel(fk)"` // RelForeignKey relation
 ```
 
-对应的反向关系 **RelReverseMany**:
+Corresponding reverse relation **RelReverseMany**:
 
 ```go
 type User struct {
@@ -147,7 +145,7 @@ type Post struct {
 	Tags []*Tag `orm:"rel(m2m)"` // ManyToMany relation
 ```
 
-对应的反向关系 **RelReverseMany**:
+Corresponding reverse relation **RelReverseMany**:
 
 ```go
 type Tag struct {
@@ -157,24 +155,23 @@ type Tag struct {
 
 ### rel_table / rel_through
 
-此设置针对 `orm:"rel(m2m)"` 的关系字段：
+This setting is for relation fields that uses `orm:"rel(m2m)"`:
 
-	rel_table       设置自动生成的 m2m 关系表的名称
-	rel_through     如果要在 m2m 关系中使用自定义的 m2m 关系表
-	                通过这个设置其名称，格式为 pkg.path.ModelName
+	rel_table       Auto-generate m2m relation table name
+	rel_through     If you want to use customize m2m relation tables in m2m 					relation, you have to set this with format pkg.path.ModelName
 	                eg: app.models.PostTagRel
-	                PostTagRel 表需要有到 Post 和 Tag 的关系
+	                Table PostTagRel need have relation Post and Tag.
 
-当设置 rel_table 时会忽略 rel_through。
+`rel_through` will be omitted after you setting `rel_table`.
 
 ### on_delete
 
-设置对应的 rel 关系删除时，如何处理关系字段。
+This describes how to deal with relation fields when one of them have delete operation:
 
-	cascade        级联删除(默认值)
-	set_null       设置为 NULL，需要设置 null = true
-	set_default    设置为默认值，需要设置 default 值
-	do_nothing     什么也不做，忽略
+	cascade        default
+	set_null       use `null = true` to set to NULL
+	set_default    set as default, need to set default value
+	do_nothing     
 
 ```go
 type User struct {
@@ -185,23 +182,23 @@ type Profile struct {
 	...
 	User *User `orm:"reverse(one)" json:"-"`
 
-// 删除 Profile 时将设置 User.Profile 的数据库字段为 NULL
+// User.Profile will be setting to NULL after Profile was deleted.
 ```
 
-## 模型字段与数据库类型的对应
+## Mapping of model type and database type
 
-在此列出 ORM 推荐的对应数据库类型，自动建表功能也会以此为标准。
+This standard will work for auto-create table.
 
-默认所有的字段都是 **NOT NULL**。
+All fields are **NOT NULL** as default.
 
 ### MySQL
 
 | go		   |mysql
 | :---   	   | :---
 | bool | bool
-| string - 设置 size 时 | varchar(size)
+| string - when setting size | varchar(size)
 | string | longtext
-| time.Time - 设置 type 为 date 时 | date
+| time.Time - when setting type to date | date
 | time.TIme | datetime
 | byte | tinyint unsigned
 | rune | integer
@@ -217,16 +214,16 @@ type Profile struct {
 | uint64 | bigint unsigned
 | float32 | double precision
 | float64 | double precision
-| float64 - 设置 digits, decimals 时  | numeric(digits, decimals)
+| float64 - when setting digits and decimals | numeric(digits, decimals)
 
 ### Sqlite3
 
 | go		   | sqlite3
 | :---   	   | :---
 | bool | bool
-| string - 设置 size 时 | varchar(size)
+| string - when setting size | varchar(size)
 | string | text
-| time.Time - 设置 type 为 date 时 | date
+| time.Time - when setting type to date | date
 | time.TIme | datetime
 | byte | tinyint unsigned
 | rune | integer
@@ -242,16 +239,16 @@ type Profile struct {
 | uint64 | bigint unsigned
 | float32 | real
 | float64 | real
-| float64 - 设置 digits, decimals 时  | decimal
+| float64 - when setting digits and decimals  | decimal
 
 ### PostgreSQL
 
 | go		   | postgres
 | :---   	   | :---
 | bool | bool
-| string - 设置 size 时 | varchar(size)
+| string - when setting size  | varchar(size)
 | string | text
-| time.Time - 设置 type 为 date 时 | date
+| time.Time - when setting type to date | date
 | time.TIme | timestamp with time zone
 | byte | smallint CHECK("column" >= 0 AND "column" <= 255)
 | rune | integer
@@ -267,12 +264,12 @@ type Profile struct {
 | uint64 | bigint CHECK("column" >= 0)
 | float32 | double precision
 | float64 | double precision
-| float64 - 设置 digits, decimals 时  | numeric(digits, decimals)
+| float64 - when setting digits and decimals  | numeric(digits, decimals)
 
 
-## 关系型字段
+## Relational fields
 
-其字段类型取决于对应的主键：
+The field type is depending on its primary key:
 
 * RelForeignKey
 * RelOneToOne
