@@ -91,7 +91,7 @@ Let's see an example:
 
 	// Show setting information.
 	func (c *MainController) Get() {
-		flash:=beego.ReadFromRequest(c)
+		flash:=beego.ReadFromRequest(&c.Controller)
 		if n,ok:=flash.Data["notice"];ok{
 			// Succeed to show setting information.
 			c.TplNames = "set_success.html"
@@ -108,23 +108,21 @@ Let's see an example:
 	// Process setting information.
 	func (c *MainController) Post() {
 		flash:=beego.NewFlash()
+		defer flash.Store(&c.Controller)
 		setting:=Settings{}
 		valid := Validation{}
 		c.ParseForm(&setting)
 		if b, err := valid.Valid(setting);err!=nil {
 			flash.Error("Settings invalid!")
-			flash.Store(c)
 			c.Redirect("/setting",302)
 			return
 		}else if b!=nil{
 			flash.Error("validation err!")
-			flash.Store(c)
 			c.Redirect("/setting",302)
 			return
 		}	
 		saveSetting(setting)
 		flash.Notice("Settings saved!")
-		flash.Store(c)
 		c.Redirect("/setting",302)
 	}
 

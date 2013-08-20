@@ -89,7 +89,7 @@ sess对象具有如下方法：
 
 	// 显示设置信息
 	func (c *MainController) Get() {
-		flash:=beego.ReadFromRequest(c)
+		flash:=beego.ReadFromRequest(&c.Controller)
 		if n,ok:=flash.Data["notice"];ok{
 			//显示设置成功
 			c.TplNames = "set_success.html"
@@ -106,23 +106,21 @@ sess对象具有如下方法：
 	// 处理设置信息
 	func (c *MainController) Post() {
 		flash:=beego.NewFlash()
+		defer flash.Store(&c.Controller)
 		setting:=Settings{}
 		valid := Validation{}
 		c.ParseForm(&setting)
 		if b, err := valid.Valid(setting);err!=nil {
 			flash.Error("Settings invalid!")
-			flash.Store(c)
 			c.Redirect("/setting",302)
 			return
 		}else if b!=nil{
 			flash.Error("validation err!")
-			flash.Store(c)
 			c.Redirect("/setting",302)
 			return
 		}	
 		saveSetting(setting)
 		flash.Notice("Settings saved!")
-		flash.Store(c)
 		c.Redirect("/setting",302)
 	}
 
