@@ -31,6 +31,7 @@ beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Dja
 
 ### 修改日志
 
+* 2013-08-19: [自动建表](Models_Cmd#自动建表)功能完成
 * 2013-08-13: 更新数据库类型测试
 * 2013-08-13: 增加 Go 类型支持，包括 int8、uint8、byte、rune 等
 * 2013-08-13: 增强 date／datetime 的时区支持
@@ -39,98 +40,140 @@ beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Dja
 
 #### 简单示例
 
-	package main
+```go
+package main
 
-	import (
-		"fmt"
-		"github.com/astaxie/beego/orm"
-		_ "github.com/go-sql-driver/mysql" // import your used driver
-	)
+import (
+	"fmt"
+	"github.com/astaxie/beego/orm"
+	_ "github.com/go-sql-driver/mysql" // import your used driver
+)
 
-	// Model Struct
-	type User struct {
-		Id   int    `orm:"auto"`
-		Name string `orm:"size(100)"`
-	}
+// Model Struct
+type User struct {
+	Id   int    `orm:"auto"`
+	Name string `orm:"size(100)"`
+}
 
-	func init() {
-		// register model
-		orm.RegisterModel(new(User))
+func init() {
+	// register model
+	orm.RegisterModel(new(User))
 
-		// set default database
-		orm.RegisterDataBase("default", "mysql", "root:root@/my_db?charset=utf8", 30)
-	}
+	// set default database
+	orm.RegisterDataBase("default", "mysql", "root:root@/my_db?charset=utf8", 30)
+}
 
-	func main() {
-		o := orm.NewOrm()
+func main() {
+	o := orm.NewOrm()
 
-		user := User{Name: "slene"}
+	user := User{Name: "slene"}
 
-		// insert
-		id, err := o.Insert(&user)
+	// insert
+	id, err := o.Insert(&user)
 
-		// update
-		user.Name = "astaxie"
-		num, err := o.Update(&user)
+	// update
+	user.Name = "astaxie"
+	num, err := o.Update(&user)
 
-		// read one
-		u := User{Id: user.Id}
-		err = o.Read(&u)
+	// read one
+	u := User{Id: user.Id}
+	err = o.Read(&u)
 
-		// delete
-		num, err = o.Delete(&u)	
-	}
+	// delete
+	num, err = o.Delete(&u)	
+}
+```
 	
 #### 关联查询
 
-	type Post struct {
-		Id    int    `orm:"auto"`
-		Title string `orm:"size(100)"`
-		User  *User  `orm:"rel(fk)"`
-	}
+```go
+type Post struct {
+	Id    int    `orm:"auto"`
+	Title string `orm:"size(100)"`
+	User  *User  `orm:"rel(fk)"`
+}
 
-	var posts []*Post
-	qs := o.QueryTable("post")
-	num, err := qs.Filter("User__Name", "slene").All(&posts)
+var posts []*Post
+qs := o.QueryTable("post")
+num, err := qs.Filter("User__Name", "slene").All(&posts)
+```
 
 #### SQL 查询
 
 当您无法使用 ORM 来达到您的需求时，也可以直接使用 SQL 来完成查询／映射操作。
 
-	var maps []Params
-	num, err := o.Raw("SELECT id FROM user WHERE name = ?", "slene").Values(&maps)
-	if num > 0 {
-		fmt.Println(maps[0]["id"])
-	}
+```go
+var maps []Params
+num, err := o.Raw("SELECT id FROM user WHERE name = ?", "slene").Values(&maps)
+if num > 0 {
+	fmt.Println(maps[0]["id"])
+}
+```
 
 #### 事务处理
 
-	o.Begin()
-	...
-	user := User{Name: "slene"}
-	id, err := o.Insert(&user)
-	if err != nil {
-		o.Commit()
-	} else {
-		o.Rollback()
-	}
+```go
+o.Begin()
+...
+user := User{Name: "slene"}
+id, err := o.Insert(&user)
+if err != nil {
+	o.Commit()
+} else {
+	o.Rollback()
+}
+```
 
 #### 调试查询日志
 
 在开发环境下，您可以使用以下指令来开启查询调试模式：
 
-	func main() {
-		orm.Debug = true
-	...
+```go
+func main() {
+	orm.Debug = true
+...
+```
 
 开启后将会输出所有查询语句，包括执行、准备、事务等。
 
 例如：
 
-	[ORM] - 2013-08-09 13:18:16 - [Queries/default] - [    db.Exec /     0.4ms] - 	[INSERT INTO `user` (`name`) VALUES (?)] - `slene`
-	...
+```go
+[ORM] - 2013-08-09 13:18:16 - [Queries/default] - [    db.Exec /     0.4ms] - 	[INSERT INTO `user` (`name`) VALUES (?)] - `slene`
+...
+```
 
 注意：我们不建议您在部署产品后这样做。
+
+### 文档索引
+
+1. [Orm 使用方法](Models_ORM)
+	- [数据库的设置](Models_ORM#数据库的设置)
+		* [驱动类型设置](Models_ORM#registerdriver)
+		* [参数设置](Models_ORM#registerdatabase)
+		* [时区设置](Models_ORM#时区设置)
+	- [注册模型](Models_ORM#注册模型)
+	- [ORM 接口使用](Models_ORM#orm-接口使用)
+	- [调试模式打印查询语句](Models_ORM#调试模式打印查询语句)
+2. [对象的CRUD操作](Models_Object)
+3. [高级查询](Models_Query)
+	- [使用的表达式语法](Models_Query#expr)
+	- [支持的操作符号](Models_Query#operators)
+	- [高级查询接口使用](Models_Query#高级查询接口使用)
+4. [使用SQL语句进行查询](Models_RawSQL)
+5. [事务处理](Models_Transaction)
+6. [模型定义](Models_Models)
+	- [自定义表名](Models_Models#自定义表名)
+	- [设置参数](Models_Models#设置参数)
+	- [表关系设置](Models_Models#表关系设置)
+	- [模型字段与数据库类型的对应](Models_Models#模型字段与数据库类型的对应)
+7. [命令模式](Models_Cmd)
+	- [自动建表](Models_Cmd#自动建表)
+	- [打印建表SQL](Models_Cmd#打印建表sql)
+8. [Test ORM](Models_Test)
+9. [自定义字段](Models_Fields)
+10. [FAQ](Models_Faq)
+
 
 ### API 文档
 
