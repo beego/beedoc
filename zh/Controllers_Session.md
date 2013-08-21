@@ -106,21 +106,23 @@ sess对象具有如下方法：
 	// 处理设置信息
 	func (c *MainController) Post() {
 		flash:=beego.NewFlash()
-		defer flash.Store(&c.Controller)
 		setting:=Settings{}
 		valid := Validation{}
 		c.ParseForm(&setting)
 		if b, err := valid.Valid(setting);err!=nil {
 			flash.Error("Settings invalid!")
+			flash.Store(&c.Controller)
 			c.Redirect("/setting",302)
 			return
 		}else if b!=nil{
 			flash.Error("validation err!")
+			flash.Store(&c.Controller)
 			c.Redirect("/setting",302)
 			return
 		}	
 		saveSetting(setting)
 		flash.Notice("Settings saved!")
+		flash.Store(&c.Controller)
 		c.Redirect("/setting",302)
 	}
 
