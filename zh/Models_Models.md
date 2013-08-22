@@ -25,6 +25,32 @@ func (u *User) TableName() string {
 
 如果[前缀设置](Models_ORM#registermodelwithprefix)为`prefix_`那么表名为：prefix_auth_user
 
+## 自定义索引
+
+为单个或多个字段增加索引
+
+```go
+type User struct {
+	Id    int
+	Name  string
+	Email string
+}
+
+// 多字段索引
+func (u *User) TableIndex() [][]string {
+	return [][]string{
+		[]string{"Id", "Name"},
+	}
+}
+
+// 多字段唯一键
+func (u *User) TableUnique() [][]string {
+	return [][]string{
+		[]string{"Name", "Email"},
+	}
+}
+```
+
 ## 设置参数
 
 ```go
@@ -64,11 +90,11 @@ type User struct {
 
 #### index
 
-为字段增加索引
+为单个字段增加索引
 
 #### unique
 
-为字段增加 unique 键
+为单个字段增加 unique 键
 
 #### column
 
