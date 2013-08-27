@@ -341,7 +341,7 @@ i.Close() // 别忘记关闭 statement
 返回对应的结果集对象
 
 ```go
-var users []*User
+var users []User
 num, err := o.QueryTable("user").Filter("name", "slene").All(&users)
 fmt.Printf("Returned Rows Num: %s, %s", num, err)
 ```
