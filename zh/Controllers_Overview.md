@@ -139,7 +139,7 @@ Beego 提供了两个很方便的方法来处理文件上传：
 保存的代码例子如下：
 
 	func (this *MainController) Post() {
-		this.SaveToFile("the_file","/var/www/uploads/uploaded_file.txt"")
+		this.SaveToFile("the_file","/var/www/uploads/uploaded_file.txt")
 	}
 
 
