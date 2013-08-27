@@ -32,6 +32,27 @@ Usage of orm command: syncdb:
 
 使用 `-v` 可以查看执行的 sql 语句
 
+---
+
+在程序中直接调用自动建表：
+
+```go
+// 数据库别名
+name := "default"
+
+// drop table 后再建表
+force := true
+
+// 打印执行过程
+verbose := true
+
+// 遇到错误立即返回
+err := orm.RunSyncdb(name, force, verbose)
+if err != nil {
+	fmt.Println(err)
+}
+```
+
 ## 打印建表SQL
 
 ```bash

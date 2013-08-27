@@ -182,6 +182,11 @@ o = orm.NewOrm() // 创建一个 Ormer
 // NewOrm 的同时会执行 orm.BootStrap (整个 app 只执行一次)，用以验证模型之间的定义并缓存。
 ```
 
+切换数据库，或者，进行事务处理，都会作用于这个 Ormer 对象，以及其进行的任何查询。
+
+所以：需要 **切换数据库** 和 **事务处理** 的话，不要使用全局保存的 Ormer 对象。
+
+
 * type Ormer interface {
 	* [Read(interface{}) error](Models_Object#read)
 	* [Insert(interface{}) (int64, error)](Models_Object#insert)
