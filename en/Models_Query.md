@@ -339,7 +339,7 @@ i.Close() // 别忘记关闭 statement
 Returns corresponding object result set: 
 
 ```go
-var users []*User
+var users []User
 num, err := o.QueryTable("user").Filter("name", "slene").All(&users)
 fmt.Printf("Returned Rows Num: %s, %s", num, err)
 ```
@@ -349,7 +349,7 @@ fmt.Printf("Returned Rows Num: %s, %s", num, err)
 Try to return single record:
 
 ```go
-var user *User
+var user User
 err := o.QueryTable("user").Filter("name", "slene").One(&user)
 if err == orm.ErrMultiRows {
 	fmt.Printf("Returned Multi Rows Not One")
