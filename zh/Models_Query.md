@@ -351,7 +351,7 @@ fmt.Printf("Returned Rows Num: %s, %s", num, err)
 尝试返回单条记录
 
 ```go
-var user *User
+var user User
 err := o.QueryTable("user").Filter("name", "slene").One(&user)
 if err == orm.ErrMultiRows {
 	// 多条的时候报错
