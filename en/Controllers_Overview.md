@@ -141,7 +141,7 @@ Beego provides two convenient functions to upload files:
 This is an example to save file that is uploaded:
 
 	func (this *MainController) Post() {
-		this.SaveToFile("the_file","/var/www/uploads/uploaded_file.txt"")
+		this.SaveToFile("the_file","/var/www/uploads/uploaded_file.txt")
 	}
 
 
