@@ -25,6 +25,32 @@ func (u *User) TableName() string {
 
 如果[前缀设置](Models_ORM#registermodelwithprefix)为`prefix_`那么表名为：prefix_auth_user
 
+## 自定义索引
+
+为单个或多个字段增加索引
+
+```go
+type User struct {
+	Id    int
+	Name  string
+	Email string
+}
+
+// 多字段索引
+func (u *User) TableIndex() [][]string {
+	return [][]string{
+		[]string{"Id", "Name"},
+	}
+}
+
+// 多字段唯一键
+func (u *User) TableUnique() [][]string {
+	return [][]string{
+		[]string{"Name", "Email"},
+	}
+}
+```
+
 ## 设置参数
 
 ```go
@@ -46,9 +72,13 @@ type User struct {
 
 #### auto
 
-当 Field 类型为 int, int32, int64 时，可以设置字段为自增健
+当 Field 类型为 int, int32, int64, uint, uint32, uint64 时，可以设置字段为自增健
 
-当模型定义里没有主键时，符合上述类型且名称为 `Id` 的 Field 将被视为自增健。
+* 当模型定义里没有主键时，符合上述类型且名称为 `Id` 的 Field 将被视为自增健。
+
+鉴于 go 目前的设计，即使使用了 uint64，但你也不能存储到他的最大值。依然会作为 int64 处理。
+
+参见 issue [6113](http://code.google.com/p/go/issues/detail?id=6113)
 
 #### pk
 
@@ -58,17 +88,13 @@ type User struct {
 
 数据库表默认为 `NOT NULL`，设置 null 代表 `ALLOW NULL`
 
-#### blank
-
-设置 string 类型的字段允许为空，否则 clean 会返回错误
-
 #### index
 
-为字段增加索引
+为单个字段增加索引
 
 #### unique
 
-为字段增加 unique 键
+为单个字段增加 unique 键
 
 #### column
 
@@ -77,15 +103,7 @@ type User struct {
 ```go
 Name `orm:"column(user_name)"`
 ```
-#### default
 
-为字段设置默认值，类型必须符合
-
-```go
-type User struct {
-	...
-	Status int `orm:"default(1)"`
-```
 #### size
 
 string 类型字段默认为 varchar(255)
@@ -95,6 +113,7 @@ string 类型字段默认为 varchar(255)
 ```go
 Title string `orm:"size(60)"`
 ```
+
 #### digits / decimals
 
 设置 float32, float64 类型的浮点精度
@@ -102,6 +121,7 @@ Title string `orm:"size(60)"`
 ```go
 Money float64 `orm:"digits(12);decimals(4)"`
 ```
+
 总长度 12 小数点后 4 位 eg: `99999999.9999`
 
 #### auto_now / auto_now_add
@@ -110,6 +130,7 @@ Money float64 `orm:"digits(12);decimals(4)"`
 Created     time.Time `auto_now_add`
 Updated     time.Time `auto_now`
 ```
+
 * auto_now 每次 model 保存时都会对时间自动更新
 * auto_now_add 第一次保存时才设置时间
 
@@ -127,6 +148,16 @@ Created time.Time `orm:"auto_now_add;type(date)"`
 
 ```go
 Content string `orm:"type(text)"`
+```
+
+#### default
+
+为字段设置默认值，类型必须符合（目前仅用于级联删除时的默认值）
+
+```go
+type User struct {
+	...
+	Status int `orm:"default(1)"`
 ```
 
 ## 表关系设置
@@ -225,7 +256,10 @@ type Profile struct {
 
 | go		   |mysql
 | :---   	   | :---
-| int, int32, int64 - 设置 auto 或者名称为 `Id` 时 | integer AUTO_INCREMENT
+| int, int32 - 设置 auto 或者名称为 `Id` 时 | integer AUTO_INCREMENT
+| int64 - 设置 auto 或者名称为 `Id` 时 | bigint AUTO_INCREMENT
+| uint, uint32 - 设置 auto 或者名称为 `Id` 时 | integer unsigned AUTO_INCREMENT
+| uint64 - 设置 auto 或者名称为 `Id` 时 | bigint unsigned AUTO_INCREMENT
 | bool | bool
 | string - 默认为 size 255 | varchar(size)
 | string - 设置 type(text) 时 | longtext
@@ -251,7 +285,7 @@ type Profile struct {
 
 | go		   | sqlite3
 | :---   	   | :---
-| int, int32, int64 - 设置 auto 或者名称为 `Id` 时 | integer AUTOINCREMENT
+| int, int32, int64, uint, uint32, uint64 - 设置 auto 或者名称为 `Id` 时 | integer AUTOINCREMENT
 | bool | bool
 | string - 默认为 size 255 | varchar(size)
 | string - 设置 type(text) 时 | text
@@ -277,7 +311,7 @@ type Profile struct {
 
 | go		   | postgres
 | :---   	   | :---
-| int, int32, int64 - 设置 auto 或者名称为 `Id` 时 | serial
+| int, int32, int64, uint, uint32, uint64 - 设置 auto 或者名称为 `Id` 时 | serial
 | bool | bool
 | string - 默认为 size 255 | varchar(size)
 | string - 设置 type(text) 时 | text
