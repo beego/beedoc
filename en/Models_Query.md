@@ -11,7 +11,7 @@ o := orm.NewOrm()
 qs := o.QueryTable("user")
 
 // Or use object as table name.
-user := NewUser()
+user := new(User)
 qs = o.QueryTable(user) // 返回 QuerySeter
 ```
 

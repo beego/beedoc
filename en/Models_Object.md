@@ -4,7 +4,7 @@ There are 3 simple methods to operate objects: Read/Insert/Update/Delete.
 
 ```go
 o := orm.NewOrm()
-user := NewUser()
+user := new(User)
 user.Name = "slene"
 
 fmt.Println(o.Insert(user))
@@ -23,7 +23,7 @@ user := User{Id: 1}
 
 err = o.Read(&user)
 
-if err == sql.ErrNoRows {
+if err == orm.ErrNoRows {
 	fmt.Println("no result found")
 } else if err == orm.ErrMissPK {
 	fmt.Println("cannot find primary key")

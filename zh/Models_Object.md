@@ -22,7 +22,7 @@ user := User{Id: 1}
 
 err = o.Read(&user)
 
-if err == sql.ErrNoRows {
+if err == orm.ErrNoRows {
 	fmt.Println("查询不到")
 } else if err == orm.ErrMissPK {
 	fmt.Println("找不到主键")

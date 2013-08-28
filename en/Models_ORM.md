@@ -53,7 +53,7 @@ func main() {
 	profile := NewProfile()
 	profile.Age = 30
 
-	user := NewUser()
+	user := new(User)
 	user.Profile = profile
 	user.Name = "slene"
 
