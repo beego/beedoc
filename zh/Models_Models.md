@@ -177,7 +177,7 @@ type User struct {
 ```go
 type Profile struct {
 	...
-	User *User `orm:"reverse(one)" json:"-"`
+	User *User `orm:"reverse(one)"`
 ```
 
 **RelForeignKey**:
@@ -193,7 +193,7 @@ type Post struct {
 ```go
 type User struct {
 	...
-	Posts []*Post `orm:"reverse(many)" json:"-"` // fk 的反向关系
+	Posts []*Post `orm:"reverse(many)"` // fk 的反向关系
 ```
 
 **RelManyToMany**:
@@ -209,7 +209,7 @@ type Post struct {
 ```go
 type Tag struct {
 	...
-	Posts []*Post `orm:"reverse(many)" json:"-"`
+	Posts []*Post `orm:"reverse(many)"`
 ```
 
 #### rel_table / rel_through
@@ -240,7 +240,7 @@ type User struct {
 ...
 type Profile struct {
 	...
-	User *User `orm:"reverse(one)" json:"-"`
+	User *User `orm:"reverse(one)"`
 
 // 删除 Profile 时将设置 User.Profile 的数据库字段为 NULL
 ```

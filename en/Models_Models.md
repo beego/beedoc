@@ -118,7 +118,7 @@ Corresponding reverse relation **RelReverseOne**:
 ```go
 type Profile struct {
 	...
-	User *User `orm:"reverse(one)" json:"-"`
+	User *User `orm:"reverse(one)"`
 ```
 
 **RelForeignKey**:
@@ -134,7 +134,7 @@ Corresponding reverse relation **RelReverseMany**:
 ```go
 type User struct {
 	...
-	Posts []*Post `orm:"reverse(many)" json:"-"` // fk 的反向关系
+	Posts []*Post `orm:"reverse(many)"` // fk 的反向关系
 ```
 
 **RelManyToMany**:
@@ -150,7 +150,7 @@ Corresponding reverse relation **RelReverseMany**:
 ```go
 type Tag struct {
 	...
-	Posts []*Post `orm:"reverse(many)" json:"-"`
+	Posts []*Post `orm:"reverse(many)"`
 ```
 
 ### rel_table / rel_through
@@ -180,7 +180,7 @@ type User struct {
 ...
 type Profile struct {
 	...
-	User *User `orm:"reverse(one)" json:"-"`
+	User *User `orm:"reverse(one)"`
 
 // User.Profile will be setting to NULL after Profile was deleted.
 ```
