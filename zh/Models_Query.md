@@ -338,6 +338,7 @@ i.Close() // 别忘记关闭 statement
 ```
 
 #### All
+
 返回对应的结果集对象
 
 ```go
@@ -345,6 +346,8 @@ var users []*User
 num, err := o.QueryTable("user").Filter("name", "slene").All(&users)
 fmt.Printf("Returned Rows Num: %s, %s", num, err)
 ```
+
+All / Values / ValuesList / ValuesFlat 受到 [Limit](#limit) 的限制，默认最大行数为 1000
 
 #### One
 
