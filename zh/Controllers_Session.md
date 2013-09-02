@@ -1,8 +1,8 @@
 # Session
 
-Beego 内置了 session 模块，目前 session 模块支持的后端引擎包括 memory、file、mysql、redis 四种，用户也可以根据相应的 interface 实现自己的引擎。
+beego 内置了 session 模块，目前 session 模块支持的后端引擎包括 memory、file、mysql、redis 四种，用户也可以根据相应的 interface 实现自己的引擎。
 
-Beego 中使用 session 相当方便，只要在 main 入口函数中设置如下：
+beego 中使用 session 相当方便，只要在 main 入口函数中设置如下：
 
 	beego.SessionOn = true
 

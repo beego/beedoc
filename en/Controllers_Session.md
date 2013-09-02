@@ -2,7 +2,7 @@
 
 Beego has a built-in session module and supports four engines, including memory, file, MySQL and redis. You can implement your own engine based on the interface.
 
-It's easy to use session in Beego, use following code in your main() function:
+It's easy to use session in beego, use following code in your main() function:
 
 	beego.SessionOn = true
 

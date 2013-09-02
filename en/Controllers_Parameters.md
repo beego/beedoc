@@ -63,7 +63,7 @@ Attention:
 
 ## Get content of request body
 
-In development of API applications, we often use JSON and XML as data exchange format, but how to get JSON or XML format data in request body in Beego?
+In development of API applications, we often use JSON and XML as data exchange format, but how to get JSON or XML format data in request body in beego?
 
 1. Setting in configuration file: `copyrequestbody = true`
 2. Do following steps in controller:

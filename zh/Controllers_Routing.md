@@ -1,8 +1,8 @@
 # 智能路由
 
-### 默认路由 RESTFul 规则
+### 默认路由 RESTful 规则
 
-路由的主要功能是实现从请求地址到实现方法，Beego 中封装了 `Controller`，所以路由是从路径到`ControllerInterface` 的过程，`ControllerInterface` 的方法如下所示：
+路由的主要功能是实现从请求地址到实现方法，beego 中封装了 `Controller`，所以路由是从路径到`ControllerInterface` 的过程，`ControllerInterface` 的方法如下所示：
 
 	type ControllerInterface interface {
 		Init(ct *Context, cn string)
@@ -27,7 +27,7 @@
 	beego.Router("/admin/index", &admin.ArticleController{})
 	beego.Router("/admin/addpkg", &admin.AddController{})
 
-为了用户更加方便的路由设置，Beego 参考了 sinatra 的路由实现，支持多种方式的路由：
+为了用户更加方便的路由设置，beego 参考了 sinatra 的路由实现，支持多种方式的路由：
 
 - beego.Router("/api/:id([0-9]+)", &controllers.RController{})
 
@@ -116,12 +116,12 @@
 
 	beego.AutoRouter(&controllers.ObjectController{})
 
-那么 Beego 就会通过反射获取该结构体中所有的实现方法，你就可以通过如下的方式访问到对应的方法中：
+那么 beego 就会通过反射获取该结构体中所有的实现方法，你就可以通过如下的方式访问到对应的方法中：
 
 	/object/login   调用 ObjectController 中的 Login 方法
 	/object/logout  调用 ObjectController 中的 Logout 方法
 	
-除了前缀两个 `/:controller/:method` 的匹配之外，剩下的 url Beego会帮你自动化解析为参数，保存在 `this.Ctx.Params` 当中：
+除了前缀两个 `/:controller/:method` 的匹配之外，剩下的 url beego会帮你自动化解析为参数，保存在 `this.Ctx.Params` 当中：
 
 	/object/blog/2013/09/12  调用 ObjectController 中的 Blog 方法，参数如下：map[0:2013 1:09 2:12]
 	

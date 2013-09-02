@@ -1,12 +1,12 @@
 # 集成第三方应用
 
-Beego 支持第三方应用的集成，用户可以自定义 `http.Handler`,用户可以通过如下方式进行注册路由：
+beego 支持第三方应用的集成，用户可以自定义 `http.Handler`,用户可以通过如下方式进行注册路由：
 
 	beego.RouterHandler("/chat/:info(.*)", sockjshandler)
 
 sockjshandler 实现了接口 `http.Handler`。
 
-目前在 Beego 的 example 中有支持 sockjs 的 chat 例子，示例代码如下：
+目前在 beego 的 example 中有支持 sockjs 的 chat 例子，示例代码如下：
 
 	package main
 	
@@ -51,4 +51,4 @@ sockjshandler 实现了接口 `http.Handler`。
 		beego.Run()
 	}
 
-通过上面的代码很简单的实现了一个多人的聊天室。上面这个只是一个 sockjs 的例子，我想通过大家自定义 `http.Handler`，可以有很多种方式来进行扩展 Beego 应用。
+通过上面的代码很简单的实现了一个多人的聊天室。上面这个只是一个 sockjs 的例子，我想通过大家自定义 `http.Handler`，可以有很多种方式来进行扩展 beego 应用。

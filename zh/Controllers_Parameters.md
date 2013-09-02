@@ -1,6 +1,6 @@
 # 参数解析
 
-我们经常需要获取用户传递的数据，包括 Get、POST 等方式的请求，Beego 里面会自动解析这些数据，你可以通过如下方式获取数据：
+我们经常需要获取用户传递的数据，包括 Get、POST 等方式的请求，beego 里面会自动解析这些数据，你可以通过如下方式获取数据：
 
 - GetString(key string) string
 - GetInt(key string) (int64, error)
@@ -65,7 +65,7 @@ Controller 里解析：
 
 ## 获取 Request Body 里的内容
 
-在 API 的开发中，我们经常会用到 JSON 或 XML 来作为数据交互的格式，如何在 Beego 中获取 Request Body 里的 JSON 或 XML 的数据呢？
+在 API 的开发中，我们经常会用到 JSON 或 XML 来作为数据交互的格式，如何在 beego 中获取 Request Body 里的 JSON 或 XML 的数据呢？
 
 1. 在配置文件里设置 `copyrequestbody = true`
 2. 在 Controller 中

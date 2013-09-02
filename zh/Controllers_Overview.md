@@ -1,6 +1,6 @@
 # 控制器（Controllers）
 
-基于 Beego 的 Controller 设计，只需要匿名组合 `beego.Controller` 就可以了，如下所示：
+基于 beego 的 Controller 设计，只需要匿名组合 `beego.Controller` 就可以了，如下所示：
 
 	type xxxController struct {
 		beego.Controller
@@ -232,7 +232,7 @@ response 可能会有几种情况：
 
 1. 模板输出
 
-	上面模板介绍里面已经介绍，Beego 会在执行完相应的 Controller 里面的对应的 Method 之后输出到模板。
+	上面模板介绍里面已经介绍，beego 会在执行完相应的 Controller 里面的对应的 Method 之后输出到模板。
 
 2. 跳转
 

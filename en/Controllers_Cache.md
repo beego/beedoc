@@ -1,6 +1,6 @@
 # Cache
 
-Beego has a built-in cache module, it's like memcache, which caches data in memory. Here is an example of using cache module in Beego:
+Beego has a built-in cache module, it's like memcache that caches data in memory. Here is an example of using cache module in beego:
 
 	var (
 		urllist *beego.BeeCache
@@ -8,7 +8,7 @@ Beego has a built-in cache module, it's like memcache, which caches data in memo
 	
 	func init() {
 		urllist = beego.NewBeeCache()
-		urllist.Every = 0 // Not expired
+		urllist.Every = 0 // Not expired.
 		urllist.Start()
 	}
 	

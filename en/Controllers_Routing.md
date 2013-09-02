@@ -96,7 +96,7 @@ Available HTTP methods:
 - options: OPTIONS request.
 - head: HEAD request.
 
-If you defined * and corresponding HTTP method, Beego chooses HTTP method as prior execution. For example:
+If you defined * and corresponding HTTP method, beego chooses HTTP method as prior execution. For example:
 
 	beego.Router("/simple",&SimpleController{},"*:AllFunc;post:PostFunc")
 
@@ -108,7 +108,7 @@ You should register your controllers for auto-routing:
 
 	beego.AutoRouter(&controllers.ObjectController{})
 
-Then Beego reflects all methods in `ObjectController` and register corresponding routers:
+Then beego reflects all methods in `ObjectController` and register corresponding routers:
 
 	/object/login   Call Login method of ObjectController.
 	/object/logout  Call Logout method of ObjectController.

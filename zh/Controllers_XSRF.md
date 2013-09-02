@@ -4,7 +4,7 @@
 
 当前防范 XSRF 的一种通用的方法，是对每一个用户都记录一个无法预知的 cookie 数据，然后要求所有提交的请求（POST/PUT/DELETE）中都必须带有这个 cookie 数据。如果此数据不匹配 ，那么这个请求就可能是被伪造的。
 
-Beego 有内建的 XSRF 的防范机制，要使用此机制，你需要在应用配置文件中加上 `enablexsrf` 设定：
+beego 有内建的 XSRF 的防范机制，要使用此机制，你需要在应用配置文件中加上 `enablexsrf` 设定：
 
     enablexsrf = true
     xsrfkey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o
@@ -17,7 +17,7 @@ Beego 有内建的 XSRF 的防范机制，要使用此机制，你需要在应�
     beego.XSRFExpire = 3600  //过期时间，默认60秒
     
 
-如果开启了 XSRF，那么 Beego 的 Web 应用将对所有用户设置一个 `_xsrf` 的 cookie 值（默认过期 60 秒），如果 `POST PUT DELET` 请求中没有这个 cookie 值，那么这个请求会被直接拒绝。如果你开启了这个机制，那么在所有被提交的表单中，你都需要加上一个域来提供这个值。你可以通过在模板中使用 专门的函数 `XsrfFormHtml()` 来做到这一点：
+如果开启了 XSRF，那么 beego 的 Web 应用将对所有用户设置一个 `_xsrf` 的 cookie 值（默认过期 60 秒），如果 `POST PUT DELET` 请求中没有这个 cookie 值，那么这个请求会被直接拒绝。如果你开启了这个机制，那么在所有被提交的表单中，你都需要加上一个域来提供这个值。你可以通过在模板中使用 专门的函数 `XsrfFormHtml()` 来做到这一点：
 
 过期时间上面我们设置了全局的过去时间 `beego.XSRFExpire`，但是有些时候我们也可以在控制器中修改这个过期时间，专门针对某一类处理逻辑：
 
