@@ -1,31 +1,35 @@
 # Routing
 
-### Default RESTful rules
+## Default RESTful rules
 
 The main function of router is to connect request URL and handler. Beego wrapped `Controller`, so it connects request URL and `ControllerInterface`. The `ControllerInterface` has following methods:
 
-	type ControllerInterface interface {
-		Init(ct *Context, cn string)
-		Prepare()
-		Get()
-		Post()
-		Delete()
-		Put()
-		Head()
-		Patch()
-		Options()
-		Finish()
-		Render() error
-	}
+```go
+type ControllerInterface interface {
+	Init(ct *Context, cn string)
+	Prepare()
+	Get()
+	Post()
+	Delete()
+	Put()
+	Head()
+	Patch()
+	Options()
+	Finish()
+	Render() error
+}
+```
 
 `beego.Controller` implemented all of them, so you just use this struct as anonymous field in your controller struct. Of course you have to overload corresponding methods for more specific usages.
 
 Users can use following ways to register route rules:
 
-	beego.Router("/", &controllers.MainController{})
-	beego.Router("/admin", &admin.UserController{})
-	beego.Router("/admin/index", &admin.ArticleController{})
-	beego.Router("/admin/addpkg", &admin.AddController{})
+```go
+beego.Router("/", &controllers.MainController{})
+beego.Router("/admin", &admin.UserController{})
+beego.Router("/admin/index", &admin.ArticleController{})
+beego.Router("/admin/addpkg", &admin.AddController{})
+```
 
 For more convenient configure route rules, Beego references the idea from sinatra, so it supports more kinds of route rules as follows:
 
@@ -57,7 +61,7 @@ For more convenient configure route rules, Beego references the idea from sinatr
 
 		Match type string // match :hi is string type, Beego uses regular expression ([\w]+) automatically
 
-### Customized methods and RESTful rules
+## Customized methods and RESTful rules
 
 We listed default method name above(methods name are the same as HTTP methods name, like Get for GET requests, Post for POST requests). You may able to customized your method as follows:
 
@@ -72,10 +76,12 @@ The 3rd argument indicates the corresponding HTTP method for your method and rou
 
 Here is a RESTful style design:
 
-	beego.Router("/api/list",&RestController{},"*:ListFood")
-	beego.Router("/api/create",&RestController{},"post:CreateFood")
-	beego.Router("/api/update",&RestController{},"put:UpdateFood")
-	beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
+```go
+beego.Router("/api/list",&RestController{},"*:ListFood")
+beego.Router("/api/create",&RestController{},"post:CreateFood")
+beego.Router("/api/update",&RestController{},"put:UpdateFood")
+beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
+```
 
 An example of multiple HTTP method route to one method:
 
@@ -102,7 +108,7 @@ If you defined * and corresponding HTTP method, beego chooses HTTP method as pri
 
 In this example, PostFunc will be executed instead of AllFunc.
 
-### Automated routing
+## Automated routing
 
 You should register your controllers for auto-routing:
 

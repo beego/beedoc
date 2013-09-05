@@ -1,22 +1,24 @@
 # 智能路由
 
-### 默认路由 RESTful 规则
+## 默认路由 RESTful 规则
 
 路由的主要功能是实现从请求地址到实现方法，beego 中封装了 `Controller`，所以路由是从路径到`ControllerInterface` 的过程，`ControllerInterface` 的方法如下所示：
 
-	type ControllerInterface interface {
-		Init(ct *Context, cn string)
-		Prepare()
-		Get()
-		Post()
-		Delete()
-		Put()
-		Head()
-		Patch()
-		Options()
-		Finish()
-		Render() error
-	}
+```go
+type ControllerInterface interface {
+	Init(ct *Context, cn string)
+	Prepare()
+	Get()
+	Post()
+	Delete()
+	Put()
+	Head()
+	Patch()
+	Options()
+	Finish()
+	Render() error
+}
+```
 
 这些方法 `beego.Controller` 都已经实现了，所以只要用户定义 struct 的时候匿名包含就可以了。当然更灵活的方法就是用户可以去自定义类似的方法，然后实现自己的逻辑。
 
@@ -59,13 +61,15 @@
 
 可以在 Controlle 中通过如下方式获取上面的变量：
 
-	this.Ctx.Params[":id"]
-	this.Ctx.Params[":username"]
-	this.Ctx.Params[":splat"]
-	this.Ctx.Params[":path"]
-	this.Ctx.Params[":ext"]
+```go
+this.Ctx.Params[":id"]
+this.Ctx.Params[":username"]
+this.Ctx.Params[":splat"]
+this.Ctx.Params[":path"]
+this.Ctx.Params[":ext"]
+```
 
-### 自定义方法及 RESTful 规则
+## 自定义方法及 RESTful 规则
 
 上面列举的是默认的请求方法名（请求的 method 和函数名一致，例如 GET 请求执行 `Get` 函数，POST 请求执行 `Post` 函数），如果用户期望自定义函数名，那么可以使用如下方式：
 
@@ -80,10 +84,12 @@
 
 以下是一个 RESTful 的设计示例：
 
-	beego.Router("/api/list",&RestController{},"*:ListFood")
-	beego.Router("/api/create",&RestController{},"post:CreateFood")
-	beego.Router("/api/update",&RestController{},"put:UpdateFood")
-	beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
+```go
+beego.Router("/api/list",&RestController{},"*:ListFood")
+beego.Router("/api/create",&RestController{},"post:CreateFood")
+beego.Router("/api/update",&RestController{},"put:UpdateFood")
+beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
+```
 
 以下是多个 HTTP Method 指向同一个函数的示例：
 	
@@ -110,7 +116,7 @@
 
 那么执行 POST 请求的时候，执行 PostFunc 而不执行 AllFunc。
 
-### 自动化路由
+## 自动化路由
 
 用户首先需要把需要路由的控制器注册到自动路由中：
 

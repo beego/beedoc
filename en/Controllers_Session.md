@@ -12,17 +12,19 @@ Or use configuration file:
 
 The following example shows you how to use session in Beego:
 
-	func (this *MainController) Get() {
-		v := this.GetSession("asta")
-		if v == nil {
-			this.SetSession("asta", int(1))
-			this.Data["num"] = 0
-		} else {
-			this.SetSession("asta", v.(int)+1)
-			this.Data["num"] = v.(int)
-		}
-		this.TplNames = "index.tpl"
+```go
+func (this *MainController) Get() {
+	v := this.GetSession("asta")
+	if v == nil {
+		this.SetSession("asta", int(1))
+		this.Data["num"] = 0
+	} else {
+		this.SetSession("asta", v.(int)+1)
+		this.Data["num"] = v.(int)
 	}
+	this.TplNames = "index.tpl"
+}
+```
 
 We can see that there are few convenient methods:
 
@@ -89,44 +91,46 @@ There is nothing to say between this flash and Adobe/Macromedia Flash. It's usin
 
 Let's see an example:
 
-	// Show setting information.
-	func (c *MainController) Get() {
-		flash:=beego.ReadFromRequest(&c.Controller)
-		if n,ok:=flash.Data["notice"];ok{
-			// Succeed to show setting information.
-			c.TplNames = "set_success.html"
-		}else if n,ok=flash.Data["error"];ok{
-			// Show error.
-			c.TplNames = "set_error.html"
-		}else{
-			// Show default setting page.
-			this.Data["list"]=GetInfo()
-			c.TplNames = "setting_list.html"
-		}
+```go
+// Show setting information.
+func (c *MainController) Get() {
+	flash:=beego.ReadFromRequest(&c.Controller)
+	if n,ok:=flash.Data["notice"];ok{
+		// Succeed to show setting information.
+		c.TplNames = "set_success.html"
+	}else if n,ok=flash.Data["error"];ok{
+		// Show error.
+		c.TplNames = "set_error.html"
+	}else{
+		// Show default setting page.
+		this.Data["list"]=GetInfo()
+		c.TplNames = "setting_list.html"
 	}
-	
-	// Process setting information.
-	func (c *MainController) Post() {
-		flash:=beego.NewFlash()
-		setting:=Settings{}
-		valid := Validation{}
-		c.ParseForm(&setting)
-		if b, err := valid.Valid(setting);err!=nil {
-			flash.Error("Settings invalid!")
-			flash.Store(&c.Controller)
-			c.Redirect("/setting",302)
-			return
-		}else if b!=nil{
-			flash.Error("validation err!")
-			flash.Store(&c.Controller)
-			c.Redirect("/setting",302)
-			return
-		}	
-		saveSetting(setting)
-		flash.Notice("Settings saved!")
+}
+
+// Process setting information.
+func (c *MainController) Post() {
+	flash:=beego.NewFlash()
+	setting:=Settings{}
+	valid := Validation{}
+	c.ParseForm(&setting)
+	if b, err := valid.Valid(setting);err!=nil {
+		flash.Error("Settings invalid!")
 		flash.Store(&c.Controller)
 		c.Redirect("/setting",302)
-	}
+		return
+	}else if b!=nil{
+		flash.Error("validation err!")
+		flash.Store(&c.Controller)
+		c.Redirect("/setting",302)
+		return
+	}	
+	saveSetting(setting)
+	flash.Notice("Settings saved!")
+	flash.Store(&c.Controller)
+	c.Redirect("/setting",302)
+}
+```
 
 The general logic of code execution of above example as follows:
 

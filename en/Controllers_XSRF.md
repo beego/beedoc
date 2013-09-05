@@ -20,16 +20,20 @@ If enablexsrf is set, the beego web application will set the _xsrf cookie for al
 
 sometime you can modify the cookie expired time in the controller,but not affect other controller's logic.
 
-	func (this *HomeController) Get(){ 
-		this.XSRFExpire = 7200    
-		this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
-	}
+```go
+func (this *HomeController) Get(){ 
+	this.XSRFExpire = 7200    
+	this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
+}
+```
 
 first in controller you get the csrfdata:
 
-    func (this *HomeController) Get(){
-        this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
-    }
+```go
+func (this *HomeController) Get(){
+    this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
+}
+```
 
 then writer template like this:
 

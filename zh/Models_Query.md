@@ -48,7 +48,7 @@ qs.Filter("profile__age__in", 18, 20).Exclude("profile__lt", 1000)
 
 后面以 `i` 开头的表示：大小写不敏感
 
-#### exact
+### exact
 
 Filter / Exclude / Condition expr 的默认值
 
@@ -59,7 +59,7 @@ qs.Filter("name__exact", "slene") // WHERE name = 'slene'
 qs.Filter("profile", nil) // WHERE profile_id IS NULL
 ```
 
-#### iexact
+### iexact
 
 ```go
 qs.Filter("name__iexact", "slene")
@@ -67,7 +67,7 @@ qs.Filter("name__iexact", "slene")
 // 大小写不敏感，匹配任意 'Slene' 'sLENE'
 ```
 
-#### contains
+### contains
 
 ```go
 qs.Filter("name__contains", "slene")
@@ -75,7 +75,7 @@ qs.Filter("name__contains", "slene")
 // 大小写敏感, 匹配包含 slene 的字符
 ```
 
-#### icontains
+### icontains
 
 ```go
 qs.Filter("name__icontains", "slene")
@@ -83,14 +83,14 @@ qs.Filter("name__icontains", "slene")
 // 大小写不敏感, 匹配任意 'im Slene', 'im sLENE'
 ```
 
-#### in
+### in
 
 ```go
 qs.Filter("profile__age__in", 17, 18, 19, 20)
 // WHERE profile.age IN (17, 18, 19, 20)
 ```
 
-#### gt / gte
+### gt / gte
 
 ```go
 qs.Filter("profile__age__gt", 17)
@@ -100,7 +100,7 @@ qs.Filter("profile__age__gte", 18)
 // WHERE profile.age >= 18
 ```
 
-#### lt / lte
+### lt / lte
 
 ```go
 qs.Filter("profile__age__lt", 17)
@@ -110,7 +110,7 @@ qs.Filter("profile__age__lte", 18)
 // WHERE profile.age <= 18
 ```
 
-#### startswith
+### startswith
 
 ```go
 qs.Filter("name__startswith", "slene")
@@ -118,7 +118,7 @@ qs.Filter("name__startswith", "slene")
 // 大小写敏感, 匹配以 'slene' 起始的字符串
 ```
 
-#### istartswith
+### istartswith
 
 ```go
 qs.Filter("name__istartswith", "slene")
@@ -126,7 +126,7 @@ qs.Filter("name__istartswith", "slene")
 // 大小写不敏感, 匹配任意以 'slene', 'Slene' 起始的字符串
 ```
 
-#### endswith
+### endswith
 
 ```go
 qs.Filter("name__endswith", "slene")
@@ -134,7 +134,7 @@ qs.Filter("name__endswith", "slene")
 // 大小写敏感, 匹配以 'slene' 结束的字符串
 ```
 
-#### iendswith
+### iendswith
 
 ```go
 qs.Filter("name__startswith", "slene")
@@ -142,7 +142,7 @@ qs.Filter("name__startswith", "slene")
 // 大小写不敏感, 匹配任意以 'slene', 'Slene' 结束的字符串
 ```
 
-#### isnull
+### isnull
 
 ```go
 qs.Filter("profile__isnull", true)
@@ -180,7 +180,7 @@ QuerySeter 是高级查询使用的接口，我们来熟悉下他的接口方法
 
 * 高级查询使用 Filter 和 Exclude 来做常用的条件查询。囊括两种清晰的过滤规则：包含， 排除
 
-#### Filter
+### Filter
 
 用来过滤查询结果，起到 **包含条件** 的作用
 
@@ -191,7 +191,7 @@ qs.Filter("profile__isnull", true).Filter("name", "slene")
 // WHERE profile_id IS NULL AND name = 'slene'
 ```
 
-#### Exclude
+### Exclude
 
 用来过滤查询结果，起到 **排除条件** 的作用
 
@@ -204,7 +204,7 @@ qs.Exclude("profile__isnull", true).Filter("name", "slene")
 // WHERE NOT profile_id IS NULL AND name = 'slene'
 ```
 
-#### SetCond
+### SetCond
 
 自定义条件表达式
 
@@ -221,7 +221,7 @@ qs = qs.SetCond(cond2).Count()
 // WHERE (... AND ... AND NOT ... OR ...) OR ( ... )
 ```
 
-#### Limit
+### Limit
 
 限制最大返回数据行数，第二个参数可以设置 `Offset`
 
@@ -245,7 +245,7 @@ qs.Limit(-1, 100)
 // 18446744073709551615 是 1<<64 - 1 用来指定无 limit 限制 但有 offset 偏移的情况
 ```
 
-#### Offset
+### Offset
 	
 设置 偏移行数
 
@@ -254,7 +254,7 @@ qs.Offset(20)
 // LIMIT 1000 OFFSET 20
 ```
 
-#### OrderBy
+### OrderBy
 
 参数使用 **expr**
 
@@ -268,7 +268,7 @@ qs.OrderBy("-profile__age", "profile")
 // ORDER BY profile.age DESC, profile_id ASC
 ```
 
-#### RelatedSel
+### RelatedSel
 
 关系查询，参数使用 **expr**
 
@@ -287,7 +287,7 @@ qs.RelateSel("user")
 // 对设置 null 属性的 Field 将使用 LEFT OUTER JOIN
 ```
 
-#### Count
+### Count
 依据当前的查询条件，返回结果行数
 
 ```go
@@ -295,7 +295,7 @@ cnt, err := o.QueryTable("user").Count() // SELECT COUNT(*) FROM USER
 fmt.Printf("Count Num: %s, %s", cnt, err)
 ```
 
-#### Update
+### Update
 依据当前查询条件，进行批量更新操作
 
 ```go
@@ -306,7 +306,7 @@ fmt.Printf("Affected Num: %s, %s", num, err)
 // SET name = "astaixe" WHERE name = "slene"
 ```
 
-#### Delete
+### Delete
 依据当前查询条件，进行批量删除操作
 
 ```go
@@ -315,7 +315,7 @@ fmt.Printf("Affected Num: %s, %s", num, err)
 // DELETE FROM user WHERE name = "slene"
 ```
 
-#### PrepareInsert
+### PrepareInsert
 
 用于一次 prepare 多次 insert 插入，以提高批量插入的速度。
 
@@ -337,7 +337,7 @@ for _, user := range users {
 i.Close() // 别忘记关闭 statement
 ```
 
-#### All
+### All
 
 返回对应的结果集对象
 
@@ -349,7 +349,7 @@ fmt.Printf("Returned Rows Num: %s, %s", num, err)
 
 All / Values / ValuesList / ValuesFlat 受到 [Limit](#limit) 的限制，默认最大行数为 1000
 
-#### One
+### One
 
 尝试返回单条记录
 
@@ -366,7 +366,7 @@ if err == orm.ErrNoRows {
 }
 ```
 
-#### Values
+### Values
 返回结果集的 key => value 值
 
 key 为 Model 里的 Field name，value 的值 以 string 保存
@@ -400,7 +400,7 @@ if err != nil {
 }
 ```
 
-#### ValuesList
+### ValuesList
 
 顾名思义，返回的结果集以slice存储
 
@@ -432,7 +432,7 @@ if err != nil {
 }
 ```
 
-#### ValuesFlat
+### ValuesFlat
 
 只返回特定的 Field 值，讲结果集展开到单个 slice 里
 

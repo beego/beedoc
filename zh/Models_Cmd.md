@@ -1,6 +1,6 @@
 # 命令模式
 
-注册模型与数据库以后，调用 RunCommand 执行 orm 命令
+注册模型与数据库以后，调用 RunCommand 执行 orm 命令。
 
 ```go
 func main() {
@@ -65,4 +65,4 @@ Usage of orm command: syncdb:
   -db="default": DataBase alias name
 ```
 
-默认使用别名为 default 的数据库
+默认使用别名为 default 的数据库。

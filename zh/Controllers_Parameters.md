@@ -8,20 +8,24 @@
 
 使用例子如下：
 
-	func (this *MainController) Post() {
-		jsoninfo := this.GetString("jsoninfo")
-		if jsoninfo == "" {
-			this.Ctx.WriteString("jsoninfo is empty")
-			return
-		}
+```go
+func (this *MainController) Post() {
+	jsoninfo := this.GetString("jsoninfo")
+	if jsoninfo == "" {
+		this.Ctx.WriteString("jsoninfo is empty")
+		return
 	}
+}
+```
 
 如果你需要的数据可能是其他类型的，例如是 int 类型而不是 int64，那么你需要这样处理：
 
-	func (this *MainController) Post() {
-		id := this.Input().Get("id")
-		intid, err := strconv.Atoi(id)
-	}
+```go
+func (this *MainController) Post() {
+	id := this.Input().Get("id")
+	intid, err := strconv.Atoi(id)
+}
+```
 
 更多其他的 request 的信息，用户可以通过 `this.Ctx.Request` 获取信息，关于该对象的属性和方法参考手册[Request](http://gowalker.org/net/http#Request)。
 
@@ -31,12 +35,14 @@
 
 定义struct：
 
-	type user struct {
-		Id    int         `form:"-"`
-		Name  interface{} `form:"username"`
-		Age   int         `form:"age"`
-		Email string
-	}
+```go
+type user struct {
+	Id    int         `form:"-"`
+	Name  interface{} `form:"username"`
+	Age   int         `form:"age"`
+	Email string
+}
+```
 
 表单：
 
@@ -49,12 +55,14 @@
 
 Controller 里解析：
 
-	func (this *MainController) Post() {
-		u := user{}
-		if err := this.ParseForm(&u); err != nil {
-			//handle error
-		}
+```go
+func (this *MainController) Post() {
+	u := user{}
+	if err := this.ParseForm(&u); err != nil {
+		//handle error
 	}
+}
+```
 
 注意：
 
@@ -70,12 +78,12 @@ Controller 里解析：
 1. 在配置文件里设置 `copyrequestbody = true`
 2. 在 Controller 中
 
-```
-	func (this *ObejctController) Post() {
-		var ob models.Object
-		json.Unmarshal(this.Ctx.RequestBody, &ob)
-		objectid := models.AddOne(ob)
-		this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
-		this.ServeJson()
-	}
+```go
+func (this *ObejctController) Post() {
+	var ob models.Object
+	json.Unmarshal(this.Ctx.RequestBody, &ob)
+	objectid := models.AddOne(ob)
+	this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
+	this.ServeJson()
+}
 ```

@@ -16,75 +16,79 @@ Test:
 
 Direct Use:
 
-	import (
-		"github.com/astaxie/beego/validation"
-		"log"
-	)
+```go
+import (
+	"github.com/astaxie/beego/validation"
+	"log"
+)
 
-	type User struct {
-		Name string
-		Age int
-	}
+type User struct {
+	Name string
+	Age int
+}
 
-	func main() {
-		u := User{"man", 40}
-		valid := validation.Validation{}
-		valid.Required(u.Name, "name")
-		valid.MaxSize(u.Name, 15, "nameMax")
-		valid.Range(u.Age, 0, 140, "age")
-		if valid.HasErrors {
-			// validation does not pass
-			// print invalid message
-			for _, err := range valid.Errors {
-				log.Println(err.Key, err.Message)
-			}
+func main() {
+	u := User{"man", 40}
+	valid := validation.Validation{}
+	valid.Required(u.Name, "name")
+	valid.MaxSize(u.Name, 15, "nameMax")
+	valid.Range(u.Age, 0, 140, "age")
+	if valid.HasErrors {
+		// validation does not pass
+		// print invalid message
+		for _, err := range valid.Errors {
+			log.Println(err.Key, err.Message)
 		}
-		// or use like this
-		if v := valid.Max(u.Age, 140); !v.Ok {
-			log.Println(v.Error.Key, v.Error.Message)
-		}
-		// specify a Message
-		minAge := 18
-		valid.Min(u.Age, minAge).Message("Children should not be")
-		// fmt Message
-		valid.Min(u.Age, minAge).Message("%d does not prohibit", minAge)
 	}
+	// or use like this
+	if v := valid.Max(u.Age, 140); !v.Ok {
+		log.Println(v.Error.Key, v.Error.Message)
+	}
+	// specify a Message
+	minAge := 18
+	valid.Min(u.Age, minAge).Message("Children should not be")
+	// fmt Message
+	valid.Min(u.Age, minAge).Message("%d does not prohibit", minAge)
+}
+```
 
 Use via StructTag:
 
-	import (
-		"github.com/astaxie/beego/validation"
-		"log"
-	)
+```go
+import (
+	"github.com/astaxie/beego/validation"
+	"log"
+)
 
-	// validation function follow with "valid" tag
-	// functions divide with ";"
-	// parameters in parentheses "()" and divide with ","
-	// Match function's pattern string must in "//"
-	// the Key of the ValidationError is the struct field's name + "." + funcname
-	type user struct {
-		Id     int
-		Name   string `valid:"Required;Match(/^Bee.*/)"` // Name must start with "Bee"
-		Age    int    `valid:"Range(1, 140)"` // 1 <= Age <= 140
-		Email  string `valid:"Email; MaxSize(100)"` // Email must be a valid Email address and the max length is 100
-		IP     string `valid:"IP"` // IP must be a valid IPv4 address
-	}
+// validation function follow with "valid" tag
+// functions divide with ";"
+// parameters in parentheses "()" and divide with ","
+// Match function's pattern string must in "//"
+// the Key of the ValidationError is the struct field's name + "." + funcname
+type user struct {
+	Id     int
+	Name   string `valid:"Required;Match(/^Bee.*/)"` // Name must start with "Bee"
+	Age    int    `valid:"Range(1, 140)"` // 1 <= Age <= 140
+	Email  string `valid:"Email; MaxSize(100)"` // Email must be a valid Email address and the max length is 100
+	IP     string `valid:"IP"` // IP must be a valid IPv4 address
+}
 
-	func main() {
-		valid := Validation{}
-		u := user{Name: "Beego", Age: 2, Email: "dev@beego.me"}
-		b, err := valid.Valid(u)
-		if err != nil {
-			// handle error
-		}
-		if !b {
-			// validation does not pass
-			// blabla...
-			for _, err := range valid.Errors {
-				log.Println(err.Key, err.Message)
-			}
+func main() {
+	valid := Validation{}
+	u := user{Name: "Beego", Age: 2, Email: "dev@beego.me"}
+	b, err := valid.Valid(u)
+	if err != nil {
+		// handle error
+	}
+	if !b {
+		// validation does not pass
+		// blabla...
+		for _, err := range valid.Errors {
+			log.Println(err.Key, err.Message)
 		}
 	}
+}
+```
 
 StructTag Functions:
 

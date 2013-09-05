@@ -8,20 +8,24 @@ We always need to get data from users, including methods like GET, POST, etc. Be
 
 Usage example:
 
-	func (this *MainController) Post() {
-		jsoninfo := this.GetString("jsoninfo")
-		if jsoninfo == "" {
-			this.Ctx.WriteString("jsoninfo is empty")
-			return
-		}
+```go
+func (this *MainController) Post() {
+	jsoninfo := this.GetString("jsoninfo")
+	if jsoninfo == "" {
+		this.Ctx.WriteString("jsoninfo is empty")
+		return
 	}
+}
+```
 
 If you need other types that are not included above, like you need int64 instead of int, then you need to do following way:
 
-	func (this *MainController) Post() {
-		id := this.Input().Get("id")
-		intid, err := strconv.Atoi(id)
-	}
+```go
+func (this *MainController) Post() {
+	id := this.Input().Get("id")
+	intid, err := strconv.Atoi(id)
+}
+```
 
 To use `this.Ctx.Request` for more information about request, and object properties and method please read [Request](http://gowalker.org/net/http#Request).
 
@@ -31,12 +35,14 @@ If you want to parse form data to a struct, Beego provides you another convenien
 
 Define a struct:
 
-	type user struct {
-		Id    int
-		Name  interface{} `form:"username"`
-		Age   int         `form:"age"`
-		Email string
-	}
+```go
+type user struct {
+	Id    int
+	Name  interface{} `form:"username"`
+	Age   int         `form:"age"`
+	Email string
+}
+```
 
 Form:
 
@@ -49,12 +55,14 @@ Form:
 
 Parse in controller:
 
-	func (this *MainController) Post() {
-		u := user{}
-		if err := this.ParseForm(&u); err != nil {
-			//handle error
-		}
+```go
+func (this *MainController) Post() {
+	u := user{}
+	if err := this.ParseForm(&u); err != nil {
+		//handle error
 	}
+}
+```
 
 Attention:
 
@@ -68,12 +76,12 @@ In development of API applications, we often use JSON and XML as data exchange f
 1. Setting in configuration file: `copyrequestbody = true`
 2. Do following steps in controller:
 
-```
-	func (this *ObejctController) Post() {
-		var ob models.Object
-		json.Unmarshal(this.Ctx.RequestBody, &ob)
-		objectid := models.AddOne(ob)
-		this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
-		this.ServeJson()
-	}
+```go
+func (this *ObejctController) Post() {
+	var ob models.Object
+	json.Unmarshal(this.Ctx.RequestBody, &ob)
+	objectid := models.AddOne(ob)
+	this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
+	this.ServeJson()
+}
 ```

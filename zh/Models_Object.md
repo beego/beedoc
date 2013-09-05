@@ -14,7 +14,7 @@ fmt.Println(o.Update(user))
 fmt.Println(o.Read(user))
 fmt.Println(o.Delete(user))
 ```
-### Read
+## Read
 
 ```go
 o := orm.NewOrm()
@@ -30,7 +30,7 @@ if err == orm.ErrNoRows {
 	fmt.Println(user.Id, user.Name)
 }
 ```
-### Insert
+## Insert
 
 ```go
 o := orm.NewOrm()
@@ -44,7 +44,7 @@ fmt.Println(user.Id)
 
 创建后会自动对 auto 的 field 赋值
 
-### Update
+## Update
 
 ```go
 o := orm.NewOrm()
@@ -55,7 +55,7 @@ if o.Read(&user) == nil {
 }
 ```
 
-### Delete
+## Delete
 
 ```go
 o := orm.NewOrm()

@@ -21,16 +21,20 @@ beego 有内建的 XSRF 的防范机制，要使用此机制，你需要在应�
 
 过期时间上面我们设置了全局的过去时间 `beego.XSRFExpire`，但是有些时候我们也可以在控制器中修改这个过期时间，专门针对某一类处理逻辑：
 
-	func (this *HomeController) Get(){ 
-		this.XSRFExpire = 7200    
-		this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
-	}
+```go
+func (this *HomeController) Get(){ 
+	this.XSRFExpire = 7200    
+	this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
+}
+```
 
 在 Controller 中这样设置数据：
 
-    func (this *HomeController) Get(){        
-        this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
-    }
+```go
+func (this *HomeController) Get(){        
+    this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
+}
+```
   
 然后在模板中这样设置：
 

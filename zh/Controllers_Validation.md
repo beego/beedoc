@@ -16,77 +16,80 @@
 
 直接使用示例：
 
-	import (
-		"github.com/astaxie/beego/validation"
-		"log"
-	)
+```go
+import (
+	"github.com/astaxie/beego/validation"
+	"log"
+)
 
-	type User struct {
-		Name string
-		Age int
-	}
+type User struct {
+	Name string
+	Age int
+}
 
-	func main() {
-		u := User{"man", 40}
-		valid := validation.Validation{}
-		valid.Required(u.Name, "name")
-		valid.MaxSize(u.Name, 15, "nameMax")
-		valid.Range(u.Age, 0, 140, "age")
-		if valid.HasErrors {
-			// 如果有错误信息，证明验证没通过
-			// 打印错误信息
-			for _, err := range valid.Errors {
-				log.Println(err.Key, err.Message)
-			}
+func main() {
+	u := User{"man", 40}
+	valid := validation.Validation{}
+	valid.Required(u.Name, "name")
+	valid.MaxSize(u.Name, 15, "nameMax")
+	valid.Range(u.Age, 0, 140, "age")
+	if valid.HasErrors {
+		// 如果有错误信息，证明验证没通过
+		// 打印错误信息
+		for _, err := range valid.Errors {
+			log.Println(err.Key, err.Message)
 		}
-		// or use like this
-		if v := valid.Max(u.Age, 140); !v.Ok {
-			log.Println(v.Error.Key, v.Error.Message)
-		}
-		// 定制错误信息
-		minAge := 18
-		valid.Min(u.Age, minAge).Message("少儿不宜！")
-		// 错误信息格式化
-		valid.Min(u.Age, minAge).Message("%d不禁", minAge)
 	}
-
+	// or use like this
+	if v := valid.Max(u.Age, 140); !v.Ok {
+		log.Println(v.Error.Key, v.Error.Message)
+	}
+	// 定制错误信息
+	minAge := 18
+	valid.Min(u.Age, minAge).Message("少儿不宜！")
+	// 错误信息格式化
+	valid.Min(u.Age, minAge).Message("%d不禁", minAge)
+}
+```
 
 通过 StructTag 使用示例：
 
-	import (
-		"github.com/astaxie/beego/validation"
-		"log"
-	)
+```go
+import (
+	"github.com/astaxie/beego/validation"
+	"log"
+)
 
-	// 验证函数写在 "valid" tag 的标签里
-	// 各个函数之间用分号 ";" 分隔，分号后面可以有空格
-	// 参数用括号 "()" 括起来，多个参数之间用逗号 "," 分开，逗号后面可以有空格
-	// 正则函数(Match)的匹配模式用两斜杠 "/" 括起来
-	// 各个函数的结果的key值为字段名.验证函数名
-	type user struct {
-		Id     int
-		Name   string `valid:"Required;Match(/^Bee.*/)"` // Name 不能为空并且以Bee开头
-		Age    int    `valid:"Range(1, 140)"` // 1 <= Age <= 140，超出此范围即为不合法
-		Email  string `valid:"Email; MaxSize(100)"` // Email字段需要符合邮箱格式，并且最大长度不能大于100个字符
-		Mobile string `valid:"Mobile"` // Mobile必须为正确的手机号
-		IP     string `valid:"IP"` // IP必须为一个正确的IPv4地址
-	}
+// 验证函数写在 "valid" tag 的标签里
+// 各个函数之间用分号 ";" 分隔，分号后面可以有空格
+// 参数用括号 "()" 括起来，多个参数之间用逗号 "," 分开，逗号后面可以有空格
+// 正则函数(Match)的匹配模式用两斜杠 "/" 括起来
+// 各个函数的结果的key值为字段名.验证函数名
+type user struct {
+	Id     int
+	Name   string `valid:"Required;Match(/^Bee.*/)"` // Name 不能为空并且以Bee开头
+	Age    int    `valid:"Range(1, 140)"` // 1 <= Age <= 140，超出此范围即为不合法
+	Email  string `valid:"Email; MaxSize(100)"` // Email字段需要符合邮箱格式，并且最大长度不能大于100个字符
+	Mobile string `valid:"Mobile"` // Mobile必须为正确的手机号
+	IP     string `valid:"IP"` // IP必须为一个正确的IPv4地址
+}
 
-	func main() {
-		valid := Validation{}
-		u := user{Name: "Beego", Age: 2, Email: "dev@beego.me"}
-		b, err := valid.Valid(u)
-		if err != nil {
-			// handle error
-		}
-		if !b {
-			// validation does not pass
-			// blabla...
-			for _, err := range valid.Errors {
-				log.Println(err.Key, err.Message)
-			}
+func main() {
+	valid := Validation{}
+	u := user{Name: "Beego", Age: 2, Email: "dev@beego.me"}
+	b, err := valid.Valid(u)
+	if err != nil {
+		// handle error
+	}
+	if !b {
+		// validation does not pass
+		// blabla...
+		for _, err := range valid.Errors {
+			log.Println(err.Key, err.Message)
 		}
 	}
+}
+```
 
 StructTag 可用的验证函数：
 
