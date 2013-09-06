@@ -224,6 +224,12 @@ type Tag struct {
 
 当设置 rel_table 时会忽略 rel_through
 
+设置方法： 
+
+`orm:"rel(m2m);rel_table(the_table_name)"`
+
+`orm:"rel(m2m);rel_through(pkg.path.ModelName)"`
+
 #### on_delete
 
 设置对应的 rel 关系删除时，如何处理关系字段。
