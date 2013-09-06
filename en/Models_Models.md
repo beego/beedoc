@@ -2,6 +2,47 @@
 
 This feture is for database migration and auto-create tables.
 
+## Customize table name
+
+```go
+type User struct {
+	Id int
+	Name string
+}
+
+func (u *User) TableName() string {
+	return "auth_user"
+}
+```
+
+If [prefix setting](Models_ORM#registermodelwithprefix) is `prefix_`, then the table name will be `prefix_auth_user`.
+
+## Customize index
+
+Add index(es) for one or more fields:
+
+```go
+type User struct {
+	Id    int
+	Name  string
+	Email string
+}
+
+// Multiple fields index. 
+func (u *User) TableIndex() [][]string {
+	return [][]string{
+		[]string{"Id", "Name"},
+	}
+}
+
+// Multiple fields unique.
+func (u *User) TableUnique() [][]string {
+	return [][]string{
+		[]string{"Name", "Email"},
+	}
+}
+```
+
 ## Struct Tag 
 
 ```go
