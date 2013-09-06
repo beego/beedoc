@@ -36,7 +36,7 @@ func main() {
 	if valid.HasErrors {
 		// 如果有错误信息，证明验证没通过
 		// 打印错误信息
-		for _, err := range valid.Errors {
+		for _, err := range valid.Errors() {
 			log.Println(err.Key, err.Message)
 		}
 	}

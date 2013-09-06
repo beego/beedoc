@@ -36,7 +36,7 @@ func main() {
 	if valid.HasErrors {
 		// validation does not pass
 		// print invalid message
-		for _, err := range valid.Errors {
+		for _, err := range valid.Errors() {
 			log.Println(err.Key, err.Message)
 		}
 	}
