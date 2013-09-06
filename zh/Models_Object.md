@@ -1,6 +1,8 @@
 # 对象的CRUD操作
 
-对 object 操作简单的三个方法 Read / Insert / Update / Delete
+如果已知主键的值，那么可以使用这些方法进行CRUD操作
+
+对 object 操作的四个方法 Read / Insert / Update / Delete
 
 ```go
 o := orm.NewOrm()
@@ -14,6 +16,9 @@ fmt.Println(o.Update(user))
 fmt.Println(o.Read(user))
 fmt.Println(o.Delete(user))
 ```
+
+如果需要通过条件查询获取对象，请参见[高级查询](Models_Query#all)
+
 ## Read
 
 ```go
