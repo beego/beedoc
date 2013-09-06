@@ -15,6 +15,7 @@ user := new(User)
 qs = o.QueryTable(user) // 返回 QuerySeter
 ```
 ## expr
+
 QuerySeter 中用于描述字段和 sql 操作符，使用简单的 expr 查询方法
 
 字段组合的前后顺序依照表的关系，比如 User 表拥有 Profile 的外键，那么对 User 表查询对应的 Profile.Age 为条件，则使用 `Profile__Age` 注意，字段的分隔符号使用双下划线 `__`，除了描述字段， expr 的尾部可以增加操作符以执行对应的 sql 操作。比如 `Profile__Age__gt` 代表 Profile.Age > 18 的条件查询。
@@ -288,6 +289,7 @@ qs.RelateSel("user")
 ```
 
 ### Count
+
 依据当前的查询条件，返回结果行数
 
 ```go
@@ -296,6 +298,7 @@ fmt.Printf("Count Num: %s, %s", cnt, err)
 ```
 
 ### Update
+
 依据当前查询条件，进行批量更新操作
 
 ```go
@@ -307,6 +310,7 @@ fmt.Printf("Affected Num: %s, %s", num, err)
 ```
 
 ### Delete
+
 依据当前查询条件，进行批量删除操作
 
 ```go

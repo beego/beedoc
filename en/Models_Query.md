@@ -431,5 +431,83 @@ if err != nil {
 }
 ```
 
+## Relation query
 
+See example in [Model_ORM](Models_ORM) for how.
 
+#### The relation between User and Profile is OneToOne
+
+Already had `User` object, to query `Profile`:
+
+```go
+user := &User{Id: 1}
+o.Read(user)
+if user.Profile != nil {
+	o.Read(user.Profile)
+}
+```
+
+Directly query:
+
+```go
+user := &User{}
+o.QueryTable("user").Filter("Id", 1).RelatedSel().One(user)
+// Auto-find Profile
+fmt.Println(user.Profile)
+// Because reserve relation in Profile for User, User that in Profile will be auto-assign as well and be directly used.
+fmt.Println(user.Profile.User)
+```
+
+Through User to reserve query Profile：
+
+```go
+var profile Profile
+err := o.QueryTable("profile").Filter("User__Id", 1).One(&profile)
+if err == nil {
+	fmt.Println(profile)
+}
+```
+
+#### The relation between Post and User is ManyToOne, which means ForeignKey is User
+
+```go
+type Post struct {
+	Id    int
+	Title string
+	User  *User  `orm:"rel(fk)"`
+	Tags  []*Tag `orm:"rel(m2m)"`
+}
+```
+
+```go
+var posts []*Post
+num, err := o.QueryTable("post").Filter("User", 1).RelatedSel().All(&posts)
+if err == nil {
+	fmt.Printf("%d posts read\n", num)
+	for _, post := range posts {
+		fmt.Printf("Id: %d, UserName: %d, Title: %s\n", post.Id, post.User.UserName, post.Title)
+	}
+}
+```
+
+According to Post.Title query corresponding User：
+
+When you do RegisterModel, ORM also auto-create reserve relation of Post in User, so you are able to directly query:
+
+```go
+var user User
+err := o.QueryTable("user").Filter("Post__Title", "The Title").Limit(1).One(&user)
+if err == nil {
+	fmt.Printf(user)
+}
+```
+
+#### The relation between Post and Tag is ManyToMany
+
+```go
+type Tag struct {
+	Id    int
+	Name  string
+}
+```
+TODO
