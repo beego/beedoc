@@ -1,8 +1,8 @@
 # Introduction
 
-This manual documents aspects of Beego web framework.
+This manual documents aspects of beego app framework.
 
-### New to Beego? 
+### New to beego? 
 
 Read about the [concepts](/docs/Overview_Concepts).
 

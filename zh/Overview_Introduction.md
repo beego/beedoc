@@ -1,10 +1,10 @@
 # 基本说明
 
-该手册详细描述了 Beego Web 框架的各个方面。
+该手册详细描述了 beego 应用框架的各个方面。
 
 ### 新手指导
 
-如果您是首次了解 Beego，我们建议您先阅读 [框架概念](/docs/Overview_Concepts)。
+如果您是首次了解 beego，我们建议您先阅读 [框架概念](/docs/Overview_Concepts)。
 
 ### 其它资源
 
@@ -16,7 +16,7 @@
 
 ### 问题提交
 
-如果您在使用过程中发现 Beego 有潜在的问题，请通过 [Github](https://github.com/astaxie/beego/issues) 上的问题列表提交。
+如果您在使用过程中发现 beego 有潜在的问题，请通过 [Github](https://github.com/astaxie/beego/issues) 上的问题列表提交。
 
 ### 完善文档
 
