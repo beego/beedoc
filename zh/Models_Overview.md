@@ -165,6 +165,7 @@ func main() {
 	- [使用的表达式语法](Models_Query#expr)
 	- [支持的操作符号](Models_Query#operators)
 	- [高级查询接口使用](Models_Query#高级查询接口使用)
+	- [关系查询](Models_Query#关系查询)
 4. [使用SQL语句进行查询](Models_RawSQL)
 5. [事务处理](Models_Transaction)
 6. [模型定义](Models_Models)
@@ -179,6 +180,9 @@ func main() {
 9. [自定义字段](Models_Fields)
 10. [FAQ](Models_Faq)
 
+文档更新
+
+* 2013-09-06 [关系查询](Models_Query#关系查询)
 
 ## API 文档
 
