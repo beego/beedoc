@@ -52,7 +52,7 @@ import (
 
 // Model Struct
 type User struct {
-	Id   int    `orm:"auto"`
+	Id   int
 	Name string `orm:"size(100)"`
 }
 
@@ -71,17 +71,21 @@ func main() {
 
 	// insert
 	id, err := o.Insert(&user)
+	fmt.Printf("ID: %d, ERR: %v\n", id, err)
 
 	// update
 	user.Name = "astaxie"
 	num, err := o.Update(&user)
+	fmt.Printf("NUM: %d, ERR: %v\n", num, err)
 
 	// read one
 	u := User{Id: user.Id}
 	err = o.Read(&u)
+	fmt.Printf("ERR: %v\n", err)
 
 	// delete
-	num, err = o.Delete(&u)	
+	num, err = o.Delete(&u)
+	fmt.Printf("NUM: %d, ERR: %v\n", num, err)
 }
 ```
 	
@@ -161,6 +165,7 @@ func main() {
 	- [使用的表达式语法](Models_Query#expr)
 	- [支持的操作符号](Models_Query#operators)
 	- [高级查询接口使用](Models_Query#高级查询接口使用)
+	- [关系查询](Models_Query#关系查询)
 4. [使用SQL语句进行查询](Models_RawSQL)
 5. [事务处理](Models_Transaction)
 6. [模型定义](Models_Models)
@@ -175,6 +180,9 @@ func main() {
 9. [自定义字段](Models_Fields)
 10. [FAQ](Models_Faq)
 
+文档更新
+
+* 2013-09-06 [关系查询](Models_Query#关系查询)
 
 ## API 文档
 

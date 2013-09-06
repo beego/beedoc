@@ -445,5 +445,84 @@ if err != nil {
 }
 ```
 
+## 关系查询
 
+以例子里的[模型定义](Models_ORM)来看下怎么进行关系查询
 
+#### User 和 Profile 是 OneToOne 的关系
+
+已经取得了 User 对象，查询 Profile：
+
+```go
+user := &User{Id: 1}
+o.Read(user)
+if user.Profile != nil {
+	o.Read(user.Profile)
+}
+```
+
+直接关联查询：
+
+```go
+user := &User{}
+o.QueryTable("user").Filter("Id", 1).RelatedSel().One(user)
+// 自动查询到 Profile
+fmt.Println(user.Profile)
+// 因为在 Profile 里定义了反向关系的 User，所以 Profile 里的 User 也是自动赋值过的，可以直接取用。
+fmt.Println(user.Profile.User)
+```
+
+通过 User 反向查询 Profile：
+
+```go
+var profile Profile
+err := o.QueryTable("profile").Filter("User__Id", 1).One(&profile)
+if err == nil {
+	fmt.Println(profile)
+}
+```
+
+#### Post 和 User 是 ManyToOne 关系，也就是 ForeignKey 为 User
+
+```go
+type Post struct {
+	Id    int
+	Title string
+	User  *User  `orm:"rel(fk)"`
+	Tags  []*Tag `orm:"rel(m2m)"`
+}
+```
+
+```go
+var posts []*Post
+num, err := o.QueryTable("post").Filter("User", 1).RelatedSel().All(&posts)
+if err == nil {
+	fmt.Printf("%d posts read\n", num)
+	for _, post := range posts {
+		fmt.Printf("Id: %d, UserName: %d, Title: %s\n", post.Id, post.User.UserName, post.Title)
+	}
+}
+```
+
+根据 Post.Title 查询对应的 User：
+
+RegisterModel 时，ORM也会自动建立 User 中 Post 的反向关系，所以可以直接进行查询
+
+```go
+var user User
+err := o.QueryTable("user").Filter("Post__Title", "The Title").Limit(1).One(&user)
+if err == nil {
+	fmt.Printf(user)
+}
+```
+
+#### Post 和 Tag 是 ManyToMany 关系
+
+```go
+type Tag struct {
+	Id    int
+	Name  string
+}
+```
+
+// TODO
