@@ -31,6 +31,7 @@ beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Dja
 
 ## 修改日志
 
+* 2013-09-09: Raw SQL [QueryRow/QueryRows](Models_RawSQL#queryrow) 功能完成
 * 2013-08-27: [自动建表](Models_Cmd#自动建表)继续改进
 * 2013-08-19: [自动建表](Models_Cmd#自动建表)功能完成
 * 2013-08-13: 更新数据库类型测试
@@ -182,6 +183,7 @@ func main() {
 
 文档更新
 
+* 2013-09-09 Raw SQL [QueryRow/QueryRows](Models_RawSQL#queryrow)
 * 2013-09-06 [关系查询](Models_Query#关系查询)
 
 ## API 文档

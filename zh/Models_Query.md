@@ -345,11 +345,14 @@ i.Close() // 别忘记关闭 statement
 
 返回对应的结果集对象
 
+All 的参数支持 *[]Type 和 *[]*Type 两种形式的 slice
+
 ```go
 var users []*User
 num, err := o.QueryTable("user").Filter("name", "slene").All(&users)
 fmt.Printf("Returned Rows Num: %s, %s", num, err)
 ```
+
 
 All / Values / ValuesList / ValuesFlat 受到 [Limit](#limit) 的限制，默认最大行数为 1000
 
