@@ -61,6 +61,17 @@ For more convenient configure route rules, Beego references the idea from sinatr
 
 		Match type string // match :hi is string type, Beego uses regular expression ([\w]+) automatically
 
+
+You can get the parameters from Controlle：
+
+```go
+this.Ctx.Input.Params(":id")
+this.Ctx.Input.Params(":username")
+this.Ctx.Input.Params(":splat")
+this.Ctx.Input.Params(":path")
+this.Ctx.Input.Params(":ext")
+```
+
 ## Customized methods and RESTful rules
 
 We listed default method name above(methods name are the same as HTTP methods name, like Get for GET requests, Post for POST requests). You may able to customized your method as follows:
