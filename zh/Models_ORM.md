@@ -188,9 +188,9 @@ o = orm.NewOrm() // 创建一个 Ormer
 
 
 * type Ormer interface {
-	* [Read(interface{}) error](Models_Object#read)
+	* [Read(interface{}, ...string) error](Models_Object#read)
 	* [Insert(interface{}) (int64, error)](Models_Object#insert)
-	* [Update(interface{}) (int64, error)](Models_Object#update)
+	* [Update(interface{}, ...string) (int64, error)](Models_Object#update)
 	* [Delete(interface{}) (int64, error)](Models_Object#delete)
 	* [M2mAdd(interface{}, string, ...interface{}) (int64, error)](Models_Object#m2madd)
 	* [M2mDel(interface{}, string, ...interface{}) (int64, error)](Models_Object#m2mdel)

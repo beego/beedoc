@@ -35,6 +35,19 @@ if err == orm.ErrNoRows {
 	fmt.Println(user.Id, user.Name)
 }
 ```
+
+Read 默认通过查询主键赋值，可以使用指定的字段进行查询：
+
+```go
+user := User{Name: "slene"}
+err = o.Read(&user, "Name")
+...
+```
+
+对象的其他字段值将会是对应类型的默认值
+
+复杂的单个对象查询参见 [One](Models_Query#one)
+
 ## Insert
 
 ```go
@@ -59,6 +72,18 @@ if o.Read(&user) == nil {
 	o.Update(&user)
 }
 ```
+
+Update 默认更新所有的字段，可以更新指定的字段：
+
+```go
+// 只更新 Name
+o.Update(&user, "Name")
+// 指定多个字段
+// o.Update(&user, "Field1", "Field2", ...)
+...
+```
+
+根据复杂条件更新字段值参见 [Update](Models_Query#update)
 
 ## Delete
 
