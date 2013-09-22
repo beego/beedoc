@@ -133,3 +133,12 @@ beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
 	
 	
 方法名在内部是保存了用户设置的，例如 Login，url 匹配的时候都会转化为小写，所以，`/object/LOGIN` 这样的 url 也一样可以路由到用户定义的 Login 方法中。
+
+现在已经可以通过自动识别出来下面类似的所有url，都会把请求分发到controller的simple函数
+
+	/controller/simple
+	/controller/simple.html
+	/controller/simple.json
+	/controller/simple.rss
+
+可以通过this.Ctx.Input.Params[":ext"]获取后缀名

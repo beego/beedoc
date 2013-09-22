@@ -1,16 +1,22 @@
 # 数据缓存（Cache）
 
-beego 内置了一个 cache 模块，实现了类似 memcache 的功能，缓存数据在内存中，主要的使用方法如下：
+beego目前采用了模块化设计，cache独立出来了一个模块，你可以通过如下方式进行安装：
+
+	go get github.com/astaxie/beego/cache
+	
+目前实现了三个引擎的设计：memory、memcahe、redis	
+
 
 ```go
 var (
-	urllist *beego.BeeCache
+	urllist *cache.Cache
 )
 
 func init() {
-	urllist = beego.NewBeeCache()
-	urllist.Every = 0 //不过期
-	urllist.Start()
+	urllist, err := cache.NewCache("memory", `{"interval":60}`)
+	if err!=nil{
+		//抛出异常
+	}
 }
 
 func (this *ShortController) Post() {
@@ -38,9 +44,16 @@ func (this *ShortController) Post() {
 }
 ```
 
-上面这个例子演示了如何使用 beego 的 Cache 模块，主要是通过 `beego.NewBeeCache` 初始化一个对象，然后设置过期时间，开启过期检测，在业务逻辑中就可以通过如下的接口进行增删改的操作：
+上面这个例子演示了如何使用 beego 的 Cache 模块，主要是通过 `cache.NewCache` 初始化一个对象，在业务逻辑中就可以通过如下的接口进行增删改的操作：
 
-- Get(name string) interface{}
-- Put(name string, value interface{}, expired int) error
-- Delete(name string) (ok bool, err error)
-- IsExist(name string) bool
+* Get(key string) interface{}
+* Put(key string, val interface{}, timeout int64) error
+* Delete(key string) error
+* Incr(key string) error
+* Decr(key string) error
+* IsExist(key string) bool
+* ClearAll() error
+
+memcahe和redis的配置也是类似，只是后面的初始化配置信息不一样，这两者的配置信息是如下包含了链接信息：
+
+	{"conn":"127.0.0.1:11211"}

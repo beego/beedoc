@@ -2,31 +2,41 @@
 
 beego 支持自定义过滤中间件，例如安全验证，强制跳转等。
 
-如下例子所示，验证用户名是否是 admin，应用于全部的请求：
+过滤器函数如下所示：
+
+	beego.AddFilter(pattern, action string, filter FilterFunc)
+
+AddFilter函数的三个参数
+
+- pattern 路由规则，可以根据一定的规则进行路由，如果你全匹配可以用*
+- action 执行Filter的地方，四个固定参数如下，分别表示不同的执行过程
+	- BeforRouter 寻找路由之前
+	- AfterStatic 静态渲染之后
+	- BeforExec 找到路由之后，开始执行相应的Controller之前
+	- AfterExec 执行完Controller逻辑之后执行的过滤器
+- filter filter函数 type FilterFunc func(*context.Context)
+
+如下例子所示，验证用户是否已经登录，应用于全部的请求：
 
 ```go
-var FilterUser = func(w http.ResponseWriter, r *http.Request) {
-	if r.URL.User == nil || r.URL.User.Username() != "admin" {
-		http.Error(w, "", http.StatusUnauthorized)
-	}
+var FilterUser = func(ctx *context.Context) {
+    _, ok := ctx.Input.Session("uid").(int)
+    if !ok {
+        ctx.Redirect(302, "/login")
+    }
 }
 
-beego.Filter(FilterUser)
+beego.Filter("*","BeforRouter",FilterUser)
 ```
 
-还可以通过参数进行过滤，如果匹配参数就执行：
+还可以通过正则路由进行过滤，如果匹配参数就执行：
 
 ```go
-beego.Router("/:id([0-9]+)", &admin.EditController{})
-beego.FilterParam("id", func(rw http.ResponseWriter, r *http.Request) {
-	dosomething()
-})
-```
-
-当然你还可以通过前缀过滤：
-
-```go
-beego.FilterPrefixPath("/admin", func(rw http.ResponseWriter, r *http.Request) {
-	dosomething()
-})
+var FilterUser = func(ctx *context.Context) {
+    _, ok := ctx.Input.Session("uid").(int)
+    if !ok {
+        ctx.Redirect(302, "/login")
+    }
+}
+beego.Filter("/user/:id([0-9]+)","BeforRouter",FilterUser)
 ```
