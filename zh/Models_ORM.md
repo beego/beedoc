@@ -45,7 +45,7 @@ import (
 func init() {
 	orm.RegisterDriver("mysql", orm.DR_MySQL)
 
-	orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8", 30)
+	orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8")
 }
 
 func main() {
@@ -100,12 +100,35 @@ orm.RegisterDriver("mymysql", orm.DR_MySQL)
 
 ORM 必须注册一个别名为 `default` 的数据库，作为默认使用。
 
+ORM 使用 golang 自己的连接池
+
 ```go
-// 参数1   数据库的别名，用来在ORM中切换数据库使用
-// 参数2   driverName
-// 参数3   对应的链接字符串
-// 参数4   设置最大的空闲连接数，使用 golang 自己的连接池
-orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8", 30)
+// 参数1        数据库的别名，用来在ORM中切换数据库使用
+// 参数2        driverName
+// 参数3        对应的链接字符串
+orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8")
+
+// 参数4(可选)  设置最大空闲连接
+// 参数5(可选)  设置最大数据库连接 (go >= 1.2)
+maxIdle := 30
+maxConn := 30
+orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8", maxIdle, maxConn)
+```
+
+#### SetMaxIdleConns
+
+根据数据库的别名，设置数据库的最大空闲连接
+
+```go
+orm.SetMaxIdleConns("default", 30)
+```
+
+#### SetMaxOpenConns
+
+根据数据库的别名，设置数据库的最大数据库连接  (go >= 1.2)
+
+```go
+orm.SetMaxOpenConns("default", 30)
 ```
 
 #### 时区设置
@@ -221,8 +244,8 @@ qs = o.QueryTable("user")
 切换为其他数据库
 
 ```go
-orm.RegisterDataBase("db1", "mysql", "root:root@/orm_db2?charset=utf8", 30)
-orm.RegisterDataBase("db2", "sqlite3", "data.db", 30)
+orm.RegisterDataBase("db1", "mysql", "root:root@/orm_db2?charset=utf8")
+orm.RegisterDataBase("db2", "sqlite3", "data.db")
 
 o1 := orm.NewOrm()
 o1.Using("db1")
@@ -260,8 +283,8 @@ type Driver interface {
 ```
 
 ```go
-orm.RegisterDataBase("db1", "mysql", "root:root@/orm_db2?charset=utf8", 30)
-orm.RegisterDataBase("db2", "sqlite3", "data.db", 30)
+orm.RegisterDataBase("db1", "mysql", "root:root@/orm_db2?charset=utf8")
+orm.RegisterDataBase("db2", "sqlite3", "data.db")
 
 o1 := orm.NewOrm()
 o1.Using("db1")
