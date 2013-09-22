@@ -46,13 +46,10 @@ func (this *HomeController) Get(){
   
 如果你提交的是 AJAX 的 POST 请求，你还是需要在每一个请求中通过脚本添加上 _xsrf 这个值。下面是在 AJAX 的 POST 请求，使用了 jQuery 函数来为所有请求组东添加 _xsrf 值：
 
-    function getCookie(name) {
-        var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
-        return r ? r[1] : undefined;
-    }
+jQuery cookie插件：https://github.com/carhartl/jquery-cookie
     
     jQuery.postJSON = function(url, args, callback) {
-        args._xsrf = getCookie("_xsrf");
+        args._xsrf = $.cookie("_xsrf");
         $.ajax({url: url, data: $.param(args), dataType: "text", type: "POST",
             success: function(response) {
             callback(eval("(" + response + ")"));
