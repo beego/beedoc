@@ -26,7 +26,7 @@ var FilterUser = func(ctx *context.Context) {
     }
 }
 
-beego.Filter("*","BeforRouter",FilterUser)
+beego.AddFilter("*","BeforRouter",FilterUser)
 ```
 
 还可以通过正则路由进行过滤，如果匹配参数就执行：
@@ -38,5 +38,5 @@ var FilterUser = func(ctx *context.Context) {
         ctx.Redirect(302, "/login")
     }
 }
-beego.Filter("/user/:id([0-9]+)","BeforRouter",FilterUser)
+beego.AddFilter("/user/:id([0-9]+)","BeforRouter",FilterUser)
 ```
