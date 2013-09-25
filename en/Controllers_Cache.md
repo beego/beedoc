@@ -1,6 +1,6 @@
 # Cache
 
-Beego has a built-in cache module, it's like memcache that caches data in memory. Here is an example of using cache module in beego:
+Beego has a built-in cache module, it's like memcache, but the memory used is part of your application. Here is an example of using cache module in beego:
 
 ```go
 var (
@@ -38,7 +38,7 @@ func (this *ShortController) Post() {
 }
 ```
 
-To use cache, you need to initialize a `beego.NewBeeCache` object and set expired time, and enable expired check. Then you can use following methods to achieve other operations:
+To use cache, you need to initialize a `beego.NewBeeCache` object and set expiration time, and enable expired check. Then you can use following methods to achieve other operations:
 
 - Get(name string) interface{}
 - Put(name string, value interface{}, expired int) error

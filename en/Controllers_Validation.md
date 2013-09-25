@@ -1,6 +1,6 @@
 # Validation
 
-validation is a form validation for a data validation and error collecting using Go.
+Validation helps you validate data contained in structs, and collect any validation errors.
 
 ### Installation and tests
 
