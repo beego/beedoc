@@ -1,8 +1,8 @@
 # Filters
 
-Beego supports customized filter and middleware, such as security verification, force redirect, etc.
+Beego supports customized filters and middleware, such as security verification, forced redirect, etc.
 
-Here is an example of verify user name of all requests, check if it's admin.
+Here is an example that verifies user name of all requests, checking if it's admin.
 
 ```go
 var FilterUser = func(w http.ResponseWriter, r *http.Request) {
