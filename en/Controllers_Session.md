@@ -85,7 +85,7 @@ When the SessionProvider is redis, SessionSavePath is link address of redis, it 
 	beego.SessionProvider = "redis"
 	beego.SessionSavePath = "127.0.0.1:6379"
 
-## Falsh
+## Flash
 
 There is nothing to say between this flash and Adobe/Macromedia Flash. It's using for transmitting temporary data between two logic processes, and data that saved in flash will be deleted in the next logic. Generally, it's used to pass hints and error messages. It fits [Post/Redirect/Get](http://en.wikipedia.org/wiki/Post/Redirect/Get) modal.
 
