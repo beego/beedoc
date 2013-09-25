@@ -167,7 +167,7 @@ func (this *AddController) Get() {
 	this.Data["json"] = &mystruct
 	this.ServeJson()
 }
-``
+```
 
 Set `content-type` to `application/xml` for output raw XML format data:
 
@@ -207,11 +207,9 @@ func (this *MainController) Get() {
 }
 ```
 
-Then Beego will not execute rest code of the function body when you call `this.Abort("401")`, and gives following default page view to users:
+Then Beego will not execute rest code of the function body when you call `this.Abort("401")`. A built-in error page will be rendered, unless you customize the error handling.
 
-![](https://raw.github.com/astaxie/beego/master/docs/zh/images/401.png)
-
-Beego supports following error code: 404, 401, 403, 500 and 503, you can customize your error handle, for example, use following code to replace 404 error handle process:
+Beego supports following error code: 404, 401, 403, 500 and 503, you can customize your error handler, for example, use following code to replace 404 error handling process:
 
 ```go
 func page_not_found(rw http.ResponseWriter, r *http.Request) {
@@ -230,7 +228,7 @@ func main() {
 
 You may be able to use your own `404.html` for your 404 error.
 
-Beego also gives you ability to modify error message that shows on the error page, the following example shows how to set more meaningful error message when database has problems:
+Beego also gives you ability to modify error message that shows on the error page, the following example shows how to set a more meaningful error message when database has problems:
 
 ```go
 func dbError(rw http.ResponseWriter, r *http.Request) {
@@ -247,11 +245,11 @@ func main() {
 }
 ```
 
-After you registered this customized error, you can use `this.Abort("dbError")` for any database error in your applications.
+After you have registered this customized error, you can use `this.Abort("dbError")` for any database error in your application.
 
 ## Handle response
 
-There are some situations that you may have in response:
+There are some situations that you may have in a controller response:
 
 1. Output template
 
