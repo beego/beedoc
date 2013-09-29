@@ -51,6 +51,27 @@ func (u *User) TableUnique() [][]string {
 }
 ```
 
+## 自定义引擎
+
+仅支持 MySQL
+
+默认使用的引擎，为当前数据库的默认引擎，这个是由你的 mysql 配置参数决定的。
+
+你可以在模型里设置 TableEngine 函数，指定使用的引擎
+
+```go
+type User struct {
+	Id    int
+	Name  string
+	Email string
+}
+
+// 设置引擎为 INNODB
+func (u *User) TableEngine() string {
+	return "INNODB"
+}
+```
+
 ## 设置参数
 
 ```go
@@ -223,6 +244,12 @@ type Tag struct {
 	                PostTagRel 表需要有到 Post 和 Tag 的关系
 
 当设置 rel_table 时会忽略 rel_through
+
+设置方法： 
+
+`orm:"rel(m2m);rel_table(the_table_name)"`
+
+`orm:"rel(m2m);rel_through(pkg.path.ModelName)"`
 
 #### on_delete
 

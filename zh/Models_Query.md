@@ -15,6 +15,7 @@ user := new(User)
 qs = o.QueryTable(user) // 返回 QuerySeter
 ```
 ## expr
+
 QuerySeter 中用于描述字段和 sql 操作符，使用简单的 expr 查询方法
 
 字段组合的前后顺序依照表的关系，比如 User 表拥有 Profile 的外键，那么对 User 表查询对应的 Profile.Age 为条件，则使用 `Profile__Age` 注意，字段的分隔符号使用双下划线 `__`，除了描述字段， expr 的尾部可以增加操作符以执行对应的 sql 操作。比如 `Profile__Age__gt` 代表 Profile.Age > 18 的条件查询。
@@ -48,7 +49,7 @@ qs.Filter("profile__age__in", 18, 20).Exclude("profile__lt", 1000)
 
 后面以 `i` 开头的表示：大小写不敏感
 
-#### exact
+### exact
 
 Filter / Exclude / Condition expr 的默认值
 
@@ -59,7 +60,7 @@ qs.Filter("name__exact", "slene") // WHERE name = 'slene'
 qs.Filter("profile", nil) // WHERE profile_id IS NULL
 ```
 
-#### iexact
+### iexact
 
 ```go
 qs.Filter("name__iexact", "slene")
@@ -67,7 +68,7 @@ qs.Filter("name__iexact", "slene")
 // 大小写不敏感，匹配任意 'Slene' 'sLENE'
 ```
 
-#### contains
+### contains
 
 ```go
 qs.Filter("name__contains", "slene")
@@ -75,7 +76,7 @@ qs.Filter("name__contains", "slene")
 // 大小写敏感, 匹配包含 slene 的字符
 ```
 
-#### icontains
+### icontains
 
 ```go
 qs.Filter("name__icontains", "slene")
@@ -83,14 +84,14 @@ qs.Filter("name__icontains", "slene")
 // 大小写不敏感, 匹配任意 'im Slene', 'im sLENE'
 ```
 
-#### in
+### in
 
 ```go
 qs.Filter("profile__age__in", 17, 18, 19, 20)
 // WHERE profile.age IN (17, 18, 19, 20)
 ```
 
-#### gt / gte
+### gt / gte
 
 ```go
 qs.Filter("profile__age__gt", 17)
@@ -100,7 +101,7 @@ qs.Filter("profile__age__gte", 18)
 // WHERE profile.age >= 18
 ```
 
-#### lt / lte
+### lt / lte
 
 ```go
 qs.Filter("profile__age__lt", 17)
@@ -110,7 +111,7 @@ qs.Filter("profile__age__lte", 18)
 // WHERE profile.age <= 18
 ```
 
-#### startswith
+### startswith
 
 ```go
 qs.Filter("name__startswith", "slene")
@@ -118,7 +119,7 @@ qs.Filter("name__startswith", "slene")
 // 大小写敏感, 匹配以 'slene' 起始的字符串
 ```
 
-#### istartswith
+### istartswith
 
 ```go
 qs.Filter("name__istartswith", "slene")
@@ -126,7 +127,7 @@ qs.Filter("name__istartswith", "slene")
 // 大小写不敏感, 匹配任意以 'slene', 'Slene' 起始的字符串
 ```
 
-#### endswith
+### endswith
 
 ```go
 qs.Filter("name__endswith", "slene")
@@ -134,7 +135,7 @@ qs.Filter("name__endswith", "slene")
 // 大小写敏感, 匹配以 'slene' 结束的字符串
 ```
 
-#### iendswith
+### iendswith
 
 ```go
 qs.Filter("name__startswith", "slene")
@@ -142,7 +143,7 @@ qs.Filter("name__startswith", "slene")
 // 大小写不敏感, 匹配任意以 'slene', 'Slene' 结束的字符串
 ```
 
-#### isnull
+### isnull
 
 ```go
 qs.Filter("profile__isnull", true)
@@ -169,8 +170,8 @@ QuerySeter 是高级查询使用的接口，我们来熟悉下他的接口方法
 	* [Update(Params) (int64, error)](#update)
 	* [Delete() (int64, error)](#delete)
 	* [PrepareInsert() (Inserter, error)](#prepareinsert)
-	* [All(interface{}) (int64, error)](#all)
-	* [One(interface{}) error](#one)
+	* [All(interface{}, ...string) (int64, error)](#all)
+	* [One(interface{}, ...string) error](#one)
 	* [Values(*[]Params, ...string) (int64, error)](#values)
 	* [ValuesList(*[]ParamsList, ...string) (int64, error)](#valueslist)
 	* [ValuesFlat(*ParamsList, string) (int64, error)](#valuesflat)
@@ -180,7 +181,7 @@ QuerySeter 是高级查询使用的接口，我们来熟悉下他的接口方法
 
 * 高级查询使用 Filter 和 Exclude 来做常用的条件查询。囊括两种清晰的过滤规则：包含， 排除
 
-#### Filter
+### Filter
 
 用来过滤查询结果，起到 **包含条件** 的作用
 
@@ -191,7 +192,7 @@ qs.Filter("profile__isnull", true).Filter("name", "slene")
 // WHERE profile_id IS NULL AND name = 'slene'
 ```
 
-#### Exclude
+### Exclude
 
 用来过滤查询结果，起到 **排除条件** 的作用
 
@@ -204,7 +205,7 @@ qs.Exclude("profile__isnull", true).Filter("name", "slene")
 // WHERE NOT profile_id IS NULL AND name = 'slene'
 ```
 
-#### SetCond
+### SetCond
 
 自定义条件表达式
 
@@ -221,7 +222,7 @@ qs = qs.SetCond(cond2).Count()
 // WHERE (... AND ... AND NOT ... OR ...) OR ( ... )
 ```
 
-#### Limit
+### Limit
 
 限制最大返回数据行数，第二个参数可以设置 `Offset`
 
@@ -245,7 +246,7 @@ qs.Limit(-1, 100)
 // 18446744073709551615 是 1<<64 - 1 用来指定无 limit 限制 但有 offset 偏移的情况
 ```
 
-#### Offset
+### Offset
 	
 设置 偏移行数
 
@@ -254,7 +255,7 @@ qs.Offset(20)
 // LIMIT 1000 OFFSET 20
 ```
 
-#### OrderBy
+### OrderBy
 
 参数使用 **expr**
 
@@ -268,7 +269,7 @@ qs.OrderBy("-profile__age", "profile")
 // ORDER BY profile.age DESC, profile_id ASC
 ```
 
-#### RelatedSel
+### RelatedSel
 
 关系查询，参数使用 **expr**
 
@@ -287,7 +288,8 @@ qs.RelateSel("user")
 // 对设置 null 属性的 Field 将使用 LEFT OUTER JOIN
 ```
 
-#### Count
+### Count
+
 依据当前的查询条件，返回结果行数
 
 ```go
@@ -295,7 +297,8 @@ cnt, err := o.QueryTable("user").Count() // SELECT COUNT(*) FROM USER
 fmt.Printf("Count Num: %s, %s", cnt, err)
 ```
 
-#### Update
+### Update
+
 依据当前查询条件，进行批量更新操作
 
 ```go
@@ -306,7 +309,8 @@ fmt.Printf("Affected Num: %s, %s", num, err)
 // SET name = "astaixe" WHERE name = "slene"
 ```
 
-#### Delete
+### Delete
+
 依据当前查询条件，进行批量删除操作
 
 ```go
@@ -315,7 +319,7 @@ fmt.Printf("Affected Num: %s, %s", num, err)
 // DELETE FROM user WHERE name = "slene"
 ```
 
-#### PrepareInsert
+### PrepareInsert
 
 用于一次 prepare 多次 insert 插入，以提高批量插入的速度。
 
@@ -337,9 +341,11 @@ for _, user := range users {
 i.Close() // 别忘记关闭 statement
 ```
 
-#### All
+### All
 
 返回对应的结果集对象
+
+All 的参数支持 *[]Type 和 *[]*Type 两种形式的 slice
 
 ```go
 var users []*User
@@ -349,7 +355,24 @@ fmt.Printf("Returned Rows Num: %s, %s", num, err)
 
 All / Values / ValuesList / ValuesFlat 受到 [Limit](#limit) 的限制，默认最大行数为 1000
 
-#### One
+可以指定返回的字段：
+
+```go
+type Post struct {
+	Id      int
+	Title   string
+	Content string
+	Status  int
+}
+
+// 只返回 Id 和 Title
+var posts []Post
+o.QueryTable("post").Filter("Status", 1).All(&posts, "Id", "Title")
+```
+
+对象的其他字段值将会是对应类型的默认值
+
+### One
 
 尝试返回单条记录
 
@@ -366,7 +389,17 @@ if err == orm.ErrNoRows {
 }
 ```
 
-#### Values
+可以指定返回的字段：
+
+```go
+// 只返回 Id 和 Title
+var post Post
+o.QueryTable("post").Filter("Content__istartswith", "prefix string").One(&post, "Id", "Title")
+```
+
+对象的其他字段值将会是对应类型的默认值
+
+### Values
 返回结果集的 key => value 值
 
 key 为 Model 里的 Field name，value 的值 以 string 保存
@@ -400,7 +433,7 @@ if err != nil {
 }
 ```
 
-#### ValuesList
+### ValuesList
 
 顾名思义，返回的结果集以slice存储
 
@@ -432,7 +465,7 @@ if err != nil {
 }
 ```
 
-#### ValuesFlat
+### ValuesFlat
 
 只返回特定的 Field 值，讲结果集展开到单个 slice 里
 
@@ -445,5 +478,84 @@ if err != nil {
 }
 ```
 
+## 关系查询
 
+以例子里的[模型定义](Models_ORM)来看下怎么进行关系查询
 
+#### User 和 Profile 是 OneToOne 的关系
+
+已经取得了 User 对象，查询 Profile：
+
+```go
+user := &User{Id: 1}
+o.Read(user)
+if user.Profile != nil {
+	o.Read(user.Profile)
+}
+```
+
+直接关联查询：
+
+```go
+user := &User{}
+o.QueryTable("user").Filter("Id", 1).RelatedSel().One(user)
+// 自动查询到 Profile
+fmt.Println(user.Profile)
+// 因为在 Profile 里定义了反向关系的 User，所以 Profile 里的 User 也是自动赋值过的，可以直接取用。
+fmt.Println(user.Profile.User)
+```
+
+通过 User 反向查询 Profile：
+
+```go
+var profile Profile
+err := o.QueryTable("profile").Filter("User__Id", 1).One(&profile)
+if err == nil {
+	fmt.Println(profile)
+}
+```
+
+#### Post 和 User 是 ManyToOne 关系，也就是 ForeignKey 为 User
+
+```go
+type Post struct {
+	Id    int
+	Title string
+	User  *User  `orm:"rel(fk)"`
+	Tags  []*Tag `orm:"rel(m2m)"`
+}
+```
+
+```go
+var posts []*Post
+num, err := o.QueryTable("post").Filter("User", 1).RelatedSel().All(&posts)
+if err == nil {
+	fmt.Printf("%d posts read\n", num)
+	for _, post := range posts {
+		fmt.Printf("Id: %d, UserName: %d, Title: %s\n", post.Id, post.User.UserName, post.Title)
+	}
+}
+```
+
+根据 Post.Title 查询对应的 User：
+
+RegisterModel 时，ORM也会自动建立 User 中 Post 的反向关系，所以可以直接进行查询
+
+```go
+var user User
+err := o.QueryTable("user").Filter("Post__Title", "The Title").Limit(1).One(&user)
+if err == nil {
+	fmt.Printf(user)
+}
+```
+
+#### Post 和 Tag 是 ManyToMany 关系
+
+```go
+type Tag struct {
+	Id    int
+	Name  string
+}
+```
+
+// TODO

@@ -1,8 +1,8 @@
 # Session
 
-Beego 内置了 session 模块，目前 session 模块支持的后端引擎包括 memory、file、mysql、redis 四种，用户也可以根据相应的 interface 实现自己的引擎。
+beego 内置了 session 模块，目前 session 模块支持的后端引擎包括 memory、file、mysql、redis 四种，用户也可以根据相应的 interface 实现自己的引擎。
 
-Beego 中使用 session 相当方便，只要在 main 入口函数中设置如下：
+beego 中使用 session 相当方便，只要在 main 入口函数中设置如下：
 
 	beego.SessionOn = true
 
@@ -12,17 +12,19 @@ Beego 中使用 session 相当方便，只要在 main 入口函数中设置如�
 
 通过这种方式就可以开启 session，如何使用 session，请看下面的例子：
 
-	func (this *MainController) Get() {
-		v := this.GetSession("asta")
-		if v == nil {
-			this.SetSession("asta", int(1))
-			this.Data["num"] = 0
-		} else {
-			this.SetSession("asta", v.(int)+1)
-			this.Data["num"] = v.(int)
-		}
-		this.TplNames = "index.tpl"
+```go
+func (this *MainController) Get() {
+	v := this.GetSession("asta")
+	if v == nil {
+		this.SetSession("asta", int(1))
+		this.Data["num"] = 0
+	} else {
+		this.SetSession("asta", v.(int)+1)
+		this.Data["num"] = v.(int)
 	}
+	this.TplNames = "index.tpl"
+}
+```
 
 session 有几个方便的方法：
 
@@ -87,44 +89,46 @@ sess对象具有如下方法：
 ## Flash
 这个 flash 与 Adobe/Macromedia Flash 没有任何关系。它主要用于在两个逻辑间传递临时数据，flash 中存放的所有数据会在紧接着的下一个逻辑中调用后清除。一般用于传递提示和错误消息。它适合 [Post/Redirect/Get](http://en.wikipedia.org/wiki/Post/Redirect/Get) 模式。下面看使用的例子：
 
-	// 显示设置信息
-	func (c *MainController) Get() {
-		flash:=beego.ReadFromRequest(&c.Controller)
-		if n,ok:=flash.Data["notice"];ok{
-			//显示设置成功
-			c.TplNames = "set_success.html"
-		}else if n,ok=flash.Data["error"];ok{
-			//显示错误
-			c.TplNames = "set_error.html"
-		}else{
-			// 不然默认显示设置页面
-			this.Data["list"]=GetInfo()
-			c.TplNames = "setting_list.html"
-		}
+```go
+// 显示设置信息
+func (c *MainController) Get() {
+	flash:=beego.ReadFromRequest(&c.Controller)
+	if n,ok:=flash.Data["notice"];ok{
+		//显示设置成功
+		c.TplNames = "set_success.html"
+	}else if n,ok=flash.Data["error"];ok{
+		//显示错误
+		c.TplNames = "set_error.html"
+	}else{
+		// 不然默认显示设置页面
+		this.Data["list"]=GetInfo()
+		c.TplNames = "setting_list.html"
 	}
-	
-	// 处理设置信息
-	func (c *MainController) Post() {
-		flash:=beego.NewFlash()
-		setting:=Settings{}
-		valid := Validation{}
-		c.ParseForm(&setting)
-		if b, err := valid.Valid(setting);err!=nil {
-			flash.Error("Settings invalid!")
-			flash.Store(&c.Controller)
-			c.Redirect("/setting",302)
-			return
-		}else if b!=nil{
-			flash.Error("validation err!")
-			flash.Store(&c.Controller)
-			c.Redirect("/setting",302)
-			return
-		}	
-		saveSetting(setting)
-		flash.Notice("Settings saved!")
+}
+
+// 处理设置信息
+func (c *MainController) Post() {
+	flash:=beego.NewFlash()
+	setting:=Settings{}
+	valid := Validation{}
+	c.ParseForm(&setting)
+	if b, err := valid.Valid(setting);err!=nil {
+		flash.Error("Settings invalid!")
 		flash.Store(&c.Controller)
 		c.Redirect("/setting",302)
-	}
+		return
+	}else if b!=nil{
+		flash.Error("validation err!")
+		flash.Store(&c.Controller)
+		c.Redirect("/setting",302)
+		return
+	}	
+	saveSetting(setting)
+	flash.Notice("Settings saved!")
+	flash.Store(&c.Controller)
+	c.Redirect("/setting",302)
+}
+```
 
 上面的代码执行的大概逻辑是这样的：
 

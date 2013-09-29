@@ -1,6 +1,8 @@
 # 对象的CRUD操作
 
-对 object 操作简单的三个方法 Read / Insert / Update / Delete
+如果已知主键的值，那么可以使用这些方法进行CRUD操作
+
+对 object 操作的四个方法 Read / Insert / Update / Delete
 
 ```go
 o := orm.NewOrm()
@@ -14,7 +16,10 @@ fmt.Println(o.Update(user))
 fmt.Println(o.Read(user))
 fmt.Println(o.Delete(user))
 ```
-### Read
+
+如果需要通过条件查询获取对象，请参见[高级查询](Models_Query#all)
+
+## Read
 
 ```go
 o := orm.NewOrm()
@@ -30,7 +35,20 @@ if err == orm.ErrNoRows {
 	fmt.Println(user.Id, user.Name)
 }
 ```
-### Insert
+
+Read 默认通过查询主键赋值，可以使用指定的字段进行查询：
+
+```go
+user := User{Name: "slene"}
+err = o.Read(&user, "Name")
+...
+```
+
+对象的其他字段值将会是对应类型的默认值
+
+复杂的单个对象查询参见 [One](Models_Query#one)
+
+## Insert
 
 ```go
 o := orm.NewOrm()
@@ -44,7 +62,7 @@ fmt.Println(user.Id)
 
 创建后会自动对 auto 的 field 赋值
 
-### Update
+## Update
 
 ```go
 o := orm.NewOrm()
@@ -55,7 +73,19 @@ if o.Read(&user) == nil {
 }
 ```
 
-### Delete
+Update 默认更新所有的字段，可以更新指定的字段：
+
+```go
+// 只更新 Name
+o.Update(&user, "Name")
+// 指定多个字段
+// o.Update(&user, "Field1", "Field2", ...)
+...
+```
+
+根据复杂条件更新字段值参见 [Update](Models_Query#update)
+
+## Delete
 
 ```go
 o := orm.NewOrm()
