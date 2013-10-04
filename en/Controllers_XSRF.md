@@ -25,6 +25,8 @@ func (this *HomeController) Get(){
 }
 ```
 
+### Use in forms
+
 first in controller you get the csrfdata:
 
 ```go
@@ -41,21 +43,63 @@ then write your template like this:
       <input type="submit" value="Post"/>
     </form>
 
+### Use in JavaScript
+
 If you submit AJAX POST requests, you will need to instrument your JavaScript to include the _xsrf value with each request. This is the jQuery function AJAX POST requests that automatically adds the _xsrf value to all requests:
 
-```javascript
-function getCookie(name) {
-	var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
-	return r ? r[1] : undefined;
-}
-
+```js
 jQuery.postJSON = function(url, args, callback) {
-	args._xsrf = getCookie("_xsrf");
-	$.ajax({url: url, data: $.param(args), dataType: "text", type: "POST",
-		success: function(response) {
-		callback(eval("(" + response + ")"));
-	}});
+   var xsrf, xsrflist;
+   xsrf = $.cookie("_xsrf");
+   xsrflist = xsrf.split("|");
+   args._xsrf = base64_decode(xsrflist[0]);
+    $.ajax({url: url, data: $.param(args), dataType: "text", type: "POST",
+        success: function(response) {
+        callback(eval("(" + response + ")"));
+    }});
 };
+```
+
+#### Extend jQuery
+
+To extend AJAX that add header of XSRF in every request, you need to save the value of `_xsrf` in HTML.
+
+```go
+func (this *HomeController) Get(){        
+    this.data["xsrf_token"] = this.XsrfToken()
+}
+```
+
+Then in your head:
+
+```html
+<head>
+    <meta name="_xsrf" content="{{.xsrf_token}}" />
+</head>
+```
+
+To extend AJAX method and add value of `_xsrf` to header, this supports jQuery POST/GET which are using AJAX underlying.
+
+```js
+var ajax = $.ajax;
+$.extend({
+    ajax: function(url, options) {
+        if (typeof url === 'object') {
+            options = url;
+            url = undefined;
+        }
+        options = options || {};
+        url = options.url;
+        var xsrftoken = $('meta[name=_xsrf]').attr('content');
+        var headers = options.headers || {};
+        var domain = document.domain.replace(/\./ig, '\\.');
+        if (!/^(http:|https:).*/.test(url) || eval('/^(http:|https:)\\/\\/(.+\\.)*' + domain + '.*/').test(url)) {
+            headers = $.extend(headers, {'X-Xsrftoken':xsrftoken});
+        }
+        options.headers = headers;
+        return ajax(url, options);
+    }
+});
 ```
 
 For PUT and DELETE requests (as well as POST requests that do not use form-encoded arguments), the XSRF token may also be passed via an HTTP header named X-XSRFToken.

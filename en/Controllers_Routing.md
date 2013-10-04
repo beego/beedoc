@@ -149,3 +149,12 @@ In addition to matching of two prefixes:`/:controller/:method`, Beego automatica
 	/object/blog/2013/09/12  Call Blog method of ObjectController, and has the argument map[0:2013 1:09 2:12].
 
 The URL will be converted lower case before matching; therefore, `/object/LOGIN` routes to Login method as well.
+
+What's more, beego is able to identify URLs like following examples, and gives away requests to controller's simple method, in this case:
+
+	/controller/simple
+	/controller/simple.html
+	/controller/simple.json
+	/controller/simple.rss
+
+Then use `this.Ctx.Input.Params[":ext"]` to get extension.

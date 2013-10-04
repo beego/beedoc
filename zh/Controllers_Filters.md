@@ -8,13 +8,13 @@ beego 支持自定义过滤中间件，例如安全验证，强制跳转等。
 
 AddFilter函数的三个参数
 
-- pattern 路由规则，可以根据一定的规则进行路由，如果你全匹配可以用*
-- action 执行Filter的地方，四个固定参数如下，分别表示不同的执行过程
+- pattern 路由规则，可以根据一定的规则进行路由，如果你全匹配可以用 `*`
+- action 执行 Filter 的地方，四个固定参数如下，分别表示不同的执行过程
 	- BeforRouter 寻找路由之前
 	- AfterStatic 静态渲染之后
-	- BeforExec 找到路由之后，开始执行相应的Controller之前
-	- AfterExec 执行完Controller逻辑之后执行的过滤器
-- filter filter函数 type FilterFunc func(*context.Context)
+	- BeforExec 找到路由之后，开始执行相应的 Controller 之前
+	- AfterExec 执行完 Controller 逻辑之后执行的过滤器
+- filter filter 函数 type FilterFunc func(*context.Context)
 
 如下例子所示，验证用户是否已经登录，应用于全部的请求：
 

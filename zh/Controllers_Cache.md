@@ -1,6 +1,6 @@
 # 数据缓存（Cache）
 
-beego目前采用了模块化设计，cache独立出来了一个模块，你可以通过如下方式进行安装：
+beego 目前采用了模块化设计，cache 独立出来了一个模块，你可以通过如下方式进行安装：
 
 	go get github.com/astaxie/beego/cache
 	

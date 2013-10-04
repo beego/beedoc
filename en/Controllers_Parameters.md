@@ -3,8 +3,10 @@
 We always need to get data from users, including methods like GET, POST, etc. Beego parses this data automatically, and you can access them with following code:
 
 - GetString(key string) string
+- GetStrings(key string) []string
 - GetInt(key string) (int64, error)
 - GetBool(key string) (bool, error)
+- GetFloat(key string) (float64, error)
 
 Usage example:
 

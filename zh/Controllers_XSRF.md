@@ -70,7 +70,7 @@ jQuery.postJSON = function(url, args, callback) {
 
 通过扩展 ajax 给每个请求加入 xsrf 的 header
 
-需要你在 html 里保存一个 _xsrf 值
+需要你在 html 里保存一个 `_xsrf` 值
 
 ```go
 func (this *HomeController) Get(){        
@@ -86,7 +86,7 @@ func (this *HomeController) Get(){
 </head>
 ```
 
-扩展 ajax 方法，将 _xsrf 值加入 header，扩展后支持 jquery post/get 等内部使用了 ajax 的方法
+扩展 ajax 方法，将 `_xsrf` 值加入 header，扩展后支持 jquery post/get 等内部使用了 ajax 的方法
 
 ```js
 var ajax = $.ajax;
