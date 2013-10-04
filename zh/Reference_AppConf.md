@@ -2,7 +2,7 @@
 
 ## 自定义配置解析
 
-beego目前采用了模块化设计，config独立出来了一个模块，你可以通过如下方式进行安装：
+beego 目前采用了模块化设计，config 独立出来了一个模块，你可以通过如下方式进行安装：
 
 	go get github.com/astaxie/beego/config
 	
@@ -12,7 +12,6 @@ beego目前采用了模块化设计，config独立出来了一个模块，你可
 
 
 ```go
-
 func Post() {
 	iniconf, err := config.NewConfig("ini", "testini.conf")
 	if err != nil {
@@ -72,9 +71,9 @@ config模块中最重要的是如下这个函数:
 
 ## 默认配置解析
 
-Beego 支持解析 ini 文件, Beego 默认会解析当前应用下的 `conf/app.conf` 文件。
+beego 支持解析 ini 文件, beego 默认会解析当前应用下的 `conf/app.conf` 文件。
 
-通过这个文件你可以初始化很多 Beego 的默认参数：
+通过这个文件你可以初始化很多 beego 的默认参数：
 
 	appname = beepkg
 	httpaddr = "127.0.0.1"
@@ -84,7 +83,7 @@ Beego 支持解析 ini 文件, Beego 默认会解析当前应用下的 `conf/app
 	autorecover = false
 	viewspath = "myview"
 
-上面这些参数会替换 Beego 默认的一些参数。
+上面这些参数会替换 beego 默认的一些参数。
 
 你可以在配置文件中配置应用需要用的一些配置信息，例如下面所示的数据库信息：
 

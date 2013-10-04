@@ -1,6 +1,76 @@
 # App.Conf
 
-Beego supports to parse .ini file in path `conf/app.conf`, and you have following options:
+## Customized configuration
+
+beego uses modular design and config becomes an independent module, you are able to install it by following command:
+
+	go get github.com/astaxie/beego/config
+	
+It supports four kinds of configuration formats:INI, JSON, XML, YAML
+
+Usage example:
+
+```go
+func Post() {
+	iniconf, err := config.NewConfig("ini", "testini.conf")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if iniconf.String("appname") != "beeapi" {
+		t.Fatal("appname not equal to beeapi")
+	}
+	if port, err := iniconf.Int("httpport"); err != nil || port != 8080 {
+		t.Error(port)
+		t.Fatal(err)
+	}
+	if port, err := iniconf.Int64("mysqlport"); err != nil || port != 3600 {
+		t.Error(port)
+		t.Fatal(err)
+	}
+	if pi, err := iniconf.Float("PI"); err != nil || pi != 3.1415976 {
+		t.Error(pi)
+		t.Fatal(err)
+	}
+	if iniconf.String("runmode") != "dev" {
+		t.Fatal("runmode not equal to dev")
+	}
+	if v, err := iniconf.Bool("autorender"); err != nil || v != false {
+		t.Error(v)
+		t.Fatal(err)
+	}
+	if v, err := iniconf.Bool("copyrequestbody"); err != nil || v != true {
+		t.Error(v)
+		t.Fatal(err)
+	}
+	if err = iniconf.Set("name", "astaxie"); err != nil {
+		t.Fatal(err)
+	}
+	if iniconf.String("name") != "astaxie" {
+		t.Fatal("get name error")
+	}
+}
+```
+
+After you initialized an object through `config.NewConfig`, you're free to use following methods:
+
+* Set(key, val string) error
+* String(key string) string
+* Int(key string) (int, error)
+* Int64(key string) (int64, error)
+* Bool(key string) (bool, error)
+* Float(key string) (float64, error)
+* DIY(key string) (interface{}, error)
+
+The most important function in config module:
+
+	config.NewConfig(adapterName, fileaname string)
+	
+- The first argument is the configuration format, which is one of INI, JSON, XML, YAML.
+- The second argument is the file name.
+
+## Default configuration
+
+beego supports to parse .ini file in path `conf/app.conf`, and you have following options:
 
 	appname = beepkg
 	httpaddr = "127.0.0.1"
@@ -10,7 +80,7 @@ Beego supports to parse .ini file in path `conf/app.conf`, and you have followin
 	autorecover = false
 	viewspath = "myview"
 
-If you set value in configuration file, Beego uses it to replace default value.
+If you set value in configuration file, beego uses it to replace default value.
 
 You can also have other values for your application, for example, database connection information:
 

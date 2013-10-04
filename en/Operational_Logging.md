@@ -1,8 +1,10 @@
 # Logging
 
-Beego has a default BeeLogger object that outputs log into stdout, and you can use your own logger as well:
+beego has a default logger called BeeLogger that prints content to stdout, you can use following code to define your own way to log. Due to beego's modular design, the default logger calls the functions in module github.com/astaxie/beego/logs underlying.
 
-	beego.SetLogger(*log.Logger)
+	beego.BeeLogger.SetLogger(adaptername string, config string)
+
+The `adaptername` accept four ways to output logs: console(default), file, conn, smtp please see https://github.com/astaxie/beego/tree/master/logs for more information.
 
 Now Beego supports new way to record your log with automatically log rotate. Use following code in your main function:
 

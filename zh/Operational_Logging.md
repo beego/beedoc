@@ -1,12 +1,12 @@
 # 日志记录
 
-Beego 默认有一个初始化的 BeeLogger 对象输出内容到 stdout 中，你可以通过如下的方式设置自己的输出，目前beego采用了模块化设计，beego会默认调用github.com/astaxie/beego/logs模块，你可以通过如下函数设置输出：
+beego 默认有一个初始化的 BeeLogger 对象输出内容到 stdout 中，你可以通过如下的方式设置自己的输出，目前 beego 采用了模块化设计，beego 会默认调用 github.com/astaxie/beego/logs 模块，你可以通过如下函数设置输出：
 
 	beego.BeeLogger.SetLogger(adaptername string, config string)
 
-目前支持的adaptername支持四种方式的输出：console(beego默认输出)、file、conn、smtp，更多相信的请参考https://github.com/astaxie/beego/tree/master/logs
+目前支持的 adaptername 支持四种方式的输出：console(beego默认输出)、file、conn、smtp，更多相信的请参考https://github.com/astaxie/beego/tree/master/logs
 
-现在 Beego 支持文件方式输出到，而且支持文件的自动化 logrotate，在 main 函数入口处初始化如下：
+现在 beego 支持文件方式输出到，而且支持文件的自动化 logrotate，在 main 函数入口处初始化如下：
 
 	beego.BeeLogger.SetLogger("file", `{"filename":"logs/logs.log"}`)
 
