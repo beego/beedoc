@@ -1,6 +1,6 @@
 # 基本说明
 
-该手册详细描述了 Beego Web 框架的各个方面。
+该手册详细描述了 beego 应用框架的各个方面。
 
 ### 新手指导
 
@@ -24,7 +24,7 @@
 
 ### 简单的 API 文档
 
-请移步 [Go 步行者](http://gowalker.org/github.com/astaxie/beego)。
+请移步 [Go Walker](http://gowalker.org/github.com/astaxie/beego)。
 
 ### 网站源码
 
