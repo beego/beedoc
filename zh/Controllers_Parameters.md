@@ -3,8 +3,10 @@
 我们经常需要获取用户传递的数据，包括 Get、POST 等方式的请求，beego 里面会自动解析这些数据，你可以通过如下方式获取数据：
 
 - GetString(key string) string
+- GetStrings(key string) []string
 - GetInt(key string) (int64, error)
 - GetBool(key string) (bool, error)
+- GetFloat(key string) (float64, error)
 
 使用例子如下：
 
@@ -81,7 +83,7 @@ func (this *MainController) Post() {
 ```go
 func (this *ObejctController) Post() {
 	var ob models.Object
-	json.Unmarshal(this.Ctx.RequestBody, &ob)
+	json.Unmarshal(this.Ctx.Input.RequestBody, &ob)
 	objectid := models.AddOne(ob)
 	this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
 	this.ServeJson()

@@ -1,6 +1,6 @@
 # 集成第三方应用
 
-beego 支持第三方应用的集成，用户可以自定义 `http.Handler`,用户可以通过如下方式进行注册路由：
+beego 支持第三方应用的集成，用户可以自定义 `http.Handler`，用户可以通过如下方式进行注册路由：
 
 	beego.RouterHandler("/chat/:info(.*)", sockjshandler)
 

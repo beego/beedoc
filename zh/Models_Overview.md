@@ -31,6 +31,10 @@ beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Dja
 
 ## 修改日志
 
+* 2013-09-22: [RegisterDataBase](Models_ORM#registerdatabase) maxIdle / maxConn 设置为可选参数, MySQL [自定义引擎](Models_Models#自定义引擎)
+* 2013-09-16: 支持设置 空闲链接数 和 最大链接数 [SetMaxIdleConns](Models_ORM#setmaxidleconns) / [SetMaxOpenConns](Models_ORM#SetMaxOpenConns)
+* 2013-09-12: [Read](Models_Object#read) 支持设定条件字段 [Update](Models_Object#update) / [All](Models_Query#all) / [One](Models_Query#one) 支持设定返回字段
+* 2013-09-09: Raw SQL [QueryRow/QueryRows](Models_RawSQL#queryrow) 功能完成
 * 2013-08-27: [自动建表](Models_Cmd#自动建表)继续改进
 * 2013-08-19: [自动建表](Models_Cmd#自动建表)功能完成
 * 2013-08-13: 更新数据库类型测试
@@ -170,6 +174,7 @@ func main() {
 5. [事务处理](Models_Transaction)
 6. [模型定义](Models_Models)
 	- [自定义表名](Models_Models#自定义表名)
+	- [自定义引擎](Models_Models#自定义引擎)
 	- [设置参数](Models_Models#设置参数)
 	- [表关系设置](Models_Models#表关系设置)
 	- [模型字段与数据库类型的对应](Models_Models#模型字段与数据库类型的对应)
@@ -182,6 +187,10 @@ func main() {
 
 文档更新
 
+* 2013-09-22: [RegisterDataBase](Models_ORM#registerdatabase) maxIdle / maxConn 设置为可选参数, MySQL [自定义引擎](Models_Models#自定义引擎)
+* 2013-09-16 [SetMaxIdleConns](Models_ORM#setmaxidleconns) / [SetMaxOpenConns](Models_ORM#SetMaxOpenConns)
+* 2013-09-12 [Read](Models_Object#read) / [Update](Models_Object#update) / [All](Models_Query#all) / [One](Models_Query#one)
+* 2013-09-09 Raw SQL [QueryRow/QueryRows](Models_RawSQL#queryrow)
 * 2013-09-06 [关系查询](Models_Query#关系查询)
 
 ## API 文档

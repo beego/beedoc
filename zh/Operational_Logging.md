@@ -1,18 +1,16 @@
 # 日志记录
 
-Beego 默认有一个初始化的 BeeLogger 对象输出内容到 stdout 中，你可以通过如下的方式设置自己的输出：
+beego 默认有一个初始化的 BeeLogger 对象输出内容到 stdout 中，你可以通过如下的方式设置自己的输出，目前 beego 采用了模块化设计，beego 会默认调用 github.com/astaxie/beego/logs 模块，你可以通过如下函数设置输出：
 
-	beego.SetLogger(*log.Logger)
+	beego.BeeLogger.SetLogger(adaptername string, config string)
 
-现在 Beego 支持文件方式输出到，而且支持文件的自动化 logrotate，在 main 函数入口处初始化如下：
+目前支持的 adaptername 支持四种方式的输出：console(beego默认输出)、file、conn、smtp，更多相信的请参考https://github.com/astaxie/beego/tree/master/logs
 
-	filew := beego.NewFileWriter("tmp/log.log", true)
-	err := filew.StartLogger()
-	if err != nil {
-		beego.Critical("NewFileWriter err", err)
-	}
+现在 beego 支持文件方式输出到，而且支持文件的自动化 logrotate，在 main 函数入口处初始化如下：
 
-这样就默认开始在当前目录的 tmp/log.log 文件中开始记录日志，默认支持文件的 logrotate，第二个参数为 true 表示开启，false 表示关闭，开启的 rotate 的规则如下：
+	beego.BeeLogger.SetLogger("file", `{"filename":"logs/logs.log"}`)
+
+这样就默认开始在当前目录的 logs/logs.log 文件中开始记录日志，默认支持文件的 logrotate，开启的 rotate 的规则如下：
 
 1. 1000000 行日志就自动分割
 2. 文件的大小为 256M 就自动分割
@@ -20,15 +18,6 @@ Beego 默认有一个初始化的 BeeLogger 对象输出内容到 stdout 中，�
 4. 日志默认保存 7 天
 
 一天之中分割不能多余 999 个，每个分割的文件名是 `定义的文件名.日期.三位数字`。
-
-用户可以通过如下函数修改相应的日志切割规则：
-
-- func (w *FileLogWriter) SetRotateDaily(daily bool) *FileLogWriter
-- func (w *FileLogWriter) SetRotateLines(maxlines int) *FileLogWriter
-- func (w *FileLogWriter) SetRotateMaxDays(maxdays int64) *FileLogWriter
-- func (w *FileLogWriter) SetRotateSize(maxsize int) *FileLogWriter
-
-但是这些函数调用必须在调用 `StartLogger` 之前。
 
 ### 不同级别的 log 日志函数
 
@@ -92,66 +81,68 @@ LevelTrace、LevelDebug、LevelInfo、LevelWarning、LevelError、LevelCritical
 
 ### 完整示例
 
-	func internalCalculationFunc(x, y int) (result int, err error) {
-		beego.Debug("calculating z. x:", x, " y:", y)
-		z := y
-		switch {
-		case x == 3:
-			beego.Trace("x == 3")
-			panic("Failure.")
-		case y == 1:
-			beego.Trace("y == 1")
-			return 0, errors.New("Error!")
-		case y == 2:
-			beego.Trace("y == 2")
-			z = x
-		default:
-			beego.Trace("default")
-			z += x
-		}
-		retVal := z - 3
-		beego.Debug("Returning ", retVal)
-		
-		return retVal, nil
-	}
-	
-	func processInput(input inputData) {
-		defer func() {
-			if r := recover(); r != nil {
-				beego.Error("Unexpected error occurred: ", r)
-				outputs <- outputData{result: 0, error: true}
-			}
-		}()
-		beego.Info("Received input signal. x:", input.x, " y:", input.y)
-		
-		res, err := internalCalculationFunc(input.x, input.y)
-		if err != nil {
-			beego.Warn("Error in calculation:", err.Error())
-		}
-		
-		beego.Info("Returning result: ", res, " error: ", err)
-		outputs <- outputData{result: res, error: err != nil}
-	}
-	
-	func main() {
-		inputs = make(chan inputData)
-		outputs = make(chan outputData)
-		criticalChan = make(chan int)
-		beego.Info("App started.")
-		
-		go consumeResults(outputs)
-		beego.Info("Started receiving results.")
-		
-		go generateInputs(inputs)
-		beego.Info("Started sending signals.")
-		
-		for {
-			select {
-			case input := <-inputs:
-				processInput(input)
-			case <-criticalChan:
-				beego.Critical("Caught value from criticalChan: Go shut down.")
-				panic("Shut down due to critical fault.")
-			}
-		}
-	}
+```go
+func internalCalculationFunc(x, y int) (result int, err error) {
+    beego.Debug("calculating z. x:", x, " y:", y)
+    z := y
+    switch {
+    case x == 3:
+        beego.Trace("x == 3")
+        panic("Failure.")
+    case y == 1:
+        beego.Trace("y == 1")
+        return 0, errors.New("Error!")
+    case y == 2:
+        beego.Trace("y == 2")
+        z = x
+    default:
+        beego.Trace("default")
+        z += x
+    }
+    retVal := z - 3
+    beego.Debug("Returning ", retVal)
+    
+    return retVal, nil
+}
+
+func processInput(input inputData) {
+    defer func() {
+        if r := recover(); r != nil {
+            beego.Error("Unexpected error occurred: ", r)
+            outputs <- outputData{result: 0, error: true}
+        }
+    }()
+    beego.Info("Received input signal. x:", input.x, " y:", input.y)
+    
+    res, err := internalCalculationFunc(input.x, input.y)
+    if err != nil {
+        beego.Warn("Error in calculation:", err.Error())
+    }
+    
+    beego.Info("Returning result: ", res, " error: ", err)
+    outputs <- outputData{result: res, error: err != nil}
+}
+
+func main() {
+    inputs = make(chan inputData)
+    outputs = make(chan outputData)
+    criticalChan = make(chan int)
+    beego.Info("App started.")
+    
+    go consumeResults(outputs)
+    beego.Info("Started receiving results.")
+    
+    go generateInputs(inputs)
+    beego.Info("Started sending signals.")
+    
+    for {
+        select {
+        case input := <-inputs:
+            processInput(input)
+        case <-criticalChan:
+            beego.Critical("Caught value from criticalChan: Go shut down.")
+            panic("Shut down due to critical fault.")
+        }
+    }
+}
+```

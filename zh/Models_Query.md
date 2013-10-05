@@ -170,8 +170,8 @@ QuerySeter 是高级查询使用的接口，我们来熟悉下他的接口方法
 	* [Update(Params) (int64, error)](#update)
 	* [Delete() (int64, error)](#delete)
 	* [PrepareInsert() (Inserter, error)](#prepareinsert)
-	* [All(interface{}) (int64, error)](#all)
-	* [One(interface{}) error](#one)
+	* [All(interface{}, ...string) (int64, error)](#all)
+	* [One(interface{}, ...string) error](#one)
 	* [Values(*[]Params, ...string) (int64, error)](#values)
 	* [ValuesList(*[]ParamsList, ...string) (int64, error)](#valueslist)
 	* [ValuesFlat(*ParamsList, string) (int64, error)](#valuesflat)
@@ -345,6 +345,8 @@ i.Close() // 别忘记关闭 statement
 
 返回对应的结果集对象
 
+All 的参数支持 *[]Type 和 *[]*Type 两种形式的 slice
+
 ```go
 var users []*User
 num, err := o.QueryTable("user").Filter("name", "slene").All(&users)
@@ -352,6 +354,23 @@ fmt.Printf("Returned Rows Num: %s, %s", num, err)
 ```
 
 All / Values / ValuesList / ValuesFlat 受到 [Limit](#limit) 的限制，默认最大行数为 1000
+
+可以指定返回的字段：
+
+```go
+type Post struct {
+	Id      int
+	Title   string
+	Content string
+	Status  int
+}
+
+// 只返回 Id 和 Title
+var posts []Post
+o.QueryTable("post").Filter("Status", 1).All(&posts, "Id", "Title")
+```
+
+对象的其他字段值将会是对应类型的默认值
 
 ### One
 
@@ -369,6 +388,16 @@ if err == orm.ErrNoRows {
 	fmt.Printf("Not row found")
 }
 ```
+
+可以指定返回的字段：
+
+```go
+// 只返回 Id 和 Title
+var post Post
+o.QueryTable("post").Filter("Content__istartswith", "prefix string").One(&post, "Id", "Title")
+```
+
+对象的其他字段值将会是对应类型的默认值
 
 ### Values
 返回结果集的 key => value 值

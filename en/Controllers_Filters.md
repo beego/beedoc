@@ -1,32 +1,42 @@
 # Filters
 
-Beego supports customized filter and middleware, such as security verification, force redirect, etc.
+Beego supports customized filters and middleware, such as security verification, forced redirect, etc.
 
-Here is an example of verify user name of all requests, check if it's admin.
+Function call will be like:
+
+	beego.AddFilter(pattern, action string, filter FilterFunc)
+
+Three arguments:
+
+- pattern: router rules, according to your rules to route, and use `*` for full match.
+- action: the place to execute Filter, there are 4 fixed arguments where each one represents different execute process.
+	- BeforRouter: before routing
+	- AfterStatic: after static rendered
+	- BeforExec: after found  route, before executing controller logic
+	- AfterExec: after executed controller logic
+- filter: filter function, type FilterFunc func(*context.Context)
+
+The following example can be used to verify user log in and apply to all requests:
 
 ```go
-var FilterUser = func(w http.ResponseWriter, r *http.Request) {
-	if r.URL.User == nil || r.URL.User.Username() != "admin" {
-		http.Error(w, "", http.StatusUnauthorized)
-	}
+var FilterUser = func(ctx *context.Context) {
+    _, ok := ctx.Input.Session("uid").(int)
+    if !ok {
+        ctx.Redirect(302, "/login")
+    }
 }
 
-beego.Filter(FilterUser)
+beego.AddFilter("*","BeforRouter",FilterUser)
 ```
 
-You can also filter by arguments:
+Or use regexp to filter:
 
 ```go
-beego.Router("/:id([0-9]+)", &admin.EditController{})
-beego.FilterParam("id", func(rw http.ResponseWriter, r *http.Request) {
-	dosomething()
-})
-```
-
-Filter by prefix is also available:
-
-```go
-beego.FilterPrefixPath("/admin", func(rw http.ResponseWriter, r *http.Request) {
-	dosomething()
-})
+var FilterUser = func(ctx *context.Context) {
+    _, ok := ctx.Input.Session("uid").(int)
+    if !ok {
+        ctx.Redirect(302, "/login")
+    }
+}
+beego.AddFilter("/user/:id([0-9]+)","BeforRouter",FilterUser)
 ```

@@ -62,11 +62,11 @@ type ControllerInterface interface {
 可以在 Controlle 中通过如下方式获取上面的变量：
 
 ```go
-this.Ctx.Params[":id"]
-this.Ctx.Params[":username"]
-this.Ctx.Params[":splat"]
-this.Ctx.Params[":path"]
-this.Ctx.Params[":ext"]
+this.Ctx.Input.Params(":id")
+this.Ctx.Input.Params(":username")
+this.Ctx.Input.Params(":splat")
+this.Ctx.Input.Params(":path")
+this.Ctx.Input.Params(":ext")
 ```
 
 ## 自定义方法及 RESTful 规则
@@ -133,3 +133,12 @@ beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
 	
 	
 方法名在内部是保存了用户设置的，例如 Login，url 匹配的时候都会转化为小写，所以，`/object/LOGIN` 这样的 url 也一样可以路由到用户定义的 Login 方法中。
+
+现在已经可以通过自动识别出来下面类似的所有url，都会把请求分发到 controller 的 simple 方法：
+
+	/controller/simple
+	/controller/simple.html
+	/controller/simple.json
+	/controller/simple.rss
+
+可以通过 `this.Ctx.Input.Params[":ext"]` 获取后缀名
