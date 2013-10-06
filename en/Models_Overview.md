@@ -1,6 +1,6 @@
 # Models - beego ORM
 
-[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest)
+[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego/orm)
 
 Beego ORM is a powerful ORM framework for the Go programming language.
 
@@ -147,7 +147,3 @@ For example:
 	...
 
 Note: we are not recommend using this in product environment.
-
-## API documnetation
-
-Please visit [Go Walker](http://gowalker.org/github.com/astaxie/beego/orm).

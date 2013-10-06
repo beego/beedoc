@@ -1,5 +1,7 @@
 # Introduction
 
+[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego)
+
 This manual documents aspects of beego app framework.
 
 ### New to beego? 
@@ -21,10 +23,6 @@ Open an [issue on github](https://github.com/astaxie/beego/issues).
 ### Want to be a contributor?
 
 Fork the [documentation project](https://github.com/beego/beedoc), edit and pull request.
-
-### Simple API documentation?
-
-Please visit [Go Walker](http://gowalker.org/github.com/astaxie/beego).
 
 ### Source code of this website?
 

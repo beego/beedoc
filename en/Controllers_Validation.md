@@ -1,5 +1,7 @@
 # Validation
 
+[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego/validation)
+
 Validation helps you validate data contained in structs, and collect any validation errors.
 
 ### Installation and tests
@@ -112,7 +114,3 @@ StructTag Functions:
 * `Tel` telephone number with type that has to be `string`.
 * `Phone` phone or telephone number with type that has to be `string`.
 * `ZipCode` zip code with type that has to be `string`.
-
-### API documnetation
-
-Please visit [Go Walker](http://gowalker.org/github.com/astaxie/beego/validation).

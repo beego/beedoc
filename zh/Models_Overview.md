@@ -1,6 +1,6 @@
 # 模型（Models）－ beego ORM
 
-[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest)
+[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego/orm)
 
 beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Django ORM 和 SQLAlchemy。
 
@@ -192,7 +192,3 @@ func main() {
 * 2013-09-12 [Read](Models_Object#read) / [Update](Models_Object#update) / [All](Models_Query#all) / [One](Models_Query#one)
 * 2013-09-09 Raw SQL [QueryRow/QueryRows](Models_RawSQL#queryrow)
 * 2013-09-06 [关系查询](Models_Query#关系查询)
-
-## API 文档
-
-请移步 [Go Walker](http://gowalker.org/github.com/astaxie/beego/orm)。

@@ -1,5 +1,7 @@
 # 基本说明
 
+[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego)
+
 该手册详细描述了 beego 应用框架的各个方面。
 
 ### 新手指导
@@ -21,10 +23,6 @@
 ### 完善文档
 
 您可以通过派生 [文档项目](https://github.com/beego/beedoc)、编辑，然后提交合并请求。
-
-### 简单的 API 文档
-
-请移步 [Go Walker](http://gowalker.org/github.com/astaxie/beego)。
 
 ### 网站源码
 
