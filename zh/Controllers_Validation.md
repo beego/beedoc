@@ -59,8 +59,10 @@ func main() {
 
 ```go
 import (
-    "github.com/astaxie/beego/validation"
     "log"
+    "strings"
+
+    "github.com/astaxie/beego/validation"
 )
 
 // 验证函数写在 "valid" tag 的标签里
@@ -75,6 +77,15 @@ type user struct {
     Email  string `valid:"Email; MaxSize(100)"` // Email字段需要符合邮箱格式，并且最大长度不能大于100个字符
     Mobile string `valid:"Mobile"` // Mobile必须为正确的手机号
     IP     string `valid:"IP"` // IP必须为一个正确的IPv4地址
+}
+
+// 如果你的 struct 实现了接口 validation.ValidFormer
+// 当 StructTag 中的测试都成功时，将会执行 Valid 函数进行自定义验证
+func (u *user) Valid(v *validation.Validation) {
+    if strings.Index(u.Name, "admin") != -1 {
+        // 通过 SetError 设置 Name 的错误信息，HasErrors 将会返回 true
+        v.SetError("Name", "名称里不能含有 admin")
+    }
 }
 
 func main() {
