@@ -24,7 +24,7 @@ beego 有内建的 XSRF 的防范机制，要使用此机制，你需要在应�
 ```go
 func (this *HomeController) Get(){ 
 	this.XSRFExpire = 7200    
-	this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
+	this.Data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
 }
 ```
 
@@ -34,7 +34,7 @@ func (this *HomeController) Get(){
 
 ```go
 func (this *HomeController) Get(){        
-    this.data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
+    this.Data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
 }
 ```
   
@@ -74,7 +74,7 @@ jQuery.postJSON = function(url, args, callback) {
 
 ```go
 func (this *HomeController) Get(){        
-    this.data["xsrf_token"] = this.XsrfToken()
+    this.Data["xsrf_token"] = this.XsrfToken()
 }
 ```
 

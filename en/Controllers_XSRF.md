@@ -21,7 +21,7 @@ If enablexsrf is set, the beego web application will set the _xsrf cookie for al
 ```go
 func (this *HomeController) Get(){
 	this.XSRFExpire = 7200
-	this.data["xsrfdata"] = template.HTML(this.XsrfFormHtml())
+	this.Data["xsrfdata"] = template.HTML(this.XsrfFormHtml())
 }
 ```
 
@@ -31,7 +31,7 @@ first in controller you get the csrfdata:
 
 ```go
 func (this *HomeController) Get(){
-    this.data["xsrfdata"] = template.HTML(this.XsrfFormHtml())
+    this.Data["xsrfdata"] = template.HTML(this.XsrfFormHtml())
 }
 ```
 
@@ -66,7 +66,7 @@ To extend AJAX that add header of XSRF in every request, you need to save the va
 
 ```go
 func (this *HomeController) Get(){        
-    this.data["xsrf_token"] = this.XsrfToken()
+    this.Data["xsrf_token"] = this.XsrfToken()
 }
 ```
 
