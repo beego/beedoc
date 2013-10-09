@@ -309,6 +309,25 @@ fmt.Printf("Affected Num: %s, %s", num, err)
 // SET name = "astaixe" WHERE name = "slene"
 ```
 
+原子操作增加字段值
+
+```go
+// 假设 user struct 里有一个 nums int 字段
+num, err := o.QueryTable("user").Update(orm.Params{
+	"nums": orm.ColValue(orm.Opt_Add, 100),
+})
+// SET nums = nums + 1
+```
+
+orm.ColValue 支持以下操作
+
+```go
+Col_Add      // 加
+Col_Minus    // 减
+Col_Multiply // 乘
+Col_Except   // 除
+```
+
 ### Delete
 
 依据当前查询条件，进行批量删除操作
