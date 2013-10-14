@@ -1,6 +1,14 @@
 # Models
 
-This feture is for database migration and auto-create tables.
+You don't have to define complex model, this feature is mainly for database conversion and [auto-create tables](Models_Cmd#auto-create-table).
+
+Default rule of table name is camel name:
+
+	AuthUser -> auth_user
+	Auth_User -> auth__user
+	DB_AuthUser -> d_b__auth_user
+
+All upper case letters will be converted to lower case and prefix `_`, except the first letter.
 
 ## Customize table name
 
@@ -40,6 +48,27 @@ func (u *User) TableUnique() [][]string {
 	return [][]string{
 		[]string{"Name", "Email"},
 	}
+}
+```
+
+## Customize engine
+
+Only support MySQL.
+
+ORM uses default engine according to database default setting.
+
+You can add `TableEngine` method to your struct to indicate engine:
+
+```go
+type User struct {
+	Id    int
+	Name  string
+	Email string
+}
+
+// Set engine to be INNODB
+func (u *User) TableEngine() string {
+	return "INNODB"
 }
 ```
 
@@ -94,19 +123,11 @@ Set database column name for fields:
 Name `orm:"column(user_name)"`
 ```
 
-### default
+### size
 
-Set default value of fields with same type:
+Default type of string is `varchar(255)`.
 
-```go
-type User struct {
-	...
-	Status int `orm:"default(1)"`
-```
-
-### size (string)
-
-After setting size of string type fields, the type of fields will be varchar in database:
+After setting size of string type fields, the type of fields will be varchar(size):
 
 ```go
 Title string `orm:"size(60)"`
@@ -136,10 +157,26 @@ This setting will not work when you do batch update.
 
 ### type
 
-Type `date` and `time.Time` are mapping to `date` type in database:
+Type `date` for `time.Time` will be mapping to `date` type in database:
 
 ```go
 Created time.Time `orm:"auto_now_add;type(date)"`
+```
+
+Type `text` for `string` will be mapping to `text` type in database:
+
+```go
+Content string `orm:"type(text)"`
+```
+
+### default
+
+Set default value of fields with same type:
+
+```go
+type User struct {
+	...
+	Status int `orm:"default(1)"`
 ```
 
 ## Table relation
@@ -205,6 +242,12 @@ This setting is for relation fields that uses `orm:"rel(m2m)"`:
 
 `rel_through` will be omitted after you setting `rel_table`.
 
+Usage:
+
+`orm:"rel(m2m);rel_table(the_table_name)"`
+
+`orm:"rel(m2m);rel_through(pkg.path.ModelName)"`
+
 ### on_delete
 
 This describes how to deal with relation fields when one of them have delete operation:
@@ -224,6 +267,49 @@ type Profile struct {
 	User *User `orm:"reverse(one)"`
 
 // User.Profile will be setting to NULL after Profile was deleted.
+```
+
+#### on_delete example
+
+```go
+type User struct {
+    Id int
+    Name string
+}
+
+type Post struct {
+    Id int
+    Title string
+    User *User `orm:"rel(fk)"`
+}
+```
+
+Suppose Post -> User is ManyToOne relation, which is foreign key.
+
+	o.Filter("Id", 1).Delete()
+
+All posts that posted by User that Id is 1 will be deleted at the same time.
+
+If you do not want to delete them, need to setting `set_null`:
+
+```go
+type Post struct {
+    Id int
+    Title string
+    User *User `orm:"rel(fk);null;on_delete(set_null)"`
+}
+```
+
+Now the posts will not be deleted but the Post.user_id will all be setting to NULL.
+
+For performance purpose, you can do following to ignore delete operation:
+
+```go
+type Post struct {
+    Id int
+    Title string
+    User *User `orm:"rel(fk);null;on_delete(do_nothing)"`
+}
 ```
 
 ## Mapping of model type and database type
