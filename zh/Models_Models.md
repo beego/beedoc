@@ -272,6 +272,50 @@ type Profile struct {
 // 删除 Profile 时将设置 User.Profile 的数据库字段为 NULL
 ```
 
+#### 关于 on_delete 的相关例子
+
+```go
+type User struct {
+    Id int
+    Name string
+}
+
+type Post struct {
+    Id int
+    Title string
+    User *User `orm:"rel(fk)"`
+}
+```
+
+假设 Post -> User 是 ManyToOne 的关系，也就是外键。
+
+    o.Filter("Id", 1).Delete()
+
+这个时候即会删除 Id 为 1 的 User 也会删除其发布的 Post
+
+不想删除的话，需要设置 set_null
+
+```go
+type Post struct {
+    Id int
+    Title string
+    User *User `orm:"rel(fk);null;on_delete(set_null)"`
+}
+```
+
+那这个时候，删除 User 只会把对应的 Post.user_id 设置为 NULL
+
+当然有时候为了高性能的需要，多存点数据无所谓啊，造成批量删除才是问题。
+
+```go
+type Post struct {
+    Id int
+    Title string
+    User *User `orm:"rel(fk);null;on_delete(do_nothing)"`
+}
+```
+
+那么只要删除的时候，不操作 Post 就可以了。
 
 ## 模型字段与数据库类型的对应
 

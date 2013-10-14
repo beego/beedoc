@@ -167,6 +167,7 @@ QuerySeter 是高级查询使用的接口，我们来熟悉下他的接口方法
 	* [OrderBy(...string) QuerySeter](#orderby)
 	* [RelatedSel(...interface{}) QuerySeter](#relatedsel)
 	* [Count() (int64, error)](#count)
+	* [Exist() bool](#exist)
 	* [Update(Params) (int64, error)](#update)
 	* [Delete() (int64, error)](#delete)
 	* [PrepareInsert() (Inserter, error)](#prepareinsert)
@@ -295,6 +296,13 @@ qs.RelateSel("user")
 ```go
 cnt, err := o.QueryTable("user").Count() // SELECT COUNT(*) FROM USER
 fmt.Printf("Count Num: %s, %s", cnt, err)
+```
+
+### Exist
+
+```go
+exist := o.QueryTable("user").Filter("UserName", "Name").Exist()
+fmt.Printf("Is Exist: %s", exist)
 ```
 
 ### Update
@@ -570,11 +578,172 @@ if err == nil {
 
 #### Post 和 Tag 是 ManyToMany 关系
 
+设置 rel(m2m) 以后，ORM会自动创建中间表
+
+```go
+type Post struct {
+	Id    int
+	Title string
+	User  *User  `orm:"rel(fk)"`
+	Tags  []*Tag `orm:"rel(m2m)"`
+}
+```
+
 ```go
 type Tag struct {
 	Id    int
 	Name  string
+	Posts []*Tag `orm:reverse(many)`
 }
 ```
 
-// TODO
+通过 tag name 查询哪些 post 使用了这个 tag
+
+```go
+var posts []*Post
+num, err := dORM.QueryTable("post").Filter("Tags__Tag__Name", "golang").All(&posts)
+```
+
+通过 post title 查询这个 post 有哪些 tag
+
+```go
+var tags []*Tag
+num, err := dORM.QueryTable("post").Filter("Tags__Post__Title", "Introduce Beego ORM").All(&tags)
+```
+
+## 载入关系字段
+
+LoadRelated 用于载入模型的关系字段，包括所有的 rel/reverse - one/many 关系
+
+ManyToMany 关系字段载入
+
+```go
+// 载入相应的 Tags
+post := Post{Id: 1}
+err := o.Read(&post)
+num, err := o.LoadRelated(&post, "Tags")
+```
+
+```go
+// 载入相应的 Posts
+tag := Tag{Id: 1}
+err := o.Read(&tag)
+num, err := o.LoadRelated(&tag, "Posts")
+```
+
+User 是 Post 的 ForeignKey，对应的 ReverseMany 关系字段载入
+
+```go
+type User struct {
+	Id    int
+	Name  string
+	Posts []*Post `orm:"reverse(many)"`
+}
+
+user := User{Id: 1}
+err := dORM.Read(&user)
+num, err := dORM.LoadRelated(&user, "Posts")
+for _, post := range user.Posts {
+	//...
+}
+```
+
+## 多对多关系操作
+
+* type QueryM2Mer interface {
+	* [Add(...interface{}) (int64, error)](#querym2mer-add)
+	* [Remove(...interface{}) (int64, error)](#querym2mer-remove)
+	* [Exist(interface{}) bool](#querym2mer-exist)
+	* [Clear() (int64, error)](#querym2mer-clear)
+	* [Count() (int64, error)](#querym2mer-count)
+* }
+
+创建一个 QueryM2Mer 对象
+
+```go
+o := orm.NewOrm()
+post := Post{Id: 1}
+m2m := o.QueryM2M(&post, "Tags")
+// 第一个参数的对象，主键必须有值
+// 第二个参数为对象需要操作的M2M字段
+// QueryM2Mer 的 api 将作用于 Id 为 1 的 Post
+```
+
+### QueryM2Mer Add
+
+```go
+tag := &Tag{Name: "golang"}
+o.Insert(tag)
+
+num, err := m2m.Add(tag)
+if err == nil {
+	fmt.Println("Added nums: ", num)
+}
+```
+
+Add 支持多种类型 Tag *Tag []*Tag []Tag []interface{}
+
+```go
+var tags []*Tag
+...
+// 读取 tags 以后
+...
+num, err := m2m.Add(tags)
+if err == nil {
+	fmt.Println("Added nums: ", num)
+}
+// 也可以多个作为参数传入
+// m2m.Add(tag1, tag2, tag3)
+```
+
+### QueryM2Mer Remove
+
+从M2M关系中删除 tag
+
+Remove 支持多种类型 Tag *Tag []*Tag []Tag []interface{}
+
+```go
+var tags []*Tag
+...
+// 读取 tags 以后
+...
+num, err := m2m.Remove(tags)
+if err == nil {
+	fmt.Println("Removed nums: ", num)
+}
+// 也可以多个作为参数传入
+// m2m.Remove(tag1, tag2, tag3)
+```
+
+### QueryM2Mer Exist
+
+判断 Tag 是否存在于 M2M 关系中
+
+```go
+if m2m.Exist(&Tag{Id: 2}) {
+	fmt.Println("Tag Exist")
+}
+```
+
+### QueryM2Mer Clear
+
+清楚所有 M2M 关系
+
+```go
+nums, err := m2m.Clear()
+if err == nil {
+	fmt.Println("Removed Tag Nums: ", nums)
+}
+```
+
+### QueryM2Mer Count
+
+计算 Tag 的数量
+
+```go
+nums, err := m2m.Count()
+if err == nil {
+	fmt.Println("Total Nums: ", nums)
+}
+```
+
