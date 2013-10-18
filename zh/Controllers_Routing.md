@@ -62,11 +62,11 @@ type ControllerInterface interface {
 可以在 Controlle 中通过如下方式获取上面的变量：
 
 ```go
-this.Ctx.Input.Params(":id")
-this.Ctx.Input.Params(":username")
-this.Ctx.Input.Params(":splat")
-this.Ctx.Input.Params(":path")
-this.Ctx.Input.Params(":ext")
+this.Ctx.Input.Param(":id")
+this.Ctx.Input.Param(":username")
+this.Ctx.Input.Param(":splat")
+this.Ctx.Input.Param(":path")
+this.Ctx.Input.Param(":ext")
 ```
 
 ## 自定义方法及 RESTful 规则
@@ -127,7 +127,7 @@ beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
 	/object/login   调用 ObjectController 中的 Login 方法
 	/object/logout  调用 ObjectController 中的 Logout 方法
 	
-除了前缀两个 `/:controller/:method` 的匹配之外，剩下的 url beego会帮你自动化解析为参数，保存在 `this.Ctx.Params` 当中：
+除了前缀两个 `/:controller/:method` 的匹配之外，剩下的 url beego会帮你自动化解析为参数，保存在 `this.Ctx.Input.Param` 当中：
 
 	/object/blog/2013/09/12  调用 ObjectController 中的 Blog 方法，参数如下：map[0:2013 1:09 2:12]
 	
@@ -141,4 +141,4 @@ beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
 	/controller/simple.json
 	/controller/simple.rss
 
-可以通过 `this.Ctx.Input.Params[":ext"]` 获取后缀名
+可以通过 `this.Ctx.Input.Param[":ext"]` 获取后缀名
