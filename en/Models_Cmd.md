@@ -28,9 +28,9 @@ Usage of orm command: syncdb:
   -v=false: verbose info
 ```
 
-Use flag `-force=1` to force drop tables and re-create.
+Use the `-force=1` flag to force drop tables and re-create.
 
-Use flag `-v` to print SQL statements.
+Use the `-v` flag to print SQL statements.
 
 ---
 
@@ -53,7 +53,7 @@ if err != nil {
 }
 ```
 
-Even if you do not enable `force` mode, ORM also will auto-add new fields and indexes, but you have to deal with delete operation by yourself.
+Even if you do not enable `force` mode, ORM also will auto-add new fields and indexes, but you have to deal with delete operations yourself.
 
 ## Print SQL
 
