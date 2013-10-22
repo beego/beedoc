@@ -368,7 +368,7 @@ Key is the field name of the Model, values saved as string:
 ```go
 var maps []orm.Params
 num, err := o.QueryTable("user").Values(&maps)
-if err != nil {
+if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
 	for _, m := range maps {
 		fmt.Println(m["Id"], m["Name"])
@@ -381,7 +381,7 @@ Returns specific field's data:
 ```go
 var maps []orm.Params
 num, err := o.QueryTable("user").Values(&maps, "id", "name", "profile", "profile__age")
-if err != nil {
+if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
 	for _, m := range maps {
 		fmt.Println(m["Id"], m["Name"], m["Profile"], m["Profile__Age"])
@@ -397,7 +397,7 @@ Results are saved in slice, the order of results is the same order of fields in 
 ```go
 var lists []orm.ParamsList
 num, err := o.QueryTable("user").ValuesList(&lists)
-if err != nil {
+if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
 	for _, row := range lists {
 		fmt.Println(row)
@@ -410,7 +410,7 @@ You can use expr to indicate which field to be returned:
 ```go
 var lists []orm.ParamsList
 num, err := o.QueryTable("user").ValuesList(&lists, "name", "profile__age")
-if err != nil {
+if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
 	for _, row := range lists {
 		fmt.Printf("Name: %s, Age: %s\m", row[0], row[1])
@@ -425,7 +425,7 @@ Only returned specific field value into single slice:
 ```go
 var list orm.ParamsList
 num, err := o.QueryTable("user").ValuesFlat(&list, "name")
-if err != nil {
+if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
 	fmt.Printf("All User Names: %s", strings.Join(list, ", ")
 }
