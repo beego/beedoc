@@ -434,7 +434,7 @@ key 为 Model 里的 Field name，value 的值 以 string 保存
 ```go
 var maps []orm.Params
 num, err := o.QueryTable("user").Values(&maps)
-if err != nil {
+if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
 	for _, m := range maps {
 		fmt.Println(m["Id"], m["Name"])
@@ -451,7 +451,7 @@ if err != nil {
 ```go
 var maps []orm.Params
 num, err := o.QueryTable("user").Values(&maps, "id", "name", "profile", "profile__age")
-if err != nil {
+if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
 	for _, m := range maps {
 		fmt.Println(m["Id"], m["Name"], m["Profile"], m["Profile__Age"])
@@ -471,7 +471,7 @@ if err != nil {
 ```go
 var lists []orm.ParamsList
 num, err := o.QueryTable("user").ValuesList(&lists)
-if err != nil {
+if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
 	for _, row := range lists {
 		fmt.Println(row)
@@ -484,7 +484,7 @@ if err != nil {
 ```go
 var lists []orm.ParamsList
 num, err := o.QueryTable("user").ValuesList(&lists, "name", "profile__age")
-if err != nil {
+if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
 	for _, row := range lists {
 		fmt.Printf("Name: %s, Age: %s\m", row[0], row[1])
@@ -499,7 +499,7 @@ if err != nil {
 ```go
 var list orm.ParamsList
 num, err := o.QueryTable("user").ValuesFlat(&list, "name")
-if err != nil {
+if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
 	fmt.Printf("All User Names: %s", strings.Join(list, ", ")
 }
