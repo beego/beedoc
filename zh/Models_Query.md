@@ -593,7 +593,7 @@ type Post struct {
 type Tag struct {
 	Id    int
 	Name  string
-	Posts []*Tag `orm:reverse(many)`
+	Posts []*Post `orm:"reverse(many)"`
 }
 ```
 
