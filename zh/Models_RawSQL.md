@@ -109,7 +109,7 @@ type User struct {
 }
 
 var users []User
-num, err := o.Raw("SELECT id, name FROM user WHERE id = ?", 1).QueryRow(&users)
+num, err := o.Raw("SELECT id, name FROM user WHERE id = ?", 1).QueryRows(&users)
 if err == nil {
 	fmt.Println("user nums: ", num)
 }
@@ -126,7 +126,7 @@ type Profile struct {
 var users []*User
 var profiles []*Profile
 err := o.Raw(`SELECT id, name, p.id, p.age FROM user
-	LEFT OUTER JOIN profile AS p ON p.id = profile_id WHERE id = ?`, 1).QueryRow(&users, &profiles)
+	LEFT OUTER JOIN profile AS p ON p.id = profile_id WHERE id = ?`, 1).QueryRows(&users, &profiles)
 if err == nil {
 	for i, user := range users {
 		profile := users[i]
