@@ -504,10 +504,172 @@ if err == nil {
 
 #### The relation between Post and Tag is ManyToMany
 
+After you have setting `rel(m2m)`, ORM will create middle tables automatically.
+
+```go
+type Post struct {
+	Id    int
+	Title string
+	User  *User  `orm:"rel(fk)"`
+	Tags  []*Tag `orm:"rel(m2m)"`
+}
+```
+
 ```go
 type Tag struct {
 	Id    int
 	Name  string
+	Posts []*Post `orm:"reverse(many)"`
 }
 ```
-TODO
+
+Use tag name to query which posts used this tag.
+
+```go
+var posts []*Post
+num, err := dORM.QueryTable("post").Filter("Tags__Tag__Name", "golang").All(&posts)
+```
+
+Use post title to query this post has what tag.
+
+```go
+var tags []*Tag
+num, err := dORM.QueryTable("post").Filter("Tags__Post__Title", "Introduce Beego ORM").All(&tags)
+```
+
+## Load related fields
+
+LoadRelated is for loading related fields of model, including rel/reverse - one/many.
+
+ManyToMany:
+
+```go
+// Load corresponding Tags
+post := Post{Id: 1}
+err := o.Read(&post)
+num, err := o.LoadRelated(&post, "Tags")
+```
+
+```go
+// Load corresponding Posts
+tag := Tag{Id: 1}
+err := o.Read(&tag)
+num, err := o.LoadRelated(&tag, "Posts")
+```
+
+User is the Post's ForeignKey，and corresponding to ReverseMany.
+
+```go
+type User struct {
+	Id    int
+	Name  string
+	Posts []*Post `orm:"reverse(many)"`
+}
+
+user := User{Id: 1}
+err := dORM.Read(&user)
+num, err := dORM.LoadRelated(&user, "Posts")
+for _, post := range user.Posts {
+	//...
+}
+```
+
+## Many to many operations
+
+* type QueryM2Mer interface {
+	* [Add(...interface{}) (int64, error)](#querym2mer-add)
+	* [Remove(...interface{}) (int64, error)](#querym2mer-remove)
+	* [Exist(interface{}) bool](#querym2mer-exist)
+	* [Clear() (int64, error)](#querym2mer-clear)
+	* [Count() (int64, error)](#querym2mer-count)
+* }
+
+Create a QueryM2Mer object:
+
+```go
+o := orm.NewOrm()
+post := Post{Id: 1}
+m2m := o.QueryM2M(&post, "Tags")
+// The primary key of first argument has to have value.
+// The second argument is the field of M2M object.
+// QueryM2Mer's API will be used as Post which Id is 1.
+```
+
+### QueryM2Mer Add
+
+```go
+tag := &Tag{Name: "golang"}
+o.Insert(tag)
+
+num, err := m2m.Add(tag)
+if err == nil {
+	fmt.Println("Added nums: ", num)
+}
+```
+
+Add supports multiple types of Tag *Tag []*Tag []Tag []interface{}
+
+```go
+var tags []*Tag
+...
+// After loaded tags succeed.
+...
+num, err := m2m.Add(tags)
+if err == nil {
+	fmt.Println("Added nums: ", num)
+}
+// Or as arguments to pass.
+// m2m.Add(tag1, tag2, tag3)
+```
+
+### QueryM2Mer Remove
+
+Delete tag in M2M.
+
+Remove support multiple types of Tag *Tag []*Tag []Tag []interface{}
+
+```go
+var tags []*Tag
+...
+// After loaded tags succeed.
+...
+num, err := m2m.Remove(tags)
+if err == nil {
+	fmt.Println("Removed nums: ", num)
+}
+// Or as arguments to pass.
+// m2m.Remove(tag1, tag2, tag3)
+```
+
+### QueryM2Mer Exist
+
+Check if Tag exists in M2M relation:
+
+```go
+if m2m.Exist(&Tag{Id: 2}) {
+	fmt.Println("Tag Exist")
+}
+```
+
+### QueryM2Mer Clear
+
+Clear all M2M relations:
+
+```go
+nums, err := m2m.Clear()
+if err == nil {
+	fmt.Println("Removed Tag Nums: ", nums)
+}
+```
+
+### QueryM2Mer Count
+
+Calculate number of Tag:
+
+```go
+nums, err := m2m.Count()
+if err == nil {
+	fmt.Println("Total Nums: ", nums)
+}
+```
+

@@ -29,21 +29,113 @@ r = o.Raw("UPDATE user SET name = ? WHERE name = ?", "testing", "slene")
 	* [Prepare() (RawPreparer, error)](#prepare)
 * }
 
-### Exec
+#### Exec
 
-Execute SQL statements:
+Execute SQL statements，and returns [sql.Result](http://gowalker.org/database/sql#Result) object:
 
 ```go
-num, err := r.Exec()
+res, err := o.Raw("UPDATE user SET name = ?", "your").Exec()
+if err == nil {
+	num, _ := res.RowsAffected()
+	fmt.Println("mysql row affected nums: ", num)
+}
+```
+#### QueryRow
+
+QueryRow and QueryRows provide advanced SQL mapper functions:
+
+Support struct:
+
+```go
+type User struct {
+	Id   int
+	Name string
+}
+
+var user User
+err := o.Raw("SELECT id, name FROM user WHERE id = ?", 1).QueryRow(&user)
 ```
 
-### QueryRow
+Support multiple map objects:
 
-TODO
+```go
+type User struct {
+	Id      int
+	Skip    string `orm:"-"`
+	SkipYet int
+	Name    string
+}
 
-### QueryRows
+var user User
+var age int
+var created time.Time
+o.Raw("SELECT id, NULL, name, age, created FROM user WHERE id = ?", 1).QueryRow(&user, &age, &created)
+```
 
-TODO
+When struct is using mapper, you're able to [omit fields](Models_Models#omit-fields); use NULL in SELECT to temporary omit field if necessary.
+
+Support check NULL object:
+
+```go
+type User struct {
+	Id   int
+	Name string
+}
+
+type Profile struct {
+	Id   int
+	Age  int
+}
+
+var user *User
+var profile *Profile
+err := o.Raw(`SELECT id, name, p.id, p.age FROM user
+	LEFT OUTER JOIN profile AS p ON p.id = profile_id WHERE id = ?`, 1).QueryRow(&user, &profile)
+if err == nil {
+	if profile == nil {
+		fmt.Println("user's profile is empty")
+	}
+}
+```
+
+#### QueryRows
+
+QueryRows has same rules of QueryRow except slice:
+
+```go
+type User struct {
+	Id   int
+	Name string
+}
+
+var users []User
+num, err := o.Raw("SELECT id, name FROM user WHERE id = ?", 1).QueryRows(&users)
+if err == nil {
+	fmt.Println("user nums: ", num)
+}
+```
+
+Query multiple objects:
+
+```go
+type Profile struct {
+	Id   int
+	Age  int
+}
+
+var users []*User
+var profiles []*Profile
+err := o.Raw(`SELECT id, name, p.id, p.age FROM user
+	LEFT OUTER JOIN profile AS p ON p.id = profile_id WHERE id = ?`, 1).QueryRows(&users, &profiles)
+if err == nil {
+	for i, user := range users {
+		profile := users[i]
+		if profile == nil {
+			fmt.Println("user's profile is empty")
+		}
+	}
+}
+```
 
 ### SetArgs
 
