@@ -122,7 +122,7 @@ type User struct {
 为字段设置 db 字段的名称
 
 ```go
-Name `orm:"column(user_name)"`
+Name string `orm:"column(user_name)"`
 ```
 
 #### size
@@ -148,8 +148,8 @@ Money float64 `orm:"digits(12);decimals(4)"`
 #### auto_now / auto_now_add
 
 ```go
-Created     time.Time `auto_now_add`
-Updated     time.Time `auto_now`
+Created time.Time `auto_now_add`
+Updated time.Time `auto_now`
 ```
 
 * auto_now 每次 model 保存时都会对时间自动更新
