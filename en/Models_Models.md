@@ -120,7 +120,7 @@ Add unique key for fields.
 Set database column name for fields:
 
 ```go
-Name `orm:"column(user_name)"`
+Name string `orm:"column(user_name)"`
 ```
 
 ### size
