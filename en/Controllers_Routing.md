@@ -79,11 +79,11 @@ For more convenient routing rule configuration, Beego borrows ideas from sinatra
 You can get the parameters from Controller:
 
 ```go
-this.Ctx.Input.Param(":id")
-this.Ctx.Input.Param(":username")
-this.Ctx.Input.Param(":splat")
-this.Ctx.Input.Param(":path")
-this.Ctx.Input.Param(":ext")
+this.Ctx.Input.Params(":id")
+this.Ctx.Input.Params(":username")
+this.Ctx.Input.Params(":splat")
+this.Ctx.Input.Params(":path")
+this.Ctx.Input.Params(":ext")
 ```
 
 ## Customized methods and RESTful rules
@@ -157,4 +157,4 @@ What's more, beego is able to identify URLs like following examples, and gives a
 	/controller/simple.json
 	/controller/simple.rss
 
-Then use `this.Ctx.Input.Param[":ext"]` to get extension.
+Then use `this.Ctx.Input.Params[":ext"]` to get extension.
