@@ -117,6 +117,10 @@ type User struct {
 
 为单个字段增加 unique 键
 
+```go
+Name string `orm:"unique"`
+```
+
 #### column
 
 为字段设置 db 字段的名称
@@ -148,8 +152,8 @@ Money float64 `orm:"digits(12);decimals(4)"`
 #### auto_now / auto_now_add
 
 ```go
-Created time.Time `auto_now_add`
-Updated time.Time `auto_now`
+Created time.Time `orm:"auto_now_add;type(datetime)"`
+Updated time.Time `orm:"auto_now;type(datetime)"`
 ```
 
 * auto_now 每次 model 保存时都会对时间自动更新
@@ -165,10 +169,10 @@ Updated time.Time `auto_now`
 Created time.Time `orm:"auto_now_add;type(date)"`
 ```
 
-设置为 text 时，string 字段对应的 db 类型使用 text
+设置为 datetime 时，time.Time 字段的对应 db 类型使用 datetime
 
 ```go
-Content string `orm:"type(text)"`
+Created time.Time `orm:"auto_now_add;type(datetime)"`
 ```
 
 #### default
