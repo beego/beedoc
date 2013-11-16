@@ -204,7 +204,7 @@ type Profile struct {
 ```go
 type Post struct {
 	...
-	User*User `orm:"rel(fk)"` // RelForeignKey relation
+	User *User `orm:"rel(fk)"` // RelForeignKey relation
 ```
 
 Corresponding reverse relation **RelReverseMany**:
