@@ -117,6 +117,10 @@ type User struct {
 
 为单个字段增加 unique 键
 
+```go
+Name string `orm:"unique"`
+```
+
 #### column
 
 为字段设置 db 字段的名称
