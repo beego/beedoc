@@ -165,10 +165,10 @@ Updated time.Time `auto_now`
 Created time.Time `orm:"auto_now_add;type(date)"`
 ```
 
-设置为 text 时，string 字段对应的 db 类型使用 text
+设置为 datetime 时，time.Time 字段的对应 db 类型使用 datetime
 
 ```go
-Content string `orm:"type(text)"`
+Created time.Time `orm:"auto_now_add;type(datetime)"`
 ```
 
 #### default
