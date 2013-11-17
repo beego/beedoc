@@ -109,6 +109,10 @@ type User struct {
 
 数据库表默认为 `NOT NULL`，设置 null 代表 `ALLOW NULL`
 
+```go
+Name string `orm:"null"`
+```
+
 #### index
 
 为单个字段增加索引
