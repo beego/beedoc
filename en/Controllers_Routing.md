@@ -47,7 +47,7 @@ For more convenient routing rule configuration, Beego borrows ideas from sinatra
 
 - Regular expression:
 
-		beego.Router("/user/:username([\w]+)", &controllers.RController{})
+		beego.Router(`/user/:username([\w]+)`, &controllers.RController{})
 
   Matches `/user/astaxie`,  `:username = astaxie`
 
