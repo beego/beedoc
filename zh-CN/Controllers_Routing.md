@@ -39,7 +39,7 @@ type ControllerInterface interface {
 	
 	全匹配方式 //匹配 /news/path/to/123.html :all= path/to/123.html
 
-- beego.Router(\`/user/:username([\w]+)\`, &controllers.RController{})
+- beego.Router("/user/:username([\w]+)", &controllers.RController{})
 	
 	正则字符串匹配 //匹配 /user/astaxie    :username = astaxie
 	

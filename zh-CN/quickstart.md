@@ -8,7 +8,7 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 
 beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/astaxie/beego`
 
-您或许希望安装 [Bee](/docs/Reference_BeeTool) 工具以协助您开发：`go get github.com/astaxie/bee`
+您或许希望安装 [Bee](/docs/Reference_BeeTool) 工具以协助您开发：`go get github.com/beego/bee`
 
 为了更加方便的操作，请将 `$GOPATH/bin` 加入到你的 $PATH 变量中。
 
@@ -53,7 +53,7 @@ beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/asta
 
 把上面的代码保存为 hello.go，然后通过命令行进行编译并执行：
 
-	$ go build hello.go
+	$ go build -o hello hello.go
 	$ ./hello
 
 这个时候你可以打开你的浏览器，通过这个地址浏览 [http://127.0.0.1:8080](http://127.0.0.1:8080) 返回 “hello world”。
@@ -67,4 +67,4 @@ beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/asta
 5. Router 注册路由，路由就是告诉 beego，当用户来请求的时候，该如何去调用相应的 Controller，这里我们注册了请求 `/` 的时候，请求到 `MainController`。这里我们需要知道，Router 函数的两个参数函数，第一个是路径，第二个是 Controller 的指针。
 6. Run 应用，最后一步就是把在步骤 1 中初始化的 BeeApp 开启起来，其实就是内部监听了 8080 端口：Go 默认情况会监听你本机所有的 IP 上面的 8080 端口。
 
-停止服务的话，请按 `ctrl+c`。
+停止服务的话，请按 `Ctrl+c`。
