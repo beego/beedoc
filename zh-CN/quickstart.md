@@ -21,10 +21,10 @@ beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/asta
 
 Windows平台下输入：
 
-        >cd %GOPATH%/src
-        >bee new hello
-        >cd hello
-        >bee run hello
+    >cd %GOPATH%/src
+    >bee new hello
+    >cd hello
+    >bee run hello
 
 这些指令帮助您：
 
