@@ -2,10 +2,8 @@
 
 测试代码参见
 
-```bash
-models_test.go // 表定义
-orm_test.go // 测试用例
-```
+* 表定义 [models_test.go](https://github.com/astaxie/beego/blob/master/orm/models_test.go)
+* 测试用例 [orm_test.go](https://github.com/astaxie/beego/blob/master/orm/orm_test.go)
 
 #### MySQL
 
