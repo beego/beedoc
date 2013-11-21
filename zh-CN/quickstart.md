@@ -19,6 +19,12 @@ beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/asta
 	$ cd hello
 	$ bee run hello
 
+Windows平台：
+        >cd %GOPATH%/src
+        >bee new hello
+        >cd hello
+        >bee run hello
+
 这些指令帮助您：
 
 1. 安装 beego 到您的 $GOPATH 中。
