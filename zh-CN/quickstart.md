@@ -75,3 +75,30 @@ Windows平台下输入：
 6. Run 应用，最后一步就是把在步骤 1 中初始化的 BeeApp 开启起来，其实就是内部监听了 8080 端口：Go 默认情况会监听你本机所有的 IP 上面的 8080 端口。
 
 停止服务的话，请按 `Ctrl+c`。
+
+附上windows下的快捷操作批处理文件：
+在 %GOPATH%/src目录下分别创建文件step1.install-bee.bat和step2.new-beego-app.bat
+两个文件的内容分别为：
+
+step1.install-bee.bat文件内容：
+set GOPATH=%~dp0..
+go build github.com\beego\bee
+copy bee.exe %GOPATH%\bin\bee.exe
+del bee.exe
+pause
+
+step2.new-beego-app.bat文件内容：
+@echo 设置APP的值为您的应用文件夹名称
+set APP=coscms.com
+set GOPATH=%~dp0..
+set BEE=%GOPATH%\bin\bee
+%BEE% new %APP%
+cd %APP%
+echo %BEE% run %APP%.exe > run.bat
+echo pause >> run.bat
+start run.bat
+pause
+start http://127.0.0.1:8080
+
+分别依次点击上面创建的两个文件即可快速开启golang之旅。
+以后只需要到您的应用目录下点击run.bat即可。
