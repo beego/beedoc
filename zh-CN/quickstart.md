@@ -81,24 +81,26 @@ Windows平台下输入：
 两个文件的内容分别为：
 
 step1.install-bee.bat文件内容：
-set GOPATH=%~dp0..
-go build github.com\beego\bee
-copy bee.exe %GOPATH%\bin\bee.exe
-del bee.exe
-pause
+
+	set GOPATH=%~dp0..
+	go build github.com\beego\bee
+	copy bee.exe %GOPATH%\bin\bee.exe
+	del bee.exe
+	pause
 
 step2.new-beego-app.bat文件内容：
-@echo 设置APP的值为您的应用文件夹名称
-set APP=coscms.com
-set GOPATH=%~dp0..
-set BEE=%GOPATH%\bin\bee
-%BEE% new %APP%
-cd %APP%
-echo %BEE% run %APP%.exe > run.bat
-echo pause >> run.bat
-start run.bat
-pause
-start http://127.0.0.1:8080
+
+	@echo 设置APP的值为您的应用文件夹名称
+	set APP=coscms.com
+	set GOPATH=%~dp0..
+	set BEE=%GOPATH%\bin\bee
+	%BEE% new %APP%
+	cd %APP%
+	echo %BEE% run %APP%.exe > run.bat
+	echo pause >> run.bat
+	start run.bat
+	pause
+	start http://127.0.0.1:8080
 
 分别依次点击上面创建的两个文件即可快速开启golang之旅。
 以后只需要到您的应用目录下点击run.bat即可。
