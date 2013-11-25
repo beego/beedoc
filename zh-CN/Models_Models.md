@@ -89,6 +89,7 @@ type User struct {
 ...
 	AnyField string `orm:"-"`
 ...
+}
 ```
 
 #### auto
@@ -187,6 +188,8 @@ Created time.Time `orm:"auto_now_add;type(datetime)"`
 type User struct {
 	...
 	Status int `orm:"default(1)"`
+	...
+}
 ```
 
 ## 表关系设置
@@ -199,6 +202,8 @@ type User struct {
 type User struct {
 	...
 	Profile *Profile `orm:"null;rel(one);on_delete(set_null)"`
+	...
+}
 ```
 
 对应的反向关系 **RelReverseOne**:
@@ -207,6 +212,8 @@ type User struct {
 type Profile struct {
 	...
 	User *User `orm:"reverse(one)"`
+	...
+}
 ```
 
 **RelForeignKey**:
@@ -215,6 +222,8 @@ type Profile struct {
 type Post struct {
 	...
 	User *User `orm:"rel(fk)"` // RelForeignKey relation
+	...
+}
 ```
 
 对应的反向关系 **RelReverseMany**:
@@ -223,6 +232,8 @@ type Post struct {
 type User struct {
 	...
 	Posts []*Post `orm:"reverse(many)"` // fk 的反向关系
+	...
+}
 ```
 
 **RelManyToMany**:
@@ -231,6 +242,8 @@ type User struct {
 type Post struct {
 	...
 	Tags []*Tag `orm:"rel(m2m)"` // ManyToMany relation
+	...
+}
 ```
 
 对应的反向关系 **RelReverseMany**:
@@ -239,6 +252,8 @@ type Post struct {
 type Tag struct {
 	...
 	Posts []*Post `orm:"reverse(many)"`
+	...
+}
 ```
 
 #### rel_table / rel_through
@@ -272,10 +287,13 @@ type Tag struct {
 type User struct {
 	...
 	Profile *Profile `orm:"null;rel(one);on_delete(set_null)"`
-...
+	...
+}
 type Profile struct {
 	...
 	User *User `orm:"reverse(one)"`
+	...
+}
 
 // 删除 Profile 时将设置 User.Profile 的数据库字段为 NULL
 ```
