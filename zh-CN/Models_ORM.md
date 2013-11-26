@@ -39,10 +39,10 @@ package main
 import (
 	"fmt"
 	"github.com/astaxie/beego/orm"
-	_ "github.com/go-sql-driver/mysql"
 )
 
 func init() {
+	// 如果执行 RegisterDriver 则 _ "github.com/go-sql-driver/mysql" 不需要，否则出错 
 	orm.RegisterDriver("mysql", orm.DR_MySQL)
 
 	orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8")
