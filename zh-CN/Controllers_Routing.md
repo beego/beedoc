@@ -62,11 +62,11 @@ type ControllerInterface interface {
 可以在 Controlle 中通过如下方式获取上面的变量：
 
 ```go
-this.Ctx.Input.Params(":id")
-this.Ctx.Input.Params(":username")
-this.Ctx.Input.Params(":splat")
-this.Ctx.Input.Params(":path")
-this.Ctx.Input.Params(":ext")
+this.Ctx.Input.Param(":id")
+this.Ctx.Input.Param(":username")
+this.Ctx.Input.Param(":splat")
+this.Ctx.Input.Param(":path")
+this.Ctx.Input.Param(":ext")
 ```
 
 ## 自定义方法及 RESTful 规则
