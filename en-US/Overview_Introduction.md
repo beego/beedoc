@@ -32,7 +32,7 @@ Please visit [Beego Web](https://github.com/beego/beeweb).
 
 Basically, you don't need to install any third-party package in order to use beego, but for convenient of supporting some features, you need to use them. Here is the list of those packages and what are they supporting for:
 
-- code.google.com/p/vitess/go/memcache memcahe support of cache module
+- code.google.com/p/vitess/go/memcache memcache support of cache module
 
 - github.com/garyburd/redigo/redis redis support of session and cache modules
 
