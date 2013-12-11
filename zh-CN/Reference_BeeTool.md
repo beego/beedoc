@@ -2,6 +2,8 @@
 
 Bee是为了快速开发beego应用的辅助工具.
 
+获取Bee  `go get github.com/beego/bee` 注意Bee已经从github.com/astaxie/bee 移至 github.com/beego/bee
+
 它有如下几个命令
 
     new         创建一个新的Web应用
