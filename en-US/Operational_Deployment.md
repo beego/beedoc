@@ -1,4 +1,4 @@
-# Deloyment
+# Deployment
 
 ### Development mode
 
