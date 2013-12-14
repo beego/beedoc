@@ -10,9 +10,9 @@ Three arguments:
 
 - pattern: router rules, according to your rules to route, and use `*` for full match.
 - action: the place to execute Filter, there are 4 fixed arguments where each one represents different execute process.
-	- BeforRouter: before routing
+	- BeforeRouter: before routing
 	- AfterStatic: after static rendered
-	- BeforExec: after found  route, before executing controller logic
+	- BeforeExec: after found  route, before executing controller logic
 	- AfterExec: after executed controller logic
 - filter: filter function, type FilterFunc func(*context.Context)
 

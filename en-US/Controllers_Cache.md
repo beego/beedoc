@@ -8,7 +8,7 @@ For now, it implemented 3 design of engines: memory, memcahe, redis.
 
 ```go
 var (
-	urllist *cache.Cache
+	urllist cache.Cache
 )
 
 func init() {

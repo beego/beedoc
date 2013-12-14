@@ -9,7 +9,7 @@ beego 目前采用了模块化设计，cache 独立出来了一个模块，你�
 
 ```go
 var (
-	urllist *cache.Cache
+	urllist cache.Cache
 )
 
 func init() {
