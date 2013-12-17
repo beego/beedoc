@@ -1,12 +1,12 @@
-# 基本说明
+# 关于
 
 [![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego)
 
-该手册详细描述了 beego 应用框架的各个方面。
+本网站文档页面详细描述了 beego 应用框架的各个方面。
 
 ### 新手指导
 
-如果您是首次了解 beego，我们建议您先阅读 [框架概念](/docs/Overview_Concepts)。
+如果您是首次了解 beego，我们建议您先阅读 [快速入门](quickstart)。
 
 ### 其它资源
 
@@ -27,16 +27,3 @@
 ### 网站源码
 
 请移步 [Beego Web](https://github.com/beego/beeweb)。
-
-### 第三方依赖
-其实目前beego的运行基本都不需要依赖其他第三方的库，但是由于一些模块为了支持各种功能，所以引入了第三方库，以下一一介绍一下各种第三方库的作用：
-
-- code.google.com/p/vitess/go/memcache cache库支持memcahe支持
-
-- github.com/garyburd/redigo/redis session、cache支持redis支持
-
-- github.com/clbanning/x2j config解析xml支持
-
-- github.com/wendal/goyaml2 config解析yaml支持
-
-- github.com/go-sql-driver/mysql mysql数据库引擎，session支持mysql存储
