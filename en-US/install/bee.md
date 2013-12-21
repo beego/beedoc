@@ -205,3 +205,14 @@ This command doesn't worked yet. In the future it will generate the routers by a
 ### Commnad bale
 
 This commnad is currently only available to developer team. It's mainly used for  compressing all the static files in to a single binary file. So we don't need to carry  static files including js, css, images and views when publish the project. Those files will be self-extracting with non-overwrite when program starts.
+
+## Bee tool configuration
+
+You may notice that there is a file named `bee.json` in bee tool source code folder, this file is the configuration file of beego. The full features haven't been done yet, but there are some options you'd like to use for now:
+
+- `"version": 0`: version of file, for checking incompatible format version.
+- `"go_install": false`: if you use full import path like `github.com/user/repo/subpkg`, then you can enable this opetion to run `go install` and speed up you build processes.
+- `"watch_ext": []`: add other file extensions to watch(only watch `.go` files by default).
+- `"dir_structure":{}`: if your folders' name are not same as MVC classic name, you can use this option use change them.
+- `"cmd_args": []`: add command arguments for every start.
+- `"envs": []`: setting environment variables for every start.
