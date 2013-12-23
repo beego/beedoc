@@ -1,6 +1,9 @@
-# 表单验证
+---
+name: 表单数据验证
+sort: 9
+---
 
-[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego/validation)
+# 表单验证
 
 表单验证是用于数据验证和错误收集的模块。
 
