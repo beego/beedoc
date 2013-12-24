@@ -1,3 +1,8 @@
+---
+name: 在线聊天室
+sort: 1
+---
+
 # 在线聊天室
 
 本示例通过两种形式展示了如何实现一个在线聊天室应用：
@@ -28,4 +33,3 @@ WebIM/
 ```
 
 [到 GitHub 上浏览代码](https://github.com/beego/samples/tree/master/WebIM)
-

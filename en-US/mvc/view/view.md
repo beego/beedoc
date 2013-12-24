@@ -119,7 +119,7 @@ Beego will parse file of TplNames and assign it to `LayoutContent` then render `
 Beego will cache all the template fiels. You can also implement layout by this way:
 
 	{{template "header.html"}}
-	处理逻辑
+	Logic code
 	{{template "footer.html"}}
 	
 ## renderform

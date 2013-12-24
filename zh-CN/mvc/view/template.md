@@ -1,5 +1,5 @@
 ---
-name: view 设计
+name: 模板函数
 sort: 2
 ---
 
