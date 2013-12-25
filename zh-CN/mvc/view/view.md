@@ -165,6 +165,7 @@ html_head.tpl:
 ```
  
 scripts.tpl：
+
 ```
 <script type="text/javascript">
     $(document).ready(function() {

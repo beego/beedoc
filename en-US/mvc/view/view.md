@@ -127,6 +127,7 @@ Beego will cache all the template fiels. You can also implement layout by this w
 If a `LayoutContent` is pretty complicated, it will include javascript, css. The css usually put in `<head></head>` and the javascript usually put just before the end of `</body>` and all the other content will be arranged accordingly. So usually only one `LayoutContent` is not enough. So there is a attribute called `LayoutSection` in `Controller`. It allows us set multiple `section` in `Layout` page and each `section` can contain its own sub-template page.
 
 layout_blog.tpl:
+
 ```
 <!DOCTYPE html>
 <html>
@@ -154,6 +155,7 @@ layout_blog.tpl:
 ```
 
 html_head.tpl:
+
 ```
 <style>
      h1 {
@@ -163,6 +165,7 @@ html_head.tpl:
 ```
  
 scripts.tpl：
+
 ```
 <script type="text/javascript">
     $(document).ready(function() {
@@ -172,6 +175,7 @@ scripts.tpl：
 ```
 
 Here is the logic in Controller:
+
 ```
 type BlogsController struct {
     beego.Controller
