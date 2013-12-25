@@ -99,9 +99,9 @@ Beego support `.tpl` and `.html` files by default. You need to set it in configu
 
 If TplNames is not set in Controller while auto render is enabled, Beego will use TplNames below by default:
 
-	c.TplNames = c.ChildName + "/" + c.Ctx.Request.Method + "." + c.TplExt
+	c.TplNames = strings.ToLower(c.controllerName) + "/" + strings.ToLower(c.actionName) + "." + c.TplExt
 
-It is Controller name + "/" + request method name + "." + template extension. So if the Controller name is `AddController`, request method is `POST` and the default template extension is `tpl`, Beego will render `/viewpath/AddController/post.tpl` template file.
+It is Controller name + "/" + request method name + "." + template extension. So if the Controller name is `AddController`, request method is `POST` and the default template extension is `tpl`, Beego will render `/viewpath/addcontroller/post.tpl` template file.
 
 ## Layout Design
 
@@ -122,6 +122,71 @@ Beego will cache all the template fiels. You can also implement layout by this w
 	Logic code
 	{{template "footer.html"}}
 	
+## LayoutSection
+
+If a `LayoutContent` is pretty complicated, it will include javascript, css. The css usually put in `<head></head>` and the javascript usually put just before the end of `</body>` and all the other content will be arranged accordingly. So usually only one `LayoutContent` is not enough. So there is a attribute called `LayoutSection` in `Controller`. It allows us set multiple `section` in `Layout` page and each `section` can contain its own sub-template page.
+
+layout_blog.tpl:
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lin Li</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    {{.HtmlHead}}
+</head>
+<body>
+
+    <div class="container">
+        {{.LayoutContent}}
+    </div>
+    <div>
+        {{.SideBar}}
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    {{.Scripts}}
+</body>
+</html>
+```
+
+html_head.tpl:
+```
+<style>
+     h1 {
+        color: red;
+     }
+</style>
+```
+ 
+scripts.tpl：
+```
+<script type="text/javascript">
+    $(document).ready(function() {
+        // bla bla bla
+    });
+</script>
+```
+
+Here is the logic in Controller:
+```
+type BlogsController struct {
+    beego.Controller
+}
+
+func (this *BlogsController) Get() {
+    this.Layout = "layout_blog.tpl"
+    this.TplNames = "blogs/index.tpl"
+    this.LayoutSections = make(map[string]string)
+    this.LayoutSections["HtmlHead"] = "blogs/html_head.tpl"
+    this.LayoutSections["Scripts"] = "blogs/scripts.tpl"
+    this.LayoutSections["Sidebar"] = ""
+}
+```
+
 ## renderform
 
 Define struct:

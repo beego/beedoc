@@ -107,6 +107,8 @@ If * and other HTTP methods are used together, HTTP method will be executed prio
 
 The `PostFunc` other than `AllFunc` will be execute for POST request.
 
+The router of custom methods don't support RESTFul by default which means if you set router like `beego.Router("/api",&RestController{},"post:ApiFunc")` and the request method is `POST` then the `Post` method won't be executed by default.
+
 ## Auto matching
 
 Firstly you need to register controller into auto router.

@@ -1,5 +1,5 @@
 ---
-name: View designing
+name: Template Functions
 sort: 2
 ---
 

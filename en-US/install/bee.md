@@ -12,6 +12,8 @@ Bee tool is a project for help develope beego rapidly. With bee tool we can crat
 You can install bee tool through following command:
 
 	go get github.com/beego/bee
+	
+`bee` is installed into `GOPATH/bin` by default. You need to add `GOPATH/bin` to your PATH, otherwise the `bee` command won't work.
 
 ## Bee tool commands
 
