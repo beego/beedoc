@@ -11,6 +11,27 @@
 	<b>支付宝捐赠</b>：<a href="http://me.alipay.com/astaxie" target="_blank"><img src="/static/img/alipay.png"></a>
 </h4>
 
+<h4>	
+	<b>Paypal捐赠</b>
+	<p>
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+			<input type="hidden" name="cmd" value="_s-xclick">
+			<input type="hidden" name="hosted_button_id" value="SRG4CAN6L6HYU">
+			<table>
+			<tr><td><input type="hidden" name="on0" value="support beego">support beego</td></tr><tr><td><select name="os0">
+				<option value="Option 1">Option 1 $30.00 USD</option>
+				<option value="Option 2">Option 2 $50.00 USD</option>
+				<option value="Option 3">Option 3 $100.00 USD</option>
+				<option value="Option 4">Option 4 $500.00 USD</option>
+			</select> </td></tr>
+			</table>
+			<input type="hidden" name="currency_code" value="USD">
+			<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		</form>
+	</p>
+</h4>
+
 ### 您的捐赠将被用于：
 
 - 持续和深入的开发
@@ -23,6 +44,38 @@
 
 | 捐赠时间          | 捐赠人     | 金额      | 附言                     |
 | ---------------- |:---------:| --------:| ----------------------- |
+| 2013.12.23 17:14 | 李喜       | ¥38.00  |   支持开源          |
+| 2013.12.23 17:12 | 蒋惟堃     | ¥30.00  |   支持beego              |
+| 2013.12.23 17:10 | 陈明达     | ¥88.88  |   希望beego越来越棒          |
+| 2013.12.21 11:30 | 黄诤       | ¥88.88  |   BEEGO宏图大业          |
+| 2013.12.20 12:01 | 杨恒飞     | ¥99.99   |   开源受益者，贡献一份力量  |
+| 2013.12.18 21:55 | 宋光义     | ¥100.00  |   beego很好，向你学习     |
+| 2013.12.18 21:12 | 黄甜      | ¥20.00  |   感谢你的框架             |
+| 2013.12.12 19:47 | 周思达     | ¥19.80  |   [你懂的]                |
+| 2013.12.12 18:04 | 董建农     | ¥10.00  |   必须支持                |
+| 2013.12.12 16:20 | 俞翔       | ¥18.88  |   beeeeeegoooooo         |
+| 2013.12.12 16:14 | 孙彦欣       | ¥50.00  |   雪虎                  |
+| 2013.12.12 16:10 | 邵天宇       | ¥88.88  |   好吧，再来一个！！我要比方总多！|
+| 2013.12.12 16:05 | 邵天宇       | ¥18.81  |   买杯咖啡犒劳下吧！      |
+| 2013.12.12 16:04 | 付光荣       | ¥10.00  |   支持beego             |	
+| 2013.12.12 15:54 | 常焱       | ¥58.58  |   to beego               |
+| 2013.12.12 15:44 | 谢敬民     | ¥28.00  |                          |
+| 2013.12.12 15:42 | 钱文君     | ¥10.00  | 屌丝一枚，暂时捐的寒碜      |
+| 2013.12.12 15:37 | 李文涛     | ¥100.00  | 加油！Beego！            |
+| 2013.12.12 15:34 | 周明岐     | ¥10.00   | 为了加vip群              |
+| 2013.12.09 00:28 | 董泽润     | ¥200.00  | 谢大加油go-in-action     |
+| 2013.12.06 16:43 | 廖君       | ¥3.00    | 谢谢您的go web编程       |
+| 2013.12.01 21:14 | 李保银     | ¥20.00    | 支持Go实战开发，不成敬意  |
+| 2013.11.21 11:16 | 周维       | ¥20.00    | 支持谢大                |
+| 2013.11.12 17:56 | 熊书宜     | ¥9.99    | hello,beego!           |
+| 2013.11.10 20:21 | 曾锦和     | ¥10.00    | 还没赚到钱，聊表心意      |
+| 2013.11.08 21:10 | 余征       | ¥10.00    | 准备使用beego了，希望它能如愿，支持谢大|
+| 2013.11.06 13:42 | 童中波     | ¥5.00    | come baby               |
+| 2013.11.03 11:38 | 方云麟     | ¥10.00   | 虽然最近很穷，但是还是捐一捐，图个吉利。     |
+| 2013.10.31 09:49 | 汪大平     | ¥10.00   | 能不能加入你们开发组啊     |
+| 2013.10.27 21:30 | 李代红     | ¥9.90    | 支持beego               |
+| 2013.10.18 09:55 | 蔺保忠     | ¥118.00  | 严重支持谢老大            |
+| 2013.10.03 21:20 | 李文施     | ¥88.88   | 砖工：学生狗，钱不多，支持下beego，支持下谢大。|
 | 2013.09.30 14:59 | 高步双     | ¥11.00   | 必须支持谢大！！！         |
 | 2013.09.30 12:07 | 刘冬瑞     | ¥10.00   | 加油                     |
 | 2013.09.30 11:54 | 方圆       | ¥100.00  | 谢总管好                 |
