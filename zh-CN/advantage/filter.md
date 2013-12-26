@@ -26,7 +26,7 @@ AddFilter 函数的三个参数
 ```go
 var FilterUser = func(ctx *context.Context) {
     _, ok := ctx.Input.Session("uid").(int)
-    if !ok {
+    if !ok && ctx.Request.RequestURI != "/login" {
         ctx.Redirect(302, "/login")
     }
 }
