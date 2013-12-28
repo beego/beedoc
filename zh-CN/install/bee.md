@@ -81,16 +81,16 @@ myproject
 我们在开发 Go 项目的时候最大的问题是经常需要自己手动去编译再运行，`bee run` 命令是监控 beego 的项目，通过 inotify 监控文件系统。这样我们在开发过程中就可以实时的看到项目修改之后的效果：
 
 ```
-bee run
-13-11-25 09:53:04 [INFO] Uses 'myproject' as 'appname'
-13-11-25 09:53:04 [INFO] Initializing watcher...
-13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject/controllers)
-13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject/models)
-13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject)
-13-11-25 09:53:04 [INFO] Start building...
-13-11-25 09:53:16 [SUCC] Build was successful
-13-11-25 09:53:16 [INFO] Restarting myproject ...
-13-11-25 09:53:16 [INFO] ./myproject is running...
+cd myproject
+bee run myproject
+[INFO] Initializing watcher...
+[TRAC] Directory(/gopath/src/myproject/controllers)
+[TRAC] Directory(/gopath/src/myproject/models)
+[TRAC] Directory(/gopath/src/src/myproject)
+[INFO] Start building...
+[SUCC] Build was successful
+[INFO] Restarting myproject ...
+2013/12/26 10:57:13 [I] Running on :8080
 ```
 我们打开浏览器就可以看到效果 `http://localhost:8080/`:
 
