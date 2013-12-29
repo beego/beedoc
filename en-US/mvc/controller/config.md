@@ -131,7 +131,7 @@ Beego has many configurable variables. Let's have a look of this variables. It w
   Beego server will output `beego` as server name.
 	
 * EnableAdmin
-  Enable supervisor module or not, enabled by default.
+  Enable supervisor module or not, disabled by default.
 	
 * AdminHttpAddr
   Listening address of supervisor, `localhost` by default.
