@@ -11,7 +11,7 @@ This will run application at backend as a deamon.
 
 In Linux we can use `nohup` command to run application at backend:
 
-	nohup ./beepkg &
+	nohup ./beepkg > /dev/null 2>&1&
 	
 Your application is running in the keep process of Linux.
 
