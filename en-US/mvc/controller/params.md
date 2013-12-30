@@ -56,7 +56,7 @@ Define form:
 	<form id="user">
 		name：<input name="username" type="text" />
 		age：<input name="age" type="text" />
-		emial：<input name="Email" type="text" />
+		email：<input name="Email" type="text" />
 		<input type="submit" value="submit" />
 	</form>
 
