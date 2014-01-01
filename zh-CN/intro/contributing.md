@@ -1,5 +1,4 @@
 ---
-root: true
 name: 为beego贡献
 sort: 1
 ---

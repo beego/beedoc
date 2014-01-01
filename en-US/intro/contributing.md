@@ -1,5 +1,4 @@
 ---
-root: true
 name: Contributing
 sort: 1
 ---
