@@ -284,10 +284,10 @@ var DefaultRelsDepth = 5 // 默认情况下直接调用 RelatedSel 将进行最�
 
 qs := o.QueryTable("post")
 
-qs.RelateSel()
+qs.RelatedSel()
 // INNER JOIN user ... LEFT OUTER JOIN profile ...
 
-qs.RelateSel("user")
+qs.RelatedSel("user")
 // INNER JOIN user ... 
 // 设置 expr 只对设置的字段进行关系查询
 

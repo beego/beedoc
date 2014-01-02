@@ -284,10 +284,10 @@ var DefaultRelsDepth = 5 // RelatedSel will query for maximum 5 level by default
 
 qs := o.QueryTable("post")
 
-qs.RelateSel()
+qs.RelatedSel()
 // INNER JOIN user ... LEFT OUTER JOIN profile ...
 
-qs.RelateSel("user")
+qs.RelatedSel("user")
 // INNER JOIN user ... 
 // Only query the fields set by expr
 
