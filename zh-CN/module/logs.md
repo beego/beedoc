@@ -19,7 +19,7 @@ sort: 3
 
 然后初始化 log 变量（10000 表示缓存的大小）：
 
-	log := NewLogger(10000)
+	log := logs.NewLogger(10000)
 
 然后添加输出引擎（log 支持同时输出到多个引擎），这里我们以 console 为例，第一个参数是引擎名（包括：console、file、conn、smtp），第二个参数表示配置信息，详细的配置请看下面介绍：
 
