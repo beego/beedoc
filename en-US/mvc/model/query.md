@@ -613,7 +613,7 @@ Query how many tags do the post have with post title:
 
 ```go
 var tags []*Tag
-num, err := dORM.QueryTable("post").Filter("Tags__Post__Title", "Introduce Beego ORM").All(&tags)
+num, err := dORM.QueryTable("tag").Filter("Posts__Post__Title", "Introduce Beego ORM").All(&tags)
 ```
 
 ## Load Related Field

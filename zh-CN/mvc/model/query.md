@@ -613,7 +613,7 @@ num, err := dORM.QueryTable("post").Filter("Tags__Tag__Name", "golang").All(&pos
 
 ```go
 var tags []*Tag
-num, err := dORM.QueryTable("post").Filter("Tags__Post__Title", "Introduce Beego ORM").All(&tags)
+num, err := dORM.QueryTable("tag").Filter("Posts__Post__Title", "Introduce Beego ORM").All(&tags)
 ```
 
 ## 载入关系字段
