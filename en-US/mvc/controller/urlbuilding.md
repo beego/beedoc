@@ -4,7 +4,7 @@ sort: 2
 ---
 
 ## URL Building
-If it can match URLs, can Flask also generate them? Of course it can. To build a URL to a specific function you can use the UrlFor() function. It accepts the name of the function of Controller as first argument and a number of keyword arguments, each corresponding to the variable part of the URL rule. Unknown variable parts are appended to the URL as query parameters. Here are some examples:
+If it can match URLs, can Beego also generate them? Of course it can. To build a URL to a specific function you can use the UrlFor() function. It accepts the name of the function of Controller as first argument and a number of keyword arguments, each corresponding to the variable part of the URL rule. Unknown variable parts are appended to the URL as query parameters. Here are some examples:
 
 Here is the controller definition:
 
