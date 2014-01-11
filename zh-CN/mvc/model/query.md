@@ -327,7 +327,7 @@ fmt.Printf("Affected Num: %s, %s", num, err)
 ```go
 // 假设 user struct 里有一个 nums int 字段
 num, err := o.QueryTable("user").Update(orm.Params{
-	"nums": orm.ColValue(orm.Opt_Add, 100),
+	"nums": orm.ColValue(orm.Col_Add, 100),
 })
 // SET nums = nums + 1
 ```

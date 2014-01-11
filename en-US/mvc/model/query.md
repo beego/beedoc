@@ -327,7 +327,7 @@ Atom operation add field:
 ```go
 // Assume there is a nums int field in user struct
 num, err := o.QueryTable("user").Update(orm.Params{
-	"nums": orm.ColValue(orm.Opt_Add, 100),
+	"nums": orm.ColValue(orm.Col_Add, 100),
 })
 // SET nums = nums + 1
 ```
