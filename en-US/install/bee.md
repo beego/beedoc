@@ -5,7 +5,7 @@ sort: 2
 
 # Introduction to bee tool
 
-Bee tool is a project for help develope beego rapidly. With bee tool we can crate, auto compile and reload, develop, test, and deploy beego applications easily.
+Bee tool is a project for help develop beego rapidly. With bee tool we can create, auto compile and reload, develop, test, and deploy beego applications easily.
 
 ## Installing bee tool
 
