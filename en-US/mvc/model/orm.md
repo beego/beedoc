@@ -96,12 +96,12 @@ orm.DR_Postgres
 // param 2: database type
 // This mapping driverName and database type
 // mysql / sqlite3 / postgres registered by default already
-orm.RegisterDriver("mymysql", orm.DR_MySQL)
+orm.RegisterDriver("mysql", orm.DR_MySQL)
 ```
 
 #### RegisterDataBase
 
-ORM must register a database with alias `defaule`.
+ORM must register a database with alias `default`.
 
 ORM uses golang buildin connection pool.
 
