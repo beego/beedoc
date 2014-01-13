@@ -1,12 +1,12 @@
 ---
 root: true
-name: Beego in Advance
+name: Advanced Beego
 sort: 6
 ---
 
-# Beego in Advance
+# Advanced Beego
 
-We've discussed a lot of basis of beego. Now we will talk about more advanced topics.
+We have demonstrated the basic use of beego. Now we will talk about more advanced topics.
 
 - [In process monitor](./monitor.md)
 
@@ -18,6 +18,6 @@ We've discussed a lot of basis of beego. Now we will talk about more advanced to
 	
 - [Reload](./reload.md)
 
-  Reload is alawys mentioned in web development that allows deploying application without interupt user requests.
+  Reload is always mentioned in web development that allows deploying application without interupt user requests.
 	
 >>> This feature is not well done yet. It only tesed on Mac and Linux. It haven't been tested on production evnironment yet. It's still under testing, so take your own risk to use it. It's recommended to use upstream of nginx.
