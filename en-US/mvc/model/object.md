@@ -52,26 +52,34 @@ For detailed single object query, see [One](query.md#one)
 
 ## Insert
 
+The first return value is auto inc Id value.
+
 ```go
 o := orm.NewOrm()
 var user User
 user.Name = "slene"
 user.IsActive = true
 
-fmt.Println(o.Insert(&user))
-fmt.Println(user.Id)
+id, err := o.Insert(&user)
+if err != nil {
+	fmt.Println(id)
+}
 ```
 
 After creating it will assign values for auto fields.
 
 ## Update
 
+The first return value is affected rows num.
+
 ```go
 o := orm.NewOrm()
 user := User{Id: 1}
 if o.Read(&user) == nil {
 	user.Name = "MyName"
-	o.Update(&user)
+	if num, err := o.Update(&user); err != nil {
+		fmt.Println(num)
+	}
 }
 ```
 
@@ -89,11 +97,17 @@ For detailed object update, see [One](query.md#one)
 
 ## Delete
 
+The first return value is affected rows num.
+
 ```go
 o := orm.NewOrm()
-o.Delete(&User{Id: 1})
+if num, err := o.Delete(&User{Id: 1}); err != nil {
+	fmt.Println(num)
+}
 ```
 
 Delete will also manipulate reverse relationship. E.g.: `Post` has a foreign key to `User`. If on_delete is set to `cascade`, `Post` will be deleted while delete `User`.
 
 After deleting it will clean up values for auto fields.
+
+**Changed in 1.0.3** After deleting it will **not** clean up values for auto fields.

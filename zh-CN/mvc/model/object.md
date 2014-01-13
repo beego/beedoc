@@ -55,26 +55,34 @@ err = o.Read(&user, "Name")
 
 ## Insert
 
+第一个返回值为自增健 Id 的值
+
 ```go
 o := orm.NewOrm()
 var user User
 user.Name = "slene"
 user.IsActive = true
 
-fmt.Println(o.Insert(&user))
-fmt.Println(user.Id)
+id, err := o.Insert(&user)
+if err != nil {
+	fmt.Println(id)
+}
 ```
 
 创建后会自动对 auto 的 field 赋值
 
 ## Update
 
+第一个返回值为影响的行数
+
 ```go
 o := orm.NewOrm()
 user := User{Id: 1}
 if o.Read(&user) == nil {
 	user.Name = "MyName"
-	o.Update(&user)
+	if num, err := o.Update(&user); err != nil {
+		fmt.Println(num)
+	}
 }
 ```
 
@@ -92,10 +100,15 @@ o.Update(&user, "Name")
 
 ## Delete
 
+第一个返回值为影响的行数
+
 ```go
 o := orm.NewOrm()
-o.Delete(&User{Id: 1})
+if num, err := o.Delete(&User{Id: 1}); err != nil {
+	fmt.Println(num)
+}
 ```
+
 Delete 操作会对反向关系进行操作，此例中 Post 拥有一个到 User 的外键。删除 User 的时候。如果 on_delete 设置为默认的级联操作，将删除对应的 Post
 
-删除以后会清除 auto field 的值
+**Changed in 1.0.3** 删除以后不会删除 auto field 的值
