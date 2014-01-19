@@ -33,7 +33,7 @@ We talked about Beego is a RESTFul framework so our requests will run the relate
 
 The logic in our `GET` method is just output some data. We can get our data by many ways and assign it into `this.Data` which is a map storing our data. We can assign any type of data here we just assigned two strings.
 
-The last thing is rendering the template. `this.TplNames` is the template will be rendered here it's `index.tpl`. If you don't set the template, it will find `Controller/method_name.tpl` by default. For example, in this case it will try to find `MainController/Get.tpl`.
+The last thing is rendering the template. `this.TplNames` is the template will be rendered here it's `index.tpl`. If you don't set the template, it will find `controller/method_name.tpl` by default. For example, in this case it will try to find `maincontroller/get.tpl`.
 
 Beego will call `Render` function (it's implemented in `beego.Controller`) automatically if use set up the template so user don't need to render it manually.
 
