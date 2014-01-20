@@ -22,31 +22,31 @@ Let's describe the whole process:
 8. After filters executed it will start to match request url with fixed routing rules. Which means if the request url is `/hello/world`, the `/hello` is not a matching. Only the whole string matching is considerd as a matching. If there is a matching, it will execute the matched logic. Otherwise it will go into the regex matching.
 9. Regex matching is based on the order that use add them which means the order of the regex routing rules will affect your matching. If some rule is matching, it will execute the matched logic. Otherwise it will go into auto matching.
 10. If user registered `AutoRouter`, `controller/method` will be used to match the Controller and method. If matching founded, it will execute it otherwise it will jump to supervise checking.
-11. If Controller founded, it will start the logic. The first one is `BeforeExec`. If `responseWriter` has output data already while execting this filter, finishing this request and jump to supervise checking.
-12. Controller starting executing `Init` function. It will initialize some basic information. Usually it will initialize `bee.Controller`, so it's not recommend to modify this function while inheriting the Controller.
-13. If XSRF is enabled, it will call `XsrfToken` of `Controller`. If it's POST request, `CheckXsrfCookie` will be called.
-14. Executing `Prepare` function of `Controller`. Usually this function is for user to do the initialization. If `responseWriter` has output data already while execting this filter, it will go into `Finish` function directly.
-15. If there is not output, it will execute the function that registered by user. If there is no function registered by user, method in `http.Method` (GET/POST and so on) will be called and execute the logic such as reading data, assigning data, and rendering template or output JSON or XML.
+11. If Controller found, it will start the logic. The first one is `BeforeExec`. If `responseWriter` has output data already while executing this filter, finishing this request and jump to supervise checking.
+12. Controller will start executing `Init` function. It will initialize some basic information. Usually it will initialize `bee.Controller`, so it's not recommended to modify this function while inheriting the Controller.
+13. If XSRF is enabled, it will call `XsrfToken` of `Controller`. If it's a POST request, `CheckXsrfCookie` will be called.
+14. Executing `Prepare` function of `Controller`. Usually this function is for the user to do the initialization. If `responseWriter` has output data already while executing this filter, it will go to the `Finish` function directly.
+15. If there is no output, it will execute the function that is registered by user. If there is no function registered by user, the method in `http.Method` (GET/POST and so on) will be called and execute the logic such as reading data, assigning data, and rendering template or output JSON or XML.
 16. If there is no output by `responseWrite`, `Render` function will be called to output template.
-17. Executing `Finish` function of `Controller`. This function is used for user to overwrite it in order to release some resources such as data initialized in `Init`.
-18. Executing `AfterExec` filter and if there is output it will jump to supervise checking.
-19. Executing `Destructor` in `Controller` for releasing data in `Init`.
-20. If there is no router found till now, 404 page will be showed.
-21. Eventually, all logic went to supervise checking. If supervisor module is enabled (deault on port 8088), the request will be sent to supervisor module to log QPS of the request, visiting time, request url and so on.
+17. Execute the `Finish` function of `Controller`. This function is used for user to override it in order to release some resources such as data initialized in `Init`.
+18. Execute the `AfterExec` filter and if there is output it will jump to supervise checking.
+19. Execute the `Destructor` in `Controller` for releasing data allocated in `Init`.
+20. If there is no router found till now, the 404 page will be shown.
+21. Eventually, all logic went to supervise checking. If the supervisor module is enabled (deault on port 8088), the request will be sent to supervisor module to log QPS of the request, visiting time, request url and so on.
 
 Now let dive into the first step of beego's MVC, routing:
 
 - [Routing](controller/router.md)
-- [Controller Functions](controller/controller.md)
+- [Controller functions](controller/controller.md)
 - [Cross-site request forgery (XSRF)](controller/xsrf.md)
-- [Session Control](controller/session.md)
-- [Message Flashing](controller/flash.md)
+- [Session control](controller/session.md)
+- [Message flashing](controller/flash.md)
 - [Accessing Request Data](controller/params.md)
 - [Multiple Response Formats](controller/jsonxml.md)
-- [Form Validation](controller/validation.md)
+- [Form validation](controller/validation.md)
 - [Rendering templates](controller/view.md)
 - [Template functions](controller/template.md)
-- [Error Handling](controller/errors.md)
+- [Error handling](controller/errors.md)
 - [Handling static files](controller/static.md)
-- [Parameter configurations](controller/config.md)
+- [Parameter configuration](controller/config.md)
 - [Logging](controller/logs.md)
