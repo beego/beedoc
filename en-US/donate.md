@@ -43,4 +43,5 @@
 
 | Donated at       | Donator    | Amount   | Comments               |
 | ---------------- |:---------:| --------:| ----------------------- |
+|  2014-Jan-24 | Bernard Lim     | $20.00   |          |
 |  2013-Dec-23 | William Kennedy     | $100.00   |          |
