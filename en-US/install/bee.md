@@ -214,7 +214,7 @@ You may notice that there is a file named `bee.json` in bee tool source code fol
 
 - `"version": 0`: version of file, for checking incompatible format version.
 - `"go_install": false`: if you use full import path like `github.com/user/repo/subpkg`, then you can enable this opetion to run `go install` and speed up you build processes.
-- `"watch_ext": []`: add other file extensions to watch(only watch `.go` files by default).
+- `"watch_ext": []`: add other file extensions to watch(only watch `.go` files by default). For example, `.ini`, `.conf`, etc.
 - `"dir_structure":{}`: if your folders' name are not same as MVC classic name, you can use this option use change them.
 - `"cmd_args": []`: add command arguments for every start.
 - `"envs": []`: setting environment variables for every start.
