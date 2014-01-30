@@ -78,7 +78,7 @@ myproject
 8 directories, 4 files
 ```
 
-### Commnad run
+### Command run
 
 When we develop Go project, we often have problem that we need to compile the project and run it manually. `bee run` command will supervise the file system of beego project by inotify so that we can see the result directly after the modifications for project.
 
