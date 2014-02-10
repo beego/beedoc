@@ -187,7 +187,7 @@ Return slice of a single field:
 
 ```go
 var list orm.ParamsList
-num, err = o.Raw("SELECT id FROM user WHERE id < ?", 10).ValuesList(&list)
+num, err = o.Raw("SELECT id FROM user WHERE id < ?", 10).ValuesFlat(&list)
 if err == nil && num > 0 {
 	fmt.Println(list) // []{"1","2","3",...}
 }
