@@ -50,6 +50,25 @@ Other fields of the object are the default value according to the field type.
 
 For detailed single object query, see [One](query.md#one)
 
+## ReadOrCreate
+
+Try to read a row from the database, or insert one if it doesn't exist.
+
+Must input one condition field, also can input more field name.
+
+```go
+o := orm.NewOrm()
+user := User{Name: "slene"}
+// Three return values：Is Created，Object Id，Error
+if created, id, err := o.ReadOrCreate(&user, "Name"); err != nil {
+	if created {
+		fmt.Println("New Insert an object. Id:", id)
+	} else {
+		fmt.Println("Get an object. Id:", id)
+	}
+}
+```
+
 ## Insert
 
 The first return value is auto inc Id value.
@@ -67,6 +86,32 @@ if err != nil {
 ```
 
 After creating it will assign values for auto fields.
+
+## InsertMulti
+
+Insert multi object in one api.
+
+Like sql statement:
+
+```
+insert into table (name, age) values("slene", 28),("astaxie", 30),("unknown", 20)
+```
+
+The 1st param bulk is multi insert num in one time. The 2nd param is models slice.
+
+The return value is success inserted num.
+
+```go
+users := []User{
+	{Name: "slene"},
+	{Name: "astaxie"},
+	{Name: "unknown"},
+	...
+}
+successNums, err := o.InsertMulti(100, users)
+```
+
+When bulk is equal 1, then insert model one by one.
 
 ## Update
 

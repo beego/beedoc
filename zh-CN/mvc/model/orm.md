@@ -217,7 +217,9 @@ o = orm.NewOrm() // 创建一个 Ormer
 
 * type Ormer interface {
 	* [Read(interface{}, ...string) error](object.md#read)
+	* [ReadOrCreate(interface{}, string, ...string) (bool, int64, error)](object.md#readorcreate)
 	* [Insert(interface{}) (int64, error)](object.md#insert)
+	* [InsertMulti(int, interface{}) (int64, error)](object.md#insertmulti)
 	* [Update(interface{}, ...string) (int64, error)](object.md#update)
 	* [Delete(interface{}) (int64, error)](object.md#delete)
 	* [LoadRelated(interface{}, string, ...interface{}) (int64, error)](query.md#载入关系字段)

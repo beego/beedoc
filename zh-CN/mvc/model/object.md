@@ -53,6 +53,25 @@ err = o.Read(&user, "Name")
 
 复杂的单个对象查询参见 [One](query.md#one)
 
+## ReadOrCreate
+
+尝试从数据库读取，不存在的话就创建一个
+
+默认必须传入一个参数作为条件字段，同时也支持多个参数多个条件字段
+
+```go
+o := orm.NewOrm()
+user := User{Name: "slene"}
+// 三个返回参数依次为：是否新创建的，对象Id值，错误
+if created, id, err := o.ReadOrCreate(&user, "Name"); err != nil {
+	if created {
+		fmt.Println("New Insert an object. Id:", id)
+	} else {
+		fmt.Println("Get an object. Id:", id)
+	}
+}
+```
+
 ## Insert
 
 第一个返回值为自增健 Id 的值
@@ -70,6 +89,32 @@ if err != nil {
 ```
 
 创建后会自动对 auto 的 field 赋值
+
+## InsertMulti
+
+同时插入多个对象
+
+类似sql语句
+
+```
+insert into table (name, age) values("slene", 28),("astaxie", 30),("unknown", 20)
+```
+
+第一个参数 bulk 为并列插入的数量，第二个为对象的slice
+
+返回值为成功插入的数量
+
+```go
+users := []User{
+	{Name: "slene"},
+	{Name: "astaxie"},
+	{Name: "unknown"},
+	...
+}
+successNums, err := o.InsertMulti(100, users)
+```
+
+bulk 为 1 时，将会顺序插入 slice 中的数据
 
 ## Update
 
