@@ -5,9 +5,9 @@ sort: 8
 
 # JSON, XML and JSONP
 
-Beego is also designed for API application. When we build API application we need to responde JSON or XML often. Beego provided a simple approache:
+Beego is also designed for API application. When we build API application we need to responde JSON or XML often. Beego provided a simple approach:
 
-- Responde to JSON data:
+- Respond to JSON data:
 
 	```go
 	func (this *AddController) Get() {
@@ -34,8 +34,8 @@ Beego is also designed for API application. When we build API application we nee
 	```go
 	func (this *AddController) Get() {
 		mystruct := { ... }
-		this.Data["json"] = &mystruct
+		this.Data["jsonp"] = &mystruct
 		this.ServeJsonp()
 	}
 	```
-  ServeJson will set `content-type` to `application/json` and JSONify the data and respond to jsonp based on the request parameter `callback`.
+  ServeJsonp will set `content-type` to `application/javascript` and JSONify the data and respond to jsonp based on the request parameter `callback`.
