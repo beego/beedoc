@@ -13,6 +13,8 @@ bee 工具是一个为了协助快速开发 beego 项目而创建的项目，您
 
 	go get github.com/beego/bee
 	
+安装完之后，`bee`可执行文件默认存放在`GOPATH/bin`里面，所以您需要把`GOPATH/bin`添加到您的环境变量中，才可以进行下一步。
+
 ## bee 工具命令详解
 
 我们在命令行输入 `bee`，可以看到如下的信息：
