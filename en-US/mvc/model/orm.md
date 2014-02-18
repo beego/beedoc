@@ -7,7 +7,7 @@ sort: 2
 
 The example of beego/orm:
 
-This section is based on this example if no particular explain.
+All the code samples in this section are based on this example if not stated otherwise.
 
 ##### models.go:
 
@@ -206,7 +206,7 @@ o = orm.NewOrm() // create a Ormer // While running NewOrm, it will run orm.Boot
 ```
 Switching database or using transactions will affect Ormer object and all its queries.
 
-So don't use global Ormer object if you need to switch databas or use transactions.
+So don't use a global Ormer object if you need to switch databases or use transactions.
 
 
 * type Ormer interface {
@@ -236,7 +236,7 @@ Pass in a table name or a Model object and return a [QuerySeter](query.md#querys
 o := orm.NewOrm()
 var qs QuerySeter
 qs = o.QueryTable("user")
-// If can't find table, it will panic
+// Panics if the table can't be found
 ```
 
 #### Using
@@ -301,16 +301,16 @@ fmt.Println(dr.Type() == orm.DR_Sqlite) // true
 
 ## Print out SQL query in debugging mode
 
-Set `orm.Debug` to true will print out SQL queries
+Setting `orm.Debug` to true will print out SQL queries
 
-It may cause performance issues. It's not recommend to use in production env.
+It may cause performance issues. It's not recommend to be used in production env.
 
 ```go
 func main() {
 	orm.Debug = true
 ...
 ```
-Output with `os.Stderr` by default.
+Prints to `os.Stderr` by default.
 
 You can change it to your own `io.Writer`
 
@@ -339,4 +339,4 @@ Logs formatting
 [ORM] - 2013-08-09 13:18:16 - [Queries/default] - [    db.Exec /     0.4ms] - [DELETE FROM `post` WHERE `id` IN (?)] - `68`
 ```
 
-The logs contains all the database operations, transactions, prepare etc.
+The log contains all the database operations, transactions, prepare etc.

@@ -9,7 +9,7 @@ sort: 1
 
 Beego ORM is a powerful ORM framework in Go. It's inspired by Django ORM and SQLAlchemy.
 
-This framework is still under developing so any kind of uncompatible changes might happen.
+This framework is still under development so any kind of uncompatible changes might happen.
 
 **Supported Database:**
 
@@ -17,7 +17,7 @@ This framework is still under developing so any kind of uncompatible changes mig
 * PostgreSQL：[github.com/lib/pq](https://github.com/lib/pq)
 * Sqlite3：[github.com/mattn/go-sqlite3](https://github.com/mattn/go-sqlite3)
 
-All of the database driver passed the tests. But we still need your feedbacks and bug reports.
+All of the database drivers passed the tests. But we still need your feedback and bug reports.
 
 **ORM Features:**
 
