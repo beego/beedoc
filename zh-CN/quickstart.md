@@ -8,7 +8,7 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 
 beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/astaxie/beego`
 
-您或许希望安装 [Bee](/docs/Reference_BeeTool) 工具以协助您开发：`go get github.com/beego/bee`
+您或许希望安装 [Bee](/docs/install/bee.md) 工具以协助您开发：`go get github.com/beego/bee`
 
 为了更加方便的操作，请将 `$GOPATH/bin` 加入到你的 $PATH 变量中。
 
@@ -19,7 +19,7 @@ beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/asta
 	$ cd hello
 	$ bee run hello
 
-Windows平台下输入：
+Windows 平台下输入：
 
     >cd %GOPATH%/src
     >bee new hello
@@ -76,11 +76,11 @@ Windows平台下输入：
 
 停止服务的话，请按 `Ctrl+c`。
 
-附上windows下的快捷操作批处理文件：
-在 %GOPATH%/src目录下分别创建文件step1.install-bee.bat和step2.new-beego-app.bat
-两个文件的内容分别为：
 
-step1.install-bee.bat文件内容：
+下面为 windows 下的快捷操作批处理文件：
+在 `%GOPATH%/src` 目录下分别创建文件 `step1.install-bee.bat` 和 `step2.new-beego-app.bat`。
+
+`step1.install-bee.bat` 文件内容：
 
 	set GOPATH=%~dp0..
 	go build github.com\beego\bee
@@ -88,9 +88,9 @@ step1.install-bee.bat文件内容：
 	del bee.exe
 	pause
 
-step2.new-beego-app.bat文件内容：
+`step2.new-beego-app.bat` 文件内容：
 
-	@echo 设置APP的值为您的应用文件夹名称
+	@echo 设置 App 的值为您的应用文件夹名称
 	set APP=coscms.com
 	set GOPATH=%~dp0..
 	set BEE=%GOPATH%\bin\bee
@@ -102,5 +102,5 @@ step2.new-beego-app.bat文件内容：
 	pause
 	start http://127.0.0.1:8080
 
-分别依次点击上面创建的两个文件即可快速开启golang之旅。
-以后只需要到您的应用目录下点击run.bat即可。
+依次点击上面创建的两个文件即可快速开启 beego 之旅。
+以后只需要到您的应用目录下点击 `run.bat` 即可。
