@@ -25,9 +25,9 @@ qs = o.QueryTable(user) // return a QuerySeter
 
 expr describes fields and SQL operators in `QuerySeter`.
 
-Fields combination orders are decided by the relationship of tables. For example, `User` has a foreign key to `Profile`, so if you want to use `Profile.Age` as the condition, you have to use the expression `Profile__Age`. Note that the saperator is double under scores `__`. `Expr` can also append operators at the end to execute related SQL. For example, `Profile__Age__gt` represents condition query `Profile.Age > 18`.
+Field combination orders are decided by the relationship of tables. For example, `User` has a foreign key to `Profile`, so if you want to use `Profile.Age` as the condition, you have to use the expression `Profile__Age`. Note that the saperator is double under scores `__`. `Expr` can also append operators at the end to execute related SQL. For example, `Profile__Age__gt` represents condition query `Profile.Age > 18`.
 
-Comments below describe SQL statements that similar to the expr, not the exactly generated results.
+Comments below describe SQL statements that are similar to the expr, not the exactly generated results.
 
 ```go
 qs.Filter("id", 1) // WHERE id = 1
@@ -43,7 +43,7 @@ qs.Filter("profile__age__in", 18, 20).Exclude("profile__lt", 1000)
 ```
 ## Operators
 
-The operators supported:
+The supported operators:
 
 * [exact](#exact) / [iexact](#iexact) equal to
 * [contains](#contains) / [icontains](#icontains) contains
@@ -54,7 +54,7 @@ The operators supported:
 * [in](#in)
 * [isnull](#isnull)
 
-The operators starts with `i` means ignore case.
+The operators that start with `i` ignore case.
 
 ### exact
 
@@ -63,7 +63,7 @@ Default values of Filter, Exclude and Condition expr
 ```go
 qs.Filter("name", "slene") // WHERE name = 'slene'
 qs.Filter("name__exact", "slene") // WHERE name = 'slene'
-// using = , case sensitive or not is depending on which collation database table are using
+// using = , case sensitive or not is depending on which collation database table is used
 qs.Filter("profile", nil) // WHERE profile_id IS NULL
 ```
 
@@ -185,13 +185,13 @@ QuerySeter is the API of advanced query. Here are its methods:
 	* [ValuesFlat(*ParamsList, string) (int64, error)](#valuesflat)
 * }
 
-* Every API call that returns **QuerySeter** will give you a new **QuerySeter** object. It won't affect previous object
+* Every API call that returns **QuerySeter** will give you a new **QuerySeter** object. It won't affect the previous object
 
-* Advanced query uses `Filter` and `Exclude` to do conditional queries.  There are two filter rules: contain and exclud
+* Advanced query uses `Filter` and `Exclude` to do conditional queries.  There are two filter rules: contain and exclude
 
 ### Filter
 
-Used to filter result for the **include conditions**.
+Used to filter the result for the **include conditions**.
 
 Use `AND` to connect multiple filters:
 
@@ -202,7 +202,7 @@ qs.Filter("profile__isnull", true).Filter("name", "slene")
 
 ### Exclude
 
-Used to filter result for the **exclude conditions**.
+Used to filter the result for the **exclude conditions**.
 
 Use `NOT` to exclude condition
 Use `AND` to connect multiple filters:
@@ -343,7 +343,7 @@ Col_Except   // divide
 
 ### Delete
 
-Execute batch deleting based on the current query
+Execute batch deletion based on the current query
 
 ```go
 num, err := o.QueryTable("user").Filter("name", "slene").Delete()
@@ -353,7 +353,7 @@ fmt.Printf("Affected Num: %s, %s", num, err)
 
 ### PrepareInsert
 
-Prepare multiple insert to increase inserting speed.
+Use a prepared statement to increase inserting speed with multiple inserts.
 
 ```go
 var users []*User
@@ -370,7 +370,7 @@ for _, user := range users {
 // EXECUTE INSERT INTO user (`name`, ...) VALUES ("slene", ...)
 // EXECUTE ...
 // ...
-i.Close() // Don't forget close statement
+i.Close() // Don't forget close the statement
 ```
 
 ### All
@@ -387,7 +387,7 @@ fmt.Printf("Returned Rows Num: %s, %s", num, err)
 
 All / Values / ValuesList / ValuesFlat will be limited by [Limit](#limit). 1000 lines by default.
 
-It can specific the return fields:
+The returned fields can be specified:
 
 ```go
 type Post struct {
@@ -402,7 +402,7 @@ var posts []Post
 o.QueryTable("post").Filter("Status", 1).All(&posts, "Id", "Title")
 ```
 
-The other fields of the object are the default value of the fields' type.
+The other fields of the object are set to the default value of the field's type.
 
 ### One
 
@@ -421,7 +421,7 @@ if err == orm.ErrNoRows {
 }
 ```
 
-It can specific the return fields:
+The returned fields can be specified:
 
 ```go
 // Only return Id and Title
@@ -429,7 +429,7 @@ var post Post
 o.QueryTable("post").Filter("Content__istartswith", "prefix string").One(&post, "Id", "Title")
 ```
 
-The other fields of the object are the default value of the fields' type.
+The other fields of the object are set to the default value of the fields' type.
 
 ### Values
 
@@ -448,11 +448,11 @@ if err == nil {
 }
 ```
 
-Return specific Field:
+Return specific fields:
 
 **TODO**: doesn't support recursive query. **RelatedSel** return Values directly
 
-But it can specific the value needed by expr.
+But it can specify the value needed by expr.
 
 ```go
 var maps []orm.Params
@@ -470,9 +470,9 @@ if err == nil {
 
 The result set will be stored as a slice
 
-The order of the result is same as the Fields order in Model definition.
+The order of the result is same as the Fields order in the Model definition.
 
-The values are saved as string.
+The values are saved as strings.
 
 ```go
 var lists []orm.ParamsList
@@ -485,7 +485,7 @@ if err == nil {
 }
 ```
 
-It can return specific field by setting expr.
+It can return specific fields by setting expr.
 
 ```go
 var lists []orm.ParamsList
@@ -500,7 +500,7 @@ if err == nil {
 
 ### ValuesFlat
 
-Only return a single values slice of a specific field.
+Only returns a single values slice of a specific field.
 
 ```go
 var list orm.ParamsList
