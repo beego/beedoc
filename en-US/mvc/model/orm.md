@@ -149,7 +149,13 @@ orm.DefaultTimeLoc = time.UTC
 ```
 ORM will get timezone of database while `RegisterDataBase`. When set or get time.Time it will convert accordingly to match system time and make sure the time is correct.
 
-**Note:** Because of Sqlite3 set and get use UTC time by default.
+**Note:**
+
+* Because of Sqlite3 set and get use UTC time by default.
+* When use `go-sql-driver` driver，please attention your DSN config.
+  From a version of `go-sql-driver` default use utc timezone not local. So if you use another timezone, please set it.
+  eg: `root:root@/orm_test?charset=utf8&loc=Asia%2FShanghai`
+  ref: [loc](https://github.com/go-sql-driver/mysql#loc) / [parseTime](https://github.com/go-sql-driver/mysql#parsetime)
 
 ## Registering Model
 
@@ -195,6 +201,21 @@ orm.RegisterModelWithPrefix("prefix_", new(User))
 ```
 
 The created table name is prefix_user
+
+#### NewOrmWithDB
+
+May be some time need manage db pools by yourself. (eg: need two query in one connection)
+
+But you want use orm awesome features. Bingo!
+
+```go
+var driverName, aliasName string
+// driverName name of your driver (go-sql-driver: mysql)
+// aliasName custom db alias name
+var db *sql.DB
+...
+o := orm.NewOrmWithDB(driverName, aliasName, db)
+```
 
 ## ORM API Usage
 

@@ -369,7 +369,7 @@ qs := o.QueryTable("user")
 i, _ := qs.PrepareInsert()
 for _, user := range users {
 	id, err := i.Insert(user)
-	if err != nil {
+	if err == nil {
 		...
 	}
 }

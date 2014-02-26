@@ -63,7 +63,7 @@ err = o.Read(&user, "Name")
 o := orm.NewOrm()
 user := User{Name: "slene"}
 // 三个返回参数依次为：是否新创建的，对象Id值，错误
-if created, id, err := o.ReadOrCreate(&user, "Name"); err != nil {
+if created, id, err := o.ReadOrCreate(&user, "Name"); err == nil {
 	if created {
 		fmt.Println("New Insert an object. Id:", id)
 	} else {
@@ -83,7 +83,7 @@ user.Name = "slene"
 user.IsActive = true
 
 id, err := o.Insert(&user)
-if err != nil {
+if err == nil {
 	fmt.Println(id)
 }
 ```
@@ -125,7 +125,7 @@ o := orm.NewOrm()
 user := User{Id: 1}
 if o.Read(&user) == nil {
 	user.Name = "MyName"
-	if num, err := o.Update(&user); err != nil {
+	if num, err := o.Update(&user); err == nil {
 		fmt.Println(num)
 	}
 }
@@ -149,7 +149,7 @@ o.Update(&user, "Name")
 
 ```go
 o := orm.NewOrm()
-if num, err := o.Delete(&User{Id: 1}); err != nil {
+if num, err := o.Delete(&User{Id: 1}); err == nil {
 	fmt.Println(num)
 }
 ```

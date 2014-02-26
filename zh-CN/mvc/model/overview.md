@@ -36,6 +36,22 @@ beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Dja
 
 ## 修改日志
 
+* 2013-02-10: 随着beego1.1.0的发布提交的改进
+  - 关于 [时区设置](orm.md#时区设置)
+
+  - 新增的 api:
+  Ormer.[InsertMulti](object.md#insertmulti)
+  Ormer.[ReadOrCreate](object.md#readorcreate)
+  RawSeter.[RowsToMap](rawsql.md#rowstomap)
+  RawSeter.[RowsToStruct](rawsql.md#rowstostruct)
+  orm.[NewOrmWithDB](orm.md#newormwithdb)
+
+  - 改进的 api:
+  RawSeter.[Values](rawsql.md#values) 支持设置 columns
+  RawSeter.[ValuesList](rawsql.md#valueslist) 支持设置 columns
+  RawSeter.[ValuesFlat](rawsql.md#valuesflat) 支持设置 column
+  RawSeter.[QueryRow/QueryRows](rawsql.md#queryrow) 从对应每个strcut field位置的赋值，改为对应名称取值（不需要对应好字段数量与位置）
+
 * 2013-10-14: [自动载入关系字段](query.md#载入关系字段)，[多对多关系操作](query.md#多对多关系操作)，完善[关系查询](query.md#关系查询)
 * 2013-10-09: [原子操作更新值](query.md#update)
 * 2013-09-22: [RegisterDataBase](orm.md#registerdatabase) maxIdle / maxConn 设置为可选参数, MySQL [自定义引擎](models.md#自定义引擎)

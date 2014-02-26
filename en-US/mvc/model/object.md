@@ -60,7 +60,7 @@ At least one condition field must be supplied, multipe condition fields are also
 o := orm.NewOrm()
 user := User{Name: "slene"}
 // Three return values：Is Created，Object Id，Error
-if created, id, err := o.ReadOrCreate(&user, "Name"); err != nil {
+if created, id, err := o.ReadOrCreate(&user, "Name"); err == nil {
 	if created {
 		fmt.Println("New Insert an object. Id:", id)
 	} else {
@@ -80,7 +80,7 @@ user.Name = "slene"
 user.IsActive = true
 
 id, err := o.Insert(&user)
-if err != nil {
+if err == nil {
 	fmt.Println(id)
 }
 ```
@@ -122,7 +122,7 @@ o := orm.NewOrm()
 user := User{Id: 1}
 if o.Read(&user) == nil {
 	user.Name = "MyName"
-	if num, err := o.Update(&user); err != nil {
+	if num, err := o.Update(&user); err == nil {
 		fmt.Println(num)
 	}
 }
@@ -146,7 +146,7 @@ The first return value is the number of affected rows.
 
 ```go
 o := orm.NewOrm()
-if num, err := o.Delete(&User{Id: 1}); err != nil {
+if num, err := o.Delete(&User{Id: 1}); err == nil {
 	fmt.Println(num)
 }
 ```

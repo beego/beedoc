@@ -36,7 +36,22 @@ You can learn more in the document.
 
 ## Change log
 
-	[Load Related Fields](query.md#load-related-field)
+* 2013-02-10: beego1.1.0 Change log
+  - About [Timezone](orm.md#时区设置)
+
+  - Add api:
+  Ormer.[InsertMulti](object.md#insertmulti)
+  Ormer.[ReadOrCreate](object.md#readorcreate)
+  RawSeter.[RowsToMap](rawsql.md#rowstomap)
+  RawSeter.[RowsToStruct](rawsql.md#rowstostruct)
+  orm.[NewOrmWithDB](orm.md#newormwithdb)
+
+  - Modify api:
+  RawSeter.[Values](rawsql.md#values) support set columns
+  RawSeter.[ValuesList](rawsql.md#valueslist) support set columns
+  RawSeter.[ValuesFlat](rawsql.md#valuesflat) support set column
+  RawSeter.[QueryRow/QueryRows](rawsql.md#queryrow) changed to map struct field with column name（don't need order by field index）
+
 * 2013-10-14: [Load Related Fields](query.md#load-related-field), [Handling ManyToMany Relation](query.md#handling-manytomany-relation), improved [Relational Queries](query.md#relational-query)
 * 2013-10-09: [Atom operation updating](query.md#update)
 * 2013-09-22: [RegisterDataBase](orm.md#registerdatabase) maxIdle and maxConn are changed to optional params, MySQL [Custom engine](models.md#custom-engine)

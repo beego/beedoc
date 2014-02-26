@@ -27,9 +27,11 @@ r = o.Raw("UPDATE user SET name = ? WHERE name = ?", "testing", "slene")
 	* [QueryRow(...interface{}) error](#queryrow)
 	* [QueryRows(...interface{}) (int64, error)](#queryrows)
 	* [SetArgs(...interface{}) RawSeter](#setargs)
-	* [Values(*[]Params) (int64, error)](#values)
-	* [ValuesList(*[]ParamsList) (int64, error)](#valueslist)
-	* [ValuesFlat(*ParamsList) (int64, error)](#valuesflat)
+	* [Values(*[]Params, ...string) (int64, error)](#values)
+	* [ValuesList(*[]ParamsList, ...string) (int64, error)](#valueslist)
+	* [ValuesFlat(*ParamsList, string) (int64, error)](#valuesflat)
+	* [RowsToMap(*Params, string, string) (int64, error)](#rawstomap)
+	* [RowsToStruct(interface{}, string, string) (int64, error)](#rawstostruct)
 	* [Prepare() (RawPreparer, error)](#prepare)
 * }
 
@@ -53,55 +55,15 @@ QueryRow 和 QueryRows 提供高级 sql mapper 功能
 
 ```go
 type User struct {
-	Id   int
-	Name string
+	Id       int
+	UserName string
 }
 
 var user User
-err := o.Raw("SELECT id, name FROM user WHERE id = ?", 1).QueryRow(&user)
+err := o.Raw("SELECT id, user_name FROM user WHERE id = ?", 1).QueryRow(&user)
 ```
 
-支持同时 map 多个对象
-
-```go
-type User struct {
-	Id      int
-	Skip    string `orm:"-"`
-	SkipYet int
-	Name    string
-}
-
-var user User
-var age int
-var created time.Time
-o.Raw("SELECT id, NULL, name, age, created FROM user WHERE id = ?", 1).QueryRow(&user, &age, &created)
-```
-
-struct 进行 mapper 的时候，可以进行[忽略字段](models.md#忽略字段)，如果有需要临时忽略的 Field 可以在 SELECT 中使用 NULL
-
-支持判断 NULL 对象
-
-```go
-type User struct {
-	Id   int
-	Name string
-}
-
-type Profile struct {
-	Id   int
-	Age  int
-}
-
-var user *User
-var profile *Profile
-err := o.Raw(`SELECT id, name, p.id, p.age FROM user
-	LEFT OUTER JOIN profile AS p ON p.id = profile_id WHERE id = ?`, 1).QueryRow(&user, &profile)
-if err == nil {
-	if profile == nil {
-		fmt.Println("user's profile is empty")
-	}
-}
-```
+> from beego 1.1.0 取消了多个对象支持 [ISSUE 384](https://github.com/astaxie/beego/issues/384)
 
 #### QueryRows
 
@@ -109,37 +71,18 @@ QueryRows 支持的对象还有 map 规则是和 QueryRow 一样的，但都是 
 
 ```go
 type User struct {
-	Id   int
-	Name string
+	Id       int
+	UserName string
 }
 
 var users []User
-num, err := o.Raw("SELECT id, name FROM user WHERE id = ?", 1).QueryRows(&users)
+num, err := o.Raw("SELECT id, user_name FROM user WHERE id = ?", 1).QueryRows(&users)
 if err == nil {
 	fmt.Println("user nums: ", num)
 }
 ```
 
-查询多个对象
-
-```go
-type Profile struct {
-	Id   int
-	Age  int
-}
-
-var users []*User
-var profiles []*Profile
-err := o.Raw(`SELECT id, name, p.id, p.age FROM user
-	LEFT OUTER JOIN profile AS p ON p.id = profile_id WHERE id = ?`, 1).QueryRows(&users, &profiles)
-if err == nil {
-	for i, user := range users {
-		profile := users[i]
-		if profile == nil {
-			fmt.Println("user's profile is empty")
-		}
-	}
-}
+> from beego 1.1.0 取消了多个对象支持 [ISSUE 384](https://github.com/astaxie/beego/issues/384)
 ```
 
 #### SetArgs
@@ -153,12 +96,16 @@ res, err := r.SetArgs("arg1", "arg2").Exec()
 res, err := r.SetArgs("arg1", "arg2").Exec()
 ...
 ```
+
 #### Values / ValuesList / ValuesFlat
 
 Raw SQL 查询获得的结果集 Value 为 `string` 类型，NULL 字段的值为空 ``
 
-#### Values
+> from beego 1.1.0 
+> Values, ValuesList, ValuesFlat 的参数，可以指定返回哪些 Columns 的数据
+> 通常情况下，是无需指定的，因为 sql 语句中你可以自行设置 SELECT 的字段
 
+#### Values
 
 返回结果集的 key => value 值
 
@@ -193,6 +140,51 @@ if err == nil && num > 0 {
 	fmt.Println(list) // []{"1","2","3",...}
 }
 ```
+
+#### RowsToMap
+
+SQL 查询结果是这样
+
+| name | value |
+| --- | --- |
+| total | 100 |
+| found | 200 |
+
+查询结果匹配到 map 里
+
+```go
+res := make(orm.Params)
+nums, err := o.Raw("SELECT name, value FROM options_table").RowsToMap(&res, "name", "value")
+// res is a map[string]interface{}{
+//	"name": 100,
+//	"found": 200,
+// }
+```
+
+#### RowsToStruct
+
+SQL 查询结果是这样
+
+| name | value |
+| --- | --- |
+| total | 100 |
+| found | 200 |
+
+查询结果匹配到 struct 里
+
+```go
+type Options struct {
+	Total int
+	Found int
+}
+
+res := new(Options)
+nums, err := o.Raw("SELECT name, value FROM options_table").RowsToMap(res, "name", "value")
+fmt.Println(res.Total) // 100
+fmt.Println(res.Found) // 200
+```
+
+> 匹配支持的名称转换为 snake -> camel, eg: SELECT user_name ... 需要你的 struct 中定义有 UserName
 
 #### Prepare
 

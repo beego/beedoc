@@ -152,7 +152,13 @@ orm.DefaultTimeLoc = time.UTC
 
 ORM 在进行 RegisterDataBase 的同时，会获取数据库使用的时区，然后在 time.Time 类型存取的时做相应转换，以匹配时间系统，从而保证时间不会出错。
 
-**注意:** 鉴于 Sqlite3 的设计，存取默认都为 UTC 时间
+**注意:**
+
+* 鉴于 Sqlite3 的设计，存取默认都为 UTC 时间
+* 使用 go-sql-driver 驱动时，请注意参数设置
+  从某一版本开始，驱动默认使用UTC时间，而非本地时间，所以请指定时区参数或者全部以UTC时间存取
+  例如：`root:root@/orm_test?charset=utf8&loc=Asia%2FShanghai`
+  参见 [loc](https://github.com/go-sql-driver/mysql#loc) / [parseTime](https://github.com/go-sql-driver/mysql#parsetime)
 
 ## 注册模型
 
@@ -199,6 +205,21 @@ orm.RegisterModelWithPrefix("prefix_", new(User))
 ```
 
 创建后的表名为 prefix_user
+
+#### NewOrmWithDB
+
+有时候需要自行管理连接池与数据库链接（比如：go 的链接池无法让两次查询使用同一个链接的）
+
+但又想使用 ORM 的查询功能
+
+```go
+var driverName, aliasName string
+// driverName 是驱动的名称
+// aliasName 是当前db的自定义别名
+var db *sql.DB
+...
+o := orm.NewOrmWithDB(driverName, aliasName, db)
+```
 
 ## ORM 接口使用
 

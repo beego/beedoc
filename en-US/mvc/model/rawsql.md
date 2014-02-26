@@ -27,9 +27,9 @@ r = o.Raw("UPDATE user SET name = ? WHERE name = ?", "testing", "slene")
 	* [QueryRow(...interface{}) error](#queryrow)
 	* [QueryRows(...interface{}) (int64, error)](#queryrows)
 	* [SetArgs(...interface{}) RawSeter](#setargs)
-	* [Values(*[]Params) (int64, error)](#values)
-	* [ValuesList(*[]ParamsList) (int64, error)](#valueslist)
-	* [ValuesFlat(*ParamsList) (int64, error)](#valuesflat)
+	* [Values(*[]Params, ...string) (int64, error)](#values)
+	* [ValuesList(*[]ParamsList, ...string) (int64, error)](#valueslist)
+	* [ValuesFlat(*ParamsList, string) (int64, error)](#valuesflat)
 	* [Prepare() (RawPreparer, error)](#prepare)
 * }
 
@@ -61,47 +61,7 @@ var user User
 err := o.Raw("SELECT id, name FROM user WHERE id = ?", 1).QueryRow(&user)
 ```
 
-Supports mapping multiple objects at the same time:
-
-```go
-type User struct {
-	Id      int
-	Skip    string `orm:"-"`
-	SkipYet int
-	Name    string
-}
-
-var user User
-var age int
-var created time.Time
-o.Raw("SELECT id, NULL, name, age, created FROM user WHERE id = ?", 1).QueryRow(&user, &age, &created)
-```
-
-While mapping struct, it can [ignore fields](models.md#忽略字段). If you just need ignore fields temporary, you can use `NULL` in `SELECT`.
-
-Supports NULL object test
-
-```go
-type User struct {
-	Id   int
-	Name string
-}
-
-type Profile struct {
-	Id   int
-	Age  int
-}
-
-var user *User
-var profile *Profile
-err := o.Raw(`SELECT id, name, p.id, p.age FROM user
-	LEFT OUTER JOIN profile AS p ON p.id = profile_id WHERE id = ?`, 1).QueryRow(&user, &profile)
-if err == nil {
-	if profile == nil {
-		fmt.Println("user's profile is empty")
-	}
-}
-```
+> from beego 1.1.0 remove multiple struct support [ISSUE 384](https://github.com/astaxie/beego/issues/384)
 
 #### QueryRows
 
@@ -120,27 +80,7 @@ if err == nil {
 }
 ```
 
-Query multiple objects:
-
-```go
-type Profile struct {
-	Id   int
-	Age  int
-}
-
-var users []*User
-var profiles []*Profile
-err := o.Raw(`SELECT id, name, p.id, p.age FROM user
-	LEFT OUTER JOIN profile AS p ON p.id = profile_id WHERE id = ?`, 1).QueryRows(&users, &profiles)
-if err == nil {
-	for i, user := range users {
-		profile := users[i]
-		if profile == nil {
-			fmt.Println("user's profile is empty")
-		}
-	}
-}
-```
+> from beego 1.1.0 remove multiple struct support [ISSUE 384](https://github.com/astaxie/beego/issues/384)
 
 #### SetArgs
 
@@ -156,6 +96,10 @@ res, err := r.SetArgs("arg1", "arg2").Exec()
 #### Values / ValuesList / ValuesFlat
 
 The resultSet values returned by Raw SQL query are `string`. NULL field will return empty string ``
+
+> from beego 1.1.0 
+> Values, ValuesList, ValuesFlat. The returned fields can be specified.
+> General you don't need specify. Because the field names already defined in your SQL.
 
 #### Values
 
@@ -192,6 +136,51 @@ if err == nil && num > 0 {
 	fmt.Println(list) // []{"1","2","3",...}
 }
 ```
+
+#### RowsToMap
+
+SQL query results
+
+| name | value |
+| --- | --- |
+| total | 100 |
+| found | 200 |
+
+map rows results to map
+
+```go
+res := make(orm.Params)
+nums, err := o.Raw("SELECT name, value FROM options_table").RowsToMap(&res, "name", "value")
+// res is a map[string]interface{}{
+//	"name": 100,
+//	"found": 200,
+// }
+```
+
+#### RowsToStruct
+
+SQL query results
+
+| name | value |
+| --- | --- |
+| total | 100 |
+| found | 200 |
+
+map rows results to struct
+
+```go
+type Options struct {
+	Total int
+	Found int
+}
+
+res := new(Options)
+nums, err := o.Raw("SELECT name, value FROM options_table").RowsToMap(res, "name", "value")
+fmt.Println(res.Total) // 100
+fmt.Println(res.Found) // 200
+```
+
+> support name conversion: snake -> camel, eg: SELECT user_name ... to your struct field UserName.
 
 #### Prepare
 
