@@ -16,7 +16,7 @@ beego 之前介绍的时候说过是基于几个模块搭建的，beego 的日�
 	beego.Info("this is info")
 	beego.Warn("this is warn")
 	beego.Error("this is error")
-	beego.Crital("this is crital")
+	beego.Critcal("this is critcal")
 
 ## 设置输出
 
