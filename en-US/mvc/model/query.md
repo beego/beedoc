@@ -329,7 +329,7 @@ Atom operation add field:
 num, err := o.QueryTable("user").Update(orm.Params{
 	"nums": orm.ColValue(orm.Col_Add, 100),
 })
-// SET nums = nums + 1
+// SET nums = nums + 100
 ```
 
 orm.ColValue supports:

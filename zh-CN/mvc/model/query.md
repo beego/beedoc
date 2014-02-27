@@ -336,7 +336,7 @@ fmt.Printf("Affected Num: %s, %s", num, err)
 num, err := o.QueryTable("user").Update(orm.Params{
 	"nums": orm.ColValue(orm.Col_Add, 100),
 })
-// SET nums = nums + 1
+// SET nums = nums + 100
 ```
 
 orm.ColValue 支持以下操作
