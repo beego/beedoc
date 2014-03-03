@@ -4,15 +4,15 @@ An open source project for beego documentation.
 
 ## How to contribute?
 
-Fork, update and pull request. No matter big or small, you're welcome!
+Fork, update and submit a pull request. No matter how big or small, your changes are welcome!
 
-## How it works?
+## How does it work?
 
-Beego Web server checks update of this project and generates pages automatically.
+Beego Web server checks for updates to this project and updates the main documentation automatically.
 
 ## Note
 
-Due to markdown render, you have to use standard markdown syntax in order to have expect results.
+Beego documentation is written using standard markdown syntax.  Please submit your changes using the same syntax.
 
 ## License
 
