@@ -114,7 +114,7 @@ these output in command line:
 Refresh browser we can see the result of the modifications are already
 there.
 
-### Commnad api
+### Command api
 
 The `new` command is used for crating new web applications. But there are many user use  beego for developing API applications. We can use `api` command to create API applications. Here is the result of running `bee api project_name`:
 
@@ -150,7 +150,7 @@ apiproject
 Compare to Web application, the API application doesn't have static and
 views folder but a test module for unit testing.
 
-### Commnad test
+### Command test
 
 This is a wrapper for `go test`. It can run the test cases in test foler
 of beego project.
@@ -173,7 +173,7 @@ ok  	apiproject/tests	0.100s
 13-11-25 10:47:00 [SUCC] Test finish
 ```
 
-### Commnad pack
+### Command pack
 
 `pack` command is used to compress the project into a single file. Then we can deploy the project by uploading and extracting the zip file to the server.
 
@@ -200,13 +200,13 @@ drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 models
 drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
 ```
 
-### Commnad router
+### Command router
 
 This command doesn't worked yet. In the future it will generate the routers by analyse the function in controllers.
 
-### Commnad bale
+### Command bale
 
-This commnad is currently only available to developer team. It's mainly used for  compressing all the static files in to a single binary file. So we don't need to carry  static files including js, css, images and views when publish the project. Those files will be self-extracting with non-overwrite when program starts.
+This command is currently only available to developer team. It's mainly used for  compressing all the static files in to a single binary file. So we don't need to carry  static files including js, css, images and views when publish the project. Those files will be self-extracting with non-overwrite when program starts.
 
 ## Bee tool configuration
 
