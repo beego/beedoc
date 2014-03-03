@@ -9,16 +9,17 @@ Beego supports custom filter middlewares. E.g.: user authentication and force re
 
 Here is a filter function:
 
-	beego.AddFilter(pattern, action string, filter FilterFunc)
+	beego.InsertFilter(pattern string, pos int, filter FilterFunc)
 
-AddFilter's three params:
+InsertFilter's three params:
 
 - pattern: router rules. It can router based on the rules. Use `*` to match all.
-- action: the place to execute Filter. There are four fixed params. They represent different execution process.
-  - BeforeRouter: before finding router.
-	- AfterStatic: after static rendering.
-	- BeforeExec: After finding router and before executing the matched Controller.
-	- AfterExec: After executing Controller.
+- pos: the place to execute Filter. There are five fixed params. They represent different execution process.
+ 	- beego.BeforeRouter: before finding router.
+	- beego.AfterStatic: after static rendering.
+	- beego.BeforeExec: After finding router and before executing the matched Controller.
+	- beego.AfterExec: After executing Controller.
+	- beego.FinishRouter: After finishing router.
 - filter: filter function type FilterFunc func(*context.Context)
 
 
@@ -32,7 +33,7 @@ var FilterUser = func(ctx *context.Context) {
     }
 }
 
-beego.AddFilter("*","AfterStatic",FilterUser)
+beego.InsertFilter("*", beego.AfterStatic, FilterUser)
 ```
 
 >>>One thing you need to care about is he Filter useing session must use after `AfterStatic` because session is not initialized before it.
@@ -47,5 +48,5 @@ var FilterUser = func(ctx *context.Context) {
         ctx.Redirect(302, "/login")
     }
 }
-beego.AddFilter("/user/:id([0-9]+)","AfterStatic",FilterUser)
+beego.InsertFilter("/user/:id([0-9]+)", beego.AfterStatic, FilterUser)
 ```
