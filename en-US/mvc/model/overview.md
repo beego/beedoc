@@ -36,7 +36,7 @@ You can learn more in the document.
 
 ## Change log
 
-* 2013-02-10: beego1.1.0 Change log
+* 2014-02-10: beego1.1.0 Change log
   - About [Timezone](orm.md#时区设置)
 
   - Add api:
