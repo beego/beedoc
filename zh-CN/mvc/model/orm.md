@@ -221,6 +221,30 @@ var db *sql.DB
 o := orm.NewOrmWithDB(driverName, aliasName, db)
 ```
 
+#### GetDB
+
+从已注册的数据库返回 *sql.DB 对象，默认返回别名为 default 的数据库。
+
+```go
+db, err := orm.GetDB()
+if err != nil {
+	fmt.Println("get default DataBase")
+}
+
+db, err := orm.GetDB("alias")
+if err != nil {
+	fmt.Println("get alias DataBase")
+}
+```
+
+#### ResetModelCache
+
+重置已经注册的模型struct，一般用于编写测试用例
+
+```go
+orm.ResetModelCache()
+```
+
 ## ORM 接口使用
 
 使用 ORM 必然接触的 Ormer 接口，我们来熟悉一下

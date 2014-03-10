@@ -217,6 +217,30 @@ var db *sql.DB
 o := orm.NewOrmWithDB(driverName, aliasName, db)
 ```
 
+#### GetDB
+
+Get *sql.DB from registered databases. Use `default` as default if you not set.
+
+```go
+db, err := orm.GetDB()
+if err != nil {
+	fmt.Println("get default DataBase")
+}
+
+db, err := orm.GetDB("alias")
+if err != nil {
+	fmt.Println("get alias DataBase")
+}
+```
+
+#### ResetModelCache
+
+Reset registered models. Common use for write test case.
+
+```go
+orm.ResetModelCache()
+```
+
 ## ORM API Usage
 
 Let's see how to use Ormer API:
