@@ -36,8 +36,8 @@ You can learn more in the document.
 
 ## Change log
 
-* 2013-03-10: [GetDB](orm.md#getdb) Get *sql.DB from registered databases. [ResetModelCache](orm.md#resetmodelcache) reset registered models.
-* 2013-02-10: beego1.1.0 Change log
+* 2014-03-10: [GetDB](orm.md#getdb) Get *sql.DB from registered databases. [ResetModelCache](orm.md#resetmodelcache) reset registered models.
+* 2014-02-10: beego1.1.0 Change log
   - About [Timezone](orm.md#时区设置)
 
   - Add api:
