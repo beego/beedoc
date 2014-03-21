@@ -38,7 +38,7 @@ In order to make the router settings easier, beego reference the router implemen
 
   Regex string matching //matching /user/astaxie :username = astaxie
 
-- beego.Router(“/download/.”, &controllers.RController{})
+- beego.Router(“/download/\*.\*”, &controllers.RController{})
 
   *matching //matching /download/file/api.xml :path= file/api :ext=xml
 
