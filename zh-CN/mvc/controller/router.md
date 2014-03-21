@@ -38,7 +38,7 @@ sort: 2
 
 	正则字符串匹配 //匹配 /user/astaxie :username = astaxie
 
-- beego.Router(“/download/.”, &controllers.RController{})
+- beego.Router(“/download/\*.\*”, &controllers.RController{})
 
 	*匹配方式 //匹配 /download/file/api.xml :path= file/api :ext=xml
 
