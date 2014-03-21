@@ -28,20 +28,23 @@ Then initialize a gloal variable as session manager:
 Then initialize data in your main function:
 
 	func init() {
-		globalSessions, _ = session.NewManager("memory", "gosessionid", 3600,"",false,"sha1","sessionidkey",3600)
+		globalSessions, _ = session.NewManager("memory", `{"cookieName":"gosessionid", "enableSetCookie,omitempty": true, "gclifetime":3600, "maxLifetime": 3600, "secure": false, "sessionIDHashFunc": "sha1", "sessionIDHashKey": "", "cookieLifeTime": 3600, "providerConfig": ""}`)
 		go globalSessions.GC()
 	}
 			
 Params of NewManager:
 
 1. Saving provider name: memory、file、mysql、redis
-2. Cookie name of session id saved in client
-3. Expiration time of data saved in server. It is also the interval of GC.
-4. Provider specified config. See more below.
-5. Enable https or not. There is `cookie.Secure` while configure cookie.
-6. SessionID generator function. sha1 by default.
-7. Hash key
-8. Cookie expiration time in client. 0 by default, which means life time of browser
+2. A JSON string that contains the config infomation.
+	1. cookieName: Cookie name of session id saved in client
+	2. enableSetCookie,omitempty: Whether to enable SetCookie,omitempty
+	3. gclifetime: The interval of GC.
+	4. maxLifetime: Expiration time of data saved in server
+	5. secure: Enable https or not. There is `cookie.Secure` while configure cookie.
+	6. sessionIDHashFunc: SessionID generator function. sha1 by default.
+	7. sessionIDHashKey: Hash key
+	8. cookieLifeTime: Cookie expiration time in client. 0 by default, which means life time of browser
+	9. providerConfig: Provider specified config. See more below.
 
 Then we can use session in our code:
 

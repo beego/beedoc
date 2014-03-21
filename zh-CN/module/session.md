@@ -28,20 +28,23 @@ session 模块参考了 `database/sql` 的引擎写法，采用了一个接口�
 接着在你的入口函数中初始化数据：
 
 	func init() {
-		globalSessions, _ = session.NewManager("memory", "gosessionid", 3600,"",false,"sha1","sessionidkey",3600)
+		globalSessions, _ = session.NewManager("memory", `{"cookieName":"gosessionid", "enableSetCookie,omitempty": true, "gclifetime":3600, "maxLifetime": 3600, "secure": false, "sessionIDHashFunc": "sha1", "sessionIDHashKey": "", "cookieLifeTime": 3600, "providerConfig": ""}`)
 		go globalSessions.GC()
 	}
 			
 NewManager 函数的参数的函数如下所示
 
 1. 引擎名字，可以是 memory、file、mysql 或 redis。
-2. 客户端存储 cookie 的名字。
-3. 服务器端存储的数据的过期时间，同时也是触发 GC 的时间。
-4. 配置信息，根据不同的引擎设置不同的配置信息，详细的配置请看下面的引擎设置。
-5. 是否开启 HTTPS，在 cookie 设置的时候有 cookie.Secure 设置。
-6. sessionID 生产的函数，默认是 sha1 算法。
-7. hash 算法中的 key。
-8. 客户端存储的 cookie 的时间，默认值是 0，即浏览器生命周期。
+2. 一个JSON字符串,传入Manager的配置信息
+	1. cookieName: 客户端存储 cookie 的名字。
+	2. enableSetCookie,omitempty: 是否开启SetCookie,omitempty这个设置
+	3. gclifetime: 触发 GC 的时间。
+	4. maxLifetime: 服务器端存储的数据的过期时间
+	5. secure: 是否开启 HTTPS，在 cookie 设置的时候有 cookie.Secure 设置。
+	6. sessionIDHashFunc: sessionID 生产的函数，默认是 sha1 算法。
+	7. sessionIDHashKey: hash 算法中的 key。
+	8. cookieLifeTime: 客户端存储的 cookie 的时间，默认值是 0，即浏览器生命周期。
+	9. providerConfig: 配置信息，根据不同的引擎设置不同的配置信息，详细的配置请看下面的引擎设置
 
 最后我们的业务逻辑处理函数中可以这样调用：
 
