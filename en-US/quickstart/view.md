@@ -5,9 +5,9 @@ sort: 5
 
 # Creating views
 
-When we create Controller we have something like `this.TplNames = "index.tpl"`. The view file support `tpl` and `html` extensions by default. You can call `beego.AddTemplateExt` to set other extensions. So how can views show the data we need? Beego is using the default template engine of Go so it's same as the Go templates. You can learn how to use Go template from [*Build Web Application with Golang*](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
+When we created the Controller we used the line `this.TplNames = "index.tpl"` to declare the template to be rendered. By default `beego.Controller` supports `tpl` and `html` extensions. You can call `beego.AddTemplateExt` to add other extensions. So how can views show the data we need? Beego is using the default template engine of built into Go so it's Go templates, plain and simple. You can learn how to use Go template from [*Build Web Application with Golang*](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
 
-Let see a sample code:
+Let's look at an example:
 
 ```
 <!DOCTYPE html>
@@ -39,6 +39,6 @@ Let see a sample code:
 </html>
 ```
 
-We assigned data into a map type variable `data` in Controller. Then we can get and output the data by key `.Website` and `Email`. 
+We assigned the data into a map type variable `Data` in Controller, which is used as the rendering context. Therefore we can now access and output the data by using the keys `.Website` and `.Email`. 
 
-Next let's talk about how to output static files.
+Next let's talk about how to serve static files.
