@@ -130,3 +130,57 @@ sort: 2
 	/controller/simple.rss
 	
 可以通过 `this.Ctx.Input.Param(":ext")` 获取后缀名。
+
+## 路由组
+设计这个主要是为了模块化考虑,所以引入了一个路由组的概念.
+
+假设我们有一个模块,它的结构如下所示:
+
+```
+modules
+	-- auth
+	    |-- auth.go
+	    |-- controllers
+	    |   `-- user.go
+	    `-- models
+		   `-- user.go
+```
+我们定义了一个模块auth,而auth的路由设置如下:
+
+```
+var GR beego.GroupRouters
+
+func init() {
+	GR = beego.NewGroupRouters()
+	GR.AddRouter("/login", &controllers.AuthController{}, "get:Login")
+	GR.AddRouter("/logout", &controllers.AuthController{}, "get:Logout")
+	GR.AddRouter("/register", &controllers.AuthController{}, "get:Reg")
+}
+```
+
+而当我们需要使用该模块时,可能已经定义了login之类的路由,那么我们可以通过如下的方式继续使用前缀类的路由组设置路由:
+
+```
+package main
+
+import (
+	_ "project/routers"   //引入系统已有的路由
+
+	"project/modules/auth"  //引入第三方模块
+	"github.com/astaxie/beego"
+)
+
+func main() {
+	//添加路由组,前缀是admin
+	beego.AddGroupRouter("/admin", auth.GR)  
+	beego.Run()
+}
+```
+
+这样我们就可以访问URL:
+
+- /admin/login
+- /admin/logout
+- /admin/register
+
+访问相应auth模块下的controler.

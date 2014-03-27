@@ -118,9 +118,11 @@ beego 就会首先解析 TplNames 指定的文件，获取内容赋值给 Layout
 
 目前采用首先把目录下所有的文件进行缓存，所以用户还可以通过类似这样的方式实现 layout：
 
-	{{template "header.html"}}
+	{{template "header.html" .}}
 	Logic code
-	{{template "footer.html"}}
+	{{template "footer.html" .}}
+
+>>> 特别注意后面的`.`,这是传递当前参数到子模板
 
 ## LayoutSection
 
