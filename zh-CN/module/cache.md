@@ -51,7 +51,7 @@ beego 的 cache 模块是用来做数据缓存的，设计思路来自于 `datab
 		
 - memcache
 
-	配置信息如下所示，memcache 采用了 [vitess的库](http://code.google.com/p/vitess/go/memcache)，表示 memcache 的连接地址：	
+	配置信息如下所示，memcache 采用了 [vitess的库](https://github.com/youtube/vitess/tree/master/go/memcache)，表示 memcache 的连接地址：	
 	
 		{"conn":"127.0.0.1:11211"}	
 		
