@@ -249,7 +249,7 @@ qs.Limit(10)
 // LIMIT 10
 
 qs.Limit(10, 20)
-// LIMIT 10 OFFSET 20
+// LIMIT 10 OFFSET 20 注意跟SQL反过来的
 
 qs.Limit(-1)
 // no limit
