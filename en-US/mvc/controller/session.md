@@ -5,9 +5,9 @@ sort: 5
 
 # Session control
 
-Beego has a build-in session module. It supports memore, file, mysql, redis as the save provider. You can also implement your own provider according the interface.
+Beego has a built-in session module. It supports memory, file, mysql, redis as the save provider. You can also implement your own provider according the interface.
 
-It very easy to use session in Beego, just switch session on in main function:
+It very easy to use the session provider in Beego, just switch session on in main function:
 
 	beego.SessionOn = true
 
@@ -39,7 +39,7 @@ There are some userful methods to handl session:
 - SessionRegenerateID()
 - DestroySession()
 
-The mostly used operations are get session, set session, and delete session.
+The most used operations are get session, set session, and delete session.
 
 You can also use your own logic:
 
