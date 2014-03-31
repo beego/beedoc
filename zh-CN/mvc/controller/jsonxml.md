@@ -34,7 +34,7 @@ beego 当初设计的时候就考虑了 API 功能的设计，而我们在设计
 	```go
 	func (this *AddController) Get() {
 		mystruct := { ... }
-		this.Data["json"] = &mystruct
+		this.Data["jsonp"] = &mystruct
 		this.ServeJsonp()
 	}
 	```
