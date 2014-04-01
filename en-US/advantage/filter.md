@@ -10,6 +10,10 @@ Beego supports custom filter middlewares. E.g.: user authentication and force re
 Here is a filter function:
 
 	beego.InsertFilter(pattern string, pos int, filter FilterFunc)
+	
+Here is the FilterFunc signature:
+
+	type FilterFunc func(*context.Context)
 
 InsertFilter's three params:
 
