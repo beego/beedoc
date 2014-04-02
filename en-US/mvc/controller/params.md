@@ -65,7 +65,7 @@ Parsing in Controller:
 ```go
 func (this *MainController) Post() {
 	u := user{}
-	if err := this.ParseForm(&u); err != nil {
+	if err := this.Request.ParseForm(&u); err != nil {
 		//handle error
 	}
 }
