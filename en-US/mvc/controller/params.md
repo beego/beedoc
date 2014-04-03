@@ -1,6 +1,6 @@
 ---
 name: Request parameters
-sort: 7
+sort: 4
 ---
 
 # Accept parameters
