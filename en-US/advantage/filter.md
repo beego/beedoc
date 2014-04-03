@@ -54,3 +54,23 @@ var FilterUser = func(ctx *context.Context) {
 }
 beego.InsertFilter("/user/:id([0-9]+)", beego.AfterStatic, FilterUser)
 ```
+## Filter Implementation UrlManager
+Context.Input has new feature `RunController` and `RunMethod` from beego1.1.2. So we can controller the router in our filter and skip the beego's router rule.
+
+For example:
+
+```go
+var UrlManager = func(ctx *context.Context) {
+    //read urlMapping data from database
+	urlMapping := model.GetUrlMapping()
+	for baseurl,rule:= urlMapping {
+		if baseurl == ctx.Request.RequestURI {
+			ctx.Input.RunController = rule.controller
+			ctx.Input.RunMethod = rule.method		
+			break				
+		}
+	}
+}
+
+beego.AddFilter("*","AfterStatic",UrlManager)
+```

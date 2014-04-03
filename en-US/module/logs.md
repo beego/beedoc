@@ -33,6 +33,18 @@ Then we can use it in our code:
 	log.Warn("warning")
 	log.Error("error")
 	log.Critical("critical")
+	
+## output file and line number
+
+Log output not call file by default, if you're expecting output calls file name and line number, set as follows
+
+	log.EnableFuncCallDepth(true)
+	
+true for turn on and false for trun off. default is false.	
+
+If your application encapsulates the call log packages, so you need to set up SetLogFuncCallDepth, the default is 2, namely direct call hierarchy, if you encapsulate the multilayer, so need to adjust according to their own needs.
+
+	log.SetLogFuncCallDepth(3)	
 
 ## Provider Config
 

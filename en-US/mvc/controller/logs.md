@@ -45,6 +45,14 @@ As we saw above, there are 6 different logging level:
 The logging level goes from trival to critical. It will output all by default. We can set the different logging level on different server:
 
 	beego.SetLevel(beego.LevelInfo)
+	
+## output file and line number
+
+Log output not call file by default, if you're expecting output calls file name and line number, set as follows
+
+	beego.SetLogFuncCall(true)
+	
+true for turn on and false for trun off. default is false.	
 
 ## Example
 

@@ -45,6 +45,14 @@ beego 之前介绍的时候说过是基于几个模块搭建的，beego 的日�
 
 	beego.SetLevel(beego.LevelInfo)
 	
+## 输出文件名和行号
+
+日志默认不输出调用的文件名和文件行号,如果你期望输出调用的文件名和文件行号,可以如下设置
+
+	beego.SetLogFuncCall(true)
+	
+开启传入参数true,关闭传入参数false,默认是关闭的.			
+	
 ## 完整示例
 
 ```go

@@ -33,6 +33,18 @@ sort: 3
 	log.Warn("warning")
 	log.Error("error")
 	log.Critical("critical")
+	
+## 输出文件名和行号
+
+日志默认不输出调用的文件名和文件行号,如果你期望输出调用的文件名和文件行号,可以如下设置
+
+	log.EnableFuncCallDepth(true)
+	
+开启传入参数true,关闭传入参数false,默认是关闭的.
+
+如果你的应用自己封装了调用log包,那么需要设置SetLogFuncCallDepth,默认是2,也就是直接调用的层级,如果你封装了多层,那么需要根据自己的需求进行调整.
+
+	log.SetLogFuncCallDepth(3)
 
 ## 引擎配置设置
 

@@ -47,3 +47,23 @@ var FilterUser = func(ctx *context.Context) {
 }
 beego.AddFilter("/user/:id([0-9]+)","AfterStatic",FilterUser)
 ```
+## 过滤器实现路由
+beego1.1.2开始Context.Input中增加了RunController和RunMethod,这样我们就可以在执行路由查找之前,在filter中实现自己的路由规则.
+
+如下示例实现了如何实现自己的路由规则:
+
+```go
+var UrlManager = func(ctx *context.Context) {
+    //数据库读取全部的url mapping数据
+	urlMapping := model.GetUrlMapping()
+	for baseurl,rule:= urlMapping {
+		if baseurl == ctx.Request.RequestURI {
+			ctx.Input.RunController = rule.controller
+			ctx.Input.RunMethod = rule.method		
+			break				
+		}
+	}
+}
+
+beego.AddFilter("*","AfterStatic",UrlManager)
+```
