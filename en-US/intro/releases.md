@@ -2,6 +2,14 @@
 name: Release Notes
 sort: 2
 ---
+# beego 1.1.3
+this is a hot fixed:
+
+1. console engine for logs.It will not run if there's no config.
+
+2. beego 1.1.2 support `go run main.go`, but if `main.go` bot abute the beego's project rule,use own AppConfigPath or not exist app.conf will panic.
+
+3. beego 1.1.2 supports `go test` parse config,but actually when call TestBeegoInit still can't parseconfig
 
 # beego 1.1.2
 The improvements:

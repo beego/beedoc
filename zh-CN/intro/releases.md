@@ -2,6 +2,14 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.1.3
+这是一个hotfix的版本,主要是修复了以下bug
+
+1. console日志输出,如果不设置配置文件,不能正常输出
+
+2. 支持了go run main.go,但是main.go没有遵循beego的目录结构,自定义了配置文件或者不存在配置文件,就会panic找不到app.conf.
+
+3. 支持了在go test中解析配置,但是实际上调用TestBeegoInit无法解析配置文件
 
 # beego 1.1.2
 beego1.1.2版本发布,这个版本主要是一些改进:
