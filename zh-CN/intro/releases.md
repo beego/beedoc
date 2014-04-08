@@ -2,6 +2,26 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.1.4 2014-04-08
+
+发布一个紧急的版本, beego存在一个严重的安全漏洞,请大家更新到最新版本. 顺便把最近做的一起发布了
+
+1. 紧急修复一个安全漏洞,稍后会在beego/SECURITY.md公布详细的情况
+
+2. 静态文件处理独立到文件
+
+3. 第三方依赖库移除,目前如果你使用session/cache/config,使用的是依赖第三方库的,那么现在都移到了子目录,如果你想使用这些就需要在使用的地方采用mysql类似的方式引入
+
+	```
+	import (
+	     "github.com/astaxie/beego"
+	   _ "github.com/astaxie/beego/session/mysql"
+	)
+	```
+4. 修改部分导出的函数为private,因为外部不需要调用
+
+5. 优化formparse的过程,根据不同的content-type进行解析
+
 # beego 1.1.3
 这是一个hotfix的版本,主要是修复了以下bug
 

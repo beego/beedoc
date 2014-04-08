@@ -2,6 +2,26 @@
 name: Release Notes
 sort: 2
 ---
+# beego 1.1.4 2014-04-08
+
+Release an emergency version for beego has a serious security problem, please update to the latest version. By the way released all changes together
+
+1. fixed a security problem. I will show the detail in beego/security.md later.
+
+2. statifile move to new file.
+
+3. move dependence of the third libs,if you use this module in your application: session/cache/config, please import the submodule of the third libs:
+
+	```
+	import (
+	     "github.com/astaxie/beego"
+	   _ "github.com/astaxie/beego/session/mysql"
+	)
+	```
+4. modify some functions to private.
+
+5. improve the FormParse.
+
 # beego 1.1.3
 this is a hot fixed:
 
