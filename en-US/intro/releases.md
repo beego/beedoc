@@ -2,7 +2,7 @@
 name: Release Notes
 sort: 2
 ---
-# beego 1.1.4 2014-04-08
+# beego 1.1.4
 
 Release an emergency version for beego has a serious security problem, please update to the latest version. By the way released all changes together
 
@@ -22,6 +22,8 @@ Release an emergency version for beego has a serious security problem, please up
 
 5. improve the FormParse.
 
+released data: 2014-04-08
+
 # beego 1.1.3
 this is a hot fixed:
 
@@ -30,6 +32,8 @@ this is a hot fixed:
 2. beego 1.1.2 support `go run main.go`, but if `main.go` bot abute the beego's project rule,use own AppConfigPath or not exist app.conf will panic.
 
 3. beego 1.1.2 supports `go test` parse config,but actually when call TestBeegoInit still can't parseconfig
+
+released data: 2014-04-04
 
 # beego 1.1.2
 The improvements:
@@ -46,6 +50,8 @@ The improvements:
 10. Allowing modifing Context by Filter to skip beego's routering rules and using uder-defined routering rules. Added parameters RunController and RunMethod
 11. Supporting to run beego APP by using `go run main.go` 
 12. Supporting to run test cases by using `go test`. Added TestBeegoInit function.
+
+released data: 2014-04-03
 
 # beego 1.1.1
 Added some new features and fixed some bugs in this release.
@@ -65,6 +71,8 @@ Added some new features and fixed some bugs in this release.
 13. Supporting between in ORM
 14. Supporting sql.Null* type in ORM
 15. Modified auto_now_add which will skip time setting if there is default value.
+
+released data: 2014-03-12
 
 # beego 1.1.0
 Added some new features and fixed some bugs in this release.
@@ -92,6 +100,7 @@ bugfix
 5. Fixed #440 on_delete bug that not getting delted automatically 
 6. Fixed #441 timezone bug
 
+released data: 2014-02-10
 
 # beego 1.0 release
 After four months code refactoring, we released the first stable version of Beego. We did a lot of refactoring and improved a lot in detail. Here is the list of the main improvements:
@@ -113,3 +122,5 @@ After four months code refactoring, we released the first stable version of Beeg
 8. More and more applications in Beego. There are some open source applications as well. E.g.: CMS system: https://github.com/insionng/toropress and admin system: https://github.com/beego/admin
 
 9. Powerful assistance tools. bee is used to assist the development of Beego applications. It can create, compile, package the Beego application easily.
+
+released data: 2013-12-19
