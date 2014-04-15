@@ -80,7 +80,7 @@ myproject
 
 ### Command run
 
-When we develop Go project, we often have problem that we need to compile the project and run it manually. `bee run` command will supervise the file system of beego project by inotify so that we can see the result directly after the modifications for project.
+When we develop a Go project, we often have problem that we need to compile the project and run it manually. `bee run` command will supervise the file system of beego project using inotify so that we can see the result directly after the modifications for project.
 
 ```
 bee run
@@ -116,7 +116,7 @@ there.
 
 ### Command api
 
-The `new` command is used for crating new web applications. But there are many user use  beego for developing API applications. We can use `api` command to create API applications. Here is the result of running `bee api project_name`:
+The `new` command is used for crating new web applications. But there are many users who use beego for developing API applications. We can use `api` command to create API applications. Here is the result of running `bee api project_name`:
 
 ```
 bee api apiproject
@@ -152,7 +152,7 @@ views folder but a test module for unit testing.
 
 ### Command test
 
-This is a wrapper for `go test`. It can run the test cases in test foler
+This is a wrapper for `go test`. It can run the test cases in test folder
 of beego project.
 
 ```
@@ -202,11 +202,11 @@ drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
 
 ### Command router
 
-This command doesn't worked yet. In the future it will generate the routers by analyse the function in controllers.
+This command doesn't work yet. In the future it will generate the routers by analysing the function in controllers.
 
 ### Command bale
 
-This command is currently only available to developer team. It's mainly used for  compressing all the static files in to a single binary file. So we don't need to carry  static files including js, css, images and views when publish the project. Those files will be self-extracting with non-overwrite when program starts.
+This command is currently only available to developer team. It's mainly used for compressing all the static files in to a single binary file. So we don't need to carry  static files including js, css, images and views when publish the project. Those files will be self-extracting with non-overwrite when program starts.
 
 ## Bee tool configuration
 
