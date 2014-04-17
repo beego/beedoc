@@ -10,7 +10,7 @@ Here is the controller definition:
 
 ```
 type TestController struct {
-	Controller
+	beego.Controller
 }
 
 func (this *TestController) Get() {

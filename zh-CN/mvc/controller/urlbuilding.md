@@ -10,7 +10,7 @@ sort: 7
 
 ```
 type TestController struct {
-	Controller
+	beego.Controller
 }
 
 func (this *TestController) Get() {
