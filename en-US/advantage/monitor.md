@@ -49,9 +49,9 @@ There are several params for profiling. Visit `http://localhost:8088/prof` and w
 	8. gc summary
 
 
-## Healthecheck
+## Healthcheck
 
-You need to manually register the healthecheck logic to see the status of the healthecheck from `http://localhost:8088/healthcheck`
+You need to manually register the healthcheck logic to see the status of the healthcheck from `http://localhost:8088/healthcheck`
 
 ## Tasks
 
