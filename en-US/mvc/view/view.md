@@ -124,7 +124,7 @@ Beego will cache all the template fiels. You can also implement layout by this w
 	
 ## LayoutSection
 
-If a `LayoutContent` is pretty complicated, it will include javascript, css. The css usually put in `<head></head>` and the javascript usually put just before the end of `</body>` and all the other content will be arranged accordingly. So usually only one `LayoutContent` is not enough. So there is a attribute called `LayoutSection` in `Controller`. It allows us set multiple `section` in `Layout` page and each `section` can contain its own sub-template page.
+`LayoutContent` is a little complicated, it can include Javascript and CSS. Since, in most situations, only one `LayoutContent` is not enough, there is an attribute called `LayoutSections` in `Controller`. It allows us to set multiple `section` in `Layout` page and each `section` can contain its own sub-template page.
 
 layout_blog.tpl:
 
