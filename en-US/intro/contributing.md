@@ -3,21 +3,21 @@ name: Contributing
 sort: 1
 ---
 
-# Contributing to beego
+# Contributing to Beego
 
 ## Introduction
-beego is a free and open source software, which means that anyone can make contributions to the development and progress. beego's source code is hosted on github, github provides a very easy way to fork the project and merge your contribution.
+Beego is a free and open source software, which means that anyone can contribute to its development and progress. Beego's source code is hosted on github, which provides a very easy way to fork the project and merge your contributions.
 
 
 ## Pull Requests
-A pull request process for new features and bug are not the same. When you launch a new feature of the pull request before, you should first create a `[the Proposal] ` title issue. The proposal should describe this new feature, as well as the realization method. Proposal will be review, could be adopted, are also likely to be rejected. When a proposal is adopted, will create an implementation of the new features of the pull request. Not follow the guidelines of the pull request will be shut down immediately.
+The process of pull requests for new features and bug fixes are not the same. Before you submit a pull request for a new feature, you should first create an issue with `[Proposal]` in the title. The proposal should describe the new feature, as well as the implementation approach. Proposals will be reviewed and discussed, and can be adopted or potentially rejected. When a proposal is adopted, then create an implementation of the new features in the form of a pull request. If the guidelines are not followed, the pull request will be rejected immediately.
 
-For bug create Pull requests do not need to create suggested that issue. If you have a solution to the bug, please describe in detail your solution.
+Pull requests for bug fixes don't need to create an issue first. If you have a solution to a bug, please describe your solution in detail in your pull request.
 
-To increase and modification of document can also be submitted to making on [beedoc](https://github.com/beego/beedoc)。
+You can also contribute to improve the documentation at [beedoc](https://github.com/beego/beedoc).
 
 Submit new features
 
-If you want beego in some new features, you can create an issue with [Request] title. The proposal will be reviewed by the core contributors.
+If you want to see a new feature in Beego, you can create an issue with `[Request]` in the title. Then the  request will be reviewed by the core contributors.
 
-Now beego adopts gitflow way of development, so the existing all development is on the develop branch, so all the pull request please send to develop branch.
+Now Beego adopts gitflow way of development, so the ongoing development happens in the `develop` branch. Therefore please submit all of your pull requests to the `develop` branch.
