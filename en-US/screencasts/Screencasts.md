@@ -9,7 +9,7 @@ sort: 1
 This is the tutorial schedule:
 https://github.com/beego/tutorial
 
-1. Beego Framework Tutorials-1-Introduction to Beego
+1. Beego Tour - 1st Stop: Introduction to Beego
 
 <iframe width="640" height="360" src="//www.youtube.com/embed/zvXDgfoUKFY" frameborder="0" allowfullscreen></iframe>
 
