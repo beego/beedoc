@@ -79,33 +79,47 @@ beego.Handler("/rpc", s)
 
 为了用户更加方便的路由设置，beego 参考了 sinatra 的路由实现，支持多种方式的路由：
 
-- beego.Router(“/api/:id([0-9]+)“, &controllers.RController{})
+- beego.Router("/api/:id", &controllers.RController{})
 
-	自定义正则匹配 //匹配 /api/123 :id= 123
+	默认匹配   //匹配 /api/123    :id = 123  可以匹配/api/这个URL
+	
+- beego.Router("/api/:id!", &controllers.RController{})
 
-- beego.Router(“/news/:all”, &controllers.RController{})
+	默认匹配   //匹配 /api/123    :id = 123  不可以匹配/api/这个URL	
+
+- beego.Router("/api/:id([0-9]+)", &controllers.RController{})
+
+	自定义正则匹配 //匹配 /api/123 :id = 123
+
+- beego.Router("/news/:all", &controllers.RController{})
 
 	全匹配方式 //匹配 /news/path/to/123.html :all= path/to/123.html
 
-- beego.Router(“/user/:username([\w]+)“, &controllers.RController{})
+- beego.Router("/user/:username([\w]+)", &controllers.RController{})
 
 	正则字符串匹配 //匹配 /user/astaxie :username = astaxie
 
-- beego.Router(“/download/\*.\*”, &controllers.RController{})
+- beego.Router("/download/\*.\*", &controllers.RController{})
 
 	*匹配方式 //匹配 /download/file/api.xml :path= file/api :ext=xml
 
-- beego.Router(“/download/ceshi/*“, &controllers.RController{})
+- beego.Router("/download/ceshi/*", &controllers.RController{})
 
 	*全匹配方式 //匹配 /download/ceshi/file/api.json :splat=file/api.json
 
-- beego.Router(“/:id:int”, &controllers.RController{})
+- beego.Router("/:id:int", &controllers.RController{})
 
-	int 类型设置方式 //匹配 :id为int类型，框架帮你实现了正则([0-9]+)
+	int 类型设置方式，匹配 :id为int类型，框架帮你实现了正则([0-9]+)
 
-- beego.Router(“/:hi:string”, &controllers.RController{})
+- beego.Router("/:hi:string", &controllers.RController{})
 
-	string 类型设置方式 //匹配 :hi为string类型。框架帮你实现了正则([\w]+)
+	string 类型设置方式，匹配 :hi为string类型。框架帮你实现了正则([\w]+)
+
+- beego.Router("/cms_:id([0-9]+).html", &controllers.CmsController{})
+
+	带有前缀的自定义正则 //匹配 :id为正则类型。匹配 cms_123.html这样的url :id = 123
+	
+	
 
 可以在 Controlle 中通过如下方式获取上面的变量：
 
