@@ -4,7 +4,7 @@ sort: 2
 ---
 # beego 1.2.0
 
-Hi guys! After the hard working for one month, we released the new awesome version 1.2.0. beego is the fastest Go framework in the latest [Web Framework Benchmarks](http://www.techempower.com/benchmarks/#section=data-r9&hw=i7&test=json) alreadh though our goal is to make beego the best and easiest framework. In this new release, we improved even more in both usability and performance which is closer to native Go.
+Hi guys! After the hard working for one month, we released the new awesome version 1.2.0. beego is the fastest Go framework in the latest [Web Framework Benchmarks](http://www.techempower.com/benchmarks/#section=data-r9&hw=i7&test=json) already though our goal is to make beego the best and easiest framework to use. In this new release, we improved even more in both usability and performance which is closer to native Go.
 
 ### New Features:
 
