@@ -56,6 +56,7 @@ beego.Handler("/rpc", s)
 
 `beego.Handler(router, http.Handler)`这个函数是关键,第一个参数表示路由URI,第二个就是你自己实现的`http.Handler`,注册之后就会把所有rpc作为前缀的请求分发到`http.Handler`中进行处理.
 
+这个函数其实还有第三个参数就是是否是前缀匹配,默认是false, 如果设置了true,那么就会在路由匹配的时候前缀匹配,即`/rpc/user`这样的也会匹配去运行
 ### 路由参数
 后面会讲到固定路由,正则路由,这些参数一样适用于上面的这些函数
 
