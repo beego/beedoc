@@ -124,3 +124,29 @@ func (this *MainController) Post() {
 	this.SaveToFile("the_file","/var/www/uploads/uploaded_file.txt")
 }
 ```
+
+## 数据绑定
+
+支持从用户请求中直接数据bind到指定的对象,例如请求地址如下
+
+	?id=123&isok=true&ft=1.2&ol[0]=1&ol[1]=2&ul[]=str&ul[]=array&user.Name=astaxie
+
+```		
+var id int  
+ctx.Input.Bind(&id, "id")  //id ==123
+
+var isok bool  
+ctx.Input.Bind(&isok, "isok")  //isok ==true
+
+var ft float64  
+ctx.Input.Bind(&ft, "ft")  //ft ==1.2
+
+ol := make([]int, 0, 2)  
+ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
+
+ul := make([]string, 0, 2)  
+ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
+
+user struct{Name}  
+ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
+```

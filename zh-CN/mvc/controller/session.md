@@ -5,7 +5,7 @@ sort: 5
 
 # session 控制
  
-beego 内置了 session 模块，目前 session 模块支持的后端引擎包括 memory、file、mysql、redis 四种，用户也可以根据相应的 interface 实现自己的引擎。
+beego 内置了 session 模块，目前 session 模块支持的后端引擎包括 memory、cookie、file、mysql、redis、couchbase、memcache、postgres，用户也可以根据相应的 interface 实现自己的引擎。
 
 beego 中使用 session 相当方便，只要在 main 入口函数中设置如下：
 
@@ -90,6 +90,13 @@ sess 对象具有如下方法：
 
 	设置cookie的过期时间，cookie是用来存储保存在客户端的数据。
 
+从beego1.1.3版本开始移除了第三方依赖库,也就是如果你想使用mysql、redis、couchbase、memcache、postgres这些引擎,那么你首先需要安装
+
+	go get -u github.com/astaxie/beego/session/mysql 
+	
+然后在你的 main 函数中引入该库, 和数据库的驱动引入是一样的:
+
+	import _ "github.com/astaxie/beego/session/mysql"	
 
 当 SessionProvider 为 file 时，SessionSavePath 是只保存文件的目录，如下所示：
 
@@ -105,3 +112,18 @@ sess 对象具有如下方法：
 
 	beego.SessionProvider = "redis"
 	beego.SessionSavePath = "127.0.0.1:6379"
+	
+当 SessionProvider 为 memcache 时，SessionSavePath 是 memcache 的链接地址，采用了 [memcache](https://github.com/beego/memcache)，如下所示：
+
+	beego.SessionProvider = "memcache"
+	beego.SessionSavePath = "127.0.0.1:7080"
+	
+当 SessionProvider 为 postgres 时，SessionSavePath 是 postgres 的链接地址，采用了 [postgres](https://github.com/lib/pq)，如下所示：
+
+	beego.SessionProvider = "postgresql"
+	beego.SessionSavePath = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
+	
+当 SessionProvider 为 couchbase 时，SessionSavePath 是 couchbase 的链接地址，采用了 [couchbase](https://github.com/couchbaselabs/go-couchbase)，如下所示：
+
+	beego.SessionProvider = "couchbase"
+	beego.SessionSavePath = "http://bucketname:bucketpass@myserver:8091/"			
