@@ -2,6 +2,149 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.2.0
+大家好,经过我们一个多月的努力,今天我们发布一个很帅的版本,之前性能测试框架出来beego已经跃居Go框架第一了,虽然这不是我们的目标,我们的目标是做最好用,最易用的框架.http://www.techempower.com/benchmarks/#section=data-r9&hw=i7&test=json 但是这个版本我们还是在性能和易用性上面做了很多改进.应该说性能更加的接近Go原生应用.
+
+### 新特性:
+
+#### 1.namespace支持
+
+```
+	beego.NewNamespace("/v1").
+		Filter("before", auth).
+		Get("/notallowed", func(ctx *context.Context) {
+		ctx.Output.Body([]byte("notAllowed"))
+	}).
+		Router("/version", &AdminController{}, "get:ShowAPIVersion").
+		Router("/changepassword", &UserController{}).
+		Namespace(
+		beego.NewNamespace("/shop").
+			Filter("before", sentry).
+			Get("/:id", func(ctx *context.Context) {
+			ctx.Output.Body([]byte("notAllowed"))
+		}))
+```
+
+上面这个代码支持了如下这样的请求URL
+- GET       /v1/notallowed
+- GET       /v1/version
+- GET       /v1/changepassword
+- POST     /v1/changepassword
+- GET       /v1/shop/123
+
+而且还支持前置过滤,条件判断,无限嵌套namespace
+
+#### 2.beego支持更加自由化的路由方式
+
+RESTFul的自定义函数
+
+- beego.Get(router, beego.FilterFunc)
+- beego.Post(router, beego.FilterFunc)
+- beego.Put(router, beego.FilterFunc)
+- beego.Head(router, beego.FilterFunc)
+- beego.Options(router, beego.FilterFunc)
+- beego.Delete(router, beego.FilterFunc)
+
+```
+beego.Get("/user", func(ctx *context.Context) {
+	ctx.Output.Body([]byte("Get userlist"))
+})
+```
+更加自由度的Handler
+
+- beego.Handler(router, http.Handler)
+
+可以很容易的集成其他服务
+
+```
+import (
+    "http"
+    "github.com/gorilla/rpc"
+    "github.com/gorilla/rpc/json"
+)
+
+func init() {
+    s := rpc.NewServer()
+    s.RegisterCodec(json.NewCodec(), "application/json")
+    s.RegisterService(new(HelloService), "")
+    beego.Handler("/rpc", s)
+}
+```
+
+#### 3.支持从用户请求中直接数据bind到指定的对象
+
+例如请求地址如下
+
+	?id=123&isok=true&ft=1.2&ol[0]=1&ol[1]=2&ul[]=str&ul[]=array&user.Name=astaxie
+
+```
+var id int  
+ctx.Input.Bind(&id, "id")  //id ==123
+
+var isok bool  
+ctx.Input.Bind(&isok, "isok")  //isok ==true
+
+var ft float64  
+ctx.Input.Bind(&ft, "ft")  //ft ==1.2
+
+ol := make([]int, 0, 2)  
+ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
+
+ul := make([]string, 0, 2)  
+ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
+
+user struct{Name}  
+ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
+```
+
+#### 4.优化解析form的流程,让性能更加提升
+
+#### 5.增加更多地testcase进行自动化测试
+
+#### 6.admin管理模块所有的增加可点击的链接,方便直接查询
+
+#### 7.session的除了memory之外的引擎支持struct存储
+
+#### 8.httplib支持文件直接上传接口
+
+```
+b:=httplib.Post("http://beego.me/")
+b.Param("username","astaxie")
+b.Param("password","123456")
+b.PostFile("uploadfile1", "httplib.pdf")
+b.PostFile("uploadfile2", "httplib.txt")
+str, err := b.String()
+if err != nil {
+    t.Fatal(err)
+}
+```
+httplib支持自定义协议版本
+
+#### 9.ORM支持struct中有unexport的字段
+
+#### 10.XSRF支持controller级别控制是否启用, 之前XSRF是全局设置只要开启了就会影响所有的 POST PUT DELET请求,但是项目中可能API和页面共存的情况,页面可能不需要类似的XSRF,因此支持在Prepare函数中设置值来控制controller是否启用XSRF. 默认是true,也就是根据全局的来执行.用户可以在prepare中设置是否关闭.
+
+```
+func (a *AdminController) Prepare(){
+       a.EnableXSRF = false
+}
+```
+
+#### 11.controller支持ServeFormatted函数,支持根据请求Accept来判断是调用ServeJson还是ServeXML
+
+#### 12.session提供memcache引擎
+
+#### 13.Context中的Download函数支持自定义文件名提供下载 
+
+## bug修复
+
+1. session的Cookie引擎修复无法设置过期的bug
+2. 修复flash数据的存储和解析问题
+3. 修复所有go vet出现的问题
+4. 修复ParseFormOrMulitForm问题
+5. 修复只有POST才能解析raw body,现在支持除了GET和HEAD之外的其他请求
+6. config模块修复xml和yaml无法解析的问题
+
 # beego 1.1.4
 
 发布一个紧急的版本, beego存在一个严重的安全漏洞,请大家更新到最新版本. 顺便把最近做的一起发布了

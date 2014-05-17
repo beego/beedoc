@@ -7,7 +7,59 @@ sort: 2
 
 什么时候路由设置呢？前面介绍的 MVC 结构执行时，介绍过 beego 存在三种方式的路由，固定路由、正则路由、自动路由，接下来详细的讲解如何使用这三种路由。
 
-## RESTful 路由
+## 基础路由
+从beego1.2版本开始支持了基本的RESTFul函数式路由,应用中的大多数路由都会定义在 `routers/routes.go` 文件中。最简单的beego路由由URI和闭包函数组成。
+
+### 基本 GET 路由
+
+```
+beego.Get("/",func(ctx *context.Context){
+     ctx.Output.Body([]byte("hello world"))
+})
+```
+	
+### 基本 POST 路由
+
+```
+beego.Post("/alice",func(ctx *context.Context){
+     ctx.Output.Body([]byte("bob"))
+})
+```
+
+### 注册一个可以响应任何HTTP的路由
+
+```
+beego.Any("/foo",func(ctx *context.Context){
+     ctx.Output.Body([]byte("bar"))
+})
+```
+
+### 所有的支持的基础函数如下所示
+
+* beego.Get(router, beego.FilterFunc)
+* beego.Post(router, beego.FilterFunc)
+* beego.Put(router, beego.FilterFunc)
+* beego.Head(router, beego.FilterFunc)
+* beego.Options(router, beego.FilterFunc)
+* beego.Delete(router, beego.FilterFunc)
+* beego.Any(router, beego.FilterFunc)
+
+### 支持自定义的handler实现
+有些时候我们已经实现了一些rpc的应用,但是想要集成到beego中,或者其他的httpserver应用,集成到beego中来.现在可以很方便的集成:
+
+```
+s := rpc.NewServer()
+s.RegisterCodec(json.NewCodec(), "application/json")
+s.RegisterService(new(HelloService), "")
+beego.Handler("/rpc", s)
+```
+
+`beego.Handler(router, http.Handler)`这个函数是关键,第一个参数表示路由URI,第二个就是你自己实现的`http.Handler`,注册之后就会把所有rpc作为前缀的请求分发到`http.Handler`中进行处理.
+
+### 路由参数
+后面会讲到固定路由,正则路由,这些参数一样适用于上面的这些函数
+
+## RESTful Controller 路由
 
 在介绍这三种 beego 的路由实现之前先介绍 RESTful，我们知道 RESTful 是一种目前 API 开发中广泛采用的形式，beego 默认就是支持这样的请求方法，也就是用户 Get 请求就执行 Get 方法，Post 请求就执行 Post 方法。因此默认的路由是这样 RESTful 的请求方式。
 
@@ -184,3 +236,69 @@ func main() {
 - /admin/register
 
 访问相应auth模块下的controler.
+
+## namespace
+
+```
+//初始化namespace
+ns := beego.NewNamespace("/v1").
+   Filter("before", auth).
+   Get("/notallowed", func(ctx *context.Context) {
+   	ctx.Output.Body([]byte("notAllowed"))
+   }).
+   Router("/version", &AdminController{}, "get:ShowAPIVersion").
+   Router("/changepassword", &UserController{}).
+   Namespace(
+   	  beego.NewNamespace("/shop").
+       	Filter("before", sentry).
+       	Get("/:id", func(ctx *context.Context) {
+       		ctx.Output.Body([]byte("notAllowed"))
+   		}))
+//注册namespace
+beego.AddNamespace(ns)
+beego.Run()
+```
+上面这个代码支持了如下这样的请求URL
+
+* GET /v1/notallowed
+* GET /v1/version
+* GET /v1/changepassword
+* POST /v1/changepassword
+* GET /v1/shop/123
+
+而且还支持前置过滤,条件判断,无限嵌套namespace
+
+namespace的接口如下:
+
+- NewNamespace(prefix string)
+
+	初始化namespace对象,下面这些函数都是namespace对象的方法
+
+- Cond(cond namespaceCond)  
+
+	支持满足条件的就执行该namespace,不满足就不执行,例如你可以根据域名来控制namespace
+	
+- Filter(action string, filter FilterFunc)
+
+	action表示你需要执行的位置,before和after分别表示执行逻辑之前和执行逻辑之后的filter
+	
+- Router(rootpath string, c ControllerInterface, mappingMethods ...string)
+
+	
+- AutoRouter(c ControllerInterface)
+- AutoPrefix(prefix string, c ControllerInterface)
+- Get(rootpath string, f FilterFunc)
+- Post(rootpath string, f FilterFunc)
+- Delete(rootpath string, f FilterFunc)
+- Put(rootpath string, f FilterFunc)
+- Head(rootpath string, f FilterFunc)
+- Options(rootpath string, f FilterFunc)
+- Patch(rootpath string, f FilterFunc)
+- Any(rootpath string, f FilterFunc)
+- Handler(rootpath string, h http.Handler)
+
+	上面这些都是设置路由的函数,详细的使用和上面beego的对应函数是一样的
+
+- Namespace(ns *Namespace)
+
+	嵌套其他namespace
