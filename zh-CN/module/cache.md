@@ -9,6 +9,13 @@ beego 的 cache 模块是用来做数据缓存的，设计思路来自于 `datab
 
 	go get github.com/astaxie/beego/cache
 	
+>>>如果你使用memcache 或者 redis 驱动就需要手工安装引入包
+
+	go get -u github.com/astaxie/beego/cache/memcache
+	
+>>>而且需要在使用的地方引入包
+
+    import _ "github.com/astaxie/beego/cache/memcache"			
 ## 使用入门
 
 首先引入包：

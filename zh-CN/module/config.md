@@ -9,6 +9,14 @@ sort: 7
 
 	go get github.com/astaxie/beego/config
 	
+>>>如果你使用xml 或者 yaml 驱动就需要手工安装引入包
+
+	go get -u github.com/astaxie/beego/config/xml
+	
+>>>而且需要在使用的地方引入包
+
+    import _ "github.com/astaxie/beego/config/xml"				
+	
 ## 如何使用
 
 首先初始化一个解析器对象

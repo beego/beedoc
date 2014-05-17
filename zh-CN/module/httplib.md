@@ -106,6 +106,22 @@ httplib 包里面支持如下的方法返回 request 对象：
 	req.Header("Host","beego.me")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
 	
+## httplib支持文件直接上传接口
+
+PostFile 第一个参数是form 表单的字段名,第二个是需要发送的文件名或者文件路径
+
+```
+b:=httplib.Post("http://beego.me/")
+b.Param("username","astaxie")
+b.Param("password","123456")
+b.PostFile("uploadfile1", "httplib.pdf")
+b.PostFile("uploadfile2", "httplib.txt")
+str, err := b.String()
+if err != nil {
+    t.Fatal(err)
+}	
+```
+	
 ## 获取返回结果
 
 上面这些都是在发送请求之前的设置，接下来我们开始发送请求，然后如何来获取数据呢？主要有如下几种方式：
