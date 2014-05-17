@@ -2,6 +2,154 @@
 name: Release Notes
 sort: 2
 ---
+# beego 1.2.0
+
+Hi guys! After the hard working for one month, we released the new awesome version 1.2.0. beego is the fastest Go framework in the latest (Web Framework Benchmarks)[http://www.techempower.com/benchmarks/#section=data-r9&hw=i7&test=json ] alreadh though our goal is to make beego the best and easiest framework. In this new release, we improved even more in both usability and performance which is closer to native Go.
+
+### New Features:
+
+#### 1. `namespace` Support
+
+```
+    beego.NewNamespace("/v1").
+        Filter("before", auth).
+        Get("/notallowed", func(ctx *context.Context) {
+        ctx.Output.Body([]byte("notAllowed"))
+    }).
+        Router("/version", &AdminController{}, "get:ShowAPIVersion").
+        Router("/changepassword", &UserController{}).
+        Namespace(
+        beego.NewNamespace("/shop").
+            Filter("before", sentry).
+            Get("/:id", func(ctx *context.Context) {
+            ctx.Output.Body([]byte("notAllowed"))
+        }))
+```
+
+The code above supports the URL requests below:
+- GET       /v1/notallowed
+- GET       /v1/version
+- GET       /v1/changepassword
+- POST     /v1/changepassword
+- GET       /v1/shop/123
+
+`namespace` also supports pre-filters, conditions checking and unlimited nested `namespace`
+
+#### 2. Supporting more flexible router modes
+
+Custom functions from RESTFul router
+
+- beego.Get(router, beego.FilterFunc)
+- beego.Post(router, beego.FilterFunc)
+- beego.Put(router, beego.FilterFunc)
+- beego.Head(router, beego.FilterFunc)
+- beego.Options(router, beego.FilterFunc)
+- beego.Delete(router, beego.FilterFunc)
+
+```
+beego.Get("/user", func(ctx *context.Context) {
+    ctx.Output.Body([]byte("Get userlist"))
+})
+```
+
+More flexible Handler
+
+- beego.Handler(router, http.Handler)
+
+Integrating other services easily
+
+```
+import (
+    "http"
+    "github.com/gorilla/rpc"
+    "github.com/gorilla/rpc/json"
+)
+
+func init() {
+    s := rpc.NewServer()
+    s.RegisterCodec(json.NewCodec(), "application/json")
+    s.RegisterService(new(HelloService), "")
+    beego.Handler("/rpc", s)
+}
+```
+
+#### 3. Binding request parameters to object directly
+
+
+For example: this request parameters
+
+    ?id=123&isok=true&ft=1.2&ol[0]=1&ol[1]=2&ul[]=str&ul[]=array&user.Name=astaxie
+
+```
+var id int  
+ctx.Input.Bind(&id, "id")  //id ==123
+
+var isok bool  
+ctx.Input.Bind(&isok, "isok")  //isok ==true
+
+var ft float64  
+ctx.Input.Bind(&ft, "ft")  //ft ==1.2
+
+ol := make([]int, 0, 2)  
+ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
+
+ul := make([]string, 0, 2)  
+ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
+
+user struct{Name}  
+ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
+```
+
+#### 4. Optimized the form parsing flow and improved the performance
+
+#### 5. Added more testcases
+
+#### 6. Added links for admin monitoring module
+
+#### 7. supporting saving struct into session
+
+#### 8.httplib supports file upload interface
+
+```
+b:=httplib.Post("http://beego.me/")
+b.Param("username","astaxie")
+b.Param("password","123456")
+b.PostFile("uploadfile1", "httplib.pdf")
+b.PostFile("uploadfile2", "httplib.txt")
+str, err := b.String()
+if err != nil {
+    t.Fatal(err)
+}
+```
+httplib also supports custom protocol version
+
+#### 9. ORM supports all the unexport fields of struct
+
+#### 10. Enable XSRF in controller level. XSRF can only be controlled in the whole project level. However, you may want to have more control for XSRF, so we let you control it in Prepare function in controller level. Defult is true which means using the global setting.
+
+```
+func (a *AdminController) Prepare(){
+       a.EnableXSRF = false
+}
+```
+
+#### 11. controller supports ServeFormatted function which supports calling ServeJson or ServeXML based on the request's Accept
+
+#### 12. session supports memcache engine
+
+#### 13. The Download function of Context supports custom download file name
+
+## Bug Fixes
+
+1. Fixed the bug that session's Cookie engine can't set expiring time
+2. Fixed the bug of saving and parsing flash data
+3. Fixed all the problems of `go vet`
+4. Fixed the bug of ParseFormOrMulitForm
+5. Fixed the bug that only POST can parse raw body. Now all the requests except GET and HEAD support raw body.
+6. Fixed the bug that config module can't parse `xml` and `yaml`
+
+
+
 # beego 1.1.4
 
 Release an emergency version for beego has a serious security problem, please update to the latest version. By the way released all changes together
