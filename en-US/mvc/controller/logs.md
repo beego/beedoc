@@ -9,22 +9,22 @@ We've already talked about that Beego is based on several independent modules. B
 
 ## Basic usage
 
-In our beego application we output as below:
+In our beego application we log as below:
 
 	beego.Trace("this is trace")
 	beego.Debug("this is debug")
 	beego.Info("this is info")
 	beego.Warn("this is warn")
 	beego.Error("this is error")
-	beego.Crital("this is crital")
+	beego.Critical("this is critical")
 
 ## Configure output
 
-Usually we want to output information into log file and It's easy to do that:
+Usually we want to output information into log file and it's easy to do that:
 
 	beego.SetLogger("file", `{"filename":"logs/test.log"}`)
 
-For more useage of logs please go to [logs](../../module/logs.md).
+For more usage of logs, see [logs](../../module/logs.md).
 	
 After the above setting, logs will output to both console and file. If you only want to output to file, you need to remove console like this:
 
@@ -48,11 +48,11 @@ The logging level goes from trival to critical. It will output all by default. W
 	
 ## output file and line number
 
-Log output not call file by default, if you're expecting output calls file name and line number, set as follows
+Log output does not include call file by default, if you're expecting output calls' file name and line number, set as follows
 
 	beego.SetLogFuncCall(true)
 	
-true for turn on and false for trun off. default is false.	
+Default is false, not to log file names and line numbers.	
 
 ## Example
 
@@ -61,16 +61,16 @@ func internalCalculationFunc(x, y int) (result int, err error) {
 	beego.Debug("calculating z. x:",x," y:",y)
 	z := y
 	switch {
-	case x == 3 :
+	case x == 3:
 		beego.Trace("x == 3")
 		panic("Failure.")
-	case y == 1 :
+	case y == 1:
 		beego.Trace("y == 1")
 		return 0, errors.New("Error!")
-	case y == 2 :
+	case y == 2:
 		beego.Trace("y == 2")
 		z = x
-	default :
+	default:
 		beego.Trace("default")
 		z += x
 	}
