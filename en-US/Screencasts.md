@@ -1,9 +1,3 @@
----
-root: true
-name: Screencast
-sort: 1
----
-
 # Screencast
 
 This is the tutorial schedule:
