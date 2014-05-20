@@ -5,7 +5,7 @@ sort: 5
 
 # Session control
 
-Beego has a build-in session module. It supports memore, file, mysql, redis as the save provider. You can also implement your own provider according the interface.
+Beego has a build-in session module. It supports memory, file, mysql, redis, couchbase, memcache, postgres as the save provider. You can also implement your own provider according the interface.
 
 It very easy to use session in Beego, just switch session on in main function:
 
@@ -83,6 +83,14 @@ Here is some parameters used in Session module:
 - SessionCookieLifeTime
   The cookie expire time. The cookie is used to store data in client.
 
+from beego1.1.3 beego remove all the dependence,if you use thees stors:mysql、redis、couchbase、memcache、postgres. You should install first:
+
+	go get -u github.com/astaxie/beego/session/mysql 
+	
+then you can import in `main.go`, the same as the `database/sql`:
+
+	import _ "github.com/astaxie/beego/session/mysql"	
+
 When SessionProvider is file, SessionSavePath is the save path of session files. For example:
 
 	beego.SessionProvider = "file"
@@ -97,3 +105,18 @@ When SessionProvider is redis, SessionSavePath is connection address for redis w
 
 	beego.SessionProvider = "redis"
 	beego.SessionSavePath = "127.0.0.1:6379"
+
+When SessionProvider is memcache，SessionSavePath is connection address for memcache which is using [memcache](https://github.com/beego/memcache). For example
+
+	beego.SessionProvider = "memcache"
+	beego.SessionSavePath = "127.0.0.1:7080"
+	
+When SessionProvider is postgres，SessionSavePath is connection address for postgres which is using [postgres](https://github.com/lib/pq). For example：
+
+	beego.SessionProvider = "postgresql"
+	beego.SessionSavePath = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
+	
+When SessionProvider is couchbase，SessionSavePath is connection address for couchbase which is using [couchbase](https://github.com/couchbaselabs/go-couchbase). For example：
+
+	beego.SessionProvider = "couchbase"
+	beego.SessionSavePath = "http://bucketname:bucketpass@myserver:8091/"		

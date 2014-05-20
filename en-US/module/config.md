@@ -10,6 +10,14 @@ supports ini, json, xml, yaml files. You can install it by:
 
 	go get github.com/astaxie/beego/config
 	
+>>>if you want to parse xml or yaml. you should install first
+
+	go get -u github.com/astaxie/beego/config/xml
+	
+>>>then import it
+
+    import _ "github.com/astaxie/beego/config/xml"	
+	
 ## Basic Usage
 
 Initialize a parser object:
