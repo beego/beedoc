@@ -317,3 +317,20 @@ namespace的接口如下:
 - Namespace(ns *Namespace)
 
 	嵌套其他namespace
+	```
+	ns := beego.NewNamespace("/v1").
+	    Namespace(
+	        beego.NewNamespace("/shop").
+	            Get("/:id", func(ctx *context.Context) {
+	                ctx.Output.Body([]byte("shopinfo"))
+	        }),
+	        beego.NewNamespace("/order").
+	            Get("/:id", func(ctx *context.Context) {
+	                ctx.Output.Body([]byte("orderinfo"))
+	        }),
+	        beego.NewNamespace("/crm").
+	            Get("/:id", func(ctx *context.Context) {
+	                ctx.Output.Body([]byte("crminfo"))
+	        }),
+	    )
+	```	
