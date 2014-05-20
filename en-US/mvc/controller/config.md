@@ -186,18 +186,18 @@ Beego has many configurable variables. Let's have a look of this variables. It w
 
 * FlashName
 
-	Flash Cookie name，default is `BEEGO_FLASH`
+  Flash Cookie name，default is `BEEGO_FLASH`
 
 * FlashSeperator
 
-	Flash data seperator，default is `BEEGOFLASH`
+  Flash data seperator，default is `BEEGOFLASH`
 
 * StaticDir
 
-	set the static file，default is `static`	
-	1. one dir，the same as `beego.SetStaticPath("/download","download")`
-	
+  set the static file，default is `static`	
+ 	1. one dir，the same as `beego.SetStaticPath("/download","download")`
+
 		StaticDir = download
-	2. multi dirs, the same as `beego.SetStaticPath("/download","down")` and `beego.SetStaticPath("/download2","down2")`
-	
+  	2. multi dirs, the same as `beego.SetStaticPath("/download","down")` and `beego.SetStaticPath("/download2","down2")`
+
 		StaticDir = download:down download2:down2
