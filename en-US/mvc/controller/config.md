@@ -61,6 +61,10 @@ Beego has many configurable variables. Let's have a look of this variables. It w
 
   Application configuration file path. it's `conf/app.conf` by default.  You can change it to your own file.
 
+* EnableHttpListen
+
+  Enable http listen or not, enabled by default.
+
 * HttpAddr
 
   Application listening address, empty by default which will listen all network adapter's IPs.
@@ -69,9 +73,13 @@ Beego has many configurable variables. Let's have a look of this variables. It w
 
   Application listening port, 8080 by default.
 	
-* HttpTLS
+* EnableHttpTLS
 
   Enable https or not, disabled by default.
+
+* HttpsPort
+
+  Application listening https port, 10443 by default.
 
 * HttpCertFile
 
