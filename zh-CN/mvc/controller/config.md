@@ -182,4 +182,22 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 	
 * XSRFExpire
 
-	XSRF 过期时间，默认值是 0。		
+	XSRF 过期时间，默认值是 0。	
+	
+* FlashName
+
+	Flash数据设置时Cookie的名称，默认是BEEGO_FLASH
+
+* FlashSeperator
+
+	Flash数据的分隔符，默认是BEEGOFLASH
+
+* StaticDir
+
+	静态文件目录设置，默认是static	
+	1. 单个目录，相同于`beego.SetStaticPath("/download","download")`
+	
+		StaticDir = download
+	2. 多个目录，相当于`beego.SetStaticPath("/download","down")`和`beego.SetStaticPath("/download2","down2")`
+	
+		StaticDir = download:down download2:down2		 			
