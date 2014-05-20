@@ -203,7 +203,13 @@ Then you can get the extension name of the url by `this.Ctx.Input.Param(":ext")`
 ```
 //init namespace
 ns := beego.NewNamespace("/v1").
-   Filter("before", auth).
+   Cond(func (ctx *context.Context) bool{
+	   if ctx.Input.Domain() == "api.beego.me" {
+		 return true
+	   }
+	   return false
+   }).
+   Filter("before", auth).   
    Get("/notallowed", func(ctx *context.Context) {
    	ctx.Output.Body([]byte("notAllowed"))
    }).

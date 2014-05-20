@@ -257,6 +257,12 @@ func main() {
 ```
 //初始化namespace
 ns := beego.NewNamespace("/v1").
+   Cond(func (ctx *context.Context) bool{
+	   if ctx.Input.Domain() == "api.beego.me" {
+		 return true
+	   }
+	   return false
+   }).
    Filter("before", auth).
    Get("/notallowed", func(ctx *context.Context) {
    	ctx.Output.Body([]byte("notAllowed"))
