@@ -269,6 +269,7 @@ namespace API:
 - Namespace(ns *Namespace)
 
 	nest namespace	
+	
 	```
 	ns := beego.NewNamespace("/v1").
 	    Namespace(

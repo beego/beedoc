@@ -323,6 +323,7 @@ namespace的接口如下:
 - Namespace(ns *Namespace)
 
 	嵌套其他namespace
+	
 	```
 	ns := beego.NewNamespace("/v1").
 	    Namespace(
