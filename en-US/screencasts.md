@@ -7,7 +7,7 @@ https://github.com/beego/tutorial
 
 	<iframe width="640" height="360" src="//www.youtube.com/embed/zvXDgfoUKFY" frameborder="0" allowfullscreen></iframe>
 	
-	slide: [why_beego](http://go-talks.appspot.com/github.com/beego/tutorial/en/1/why_beego.slide#1)
+	slide: [Introduction to beego](http://go-talks.appspot.com/github.com/beego/tutorial/en/1/why_beego.slide#1)
 
 2. Beego Framework Tutorials-2-Router (part 1 of 3)
 
