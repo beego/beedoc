@@ -13,4 +13,11 @@ https://github.com/beego/tutorial
 
 	<iframe width="640" height="360" src="//www.youtube.com/embed/LvAFH-oLvqY" frameborder="0" allowfullscreen></iframe>
 	
-	slide: [why_beego](http://go-talks.appspot.com/github.com/beego/tutorial/en/2/router.slide#1)
+	slide: [Router Processor function/method](http://go-talks.appspot.com/github.com/beego/tutorial/en/2/router.part1.slide)
+
+
+3. Beego Framework Tutorials-2-Router URI Patterns (part 2 of 3)
+
+    <iframe width="640" height="360" src="//www.youtube.com/embed/81kxo6FcoOw" frameborder="0" allowfullscreen></iframe>
+    
+    slide: [Router RUI Patterns](http://go-talks.appspot.com/github.com/beego/tutorial/en/2/router.part2.slide)
