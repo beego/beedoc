@@ -117,4 +117,17 @@ For PUT and DELETE request and the POST method which doesn't use form content as
 
 If you need to customize XSRF behavior for different request, you can overwrite CheckXsrfCookie method of Controller. For example you need a API which doesn't support XSRF, you can disable XSRF proction by set `CheckXsrfCookie()` to empty. However, if you need to let the request with cookie support and without cookie support at the same time and current request is validated by cookie, it's important to use XSRF protection.
 
+## support controller setting
+
+`XSRF` is a global varliable, if you set it to true, all the request will validated. but sometimes API don't need validated. So you can controller it in the controllers:
+
+```
+type AdminController struct{
+	beego.Controller
+}
+
+func (a *AdminController) Prepare() {
+	a.EnableXSRF = false
+}
+```
 

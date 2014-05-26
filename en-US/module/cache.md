@@ -9,6 +9,14 @@ Beego's cache module is used for cache data, inspired by `databae/sql`.  It supp
 
 	go get github.com/astaxie/beego/cache
 	
+>>>if you use memcache or redis provider. You should install first
+
+	go get -u github.com/astaxie/beego/cache/memcache
+	
+>>>then import it.
+
+    import _ "github.com/astaxie/beego/cache/memcache"	
+	
 ## Basic Usage
 
 First step is importing the package:

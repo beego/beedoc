@@ -106,6 +106,23 @@ Can use `Header` function:
 	req.Header("Host","beego.me")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
 	
+## upload file
+
+PostFile function the first params is the name of form, the second param is the filename or filepath you want to send. 
+
+```
+b:=httplib.Post("http://beego.me/")
+b.Param("username","astaxie")
+b.Param("password","123456")
+b.PostFile("uploadfile1", "httplib.pdf")
+b.PostFile("uploadfile2", "httplib.txt")
+str, err := b.String()
+if err != nil {
+    t.Fatal(err)
+}	
+```
+
+		
 ## Get Response 
 
 Above settings are before sending request, how can we get response after request? Here are the ways:

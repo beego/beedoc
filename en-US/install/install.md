@@ -13,7 +13,7 @@ You can use the classic Go way to install beego:
 Frequently asked questions:
 
 - git is not installed. Please install git for your system.
-- git https is not accessable. Please config local git and close https validation:
+- git https is not accessible. Please config local git and close https validation:
 
 		git config --global http.sslVerify false
 
@@ -21,13 +21,13 @@ Frequently asked questions:
 
 # Upgrading beego
 
-You can upgrade beego through Go command or download and upgrade from sourcecode.
+You can upgrade beego through Go command or download and upgrade from source code.
 
 - Through Go command: we recommand you using this way to upgrade beego:
 
 		go get -u github.com/astaxie/beego
 		
-- Through sourcecode: visit `https://github.com/astaxie/beego` and download the sourcecode. Copy and overwrite to path `$GOPATH/github.com/astaxie/beego`. Then run `go install` to upgrade beego:
+- Through source code: visit `https://github.com/astaxie/beego` and download the source code. Copy and overwrite to path `$GOPATH/github.com/astaxie/beego`. Then run `go install` to upgrade beego:
 
 		go install 	github.com/astaxie/beego	
 
@@ -40,4 +40,4 @@ The master branch is relatively stable one where dev branch is for developers. H
 
 # How can I be a contributer of beego
 
-Beego's sourcecode is hosted on GitHub. You can fork, modify and then send a Pull Request to us. We will review your code and give you feedback of your changes as soon as possible.  
+Beego's source code is hosted on GitHub. You can fork, modify and then send a Pull Request to us. We will review your code and give you feedback of your changes as soon as possible.  

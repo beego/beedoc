@@ -124,3 +124,27 @@ func (this *MainController) Post() {
 	this.SaveToFile("the_file","/var/www/uploads/uploaded_file.txt")
 }
 ```
+## Data Bind
+
+Data bind let user bind the request data to a params, the request url as follow:
+
+	?id=123&isok=true&ft=1.2&ol[0]=1&ol[1]=2&ul[]=str&ul[]=array&user.Name=astaxie
+
+```		
+var id int  
+ctx.Input.Bind(&id, "id")  //id ==123
+
+var isok bool  
+ctx.Input.Bind(&isok, "isok")  //isok ==true
+
+var ft float64  
+ctx.Input.Bind(&ft, "ft")  //ft ==1.2
+
+ol := make([]int, 0, 2)  
+ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
+
+ul := make([]string, 0, 2)  
+ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
+
+user struct{Name}  
+ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}

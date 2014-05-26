@@ -61,95 +61,151 @@ Beego has many configurable variables. Let's have a look of this variables. It w
 
   Application configuration file path. it's `conf/app.conf` by default.  You can change it to your own file.
 
+* EnableHttpListen
+
+  Enable http listen or not, enabled by default.
+
 * HttpAddr
+
   Application listening address, empty by default which will listen all network adapter's IPs.
 
 * HttpPort
+
   Application listening port, 8080 by default.
 	
-* HttpTLS
+* EnableHttpTLS
+
   Enable https or not, disabled by default.
 
+* HttpsPort
+
+  Application listening https port, 10443 by default.
+
 * HttpCertFile
+
   If https is enabled, the path of certfile.
 
-* HttpKeyFile		
+* HttpKeyFile
+		
   If https is enabled, the path of keyfile.
 
 * HttpServerTimeOut
+
   Config the http timeout, 0 by default which means no timeout.
 	
 * RunMode
+
   The application mode, dev by default. In dev mode it will show user friendly error pages as we saw before.
 
 * AutoRender
+
   Use auto render or not, true by default. Should set it to false for API application, no need to render template.
 
 * RecoverPanic
+
   Recover from panic or not, true by default. It will recover from exceptions without exiting application.
 
 * ViewsPath
+
   The path of templates, views by default.
 
 * SessionOn
+
   Enable session or not, false by default.
 
 * SessionProvider
+
   Session provider, memory by default.
 
 * SessionName
+
   The session cookie name stored in browser. beegosessionID by default.
 
 * SessionGCMaxLifetime
+
   Valide time of session, 3600s by default.
 
 * SessionSavePath
+
   Session save path, empty by default.
 
 * SessionHashFunc
+
   Function that generate sessionID, sha1 by default.
 
 * SessionHashKey
+
   Hash key of session.
 	
 * SessionCookieLifeTime
+
   The valid time of cookie in browser for seesion, 3600s by default.
 
 * UseFcgi
+
   Enable fastcgi or not, false by default.
 
 * MaxMemory
+
   Memory cache size for file uploading, `1 << 26`(64M) by default.
 
 * EnableGzip
+
   Enable Gzip or not, false by default. If Gzip is enabled, the output of template will be compressed by Gzip or zlib according to `Accept-Encoding` of browser.
 
 * DirectoryIndex
+
   Enable list static directory or not, disabled by default. It will return 403 error.
 	
 * BeegoServerName
+
   Beego server will output `beego` as server name.
 	
 * EnableAdmin
+
   Enable supervisor module or not, disabled by default.
 	
 * AdminHttpAddr
+
   Listening address of supervisor, `localhost` by default.
 
 * AdminHttpPort
   Listening port of supervisor, 8088 by default.
 	
 * TemplateLeft
+
   Left mark of template, `{{` by default.
 	
 * TemplateRight
+
   Right mark of template, `}}` by default.
 	
 * ErrorsShow
+
   Show error or not, show by default.
 
 * XSRFKEY
+
   XSRF key, beegoxsrf by default.
 	
 * XSRFExpire
+
   XSRF expire time, 0 by default.
+
+* FlashName
+
+  Flash Cookie name，default is `BEEGO_FLASH`
+
+* FlashSeperator
+
+  Flash data seperator，default is `BEEGOFLASH`
+
+* StaticDir
+
+  set the static file，default is `static`	
+ 	1. one dir，the same as `beego.SetStaticPath("/download","download")`
+
+		StaticDir = download
+  	2. multi dirs, the same as `beego.SetStaticPath("/download","down")` and `beego.SetStaticPath("/download2","down2")`
+
+		StaticDir = download:down download2:down2

@@ -180,7 +180,7 @@ import "github.com/astaxie/beego/orm"
 
 type User struct {
 	Id   int
-	name string
+	Name string
 }
 
 func init(){
