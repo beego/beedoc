@@ -21,3 +21,10 @@ https://github.com/beego/tutorial
     <iframe width="640" height="360" src="//www.youtube.com/embed/81kxo6FcoOw" frameborder="0" allowfullscreen></iframe>
     
     slide: [Router RUI Patterns](http://go-talks.appspot.com/github.com/beego/tutorial/en/2/router.part2.slide)
+
+
+4. Beego Framework Tutorials - 2 - Router Namespace (part 3 of 3)
+
+    <iframe width="640" height="360" src="//www.youtube.com/embed/W9tBcTcXGeo" frameborder="0" allowfullscreen></iframe>
+    
+    slide: [Router Namespace](http://go-talks.appspot.com/github.com/beego/tutorial/en/2/router.part3.slide)
