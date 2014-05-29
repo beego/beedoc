@@ -181,7 +181,7 @@ Firstly you need to register controller into auto router.
 Then Beego will retrive all the methods in that controller by reflection and you can call the related methods by this:
 
 	/object/login   will call Login method in ObjectController 
-	/object/logout  will call Logot method in ObjectController
+	/object/logout  will call Logout method in ObjectController
 
 Except `/:controller/:method` will match to controller and method, all the rest of url path will be parsed as GET parameters and saved into `this.Ctx.Input.Param`:
 
