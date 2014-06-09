@@ -33,5 +33,5 @@ https://github.com/beego/tutorial
 
     <iframe width="640" height="360" src="//www.youtube.com/watch?v=F3tieL1lX1I" frameborder="0" allowfullscreen></iframe>
     
-    slide: [Router Namespace](http://go-talks.appspot.com/github.com/beego/tutorial/en/2/router.part3.slide)
+    slide: [Configuration Parameters](http://go-talks.appspot.com/github.com/beego/tutorial/en/3/params.slide)
 
