@@ -184,6 +184,9 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 	是否显示错误，默认显示错误信息。
 
+* EnableXSRF
+  开启 XSRF
+
 * XSRFKEY
 
 	XSRF 的 key 信息，默认值是 beegoxsrf。

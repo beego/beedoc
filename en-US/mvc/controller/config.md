@@ -184,6 +184,9 @@ Beego has many configurable variables. Let's have a look of this variables. It w
 
   Show error or not, show by default.
 
+* EnableXSRF
+  Enable XSRF
+
 * XSRFKEY
 
   XSRF key, beegoxsrf by default.
