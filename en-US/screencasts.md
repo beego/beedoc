@@ -31,7 +31,7 @@ https://github.com/beego/tutorial
 
 5. Beego Framework Tutorials - 3 - Configuration Parameters
 
-    <iframe width="640" height="360" src="//www.youtube.com/watch?v=F3tieL1lX1I" frameborder="0" allowfullscreen></iframe>
+    <iframe width="640" height="360" src="//www.youtube.com/embed/F3tieL1lX1I" frameborder="0" allowfullscreen></iframe>
     
     slide: [Configuration Parameters](http://go-talks.appspot.com/github.com/beego/tutorial/en/3/params.slide)
 
