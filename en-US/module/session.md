@@ -3,7 +3,7 @@ name: Session Module
 sort: 1
 ---
 
-# Introduction to Seesion Module
+# Introduction to Session Module
 
 Session module is used to store user data between different requests. It only support saving session id by cookie, so if the client doesn't support cookie, it won't work.
 
