@@ -77,21 +77,17 @@ The fixed routers above are most common routers. One fixed router, one controlle
 
 In order to make the router settings easier, beego reference the router implementation in Sinatra. It supports many router types.
 
-- beego.Router("/api/:id", &controllers.RController{})
+- beego.Router("/api/?:id", &controllers.RController{})
 
   defaut   //matching /api/123    :id = 123  can matching /api/
 	
-- beego.Router("/api/:id!", &controllers.RController{})
+- beego.Router("/api/:id", &controllers.RController{})
 
   defaut //matching /api/123    :id = 123  can't matching /api/
 	
 - beego.Router("/api/:id([0-9]+)", &controllers.RController{})
 
   Customized regex //matching /api/123 :id = 123
-
-- beego.Router("/news/:all", &controllers.RController{})
-
-  Full matching //matching /news/path/to/123.html :all = path/to/123.html
 
 - beego.Router("/user/:username([\w]+)", &controllers.RController{})
 
@@ -198,48 +194,148 @@ So for all the urls below will map to `simple` method in `controller`.
 
 Then you can get the extension name of the url by `this.Ctx.Input.Param(":ext")`.
 
+## Router Decorator
+Beego 1.3 starts supporting Router Decorator. You don't need to register all the routers inside router. You only need to Include the controller. For example:
+
+// CMS API
+type CMSController struct {
+    beego.Controller
+}
+
+func (c *CMSController) URLMapping() {
+    c.Mapping("StaticBlock", c.StaticBlock)
+    c.Mapping("AllBlock", c.AllBlock)
+}
+
+// @router /staticblock/:key [get]
+func (this *CMSController) StaticBlock() {
+}
+
+// @router /all/:key [get]
+func (this *CMSController) AllBlock() {
+}
+
+Then you can register the routers in `router.go`
+
+    beego.Include(&CMSController{})
+
+beego will parse the source code automatically. Notes: it will only be generated under dev mode.
+
+Then the following routers will be supported:
+
+* GET /staticblock/:key
+* GET /all/:key
+
+It's exactly same as resgistering by Router functions:
+
+    beego.Router("/staticblock/:key", &CMSController{}, "get:StaticBlock")
+    beego.Router("/all/:key", &CMSController{}, "get:AllBlock")
+    
+The `URLMapping` function above is a new function introduced in Beego 1.3. If you didn't use `URLMapping`, beego will find the function by reflection otherwise beego will find the function by `interface` which is much faster.
+
 ## namespace
 
 ```
 //init namespace
-ns := beego.NewNamespace("/v1").
-   Cond(func (ctx *context.Context) bool{
-	   if ctx.Input.Domain() == "api.beego.me" {
-		 return true
-	   }
-	   return false
-   }).
-   Filter("before", auth).   
-   Get("/notallowed", func(ctx *context.Context) {
-   	ctx.Output.Body([]byte("notAllowed"))
-   }).
-   Router("/version", &AdminController{}, "get:ShowAPIVersion").
-   Router("/changepassword", &UserController{}).
-   Namespace(
-   	  beego.NewNamespace("/shop").
-       	Filter("before", sentry).
-       	Get("/:id", func(ctx *context.Context) {
-       		ctx.Output.Body([]byte("notAllowed"))
-   		}))
+ns := 
+beego.NewNamespace("/v1",
+    beego.NSCond(func(ctx *context.Context) bool {
+        if ctx.Input.Domain() == "api.beego.me" {
+            return true
+        }
+        return false
+    }),
+    beego.NSBefore(auth),
+    beego.NSGet("/notallowed", func(ctx *context.Context) {
+        ctx.Output.Body([]byte("notAllowed"))
+    }),
+    beego.NSRouter("/version", &AdminController{}, "get:ShowAPIVersion"),
+    beego.NSRouter("/changepassword", &UserController{}),
+    beego.NSNamespace("/shop",
+        beego.NSBefore(sentry),
+        beego.NSGet("/:id", func(ctx *context.Context) {
+            ctx.Output.Body([]byte("notAllowed"))
+        }),
+    ),
+    beego.NSNamespace("/cms",
+        beego.NSInclude(
+            &controllers.MainController{},
+            &controllers.CMSController{},
+            &controllers.BlockController{},
+        ),
+    ),
+)
+
 //register namespace
 beego.AddNamespace(ns)
-beego.Run()
 ```
 the code showed support the URL:
 
-* GET /v1/notallowed
-* GET /v1/version
 * GET /v1/changepassword
 * POST /v1/changepassword
 * GET /v1/shop/123
+* GET /v1/cms/ Map to Decorator routers in MainController、CMSController、BlockController
 
 namespace support filter, condition,and nest namespace
 
 namespace API:
 
-- NewNamespace(prefix string)
+- NewNamespace(prefix string,...interface{})
 
-	get namespace object,the follow API is namespace's method
+    Create a namespace object, namespace object's methods list below.
+    We recommend you to use these methods starts with `NS`, it's compatible for gofmt tool.
+    
+- NSCond(cond namespaceCond)
+
+    if the namespaceCond return true will run this namespace,unwise willn't run
+    
+- NSBefore(filiterList ...FilterFunc)
+- NSAfter(filiterList ...FilterFunc)
+
+    For `BeforeRouter` and `finishRouter` filters. Can register multiple filters.
+    
+- NSInclude(cList ...ControllerInterface)
+- NSRouter(rootpath string, c ControllerInterface, mappingMethods ...string)
+- NSGet(rootpath string, f FilterFunc)
+- NSPost(rootpath string, f FilterFunc)
+- NSDelete(rootpath string, f FilterFunc)
+- NSPut(rootpath string, f FilterFunc)
+- NSHead(rootpath string, f FilterFunc)
+- NSOptions(rootpath string, f FilterFunc)
+- NSPatch(rootpath string, f FilterFunc)
+- NSAny(rootpath string, f FilterFunc)
+- NSHandler(rootpath string, h http.Handler)
+- NSAutoRouter(c ControllerInterface)
+- NSAutoPrefix(prefix string, c ControllerInterface)
+    
+    These are methods to set up routers which are same as the basic routers.
+    
+- NSNamespace(prefix string, params ...innnerNamespace)
+
+    Nested namespaces
+    
+    ```
+    ns := 
+    beego.NewNamespace("/v1",
+        beego.NSNamespace("/shop",
+            beego.NSGet("/:id", func(ctx *context.Context) {
+                ctx.Output.Body([]byte("shopinfo"))
+            }),
+        ),
+        beego.NSNamespace("/order",
+            beego.NSGet("/:id", func(ctx *context.Context) {
+                ctx.Output.Body([]byte("orderinfo"))
+            }),
+        ),
+        beego.NSNamespace("/crm",
+            beego.NSGet("/:id", func(ctx *context.Context) {
+                ctx.Output.Body([]byte("crminfo"))
+            }),
+        ),
+    )
+    ``` 
+    
+The methods below are methods for `*Namespace` object. It's not recommended. They have the same functionality as the methods with `NS`. But the methods list above with `NS` are more elegant and easier to read.
 
 - Cond(cond namespaceCond)  
 
@@ -266,24 +362,4 @@ namespace API:
 
 	these function is the same as mentioned earlier
 
-- Namespace(ns *Namespace)
-
-	nest namespace	
-	
-	```
-	ns := beego.NewNamespace("/v1").
-	    Namespace(
-	        beego.NewNamespace("/shop").
-	            Get("/:id", func(ctx *context.Context) {
-	                ctx.Output.Body([]byte("shopinfo"))
-	        }),
-	        beego.NewNamespace("/order").
-	            Get("/:id", func(ctx *context.Context) {
-	                ctx.Output.Body([]byte("orderinfo"))
-	        }),
-	        beego.NewNamespace("/crm").
-	            Get("/:id", func(ctx *context.Context) {
-	                ctx.Output.Body([]byte("crminfo"))
-	        }),
-	    )
-	```	
+- Namespace(ns ...*Namespace)

@@ -45,6 +45,27 @@ AppConfig supports:
 - Float(key string) (float64, error)
 - String(key string) string
 
+### The Configurations for Different Environments
+
+You can set configurations for different Runmode under their own sections. Beego will take the configurations of current Runmode by default. For example:
+
+  appname = beepkg
+  httpaddr = "127.0.0.1"
+  httpport = 9090
+  runmode ="dev"
+  autorender = false
+  autorecover = false
+  viewspath = "myview"
+  
+  [dev]
+  httpport = 8080
+  [prod]
+  httpport = 8088
+  [test]
+  httpport = 8888
+  
+The configurations above set up httpport for dev, prod and test environment. Beego will take httpport = 8080 for current runmode "dev".
+
 ### Beego default variables
 
 Beego has many configurable variables. Let's have a look of this variables. It will help us to know how to use them in development. (You can configure and overwrite them in `conf/app.conf`. Case insensitive.):
@@ -211,4 +232,12 @@ Beego has many configurable variables. Let's have a look of this variables. It w
 		StaticDir = download
   	2. multi dirs, the same as `beego.SetStaticPath("/download","down")` and `beego.SetStaticPath("/download2","down2")`
 
-		StaticDir = download:down download2:down2
+    StaticDir = download:down download2:down2 
+    
+* EnableDocs
+
+  Enable Docs or not, default is `false`
+  
+* AppConfigProvider
+
+  File format of AppConfg, default is `ini`. Couble be `xml`, `yaml`, `json` as well.

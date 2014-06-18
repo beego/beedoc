@@ -19,3 +19,8 @@
 
 - 团队角色：beego 后台管理系统开发者
 - 社交网络：[GitHub](https://github.com/osgochina)
+
+### Lei Cao
+
+- 团队角色：维护英文文档和资源
+- 社交网络：[GitHub](https://github.com/lei-cao)

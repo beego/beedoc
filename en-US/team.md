@@ -19,3 +19,8 @@
 
 - Team role: primarily responsible for beego admin management system.
 - Social network: [GitHub](https://github.com/osgochina)
+
+### Lei Cao
+
+- Team role: Main maintainer for the English Docs and resources.
+- Social network: [GitHub](https://github.com/lei-cao)
