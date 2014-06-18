@@ -25,6 +25,7 @@ InsertFilter's three params:
 	- beego.FinishRouter: After finishing router.
 - filter: filter function type FilterFunc func(*context.Context)
 
+>>> from beego1.3 AddFilter is deleted
 
 Here is the example to authenticate if the user is logged in for all requests:
 

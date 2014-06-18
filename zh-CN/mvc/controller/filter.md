@@ -21,6 +21,8 @@ InsertFilter 函数的三个参数
 	- FinishRouter 执行完逻辑之后执行的过滤器
 - filter filter 函数 type FilterFunc func(*context.Context)
 
+>>> AddFilter 从beego1.3版本开始已经废除
+
 如下例子所示，验证用户是否已经登录，应用于全部的请求：
 
 ```go
