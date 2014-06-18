@@ -287,7 +287,7 @@ beego.AddNamespace(ns)
 
 namespace的接口如下:
 
-- NewNamespace(prefix string,...interface{})
+- NewNamespace(prefix string, funcs ...interface{})
 
 	初始化namespace对象,下面这些函数都是namespace对象的方法,但是强烈推荐使用NS开头的相应函数注册，因为这样更容易通过gofmt工具看的更清楚路由的级别关系
 	

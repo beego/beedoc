@@ -194,8 +194,8 @@ So for all the urls below will map to `simple` method in `controller`.
 
 Then you can get the extension name of the url by `this.Ctx.Input.Param(":ext")`.
 
-## Router Decorator
-Beego 1.3 starts supporting Router Decorator. You don't need to register all the routers inside router. You only need to Include the controller. For example:
+## Annotations
+Beego 1.3 starts supporting annotation routers. You don't need to register all the routers inside router. You only need to Include the controller. For example:
 
 // CMS API
 type CMSController struct {
@@ -209,6 +209,7 @@ func (c *CMSController) URLMapping() {
 
 // @router /staticblock/:key [get]
 func (this *CMSController) StaticBlock() {
+
 }
 
 // @router /all/:key [get]
@@ -274,7 +275,7 @@ the code showed support the URL:
 * GET /v1/changepassword
 * POST /v1/changepassword
 * GET /v1/shop/123
-* GET /v1/cms/ Map to Decorator routers in MainController、CMSController、BlockController
+* GET /v1/cms/ Map to annotation routers in MainController、CMSController、BlockController
 
 namespace support filter, condition,and nest namespace
 
@@ -293,7 +294,7 @@ namespace API:
 - NSAfter(filiterList ...FilterFunc)
 
     For `BeforeRouter` and `finishRouter` filters. Can register multiple filters.
-    
+
 - NSInclude(cList ...ControllerInterface)
 - NSRouter(rootpath string, c ControllerInterface, mappingMethods ...string)
 - NSGet(rootpath string, f FilterFunc)

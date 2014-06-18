@@ -1,6 +1,6 @@
 ---
 name: Filters
-sort: 2
+sort: 5
 ---
 
 # Filters
@@ -20,12 +20,12 @@ InsertFilter's three params:
 - pattern: router rules. It can router based on the rules. Use `*` to match all.
 - pos: the place to execute Filter. There are five fixed params. They represent different execution process.
  	- beego.BeforeRouter: before finding router.
-	- beego.AfterStatic: after static rendering.
 	- beego.BeforeExec: After finding router and before executing the matched Controller.
 	- beego.AfterExec: After executing Controller.
 	- beego.FinishRouter: After finishing router.
 - filter: filter function type FilterFunc func(*context.Context)
 
+>>> from beego1.3 AddFilter is deleted
 
 Here is the example to authenticate if the user is logged in for all requests:
 
@@ -37,10 +37,10 @@ var FilterUser = func(ctx *context.Context) {
     }
 }
 
-beego.InsertFilter("*", beego.AfterStatic, FilterUser)
+beego.InsertFilter("*", beego.BeforeRouter, FilterUser)
 ```
 
->>>One thing you need to care about is he Filter useing session must use after `AfterStatic` because session is not initialized before it.
+>>>One thing you need to care about is he Filter useing session must use after `BeforeRouter` because session is not initialized before it.
 
 
 You can run the Filters by matching regex router rules:
@@ -52,7 +52,7 @@ var FilterUser = func(ctx *context.Context) {
         ctx.Redirect(302, "/login")
     }
 }
-beego.InsertFilter("/user/:id([0-9]+)", beego.AfterStatic, FilterUser)
+beego.InsertFilter("/user/:id([0-9]+)", beego.BeforeRouter, FilterUser)
 ```
 ## Filter Implementation UrlManager
 Context.Input has new feature `RunController` and `RunMethod` from beego1.1.2. So we can controller the router in our filter and skip the beego's router rule.
@@ -72,5 +72,5 @@ var UrlManager = func(ctx *context.Context) {
 	}
 }
 
-beego.AddFilter("*","AfterStatic",UrlManager)
+beego.InsertFilter("*", beego.BeforeRouter,UrlManager)
 ```
