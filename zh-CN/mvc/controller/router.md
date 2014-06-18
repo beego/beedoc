@@ -79,21 +79,17 @@ beego.Handler("/rpc", s)
 
 为了用户更加方便的路由设置，beego 参考了 sinatra 的路由实现，支持多种方式的路由：
 
-- beego.Router("/api/:id", &controllers.RController{})
+- beego.Router("/api/?:id", &controllers.RController{})
 
 	默认匹配   //匹配 /api/123    :id = 123  可以匹配/api/这个URL
 	
-- beego.Router("/api/:id!", &controllers.RController{})
+- beego.Router("/api/:id", &controllers.RController{})
 
 	默认匹配   //匹配 /api/123    :id = 123  不可以匹配/api/这个URL	
 
 - beego.Router("/api/:id([0-9]+)", &controllers.RController{})
 
 	自定义正则匹配 //匹配 /api/123 :id = 123
-
-- beego.Router("/news/:all", &controllers.RController{})
-
-	全匹配方式 //匹配 /news/path/to/123.html :all= path/to/123.html
 
 - beego.Router("/user/:username([\w]+)", &controllers.RController{})
 
@@ -198,86 +194,85 @@ beego.Handler("/rpc", s)
 	
 可以通过 `this.Ctx.Input.Param(":ext")` 获取后缀名。
 
-## 路由组
-设计这个主要是为了模块化考虑,所以引入了一个路由组的概念.
-
-假设我们有一个模块,它的结构如下所示:
+## 注解路由
+从beego1.3版本开始支持了注解路由，用户无需在router中注册如有，只需要Include相应地controller就可以，详细的使用请看下面的例子：
 
 ```
-modules
-	-- auth
-	    |-- auth.go
-	    |-- controllers
-	    |   `-- user.go
-	    `-- models
-		   `-- user.go
-```
-我们定义了一个模块auth,而auth的路由设置如下:
+// CMS API
+type CMSController struct {
+	beego.Controller
+}
 
-```
-var GR beego.GroupRouters
+func (c *CMSController) URLMapping() {
+	c.Mapping("StaticBlock", c.StaticBlock)
+	c.Mapping("AllBlock", c.AllBlock)
+}
 
-func init() {
-	GR = beego.NewGroupRouters()
-	GR.AddRouter("/login", &controllers.AuthController{}, "get:Login")
-	GR.AddRouter("/logout", &controllers.AuthController{}, "get:Logout")
-	GR.AddRouter("/register", &controllers.AuthController{}, "get:Reg")
+
+// @router /staticblock/:key [get]
+func (this *CMSController) StaticBlock() {
+
+}
+
+// @router /all/:key [get]
+func (this *CMSController) AllBlock() {
+
 }
 ```
 
-而当我们需要使用该模块时,可能已经定义了login之类的路由,那么我们可以通过如下的方式继续使用前缀类的路由组设置路由:
+可以在`router.go`中通过如下方式注册路由：
 
-```
-package main
+	beego.Include(&CMSController{})
 
-import (
-	_ "project/routers"   //引入系统已有的路由
 
-	"project/modules/auth"  //引入第三方模块
-	"github.com/astaxie/beego"
-)
+beego自动会进行源码分析，注意只会在dev模式下进行生成。
 
-func main() {
-	//添加路由组,前缀是admin
-	beego.AddGroupRouter("/admin", auth.GR)  
-	beego.Run()
-}
-```
+这样上面的路由就支持了如下的路由：
 
-这样我们就可以访问URL:
+* GET /staticblock/:key
+* GET /all/:key
 
-- /admin/login
-- /admin/logout
-- /admin/register
+其实效果和自己通过Router函数注册是一样的：
 
-访问相应auth模块下的controler.
-
+	beego.Router("/staticblock/:key", &CMSController{}, "get:StaticBlock")
+	beego.Router("/all/:key", &CMSController{}, "get:AllBlock")
+	
+同时大家注意到新版本里面增加了URLMapping这个函数，这是新增加的函数，用户如果没有进行注册，那么就会通过反射来执行对应的函数，如果注册了就会通过interface来进行执行函数，性能上面会提升很多。
+	
 ## namespace
 
 ```
 //初始化namespace
-ns := beego.NewNamespace("/v1").
-   Cond(func (ctx *context.Context) bool{
-	   if ctx.Input.Domain() == "api.beego.me" {
-		 return true
-	   }
-	   return false
-   }).
-   Filter("before", auth).
-   Get("/notallowed", func(ctx *context.Context) {
-   	ctx.Output.Body([]byte("notAllowed"))
-   }).
-   Router("/version", &AdminController{}, "get:ShowAPIVersion").
-   Router("/changepassword", &UserController{}).
-   Namespace(
-   	  beego.NewNamespace("/shop").
-       	Filter("before", sentry).
-       	Get("/:id", func(ctx *context.Context) {
-       		ctx.Output.Body([]byte("notAllowed"))
-   		}))
+ns := 
+beego.NewNamespace("/v1",
+	beego.NSCond(func(ctx *context.Context) bool {
+		if ctx.Input.Domain() == "api.beego.me" {
+			return true
+		}
+		return false
+	}),
+	beego.NSBefore(auth),
+	beego.NSGet("/notallowed", func(ctx *context.Context) {
+		ctx.Output.Body([]byte("notAllowed"))
+	}),
+	beego.NSRouter("/version", &AdminController{}, "get:ShowAPIVersion"),
+	beego.NSRouter("/changepassword", &UserController{}),
+	beego.NSNamespace("/shop",
+		beego.NSBefore(sentry),
+		beego.NSGet("/:id", func(ctx *context.Context) {
+			ctx.Output.Body([]byte("notAllowed"))
+		}),
+	),
+	beego.NSNamespace("/cms",
+		beego.NSInclude(
+			&controllers.MainController{},
+			&controllers.CMSController{},
+			&controllers.BlockController{},
+		),
+	),
+)
 //注册namespace
 beego.AddNamespace(ns)
-beego.Run()
 ```
 上面这个代码支持了如下这样的请求URL
 
@@ -286,14 +281,68 @@ beego.Run()
 * GET /v1/changepassword
 * POST /v1/changepassword
 * GET /v1/shop/123
+* GET /v1/cms/ 对应MainController、CMSController、BlockController中得注解路由
 
 而且还支持前置过滤,条件判断,无限嵌套namespace
 
 namespace的接口如下:
 
-- NewNamespace(prefix string)
+- NewNamespace(prefix string,...interface{})
 
-	初始化namespace对象,下面这些函数都是namespace对象的方法
+	初始化namespace对象,下面这些函数都是namespace对象的方法,但是强烈推荐使用NS开头的相应函数注册，因为这样更容易通过gofmt工具看的更清楚路由的级别关系
+	
+- NSCond(cond namespaceCond)
+
+	支持满足条件的就执行该namespace,不满足就不执行
+	
+- NSBefore(filiterList ...FilterFunc)
+- NSAfter(filiterList ...FilterFunc)
+
+	上面分别对应beforeRouter和FinishRouter两个过滤器，可以同时注册多个过滤器
+	
+- NSInclude(cList ...ControllerInterface)
+- NSRouter(rootpath string, c ControllerInterface, mappingMethods ...string)
+- NSGet(rootpath string, f FilterFunc)
+- NSPost(rootpath string, f FilterFunc)
+- NSDelete(rootpath string, f FilterFunc)
+- NSPut(rootpath string, f FilterFunc)
+- NSHead(rootpath string, f FilterFunc)
+- NSOptions(rootpath string, f FilterFunc)
+- NSPatch(rootpath string, f FilterFunc)
+- NSAny(rootpath string, f FilterFunc)
+- NSHandler(rootpath string, h http.Handler)
+- NSAutoRouter(c ControllerInterface)
+- NSAutoPrefix(prefix string, c ControllerInterface)
+	
+	上面这些都是设置路由的函数,详细的使用和上面beego的对应函数是一样的
+	
+- NSNamespace(prefix string, params ...innnerNamespace)
+
+	嵌套其他namespace
+	
+	```
+	ns := 
+  	beego.NewNamespace("/v1",
+		beego.NSNamespace("/shop",
+			beego.NSGet("/:id", func(ctx *context.Context) {
+				ctx.Output.Body([]byte("shopinfo"))
+			}),
+		),
+		beego.NSNamespace("/order",
+			beego.NSGet("/:id", func(ctx *context.Context) {
+				ctx.Output.Body([]byte("orderinfo"))
+			}),
+		),
+		beego.NSNamespace("/crm",
+			beego.NSGet("/:id", func(ctx *context.Context) {
+				ctx.Output.Body([]byte("crminfo"))
+			}),
+		),
+	)
+	```	
+	
+
+下面这些函数都是属于*Namespace对象的方法：不建议直接使用，当然效果和上面的NS开头的函数是一样的，只是上面的方式更优雅，写出来的代码更容易看得懂
 
 - Cond(cond namespaceCond)  
 
@@ -320,24 +369,4 @@ namespace的接口如下:
 
 	上面这些都是设置路由的函数,详细的使用和上面beego的对应函数是一样的
 
-- Namespace(ns *Namespace)
-
-	嵌套其他namespace
-	
-	```
-	ns := beego.NewNamespace("/v1").
-	    Namespace(
-	        beego.NewNamespace("/shop").
-	            Get("/:id", func(ctx *context.Context) {
-	                ctx.Output.Body([]byte("shopinfo"))
-	        }),
-	        beego.NewNamespace("/order").
-	            Get("/:id", func(ctx *context.Context) {
-	                ctx.Output.Body([]byte("orderinfo"))
-	        }),
-	        beego.NewNamespace("/crm").
-	            Get("/:id", func(ctx *context.Context) {
-	                ctx.Output.Body([]byte("crminfo"))
-	        }),
-	    )
-	```	
+- Namespace(ns ...*Namespace)

@@ -45,6 +45,27 @@ AppConfig 支持如下方法
 - Float(key string) (float64, error)
 - String(key string) string
 
+### 不同级别的配置
+
+在配置文件里面支持section，可以有不同的Runmode的配置，默认优先读取runmode下的配置信息，例如下面的配置文件：
+
+	appname = beepkg
+	httpaddr = "127.0.0.1"
+	httpport = 9090
+	runmode ="dev"
+	autorender = false
+	autorecover = false
+	viewspath = "myview"
+	
+	[dev]
+	httpport = 8080
+	[prod]
+	httpport = 8088
+	[test]
+	httpport = 8888
+	
+上面的配置文件就是在不同的runmode下解析不同的配置，例如在dev模式下，httpport是8080，在prod模式下是8088，在test模式下是8888.其他配置文件同理。解析的时候优先解析runmode下地配置，然后解析默认的配置。
+
 ### 系统默认参数
 
 beego 中带有很多可配置的参数，我们来一一认识一下它们，这样有利于我们在接下来的 beego 开发中可以充分的发挥他们的作用(你可以通过在`conf/app.conf`中设置对应的值，大小写都可以来重写这些默认值)：
@@ -211,4 +232,12 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 		StaticDir = download
 	2. 多个目录，相当于`beego.SetStaticPath("/download","down")`和`beego.SetStaticPath("/download2","down2")`
 	
-		StaticDir = download:down download2:down2		 			
+		StaticDir = download:down download2:down2	
+		
+ * EnableDocs
+
+	是否开启文档内置功能，默认是false		
+	
+ * AppConfigProvider
+
+	配置文件的格式，默认是ini，可以配置为xml，yaml，json					 			
