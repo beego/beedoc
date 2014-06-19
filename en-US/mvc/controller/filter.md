@@ -63,7 +63,7 @@ For example:
 var UrlManager = func(ctx *context.Context) {
     //read urlMapping data from database
 	urlMapping := model.GetUrlMapping()
-	for baseurl,rule:= urlMapping {
+	for baseurl,rule:=range urlMapping {
 		if baseurl == ctx.Request.RequestURI {
 			ctx.Input.RunController = rule.controller
 			ctx.Input.RunMethod = rule.method		

@@ -58,7 +58,7 @@ beego1.1.2开始Context.Input中增加了RunController和RunMethod,这样我们�
 var UrlManager = func(ctx *context.Context) {
     //数据库读取全部的url mapping数据
 	urlMapping := model.GetUrlMapping()
-	for baseurl,rule:= urlMapping {
+	for baseurl,rule:=range urlMapping {
 		if baseurl == ctx.Request.RequestURI {
 			ctx.Input.RunController = rule.controller
 			ctx.Input.RunMethod = rule.method		
