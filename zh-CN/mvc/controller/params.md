@@ -97,7 +97,7 @@ func (this *ObejctController) Post() {
 
 ## 文件上传
 
-在 beego 中你可以很容易的处理文件上传，就是别忘记在你的 form 表单中增加这个属性 `enctype="multipart/form-data"`，否者你的浏览器不会传输你的上传文件。
+在 beego 中你可以很容易的处理文件上传，就是别忘记在你的 form 表单中增加这个属性 `enctype="multipart/form-data"`，否则你的浏览器不会传输你的上传文件。
 
 文件上传之后一般是放在系统的内存里面，如果文件的 size 大于设置的缓存内存大小，那么就放在临时文件中，默认的缓存内存是 64M，你可以通过如下来调整这个缓存内存大小:
 
