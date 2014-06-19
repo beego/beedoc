@@ -197,6 +197,7 @@ Then you can get the extension name of the url by `this.Ctx.Input.Param(":ext")`
 ## Annotations
 Beego 1.3 starts supporting annotation routers. You don't need to register all the routers inside router. You only need to Include the controller. For example:
 
+```
 // CMS API
 type CMSController struct {
     beego.Controller
@@ -215,6 +216,7 @@ func (this *CMSController) StaticBlock() {
 // @router /all/:key [get]
 func (this *CMSController) AllBlock() {
 }
+```
 
 Then you can register the routers in `router.go`
 
