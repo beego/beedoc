@@ -19,7 +19,7 @@ func (c *MainController) Get() {
 		c.TplNames = "set_error.html"
 	}else{
 		// 不然默认显示设置页面
-		this.Data["list"]=GetInfo()
+		c.Data["list"]=GetInfo()
 		c.TplNames = "setting_list.html"
 	}
 }
