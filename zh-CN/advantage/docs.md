@@ -160,7 +160,8 @@ func (c *CMSController) Product() {
 
 ## 可能遇到的问题
 1. CORS
-	- 集成到应用中
+	两种解决方案：
+	- 把swagger集成到应用中，下载请到[swagger](https://github.com/beego/swagger/releases),然后放在项目目录下：
 	
 			if beego.RunMode == "dev" {
 				beego.DirectoryIndex = true
