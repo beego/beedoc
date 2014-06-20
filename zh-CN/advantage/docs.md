@@ -128,7 +128,7 @@ func (c *CMSController) Product() {
 	
 - @Description
 
-	这个API详细的描述，是一个文本，空格之后的内容全部解析为title
+	这个API详细的描述，是一个文本，空格之后的内容全部解析为 Description
 	
 - @Param
 

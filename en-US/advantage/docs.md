@@ -1,15 +1,15 @@
 ---
-name: API自动化文档
+name: Automated API Document
 sort: 2
 ---
 
-# API自动化文档
+# Automated API Document
 
-自动化文档一直是我梦想中的一个功能，这次借着公司的项目终于实现了出来，我说过beego不仅仅要让开发API快，而且让使用API的用户也能快速的使用我们开发的API，这个就是我开发这个项目的初衷。好了，赶紧动手实践一把吧，首先`bee api beeapi`新建一个API应用做起来吧。
+Automated document is a very cool feature that I wish to have. Now it became real in Beego. As I said Beego will not only boost the development of API but also make the API easy to use for the user. Ok, let's try it out now. First create a new API application by `bee api beeapi`
 
-# API全局设置
+# API global settings
 
-必须设置在`router/router.go`中，文件的注释，最顶部：
+Add the comments at the top of `router/router.go`:
 
 ```
 // @APIVersion 1.0.0
@@ -19,7 +19,7 @@ sort: 2
 package routers
 ```
 
-全局的注释如上所示，是显示给全局应用的设置信息，有如下这些设置
+The comments above set the global information. The available settings:
 
 - @APIVersion
 - @Title
@@ -29,8 +29,8 @@ package routers
 - @License
 - @LicenseUrl
 
-## 路由解析须知
-目前自动化文档只支持如下的写法的解析，其他写法函数不会自动解析，即namespace+Include的写法，而且只支持二级解析，一级版本号，二级分别表示应用模块
+## Router Parsing
+Right now automated API document only supports namespace+Include and only supports two levels parsing. The first level is API version and the second level is the modules.
 
 ```
 func init() {
@@ -67,8 +67,8 @@ func init() {
 }
 ```
 
-## 应用注释
-接下来就是我们最重要的注释了，就是我们定义的，我们先来看一个例子：
+## Application Comment
+The most important part of comment. For example:
 
 ```
 package controllers
@@ -112,7 +112,7 @@ func (c *CMSController) StaticBlock() {
 // @Param	size 			query	string		false		"size filter"
 // @Param	color 			query	string		false		"color filter"
 // @Param	format 			query	bool		false		"choose return format"
-// @Failure 400 not enough input
+// @Failure 400 no enough input
 // @Failure 500 get products common error
 // @router /products [get]
 func (c *CMSController) Product() {
@@ -120,55 +120,69 @@ func (c *CMSController) Product() {
 }
 ```
 
-首先是CMSController定义上面的注释，这个是用来显示这个模块的作用。接下来就是每一个函数上面的注释，这里列出来支持的各种注释：
+We defined the comment above for `CMSController` which will show for this module. Then we need to define the comment for every functions. Below is the supported comments:
 
 - @Title
 
-	这个API所表达的含义，是一个文本，空格之后的内容全部解析为title
+	The title for this API. it's a string, all the content after the first space will be parsed as the title.
 	
 - @Description
 
-	这个API详细的描述，是一个文本，空格之后的内容全部解析为title
+	
+	The description for this API. it's a string, all the content after the first space will be parsed as the description.
 	
 - @Param
 
-	参数，表示需要传递到服务器端的参数，有五列参数，使用空格或者tab分割，五个分别表示的含义如下
-	1. 参数名
-	2. 参数类型，可以有的值是form、query、path、body、header，form表示是post请求的数据，query表示带在url之后的参数，path表示请求路径上得参数，例如上面例子里面的key，body表示是一个raw数据请求，header表示带在header信息中得参数。
-	3. 参数类型
-	4. 是否必须
-	5. 注释	
+	`@Param` defines the parameters sent to the server. There are five columns for each `@Param`:
+	1. parameter name;
+	2. parameter sending type; It can be `form`, `query`, `path`, `body` or `header`. `form` means the parameter send by POST. `query` means the parameter in url send by GET. `path` means the parameter in the url path, such as key in the former example. `body` means the raw dada send from request body. `header` means the parameter in request header.
+	3. parameter type
+	4. required
+	5. comment
 	
 - @Success
 
-	成功返回给客户端的信息，三个参数，第一个是status code。第二个参数是返回的类型，必须使用{}包含，第三个是返回的对象或者字符串信息，如果是{object}类型，那么bee工具在生成docs的时候会扫描对应的对象，这里填写的是想对你项目的目录名和对象，例如`models.ZDTProduct.ProductList`就表示`/models/ZDTProduct`目录下的`ProductList`对象。
+	The success message returned to client. Three parameters.
+	1. status code.
+	2. return type; Must wrap with {}.
+	3. returned object or string. For {object}, use path and the object name of your project here and `bee` tool will look up the object while generate the docs. For example `models.ZDTProduct.ProductList` represents `ProductList` object under `/models/ZDTProduct`
 	
-	>>>三个参数必须通过空格分隔
+	>>> Use space to separate these three parameters
 	
 - @Failure
 
-	失败返回的信息，包含两个参数，使用空格分隔，第一个表示status code，第二个表示错误信息
+	The failure message returned to client. Two parameters separated by space.
+	1. status code.
+	2. Error message
 	
 - @router
 
-	路由信息，包含两个参数，使用空格分隔，第一个是请求的路由地址，支持正则和自定义路由，和之前的路由规则一样，第二个参数是支持的请求方法,放在`[]`之中，如果有多个方法，那么使用`,`分隔。
+	Router information. Two parameters separated by space.
+	1. The request's router address.
+	2. Supported request methods. Wrap in `[]`. Use `,` to seaparte multiple methods.
 
-## 如何自动化生成文档
-要是的文档工作，你需要做几个事情，第一开启应用内文档开关，`beego.EnableDocs = true`,第二步就是使用`bee generate docs`生成docs文件，然后在你的`main.go`函数中引入`_ "btest/docs"`。这样你就已经内置了docs在你的API应用中，然后你就使用`bee run watchall true`,让我们的API应用跑起来，同时第四个参数`true`表示每次自动化的build文档，现在我们就要看我们的API文档了，你可以打开另一个命令窗口执行`bee rundocs -isDownload=true`然后就会自动的下载swagger文档查看器，同时运行在了8089端口，你也可以使用`bee rundocs -docport=8888`修改相应地端口。
+## Generate document automatically
 
-好了，现在打开你的浏览器查看一下效果，是不是已经完美了。
+To make it work following the steps:
+1. Enable docs by setting `beego.EnableDocs = true`
+2. Generate document files by `bee generate docs`
+3. Import `_ "btest/docs"` in `main.go`
+4. Use `bee run watchall true` to run your API application and rebuild document automatically. 
+5. Now run `bee rundocs -isDownload=true` in another terminal. It will download `swagger` viewer and run on port 8089. You can change port by `bee rundocs -docport=8888`
 
-## 可能遇到的问题
+Your API document is available now. Open your browser and check it.
+
+## Problems You May Have
 1. CORS
-	两种解决方案：
-	- 把swagger集成到应用中，下载请到[swagger](https://github.com/beego/swagger/releases),然后放在项目目录下：
+	Two solutioins
+	- Integrate `swagger` into the application. Download [swagger](https://github.com/beego/swagger/releases) and put it into project folder.
 	
 			if beego.RunMode == "dev" {
 				beego.DirectoryIndex = true
 				beego.StaticDir["/swagger"] = "swagger"
 			}		
-	- API增加CORS支持
+	- Make API support CORS
 	
 			ctx.Output.Header("Access-Control-Allow-Origin", "*")
 			
-2. 未知错误，因为这是我自己项目中使用的，所以可能大家在写的过程中会遇到一些莫名的错误，请提issue去吧！
+2. Other problems. This is a feature used in my own project. If you have some other problems plese fire issues to us.
