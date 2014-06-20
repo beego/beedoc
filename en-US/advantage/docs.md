@@ -9,7 +9,7 @@ Automated document is a very cool feature that I wish to have. Now it became rea
 
 # API global settings
 
-Add the comments at the top of `router/router.go`:
+Add the comments at the top of `routers/router.go`:
 
 ```
 // @APIVersion 1.0.0
