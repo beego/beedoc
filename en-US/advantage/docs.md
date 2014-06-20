@@ -136,7 +136,7 @@ We defined the comment above for `CMSController` which will show for this module
 	`@Param` defines the parameters sent to the server. There are five columns for each `@Param`:
 	1. parameter name;
 	2. parameter sending type; It can be `form`, `query`, `path`, `body` or `header`. `form` means the parameter send by POST. `query` means the parameter in url send by GET. `path` means the parameter in the url path, such as key in the former example. `body` means the raw dada send from request body. `header` means the parameter in request header.
-	3. parameter type
+	3. parameter data type
 	4. required
 	5. comment
 	
@@ -164,9 +164,9 @@ We defined the comment above for `CMSController` which will show for this module
 ## Generate document automatically
 
 To make it work following the steps:
-1. Enable docs by setting `beego.EnableDocs = true`
+1. Enable docs by setting `beego.EnableDocs = true` in `conf/app.conf`
 2. Generate document files by `bee generate docs`
-3. Import `_ "btest/docs"` in `main.go`
+3. Import `_ "beeapi/docs"` in `main.go`
 4. Use `bee run watchall true` to run your API application and rebuild document automatically. 
 5. Now run `bee rundocs -isDownload=true` in another terminal. It will download `swagger` viewer and run on port 8089. You can change port by `bee rundocs -docport=8888`
 
@@ -175,13 +175,16 @@ Your API document is available now. Open your browser and check it.
 ## Problems You May Have
 1. CORS
 	Two solutioins
-	- Integrate `swagger` into the application. Download [swagger](https://github.com/beego/swagger/releases) and put it into project folder.
-	
-			if beego.RunMode == "dev" {
-				beego.DirectoryIndex = true
-				beego.StaticDir["/swagger"] = "swagger"
-			}		
-	- Make API support CORS
+	1. Integrate `swagger` into the application. Download [swagger](https://github.com/beego/swagger/releases) and put it into project folder. (`bee rundocs -isDownload=true` will also download it and put it into project folder) 
+	And before 	`beego.Run()` in `func main()` of `main.go`
+
+		if beego.RunMode == "dev" {
+			beego.DirectoryIndex = true
+			beego.StaticDir["/swagger"] = "swagger"
+		}		
+
+	And then visit `swagger` document from API project's URL and port.
+	2. Make API support CORS
 	
 			ctx.Output.Header("Access-Control-Allow-Origin", "*")
 			
