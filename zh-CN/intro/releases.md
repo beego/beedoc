@@ -41,7 +41,26 @@ beego.NewNamespace("/v1",
 更多详细信息请参考文档：[namespace](http://beego.me/docs/mvc/controller/router.md#namespace)
 
 ## 注解路由
+```
+// CMS API
+type CMSController struct {
+    beego.Controller
+}
 
+func (c *CMSController) URLMapping() {
+    c.Mapping("StaticBlock", c.StaticBlock)
+    c.Mapping("AllBlock", c.AllBlock)
+}
+
+// @router /staticblock/:key [get]
+func (this *CMSController) StaticBlock() {
+
+}
+
+// @router /all/:key [get]
+func (this *CMSController) AllBlock() {
+}
+```
 更多请参考文档：[注解路由](http://beego.me/docs/mvc/controller/router.md#%E6%B3%A8%E8%A7%A3%E8%B7%AF%E7%94%B1)
 
 ## 自动化文档
