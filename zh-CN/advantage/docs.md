@@ -154,7 +154,7 @@ func (c *CMSController) Product() {
 	路由信息，包含两个参数，使用空格分隔，第一个是请求的路由地址，支持正则和自定义路由，和之前的路由规则一样，第二个参数是支持的请求方法,放在`[]`之中，如果有多个方法，那么使用`,`分隔。
 
 ## 如何自动化生成文档
-要是的文档工作，你需要做几个事情，第一开启应用内文档开关，`beego.EnableDocs = true`,第二步就是使用`bee generate docs`生成docs文件，然后在你的`main.go`函数中引入`_ "btest/docs"`。这样你就已经内置了docs在你的API应用中，然后你就使用`bee run watchall true`,让我们的API应用跑起来，同时第四个参数`true`表示每次自动化的build文档，现在我们就要看我们的API文档了，你可以打开另一个命令窗口执行`bee rundocs -isDownload=true`然后就会自动的下载swagger文档查看器，同时运行在了8089端口，你也可以使用`bee rundocs -docport=8888`修改相应地端口。
+要是的文档工作，你需要做几个事情，第一开启应用内文档开关，在配置文件中设置：`EnableDocs = true`,第二步就是使用`bee generate docs`生成docs文件，然后在你的`main.go`函数中引入`_ "btest/docs"`。这样你就已经内置了docs在你的API应用中，然后你就使用`bee run watchall true`,让我们的API应用跑起来，同时第四个参数`true`表示每次自动化的build文档，现在我们就要看我们的API文档了，你可以打开另一个命令窗口执行`bee rundocs -isDownload=true`然后就会自动的下载swagger文档查看器，同时运行在了8089端口，你也可以使用`bee rundocs -docport=8888`修改相应地端口。
 
 好了，现在打开你的浏览器查看一下效果，是不是已经完美了。
 
