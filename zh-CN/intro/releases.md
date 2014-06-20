@@ -2,6 +2,120 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.3.0
+经过了一个多月的开发，我们很高兴的宣布，beego1.3.0来了，这个版本我们做了非常多好玩并且有用的功能
+
+## 路由重写
+这一次路由进行了全部改造，从之前的三个路由模式，改成了tree路由，第一性能得到了提升，第二路由支持的格式更加丰富，第三路由更加符合我们的思考方式，
+
+例如现在注册如下路由规则：
+
+	/user/astaxie
+	/user/:username
+	
+如果你的访问地址是`/user/astaxie`，那么优先匹配固定的路由，也就是第一条，如果访问是`/user/slene`，那么就匹配第二个，和你注册的路由的先后顺序无关
+
+## namespace更优雅
+设计namespace主要是为了大家模块化设计的，之前是采用了类似jQuery的链式方式，当然新版本也是支持的，但是由于gofmt的格式无法很直观的看出来整个路由的目录结构，所以我采用了多参数注册方式，现在看上去就更加的优雅：
+
+```
+ns := 
+beego.NewNamespace("/v1",
+    beego.NSNamespace("/shop",
+        beego.NSGet("/:id", func(ctx *context.Context) {
+            ctx.Output.Body([]byte("shopinfo"))
+        }),
+    ),
+    beego.NSNamespace("/order",
+        beego.NSGet("/:id", func(ctx *context.Context) {
+            ctx.Output.Body([]byte("orderinfo"))
+        }),
+    ),
+    beego.NSNamespace("/crm",
+        beego.NSGet("/:id", func(ctx *context.Context) {
+            ctx.Output.Body([]byte("crminfo"))
+        }),
+    ),
+)
+```
+更多详细信息请参考文档：[namespace](http://beego.me/docs/mvc/controller/router.md#namespace)
+
+## 注解路由
+
+更多请参考文档：[注解路由](http://beego.me/docs/mvc/controller/router.md#%E6%B3%A8%E8%A7%A3%E8%B7%AF%E7%94%B1)
+
+## 自动化文档
+自动化文档一直是我梦想中的一个功能，这次借着公司的项目终于实现了出来，我说过beego不仅仅要让开发API快，而且让使用API的用户也能快速的使用我们开发的API，这个就是我开发这个项目的初衷。
+
+可以通过注释自动化的生成文档，并且在线测试，详细的请看下面的截图
+
+![](../images/docs.png)
+
+而且可以通过文档进行API的测试：
+
+![](../images/doc_test.png)
+
+更多请参考文档：[自动化文档](http://beego.me/docs/advantage/docs.md)
+## config支持不同模式的配置
+在配置文件里面支持section，可以有不同的Runmode的配置，默认优先读取runmode下的配置信息，例如下面的配置文件：
+
+	appname = beepkg
+	httpaddr = "127.0.0.1"
+	httpport = 9090
+	runmode ="dev"
+	autorender = false
+	autorecover = false
+	viewspath = "myview"
+	
+	[dev]
+	httpport = 8080
+	[prod]
+	httpport = 8088
+	[test]
+	httpport = 8888
+	
+上面的配置文件就是在不同的runmode下解析不同的配置，例如在dev模式下，httpport是8080，在prod模式下是8088，在test模式下是8888.其他配置文件同理。解析的时候优先解析runmode下地配置，然后解析默认的配置。
+
+## 支持双向的SSL认证
+```
+config := tls.Config{
+    ClientAuth: tls.RequireAndVerifyClientCert,
+    Certificates: []tls.Certificate{cert},
+    ClientCAs: pool,
+}
+config.Rand = rand.Reader
+
+beego.BeeApp.Server.TLSConfig = &config
+```
+## beego.Run支持带参数
+
+beego.Run() 默认执行HttpPort
+
+beego.Run(":8089")
+
+beego.Run("127.0.0.1:8089")
+
+## XSRFKEY的token从15个字符增加到32各字符，增强安全性
+
+## 删除热更新
+
+## 模板函数增加Config，可以方便的在模板中获取配置信息
+
+	{{config returnType key defaultValue}}
+	
+	{{config "int" "httpport" 8080}}
+
+## httplib支持cookiejar功能，感谢curvesft		
+
+## orm时间格式，如果为空就设置为nil，感谢JessonChan
+
+## config模块支持json解析就一个array格式，感谢chrisport
+
+## bug fix
+- 静态文件目录循环跳转
+- fix typo
+
+
 # beego 1.2.0
 大家好,经过我们一个多月的努力,今天我们发布一个很帅的版本,之前性能测试框架出来beego已经跃居Go框架第一了,虽然这不是我们的目标,我们的目标是做最好用,最易用的框架.http://www.techempower.com/benchmarks/#section=data-r9&hw=i7&test=json 但是这个版本我们还是在性能和易用性上面做了很多改进.应该说性能更加的接近Go原生应用.
 
