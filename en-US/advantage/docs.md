@@ -172,6 +172,10 @@ To make it work following the steps:
 
 Your API document is available now. Open your browser and check it.
 
+![](../images/docs.png)
+
+![](../images/doc_test.png)
+
 ## Problems You May Have
 1. CORS
 	Two solutioins
