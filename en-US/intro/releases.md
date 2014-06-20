@@ -42,8 +42,27 @@ beego.NewNamespace("/v1",
 For more information please check [namespace](http://beego.me/docs/mvc/controller/router.md#namespace)
 
 ## Annotation Router
+```
+// CMS API
+type CMSController struct {
+    beego.Controller
+}
 
-[Annotation Router](http://beego.me/docs/mvc/controller/router.md#%E6%B3%A8%E8%A7%A3%E8%B7%AF%E7%94%B1)
+func (c *CMSController) URLMapping() {
+    c.Mapping("StaticBlock", c.StaticBlock)
+    c.Mapping("AllBlock", c.AllBlock)
+}
+
+// @router /staticblock/:key [get]
+func (this *CMSController) StaticBlock() {
+
+}
+
+// @router /all/:key [get]
+func (this *CMSController) AllBlock() {
+}
+```
+[Annotation Router](http://beego.me/docs/mvc/controller/router.md#annotations)
 
 ## Automated API Document
 Automated document is a very cool feature that I wish to have. Now it became real in Beego. As I said Beego will not only boost the development of API but also make the API easy to use for the user. 
