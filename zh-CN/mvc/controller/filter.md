@@ -33,7 +33,7 @@ var FilterUser = func(ctx *context.Context) {
     }
 }
 
-beego.InsertFilter("*",beego.BeforeRouter,FilterUser)
+beego.InsertFilter("/*",beego.BeforeRouter,FilterUser)
 ```
 
 >>>这里需要特别注意使用 session 的 Filter 必须在 AfterStatic 之后才能获取，因为 session 没有在这之前初始化。
@@ -67,5 +67,5 @@ var UrlManager = func(ctx *context.Context) {
 	}
 }
 
-beego.InsertFilter("*",beego.BeforeRouter,UrlManager)
+beego.InsertFilter("/*",beego.BeforeRouter,UrlManager)
 ```

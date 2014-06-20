@@ -37,7 +37,7 @@ var FilterUser = func(ctx *context.Context) {
     }
 }
 
-beego.InsertFilter("*", beego.BeforeRouter, FilterUser)
+beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)
 ```
 
 >>>One thing you need to care about is he Filter useing session must use after `BeforeRouter` because session is not initialized before it.
@@ -72,5 +72,5 @@ var UrlManager = func(ctx *context.Context) {
 	}
 }
 
-beego.InsertFilter("*", beego.BeforeRouter,UrlManager)
+beego.InsertFilter("/*", beego.BeforeRouter,UrlManager)
 ```
