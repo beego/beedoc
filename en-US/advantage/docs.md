@@ -164,7 +164,7 @@ We defined the comment above for `CMSController` which will show for this module
 ## Generate document automatically
 
 To make it work following the steps:
-1. Enable docs by setting `beego.EnableDocs = true` in `conf/app.conf`
+1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`
 2. Generate document files by `bee generate docs`
 3. Import `_ "beeapi/docs"` in `main.go`
 4. Use `bee run watchall true` to run your API application and rebuild document automatically. 
