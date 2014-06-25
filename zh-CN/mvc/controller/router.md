@@ -195,7 +195,7 @@ beego.Handler("/rpc", s)
 可以通过 `this.Ctx.Input.Param(":ext")` 获取后缀名。
 
 ## 注解路由
-从beego1.3版本开始支持了注解路由，用户无需在router中注册如有，只需要Include相应地controller就可以，详细的使用请看下面的例子：
+从beego1.3版本开始支持了注解路由，用户无需在router中注册路由，只需要Include相应地controller，然后在controller的method方法上面写上router注释（// @router）就可以了，详细的使用请看下面的例子：
 
 ```
 // CMS API
@@ -225,7 +225,7 @@ func (this *CMSController) AllBlock() {
 	beego.Include(&CMSController{})
 
 
-beego自动会进行源码分析，注意只会在dev模式下进行生成。
+beego自动会进行源码分析，注意只会在dev模式下进行生成，生成的路由放在“/routers/commentsRouter.go”文件中。
 
 这样上面的路由就支持了如下的路由：
 
