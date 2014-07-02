@@ -370,3 +370,46 @@ namespace的接口如下:
 	上面这些都是设置路由的函数,详细的使用和上面beego的对应函数是一样的
 
 - Namespace(ns ...*Namespace)
+
+更多的例子代码：
+
+```
+//APIS
+ns :=
+	beego.NewNamespace("/api",
+		//此处正式版时改为验证加密请求
+		beego.NSCond(func(ctx *context.Context) bool {
+			if ua := ctx.Input.Request.UserAgent(); ua != "" {
+				return true
+			}
+			return false
+		}),
+		beego.NSNamespace("/ios",
+			//CRUD Create(创建)、Read(读取)、Update(更新)和Delete(删除)
+			beego.NSNamespace("/create",
+				// /api/ios/create/node/
+				beego.NSRouter("/node", &apis.CreateNodeHandler{}),
+				// /api/ios/create/topic/
+				beego.NSRouter("/topic", &apis.CreateTopicHandler{}),
+			),
+			beego.NSNamespace("/read",
+				beego.NSRouter("/node", &apis.ReadNodeHandler{}),
+				beego.NSRouter("/topic", &apis.ReadTopicHandler{}),
+			),
+			beego.NSNamespace("/update",
+				beego.NSRouter("/node", &apis.UpdateNodeHandler{}),
+				beego.NSRouter("/topic", &apis.UpdateTopicHandler{}),
+			),
+			beego.NSNamespace("/delete",
+				beego.NSRouter("/node", &apis.DeleteNodeHandler{}),
+				beego.NSRouter("/topic", &apis.DeleteTopicHandler{}),
+			),
+			beego.NSNamespace("/delete",
+				beego.NSRouter("/node", &apis.DeleteNodeHandler{}),
+				beego.NSRouter("/topic", &apis.DeleteTopicHandler{}),
+			),
+		),
+	)
+
+beego.AddNamespace(ns)
+```
