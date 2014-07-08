@@ -740,7 +740,7 @@ if m2m.Exist(&Tag{Id: 2}) {
 
 ### QueryM2Mer Clear
 
-清楚所有 M2M 关系
+清除所有 M2M 关系
 
 ```go
 nums, err := m2m.Clear()
