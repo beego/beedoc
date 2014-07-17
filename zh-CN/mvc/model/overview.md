@@ -136,7 +136,7 @@ num, err := qs.Filter("User__Name", "slene").All(&posts)
 当您无法使用 ORM 来达到您的需求时，也可以直接使用 SQL 来完成查询／映射操作。
 
 ```go
-var maps []Params
+var maps []orm.Params
 num, err := o.Raw("SELECT id FROM user WHERE name = ?", "slene").Values(&maps)
 if num > 0 {
 	fmt.Println(maps[0]["id"])
