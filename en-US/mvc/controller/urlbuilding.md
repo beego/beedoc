@@ -60,7 +60,7 @@ UrlFor("TestController.GetUrl")
 ```
 
 ## How to use in template
-beego already rigister template function `urlfor`, you can use it like this:
+beego already register template function `urlfor`, you can use it like this:
 
 	{{urlfor "TestController.List"}}
 	
