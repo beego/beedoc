@@ -145,7 +145,7 @@ qs.Filter("name__endswith", "slene")
 ### iendswith
 
 ```go
-qs.Filter("name__endswith", "slene")
+qs.Filter("name__iendswith", "slene")
 // WHERE name LIKE '%slene'
 // Case insensitive, will match any name that ends with 'slene'
 ```

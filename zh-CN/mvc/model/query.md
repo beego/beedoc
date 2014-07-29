@@ -150,7 +150,7 @@ qs.Filter("name__endswith", "slene")
 ### iendswith
 
 ```go
-qs.Filter("name__startswith", "slene")
+qs.Filter("name__iendswithi", "slene")
 // WHERE name LIKE '%slene'
 // 大小写不敏感, 匹配任意以 'slene', 'Slene' 结束的字符串
 ```
