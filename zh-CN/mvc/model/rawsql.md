@@ -156,7 +156,7 @@ SQL 查询结果是这样
 res := make(orm.Params)
 nums, err := o.Raw("SELECT name, value FROM options_table").RowsToMap(&res, "name", "value")
 // res is a map[string]interface{}{
-//	"name": 100,
+//	"total": 100,
 //	"found": 200,
 // }
 ```
