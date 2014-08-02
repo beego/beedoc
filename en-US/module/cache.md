@@ -27,7 +27,7 @@ First step is importing the package:
 
 Then initialize a global variable object:
 
-	bm, err := NewCache("memory", `{"interval":60}`)
+	bm, err := cache.NewCache("memory", `{"interval":60}`)
 
 Then we can use `bm` to modify cache:
 
