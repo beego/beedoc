@@ -367,7 +367,7 @@ All the fields are **NOT NULL** by default.
 | string - default size 255 | varchar(size)
 | string - set type(text) | longtext
 | time.Time - set type as date | date
-| time.TIme | datetime
+| time.Time | datetime
 | byte | tinyint unsigned
 | rune | integer
 | int | integer
@@ -393,7 +393,7 @@ All the fields are **NOT NULL** by default.
 | string - default size 255 | varchar(size)
 | string - set type(text) | text
 | time.Time - set type as date | date
-| time.TIme | datetime
+| time.Time | datetime
 | byte | tinyint unsigned
 | rune | integer
 | int | integer
@@ -419,7 +419,7 @@ All the fields are **NOT NULL** by default.
 | string - default size 255 | varchar(size)
 | string - set type(text) | text
 | time.Time - set type as date | date
-| time.TIme | timestamp with time zone
+| time.Time | timestamp with time zone
 | byte | smallint CHECK("column" >= 0 AND "column" <= 255)
 | rune | integer
 | int | integer

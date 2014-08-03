@@ -366,7 +366,7 @@ type Post struct {
 | string - 默认为 size 255 | varchar(size)
 | string - 设置 type(text) 时 | longtext
 | time.Time - 设置 type 为 date 时 | date
-| time.TIme | datetime
+| time.Time | datetime
 | byte | tinyint unsigned
 | rune | integer
 | int | integer
@@ -392,7 +392,7 @@ type Post struct {
 | string - 默认为 size 255 | varchar(size)
 | string - 设置 type(text) 时 | text
 | time.Time - 设置 type 为 date 时 | date
-| time.TIme | datetime
+| time.Time | datetime
 | byte | tinyint unsigned
 | rune | integer
 | int | integer
@@ -418,7 +418,7 @@ type Post struct {
 | string - 默认为 size 255 | varchar(size)
 | string - 设置 type(text) 时 | text
 | time.Time - 设置 type 为 date 时 | date
-| time.TIme | timestamp with time zone
+| time.Time | timestamp with time zone
 | byte | smallint CHECK("column" >= 0 AND "column" <= 255)
 | rune | integer
 | int | integer
