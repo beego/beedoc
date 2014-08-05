@@ -94,7 +94,7 @@ func (u *user) Valid(v *validation.Validation) {
 func main() {
     valid := validation.Validation{}
     u := user{Name: "Beego", Age: 2, Email: "dev@beego.me"}
-    b, err := valid.Valid(u)
+    b, err := valid.Valid(&u)
     if err != nil {
         // handle error
     }
