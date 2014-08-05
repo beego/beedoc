@@ -8,3 +8,4 @@ sort: 7
 
 - [gorelic](https://github.com/yvasiyarov/beego_gorelic) 
 - [支付宝SDK](https://github.com/ascoders/alipay) 
+- [pongo2](https://github.com/oal/beego-pongo2) 
