@@ -186,39 +186,41 @@ Here is the output:
 	| /api/user/astaxie                                 | POST       |  1               | 12.00us          | 12.00us          | 12.00us          | 12.00us          |
 	| /api/user/xiemengjun                              | POST       |  1               | 13.00us          | 13.00us          | 13.00us          | 13.00us          |	
 
-## task
+## Task
 
-The linux users probably know the cron job and crontab. We usually use it to run some task at regular time. But sometimes in our application we also want to do some task by timing. E.g.: reporting memory and goroutine status or triggering GC or cleaning up log files by timing. So we implemented task.
+Task works very similarly to a cron job.  Task is used to run a job outside the normal request/response cycle.  These can be adhoc or scheduled to run regularly. E.g.: reporting memory and goroutine status or triggering GC or cleaning up log files by timing.
 
-1. Initialize a task
+To initialize a task implement [https://godoc.org/github.com/astaxie/beego/toolbox#NewTask](toolbox.NewTask):
 
-		tk1 := toolbox.NewTask("tk1", "0 12 * * * *", func() error { fmt.Println("tk1"); return nil })
-	
-  Function prototype
-	
+	tk1 := toolbox.NewTask("tk1", "0 12 * * * *", func() error {
+		fmt.Println("tk1")
+		return nil
+	})
+
+
+The NewTask signature:
+
 	NewTask(tname string, spec string, f TaskFunc) *Task	
 	- tname: task name
 	- spec: task format. See details below.
 	- f: the function will be run as the task
 	
-2. Testing the TaskFunc
+To implement this task, add it to the global task list and start it.
 
-  Use the code blow to test if the TaskFunc is working correct
+	toolbox.AddTask("tk1", tk1)
+	toolbox.StartTask()
+	defer toolbox.StopTask()
 
-		err := tk.Run()
-		if err != nil {
-			t.Fatal(err)
-		}
+Testing the TaskFunc
+
+Use the code below to test if the TaskFunc is working correctly.
+
+	err := tk.Run()
+	if err != nil {
+		t.Fatal(err)
+	}
 	
-3. Add the task into global task list
-	
-		toolbox.AddTask("tk1", tk1)
 
-4. Run the global tasks
-
-		toolbox.StartTask()
-		defer toolbox.StopTask()
-		
 ### spec in detail
 
 The format of spec is referenced to crontab. 
