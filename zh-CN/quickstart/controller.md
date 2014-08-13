@@ -37,4 +37,12 @@ func (this *MainController) Get() {
 
 用户设置了模板之后系统会自动的调用 `Render` 函数（这个函数是在 beego.Controller 中实现的），所以无需用户自己来调用渲染。
 
+当然也可以不使用模版，直接用 `this.Ctx.WriteString` 输出字符串，如：
+
+```
+func (this *MainController) Get() {
+        this.Ctx.WriteString("hello")
+}
+```
+
 至此我们的控制器分析基本完成了，接下来让我们看看如何来编写 model。
