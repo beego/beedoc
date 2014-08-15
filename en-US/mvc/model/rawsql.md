@@ -30,6 +30,8 @@ r = o.Raw("UPDATE user SET name = ? WHERE name = ?", "testing", "slene")
 	* [Values(*[]Params, ...string) (int64, error)](#values)
 	* [ValuesList(*[]ParamsList, ...string) (int64, error)](#valueslist)
 	* [ValuesFlat(*ParamsList, string) (int64, error)](#valuesflat)
+	* [RowsToMap(*Params, string, string) (int64, error)](#rowstomap)
+	* [RowsToStruct(interface{}, string, string) (int64, error)](#rowstostruct)
 	* [Prepare() (RawPreparer, error)](#prepare)
 * }
 
@@ -175,7 +177,7 @@ type Options struct {
 }
 
 res := new(Options)
-nums, err := o.Raw("SELECT name, value FROM options_table").RowsToMap(res, "name", "value")
+nums, err := o.Raw("SELECT name, value FROM options_table").RowsToStruct(res, "name", "value")
 fmt.Println(res.Total) // 100
 fmt.Println(res.Found) // 200
 ```
