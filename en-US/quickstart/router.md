@@ -10,12 +10,11 @@ So, we've created a beego project and ran it in previous section. But how does i
 	package main
 	
 	import (
-	        "quickstart/controllers"
+	        _ "quickstart/routers"
 	        "github.com/astaxie/beego"
 	)
 	
 	func main() {
-	        beego.Router("/", &controllers.MainController{})
 	        beego.Run()
 	}
 	
