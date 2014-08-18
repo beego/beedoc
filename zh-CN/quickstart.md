@@ -6,9 +6,10 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 
 您需要安装 Go 1.1 以确保所有功能的正常使用。
 
-beego 是可以通过 “go get” 安装的 Go 项目：`go get github.com/astaxie/beego`
-
-您或许希望安装 [Bee](/docs/install/bee.md) 工具以协助您开发：`go get github.com/beego/bee`
+你需要安装 Beego 而 [Bee](http://beego.me/docs/install/bee.md) 的开发工具:
+	
+	$ go get github.com/astaxie/beego
+	$ go get github.com/beego/bee
 
 为了更加方便的操作，请将 `$GOPATH/bin` 加入到你的 $PATH 变量中。
 
