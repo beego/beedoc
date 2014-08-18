@@ -9,7 +9,7 @@ You will need a functioning Go 1.1 installation for this to work.
 You will need to install Beego and the [Bee](http://beego.me/docs/install/bee.md) dev tool: 
 	
 	$ go get github.com/astaxie/beego
-	$ go get github.com/beego/bee		
+	$ go get github.com/beego/bee
 
 
 For convenience, you should add `$GOPATH/bin` to your` $PATH` environment variable.
