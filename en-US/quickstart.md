@@ -6,7 +6,7 @@ Beego contains sample applications to help you learn and use the beego app frame
 
 You will need a functioning Go 1.1 installation for this to work.
 
-You will need to install Beego and the [Bee](/docs/install/bee.md) dev tool: 
+You will need to install Beego and the [Bee](http://beego.me/docs/install/bee.md) dev tool: 
 	
 	$ go get github.com/astaxie/beego
 	$ go get github.com/beego/bee		
