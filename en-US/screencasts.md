@@ -35,3 +35,10 @@ https://github.com/beego/tutorial
     
     slide: [Configuration Parameters](http://go-talks.appspot.com/github.com/beego/tutorial/en/3/params.slide)
 
+6. Beego Framework Tutorials - 4 - Create a Web API Application in One
+   Minute in Beego
+
+    <iframe width="640" height="360" src="//www.youtube.com/embed/w7RziV_Sn-g" frameborder="0" allowfullscreen></iframe>
+    
+    blog: [Building Web API with Auto Generated API Document Support](http://beego.me/blog/beego_api)
+
