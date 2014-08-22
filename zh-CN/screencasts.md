@@ -28,4 +28,10 @@ https://github.com/beego/tutorial/blob/master/README_zh.md
 	slide地址: [参数设置](http://go-talks.appspot.com/github.com/beego/tutorial/zh/3/params.slide#1)
 	* 土豆：http://www.tudou.com/programs/view/U1MiDKq4JdQ/
 	* 51CTO: http://edu.51cto.com/lesson/id-24586.html
-	* 网盘：http://pan.baidu.com/s/1i32zA41		
+	* 网盘：http://pan.baidu.com/s/1i32zA41
+	
+4. beego 一分钟创建API
+
+	<iframe src="http://www.tudou.com/programs/view/html5embed.action?type=0&code=aM7iKLlBlrU&lcode=&resourceId=375194595_06_05_99" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:480px;height:400px;"></iframe>	
+	
+	* 网盘下载链接: http://pan.baidu.com/s/1sj0jI6T 密码: x46e		
