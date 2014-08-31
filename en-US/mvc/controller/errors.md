@@ -5,7 +5,7 @@ sort: 10
 
 # Error Handling
 
-In web development, we always need to redirect page and error handling. Beego use `Redirect` to it:
+In web development, we need to be able to redirect pages and handle errors. Beego uses `Redirect` for it:
 
 ```go
 func (this *AddController) Get() {
@@ -13,7 +13,7 @@ func (this *AddController) Get() {
 }
 ```
 
-If you want to stop this request and throw a exception, you can do this in beego's controller:
+If you want to stop this request and throw exception, you can do this in beego's controller:
 
 ```go
 func (this *MainController) Get() {
@@ -30,11 +30,11 @@ func (this *MainController) Get() {
 }
 ```
 
-The `this.Abort("401")` won't execute any more and it will show use this page:
+The `this.Abort("401")` won't execute any more and it will show this page:
 
 ![](../../images/401.png)
 
-Beego supports 404, 401, 403, 500, 503 error handling by default. You can also define customer error handling page. For example redefined 404 page:
+Beego supports 404, 401, 403, 500, 503 error handling by default. You can also define custom error handling page. For example redefined 404 page:
 
 ```go
 func page_not_found(rw http.ResponseWriter, r *http.Request){
@@ -53,7 +53,7 @@ func main() {
 
 We can define our own `404.html` to handle 404 error.
 
-Another cool feature of Go is it supports customized string error handling function, Such as the code below, it registered a database error page:
+Another cool feature of Go its support of customized string error handling function, Such as the code below which registers a database error page:
 
 ```go
 func dbError(rw http.ResponseWriter, r *http.Request){
@@ -70,4 +70,4 @@ func main() {
 }
 ```
 
-After register this error handling code. you can call `this.Abort("dbError")` in every place in your code to handle the database error.
+After registering this error handling code. you can call `this.Abort("dbError")` in every place in your code to handle the database error.
