@@ -83,7 +83,7 @@ type user struct {
 }
 
 // If your struct implemented interface `validation.ValidFormer`
-// When all tests in StructTag succeed, it will execute Valid function for customer validation
+// When all tests in StructTag succeed, it will execute Valid function for custom validation
 func (u *user) Valid(v *validation.Validation) {
     if strings.Index(u.Name, "admin") != -1 {
         // Set error messages of Name by SetError and HasErrors will return true
@@ -110,24 +110,24 @@ func main() {
 Available validation functions in StrucTag:
 
 * `Required` not empty. :TODO 不为空，即各个类型要求不为其零值
-* `Min(min int)` minium value. Valid type is `int`, all the other type aren invalid.
-* `Max(max int)` maxinium value. Valid type is `int`, all the other type aren invalid.
-* `Range(min, max int)` Value range. Valid type is `int`, all the other type are invalid.
-* `MinSize(min int)` minium length. Valid type is `string slice`, all the other type are invalid.
-* `MaxSize(max int)` maxnium length. Valid type is `string slice`, all the other type are invalid.
-* `Length(length int)` fixed length. Valid type is `string slice`, all the other type are invalid.
-* `Alpha` alpha characters. Valid type is `string`, all the other type are invalid.
-* `Numeric` numerics. Valid type is `string`, all the other type are invalid.
-* `AlphaNumeric` alpha characters or numerics. Valid type is `string`, all the other type are invalid.
-* `Match(pattern string)` regex matching. Valid type is `string`, all the other type will be cast to string then match. (fmt.Sprintf("%v", obj).Match)
-* `AlphaDash` alpha characters or numerics or `-_`. Valid type is `string`, all the other type are invalid.
-* `Email` Emial address. Valid type is `string`, all the other type are invalid.
-* `IP`  IP address，Only support IPv4 address. Valid type is `string`, all the other type are invalid.
-* `Base64` base64 encoding. Valid type is `string`, all the other type are invalid.
-* `Mobile` mobile number. Valid type is `string`, all the other type are invalid.
-* `Tel` telephone number. Valid type is `string`, all the other type are invalid.
-* `Phone` mobile number or telephone number. Valid type is `string`, all the other type are invalid.
-* `ZipCode` zip code. Valid type is `string`, all the other type are invalid.
+* `Min(min int)` minium value. Valid type is `int`, all other types are invalid.
+* `Max(max int)` maxinium value. Valid type is `int`, all other types are invalid.
+* `Range(min, max int)` Value range. Valid type is `int`, all other types are invalid.
+* `MinSize(min int)` minium length. Valid type is `string slice`, all other types are invalid.
+* `MaxSize(max int)` maxnium length. Valid type is `string slice`, all other types are invalid.
+* `Length(length int)` fixed length. Valid type is `string slice`, all other types are invalid.
+* `Alpha` alpha characters. Valid type is `string`, all other types are invalid.
+* `Numeric` numerics. Valid type is `string`, all other types are invalid.
+* `AlphaNumeric` alpha characters or numerics. Valid type is `string`, all other types are invalid.
+* `Match(pattern string)` regex matching. Valid type is `string`, all other types will be cast to string then match. (fmt.Sprintf("%v", obj).Match)
+* `AlphaDash` alpha characters or numerics or `-_`. Valid type is `string`, all other types are invalid.
+* `Email` Emial address. Valid type is `string`, all other types are invalid.
+* `IP`  IP address，Only support IPv4 address. Valid type is `string`, all other types are invalid.
+* `Base64` base64 encoding. Valid type is `string`, all other types are invalid.
+* `Mobile` mobile number. Valid type is `string`, all other types are invalid.
+* `Tel` telephone number. Valid type is `string`, all other types are invalid.
+* `Phone` mobile number or telephone number. Valid type is `string`, all other types are invalid.
+* `ZipCode` zip code. Valid type is `string`, all other types are invalid.
 
 ### API doc
 
