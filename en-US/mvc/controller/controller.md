@@ -23,41 +23,41 @@ Based on the design of beego's controller, you just need to embed the `beego.Con
 
 - Get()
 
-  This method will be executed if the HTTP request method is GET, return 403 by default. You can implement this method to handle GET request by overwrite it in the struct of sub class.
+  This method will be executed if the HTTP request method is GET, return 403 by default. You can implement this method to handle GET request by overwriting it in the struct of sub class.
 
 - Post()
 
-  This method will be executed if the HTTP request method is POST, return 403 by default. You can implement this method to handle POST request by overwrite it in the struct of sub class.
+  This method will be executed if the HTTP request method is POST, return 403 by default. You can implement this method to handle POST request by overwriting it in the struct of sub class.
 
 - Delete()
 
-  This method will be executed if the HTTP request method is DELETE, return 403 by default. You can implement this method to handle DELETE request by overwrite it in the struct of sub class.
+  This method will be executed if the HTTP request method is DELETE, return 403 by default. You can implement this method to handle DELETE request by overwriting it in the struct of sub class.
 
 - Put()
 
-  This method will be executed if the HTTP request method is PUT, return 403 by default. You can implement this method to handle PUT request by overwrite it in the struct of sub class.
+  This method will be executed if the HTTP request method is PUT, return 403 by default. You can implement this method to handle PUT request by overwriting it in the struct of sub class.
 
 - Head()
 
-  This method will be executed if the HTTP request method is HEAD, return 403 by default. You can implement this method to handle HEAD request by overwrite it in the struct of sub class.
+  This method will be executed if the HTTP request method is HEAD, return 403 by default. You can implement this method to handle HEAD request by overwriting it in the struct of sub class.
 
 - Patch()
 
-  This method will be executed if the HTTP request method is PATCH, return 403 by default. You can implement this method to handle PATCH request by overwrite it in the struct of sub class.
+  This method will be executed if the HTTP request method is PATCH, return 403 by default. You can implement this method to handle PATCH request by overwriting it in the struct of sub class.
 
 - Options()
 
-  This method will be executed if the HTTP request method is OPTIONS, return 403 by default. You can implement this method to handle OPTIONS request by overwrite it in the struct of sub class.
+  This method will be executed if the HTTP request method is OPTIONS, return 403 by default. You can implement this method to handle OPTIONS request by overwriting it in the struct of sub class.
 
 - Finish()
 
-  This method will be executed after finishing related HTTP method, it's empty by default. You can implement this method by verwrite it in the struct of sub class. Used for database closing, data cleaning as so on.
+  This method will be executed after finishing related HTTP method, it's empty by default. You can implement this method by overwriting it in the struct of sub class. Used for database closing, data cleaning and so on.
 
 - Render() error
   
   This method is used to render template. Only executed if `beego.AutoRender` is true.
 
-By overwrite functions in struct, you can implement your own logic. For example:
+By overwriting functions in struct, you can implement your own logic. For example:
 
 ```
 type AddController struct {
@@ -94,9 +94,9 @@ func (this *AddController) Post() {
 }
 ```
 
-In the exapmle above, it implemented RESTful structure by overwriting functions.
+In the example above, it implemented RESTful structure by overwriting functions.
 
-Now let's see a popular architecture: Implementing a baseController and some initialzing methods then other controlers just inherit from it.
+Now let's see a popular architecture: Implementing a baseController and some initializing methods then other controllers just inherit from it.
 
 ```
 type NestPreparer interface {
@@ -132,7 +132,7 @@ func (this *baseRouter) Prepare() {
 }
 ```
 
-In the example above, it defined base class and initialized some variables. It will test if the executing Controller is a implementing of NestPrepareer, if it is call the method of sub class. Let's see the implementation of `NestPreparer`:
+In the example above, it defined base class and initialized some variables. It will test if the executing Controller is a implementing of NestPreparer, if it is call the method of sub class. Let's see the implementation of `NestPreparer`:
 
 ```
 type BaseAdminRouter struct {

@@ -5,7 +5,7 @@ sort: 2
 
 # Supervisord
 
-Supervisord is a very useful process manager implemented in Python.  Supervisord can change your non-daemon applicaion to daemon application. The application need to be non-daemon app. So if you want to use Supervisord to manage nginx, you need to set daemon off to run nginx in non-daemon mode.
+Supervisord is a very useful process manager implemented in Python.  Supervisord can change your non-daemon application to daemon application. The application need to be non-daemon app. So if you want to use Supervisord to manage nginx, you need to set daemon off to run nginx in non-daemon mode.
 
 
 ## Install Supervisord
@@ -57,4 +57,4 @@ Supervisored provides two commands, supervisord and supervisorctl:
 * supervisorctl update: Reload all the processes whoes config changed.
 
 
->>>Notes: The processes stoped by `stop` manually won't restart after reload or update.
+>>>Notes: The processes stopped by `stop` manually won't restart after reload or update.

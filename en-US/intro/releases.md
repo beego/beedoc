@@ -368,7 +368,7 @@ New features
 3. Response supporting HiJacker interface
 4. AddFilter supports batch matching
 5. Refactored session module, supporting Cookie engine
-6. Perfermance benchmark for ORM
+6. Performance benchmark for ORM
 7. Added strings interface for config which allows configuration
 8. Supporting template render control in controller level
 9. Added basicauth plugin which can implement authentication easily

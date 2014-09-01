@@ -25,7 +25,7 @@ qs = o.QueryTable(user) // return a QuerySeter
 
 expr describes fields and SQL operators in `QuerySeter`.
 
-Field combination orders are decided by the relationship of tables. For example, `User` has a foreign key to `Profile`, so if you want to use `Profile.Age` as the condition, you have to use the expression `Profile__Age`. Note that the saperator is double under scores `__`. `Expr` can also append operators at the end to execute related SQL. For example, `Profile__Age__gt` represents condition query `Profile.Age > 18`.
+Field combination orders are decided by the relationship of tables. For example, `User` has a foreign key to `Profile`, so if you want to use `Profile.Age` as the condition, you have to use the expression `Profile__Age`. Note that the separator is double under scores `__`. `Expr` can also append operators at the end to execute related SQL. For example, `Profile__Age__gt` represents condition query `Profile.Age > 18`.
 
 Comments below describe SQL statements that are similar to the expr, not the exactly generated results.
 

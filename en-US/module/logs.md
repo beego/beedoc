@@ -21,7 +21,7 @@ Initialize log variable (10000 is cache size):
 
 	log := NewLogger(10000)
 
-Then add output provider (it supports outputing to multiple providers at the same time). E.g.: first param is provider name (console, file, conn or smtp); second param is config. For details see below.
+Then add output provider (it supports outputting to multiple providers at the same time). E.g.: first param is provider name (console, file, conn or smtp); second param is config. For details see below.
 
 	log.SetLogger("console", "")
 
@@ -40,7 +40,7 @@ Log output not call file by default, if you're expecting output calls file name 
 
 	log.EnableFuncCallDepth(true)
 	
-true for turn on and false for trun off. default is false.	
+true for turn on and false for turn off. default is false.
 
 If your application encapsulates the call log packages, so you need to set up SetLogFuncCallDepth, the default is 2, namely direct call hierarchy, if you encapsulate the multilayer, so need to adjust according to their own needs.
 
@@ -79,7 +79,7 @@ If your application encapsulates the call log packages, so you need to set up Se
 		
   Params:
 
-	- reconnectOnMsg If reopen connection everytime or not, false by default.
+	- reconnectOnMsg If reopen connection every time or not, false by default.
 	- reconnect If auto connect or not, false by default
 	- net connection type: tcp, unix or udp
 	- addr net connection address

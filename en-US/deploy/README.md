@@ -25,7 +25,7 @@ In development mode:
 
 		2013/04/13 19:36:17 [W] [stat views: no such file or directory]
 
-- Templates will load everytime without cache.
+- Templates will load every time without cache.
 
 - If error in the server, the browser will show this kind of view:
 
@@ -33,7 +33,7 @@ In development mode:
 
 ### Releasing and Deploying
 
-The Go application is a bytecodes file after compiling. You just need to copy this file to the server and run it. Beego includ static files, configuration files and templates, so these three folders also need to be copied to server while deploying.
+The Go application is a bytecodes file after compiling. You just need to copy this file to the server and run it. Beego includes static files, configuration files and templates, so these three folders also need to be copied to server while deploying.
 
 	$ mkdir /opt/app/beepkg
 	$ cp beepkg /opt/app/beepkg

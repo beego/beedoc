@@ -5,7 +5,7 @@ sort: 1
 
 # Chat Room
 
-This sample demonstrates two ways to implment Web IM app:
+This sample demonstrates two ways to implement Web IM app:
 
 Using long polling.
 Using WebSocket.

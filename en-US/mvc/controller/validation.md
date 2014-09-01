@@ -110,18 +110,18 @@ func main() {
 Available validation functions in StrucTag:
 
 * `Required` not empty. :TODO 不为空，即各个类型要求不为其零值
-* `Min(min int)` minium value. Valid type is `int`, all other types are invalid.
-* `Max(max int)` maxinium value. Valid type is `int`, all other types are invalid.
+* `Min(min int)` minimum value. Valid type is `int`, all other types are invalid.
+* `Max(max int)` maximum value. Valid type is `int`, all other types are invalid.
 * `Range(min, max int)` Value range. Valid type is `int`, all other types are invalid.
-* `MinSize(min int)` minium length. Valid type is `string slice`, all other types are invalid.
-* `MaxSize(max int)` maxnium length. Valid type is `string slice`, all other types are invalid.
+* `MinSize(min int)` minimum length. Valid type is `string slice`, all other types are invalid.
+* `MaxSize(max int)` maximum length. Valid type is `string slice`, all other types are invalid.
 * `Length(length int)` fixed length. Valid type is `string slice`, all other types are invalid.
 * `Alpha` alpha characters. Valid type is `string`, all other types are invalid.
 * `Numeric` numerics. Valid type is `string`, all other types are invalid.
 * `AlphaNumeric` alpha characters or numerics. Valid type is `string`, all other types are invalid.
 * `Match(pattern string)` regex matching. Valid type is `string`, all other types will be cast to string then match. (fmt.Sprintf("%v", obj).Match)
 * `AlphaDash` alpha characters or numerics or `-_`. Valid type is `string`, all other types are invalid.
-* `Email` Emial address. Valid type is `string`, all other types are invalid.
+* `Email` Email address. Valid type is `string`, all other types are invalid.
 * `IP`  IP address，Only support IPv4 address. Valid type is `string`, all other types are invalid.
 * `Base64` base64 encoding. Valid type is `string`, all other types are invalid.
 * `Mobile` mobile number. Valid type is `string`, all other types are invalid.

@@ -38,6 +38,6 @@ The master branch is relatively stable one where dev branch is for developers. H
 ![](../images/git-branch-1.png)
 
 
-# How can I be a contributer of beego
+# How can I be a contributor of beego
 
 Beego's source code is hosted on GitHub. You can fork, modify and then send a Pull Request to us. We will review your code and give you feedback of your changes as soon as possible.  

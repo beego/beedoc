@@ -35,7 +35,7 @@ func (this *TestController) GetUrl() {
 }
 ```
 
-Here show how to rigister router:
+Here show how to register router:
 
 ```
 beego.Router("/api/list", &TestController{}, "*:List")

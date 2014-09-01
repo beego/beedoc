@@ -190,7 +190,7 @@ RegisterModel can register multiple model at the same time:
 orm.RegisterModel(new(User), new(Profile), new(Post))
 ```
 
-For detailed struct definination, see [Model define](models.md)
+For detailed struct definition, see [Model define](models.md)
 
 #### RegisterModelWithPrefix
 

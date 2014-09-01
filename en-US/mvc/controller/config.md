@@ -21,9 +21,9 @@ You can initialize many beego default variables in this file:
 	autorecover = false
 	viewspath = "myview"
 
-Thess configurations will replace beego's default value.
+These configurations will replace beego's default value.
 
-You can also configure many values which your application needed, such as database connection:
+You can also configure many values which your application needs, such as database connection:
 
 	mysqluser = "root"
 	mysqlpass = "rootpass"
@@ -68,7 +68,7 @@ The configurations above set up httpport for dev, prod and test environment. Bee
 
 ### Beego default variables
 
-Beego has many configurable variables. Let's have a look of this variables. It will help us to know how to use them in development. (You can configure and overwrite them in `conf/app.conf`. Case insensitive.):
+Beego has many configurable variables. Let's have a look at these variables. It will help us to know how to use them in development. (You can configure and overwrite them in `conf/app.conf`. Case insensitive.):
 
 * AppName
   
@@ -144,7 +144,7 @@ Beego has many configurable variables. Let's have a look of this variables. It w
 
 * SessionGCMaxLifetime
 
-  Valide time of session, 3600s by default.
+  Session expire time, 3600s by default.
 
 * SessionSavePath
 
@@ -160,7 +160,7 @@ Beego has many configurable variables. Let's have a look of this variables. It w
 	
 * SessionCookieLifeTime
 
-  The valid time of cookie in browser for seesion, 3600s by default.
+  The valid time of cookie in browser for session, 3600s by default.
 
 * UseFcgi
 
@@ -240,4 +240,4 @@ Beego has many configurable variables. Let's have a look of this variables. It w
   
 * AppConfigProvider
 
-  File format of AppConfg, default is `ini`. Couble be `xml`, `yaml`, `json` as well.
+  File format of AppConfig, default is `ini`. Could be `xml`, `yaml`, `json` as well.

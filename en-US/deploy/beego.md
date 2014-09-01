@@ -5,7 +5,7 @@ sort: 1
 
 # Stand alone Deploy
 
-This will run application at backend as a deamon.
+This will run application at backend as a daemon.
 
 ## linux
 

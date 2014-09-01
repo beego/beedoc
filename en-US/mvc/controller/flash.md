@@ -51,7 +51,7 @@ func (c *MainController) Post() {
 The logic of code above:
 
 1. Executing GET method. There's no flash data, so display settings page.
-2. After submittion execute POST and initialize a flash. If checking failed set error flash message. If pass, save settings and set success flash message.
+2. After submission execute POST and initialize a flash. If checking failed set error flash message. If pass, save settings and set success flash message.
 3. After setting redirect to GET request.
 4. GET request receive flash message and execute the related logic. Show error page or success page based on the type of message.
 

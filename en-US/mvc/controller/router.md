@@ -45,7 +45,7 @@ beego.Any("/foo",func(ctx *context.Context){
 * beego.Any(router, beego.FilterFunc)
 
 ### Handler register
-sometime we already use the `net/http` or other packages implemented our system. but we want to intergreted into beego API or web system. Now it's super easy to do that like this:
+sometimes we already use the `net/http` or other packages implemented our system. but we want to integrate it into beego API or web system. Now it's super easy to do that like this:
 
 ```
 s := rpc.NewServer()
@@ -54,13 +54,13 @@ s.RegisterService(new(HelloService), "")
 beego.Handler("/rpc", s)
 ```
 
-`beego.Handler(router, http.Handler)`,the first param represent URI,the second param represent `http.Handler`,when you register this, then all the request `/rpc` will call `http.Handler`.
+`beego.Handler(router, http.Handler)`,the first param represent URI, the second param represent `http.Handler`,when you register this, then all the request `/rpc` will call `http.Handler`.
 
-in fact there's third param `isPrefix` ,the default value is `false`, if you set to `true`,then all the match will prefix matching, So the url `/rpc/user` will also call the register.
+in fact there's third param `isPrefix`, the default value is `false`, if you set to `true`,then all the match will prefix matching, So the url `/rpc/user` will also call the register.
 
 ## RESTful router
 
-Let's talk about RESTful first. RESTful is a popular way in API development. Beego supports it implict. Executing Get method for GET request and Post method for POST request. The defaut router is RESTful.
+Let's talk about RESTful first. RESTful is a popular way in API development. Beego supports it implicit. Executing Get method for GET request and Post method for POST request. The default router is RESTful.
 
 ## Fixed router
 
@@ -103,11 +103,11 @@ In order to make the router settings easier, beego reference the router implemen
 
 - beego.Router("/:id:int", &controllers.RController{})
 
-  int type matching //matching :id is int type. Beego implemented ([0-9]+) for you
+  int type matching //matching :id is int type. Beego implements ([0-9]+) for you
 
 - beego.Router("/:hello:string", &controllers.RController{})
 
-  string type matching //matching :hello is string type. Beego implemented ([\w]+) for you
+  string type matching //matching :hello is string type. Beego implements ([\w]+) for you
 
 - beego.Router("/cms_:id([0-9]+).html", &controllers.CmsController{})
 
@@ -123,7 +123,7 @@ In controller, you can get the variables like this:
 
 ## Custom methods and RESTful rules
 
-The examples above are using default method name (the request methods name is same as the controller method name, such as `GET` request execute `Get` method and `POST` request execute `Post` method). If you want to use different controller method name, you can do this:
+The examples above are using default method name (the request method name is same as the controller method name, such as `GET` request execute `Get` method and `POST` request execute `Post` method). If you want to use different controller method name, you can do this:
 
 	beego.Router("/",&IndexController{},"*:Index")
 
@@ -174,7 +174,7 @@ Firstly you need to register controller into auto router.
 
 	beego.AutoRouter(&controllers.ObjectController{})
 
-Then Beego will retrive all the methods in that controller by reflection and you can call the related methods by this:
+Then Beego will retrieve all the methods in that controller by reflection and you can call the related methods by this:
 
 	/object/login   will call Login method in ObjectController 
 	/object/logout  will call Logout method in ObjectController
@@ -279,7 +279,7 @@ the code showed support the URL:
 * GET /v1/shop/123
 * GET /v1/cms/ Map to annotation routers in MainController、CMSController、BlockController
 
-namespace support filter, condition,and nest namespace
+namespace support filter, condition and nest namespace
 
 namespace API:
 
@@ -290,7 +290,7 @@ namespace API:
     
 - NSCond(cond namespaceCond)
 
-    if the namespaceCond return true will run this namespace,unwise willn't run
+    if the namespaceCond return true will run this namespace,unwise won't run
     
 - NSBefore(filiterList ...FilterFunc)
 - NSAfter(filiterList ...FilterFunc)
@@ -342,7 +342,7 @@ The methods below are methods for `*Namespace` object. It's not recommended. The
 
 - Cond(cond namespaceCond)  
 
-	if the namespaceCond return true will run this namespace,unwise willn't run
+	if the namespaceCond return true will run this namespace,unwise won't run
 	
 - Filter(action string, filter FilterFunc)
 

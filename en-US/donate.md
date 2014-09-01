@@ -2,8 +2,8 @@
 
 <h4>
 	<b><font color="red">
-    <p>Beego framework dedicates to providing a fast way to develop web applications and advocating for Go language. Your supports are highly appricated and it means a lot to us.</p>
-    <p>Our Beego core team has been working and improving Beego a lot more than one year. We dedicated a lot to provide everyone a better framework. If you feel Beego is helpful for you and want to kindly support it, we appricate that. ^_^</p>
+    <p>Beego framework dedicates to providing a fast way to develop web applications and advocating for Go language. Your supports are highly appreciated and it means a lot to us.</p>
+    <p>Our Beego core team has been working a lot and improving Beego for more than a year. We dedicated a lot to provide everyone a better framework. If you feel Beego is helpful for you and want to kindly support it, we appreciate that. ^_^</p>
 	</font></b>
 </h4>
 

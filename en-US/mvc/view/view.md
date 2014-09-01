@@ -9,7 +9,7 @@ Beego uses Go's builtin package `html/template` as the template parser.  Upon st
 
 ## Template Directory
 
-The default template directory for Beego is `views`. Template files can be put in this directory and Beego will parse and cache them automatically. However if the development mode is enabled, Beego parses templates everytime without caching. Beego can only have one template directory which can be customized:
+The default template directory for Beego is `views`. Template files can be put in this directory and Beego will parse and cache them automatically. However if the development mode is enabled, Beego parses templates every time without caching. Beego can only have one template directory which can be customized:
 
 	beego.ViewsPath = "myviewpath"
 
@@ -27,7 +27,7 @@ In main.go:
 
 ## Template Tags
 
-Go uses `{{` and `}}` as the default template tags. In the case that these tags confilict with other template tags as in AngularJS, we can use other tags. To do so, add these to the configuration:
+Go uses `{{` and `}}` as the default template tags. In the case that these tags conflict with other template tags as in AngularJS, we can use other tags. To do so, add these to the configuration:
 
 	beego.TemplateLeft = "<<<"
 	beego.TemplateRight = ">>>"
@@ -222,7 +222,7 @@ controller：
 	    this.TplNames = "index.tpl"
 	}
 
-The param of Form must be a pointor to a struct.
+The param of Form must be a pointer to a struct.
 
 template:
 

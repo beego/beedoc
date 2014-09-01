@@ -68,7 +68,7 @@ Input object is the encapsulation of request. Here are the implemented methods:
 	
 - IsWebsocket
 
-  Test if the request is a Websocket requet. Return true or false.
+  Test if the request is a Websocket request. Return true or false.
 	
 - IsUpload
 
@@ -100,7 +100,7 @@ Input object is the encapsulation of request. Here are the implemented methods:
 
 - Param
   
-  Can be set in router config. Userd to get those params. E.g.: `Param(":id")` retrun 12
+  Can be set in router config. Userd to get those params. E.g.: `Param(":id")` return 12
 	
 - Query
 
@@ -120,7 +120,7 @@ Input object is the encapsulation of request. Here are the implemented methods:
 	
 - Body
   
-  Return request body. E.g.: in API application request send JSON data and it can't be retrived by Query. You need use Body to get the JSON data.
+  Return request body. E.g.: in API application request send JSON data and it can't be retrieved by Query. You need use Body to get the JSON data.
 	
 - GetData
 
@@ -176,7 +176,7 @@ Output object is the encapsulation of request. Here are the implemented methods:
 	
 - IsCachable
 
-  Test if it's a cachable status based on status.
+  Test if it's a cacheable status based on status.
 	
 - IsEmpty
 
@@ -188,7 +188,7 @@ Output object is the encapsulation of request. Here are the implemented methods:
 
 - IsSuccessful
 
-  Test if response is susscessful based on status.
+  Test if response is successful based on status.
 		
 - IsRedirect
 

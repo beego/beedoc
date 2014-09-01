@@ -31,7 +31,7 @@ func (this *MainController) Get() {
 }
 ```
 
-There are some userful methods to handle session:
+There are some useful methods to handle session:
 
 - SetSession(name string, value interface{})
 - GetSession(name string) interface{}

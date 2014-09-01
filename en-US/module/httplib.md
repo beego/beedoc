@@ -45,7 +45,7 @@ Enable debug information output:
 
 	req.Debug(true)
 	
-Then it will output debug infomation:
+Then it will output debug information:
 	
 	Get("http://beego.me/").Debug(true).Response()
 	
