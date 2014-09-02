@@ -39,7 +39,7 @@ The commands are:
 
 ### Command new
 
-`new` can create a new web project. You can create a new beego project by typing `bee new <project name>` under `$GOPATH`. It will generate all the project folders and files:
+`new` can create a new web project. You can create a new beego project by typing `bee new <project name>` under `$GOPATH/src`. It will generate all the project folders and files:
 
 ```
 bee new myproject
