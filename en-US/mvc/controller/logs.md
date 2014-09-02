@@ -42,7 +42,7 @@ As we saw above, there are 6 different logging level:
 	LevelError
 	LevelCritical
 
-The logging level goes from trival to critical. It will output all by default. We can set the different logging level on different server:
+The logging level goes from trivial to critical. It will output all by default. We can set the different logging level on different server:
 
 	beego.SetLevel(beego.LevelInfo)
 	

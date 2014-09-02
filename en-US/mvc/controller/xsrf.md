@@ -119,7 +119,7 @@ If you need to customize XSRF behavior for different request, you can overwrite 
 
 ## support controller setting
 
-`XSRF` is a global varliable, if you set it to true, all the request will validated. but sometimes API don't need validated. So you can controller it in the controllers:
+`XSRF` is a global variable, if you set it to true, all the request will validated. but sometimes API don't need validated. So you can controller it in the controllers:
 
 ```
 type AdminController struct{

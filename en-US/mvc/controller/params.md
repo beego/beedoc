@@ -78,9 +78,9 @@ Notes:
 * While call method ParseForm of Controller, the parameter pass in must be a pointer of struct, otherwise the assignment won't success and it will return a `xx must be a struct pointer` error.
 * If you want to ignore some fields, there are two ways: one is using lowercase for that field; another is use `-` as the value of the tag.
 
-## Retrive the data from request body
+## Retrieve the data from request body
 
-In API application development, we we always use `JSON` or `XML` as the data type. So how can we retrive the data from the request body?
+In API application development, we we always use `JSON` or `XML` as the data type. So how can we retrieve the data from the request body?
 
 1. Set `copyrequestbody = true` in configuration file.
 2. Then in Controller you can
@@ -99,7 +99,7 @@ func (this *ObejctController) Post() {
 
 In Beego, you can uploading files easily. Just remember set attribute `enctype="multipart/form-data"` in your form, otherwise your browser won't upload your file.
 
-Usually the uploaded file is stored in the system memory, but if the file size it bigger than the memory size limitation in the configuration file, the file will be stored in a temporaty file. The default memory size is 64M and you can change it by:
+Usually an uploaded file is stored in the system memory, but if the file size is bigger than the memory size limitation in the configuration file, the file will be stored in a temporary file. The default memory size is 64M and you can change it by:
 
 	beego.MaxMemory = 1<<22
 
@@ -115,7 +115,7 @@ This method is used to read the file name `the_file` from form and return the in
 
 - SaveToFile(fromfile, tofile string) error
 
-This method impelemented the saving function based on the method `GetFile`
+This method implements the saving function based on the method `GetFile`
 
 Here is the example of saving file:
 

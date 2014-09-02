@@ -10,7 +10,7 @@ Go already has buildin `http.ServeFile` to serve static files. Beego made a wrap
 	beego.SetStaticPath("/static","public")
 
 - The first param is url path
-- The second param is static file directory path. (relate to applicaion directory)
+- The second param is static file directory path. (relate to application directory)
 
 Beego supports multiple static file directories:
 

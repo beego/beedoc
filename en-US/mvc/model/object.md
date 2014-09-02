@@ -54,7 +54,7 @@ For detailed single object query, see [One](query.md#one)
 
 Try to read a row from the database, or insert one if it doesn't exist.
 
-At least one condition field must be supplied, multipe condition fields are also supported.
+At least one condition field must be supplied, multiple condition fields are also supported.
 
 ```go
 o := orm.NewOrm()
@@ -128,7 +128,7 @@ if o.Read(&user) == nil {
 }
 ```
 
-Update updates all fields by default. You can update specificed fields:
+Update updates all fields by default. You can update specified fields:
 
 ```go
 // Only update Name

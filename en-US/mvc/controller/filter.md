@@ -5,7 +5,7 @@ sort: 5
 
 # Filters
 
-Beego supports custom filter middlewares. E.g.: user authentication and force redirecton.
+Beego supports custom filter middlewares. E.g.: user authentication and force redirection.
 
 Here is a filter function:
 
@@ -40,7 +40,7 @@ var FilterUser = func(ctx *context.Context) {
 beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)
 ```
 
->>>One thing you need to care about is he Filter useing session must use after `BeforeRouter` because session is not initialized before it.
+>>>One thing you need to care about is he Filter using session must use after `BeforeRouter` because session is not initialized before it.
 
 
 You can run the Filters by matching regex router rules:

@@ -9,7 +9,7 @@ sort: 1
 
 Beego ORM is a powerful ORM framework in Go. It's inspired by Django ORM and SQLAlchemy.
 
-This framework is still under development so any kind of uncompatible changes might happen.
+This framework is still under development so any kind of incompatible changes might happen.
 
 **Supported Database:**
 
@@ -26,7 +26,7 @@ All of the database drivers passed the tests. But we still need your feedback an
 * Auto Join connection tables.
 * Compatible with crossing database queries.
 * Supports raw SQL query and mapping
-* Strict and well coverd test cases ensure the ORM's stability.
+* Strict and well covered test cases ensure the ORM's stability.
 
 You can learn more in the document.
 
@@ -183,7 +183,7 @@ Notes: It is not recommended to enable debug mode in production environment.
 1. [Orm Usage](orm.md)
 	- [Set up database](orm.md#set-up-database)
 		* [Register Driver](orm.md#registerdatabase)
-		* [Variabes Config](orm.md#setmaxidleconns)
+		* [Variables Config](orm.md#setmaxidleconns)
 		* [Timezone Config](orm.md#timezone-config)
 	- [Registering Model](orm.md#registering-model)
 	- [ORM API Usage](orm.md#orm-api-usage)

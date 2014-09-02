@@ -35,9 +35,9 @@ Then initialize data in your main function:
 Params of NewManager:
 
 1. Saving provider name: memory、file、mysql、redis
-2. A JSON string that contains the config infomation.
+2. A JSON string that contains the config information.
 	1. cookieName: Cookie name of session id saved in client
-	2. enableSetCookie,omitempty: Whether to enable SetCookie,omitempty
+	2. enableSetCookie, omitempty: Whether to enable SetCookie, omitempty
 	3. gclifetime: The interval of GC.
 	4. maxLifetime: Expiration time of data saved in server
 	5. secure: Enable https or not. There is `cookie.Secure` while configure cookie.

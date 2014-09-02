@@ -23,4 +23,4 @@ You can register multiple static directories. For example if you require two dow
 	beego.SetStaticPath("/down1", "download1")	
 	beego.SetStaticPath("/down2", "download2")	
 	
-Visting the URL `http://localhost/down1/123.txt` will request the file `123.txt` in the `download1` directory.
+Visiting the URL `http://localhost/down1/123.txt` will request the file `123.txt` in the `download1` directory.

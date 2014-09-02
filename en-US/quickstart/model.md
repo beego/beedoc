@@ -5,7 +5,7 @@ sort: 4
 
 # Creating models
 
-We know we are using databases a lot in web applications so models are the  usual way to handle these kind of jobs. There is no demo on models in our `bee new` project, but there are demos on implementing and using models in the `bee api` project. Basically, if your application is simple enough the Controller can handle everything. However, if there is some reuseable logic we can factor it out into a module. The Model is the result of such logic extraction. Usually the model will be handling some data reading and writing. Here is an example:
+We know we are using databases a lot in web applications so models are the  usual way to handle these kind of jobs. There is no demo on models in our `bee new` project, but there are demos on implementing and using models in the `bee api` project. Basically, if your application is simple enough the Controller can handle everything. However, if there is some reusable logic we can factor it out into a module. The Model is the result of such logic extraction. Usually the model will be handling some data reading and writing. Here is an example:
 
 ```
 package models

@@ -14,7 +14,7 @@ Table name conversion :TODO is camel case to snake case.
 	Auth_User -> auth__user
 	DB_AuthUser -> d_b__auth_user
 
-Except the leading captital letter :TODO, replace captital case letter
+Except the leading capital letter :TODO, replace captital case letter
 into `_` and it's lower case. Remaining all the other `_`.
 
 ## Custom table name
@@ -104,7 +104,7 @@ When Field type is int, int32, int64, uint, uint32 or uint64, you can set it as 
 
 * If there is no primary key in model definition, the filed `Id` with one of the types above will be considered as auto increment key
 
-Because of the design of go, even if you are using unit64, you can't use it's maxnium. It still treat as int64.
+Because of the design of go, even if you are using unit64, you can't use it's maximum. It still treated as int64.
 
 See issue [6113](http://code.google.com/p/go/issues/detail?id=6113)
 
@@ -188,7 +188,7 @@ Created time.Time `orm:"auto_now_add;type(datetime)"`
 
 #### default
 
-Set default value for field with the same type. (Only support default value of cascade deleting. :TODo
+Set default value for field with the same type. (Only support default value of cascade deleting. :TODO
 
 ```go
 type User struct {
