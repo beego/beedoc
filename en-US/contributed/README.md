@@ -8,3 +8,4 @@ With the development of beego, third-party libraries based on beego also gradual
 
 - [gorelic](https://github.com/yvasiyarov/beego_gorelic) 
 - [pongo2](https://github.com/oal/beego-pongo2) 
+- [keenio](https://github.com/pabdavis/beego_keenio) 
