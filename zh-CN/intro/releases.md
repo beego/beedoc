@@ -2,6 +2,160 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.4.1
+主要更新：
+1. context.Input.Url获取path信息，去除了域名，scheme等信息
+2. 增加插件apiauth，模拟AWS的加密请求
+3. 精简debug输出的路由信息
+4. orm字段支持指针类型
+5. 改进了httplib功能，增加了BasicAuth，多次请求缓存等功能
+
+bugfix:
+1. _method模拟请求put和delete，参数大小写不统一
+2. 路由*.*和其他路由正则混用情况下无法解析
+
+# beego 1.4.0
+这个版本整整憋了两个月时间，主要是我们真的做了好多功能性上面的改进，这里要感谢所有给beego贡献的用户，也感谢给beego持续提各种改进意见的用户，下面是我们这次改进的特性
+
+1. bee工具的完整性改进，bee现在支持了如下功能：
+
+bee api 直接从数据库读取数据库表，一键生成API应用带文档，详细介绍看视频：http://www.tudou.com/programs/view/aM7iKLlBlrU/
+
+- bee generate命令，这个是新增加的命令，可以用来自动化生成代码，主要有如下子命令： 
+
+     - scaffold 类似其他框架的脚手架功能，生成controller、model、view、migration
+
+     - model 生成CRUD的model
+
+     - controller 生成CRUD的controller 
+
+     - view  生成CRUD的view文件，内容为空，需要用户自己做UI界面
+
+     - migration  生成migration文件
+
+     - appcode  从数据库根据表结构生成model、controller、router
+
+     - docs  从controller注释自动化生成swagger文档
+
+- bee migrate 命令，执行migration，支持如下子命令
+
+     - migrate 执行所有新的migration
+
+     - rollback 回滚最后一次执行的migration
+
+     - reset 回滚所有的migration
+
+     - refresh 回滚所有的migration并从头执行全部的migration
+
+- bee run改进，默认支持了watchall功能，增加了两个参数gendoc和downdoc
+
+2. config模块增加新的接口，现在config模块支持如下接口，支持直接保存文件：
+
+```
+type ConfigContainer interface {
+    Set(key, val string) error   // support section::key type in given key when using ini type.
+    String(key string) string    // support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
+    Strings(key string) []string //get string slice
+    Int(key string) (int, error)
+    Int64(key string) (int64, error)
+    Bool(key string) (bool, error)
+    Float(key string) (float64, error)
+    DefaultString(key string, defaultval string) string      // support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
+    DefaultStrings(key string, defaultval []string) []string //get string slice
+    DefaultInt(key string, defaultval int) int
+    DefaultInt64(key string, defaultval int64) int64
+    DefaultBool(key string, defaultval bool) bool
+    DefaultFloat(key string, defaultval float64) float64
+    DIY(key string) (interface{}, error)
+    GetSection(section string) (map[string]string, error)
+    SaveConfigFile(filename string) error
+}
+```
+	
+3. middleware中支持另一种i18n的支持：
+
+	```
+I18N = middleware.NewLocale("conf/i18n.conf", beego.AppConfig.String("language"))
+	```
+
+配置文件如下：
+
+```
+{
+  "E-mail Address": {
+    "en": "E-mail Address",
+    "zh": "邮箱地址",
+    "vn": "อีเมล"
+  },
+  "Username": {
+    "en": "Ussername",
+    "zh": "用户名",
+    "vn": "t&ecirc;n truy nhập"
+  }
+}
+```
+
+使用如下：
+
+`I18N.Translate("username", "vn")`
+
+4. namespace前缀支持正则：
+
+```
+beego.NewNamespace("/v1/:uid",
+    beego.NSNamespace("/customer",
+        beego.NSInclude(
+            &controllers.CustomerController{},
+            &controllers.CustomerCookieCheckerController{},
+        ),
+    ),
+)
+```
+
+5. cache和session模块的memcache、redis引擎修改到最新版本的驱动
+
+6. 增加开发打印路由调试功能:
+
+```
+2014/08/22 09:55:40 [I] | GET | /          | 7.660221504s     | match      | / |
+2014/08/22 09:55:40 [I] | GET | /          | 13.421869836s    | match      | / |
+2014/08/22 09:55:40 [I] | GET | /          | 1.726185752s     | match      | / |
+2014/08/22 09:55:40 [I] | GET | /user/login| 7.494079ms       | match      | /user/login |
+```
+
+7. log 的等级符合RFC5424规范
+
+8. 静态文件处理支持robots.txt,用户放在static目录下即可
+
+9. 增加和简化plugins功能：
+
+	auth 支持basicauth，详细使用请看https://godoc.org/github.com/astaxie/beego/plugins/auth
+	cors 支持跨站调用，详细使用请看https://godoc.org/github.com/astaxie/beego/plugins/cors
+
+10. 新增了AdminUI，用户在EnableAdmin的情况下，可以通过界面简单地获取当前应用的各种状态，同时可以很容易的调试性能，监控系统，执行任务，获取配置等
+
+	![](images/adminui.png)
+	
+11. session配置现在支持设置cookie domain
+
+12. 新增migration包，支持migration的功能
+
+13. getconfg方法改为public方法，用户就可以通过改方法获取相应runmode下的配置文件
+
+14. 改进httplib的方法支持SetAgent和BasicAuth的请求，httplib支持请求一次，读取多次
+
+修复bug：
+
+1. file session在部分情况下内容消失问题
+2. docs自动化生成，文件不更新
+3. 路由namespace的前缀不支持
+4. orm修正detect engine
+5. 修复captcha里面当用户验证码输入长度不对时不进行更新
+6. 调用setstatus之后后面调用的setHeader全部无效的问题
+7. 修复smtp发送邮件需要验证的情况
+8. 修复utils下safemap的items问题
+9. 修复geturl函数当参数多个时不带?的问题
+
 # beego 1.3.0
 经过了一个多月的开发，我们很高兴的宣布，beego1.3.0来了，这个版本我们做了非常多好玩并且有用的功能，升级请看[升级指南](http://beego.me/docs/intro/upgrade.md)
 
