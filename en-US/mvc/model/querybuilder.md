@@ -5,12 +5,11 @@ sort: 6
 
 # Query Builder
 
-**QueryBuilder** provides an API for fluently construting SQL DML (Data Manipulation Language).
-It provides a set of methods enables developers to easily construct SQL query without compromising readability.
+**QueryBuilder** provides an API for convenient and fluent constrution of SQL queries. It consists of a set of methods enabling developers to easily construct SQL queries without compromising readability.
 
-It serves as an alternative to ORM, you may choose the one you prefer.
-We recommend using ORM for simple CRUD operations, whereas QueryBuilder for complex queries with subqueries,
-nested queries and deep joins.
+It serves as an alternative to ORM. ORM is more for simple CRUD operations, whereas QueryBuilder is for complex queries with subqueries and multi-joins.
+
+
 
 Usage exmple:
 
@@ -23,7 +22,7 @@ type User struct {
 var users []User
 
 // Get a QueryBuilder object. Takes DB driver name as parameter
-// Second parameter is error, ignored here
+// Second return value is error, ignored here
 qb, _ := orm.NewQueryBuilder("mysql")
 
 // Construct query object
