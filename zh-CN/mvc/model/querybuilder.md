@@ -39,3 +39,29 @@ sql := qb.String()
 o := orm.NewOrm()
 o.Raw(sql, 20).QueryRows(&users)
 ```
+
+完整API接口:
+
+```go
+type QueryBuilder interface {
+	Select(fields ...string) QueryBuilder
+	From(tables ...string) QueryBuilder
+	InnerJoin(table string) QueryBuilder
+	LeftJoin(table string) QueryBuilder
+	RightJoin(table string) QueryBuilder
+	On(cond string) QueryBuilder
+	Where(cond string) QueryBuilder
+	And(cond string) QueryBuilder
+	Or(cond string) QueryBuilder
+	In(vals ...string) QueryBuilder
+	OrderBy(fields ...string) QueryBuilder
+	Asc() QueryBuilder
+	Desc() QueryBuilder
+	Limit(limit int) QueryBuilder
+	Offset(offset int) QueryBuilder
+	GroupBy(fields ...string) QueryBuilder
+	Having(cond string) QueryBuilder
+	Subquery(sub string, alias string) string
+	String() string
+}
+```
