@@ -5,7 +5,7 @@ sort: 4
 
 # 客户端请求
  
-htttlib 库主要用来模拟客户端发送 HTTP 请求，类似于 Curl 工具，支持 JQuery 类似的链式操作。使用起来相当的方便；通过如下方式进行安装：
+httplib 库主要用来模拟客户端发送 HTTP 请求，类似于 Curl 工具，支持 JQuery 类似的链式操作。使用起来相当的方便；通过如下方式进行安装：
 
 	go get github.com/astaxie/beego/httplib
 
