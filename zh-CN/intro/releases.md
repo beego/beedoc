@@ -19,109 +19,106 @@ bugfix:
 
 1. bee工具的完整性改进，bee现在支持了如下功能：
 
-bee api 直接从数据库读取数据库表，一键生成API应用带文档，详细介绍看视频：http://www.tudou.com/programs/view/aM7iKLlBlrU/
-
-- bee generate命令，这个是新增加的命令，可以用来自动化生成代码，主要有如下子命令： 
-
-     - scaffold 类似其他框架的脚手架功能，生成controller、model、view、migration
-
-     - model 生成CRUD的model
-
-     - controller 生成CRUD的controller 
-
-     - view  生成CRUD的view文件，内容为空，需要用户自己做UI界面
-
-     - migration  生成migration文件
-
-     - appcode  从数据库根据表结构生成model、controller、router
-
-     - docs  从controller注释自动化生成swagger文档
-
-- bee migrate 命令，执行migration，支持如下子命令
-
-     - migrate 执行所有新的migration
-
-     - rollback 回滚最后一次执行的migration
-
-     - reset 回滚所有的migration
-
-     - refresh 回滚所有的migration并从头执行全部的migration
-
-- bee run改进，默认支持了watchall功能，增加了两个参数gendoc和downdoc
+	bee api 直接从数据库读取数据库表，一键生成API应用带文档，详细介绍看视频：http://www.tudou.com/programs/view/aM7iKLlBlrU/
+	- bee generate命令，这个是新增加的命令，可以用来自动化生成代码，主要有如下子命令： 
+	
+	     - scaffold 类似其他框架的脚手架功能，生成controller、model、view、migration
+	
+	     - model 生成CRUD的model
+	
+	     - controller 生成CRUD的controller 
+	
+	     - view  生成CRUD的view文件，内容为空，需要用户自己做UI界面
+	
+	     - migration  生成migration文件
+	
+	     - appcode  从数据库根据表结构生成model、controller、router
+	
+	     - docs  从controller注释自动化生成swagger文档	
+	- bee migrate 命令，执行migration，支持如下子命令
+	
+	     - migrate 执行所有新的migration
+	
+	     - rollback 回滚最后一次执行的migration
+	
+	     - reset 回滚所有的migration
+	
+	     - refresh 回滚所有的migration并从头执行全部的migration	
+	- bee run改进，默认支持了watchall功能，增加了两个参数gendoc和downdoc
 
 2. config模块增加新的接口，现在config模块支持如下接口，支持直接保存文件：
 
-```
-type ConfigContainer interface {
-    Set(key, val string) error   // support section::key type in given key when using ini type.
-    String(key string) string    // support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
-    Strings(key string) []string //get string slice
-    Int(key string) (int, error)
-    Int64(key string) (int64, error)
-    Bool(key string) (bool, error)
-    Float(key string) (float64, error)
-    DefaultString(key string, defaultval string) string      // support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
-    DefaultStrings(key string, defaultval []string) []string //get string slice
-    DefaultInt(key string, defaultval int) int
-    DefaultInt64(key string, defaultval int64) int64
-    DefaultBool(key string, defaultval bool) bool
-    DefaultFloat(key string, defaultval float64) float64
-    DIY(key string) (interface{}, error)
-    GetSection(section string) (map[string]string, error)
-    SaveConfigFile(filename string) error
-}
-```
+	```
+	type ConfigContainer interface {
+	    Set(key, val string) error   // support section::key type in given key when using ini type.
+	    String(key string) string    // support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
+	    Strings(key string) []string //get string slice
+	    Int(key string) (int, error)
+	    Int64(key string) (int64, error)
+	    Bool(key string) (bool, error)
+	    Float(key string) (float64, error)
+	    DefaultString(key string, defaultval string) string      // support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
+	    DefaultStrings(key string, defaultval []string) []string //get string slice
+	    DefaultInt(key string, defaultval int) int
+	    DefaultInt64(key string, defaultval int64) int64
+	    DefaultBool(key string, defaultval bool) bool
+	    DefaultFloat(key string, defaultval float64) float64
+	    DIY(key string) (interface{}, error)
+	    GetSection(section string) (map[string]string, error)
+	    SaveConfigFile(filename string) error
+	}
+	```
 	
 3. middleware中支持另一种i18n的支持：
 
 	```
-I18N = middleware.NewLocale("conf/i18n.conf", beego.AppConfig.String("language"))
+	I18N = middleware.NewLocale("conf/i18n.conf", beego.AppConfig.String("language"))
 	```
 
-配置文件如下：
+	配置文件如下：
+	
+	```
+	{
+	  "E-mail Address": {
+	    "en": "E-mail Address",
+	    "zh": "邮箱地址",
+	    "vn": "อีเมล"
+	  },
+	  "Username": {
+	    "en": "Ussername",
+	    "zh": "用户名",
+	    "vn": "t&ecirc;n truy nhập"
+	  }
+	}
+	```
 
-```
-{
-  "E-mail Address": {
-    "en": "E-mail Address",
-    "zh": "邮箱地址",
-    "vn": "อีเมล"
-  },
-  "Username": {
-    "en": "Ussername",
-    "zh": "用户名",
-    "vn": "t&ecirc;n truy nhập"
-  }
-}
-```
+	使用如下：
 
-使用如下：
-
-`I18N.Translate("username", "vn")`
+	`I18N.Translate("username", "vn")`
 
 4. namespace前缀支持正则：
 
-```
-beego.NewNamespace("/v1/:uid",
-    beego.NSNamespace("/customer",
-        beego.NSInclude(
-            &controllers.CustomerController{},
-            &controllers.CustomerCookieCheckerController{},
-        ),
-    ),
-)
-```
+	```
+	beego.NewNamespace("/v1/:uid",
+	    beego.NSNamespace("/customer",
+	        beego.NSInclude(
+	            &controllers.CustomerController{},
+	            &controllers.CustomerCookieCheckerController{},
+	        ),
+	    ),
+	)
+	```
 
 5. cache和session模块的memcache、redis引擎修改到最新版本的驱动
 
 6. 增加开发打印路由调试功能:
 
-```
-2014/08/22 09:55:40 [I] | GET | /          | 7.660221504s     | match      | / |
-2014/08/22 09:55:40 [I] | GET | /          | 13.421869836s    | match      | / |
-2014/08/22 09:55:40 [I] | GET | /          | 1.726185752s     | match      | / |
-2014/08/22 09:55:40 [I] | GET | /user/login| 7.494079ms       | match      | /user/login |
-```
+	```
+	2014/08/22 09:55:40 [I] | GET | /          | 7.660221504s     | match      | / |
+	2014/08/22 09:55:40 [I] | GET | /          | 13.421869836s    | match      | / |
+	2014/08/22 09:55:40 [I] | GET | /          | 1.726185752s     | match      | / |
+	2014/08/22 09:55:40 [I] | GET | /user/login| 7.494079ms       | match      | /user/login |
+	```
 
 7. log 的等级符合RFC5424规范
 
@@ -134,7 +131,7 @@ beego.NewNamespace("/v1/:uid",
 
 10. 新增了AdminUI，用户在EnableAdmin的情况下，可以通过界面简单地获取当前应用的各种状态，同时可以很容易的调试性能，监控系统，执行任务，获取配置等
 
-	![](images/adminui.png)
+	![](../images/adminui.png)
 	
 11. session配置现在支持设置cookie domain
 
