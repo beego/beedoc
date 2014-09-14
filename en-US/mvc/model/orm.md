@@ -71,7 +71,7 @@ func main() {
 
 ## Set up database
 
-ORM supports three databases. here are the tested drivers, you need to import them:
+ORM supports three databases. Here are the tested drivers, you need to import them:
 
 ```go
 import (
@@ -191,6 +191,34 @@ orm.RegisterModel(new(User), new(Profile), new(Post))
 ```
 
 For detailed struct definition, see [Model define](models.md)
+
+#### Generate Tables
+
+You may wish for beego to automatically create your database tables.
+One way to do this is by using the method described in the [cli](cmd.md) documentation. 
+Alternatively you could choose to autogenerate your tables by including the following
+in your main.go file in your main block. 
+
+```go
+// Database alias.
+name := "default"
+
+// Drop table and re-create.
+force := true
+
+// Print log.
+verbose := true
+
+// Error.
+err := orm.RunSyncdb(name, force, verbose)
+if err != nil {
+	fmt.Println(err)
+}
+```
+After the initial "bee run" command, change the values of force and verbose to false. 
+The default behavior for beego is to add additional columns when the model is updated.
+You will need to manually handle dropping your columns if they are removed from your model. 
+
 
 #### RegisterModelWithPrefix
 
