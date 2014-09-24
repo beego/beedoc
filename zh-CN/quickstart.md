@@ -4,7 +4,7 @@
 
 beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架。
 
-您需要安装 Go 1.1 以确保所有功能的正常使用。
+您需要安装 Go 1.1+ 以确保所有功能的正常使用。
 
 你需要安装 Beego 而 [Bee](http://beego.me/docs/install/bee.md) 的开发工具:
 	
