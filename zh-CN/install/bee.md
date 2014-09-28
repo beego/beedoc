@@ -114,7 +114,7 @@ bee run
 
 ### api 命令
 
-上面的 `new` 命令是用来新建 Web 项目，不过不乏使用 beego 来开发 API 应用用户，提供对外的 API。所以这个 `api` 命令就是用来创建 API 应用的，执行命令之后如下所示：
+上面的 `new` 命令是用来新建 Web 项目，不过不乏使用 beego 来开发 API 的应用用户，提供对外的 API。所以这个 `api` 命令就是用来创建 API 应用的，执行命令之后如下所示：
 
 ```
 bee api apiproject
