@@ -10,20 +10,54 @@ Go is a stand alone http server, but we want to nginx to do more for us such as 
 ```
 server {
     listen       80;
-    server_name  www.a.com;
+    server_name  .a.com;
+
     charset utf-8;
     access_log  /home/a.com.access.log  main;
+
+    location /(css|js|fonts|img)/ {
+        access_log off;
+        expires 1d;
+
+        root "/path/to/app_a/static"
+        try_files $uri @backend
+    }
+
     location / {
+        try_files /_not_exists_ @backend;
+    }
+
+    location @backend {
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host            $http_host;
+
         proxy_pass http://127.0.0.1:8080;
     }
 }
 
- server {
+server {
     listen       80;
-    server_name  www.b.com;
+    server_name  .b.com;
+
     charset utf-8;
     access_log  /home/b.com.access.log  main;
+
+    location /(css|js|fonts|img)/ {
+        access_log off;
+        expires 1d;
+
+        root "/path/to/app_b/static"
+        try_files $uri @backend
+    }
+
     location / {
+        try_files /_not_exists_ @backend;
+    }
+
+    location @backend {
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host            $http_host;
+
         proxy_pass http://127.0.0.1:8081;
     }
 }
