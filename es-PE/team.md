@@ -17,7 +17,7 @@
 
 ### ClownFish
 
-- Team role: Principal responsable del sistema de administración para beego.
+- Rol: Principal responsable del sistema de administración para beego.
 - Read Social: [GitHub](https://github.com/osgochina)
 
 ### Lei Cao
