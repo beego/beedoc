@@ -117,7 +117,7 @@ beego.Handler("/rpc", s)
 	
 	
 
-可以在 Controlle 中通过如下方式获取上面的变量：
+可以在 Controller 中通过如下方式获取上面的变量：
 
 	this.Ctx.Input.Param(":id")
 	this.Ctx.Input.Param(":username")
