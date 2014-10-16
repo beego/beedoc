@@ -87,7 +87,7 @@ Bee Watch is a "go get" able Go project, you can execute the following command t
 
 Bee Watch debugger is automatically started on [http://localhost:23456](http://localhost:23456) when you use **WebSocket** mode, you can change port and other configuration by editing `beewatch.json`(copy default setting from Bee Watch source folder).
 
-You browser has to support WebSocket, it has been tested with Chrome, Safari and Firefox on Mac and Windows.
+Your browser has to support WebSocket, it has been tested with Chrome, Safari and Firefox on Mac and Windows.
 
 ![Bee Watch demo](https://github.com/beego/beewatch/blob/master/tests/images/demo_beewatch.png?raw=true)
 

@@ -31,7 +31,7 @@ Then the user can visit /user to process the logic in UserController.  This is o
     Beego will parse the configuration file `app.conf` in conf folder. There we can change the port, enable the session and change the application's name by setting up the configuration file.
 
 	- Enabling session
-    Beego will enable or disable the session by the setting in in the configuration file.
+    Beego will enable or disable the session by the setting in the configuration file.
 
 	- Compiling the views 
     Beego will compile the views in views folder when it's starting so as to avoid compiling them multiple times, which is definitely more efficient.
