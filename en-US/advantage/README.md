@@ -12,7 +12,7 @@ We have demonstrated the basic use of beego. Now we will talk about more advance
 
   Beego will serve at two ports. One is 8080 for application to serve users. Another is 8088, to monitor the process status, to execute tasks and so on.
 	
-- [Filters](./filter.md)
+- [Filters](../mvc/controller/filter.md)
 
   Filters is a very convenient feature for you to extend your logic. You can easily implement user authentication, log visiting, compatibility switching and so on.
 	

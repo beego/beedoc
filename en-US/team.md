@@ -10,10 +10,6 @@
 - Team role: primarily responsible for ORM, maintainer of beego samples and official site.
 - Social network: [Sina Weibo](http://weibo.com/slene) [GitHub](https://github.com/slene) [Twitter](https://twitter.com/slene)
 
-### Unknown
-
-- Team role: primarily responsible for beego official site, documentation, courses, and samples.
-- Social network: [Sina Weibo](http://weibo.com/Obahua) [GitHub](https://github.com/Unknwon) [Twitter](https://twitter.com/joe2010xtmf) [Google+](https://plus.google.com/u/0/+JiahuaChen)
 
 ### ClownFish
 
