@@ -167,8 +167,8 @@ To make it work following the steps:
 1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`
 2. Generate document files by `bee generate docs`
 3. Import `_ "beeapi/docs"` in `main.go`
-4. Use `bee run watchall true` to run your API application and rebuild document automatically. 
-5. Now run `bee rundocs -isDownload=true` in another terminal. It will download `swagger` viewer and run on port 8089. You can change port by `bee rundocs -docport=8888`
+4. Use `bee run watchall true -downdoc=true -gendoc=true` to run your API application and rebuild document automatically. 
+5. Visit `swagger document from API project's URL and port.  (see item #1 below)
 
 Your API document is available now. Open your browser and check it.
 
@@ -179,7 +179,7 @@ Your API document is available now. Open your browser and check it.
 ## Problems You May Have
 1. CORS
 	Two solutions
-	1. Integrate `swagger` into the application. Download [swagger](https://github.com/beego/swagger/releases) and put it into project folder. (`bee rundocs -isDownload=true` will also download it and put it into project folder) 
+	1. Integrate `swagger` into the application. Download [swagger](https://github.com/beego/swagger/releases) and put it into project folder. (`bee run -downdoc=true` will also download it and put it into project folder) 
 	And before 	`beego.Run()` in `func main()` of `main.go`
 
 		if beego.RunMode == "dev" {
