@@ -2,8 +2,62 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.4.2
+新功能：
+
+1. 增加了SQL构造器，参考了ZEND框架的ORM
+2. Controller获取参数增加了GetInt(), GetInt8(), GetInt16(), GetInt32(), GetInt64()
+3. 优化日志提示提示，增加日志输出过滤设置FilterHandler，默认静态文件不输出匹配日志输出
+4. 静态目录支持index.html输出，静态目录自动增加/
+5. flash支持success和set函数，支持各种一次性的数据
+6. 路由支持大小写忽略设置,RouterCaseSensitive, 默认是大小写敏感的URL，根据用户注册的URL进行匹配
+7. 配置文件支持自定义的变量获取，beego.AppConfig.String("myvar")在dev下返回456，在其他模式下返回123
+
+	runmode = dev
+	myvar = 123
+	[dev]
+	myvar = 456
+
+8. ini配置文件支持include语法，在配置文件中允许include其他配置文件：
+	
+	appname = btest
+	include b.conf
+
+9. utils下增加分页组件，可以方便用户编写分页相关的应用。
+10. 增加BEEGO_RUNMODE环境变量，用户在部署的时候只要通过改变量方便切换应用的不同模式
+11. toolbox增加获取statistic的Json函数
+12. utils下的mail发送内嵌附件发送
+13. 允许用户通过标准IO开启fastcgi
+14. redis Session引擎，采用SETEX命令兼容老版本的redis
+15. RenderForm支持html id和class，使用id和class tag
+16. ini配置文件支持BOM头
+17. Session增加新的引擎ledis
+18. 改进httplib文件上传，采用了io.Pipe支持超大文件上传
+19. 支持应用启动直接绑定到TCP4地址上，Go默认是绑定到ipv6，增加配置参数ListenTCP4
+20. 表单数据渲染支持off/on/yes/no/1/0解析到bool，支time格式的解析 
+21. 简化了SessionID的生成，不在采用hmac_sha1算法，直接通过golang内置的rand获取
+
+bugfix:
+
+1. 模拟PUT和DELETE时，_method的值没有大写，导致XSRF验证失败
+2. cache如果在StartAndGC初始化失败时，没有返回错误信息
+3. httplib修复User-Agent设置不起作用
+4. DelStaticPath优化/处理
+5. 静态目录多个的时候，文件只会在第一个静态目录找
+6. Filter函数在AfterExec和FinishRouter之后多个Filter不能执行的问题
+7. 修复在请求方法是模拟的_method是PUT或者DELETE的时候无法正确路由
+8. 修复了mime没有初始化的问题
+9. log输出文件以及行号不正确
+10. httplib修复了当只有一个文件上传一个参数是不能发送的问题
+11. 改进了Abort的输出信息，之前如果是没有定义的错误信息不会输出
+12. 修复namespace循环嵌套中，如果外层没有Filter的情况下内层Filter无法添加的问题
+13. 路由包含多层参数时，路由匹配出错 #824
+14. 注释路由，如果存在多个namespace的时候，一个更新，另一个信息丢失 #770
+15. urlfor函数调用多余{{placeholder}}问题 #759
+
 # beego 1.4.1
 主要更新：
+
 1. context.Input.Url获取path信息，去除了域名，scheme等信息
 2. 增加插件apiauth，模拟AWS的加密请求
 3. 精简debug输出的路由信息
