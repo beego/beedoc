@@ -2,6 +2,69 @@
 name: Release Notes
 sort: 2
 ---
+# beego 1.4.2
+New Features:
+
+1. Added SQL Constructor inspired by ZEND ORM.
+2. Added `GetInt()`, `GetInt8()`, `GetInt16()`, `GetInt32()`, `GetInt64()` for Controller
+3. Improved the logging. Added `FilterHandler` for filter logging output.
+4. Static folder supports `index.html`. Automatically adding `/` for static folders.
+5. `flash` supports `success` and `set` methods.
+6. Config for ignoring case for routers: `RouterCaseSensitive`. Case sensitive by default.
+7. Configs load based on environment: `beego.AppConfig.String("myvar") return 456 on dev mode and return 123 on the other modes.
+
+	runmode = dev
+	myvar = 123
+	[dev]
+	myvar = 456
+
+8. Added `include` for `ini` config files:
+	
+	appname = btest
+	include b.conf
+
+9. Added `paginator` utils.
+10. Added `BEEGO_RUNMODE` environment variable. You can change the application mode by changing this environment variable.
+11. Added Json function for fetching `statistics` in `toolbox`
+12. Attachements support for mail utils.
+13. Turn on fastcgi by standard IO
+14. Using `SETEX` command to support the old version redis in redis Session engine.
+15. RenderForm supports html id and class by using id and class tag.
+16. ini config files support BOM head
+17. Added new Session engine `ledis`
+18. Improved file uploading in `httplib`. Supporting extremely large files by using `io.Pipe`
+19. Binding to TCP4 address by default. It will bind to ipv6 in GO.  Added config variable `ListenTCP4`
+20. off/on/yes/no/1/0 will parse to `bool` in form rendering. Support time format.
+21. Simplify the generating of SeesionID. Using golang buildin `rand` function other than `hmac_sha1`
+
+bugfix:
+
+1. XSRF verification failure while `PUT` and `DELETE` cased by lowercased `_method`
+2. No error message returned while initialize the cache by `StartAndGC`
+3. Can't set `User-Agent` in `httplib`
+4. Improved `DelStaticPath`
+5. Only finding files in the first static folder when using multiple static folders
+6. `Filter` functions can't execute after `AfterExec` and `FinishRouter`
+7. Fixed uninitialized mime
+9. Wrong file name and line number in the log
+10. Can't send the request while only uploading one file in `httplib`
+11. Improved the `Abort` output message. It couldn't out undefined error message before.
+12. Fixed the issue that can't add inner Filter while no out Filter set in the nested `namespaces`
+13. Router mapping error while router has multiple level parameters. #824
+14. The information lossing while having many `namespaces` for the commented router. #770
+15. `urlfor` function calling useless {{placeholder}} #759
+
+# beego 1.4.1
+New features:
+
+1. `context.Input.Url` get path info without domain scheme.
+2. Added plugin `apiauth` to simulate the `AWS` encrypted requests.
+3. Simplified the debug output for router info.
+4. Supportting pointer type in ORM.
+5. Added `BasicAuth`, cache for multiple requests
+
+bugfix:
+1. Router *.* can't be parsed 
 
 # beego 1.3.0
 Hi guys! After the hard working for one month, we are so excited to release Beego 1.3.0. We brought many useful features. [Upgrade notes](http://beego.me/docs/intro/upgrade.md)
