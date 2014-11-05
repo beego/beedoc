@@ -11,7 +11,7 @@ New Features:
 4. Static folder supports `index.html`. Automatically adding `/` for static folders.
 5. `flash` supports `success` and `set` methods.
 6. Config for ignoring case for routers: `RouterCaseSensitive`. Case sensitive by default.
-7. Configs load based on environment: `beego.AppConfig.String("myvar") return 456 on dev mode and return 123 on the other modes.
+7. Configs load based on environment: `beego.AppConfig.String("myvar")` return 456 on dev mode and return 123 on the other modes.
 
 	runmode = dev  
 	myvar = 123  
