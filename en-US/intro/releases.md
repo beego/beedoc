@@ -13,15 +13,15 @@ New Features:
 6. Config for ignoring case for routers: `RouterCaseSensitive`. Case sensitive by default.
 7. Configs load based on environment: `beego.AppConfig.String("myvar") return 456 on dev mode and return 123 on the other modes.
 
-	runmode = dev
-	myvar = 123
-	[dev]
-	myvar = 456
+	runmode = dev  
+	myvar = 123  
+	[dev]  
+	myvar = 456  
 
 8. Added `include` for `ini` config files:
 	
-	appname = btest
-	include b.conf
+	appname = btest  
+	include b.conf  
 
 9. Added `paginator` utils.
 10. Added `BEEGO_RUNMODE` environment variable. You can change the application mode by changing this environment variable.
