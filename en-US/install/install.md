@@ -27,7 +27,7 @@ You can upgrade beego through Go command or download and upgrade from source cod
 
 		go get -u github.com/astaxie/beego
 		
-- Through source code: visit `https://github.com/astaxie/beego` and download the source code. Copy and overwrite to path `$GOPATH/github.com/astaxie/beego`. Then run `go install` to upgrade beego:
+- Through source code: visit `https://github.com/astaxie/beego` and download the source code. Copy and overwrite to path `$GOPATH/src/github.com/astaxie/beego`. Then run `go install` to upgrade beego:
 
 		go install 	github.com/astaxie/beego	
 
