@@ -10,7 +10,7 @@ beego 是一个能够进行快速开发应用的框架，快速入门将带领�
 
 - [bee 工具新建项目](new.md)	
 - [路由设置](router.md)
-- [controller 编写](controller.md)
-- [model 编写](model.md)
-- [view 编写](view.md)
+- [controller 运行机制](controller.md)
+- [model 逻辑](model.md)
+- [view 渲染](view.md)
 - [静态文件处理](static.md)

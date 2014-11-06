@@ -1,5 +1,5 @@
 ---
-name: Controller 编写
+name: Controller 运行机制
 sort: 3
 ---
 
@@ -29,9 +29,9 @@ func (this *MainController) Get() {
 
 而 `beego.Controller` 拥有很多方法，其中包括 `Init`、`Prepare`、`Post`、`Get`、`Delete`、`Head`等 方法。我们可以通过重写的方式来实现这些方法，而我们上面的代码就是重写了 `Get` 方法。
 
-我们先前介绍过 beego 是一个 RESTful 的框架，所以我们的请求默认是执行对应 `req.Method` 的方法。例如浏览器的是 `GET` 请求，那么默认就会执行 `MainController` 下的 `Get` 方法。这样我们上面的 Get 方法就会被执行到，这样就进入了我们的逻辑处理。
+我们先前介绍过 beego 是一个 RESTful 的框架，所以我们的请求默认是执行对应 `req.Method` 的方法。例如浏览器的是 `GET` 请求，那么默认就会执行 `MainController` 下的 `Get` 方法。这样我们上面的 Get 方法就会被执行到，这样就进入了我们的逻辑处理。（用户可以改变这个行为，通过注册自定义的函数名，更加详细的请参考[路由设置](../mvc/controller/router.md#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95%E5%8F%8A-restful-%E8%A7%84%E5%88%99)）
 
-里面的代码我们需要执行的逻辑，这里只是简单的输出数据，我们可以通过各种方式获取数据，然后赋值到 `this.Data` 中，这是一个用来存储输出数据的 map，可以赋值任意类型的值，这里我们只是简单举例输出两个字符串。
+里面的代码是需要执行的逻辑，这里只是简单的输出数据，我们可以通过各种方式获取数据，然后赋值到 `this.Data` 中，这是一个用来存储输出数据的 map，可以赋值任意类型的值，这里我们只是简单举例输出两个字符串。
 
 最后一个就是需要去渲染的模板，`this.TplNames` 就是需要渲染的模板，这里指定了 `index.tpl`，如果用户不设置该参数，那么默认会去到模板目录的 `Controller/<方法名>.tpl` 查找，例如上面的方法会去 `MainController/Get.tpl`。
 
@@ -46,3 +46,5 @@ func (this *MainController) Get() {
 ```
 
 至此我们的控制器分析基本完成了，接下来让我们看看如何来编写 model。
+
+[model 逻辑](model.md)
