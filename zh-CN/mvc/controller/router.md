@@ -403,11 +403,7 @@ ns :=
 			beego.NSNamespace("/delete",
 				beego.NSRouter("/node", &apis.DeleteNodeHandler{}),
 				beego.NSRouter("/topic", &apis.DeleteTopicHandler{}),
-			),
-			beego.NSNamespace("/delete",
-				beego.NSRouter("/node", &apis.DeleteNodeHandler{}),
-				beego.NSRouter("/topic", &apis.DeleteTopicHandler{}),
-			),
+			)
 		),
 	)
 
