@@ -150,7 +150,7 @@ ORM 默认使用 time.Local 本地时区
 orm.DefaultTimeLoc = time.UTC
 ```
 
-ORM 在进行 RegisterDataBase 的同时，会获取数据库使用的时区，然后在 time.Time 类型存取的时做相应转换，以匹配时间系统，从而保证时间不会出错。
+ORM 在进行 RegisterDataBase 的同时，会获取数据库使用的时区，然后在 time.Time 类型存取时做相应转换，以匹配时间系统，从而保证时间不会出错。
 
 **注意:**
 
