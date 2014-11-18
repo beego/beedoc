@@ -7,7 +7,7 @@ sort: 2
 
 1. 增加了SQL构造器，参考了ZEND框架的ORM
 2. Controller获取参数增加了GetInt(), GetInt8(), GetInt16(), GetInt32(), GetInt64()
-3. 优化日志提示提示，增加日志输出过滤设置FilterHandler，默认静态文件不输出匹配日志输出
+3. 优化日志提示，增加日志输出过滤设置FilterHandler，默认静态文件不输出匹配日志输出
 4. 静态目录支持index.html输出，静态目录自动增加/
 5. flash支持success和set函数，支持各种一次性的数据
 6. 路由支持大小写忽略设置,RouterCaseSensitive, 默认是大小写敏感的URL，根据用户注册的URL进行匹配
