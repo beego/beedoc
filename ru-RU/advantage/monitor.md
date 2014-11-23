@@ -1,0 +1,74 @@
+---
+name: Live Monitor
+sort: 1
+---
+
+# Live мониторинг
+
+We talked about toolbox module before. It will listen `127.0.0.1:8088` by default when application is running. It can't be accessed from internet but you can visit it by other ways such as nginx proxy.
+
+Мы разговаривали о инструментарии модулей ранее. Этот инструментарий доступен по адресу `127.0.0.1:8088` из коробки, когда приложение запущено. Этот адрес не доступен из интернета, но вы можете открыть доступ к нему используя nginx как прокси.
+
+>>> По соображениям безопасности мы рекомендуем блокировать 8088 порт через файрволл.
+
+Мониторинг выключен по-умолчанию. Вы можете включить его:
+
+	beego.EnableAdmin = true
+
+И вы можете изменить порт на котором работает мониторинг:
+
+	beego.AdminHttpAddr = "localhost"
+	beego.AdminHttpPort = 8888
+
+Open browser and visit `http://localhost:8088/` you will see `Welcome to Admin Dashboard`.
+Откройте `http://localhost:8088/` в браузере и вы увидите `Welcome to Admin Dashboard`.
+
+Это первая версия, но мы продолжаем разрабатывать мониторинг.
+
+## Статистика запросов
+
+Откройте `http://localhost:8088/qps` и вы увидите это:
+
+	| requestUrl                                        | method     | times            | used             | max used         | min used         | avg used         |
+	| /                                                 | GET        |  2               | 2.35ms           | 1.30ms           | 1.04ms           | 1.17ms           |
+	| /favicon.ico                                      | GET        |  1               | 79.30us          | 79.30us          | 79.30us          | 79.30us          |
+	| /src/xx                                           | GET        |  1               | 923.09us         | 923.09us         | 923.09us         | 923.09us         |
+	| /src                                              | GET        |  1               | 792.93us         | 792.93us         | 792.93us         | 792.93us         |
+	| /123                                              | GET        |  1               | 906.04us         | 906.04us         | 906.04us         | 906.04us         |
+
+## Профилирование производительности
+
+There are several params for profiling. Visit `http://localhost:8088/prof` and with params below and you can get different information.
+
+Список параметров для профилирования. Зайдите на `http://localhost:8088/prof` с разными параметрами и вы получите различную информацию
+
+	пример url запроса '/prof?command=lookup goroutine'
+	поле command может принимать следующие значения:
+	1. lookup goroutine
+	2. lookup heap
+	3. lookup threadcreate
+	4. lookup block
+	5. start cpuprof
+	6. stop cpuprof
+	7. get memprof
+	8. gc summary
+
+
+## Healthcheck
+
+Вам нужно вручную зарегистрировать логику проверки доступности вашего приложения по адресу `http://localhost:8088/healthcheck`
+
+## Задачи
+
+Вы модете добавить задачу в ваше приложение и проверить статус этой задачи или запустить её вручную
+
+- Проверка статуса задачи: `http://localhost:8088/task`
+- Ручной запуск задачи: `http://localhost:8088/runtask?taskname=task_name`
+
+## Состояние конфигурации
+
+Вы можете узнать конфигурацию которая используется когда приложение запущено.
+
+- Показать все конфигурации: `http://localhost:8088/listconf?command=conf`
+- Показать все роутеры: `http://localhost:8088/listconf?command=router`
+- Показать все фильтры: `http://localhost:8088/listconf?command=filter`
