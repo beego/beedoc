@@ -125,36 +125,36 @@ We defined the comment above for `CMSController` which will show for this module
 - @Title
 
 	The title for this API. it's a string, all the content after the first space will be parsed as the title.
-	
+
 - @Description
 
-	
+
 	The description for this API. it's a string, all the content after the first space will be parsed as the description.
-	
+
 - @Param
 
 	`@Param` defines the parameters sent to the server. There are five columns for each `@Param`:
 	1. parameter name;
-	2. parameter sending type; It can be `form`, `query`, `path`, `body` or `header`. `form` means the parameter send by POST. `query` means the parameter in url send by GET. `path` means the parameter in the url path, such as key in the former example. `body` means the raw dada send from request body. `header` means the parameter in request header.
+	2. parameter sending type; It can be `form`, `query`, `path`, `body` or `header`. `form` means the parameter send by POST. `query` means the parameter in url send by GET. `path` means the parameter in the url path, such as key in the former example. `body` means the raw data send from request body. `header` means the parameter in request header.
 	3. parameter data type
 	4. required
 	5. comment
-	
+
 - @Success
 
 	The success message returned to client. Three parameters.
 	1. status code.
 	2. return type; Must wrap with {}.
 	3. returned object or string. For {object}, use path and the object name of your project here and `bee` tool will look up the object while generate the docs. For example `models.ZDTProduct.ProductList` represents `ProductList` object under `/models/ZDTProduct`
-	
+
 	>>> Use space to separate these three parameters
-	
+
 - @Failure
 
 	The failure message returned to client. Two parameters separated by space.
 	1. status code.
 	2. Error message
-	
+
 - @router
 
 	Router information. Two parameters separated by space.
@@ -167,7 +167,7 @@ To make it work following the steps:
 1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`
 2. Generate document files by `bee generate docs`
 3. Import `_ "beeapi/docs"` in `main.go`
-4. Use `bee run watchall true -downdoc=true -gendoc=true` to run your API application and rebuild document automatically. 
+4. Use `bee run watchall true -downdoc=true -gendoc=true` to run your API application and rebuild document automatically.
 5. Visit `swagger document from API project's URL and port.  (see item #1 below)
 
 Your API document is available now. Open your browser and check it.
@@ -179,17 +179,17 @@ Your API document is available now. Open your browser and check it.
 ## Problems You May Have
 1. CORS
 	Two solutions
-	1. Integrate `swagger` into the application. Download [swagger](https://github.com/beego/swagger/releases) and put it into project folder. (`bee run -downdoc=true` will also download it and put it into project folder) 
+	1. Integrate `swagger` into the application. Download [swagger](https://github.com/beego/swagger/releases) and put it into project folder. (`bee run -downdoc=true` will also download it and put it into project folder)
 	And before 	`beego.Run()` in `func main()` of `main.go`
 
 		if beego.RunMode == "dev" {
 			beego.DirectoryIndex = true
 			beego.StaticDir["/swagger"] = "swagger"
-		}		
+		}
 
 	And then visit `swagger` document from API project's URL and port.
 	2. Make API support CORS
-	
+
 			ctx.Output.Header("Access-Control-Allow-Origin", "*")
-			
+
 2. Other problems. This is a feature used in my own project. If you have some other problems please fire issues to us.
