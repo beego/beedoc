@@ -190,6 +190,61 @@ func (this *BlogsController) Get() {
     this.LayoutSections["Sidebar"] = ""
 }
 ```
+## Another approach
+
+We can also only specify the template the controller is going to use and let the template system handle the layout:
+
+for example:
+
+controller:
+
+	this.TplNames = "blog/add.tpl"
+	this.Data["SomeVar"] = "SomeValue"
+	this.Data["Title"] = "Add"
+
+template add.tpl:
+
+	{{ template "layout_blog.tpl" . }}
+	{{ define "css" }}
+    		<link rel="stylesheet" href="/static/css/current.css">
+	{{ end}}
+
+
+	{{ define "content" }}
+    		<h2>{{ .Title }}</h2>
+    		<p> This is SomeVar: {{ .SomeVar }}</p>
+	{{ end }}
+	
+	{{ define "js" }}
+		<script src="/static/js/current.js"></script>
+	{{ end}}
+
+
+layout_blog.tpl:
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lin Li</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+     {{ template "css" . }}
+</head>
+<body>
+
+    <div class="container">
+        {{ template "content" . }}
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+     {{ template "js" . }}
+</body>
+</html>
+```
+
 
 ## renderform
 
