@@ -53,7 +53,7 @@ func (this *HomeController) Get(){
 
 ### 在 JavaScript 中使用
 
-如果你提交的是 AJAX 的 POST 请求，你还是需要在每一个请求中通过脚本添加上 _xsrf 这个值。下面是在 AJAX 的 POST 请求，使用了 jQuery 函数来为所有请求组东添加 _xsrf 值：
+如果你提交的是 AJAX 的 POST 请求，你还是需要在每一个请求中通过脚本添加上 _xsrf 这个值。下面是在 AJAX 的 POST 请求，使用了 jQuery 函数来为所有请求都添加 _xsrf 值：
 
 jQuery cookie插件：https://github.com/carhartl/jquery-cookie
 base64 插件：http://phpjs.org/functions/base64_decode/
