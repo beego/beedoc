@@ -13,7 +13,7 @@ server {
     server_name  .a.com;
 
     charset utf-8;
-    access_log  /home/a.com.access.log  main;
+    access_log  /home/a.com.access.log;
 
     location /(css|js|fonts|img)/ {
         access_log off;
