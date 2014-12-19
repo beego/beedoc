@@ -58,7 +58,7 @@ Then it will output debug information:
 
 If the requested scheme is https, we need to set TLS of client:
 
-	httplib.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
+	req.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 	
 [Learn more about TLS settings](http://gowalker.org/crypto/tls#Config)
 	
@@ -66,11 +66,11 @@ If the requested scheme is https, we need to set TLS of client:
 
 Can set request timeout and data reading timeout by:
 
-	SetTimeout(connectTimeout, readWriteTimeout)
+	req.SetTimeout(connectTimeout, readWriteTimeout)
 
 It is a function of request object. So it can be done like this:
 
-	Get("http://beego.me/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
+	httplib.Get("http://beego.me/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
 	
 ## Set Request Params
 
