@@ -47,7 +47,7 @@ httplib 包里面支持如下的方法返回 request 对象：
 	
 这样就可以看到请求数据的详细输出
 	
-	Get("http://beego.me/").Debug(true).Response()
+	httplib.Get("http://beego.me/").Debug(true).Response()
 	
 	//输出数据如下
 	GET / HTTP/0.0
@@ -58,7 +58,7 @@ httplib 包里面支持如下的方法返回 request 对象：
 
 如果请求的网站是 HTTPS 的，那么我们就需要设置 client 的 TLS 信息，如下所示：
 
-	httplib.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
+	req.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 	
 关于如何设置这些信息请访问： http://gowalker.org/crypto/tls#Config			
 	
@@ -66,11 +66,11 @@ httplib 包里面支持如下的方法返回 request 对象：
 
 通过如下接口可以设置请求的超时时间和数据读取时间：
 
-	SetTimeout(connectTimeout, readWriteTimeout)
+	req.SetTimeout(connectTimeout, readWriteTimeout)
 
 以上方法都是针对 request 对象的，所以你第一步必须是返回 request 对象，然后链式操作，类似这样的代码：
 
-	Get("http://beego.me/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
+	httplib.Get("http://beego.me/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
 	
 ## 设置请求参数
 
