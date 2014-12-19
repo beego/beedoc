@@ -47,7 +47,7 @@ Enable debug information output:
 	
 Then it will output debug information:
 	
-	Get("http://beego.me/").Debug(true).Response()
+	httplib.Get("http://beego.me/").Debug(true).Response()
 	
 	// Output
 	GET / HTTP/0.0
