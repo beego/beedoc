@@ -8,9 +8,14 @@ sort: 1
 ## Introduction
 
 Beego is a free and open source software, which means that anyone can contribute
-to its development and progress. Beego's source code is hosted on github, which
-provides a very easy way to fork the project and merge your contributions.
+to its development and progress. Beego's source code is hosted on github
+(https://github.com/astaxie/beego), which provides a very easy way to fork the
+project and merge your contributions.
 
+### How can I be a contributor of beego
+
+You can fork, modify and then send a Pull Request to us.
+We will review your code and give you feedback of your changes as soon as possible.
 
 ## Pull Requests
 
@@ -42,3 +47,13 @@ request will be rejected immediately.
 Since Beego follows the [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/)
 branching model, ongoing development happens in the `develop` branch. Therefore,
 please base your pull requests on the HEAD of the `develop` branch.
+
+
+### The git branches of beego
+
+The master branch is relatively stable one where dev branch is for developers. Here is a
+sample figure to show you how our branches work:
+
+![](../images/git-branch-1.png)
+
+For more information about the branching model: http://nvie.com/posts/a-successful-git-branching-model/

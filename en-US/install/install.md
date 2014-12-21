@@ -26,18 +26,9 @@ You can upgrade beego through Go command or download and upgrade from source cod
 - Through Go command: we recommand you using this way to upgrade beego:
 
 		go get -u github.com/astaxie/beego
-		
+
 - Through source code: visit `https://github.com/astaxie/beego` and download the source code. Copy and overwrite to path `$GOPATH/src/github.com/astaxie/beego`. Then run `go install` to upgrade beego:
 
-		go install 	github.com/astaxie/beego	
+		go install 	github.com/astaxie/beego
 
-# The git branches of beego
-
-The master branch is relatively stable one where dev branch is for developers. Here is a sample figure to show you how our branches work:
-
-![](../images/git-branch-1.png)
-
-
-# How can I be a contributor of beego
-
-Beego's source code is hosted on GitHub. You can fork, modify and then send a Pull Request to us. We will review your code and give you feedback of your changes as soon as possible.  
+**Upgrading Prior 1.0:** The API of beego is already stable after 1.0. Basically it's compatible of every upgrade. If you are still using the version lower than 1.0, you might need to change some methods and parameters based on the latest API.
