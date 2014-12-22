@@ -13,15 +13,15 @@ sort: 2
 6. 路由支持大小写忽略设置,RouterCaseSensitive, 默认是大小写敏感的URL，根据用户注册的URL进行匹配
 7. 配置文件支持自定义的变量获取，beego.AppConfig.String("myvar")在dev下返回456，在其他模式下返回123
 
-	runmode = dev
-	myvar = 123
-	[dev]
-	myvar = 456
+    > runmode = dev
+    > myvar = 123
+    > [dev]
+    > myvar = 456
 
 8. ini配置文件支持include语法，在配置文件中允许include其他配置文件：
-	
-	appname = btest
-	include b.conf
+
+    > appname = btest
+    > include b.conf
 
 9. utils下增加分页组件，可以方便用户编写分页相关的应用。
 10. 增加BEEGO_RUNMODE环境变量，用户在部署的时候只要通过改变量方便切换应用的不同模式
@@ -34,7 +34,7 @@ sort: 2
 17. Session增加新的引擎ledis
 18. 改进httplib文件上传，采用了io.Pipe支持超大文件上传
 19. 支持应用启动直接绑定到TCP4地址上，Go默认是绑定到ipv6，增加配置参数ListenTCP4
-20. 表单数据渲染支持off/on/yes/no/1/0解析到bool，支time格式的解析 
+20. 表单数据渲染支持off/on/yes/no/1/0解析到bool，支time格式的解析
 21. 简化了SessionID的生成，不在采用hmac_sha1算法，直接通过golang内置的rand获取
 
 bugfix:
@@ -74,30 +74,30 @@ bugfix:
 1. bee工具的完整性改进，bee现在支持了如下功能：
 
 	bee api 直接从数据库读取数据库表，一键生成API应用带文档，详细介绍看视频：http://www.tudou.com/programs/view/aM7iKLlBlrU/
-	- bee generate命令，这个是新增加的命令，可以用来自动化生成代码，主要有如下子命令： 
-	
+	- bee generate命令，这个是新增加的命令，可以用来自动化生成代码，主要有如下子命令：
+
 	     - scaffold 类似其他框架的脚手架功能，生成controller、model、view、migration
-	
+
 	     - model 生成CRUD的model
-	
-	     - controller 生成CRUD的controller 
-	
+
+	     - controller 生成CRUD的controller
+
 	     - view  生成CRUD的view文件，内容为空，需要用户自己做UI界面
-	
+
 	     - migration  生成migration文件
-	
+
 	     - appcode  从数据库根据表结构生成model、controller、router
-	
-	     - docs  从controller注释自动化生成swagger文档	
+
+	     - docs  从controller注释自动化生成swagger文档
 	- bee migrate 命令，执行migration，支持如下子命令
-	
+
 	     - migrate 执行所有新的migration
-	
+
 	     - rollback 回滚最后一次执行的migration
-	
+
 	     - reset 回滚所有的migration
-	
-	     - refresh 回滚所有的migration并从头执行全部的migration	
+
+	     - refresh 回滚所有的migration并从头执行全部的migration
 	- bee run改进，默认支持了watchall功能，增加了两个参数gendoc和downdoc
 
 2. config模块增加新的接口，现在config模块支持如下接口，支持直接保存文件：
@@ -122,7 +122,7 @@ bugfix:
 	    SaveConfigFile(filename string) error
 	}
 	```
-	
+
 3. middleware中支持另一种i18n的支持：
 
 	```
@@ -130,7 +130,7 @@ bugfix:
 	```
 
 	配置文件如下：
-	
+
 	```
 	{
 	  "E-mail Address": {
@@ -186,7 +186,7 @@ bugfix:
 10. 新增了AdminUI，用户在EnableAdmin的情况下，可以通过界面简单地获取当前应用的各种状态，同时可以很容易的调试性能，监控系统，执行任务，获取配置等
 
 	![](../images/adminui.png)
-	
+
 11. session配置现在支持设置cookie domain
 
 12. 新增migration包，支持migration的功能
@@ -217,14 +217,14 @@ bugfix:
 
 	/user/astaxie
 	/user/:username
-	
+
 如果你的访问地址是`/user/astaxie`，那么优先匹配固定的路由，也就是第一条，如果访问是`/user/slene`，那么就匹配第二个，和你注册的路由的先后顺序无关
 
 ## namespace更优雅
 设计namespace主要是为了大家模块化设计的，之前是采用了类似jQuery的链式方式，当然新版本也是支持的，但是由于gofmt的格式无法很直观的看出来整个路由的目录结构，所以我采用了多参数注册方式，现在看上去就更加的优雅：
 
 ```
-ns := 
+ns :=
 beego.NewNamespace("/v1",
     beego.NSNamespace("/shop",
         beego.NSGet("/:id", func(ctx *context.Context) {
@@ -290,14 +290,14 @@ func (this *CMSController) AllBlock() {
 	autorender = false
 	autorecover = false
 	viewspath = "myview"
-	
+
 	[dev]
 	httpport = 8080
 	[prod]
 	httpport = 8088
 	[test]
 	httpport = 8888
-	
+
 上面的配置文件就是在不同的runmode下解析不同的配置，例如在dev模式下，httpport是8080，在prod模式下是8088，在test模式下是8888.其他配置文件同理。解析的时候优先解析runmode下地配置，然后解析默认的配置。
 
 ## 支持双向的SSL认证
@@ -326,10 +326,10 @@ beego.Run("127.0.0.1:8089")
 ## 模板函数增加Config，可以方便的在模板中获取配置信息
 
 	{{config returnType key defaultValue}}
-	
+
 	{{config "int" "httpport" 8080}}
 
-## httplib支持cookiejar功能，感谢curvesft		
+## httplib支持cookiejar功能，感谢curvesft
 
 ## orm时间格式，如果为空就设置为nil，感谢JessonChan
 
@@ -416,22 +416,22 @@ func init() {
 	?id=123&isok=true&ft=1.2&ol[0]=1&ol[1]=2&ul[]=str&ul[]=array&user.Name=astaxie
 
 ```
-var id int  
+var id int
 ctx.Input.Bind(&id, "id")  //id ==123
 
-var isok bool  
+var isok bool
 ctx.Input.Bind(&isok, "isok")  //isok ==true
 
-var ft float64  
+var ft float64
 ctx.Input.Bind(&ft, "ft")  //ft ==1.2
 
-ol := make([]int, 0, 2)  
+ol := make([]int, 0, 2)
 ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
 
-ul := make([]string, 0, 2)  
+ul := make([]string, 0, 2)
 ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
 
-user struct{Name}  
+user struct{Name}
 ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
 ```
 
@@ -472,7 +472,7 @@ func (a *AdminController) Prepare(){
 
 #### 12.session提供memcache引擎
 
-#### 13.Context中的Download函数支持自定义文件名提供下载 
+#### 13.Context中的Download函数支持自定义文件名提供下载
 
 ## bug修复
 
@@ -625,7 +625,7 @@ bugfix
 
 7. 越来越活跃的社区，在 github上面目前已经差不多有390个的 issue，贡献者超过36个，commit 超过了700个，Google groups 目前还在稳步发展中。
 
-8. 周边产品越来越多，基于beego的开源产品也越来越多，例如cms系统，https://github.com/insionng/toropress  例如管理后台系统，https://github.com/beego/admin 
+8. 周边产品越来越多，基于beego的开源产品也越来越多，例如cms系统，https://github.com/insionng/toropress  例如管理后台系统，https://github.com/beego/admin
 
 9. beego 的辅助工具越来越强大，bee 工具是专门辅助用户开发 beego 应用的，可以快速的创建应用，动态编译，打包部署等
 

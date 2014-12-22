@@ -1,18 +1,19 @@
-# What is this?
 
-An open source project for beego documentation.
+This project is the source for http://beego.me/docs
+
 
 ## How to contribute?
 
-Fork, update and submit a pull request. No matter how big or small, your changes are welcome!
+Fork, update and submit a pull request. No matter how big or small, your contributions to this project are welcome!
 
 ## How does it work?
 
-Beego Web server checks for updates to this project and updates the main documentation automatically.
+A Beego Web server checks for updates to this repository (https://github.com/beego/beedoc) and updates the main documentation automatically.
 
 ## Note
 
-Beego documentation is written using standard markdown syntax.  Please submit your changes using the same syntax.
+Beego documentation is written using standard markdown syntax (https://guides.github.com/features/mastering-markdown/).  Please submit your changes using the same syntax.
+
 
 ## License
 
