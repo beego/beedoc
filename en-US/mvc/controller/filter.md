@@ -40,7 +40,7 @@ var FilterUser = func(ctx *context.Context) {
 beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)
 ```
 
->>>One thing you need to care about is he Filter using session must use after `BeforeRouter` because session is not initialized before it.
+>>>One thing you need to care about is he Filter using session must use after `BeforeRouter` because session is not initialized before it. Don't forget enable beego session module (see [Session control](../mvc/controller/session.md))
 
 
 You can run the Filters by matching regex router rules:
