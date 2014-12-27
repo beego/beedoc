@@ -126,26 +126,11 @@ if err != nil {
 
 Above settings are before sending request, how can we get response after request? Here are the ways:
 
-- return Response object by `req.Response()`
-
-	This is a `http.Response` object. You can get data from it.
-
-- return bytes by `req.Bytes()`
-
-	Return raw response.
-
-- return string by `req.String()`
-
-	Return raw response.
-
-- save file by `req.ToFile(filename)`
-
-	Save response into file.
-
-- parse to JSON by `req.ToJson(result)`
-
-	Parse response to JSON into result object
-
-- parse to xml by `req.ToXML(result)`
-
-	Parse response to XML into result object
+|Method                          |Type                     |Description                                                |
+|--------------------------------|-------------------------|-----------------------------------------------------------|
+|`req.Response()`                |`(*http.Response, error)`|This is a `http.Response` object. You can get data from it.|
+|`req.Bytes()`                   |`([]byte, error)`        |Return raw response body.                                  |
+|`req.String()`                  |`(string, error)`        |Return raw response body.                                  |
+|`req.ToFile(filename string)`   |`error`                  |Save response body into a file.                            |
+|`req.ToJson(result interface{})`|`error`                  |Parse JSON response into the result object.                |
+|`req.ToXml(result interface{})` |`error`                  |Parse XML response into the result object.                 |
