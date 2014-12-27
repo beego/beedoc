@@ -5,7 +5,7 @@ sort: 6
 
 # Core Toolbox Module
 
-This module referenced [Dropwizard framework](https://github.com/dropwizard/dropwizard). One user told me about this framework and it's cool stuff. [issue 128](https://github.com/astaxie/beego/issues/128) talked about this feature. I added more cool features. Here are the features: healthcheck, profile, statistics and task.
+This module is based on the [Dropwizard framework](https://github.com/dropwizard/dropwizard) for Java. One user told me about this framework and it's cool stuff. [Issue 128](https://github.com/astaxie/beego/issues/128) talked about this feature. I added more cool features. Here are the features: healthcheck, profiling, statistics and tasks.
 
 ## Installation
 
@@ -13,7 +13,7 @@ This module referenced [Dropwizard framework](https://github.com/dropwizard/drop
 
 ## Healthcheck
 
-It can check health status of your application. E.g.: to check if database is available:
+It can check the health status of your application. E.g.: To check if database is available:
 
 ```
 type DatabaseCheck struct {
@@ -38,17 +38,19 @@ After this you can send get request to `/healthcheck`:
 	$ curl http://beego.me:8088/healthcheck
 	* deadlocks: OK
 	* database: OK
-	
-It will return the database status accordingly.
-	
-## profile
 
-Monitoring the performance of running processes is a very good way to optimize performance and to look for issues of our application. E.g.: information of GC and goroutine. Profile provides a easy entry for you to debug the application. It uses `ProcessInput` entry function to process the requests. Here are some debugging types:
+It will return the database status accordingly.
+
+## Profiling
+
+Monitoring the performance of running processes is a very good way to optimize performance and to look for issues of our application. E.g.: information of GC and goroutine.
+
+Profile provides a easy entry for you to debug the application. It uses the `ProcessInput` entry function to process the requests. Here are some debugging types:
 
 - lookup goroutine
 
-  Print out the tasks of all goroutines are running. You can easily see what goroutines are doing.
-	
+	Print out the tasks of all goroutines which are currently running. You can easily see what all goroutines are doing.
+
 		goroutine 3 [running]:
 		runtime/pprof.writeGoroutineStacks(0x634238, 0xc210000008, 0x62b000, 0xd200000000000000)
 			/Users/astaxie/go/src/pkg/runtime/pprof/pprof.go:511 +0x7c
@@ -64,7 +66,7 @@ Monitoring the performance of running processes is a very good way to optimize p
 			/Users/astaxie/go/src/pkg/testing/testing.go:391 +0x8b
 		created by testing.RunTests
 			/Users/astaxie/go/src/pkg/testing/testing.go:471 +0x8b2
-		
+
 		goroutine 1 [chan receive]:
 		testing.RunTests(0x315668, 0x532320, 0x4, 0x4, 0x1)
 			/Users/astaxie/go/src/pkg/testing/testing.go:472 +0x8d5
@@ -75,12 +77,12 @@ Monitoring the performance of running processes is a very good way to optimize p
 
 - lookup heap
 
-  Print out information of current heap:
-	
+	Print out information of current heap:
+
 		heap profile: 1: 288 [2: 296] @ heap/1048576
 		1: 288 [2: 296] @
-		
-		
+
+
 		# runtime.MemStats
 		# Alloc = 275504
 		# TotalAlloc = 275512
@@ -106,8 +108,8 @@ Monitoring the performance of running processes is a very good way to optimize p
 
 - lookup threadcreate
 
-  Print out information of threads:
-	
+	Print out information of threads:
+
 		threadcreate profile: total 4
 		1 @ 0x17f68 0x183c7 0x186a8 0x188cc 0x19ca9 0xcf41 0x139a3 0x196c0
 		#	0x183c7	newm+0x27			/Users/astaxie/go/src/pkg/runtime/proc.c:896
@@ -116,7 +118,7 @@ Monitoring the performance of running processes is a very good way to optimize p
 		#	0x19ca9	runtime.entersyscallblock+0x129	/Users/astaxie/go/src/pkg/runtime/proc.c:1514
 		#	0xcf41	runtime.notetsleepg+0x71	/Users/astaxie/go/src/pkg/runtime/lock_sema.c:253
 		#	0x139a3	runtime.MHeap_Scavenger+0xa3	/Users/astaxie/go/src/pkg/runtime/mheap.c:463
-		
+
 		1 @ 0x17f68 0x183c7 0x186a8 0x188cc 0x189c3 0x1969b 0x2618b
 		#	0x183c7	newm+0x27		/Users/astaxie/go/src/pkg/runtime/proc.c:896
 		#	0x186a8	startm+0xb8		/Users/astaxie/go/src/pkg/runtime/proc.c:974
@@ -133,30 +135,30 @@ Monitoring the performance of running processes is a very good way to optimize p
 
 - lookup block
 
-  Print out information of block:
+	Print out information of block:
 
 		--- contention:
 		cycles/second=2294781025
 
 - start cpuprof
 
-  Start recording cpuprof info into created file cpu-pid.pprof.
+	Start recording cpuprof info into created file cpu-pid.pprof.
 
 - stop cpuprof
 
-  Stop recording.
+	Stop recording.
 
 - get memprof
 
-  Start recording memprof into created file mem-pid.memprof
+	Start recording memprof into created file mem-pid.memprof
 
 - gc summary
 
-  Check GC status:
-	
+	Check GC status:
+
 		NumGC:2 Pause:54.54us Pause(Avg):170.82us Overhead:177.49% Alloc:248.97K Sys:3.88M Alloc(Rate):1.23G/s Histogram:287.09us 287.09us 287.09us 
 
-## statistics
+## Statistics
 
 Look at this picture, what do you think? It's cool, right? Toolbox module supports it.
 
@@ -186,9 +188,12 @@ Here is the output:
 	| /api/user/astaxie                                 | POST       |  1               | 12.00us          | 12.00us          | 12.00us          | 12.00us          |
 	| /api/user/xiemengjun                              | POST       |  1               | 13.00us          | 13.00us          | 13.00us          | 13.00us          |	
 
-## Task
+## Tasks
 
-Task works very similarly to a cron job.  Task is used to run a job outside the normal request/response cycle.  These can be adhoc or scheduled to run regularly. E.g.: reporting memory and goroutine status or triggering GC or cleaning up log files by timing.
+Tasks work very similarly to cron jobs. Tasks are used to run a job outside the normal request/response cycle. These can be adhoc or scheduled to run regularly.
+Examples include: Reporting memory and goroutine status, periodically triggering GC or cleaning up log files at fixed intervals.
+
+### Creating a new Task
 
 To initialize a task implement [https://godoc.org/github.com/astaxie/beego/toolbox#NewTask](toolbox.NewTask):
 
@@ -197,21 +202,21 @@ To initialize a task implement [https://godoc.org/github.com/astaxie/beego/toolb
 		return nil
 	})
 
-
 The NewTask signature:
 
 	NewTask(tname string, spec string, f TaskFunc) *Task	
-	- tname: task name
-	- spec: task format. See details below.
-	- f: the function will be run as the task
-	
+
+- `tname`: Task name
+- `spec`: Task format. See below for details.
+- `f`: The function which will be run as the task.
+
 To implement this task, add it to the global task list and start it.
 
 	toolbox.AddTask("tk1", tk1)
 	toolbox.StartTask()
 	defer toolbox.StopTask()
 
-Testing the TaskFunc
+### Testing the TaskFunc
 
 Use the code below to test if the TaskFunc is working correctly.
 
@@ -223,7 +228,7 @@ Use the code below to test if the TaskFunc is working correctly.
 
 ### spec in detail
 
-The format of spec is referenced to crontab. 
+`spec` specifies when the new Task will be run. Its format is the same as that of traditional crontab:
 
 ```
 // The first 6 parts are:
