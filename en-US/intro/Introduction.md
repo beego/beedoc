@@ -6,7 +6,7 @@ sort: 0
 
 # What is Beego?
 
-Beego is a HTTP framework for rapid development of Go applications. It can be used to develop API, web app and backend services quickly. It is a RESTful framework.  It is inspired by Tornado, Sinatra and Flask and has integrated some of Go-specific features such as interfaces and struct embeddedness.
+Beego is a HTTP framework for rapid development of Go applications. It can be used to develop APIs, web apps and backend services quickly. It is a RESTful framework.  It is inspired by Tornado, Sinatra and Flask and has integrated some of Go-specific features such as interfaces and struct embedding.
 
 ## The architecture of Beego
 
@@ -19,7 +19,7 @@ Beego is built upon 8 independent modules that are loosely coupled. Beego is des
 ## The execution logic of Beego
 
 Beego is based on these modules so what's its execution logic? Beego is
-a typical MVC architecture. Here is its executing logic:
+a typical MVC architecture. Here is its execution logic:
 
 ![](../images/flow.png)
 
@@ -46,6 +46,6 @@ Here is the typical folder structure of a Beego project:
     └── index.tpl
 ```
 
-We can see the M (models), V (views), C (controllers) folders. `main.go` is the starting file.
+We can see the M (models), V (views), C (controllers) folders. `main.go` is the entry point.
 
->You can use [bee tool to create a new project](../install/bee.md).
+>You can use the [bee tool to create a new project](../install/bee.md).
