@@ -32,13 +32,25 @@ Get data from parser:
 
 Here are the parser's methods:
 
-* `Set(key, val string) error`
-* `String(key string) string`
-* `Int(key string) (int, error)`
-* `Int64(key string) (int64, error)`
-* `Bool(key string) (bool, error)`
-* `Float(key string) (float64, error)`
-* `DIY(key string) (interface{}, error)`
+* **Setting values:**
+	* `Set(key, val string) error`
+	* `SaveConfigFile(filename string) error`
+* **Getting values:**
+	* `String(key string) string`
+	* `Strings(key string) []string`
+	* `Int(key string) (int, error)`
+	* `Int64(key string) (int64, error)`
+	* `Bool(key string) (bool, error)`
+	* `Float(key string) (float64, error)`
+	* `DIY(key string) (interface{}, error)`
+	* `GetSection(section string) (map[string]string, error)`
+* **Getting values or a default value:**
+	* `DefaultString(key string, defaultval string) string`
+	* `DefaultStrings(key string, defaultval []string) []string`
+	* `DefaultInt(key string, defaultval int) int`
+	* `DefaultInt64(key string, defaultval int64) int64`
+	* `DefaultBool(key string, defaultval bool) bool`
+	* `DefaultFloat(key string, defaultval float64) float64`
 
 The ini file supports configuration sections. You can get values inside a section by using `section::key`.
 
