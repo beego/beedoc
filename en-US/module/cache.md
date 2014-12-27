@@ -5,18 +5,18 @@ sort: 2
 
 # Cache Module
 
-Beego's cache module is used for cache data, inspired by `databae/sql`.  It supports four cache providers: file, memcache, memory and redis. You can install it by:
+Beego's cache module is used for caching data, inspired by `database/sql`. It supports four cache providers: file, memcache, memory and redis. You can install it by:
 
 	go get github.com/astaxie/beego/cache
-	
->>>if you use memcache or redis provider. You should install first
+
+If you use the `memcache` or `redis` provider, you should first install:
 
 	go get -u github.com/astaxie/beego/cache/memcache
-	
->>>then import it.
 
-    import _ "github.com/astaxie/beego/cache/memcache"	
-	
+and then import:
+
+	import _ "github.com/astaxie/beego/cache/memcache"
+
 ## Basic Usage
 
 First step is importing the package:
@@ -29,7 +29,7 @@ Then initialize a global variable object:
 
 	bm, err := cache.NewCache("memory", `{"interval":60}`)
 
-Then we can use `bm` to modify cache:
+Then we can use `bm` to modify the cache:
 
 	bm.Put("astaxie", 1, 10)
 	bm.Get("astaxie")
@@ -38,34 +38,33 @@ Then we can use `bm` to modify cache:
 
 ## Provider Settings
 
-Here is how to set four providers:
+Here is how to configure the four providers:
 
 - memory
 
-  `interval` stands for GC time, which means every 60s will clear the cache:
-	
-  {"interval":60}													
+	`interval` stands for GC time, which means the cache will be cleared every 60s:
+
+		{"interval":60}
 
 - file
 
-	
 		{"CachePath":"./cache","FileSuffix":".cache","DirectoryLevel":2,"EmbedExpiry":120}
-		
+
 - redis
 
 	redis is using [redigo](http://github.com/garyburd/redigo/redis)
-	
+
 		{"conn":":6039"}
-		
+
 - memcache
 
-  memcache is using [vitess](http://code.google.com/p/vitess/go/memcache)
-	
-		{"conn":"127.0.0.1:11211"}	
-		
-## Create your own provider
+	memcache is using [vitess](http://code.google.com/p/vitess/go/memcache)
 
-cache module implemented the Cache interface, so you can create your own cache provider by implementing this interface and registering it.
+		{"conn":"127.0.0.1:11211"}
+
+## Creating your own provider
+
+The cache module uses the Cache interface, so you can create your own cache provider by implementing this interface and registering it.
 
 	type Cache interface {
 		Get(key string) interface{}
@@ -76,11 +75,10 @@ cache module implemented the Cache interface, so you can create your own cache p
 		IsExist(key string) bool
 		ClearAll() error
 		StartAndGC(config string) error
-	}		
+	}
 
-Register your provider
+Register your provider:
 
 	func init() {
-		Register("myowncache", NewOwnCache())
+		cache.Register("myowncache", NewOwnCache())
 	}
-		
