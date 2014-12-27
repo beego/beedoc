@@ -34,15 +34,15 @@ Then we can use it in our code:
 	log.Error("error")
 	log.Critical("critical")
 
-## output file and line number
+## Logging caller information (file name & line number)
 
-Log output not call file by default, if you're expecting output calls file name and line number, set as follows
+The module can be configured to include the file & line number of the log calls in the logging output. This functionality is disabled by default, but can be enabled using the following code:
 
 	log.EnableFuncCallDepth(true)
 
-true for turn on and false for turn off. default is false.
+Use `true` to turn file & line number logging on, and `false` to turn it off. Default is `false`.
 
-If your application encapsulates the call log packages, so you need to set up SetLogFuncCallDepth, the default is 2, namely direct call hierarchy, if you encapsulate the multilayer, so need to adjust according to their own needs.
+If your application encapsulates the call to the log methods, you may need use `SetLogFuncCallDepth` to set the number of stack frames to be skipped before the caller information is retrieved. The default is 2.
 
 	log.SetLogFuncCallDepth(3)
 
