@@ -30,6 +30,8 @@ Get data from parser:
 
 	iniconf.String("appname")
 
+### Parser methods
+
 Here are the parser's methods:
 
 * **Setting values:**
@@ -51,6 +53,8 @@ Here are the parser's methods:
 	* `DefaultInt64(key string, defaultval int64) int64`
 	* `DefaultBool(key string, defaultval bool) bool`
 	* `DefaultFloat(key string, defaultval float64) float64`
+
+### Configuration sections
 
 The ini file supports configuration sections. You can get values inside a section by using `section::key`.
 
