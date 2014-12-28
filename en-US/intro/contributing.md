@@ -12,14 +12,14 @@ to its development and progress. Beego's source code is hosted on github
 (https://github.com/astaxie/beego), which provides a very easy way to fork the
 project and merge your contributions.
 
-### How can I be a contributor of beego
+### How can I become a contributor of beego?
 
 You can fork, modify and then send a Pull Request to us.
-We will review your code and give you feedback of your changes as soon as possible.
+We will review your code and give you feedback on your changes as soon as possible.
 
 ## Pull Requests
 
-The process of pull requests for new features and bug fixes are not the same.
+The process for pull requests for new features and bug fixes are not the same.
 
 ### Bug fixes
 
