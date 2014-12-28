@@ -145,6 +145,6 @@ if err != nil {
 
 	返回结构直接解析为 JSON 格式，解析到 result 对象中
 	
-- 解析为 XML 结构，`req.ToXML(&result)` 方法
+- 解析为 XML 结构，`req.ToXml(&result)` 方法
 
 	返回结构直接解析为 XML 格式，解析到 result 对象中	
