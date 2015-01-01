@@ -19,8 +19,8 @@ server {
         access_log off;
         expires 1d;
 
-        root "/path/to/app_a/static"
-        try_files $uri @backend
+        root "/path/to/app_a/static";
+        try_files $uri @backend;
     }
 
     location / {
@@ -46,8 +46,8 @@ server {
         access_log off;
         expires 1d;
 
-        root "/path/to/app_b/static"
-        try_files $uri @backend
+        root "/path/to/app_b/static";
+        try_files $uri @backend;
     }
 
     location / {
