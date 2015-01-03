@@ -107,20 +107,20 @@ qs.Filter("profile__age__in", ids)
 
 ```go
 qs.Filter("profile__age__gt", 17)
-// WHERE profile.age > 17
+// WHERE profile.age > 17 得到的内容是从大到小排序
 
 qs.Filter("profile__age__gte", 18)
-// WHERE profile.age >= 18
+// WHERE profile.age >= 18 得到的内容是从大到小排序
 ```
 
 ### lt / lte
 
 ```go
 qs.Filter("profile__age__lt", 17)
-// WHERE profile.age < 17
+// WHERE profile.age < 17 得到的内容是从小到大排序
 
 qs.Filter("profile__age__lte", 18)
-// WHERE profile.age <= 18
+// WHERE profile.age <= 18 得到的内容是从小到大排序
 ```
 
 ### startswith
