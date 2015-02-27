@@ -71,3 +71,55 @@ func main() {
 ```
 
 After registering this error handling code. you can call `this.Abort("dbError")` in every place in your code to handle the database error.
+
+# Controller define Error
+from beego 1.4.3，support Controller define Error handle，so we can use the beego.Controller and the template reander, useful context function。
+
+```
+package controllers
+
+import (
+	"github.com/astaxie/beego"
+)
+
+type ErrorController struct {
+	beego.Controller
+}
+
+func (c *ErrorController) Error404() {
+	c.Data["content"] = "page not found"
+	c.TplNames = "404.tpl"
+}
+
+func (c *ErrorController) Error501() {
+	c.Data["content"] = "server error"
+	c.TplNames = "501.tpl"
+}
+
+
+func (c *ErrorController) ErrorDb() {
+	c.Data["content"] = "database is now down"
+	c.TplNames = "dberror.tpl"
+}
+```
+from the example we can know that all the error handle function hasprefix `Error`，the other string is the name of `Abort`，like `Error404` match `Abort("404")`
+
+
+we should use `beego.ErrorController` to register the error controller before `beego.Run` 
+
+```
+package main
+
+import (
+	_ "btest/routers"
+	"btest/controllers"
+
+	"github.com/astaxie/beego"
+)
+
+func main() {
+	beego.ErrorController(&controllers.ErrorController{})
+	beego.Run()
+}
+
+```
