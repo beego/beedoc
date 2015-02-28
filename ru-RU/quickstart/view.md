@@ -3,11 +3,11 @@ name: View
 sort: 5
 ---
 
-# Creating views
+# Создание шаблонов
 
-When we created the Controller we used the line `this.TplNames = "index.tpl"` to declare the template to be rendered. By default `beego.Controller` supports `tpl` and `html` extensions. You can call `beego.AddTemplateExt` to add other extensions. So how can views show the data we need? Beego is using the default template engine of built into Go so it's Go templates, plain and simple. You can learn how to use Go template from [*Build Web Application with Golang*](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
+Когда мы создали контроллер мы использовали строку `this.TplNames = "index.tpl"`, чтобы объявить шаблон для отображения. По умолчанию `beego.Controller` поддерживает расширения `tpl` и `html`. Вы можете вызвать `beego.AddTemplateExt`, чтобы добавить другие расширения. Итак, как шаблоны могут отобразить необходимые вам данные? Beego использует стандартный механизм шаблонов, встроенный в Go, поэтому это шаблоны Go, простые и ясные. Вы можете изучите использование шаблонов Go тут: [*Build Web Application with Golang*](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
 
-Let's look at an example:
+Давайте взгянем на пример:
 
 ```
 <!DOCTYPE html>
@@ -39,6 +39,6 @@ Let's look at an example:
 </html>
 ```
 
-We assigned the data into a map type variable `Data` in Controller, which is used as the rendering context. Therefore we can now access and output the data by using the keys `.Website` and `.Email`. 
+Мы присвоили данные словарю `Data` в контроллере, который используется при отображении. Поэтому в настоящее время мы можем получить доступ к данным и их вывод по ключам `.Website` и `.Email`. 
 
-Next let's talk about how to serve static files.
+Далее поговорим об использовании статических файлов.

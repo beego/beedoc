@@ -3,9 +3,9 @@ name: Models
 sort: 4
 ---
 
-# Creating models
+# Создание моделей
 
-We know we are using databases a lot in web applications so models are the  usual way to handle these kind of jobs. There is no demo on models in our `bee new` project, but there are demos on implementing and using models in the `bee api` project. Basically, if your application is simple enough the Controller can handle everything. However, if there is some reusable logic we can factor it out into a module. The Model is the result of such logic extraction. Usually the model will be handling some data reading and writing. Here is an example:
+Нам известно, что часто приходится использовать базы данных в веб-приложениях, поэтому модели - обычный способ справится с подобной работой. В нашем `bee new` проекте нет примера моделей, но есть примеры реализации и использования моделей в `bee api`-проекте. Тем не менее, если у вас достаточно простое приложение, контроллер может обработать всё. Но если присутствует многоразовая логика, мы можем выделить её в отдельный модуль. Модель - это результат такого логического выделения. Обычно модель занята чтением и записью некоторых данных. Вот пример:
 
 ```
 package models
@@ -37,4 +37,4 @@ func LogPV(urls string) bool {
 }
 ```
 
-So if your application is simple enough then you may not need models at all. But when your application get bigger and you want more reuseable code and need logic separation you must use models. In the next section we will talk about how to write the View.
+Поэтому, если ваше приложение достаточно просто, модели могут вовсе вам не понадобиться. Но когда ваше приложение становится больше, и появляется необходимость в многократно используемом коде и разделении логики, вы должны использовать модели. В следкющем разделе мы посмотрим, как писать шаблоны("Виды", "вьюхи", View).

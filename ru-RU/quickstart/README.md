@@ -4,13 +4,13 @@ name: Quickstart
 sort: 3
 ---
 
-# Quickstart
+# Быстрое обзор
 
-Beego is an application framework that helps you develop applications very quickly. Quickstart will guide you to create a beego project and run it. Then we'll modify the code and show you how the whole MVC system works. So let's get started! 
+Beego - это фреймворк, который помогает очень быстро разрабатывать веб-приложения. Этот быстрый обзор покажет вам, как создать проект на Beego и запустить его. Затем мы будем редактировать код и покажем, как в целом работает схема MVC. Так что давайте начнём! 
 
-- [Creating a new project with bee tool](new.md)
-- [Configure routers](router.md)
-- [Creating controllers](controller.md)
-- [Creating models](model.md)
-- [Creating views](view.md)
-- [Handling static files](static.md)
+- [Создание нового проекта с помощью программы bee](new.md)
+- [Настройка роутера](router.md)
+- [Создание контроллеров](controller.md)
+- [Создание моделей](model.md)
+- [Создание шаблонов](view.md)
+- [Использование статических файлов](static.md)
