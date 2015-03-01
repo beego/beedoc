@@ -2,6 +2,29 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.4.3
+新功能:
+1. ORM数据库创建和修改的时候支持default设置
+2. 改进日志文件行数统计
+3. sesesion ledis支持选择数据库
+4. session redis支持选择数据库
+5. cache redis支持选择数据库
+6. UrlFor支持任意类型的参数
+7. controller中GetInt/GetString等Get系列函数支持默认值, 例如：GetInt("a",12)
+8. 增加CompareNot/NotNil 模板函数
+9. 支持Controller定义错误处理，更多请参考[controller Error](http://beego.me/docs/mvc/controller/errors.md#controller%E5%AE%9A%E4%B9%89error)
+10. ParseForm增加支持slices
+11. 改进ORM interface，可以模拟interface
+
+bugfix:
+1. context subdomain获取的子域名不正确
+2. beego.AppConfig.Strings 当数据为空时判定不正确
+3. utils/pagination 修复不能修改分页属性
+4. 路由处理中如果请求的URL是空导致crash的问题
+5. adminui 中 task 点击无法执行
+6. CGI模式退出进程后Socket文件没有删除
+
+
 # beego 1.4.2
 新功能：
 

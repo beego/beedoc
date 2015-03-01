@@ -2,6 +2,28 @@
 name: Release Notes
 sort: 2
 ---
+# beego 1.4.3
+New Features:
+1. ORM support default settting
+2. improve logs/file line count
+3. sesesion ledis support select db
+4. session redis support select db
+5. cache redis support select db
+6. UrlFor support all type of the parameters
+7. controller GetInt/GetString function support default value, like：GetInt("a",12)
+8. add CompareNot/NotNil template function
+9. support Controller defeine error，[controller Error](http://beego.me/docs/mvc/controller/errors.md#controller%E5%AE%9A%E4%B9%89error)
+10. ParseForm support slices of ints and strings
+11. improve ORM interface
+
+bugfix:
+1. context get wrong subdomain
+2. beego.AppConfig.Strings when the strings is empty, always return []string{}
+3. utils/pagination can't modify the attributes
+4. whne the request url is empty, route tree crash
+5. can't click the link to run the task in adminui
+6. FASTCGI restart didn't delete the unix Socket file.
+
 # beego 1.4.2
 New Features:
 
