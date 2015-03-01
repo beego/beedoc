@@ -3,11 +3,11 @@ name: Create new project
 sort: 1
 ---
 
-# Creating project
+# Создание проекта
 
-Most of beego projects are created with the `bee` command. Before starting anything, please make sure that you've already installed the `bee` tool and the `beego` package. If you don't have them yet, please read [Installing beego](../install) and [Installing bee tool](../install/bee.md) before you proceed.
+Большинство проектов на Beego создаются с помощью команды `bee`. Перед тем как начать, убедитесь, что вы уже установили программу `bee` и пакет `beego`. Если вы пока этого не сделали, прочитайте [Установку beego](../install) и [Установку программы bee](../install/bee.md) перед тем как продолжить.
 
-When you are ready, we can get started now. Open your terminal then go to your `$GOPATH` directory and then type `bee new quickstart`:
+Когда вы сделаете всё это, можете начинать работу. Откройте терминал, перейдите в директорию `$GOPATH` и введите  `bee new quickstart`:
 
 	➜  src  bee new quickstart
 	[INFO] Creating application...
@@ -26,7 +26,7 @@ When you are ready, we can get started now. Open your terminal then go to your `
 	/gopath/src/quickstart/main.go
 	13-11-26 10:34:10 [SUCC] New application successfully created!
 	
-The bee tool created a new beego project for you. Here is the structure:
+Программа bee создаст новый проект Beego. Вот его структура:
 
 	quickstart
 	├── conf
@@ -42,11 +42,11 @@ The bee tool created a new beego project for you. Here is the structure:
 	└── views
 	    └── index.tpl	
 
-We can tell this is a typical MVC application. `main.go` is the project's starting file.
+Это типичное приложение MVC. `main.go` - стартовый файл проекта.
 
-## Running project
+## Запуск приложения
 
-After creating the project, we can run our project now. Go to the path of the new created project and run `bee run` to run the project. It will also compile the project.
+После создания проекта мы можем его запустить. Перейдите в папку созданного проекта и введите `bee run`, чтобы запустить его. При этом проект скомпилируется.
 
 	➜  src  cd quickstart
 	➜  quickstart  bee run
@@ -57,8 +57,8 @@ After creating the project, we can run our project now. Go to the path of the ne
 	13-11-26 10:43:14 [TRAC] Directory(/gopath/src/quickstart)
 	13-11-26 10:43:14 [INFO] Start building...
 
-We have a web application running on port `8080` (the default port of Beego) now. It's amazing, isn't it? Why can we do that without nginx or apache. Yes, you are right. Go has already implemented all the functions we need for network layer and beego encapsulated them so we don't need nginx or apache here. Let's see our application in browser now:
+Мы получили веб-приложение, запущенное на порте `8080` (порт по умолчанию в Beego). Удивительно, не правда ли? Вы могли заметить,что мы обошлись без Nginx и Apache. Да,вы правы! В Go уже реализованны все функции, необходимые для сетевого слоя, и beego инкапсулирует их, поэтому на мне нужны Nginx или Apache. Давайте посмотрим, как выглядит наше приложение в браузере:
 
 ![](../images/beerun.png)
 
-Are you excited? Isn't it so easy to create web applications? Let's dive into the project and see how does everything work.
+Вы изумлены? Разве это не легко - создавать веб-приложения? Давайте окунёмся в наш проект и посмотрим, как всё это работает!

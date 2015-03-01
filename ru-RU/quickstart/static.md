@@ -3,9 +3,9 @@ name: Static files
 sort: 6
 ---
 
-# Handling static files
+# Работа со статическими файлами
 
-We talked about how to render a view. Usually there are lots of static files including images, js, css and so on. Our Beego project skeleton has already included folders for these.
+Мф поговорили о том, как отоброжать шаблоны. Но обычно используется множество статических файлов, включая картинки, скрипты js, таблицы стилей css и так далее. Структура нашего проекта на Beego уже включает в себя папки для этого всего.
 
 ```
 ├── static
@@ -14,13 +14,13 @@ We talked about how to render a view. Usually there are lots of static files inc
 	│   └── js
 ```
 
-Beego registers the static directory as the static path. Registering rule: URL prefix with directory mapping
+Beego регистрирует дирректорию static в путе static. Правило регистрации: словарь с URL в качестве ключа и путём к папке в качестве значения 
 
 	StaticDir["/static"] = "static"
 	
-You can register multiple static directories. For example if you require two download directories `download1` and `download2` you can set them as:
+Вы можете зарегестрировать несколько статических дирректорий. Например, если вам необходимы две папки загрузок `download1` и `download2`, вы можете установить их так:
 
 	beego.SetStaticPath("/down1", "download1")	
 	beego.SetStaticPath("/down2", "download2")	
 	
-Visiting the URL `http://localhost/down1/123.txt` will request the file `123.txt` in the `download1` directory.
+Перейдя по ссылке `http://localhost/down1/123.txt`, вы запросите документ `123.txt` в папке `download1`.
