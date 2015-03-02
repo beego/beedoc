@@ -37,9 +37,9 @@ The commands are:
     bale        packs non-Go files to Go source files	
 ```	
 
-### Command new
+### Command `new`
 
-`new` can create a new web project. You can create a new beego project by typing `bee new <project name>` under `$GOPATH/src`. It will generate all the project folders and files:
+The `new` command can create a new web project. You can create a new beego project by typing `bee new <project name>` under `$GOPATH/src`. It will generate all the project folders and files:
 
 ```
 bee new myproject
@@ -48,6 +48,8 @@ bee new myproject
 /gopath/src/myproject/conf/
 /gopath/src/myproject/controllers/
 /gopath/src/myproject/models/
+/gopath/src/myproject/routers/
+/gopath/src/myproject/tests/
 /gopath/src/myproject/static/
 /gopath/src/myproject/static/js/
 /gopath/src/myproject/static/css/
@@ -56,6 +58,8 @@ bee new myproject
 /gopath/src/myproject/conf/app.conf
 /gopath/src/myproject/controllers/default.go
 /gopath/src/myproject/views/index.tpl
+/gopath/src/myproject/routers/router.go
+/gopath/src/myproject/tests/default_test.go
 /gopath/src/myproject/main.go
 13-11-25 09:50:39 [SUCC] New application successfully created!
 ```
@@ -66,40 +70,46 @@ myproject
 │   └── app.conf
 ├── controllers
 │   └── default.go
-├── main.go
 ├── models
+├── routers
+│   └── router.go
+├── tests
+│   └── default_test.go
 ├── static
+│   ├── js
 │   ├── css
-│   ├── img
-│   └── js
-└── views
-    └── index.tpl
+│   └── img
+├── views
+│   └── index.tpl
+├── main.go
 
-8 directories, 4 files
+11 directories, 5 files
 ```
 
-### Command run
+### Command `run`
 
-When we develop a Go project, we often have problem that we need to compile the project and run it manually. `bee run` command will supervise the file system of beego project using inotify so that we can see the result directly after the modifications for project.
+When we develop Go projects, we often have problems of needing to compile and run them manually. The `bee run` command will supervise the file system of any beego project using [inotify](http://en.wikipedia.org/wiki/Inotify) so that we can see the results immediately after any modifications within for beego project folders.
 
 ```
+cd myproject
 bee run
 13-11-25 09:53:04 [INFO] Uses 'myproject' as 'appname'
 13-11-25 09:53:04 [INFO] Initializing watcher...
 13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject/controllers)
-13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject/models)
 13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject)
+13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject/routers)
+13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject/tests)
 13-11-25 09:53:04 [INFO] Start building...
 13-11-25 09:53:16 [SUCC] Build was successful
 13-11-25 09:53:16 [INFO] Restarting myproject ...
 13-11-25 09:53:16 [INFO] ./myproject is running...
+13-11-25 09:53:16 [app.go:103] [I] http server Running on :8080
 ```
-Open browser and visit `http://localhost:8080/`, you should see some changes:
+Upon execution of this command, open your browser and visit `http://localhost:8080/`, you should see your app running:
 
 ![](../images/beerun.png)
 
-After modifing the `default.go` file in `controllers` folder, we can see
-these output in command line:
+After modifying the `default.go` file in the `controllers` folder, we can see the output below from the command line:
 
 ```
 13-11-25 10:11:20 [EVEN] "/gopath/src/myproject/controllers/default.go": DELETE|MODIFY
@@ -111,12 +121,12 @@ these output in command line:
 13-11-25 10:11:23 [INFO] ./myproject is running...
 ```
 
-Refresh browser we can see the result of the modifications are already
-there.
+Refreshing the browser should show the results of the new modifications.
 
 ### Command api
 
-The `new` command is used for crating new web applications. But there are many users who use beego for developing API applications. We can use `api` command to create API applications. Here is the result of running `bee api project_name`:
+The `new` command is used for crafting new web applications. But there are many users who use beego for developing APIs. We can use the `api` command to create new API applications. 
+Here is the result of running `bee api project_name`:
 
 ```
 bee api apiproject
@@ -132,7 +142,7 @@ create models object.go: /gopath/src/apiproject/models/object.go
 create main.go: /gopath/src/apiproject/main.go
 ```
 
-Here is the project structure of this API application:
+Below shows the generated project structure of the new API application:
 
 ```
 apiproject
@@ -147,8 +157,8 @@ apiproject
     └── default_test.go
 ```
 
-Compare to Web application, the API application doesn't have static and
-views folder but a test module for unit testing.
+Compare this to the `bee new myproject` command seen earlier.
+Note that the new API application doesn't have a static and views folder.
 
 ### Command test
 
@@ -206,15 +216,15 @@ This command doesn't work yet. In the future it will generate the routers by ana
 
 ### Command bale
 
-This command is currently only available to developer team. It's mainly used for compressing all the static files in to a single binary file. So we don't need to carry  static files including js, css, images and views when publish the project. Those files will be self-extracting with non-overwrite when program starts.
+This command is currently only available to the developer team. It's mainly used for compressing all the static files in to a single binary file. So we don't need to carry  static files including js, css, images and views when publish the project. Those files will be self-extracting with non-overwrite when the program starts.
 
 ## Bee tool configuration
 
 You may notice that there is a file named `bee.json` in bee tool source code folder, this file is the configuration file of beego. The full features haven't been done yet, but there are some options you'd like to use for now:
 
 - `"version": 0`: version of file, for checking incompatible format version.
-- `"go_install": false`: if you use full import path like `github.com/user/repo/subpkg`, then you can enable this opetion to run `go install` and speed up you build processes.
+- `"go_install": false`: if you use a full import path like `github.com/user/repo/subpkg`, then you can enable this option to run `go install` and speed up you build processes.
 - `"watch_ext": []`: add other file extensions to watch(only watch `.go` files by default). For example, `.ini`, `.conf`, etc.
-- `"dir_structure":{}`: if your folders' name are not same as MVC classic name, you can use this option use change them.
+- `"dir_structure":{}`: if your folder names are not the same as MVC classic namea, you can use this option to change them.
 - `"cmd_args": []`: add command arguments for every start.
 - `"envs": []`: setting environment variables for every start.
