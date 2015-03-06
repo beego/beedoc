@@ -124,9 +124,36 @@ After modifying the `default.go` file in the `controllers` folder, we can see th
 
 Refreshing the browser should show the results of the new modifications.
 
+### Command pack
+
+`pack` command is used to compress the project into a single file. Then we can deploy the project by uploading and extracting the zip file to the server.
+
+```
+bee pack
+app path: /gopath/src/apiproject
+GOOS darwin GOARCH amd64
+build apiproject
+build success
+exclude prefix:
+exclude suffix: .go:.DS_Store:.tmp
+file write to `/gopath/src/apiproject/apiproject.tar.gz`
+```
+
+We can see compressed file in the project folder:
+
+```
+rwxr-xr-x  1 astaxie  staff  8995376 11 25 22:46 apiproject
+-rw-r--r--  1 astaxie  staff  2240288 11 25 22:58 apiproject.tar.gz
+drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 conf
+drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 controllers
+-rw-r--r--  1 astaxie  staff      509 11 25 22:31 main.go
+drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 models
+drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
+```
+
 ### Command api
 
-The `new` command is used for crafting new web applications. But there are many users who use beego for developing APIs. We can use the `api` command to create new API applications. 
+The `new` command is used for crafting new web applications. But there are many users who use beego for developing APIs. We can use the `api` command to create new API applications.
 Here is the result of running `bee api project_name`:
 
 ```
@@ -161,45 +188,7 @@ apiproject
 Compare this to the `bee new myproject` command seen earlier.
 Note that the new API application doesn't have a static and views folder.
 
-### Command test
-
-This is a wrapper for `go test`. It can run the test cases in test folder
-of beego project.
-
-```
-bee test apiproject
-13-11-25 10:46:57 [INFO] Initializing watcher...
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject/controllers)
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject/models)
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject)
-13-11-25 10:46:57 [INFO] Start building...
-13-11-25 10:46:58 [SUCC] Build was successful
-13-11-25 10:46:58 [INFO] Restarting apiproject ...
-13-11-25 10:46:58 [INFO] ./apiproject is running...
-13-11-25 10:46:58 [INFO] Start testing...
-13-11-25 10:46:59 [TRAC] ============== Test Begin ===================
-PASS
-ok  	apiproject/tests	0.100s
-13-11-25 10:47:00 [TRAC] ============== Test End ===================
-13-11-25 10:47:00 [SUCC] Test finish
-```
-
-### Command pack
-
-`pack` command is used to compress the project into a single file. Then we can deploy the project by uploading and extracting the zip file to the server.
-
-```
-bee pack
-app path: /gopath/src/apiproject
-GOOS darwin GOARCH amd64
-build apiproject
-build success
-exclude prefix:
-exclude suffix: .go:.DS_Store:.tmp
-file write to `/gopath/src/apiproject/apiproject.tar.gz`
-```
-
-We can see compressed file in the project folder:
+### Command bale
 
 ```
 rwxr-xr-x  1 astaxie  staff  8995376 11 25 22:46 apiproject
