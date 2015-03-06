@@ -12,7 +12,7 @@ Bee tool is a project for help develop beego rapidly. With bee tool we can creat
 You can install bee tool through following command:
 
 	go get github.com/beego/bee
-	
+
 `bee` is installed into `GOPATH/bin` by default. You need to add `GOPATH/bin` to your PATH, otherwise the `bee` command won't work.
 
 ## Bee tool commands
@@ -28,14 +28,15 @@ Usage:
 
 The commands are:
 
-    new         create an application base on beego framework
-    run         run the app which can hot compile
-    pack        compress an beego project
-    api         create an api application base on beego framework
-    router      auto-generate routers for the app controllers
-    test        test the app
-    bale        packs non-Go files to Go source files	
-```	
+	new         Create a Beego application
+	run         run the app and start a Web server for development
+	pack        Compress a beego project into a single file
+	api         create an API beego application
+	bale        packs non-Go files to Go source files
+	version     show the Bee, Beego and Go version
+	generate    source code generator
+	migrate     run database migrations
+```
 
 ### Command `new`
 
