@@ -190,23 +190,17 @@ Note that the new API application doesn't have a static and views folder.
 
 ### Command bale
 
-```
-rwxr-xr-x  1 astaxie  staff  8995376 11 25 22:46 apiproject
--rw-r--r--  1 astaxie  staff  2240288 11 25 22:58 apiproject.tar.gz
-drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 conf
-drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 controllers
--rw-r--r--  1 astaxie  staff      509 11 25 22:31 main.go
-drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 models
-drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
-```
-
-### Command router
-
-This command doesn't work yet. In the future it will generate the routers by analysing the function in controllers.
-
-### Command bale
-
 This command is currently only available to the developer team. It's mainly used for compressing all the static files in to a single binary file. So we don't need to carry  static files including js, css, images and views when publish the project. Those files will be self-extracting with non-overwrite when the program starts.
+
+### Command version
+
+This command displays the version of `bee`, `beego`, and `go`
+
+### Command generate
+This command will generate the routers by analyzing the functions in controllers.
+
+### Command migrate
+This command will run database migration scripts.
 
 ## Bee tool configuration
 
