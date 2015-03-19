@@ -7,6 +7,8 @@ sort: 8
 
 beego 当初设计的时候就考虑了 API 功能的设计，而我们在设计 API 的时候经常是输出 JSON 或者 XML 数据，那么 beego 提供了这样的方式直接输出：
 
+注意struct属性应该 为 exported Identifier
+首字母应该大写
 - JSON 数据直接输出：
 
 	```go
