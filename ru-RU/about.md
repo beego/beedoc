@@ -2,7 +2,7 @@
 
 [![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego)
 
-Это руководство документирует BeeGo App Framework
+Это руководство документирует BeeGo App Framework.
 
 ### Новичок в BeeGo?
 
