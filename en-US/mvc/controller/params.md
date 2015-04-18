@@ -43,7 +43,7 @@ If you want to assign the data in a form into struct, except assign them one by 
 Define struct:
 
 ```go
-type user struct {
+type User struct {
 	Id    int         `form:"-"`
 	Name  interface{} `form:"username"`
 	Age   int         `form:"age"`
@@ -64,7 +64,7 @@ Parsing in Controller:
 
 ```go
 func (this *MainController) Post() {
-	u := user{}
+	u := User{}
 	if err := this.ParseForm(&u); err != nil {
 		//handle error
 	}
