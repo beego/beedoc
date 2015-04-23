@@ -15,6 +15,10 @@ Here is the FilterFunc signature:
 
 	type FilterFunc func(*context.Context)
 
+Don't forget to import *context* if it hasn't been imported yet:
+
+	import "github.com/astaxie/beego/context"
+
 InsertFilter's three params:
 
 - pattern: router rules. It can router based on the rules. Use `*` to match all.
