@@ -87,7 +87,7 @@ Go 语言的默认模板采用了 `{{` 和 `}}` 作为左右标签，但是我�
 
 ## 模板名称
 
-beego 采用了 Go 语言内置的模板引擎，所有模板的语法和 Go 的一模一样，至于如何写模板文件，详细的请参考 [模板教程](https://github.com/astaxie/build-web-application-with-golang/blob/master/ebook/07.4.md)。
+beego 采用了 Go 语言内置的模板引擎，所有模板的语法和 Go 的一模一样，至于如何写模板文件，详细的请参考 [模板教程](https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/07.4.md)。
 
 用户通过在 Controller 的对应方法中设置相应的模板名称，beego 会自动的在 viewpath 目录下查询该文件并渲染，例如下面的设置，beego 会在 admin 下面找 add.tpl 文件进行渲染：
 
