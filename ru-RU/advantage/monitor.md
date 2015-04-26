@@ -5,8 +5,6 @@ sort: 1
 
 # Live мониторинг
 
-We talked about toolbox module before. It will listen `127.0.0.1:8088` by default when application is running. It can't be accessed from internet but you can visit it by other ways such as nginx proxy.
-
 Мы разговаривали о инструментарии модулей ранее. Этот инструментарий доступен по адресу `127.0.0.1:8088` из коробки, когда приложение запущено. Этот адрес не доступен из интернета, но вы можете открыть доступ к нему используя nginx как прокси.
 
 >>> По соображениям безопасности мы рекомендуем блокировать 8088 порт через файрволл.
@@ -20,7 +18,6 @@ We talked about toolbox module before. It will listen `127.0.0.1:8088` by defaul
 	beego.AdminHttpAddr = "localhost"
 	beego.AdminHttpPort = 8888
 
-Open browser and visit `http://localhost:8088/` you will see `Welcome to Admin Dashboard`.
 Откройте `http://localhost:8088/` в браузере и вы увидите `Welcome to Admin Dashboard`.
 
 Это первая версия, но мы продолжаем разрабатывать мониторинг.
@@ -37,8 +34,6 @@ Open browser and visit `http://localhost:8088/` you will see `Welcome to Admin D
 	| /123                                              | GET        |  1               | 906.04us         | 906.04us         | 906.04us         | 906.04us         |
 
 ## Профилирование производительности
-
-There are several params for profiling. Visit `http://localhost:8088/prof` and with params below and you can get different information.
 
 Список параметров для профилирования. Зайдите на `http://localhost:8088/prof` с разными параметрами и вы получите различную информацию
 
