@@ -67,17 +67,19 @@ bee new myproject
 ```
 myproject
 ├── conf
-│   └── app.conf
+│   └── app.conf
 ├── controllers
-│   └── default.go
+│   └── default.go
 ├── main.go
 ├── models
 ├── routers
-│   └── router.go
+│   └── router.go
 ├── static
-│   ├── css
-│   ├── img
-│   └── js
+│   ├── css
+│   ├── img
+│   └── js
+├── tests
+│   └── default_test.go
 └── views
     └── index.tpl
 
