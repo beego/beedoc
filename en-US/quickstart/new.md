@@ -15,6 +15,8 @@ When you are ready, we can get started now. Open your terminal, then go to your 
 	/gopath/src/quickstart/conf/
 	/gopath/src/quickstart/controllers/
 	/gopath/src/quickstart/models/
+	/gopath/src/quickstart/routers/
+	/gopath/src/quickstart/tests/
 	/gopath/src/quickstart/static/
 	/gopath/src/quickstart/static/js/
 	/gopath/src/quickstart/static/css/
@@ -23,9 +25,10 @@ When you are ready, we can get started now. Open your terminal, then go to your 
 	/gopath/src/quickstart/conf/app.conf
 	/gopath/src/quickstart/controllers/default.go
 	/gopath/src/quickstart/views/index.tpl
-	/gopath/src/quickstart/main.go
-	13-11-26 10:34:10 [SUCC] New application successfully created!
-	
+	/gopath/src/quickstart/routers/router.go
+	/gopath/src/quickstart/tests/default_test.go
+	2015/05/02 11:55:28 [SUCC] New application successfully created!
+
 The bee tool created a new beego project for you. Here is the structure:
 
 	quickstart
@@ -35,12 +38,16 @@ The bee tool created a new beego project for you. Here is the structure:
 	│   └── default.go
 	├── main.go
 	├── models
+	├── routers
+	│   └── router.go
 	├── static
 	│   ├── css
 	│   ├── img
 	│   └── js
+	├── tests
+	│   └── default_test.go
 	└── views
-	    └── index.tpl	
+	    └── index.tpl
 
 We can tell this is a typical MVC application. `main.go` is the project's main file.
 
@@ -50,12 +57,17 @@ After creating the project, we can run our project now. Go to the path of the ne
 
 	➜  src  cd quickstart
 	➜  quickstart  bee run
-	13-11-26 10:43:14 [INFO] Uses 'quickstart' as 'appname'
-	13-11-26 10:43:14 [INFO] Initializing watcher...
-	13-11-26 10:43:14 [TRAC] Directory(/gopath/src/quickstart/controllers)
-	13-11-26 10:43:14 [TRAC] Directory(/gopath/src/quickstart/models)
-	13-11-26 10:43:14 [TRAC] Directory(/gopath/src/quickstart)
-	13-11-26 10:43:14 [INFO] Start building...
+	2015/05/02 12:01:31 [INFO] Uses 'quickstart' as 'appname'
+	2015/05/02 12:01:31 [INFO] Initializing watcher...
+	2015/05/02 12:01:31 [TRAC] Directory(/gopath/src/quickstart/controllers)
+	2015/05/02 12:01:31 [TRAC] Directory(/gopath/src/quickstart)
+	2015/05/02 12:01:31 [TRAC] Directory(/gopath/src/quickstart/routers)
+	2015/05/02 12:01:31 [TRAC] Directory(/gopath/src/quickstart/tests)
+	2015/05/02 12:01:31 [INFO] Start building...
+	2015/05/02 12:01:36 [SUCC] Build was successful
+	2015/05/02 12:01:36 [INFO] Restarting quickstart ...
+	2015/05/02 12:01:36 [INFO] ./quickstart is running...
+	2015/05/02 12:01:38 [app.go:103] [I] http server Running on :8080
 
 We have a web application running on port `8080` (the default port of Beego) now. It's amazing, isn't it? We can do that without nginx or apache. Yes, you are right. Go has already implemented all the functions we need for the network layer and beego encapsulated them so we don't need nginx or apache here. Let's look at our application in the browser now:
 
