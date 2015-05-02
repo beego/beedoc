@@ -1,12 +1,12 @@
 ---
 root: true
-name: MVC introduction
+name: MVC Introduction
 sort: 4
 ---
 
 # Introduction to beego's MVC
  
-Beego is a typical MVC framework. Here is it's executing logic:
+Beego is a typical MVC framework. Here is it's request handling logic:
 
 ![](../images/detail.png)
 
