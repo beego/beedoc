@@ -9,18 +9,19 @@ We talked about how to render a view. Usually there are lots of static files inc
 
 ```
 ├── static
-	│   ├── css
-	│   ├── img
-	│   └── js
+│   ├── css
+│   ├── img
+│   └── js
 ```
 
-Beego registers the static directory as the static path. Registering rule: URL prefix with directory mapping
+Beego registers the static directory as the static path by default. Registered rule: URL prefix with directory mapping
 
 	StaticDir["/static"] = "static"
-	
+
 You can register multiple static directories. For example if you require two download directories `download1` and `download2` you can set them as:
 
-	beego.SetStaticPath("/down1", "download1")	
-	beego.SetStaticPath("/down2", "download2")	
-	
+	beego.SetStaticPath("/down1", "download1")
+	beego.SetStaticPath("/down2", "download2")
+
 Visiting the URL `http://localhost/down1/123.txt` will request the file `123.txt` in the `download1` directory.
+To remove the default `/static -> static` mapping, you can use `beego.DelStaticPath("/static")`.

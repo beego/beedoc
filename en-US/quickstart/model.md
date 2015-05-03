@@ -5,7 +5,9 @@ sort: 4
 
 # Creating models
 
-We know we are using databases a lot in web applications so models are the  usual way to handle these kind of jobs. There is no demo on models in our `bee new` project, but there are demos on implementing and using models in the `bee api` project. Basically, if your application is simple enough the Controller can handle everything. However, if there is some reusable logic we can factor it out into a module. The Model is the result of such logic extraction. Usually the model will be handling some data reading and writing. Here is an example:
+We know we are using databases a lot in web applications, so models are the usual way to handle these kind of jobs. There is no demo on models in our `bee new` project, but there are demos on implementing and using models in `bee api` projects.
+
+Basically, if your application is simple enough, the Controller can handle everything. However, if there is some reusable logic we can factor it out into a module. The Model is the result of such logic extraction. Usually the model will be handling some data reading and writing. Here is an example:
 
 ```
 package models
@@ -37,4 +39,4 @@ func LogPV(urls string) bool {
 }
 ```
 
-So if your application is simple enough then you may not need models at all. But when your application get bigger and you want more reuseable code and need logic separation you must use models. In the next section we will talk about how to write the View.
+So if your application is simple enough then you may not need models at all. But when your application gets bigger and you want more reuseable code and need logic separation you must use models. Please see [MVC Models](../mvc/model/overview.md) for the specific case of database models and Beego's ORM framework. [In the next section](view.md) we will now talk about how to write views.
