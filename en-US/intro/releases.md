@@ -346,7 +346,7 @@ httplib also supports custom protocol version
 
 #### 9. ORM supports all the unexport fields of struct
 
-#### 10. Enable XSRF in controller level. XSRF can only be controlled in the whole project level. However, you may want to have more control for XSRF, so we let you control it in Prepare function in controller level. Defult is true which means using the global setting.
+#### 10. Enable XSRF in controller level. XSRF can only be controlled in the whole project level. However, you may want to have more control for XSRF, so we let you control it in Prepare function in controller level. Default is true which means using the global setting.
 
 ```
 func (a *AdminController) Prepare(){
@@ -411,7 +411,7 @@ The improvements:
 2. Supporting user-defined FlashName, FlashSeperator
 3. ORM supports user-defined types such as type MyInt int
 4. Fixed validation module return user-defined validating messages
-5. Improved logs module, added Init processing errors. Changed some unnecessory public fucntion to private
+5. Improved logs module, added Init processing errors. Changed some unnecessory public function to private
 6. Added PostgreSQL engine for session module
 7. logs module supports output caller filename and line number. Added EnableFuncCallDepth function, closed by default.
 8. Fixed bugs of Cookie engine in session module

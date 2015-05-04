@@ -324,7 +324,7 @@ httplib also supports custom protocol version
 
 #### 9. ORM supports all the unexport fields of struct
 
-#### 10. Enable XSRF in controller level. XSRF can only be controlled in the whole project level. However, you may want to have more control for XSRF, so we let you control it in Prepare function in controller level. Defult is true which means using the global setting.
+#### 10. Enable XSRF in controller level. XSRF can only be controlled in the whole project level. However, you may want to have more control for XSRF, so we let you control it in Prepare function in controller level. Default is true which means using the global setting.
 
 ```
 func (a *AdminController) Prepare(){
@@ -389,7 +389,7 @@ The improvements:
 2. Supporting user-defined FlashName, FlashSeperator
 3. ORM supports user-defined types such as type MyInt int
 4. Fixed validation module return user-defined validating messages
-5. Improved logs module, added Init processing errors. Changed some unnecessory public fucntion to private
+5. Improved logs module, added Init processing errors. Changed some unnecessory public function to private
 6. Added PostgreSQL engine for session module
 7. logs module supports output caller filename and line number. Added EnableFuncCallDepth function, closed by default.
 8. Fixed bugs of Cookie engine in session module
@@ -444,7 +444,7 @@ bugfix
 2. Fixed the import lib of websocket
 3. Changed http status from 200 to 500 when there are internal error.
 4. gmfim map in memzipfile.go file should use some synchronization mechanism (for example sync.RWMutex) otherwise it errors sometimes.
-5. Fixed #440 on_delete bug that not getting delted automatically
+5. Fixed #440 on_delete bug that not getting deleted automatically
 6. Fixed #441 timezone bug
 
 released data: 2014-02-10
