@@ -81,6 +81,10 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 * AppConfigPath
 
   Application configuration file path. it's `conf/app.conf` by default.  You can change it to your own file.
+  
+* CopyRequestBody
+
+  Flag of copy raw request body in context, disabled by default
 
 * EnableHttpListen
 
