@@ -73,7 +73,7 @@ func main() {
 After registering this error handling code. you can call `this.Abort("dbError")` in every place in your code to handle the database error.
 
 # Controller define Error
-from beego 1.4.3，support Controller define Error handle，so we can use the beego.Controller and the template reander, useful context function。
+from beego 1.4.3，support Controller define Error handle，so we can use the beego.Controller and the template render, useful context function.
 
 ```
 package controllers
