@@ -55,7 +55,7 @@ You need to manually register the healthcheck logic to see the status of the hea
 
 ## Tasks
 
-You can add task in your applicaion and check the task status or trigger it manually.
+You can add task in your application and check the task status or trigger it manually.
 
 - Check task status: `http://localhost:8088/task`
 - Run task manually: `http://localhost:8088/runtask?taskname=task_name`
