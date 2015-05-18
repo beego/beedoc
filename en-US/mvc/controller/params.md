@@ -130,7 +130,7 @@ Data bind let user bind the request data to a params, the request url as follow:
 
 	?id=123&isok=true&ft=1.2&ol[0]=1&ol[1]=2&ul[]=str&ul[]=array&user.Name=astaxie
 
-```		
+```go
 var id int  
 ctx.Input.Bind(&id, "id")  //id ==123
 
@@ -148,3 +148,4 @@ ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
 
 user struct{Name}  
 ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
+```
