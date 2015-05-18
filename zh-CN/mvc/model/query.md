@@ -223,7 +223,7 @@ qs.Exclude("profile__isnull", true).Filter("name", "slene")
 自定义条件表达式
 
 ```go
-cond := NewCondition()
+cond := orm.NewCondition()
 cond1 := cond.And("profile__isnull", false).AndNot("status__in", 1).Or("profile__age__gt", 2000)
 
 qs := orm.QueryTable("user")
@@ -507,7 +507,7 @@ if err == nil {
 
 ### ValuesFlat
 
-只返回特定的 Field 值，讲结果集展开到单个 slice 里
+只返回特定的 Field 值，将结果集展开到单个 slice 里
 
 ```go
 var list orm.ParamsList
