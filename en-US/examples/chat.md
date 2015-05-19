@@ -10,7 +10,7 @@ This sample demonstrates two ways to implement Web IM app:
 Using long polling.
 Using WebSocket.
 
-Both of them save data in memory as default so everything will start over every time, but you can change setting in conf/app.conf to enable database use.
+Both of them save data in memory as default so everything will start over every time, but you can change setting in `conf/app.conf` to enable database use.
 
 Here is the project organization:
 
