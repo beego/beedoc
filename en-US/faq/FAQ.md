@@ -12,7 +12,7 @@ sort: 99
 
 2. Can beego be used for production?
 
-  Yes. beego has been used in production. E.g.: SNDA CND system, 360 search API, Bmob mobile cloud API, weico backend API etc. They are all high concurrence and high performance applications. 
+  Yes. beego has been used in production. E.g.: SNDA's CND system, 360 search API, Bmob mobile cloud API, weico backend API etc. They are all high concurrence and high performance applications. 
 	
 3. Will the future upgrades affect the API I am using right now?
 
