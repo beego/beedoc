@@ -1,16 +1,16 @@
 ---
 root: true
-name: Advanced Beego
+name: Advanced beego
 sort: 6
 ---
 
-# Advanced Beego
+# Advanced beego
 
 We have demonstrated the basic use of beego. Now we will talk about more advanced topics.
 
 - [In process monitor](./monitor.md)
 
-  Beego will serve at two ports. One is 8080 for application to serve users. Another is 8088, to monitor the process status, to execute tasks and so on.
+  beego will serve at two ports. One is 8080 for application to serve users. Another is 8088, to monitor the process status, to execute tasks and so on.
 	
 - [Filters](../mvc/controller/filter.md)
 
