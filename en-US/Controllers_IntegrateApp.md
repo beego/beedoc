@@ -1,6 +1,6 @@
 # Integrate third-party applications
 
-Beego supports to integrate third-party application, you can customized `http.Handler` as follows:
+Beego supports to integrate third-party application, you can customize `http.Handler` as follows:
 
 	beego.RouterHandler("/chat/:info(.*)", sockjshandler)
 
