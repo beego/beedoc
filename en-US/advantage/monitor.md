@@ -62,7 +62,7 @@ You can add task in your application and check the task status or trigger it man
 
 ## Config Status
 
-After the development of the application, we may also want to know the config when the application is running. Beego's Monitor also provided this feature.
+After the development of the application, we may also want to know the config when the application is running. beego's Monitor also provided this feature.
 
 - Show all configurations: `http://localhost:8088/listconf?command=conf`
 - Show all routers: `http://localhost:8088/listconf?command=router`
