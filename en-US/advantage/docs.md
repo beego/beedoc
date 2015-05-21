@@ -124,12 +124,12 @@ We defined the comment above for `CMSController` which will show for this module
 
 - @Title
 
-	The title for this API. it's a string, all the content after the first space will be parsed as the title.
+	The title for this API. It's a string, all the content after the first space will be parsed as the title.
 
 - @Description
 
 
-	The description for this API. it's a string, all the content after the first space will be parsed as the description.
+	The description for this API. It's a string, all the content after the first space will be parsed as the description.
 
 - @Param
 
