@@ -152,8 +152,8 @@ We defined the comment above for `CMSController` which will show for this module
 - @Failure
 
 	The failure message returned to client. Two parameters separated by space.
-	1. status code.
-	2. Error message
+	1. Status code.
+	2. Error message.
 
 - @router
 
