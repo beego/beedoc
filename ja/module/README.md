@@ -1,12 +1,12 @@
 ---
 root: true
-name: Modules
+name: モジュール
 sort: 5
 ---
 
-# Introduction of modules
+# モジュールの紹介
 
-Beego is evolving to a "LEGO model" which means becoming a modular system. Each module is one of the building blocks and you can build the application you want with these blocks. Since `beego 1.0` there are these modules below:
+beegoは、モジュラーシステムになってことを意味する"LEGOモデル"へと進化しています。各モジュールは、建物のブロックの一つであり、これらのブロックによってアプリケーションを構築することができます。 `beego 1.0`以降、以下のモジュールがあります:
 
 - [Session Module](./session.md)
 - [Cache Module](./cache.md)
@@ -16,6 +16,6 @@ Beego is evolving to a "LEGO model" which means becoming a modular system. Each 
 - [Toolbox Module](./toolbox.md)
 - [Config Module](./config.md)
 
-There are also these independent modules, which are available in separate repositories:
+別々のリポジトリで利用可能な独立したモジュールが3つあります:
 
 - [i18n Module](./i18n.md)
