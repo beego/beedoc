@@ -69,7 +69,7 @@ You can set `TableEngine` function in model to choose the engine you want to use
 type User struct {
 	Id    int
 	Name  string
-	Email stringMySQL
+	Email string
 }
 
 // Set engine to INNODB
