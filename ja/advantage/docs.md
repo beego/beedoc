@@ -3,13 +3,14 @@ name: Automated API Document
 sort: 2
 ---
 
-# Automated API Document
+# APIドキュメントの自動化
 
 Automated document is a very cool feature that I wish to have. Now it became real in Beego. As I said Beego will not only boost the development of API but also make the API easy to use for the user. Ok, let's try it out now. First create a new API application by `bee api beeapi`
+自動ドキュメントは、欲しい非常にクールな機能です。beegoでは今となっては現実となりました。私が言ったようにboogoは、 APIの開発を後押しするだけでなく、ユーザーにとって使いAPIが容易になるわけではありません。大丈夫です。今それを試してみましょう。最初の`beego api beeapi`による新しいAPIアプリケーションを作成
 
 # API global settings
 
-Add the comments at the top of `routers/router.go`:
+`routers/router.go`のトップにコメントを追加してください:
 
 ```
 // @APIVersion 1.0.0
@@ -20,6 +21,7 @@ package routers
 ```
 
 The comments above set the global information. The available settings:
+上のコメントはグローバル情報として設定しています。有用な設定:
 
 - @APIVersion
 - @Title
@@ -31,6 +33,8 @@ The comments above set the global information. The available settings:
 
 ## Router Parsing
 Right now automated API document only supports namespace+Include and only supports two levels parsing. The first level is API version and the second level is the modules.
+## ルータの構文解析
+今自動化されたAPIのドキュメントでは、名前空間をサポートしています`+含めるとのみ解析する2つのレベルがサポートされています。最初のレベルは、APIバージョンであり、第二のレベルは、モジュールです。
 
 ```
 func init() {
@@ -67,8 +71,8 @@ func init() {
 }
 ```
 
-## Application Comment
-The most important part of comment. For example:
+#＃ アプリケーションのコメント
+コメントの最も重要な部分です。例えば：
 
 ```
 package controllers
@@ -121,15 +125,17 @@ func (c *CMSController) Product() {
 ```
 
 We defined the comment above for `CMSController` which will show for this module. Then we need to define the comment for every functions. Below is the supported comments:
+このモジュールが表示される`CMSController`のため、上記のコメントを定義しました。その後、すべての機能のためのコメントを定義する必要があります。以下はサポートされているコメントです:
 
 - @Title
 
-	The title for this API. It's a string, all the content after the first space will be parsed as the title.
+	The title for this API. it's a string, all the content after the first space will be parsed as the title.
+このAPIのタイトルです。それは最初のスペースの後にすべてのコンテンツがタイトルとして解析され、文字列です。
 
 - @Description
 
 
-	The description for this API. It's a string, all the content after the first space will be parsed as the description.
+	The description for this API. it's a string, all the content after the first space will be parsed as the description.
 
 - @Param
 
@@ -152,8 +158,8 @@ We defined the comment above for `CMSController` which will show for this module
 - @Failure
 
 	The failure message returned to client. Two parameters separated by space.
-	1. Status code.
-	2. Error message.
+	1. status code.
+	2. Error message
 
 - @router
 
@@ -163,14 +169,18 @@ We defined the comment above for `CMSController` which will show for this module
 
 ## Generate document automatically
 
-To make it work following the steps:
-1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`.
-2. Generate document files by `bee generate docs`.
-3. Import `_ "beeapi/docs"` in `main.go`.
-4. Use `bee run watchall true -downdoc=true -gendoc=true` to run your API application and rebuild document automatically.
-5. Visit `swagger document from API project's URL and port.  (see item #1 below)
+以下が動作させるためのステップです:
 
-Your API document is available now. Open your browser and check it.
+1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`
+1. `conf/app.conf`に`EnableDocs = true`を設定することにより、ドキュメントを有効にしてください
+2. Generate document files by `bee generate docs`
+2. `bee generate docs`によって生成文書ファイルを生成してください。
+3. `main.go`にて`_ "beeapi/docs"をインポートしてください。
+4. APIアプリケーションの実行と自動的に文書を再構築するために、`bee run watchall true -downdoc=true -gendoc=true`を使用してください。
+5. Visit `swagger document from API project's URL and port.  (see item #1 below)
+5.訪問` APIプロジェクトのURLとポートから闊歩ドキュメント。 （以下の項目＃ 1を参照）
+
+APIドキュメントが利用可能になりました。ブラウザを開いて、それを確認してください。
 
 ![](../images/docs.png)
 
@@ -193,3 +203,4 @@ Your API document is available now. Open your browser and check it.
 			ctx.Output.Header("Access-Control-Allow-Origin", "*")
 
 2. Other problems. This is a feature used in my own project. If you have some other problems please fire issues to us.
+2. 他の問題。これは私自身のプロジェクトで使用する機能です。いくつかの他の問題が発生した場合、我々に問題を報告してください。
