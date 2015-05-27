@@ -69,7 +69,7 @@ You can set `TableEngine` function in model to choose the engine you want to use
 type User struct {
 	Id    int
 	Name  string
-	Email string
+	Email stringMySQL
 }
 
 // Set engine to INNODB
@@ -361,7 +361,7 @@ All the fields are **NOT NULL** by default.
 | :---   	   | :---
 | int, int32 - set as auto or name is `Id` | integer AUTO_INCREMENT
 | int64 - set as auto or name is`Id` | bigint AUTO_INCREMENT
-| uint, uint32 - set as auto or name is `Id` 时 | integer unsigned AUTO_INCREMENT
+| uint, uint32 - set as auto or name is `Id` | integer unsigned AUTO_INCREMENT
 | uint64 - set as auto or name is `Id` | bigint unsigned AUTO_INCREMENT
 | bool | bool
 | string - default size 255 | varchar(size)
