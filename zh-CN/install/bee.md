@@ -128,7 +128,7 @@ apiproject
 
 ### run 命令
 
-我们在开发 Go 项目的时候最大的问题是经常需要自己手动去编译再运行，`bee run` 命令是监控 beego 的项目，通过 inotify 监控文件系统。这样我们在开发过程中就可以实时的看到项目修改之后的效果：
+我们在开发 Go 项目的时候最大的问题是经常需要自己手动去编译再运行，`bee run` 命令是监控 beego 的项目，通过 [fsnotify](https://github.com/howeyc/fsnotify) 监控文件系统。这样我们在开发过程中就可以实时的看到项目修改之后的效果：
 
 ```
 bee run
