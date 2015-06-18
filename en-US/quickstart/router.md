@@ -39,7 +39,7 @@ In total, there are two relevant lines here. The first one registers the router 
 The user can then visit `/user` to invoke the logic in UserController. This is our simple routers. For further information on router usage please see [beego router settings](../mvc/controller/router.md).
 
 2. After `beego.Run` is executed, we just saw it's listening on the port. Behind the scenes, it did a lot of work:
-  - Parsing the [configuration file](../mvc/controller/configuration.md)
+  - Parsing the [configuration file](../mvc/controller/config.md)
     Beego will parse the configuration file `app.conf` in conf folder. There we can change the port, enable session management and change the application's name by setting the corresponding options.
 
   - Initializing the [user session](../mvc/controller/session.md)
