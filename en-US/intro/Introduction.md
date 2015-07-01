@@ -6,7 +6,7 @@ sort: 0
 
 # What is beego?
 
-beego is a HTTP framework for rapid development of Go applications. It can be used to develop APIs, web apps and backend services quickly. It is a RESTful framework.  It is inspired by Tornado, Sinatra and Flask and has integrated some of Go-specific features such as interfaces and struct embedding.
+beego is an HTTP framework for rapid development of Go applications. It can be used to develop APIs, web apps and backend services quickly. It is a RESTful framework.  It is inspired by Tornado, Sinatra and Flask and has integrated some of Go-specific features such as interfaces and struct embedding.
 
 ## The architecture of beego
 
