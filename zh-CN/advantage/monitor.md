@@ -16,7 +16,7 @@ sort: 1
 而且你还可以修改监听的地址和端口：
 
 	beego.AdminHttpAddr = "localhost"
-	beego.AdminHttpPort = 8888
+	beego.AdminHttpPort = 8088
 	
 打开浏览器，输入 URL：`http://localhost:8088/`，你会看到一句欢迎词：`Welcome to Admin Dashboard`。
 
