@@ -363,6 +363,6 @@ The methods below are methods for `*Namespace` object. It's not recommended. The
 - Any(rootpath string, f FilterFunc)
 - Handler(rootpath string, h http.Handler)
 
-	these function is the same as mentioned earlier
+	these functions are the same as mentioned earlier
 
 - Namespace(ns ...*Namespace)
