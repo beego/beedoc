@@ -60,7 +60,7 @@ in fact there's third param `isPrefix`, the default value is `false`, if you set
 
 ## RESTful router
 
-Let's talk about RESTful first. RESTful is a popular way in API development. Beego supports it implicit. Executing Get method for GET request and Post method for POST request. The default router is RESTful.
+Let's talk about RESTful first. RESTful is a popular way in API development. Beego supports it implicitly. Executing Get method for GET request and Post method for POST request. The default router is RESTful.
 
 ## Fixed router
 
