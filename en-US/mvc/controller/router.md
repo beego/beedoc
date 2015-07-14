@@ -17,7 +17,7 @@ beego.Get("/",func(ctx *context.Context){
      ctx.Output.Body([]byte("hello world"))
 })
 ```
-	
+
 ### POST router
 
 ```
@@ -70,7 +70,7 @@ Fixed router is full matching router, such as:
 	beego.Router("/admin", &admin.UserController{})
 	beego.Router("/admin/index", &admin.ArticleController{})
 	beego.Router("/admin/addpkg", &admin.AddController{})
-	
+
 The fixed routers above are most common routers. One fixed router, one controller. Then execute different method based on different request method. It's a typical RESTFul router.
 
 ## Regex router
@@ -80,11 +80,11 @@ In order to make the router settings easier, beego reference the router implemen
 - beego.Router("/api/?:id", &controllers.RController{})
 
   default   //matching /api/123    :id = 123  can matching /api/
-	
+
 - beego.Router("/api/:id", &controllers.RController{})
 
   default //matching /api/123    :id = 123  can't matching /api/
-	
+
 - beego.Router("/api/:id([0-9]+)", &controllers.RController{})
 
   Customized regex //matching /api/123 :id = 123
@@ -158,7 +158,7 @@ Below is the acceptable HTTP methods:
 * delete ：DELETE request
 * patch ：PATCH request
 * options ：OPTIONS request
-* head ：HEAD request 
+* head ：HEAD request
 
 If * and other HTTP methods are used together, HTTP method will be executed prior. For example:
 
@@ -176,12 +176,12 @@ Firstly you need to register controller into auto router.
 
 Then Beego will retrieve all the methods in that controller by reflection and you can call the related methods by this:
 
-	/object/login   will call Login method in ObjectController 
+	/object/login   will call Login method in ObjectController
 	/object/logout  will call Logout method in ObjectController
 
 Except `/:controller/:method` will match to controller and method, all the rest of url path will be parsed as GET parameters and saved into `this.Ctx.Input.Param`:
 
-	/object/blog/2013/09/12  will call Blog method in ObjectController with parameters map[0:2013 1:09 2:12]. 
+	/object/blog/2013/09/12  will call Blog method in ObjectController with parameters map[0:2013 1:09 2:12].
 
 URL will match by lowercase, so `object/LOGIN` will also map to `Login` method.
 
@@ -233,14 +233,14 @@ It's exactly same as resgistering by Router functions:
 
     beego.Router("/staticblock/:key", &CMSController{}, "get:StaticBlock")
     beego.Router("/all/:key", &CMSController{}, "get:AllBlock")
-    
+
 The `URLMapping` function above is a new function introduced in Beego 1.3. If you didn't use `URLMapping`, beego will find the function by reflection otherwise beego will find the function by `interface` which is much faster.
 
 ## namespace
 
 ```
 //init namespace
-ns := 
+ns :=
 beego.NewNamespace("/v1",
     beego.NSCond(func(ctx *context.Context) bool {
         if ctx.Input.Domain() == "api.beego.me" {
@@ -287,11 +287,11 @@ namespace API:
 
     Create a namespace object, namespace object's methods list below.
     We recommend you to use these methods starts with `NS`, it's compatible for gofmt tool.
-    
+
 - NSCond(cond namespaceCond)
 
     if the namespaceCond return true will run this namespace,unwise won't run
-    
+
 - NSBefore(filiterList ...FilterFunc)
 - NSAfter(filiterList ...FilterFunc)
 
@@ -310,15 +310,15 @@ namespace API:
 - NSHandler(rootpath string, h http.Handler)
 - NSAutoRouter(c ControllerInterface)
 - NSAutoPrefix(prefix string, c ControllerInterface)
-    
+
     These are methods to set up routers which are same as the basic routers.
-    
+
 - NSNamespace(prefix string, params ...innnerNamespace)
 
     Nested namespaces
-    
+
     ```
-    ns := 
+    ns :=
     beego.NewNamespace("/v1",
         beego.NSNamespace("/shop",
             beego.NSGet("/:id", func(ctx *context.Context) {
@@ -336,21 +336,21 @@ namespace API:
             }),
         ),
     )
-    ``` 
-    
+    ```
+
 The methods below are methods for `*Namespace` object. It's not recommended. They have the same functionality as the methods with `NS`. But the methods list above with `NS` are more elegant and easier to read.
 
-- Cond(cond namespaceCond)  
+- Cond(cond namespaceCond)
 
 	if the namespaceCond return true will run this namespace,unwise won't run
-	
+
 - Filter(action string, filter FilterFunc)
 
 	action represent which position to run ,`before` and `after` is two validate value
-	
+
 - Router(rootpath string, c ControllerInterface, mappingMethods ...string)
 
-	
+
 - AutoRouter(c ControllerInterface)
 - AutoPrefix(prefix string, c ControllerInterface)
 - Get(rootpath string, f FilterFunc)
