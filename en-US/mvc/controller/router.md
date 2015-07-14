@@ -71,7 +71,7 @@ Fixed router is full matching router, such as:
 	beego.Router("/admin/index", &admin.ArticleController{})
 	beego.Router("/admin/addpkg", &admin.AddController{})
 
-The fixed routers above are most common routers. One fixed router, one controller. Then execute different method based on different request method. It's a typical RESTFul router.
+The fixed routers above are most common routers. One fixed router, one controller. Then executing different method bases on different request method. It's a typical RESTFul router.
 
 ## Regex router
 
