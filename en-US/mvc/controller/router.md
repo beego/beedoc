@@ -290,7 +290,7 @@ namespace API:
 
 - NSCond(cond namespaceCond)
 
-    if the namespaceCond return true will run this namespace,unwise won't run
+    if the namespaceCond return true will run this namespace, otherwise, won't run
 
 - NSBefore(filiterList ...FilterFunc)
 - NSAfter(filiterList ...FilterFunc)
