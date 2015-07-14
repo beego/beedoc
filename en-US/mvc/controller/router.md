@@ -229,7 +229,7 @@ Then the following routers will be supported:
 * GET /staticblock/:key
 * GET /all/:key
 
-It's exactly same as resgistering by Router functions:
+It's exactly same as registering by Router functions:
 
     beego.Router("/staticblock/:key", &CMSController{}, "get:StaticBlock")
     beego.Router("/all/:key", &CMSController{}, "get:AllBlock")
