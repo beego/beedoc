@@ -54,7 +54,7 @@ s.RegisterService(new(HelloService), "")
 beego.Handler("/rpc", s)
 ```
 
-`beego.Handler(router, http.Handler)`,the first param represent URI, the second param represent `http.Handler`,when you register this, then all the request `/rpc` will call `http.Handler`.
+`beego.Handler(router, http.Handler)`,the first param represents URI, the second param represents `http.Handler`,when you register this, then all the request `/rpc` will call `http.Handler`.
 
 in fact there's third param `isPrefix`, the default value is `false`, if you set to `true`,then all the match will prefix matching, So the url `/rpc/user` will also call the register.
 
@@ -346,7 +346,7 @@ The methods below are methods for `*Namespace` object. It's not recommended. The
 
 - Filter(action string, filter FilterFunc)
 
-	action represent which position to run ,`before` and `after` is two validate value
+	action represents which position to run ,`before` and `after` is two validate value
 
 - Router(rootpath string, c ControllerInterface, mappingMethods ...string)
 
