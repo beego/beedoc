@@ -75,7 +75,7 @@ The fixed routers above are most common routers. One fixed router, one controlle
 
 ## Regex router
 
-In order to make the router settings easier, beego reference the router implementation in Sinatra. It supports many router types.
+In order to make the router settings easier, beego references the router implementation in Sinatra. It supports many router types.
 
 - beego.Router("/api/?:id", &controllers.RController{})
 
