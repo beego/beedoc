@@ -54,9 +54,9 @@ s.RegisterService(new(HelloService), "")
 beego.Handler("/rpc", s)
 ```
 
-`beego.Handler(router, http.Handler)`,the first param represents URI, the second param represents `http.Handler`,when you register this, then all the request `/rpc` will call `http.Handler`.
+`beego.Handler(router, http.Handler)`,the first param represents URI, the second param represents `http.Handler`,when you register this, then all the requests to `/rpc` will call `http.Handler`.
 
-in fact there's third param `isPrefix`, the default value is `false`, if you set to `true`,then all the match will prefix matching, So the url `/rpc/user` will also call the register.
+in fact there's third param `isPrefix`, the default value is `false`, if you set to `true`,then all the matches will prefix matching, So the url `/rpc/user` will also call the register.
 
 ## RESTful router
 
