@@ -277,7 +277,7 @@ the code showed supports the URL:
 * GET /v1/changepassword
 * POST /v1/changepassword
 * GET /v1/shop/123
-* GET /v1/cms/ maps to annotation routers in MainController、CMSController、BlockController
+* GET /v1/cms/ maps to annotation routers in MainController, CMSController, BlockController
 
 namespace supports filter, condition and nested namespace
 
