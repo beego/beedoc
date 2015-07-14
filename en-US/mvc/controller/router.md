@@ -123,16 +123,16 @@ In controller, you can get the variables like this:
 
 ## Custom methods and RESTful rules
 
-The examples above are using default method name (the request method name is same as the controller method name, such as `GET` request execute `Get` method and `POST` request execute `Post` method). If you want to use different controller method name, you can do this:
+The examples above use default method names (the request method name is same as the controller method name, such as `GET` request executes `Get` method and `POST` request executes `Post` method). If you want to use different controller method name, you can do this:
 
 	beego.Router("/",&IndexController{},"*:Index")
 
 Use the third parameter which is the method you want to call in the controller. Here is some rules:
 
-* * means any request method will all execute this method.
-* Use httpmethod:funcname format
-* For more format, use `;` as the separator
-* Many method mapping the same funcname, use `,` as the separator
+* * means any request method will execute this method.
+* Use httpmethod:funcname format.
+* Multiple formats can use `;` as the separator.
+* Many HTTP methods mapping the same funcname, use `,` as the separator for HTTP methods.
 
 Below is some example of RESTful design:
 
@@ -141,11 +141,11 @@ Below is some example of RESTful design:
 	beego.Router("/api/update",&RestController{},"put:UpdateFood")
 	beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
 
-Below is the example of multiple HTTP methods mapping to a same method:
+Below is the example of multiple HTTP methods mapping to a same controller method:
 
 	beego.Router("/api",&RestController{},"get,post:ApiFunc")
 
-Below is different HTTP methods mapping to different methods. `;` as the separator:
+Below is different HTTP methods mapping to different controller methods. `;` as the separator:
 
 	beego.Router("/simple",&SimpleController{},"get:GetFunc;post:PostFunc")
 
