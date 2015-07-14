@@ -258,7 +258,7 @@ The code above supports the URL requests below:
 
 #### 2. Supporting more flexible router modes
 
-Custom functions from RESTFul router
+Custom functions from RESTful router
 
 - beego.Get(router, beego.FilterFunc)
 - beego.Post(router, beego.FilterFunc)

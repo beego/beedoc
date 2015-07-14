@@ -397,7 +397,7 @@ beego.Run("127.0.0.1:8089")
 
 #### 2.beego支持更加自由化的路由方式
 
-RESTFul的自定义函数
+RESTful的自定义函数
 
 - beego.Get(router, beego.FilterFunc)
 - beego.Post(router, beego.FilterFunc)

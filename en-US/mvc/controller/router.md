@@ -8,7 +8,7 @@ sort: 2
 When do we set the router? When we discuss MVC structure of beego, we learned there are three type of router in Beego. Let's see how to use them now.
 
 ## Basic router
-from beego1.2 we support RESTFul function router。the basic router include the URI and closure function.
+from beego1.2 we support RESTful function router。the basic router include the URI and closure function.
 
 ### GET router
 
@@ -134,7 +134,7 @@ Use the third parameter which is the method you want to call in the controller. 
 * For more format, use `;` as the separator
 * Many method mapping the same funcname, use `,` as the separator
 
-Below is some example of RESTFul design:
+Below is some example of RESTful design:
 
 	beego.Router("/api/list",&RestController{},"*:ListFood")
 	beego.Router("/api/create",&RestController{},"post:CreateFood")
@@ -166,7 +166,7 @@ If * and other HTTP methods are used together, HTTP method will be executed prio
 
 The `PostFunc` other than `AllFunc` will be execute for POST request.
 
-The router of custom methods don't support RESTFul by default which means if you set router like `beego.Router("/api",&RestController{},"post:ApiFunc")` and the request method is `POST` then the `Post` method won't be executed by default.
+The router of custom methods don't support RESTful by default which means if you set router like `beego.Router("/api",&RestController{},"post:ApiFunc")` and the request method is `POST` then the `Post` method won't be executed by default.
 
 ## Auto matching
 
