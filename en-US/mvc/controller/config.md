@@ -47,7 +47,7 @@ AppConfig supports:
 
 ### The Configurations for Different Environments
 
-You can set configurations for different Runmode under their own sections. Beego will take the configurations of current Runmode by default. For example:
+You can set configurations for different runmode under their own sections. Beego will take the configurations of current runmode by default. For example:
 
   appname = beepkg
   httpaddr = "127.0.0.1"
