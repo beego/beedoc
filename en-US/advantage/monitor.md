@@ -9,19 +9,19 @@ We talked about toolbox module before. It will listen `127.0.0.1:8088` by defaul
 
 >>> For security reason it is recommend to block 8088 in firewall.
 
-Monitor is disabled by default. You can enabled it by:
+Monitor is disabled by default. You can enable it by setting bellow line in `conf/app.conf` file:
 
-	beego.EnableAdmin = true
-	
+	EnableAdmin = true
+
 Also you can change the port it listened:
 
-	beego.AdminHttpAddr = "localhost"
-	beego.AdminHttpPort = 8888
-	
+	AdminHttpAddr = "localhost"
+	AdminHttpPort = 8888
+
 Open browser and visit `http://localhost:8088/` you will see `Welcome to Admin Dashboard`.
 
 It's the first version now. We will keep on developing it.
-	
+
 ## Requests statistics
 
 Visit `http://localhost:8088/qps` you will see it:
