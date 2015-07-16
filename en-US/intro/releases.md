@@ -265,7 +265,7 @@ GET       /v1/shop/123
 
 #### 2. Supporting more flexible router modes
 
-Custom functions from RESTFul router
+Custom functions from RESTful router
 
 ```
 beego.Get(router, beego.FilterFunc)

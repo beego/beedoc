@@ -237,11 +237,11 @@ bee generate scaffold [scaffoldname] [-fields=""] [-driver=mysql] [-conn="root:@
     example: bee generate scaffold post -fields="title:string,body:text"
 
 bee generate model [modelname] [-fields=""]
-    generate RESTFul model based on fields
+    generate RESTful model based on fields
     -fields: a list of table fields. Format: field:type, ...
 
 bee generate controller [controllerfile]
-    generate RESTFul controllers
+    generate RESTful controllers
 
 bee generate view [viewpath]
     generate CRUD view in viewpath

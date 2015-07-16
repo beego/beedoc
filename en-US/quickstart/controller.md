@@ -33,7 +33,7 @@ At the beginning we create the `MainController`. It contains an anonymous struct
 
 `beego.Controller` has lots of methods such as `Init`, `Prepare`, `Post`, `Get`, `Delete` and `Head`. We can overwrite these functions by implementing them. In this case we overwrote the `Get` method.
 
-We talked about the fact that Beego is a RESTFul framework so our requests will run the related `req.Method` method by default. For example, if the browser sends a `GET` request, it will execute the `Get` method in `MainController`. Therefore the `Get` method and the logic we defined above will be executed.
+We talked about the fact that Beego is a RESTful framework so our requests will run the related `req.Method` method by default. For example, if the browser sends a `GET` request, it will execute the `Get` method in `MainController`. Therefore the `Get` method and the logic we defined above will be executed.
 
 ## The `Get` method
 
