@@ -1,11 +1,11 @@
 ---
-name: Bee tool usage
+name: bee tool usage
 sort: 2
 ---
 
 # Introduction to bee tool
 
-Bee tool is a project that helps develop beego rapidly. With bee tool we can create, auto compile and reload, develop, test, and deploy beego applications easily.
+bee tool is a project that helps develop beego rapidly. With bee tool we can create, auto compile and reload, develop, test, and deploy beego applications easily.
 
 ## Installing bee tool
 
@@ -15,12 +15,12 @@ You can install bee tool through following command:
 
 `bee` is installed into `GOPATH/bin` by default. You need to add `GOPATH/bin` to your PATH, otherwise the `bee` command won't work.
 
-## Bee tool commands
+## bee tool commands
 
 Type `bee` in command line. We can see following messages:
 
 ```
-Bee is a tool for managing beego framework.
+bee is a tool for managing beego framework.
 
 Usage:
 
@@ -28,12 +28,12 @@ Usage:
 
 The commands are:
 
-	new         Create a Beego application
+	new         Create a beego application
 	run         run the app and start a Web server for development
 	pack        Compress a beego project into a single file
 	api         create an API beego application
 	bale        packs non-Go files to Go source files
-	version     show the Bee, Beego and Go version
+	version     show the bee, beego and Go version
 	generate    source code generator
 	migrate     run database migrations
 ```
@@ -89,7 +89,7 @@ myproject
 
 ### Command `run`
 
-When we develop Go projects, we often have problems of needing to compile and run them manually. The `bee run` command will supervise the file system of any beego project using [inotify](http://en.wikipedia.org/wiki/Inotify) so that we can see the results immediately after any modifications within for beego project folders.
+When we develop Go projects, we often run into the hassle of compiling and runing them manually. The `bee run` command will supervise the file system of any beego project using [inotify](http://en.wikipedia.org/wiki/Inotify) so that we can see the results immediately after any modifications within for beego project folders.
 
 ```
 cd myproject
@@ -124,7 +124,7 @@ After modifying the `default.go` file in the `controllers` folder, we can see th
 
 Refreshing the browser should show the results of the new modifications.
 
-### Command pack
+### Command `pack`
 
 `pack` command is used to compress the project into a single file. Then we can deploy the project by uploading and extracting the zip file to the server.
 
@@ -139,7 +139,7 @@ exclude suffix: .go:.DS_Store:.tmp
 file write to `/gopath/src/apiproject/apiproject.tar.gz`
 ```
 
-We can see compressed file in the project folder:
+We can see the compressed file in the project folder:
 
 ```
 rwxr-xr-x  1 astaxie  staff  8995376 11 25 22:46 apiproject
@@ -151,7 +151,7 @@ drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 models
 drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
 ```
 
-### Command api
+### Command `api`
 
 The `new` command is used for crafting new web applications. But there are many users who use beego for developing APIs. We can use the `api` command to create new API applications.
 Here is the result of running `bee api project_name`:
@@ -186,23 +186,23 @@ apiproject
 ```
 
 Compare this to the `bee new myproject` command seen earlier.
-Note that the new API application doesn't have a static and views folder.
+Note that the new API application doesn't have a `static` and `views` folder.
 
-### Command bale
+### Command `bale`
 
-This command is currently only available to the developer team. It's mainly used for compressing all the static files in to a single binary file. So we don't need to carry  static files including js, css, images and views when publish the project. Those files will be self-extracting with non-overwrite when the program starts.
+This command is currently only available to the developer team. It's mainly used for compressing all the static files in to a single binary file. So we don't need to carry static files including js, css, images and views when publish the project. Those files will be self-extracting with non-overwrite when the program starts.
 
-### Command version
+### Command `version`
 
-This command displays the version of `bee`, `beego`, and `go`
+This command displays the version of `bee`, `beego`, and `go`.
 
-### Command generate
+### Command `generate`
 This command will generate the routers by analyzing the functions in controllers.
 
-### Command migrate
+### Command `migrate`
 This command will run database migration scripts.
 
-## Bee tool configuration
+## bee tool configuration
 
 You may notice that there is a file named `bee.json` in bee tool source code folder, this file is the configuration file of beego. The full features haven't been done yet, but there are some options you'd like to use for now:
 
