@@ -48,4 +48,6 @@ Here is the typical folder structure of a beego project:
 
 We can see the M (models), V (views), C (controllers) folders. `main.go` is the entry point.
 
->You can use the [bee tool to create a new project](../install/bee.md).
+## Creating a beego project
+
+You can use the [bee tool to create a new project](../install/bee.md).
