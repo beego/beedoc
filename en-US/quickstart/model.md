@@ -39,4 +39,4 @@ func LogPV(urls string) bool {
 }
 ```
 
-So if your application is simple enough then you may not need models at all. But when your application gets bigger and you want more reuseable code and need logic separation you must use models. Please see [MVC Models](../mvc/model/overview.md) for the specific case of database models and Beego's ORM framework. [In the next section](view.md) we will now talk about how to write views.
+So if your application is simple enough then you may not need models at all. But when your application gets bigger and you want more reusable code and need logic separation you must use models. Please see [MVC Models](../mvc/model/overview.md) for the specific case of database models and Beego's ORM framework. [In the next section](view.md) we will now talk about how to write views.

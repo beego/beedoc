@@ -5,9 +5,9 @@ sort: 1
 
 # Configuration
 
-Beego configuration file supports INI, XML, JSON, YAML. It's using INI format by default. It is flexible and easy to configure.
+Beego configuration file supports INI, XML, JSON, YAML. It uses INI format by default. It is flexible and easy to configure.
 
-## The default configurations parsing 
+## The default configurations parsing
 
 Beego will parse `conf/app.conf` file by default.
 
@@ -47,7 +47,7 @@ AppConfig supports:
 
 ### The Configurations for Different Environments
 
-You can set configurations for different Runmode under their own sections. Beego will take the configurations of current Runmode by default. For example:
+You can set configurations for different runmode under their own sections. Beego will take the configurations of current runmode by default. For example:
 
   appname = beepkg
   httpaddr = "127.0.0.1"
@@ -56,14 +56,14 @@ You can set configurations for different Runmode under their own sections. Beego
   autorender = false
   autorecover = false
   viewspath = "myview"
-  
+
   [dev]
   httpport = 8080
   [prod]
   httpport = 8088
   [test]
   httpport = 8888
-  
+
 The configurations above set up httpport for dev, prod and test environment. Beego will take httpport = 8080 for current runmode "dev".
 
 ### Beego default variables
@@ -71,17 +71,17 @@ The configurations above set up httpport for dev, prod and test environment. Bee
 Beego has many configurable variables. Let's have a look at these variables. It will help us to know how to use them in development. (You can configure and overwrite them in `conf/app.conf`. Case insensitive.):
 
 * AppName
-  
+
   Application name, Beego by default. It's project_name if the application is created by `bee new project_name`
 
 * AppPath
 
   Application path. It will get the first parameter of the executed command by `os.Args[0]`. So you need to execute by full path if you are using supervisor to manage processes.
-	
+
 * AppConfigPath
 
-  Application configuration file path. it's `conf/app.conf` by default.  You can change it to your own file.
-  
+  Application configuration file path. It is `conf/app.conf` by default.  You can change it to your own file.
+
 * CopyRequestBody
 
   Flag of copy raw request body in context, disabled by default
@@ -97,7 +97,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 * HttpPort
 
   Application listening port, 8080 by default.
-	
+
 * EnableHttpTLS
 
   Enable https or not, disabled by default.
@@ -111,13 +111,13 @@ Beego has many configurable variables. Let's have a look at these variables. It 
   If https is enabled, the path of certfile.
 
 * HttpKeyFile
-		
+
   If https is enabled, the path of keyfile.
 
 * HttpServerTimeOut
 
   Config the http timeout, 0 by default which means no timeout.
-	
+
 * RunMode
 
   The application mode, dev by default. In dev mode it will show user friendly error pages as we saw before.
@@ -161,7 +161,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 * SessionHashKey
 
   Hash key of session.
-	
+
 * SessionCookieLifeTime
 
   The valid time of cookie in browser for session, 3600s by default.
@@ -181,30 +181,30 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 * DirectoryIndex
 
   Enable list static directory or not, disabled by default. It will return 403 error.
-	
+
 * BeegoServerName
 
   Beego server will output `beego` as server name.
-	
+
 * EnableAdmin
 
   Enable supervisor module or not, disabled by default.
-	
+
 * AdminHttpAddr
 
   Listening address of supervisor, `localhost` by default.
 
 * AdminHttpPort
   Listening port of supervisor, 8088 by default.
-	
+
 * TemplateLeft
 
   Left mark of template, `{{` by default.
-	
+
 * TemplateRight
 
   Right mark of template, `}}` by default.
-	
+
 * ErrorsShow
 
   Show error or not, show by default.
@@ -215,7 +215,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 * XSRFKEY
 
   XSRF key, beegoxsrf by default.
-	
+
 * XSRFExpire
 
   XSRF expire time, 0 by default.
@@ -230,18 +230,18 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * StaticDir
 
-  set the static file，default is `static`	
+  set the static file，default is `static`
  	1. one dir，the same as `beego.SetStaticPath("/download","download")`
 
 		StaticDir = download
   	2. multi dirs, the same as `beego.SetStaticPath("/download","down")` and `beego.SetStaticPath("/download2","down2")`
 
-    StaticDir = download:down download2:down2 
-    
+    StaticDir = download:down download2:down2
+
 * EnableDocs
 
   Enable Docs or not, default is `false`
-  
+
 * AppConfigProvider
 
   File format of AppConfig, default is `ini`. Could be `xml`, `yaml`, `json` as well.
