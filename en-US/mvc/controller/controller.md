@@ -103,14 +103,14 @@ type NestPreparer interface {
         NestPrepare()
 }
 
-// baseRouter implemented global settings for all other routers.
+// baseRouter implements global settings for all other routers.
 type baseRouter struct {
         beego.Controller
         i18n.Locale
         user    models.User
         isLogin bool
 }
-// Prepare implemented Prepare method for baseRouter.
+// Prepare implements Prepare method for baseRouter.
 func (this *baseRouter) Prepare() {
 
         // page start time
