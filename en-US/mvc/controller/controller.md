@@ -132,7 +132,7 @@ func (this *baseRouter) Prepare() {
 }
 ```
 
-In the example above, it defined base class and initialized some variables. It will test if the executing Controller is a implementing of NestPreparer, if it is, then call the method of subclass. Let's see the implementation of `NestPreparer`:
+The above example defined base class and initialized some variables. It will test if the executing Controller is an implementing of NestPreparer, if it is, then call the method of subclass. Let's see the implementation of `NestPreparer`:
 
 ```
 type BaseAdminRouter struct {
