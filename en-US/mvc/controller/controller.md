@@ -11,7 +11,7 @@ Based on the design of beego's controller, you just need to embed the `beego.Con
 	    beego.Controller
 	}
 
-`beego.Controller` implemented interface `beego.ControllerInterface`.  `beego.ControllerInterface` defined these functions:
+`beego.Controller` implements interface `beego.ControllerInterface`.  `beego.ControllerInterface` defines these functions:
 
 - Init(ct *context.Context, childName string, app interface{})
 
@@ -54,7 +54,7 @@ Based on the design of beego's controller, you just need to embed the `beego.Con
   This method will be executed after finishing related HTTP method, it's empty by default. You can implement this method by overwriting it in the struct of sub class. Used for database closing, data cleaning and so on.
 
 - Render() error
-  
+
   This method is used to render template. Only executed if `beego.AutoRender` is true.
 
 By overwriting functions in struct, you can implement your own logic. For example:
@@ -112,7 +112,7 @@ type baseRouter struct {
 }
 // Prepare implemented Prepare method for baseRouter.
 func (this *baseRouter) Prepare() {
-        
+
         // page start time
         this.Data["PageStartTime"] = time.Now()
 
