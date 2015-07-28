@@ -5,7 +5,7 @@ sort: 4
 
 # Cross-site request forgery
 
-[Cross-site request forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery) is well known as XSRF. It is a very important security problem in web development. The wikipedia page talked about it in detail. 
+[Cross-site request forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery) is well known as XSRF. It is a very important security problem in web development. The Wikipedia page explains it in detail.
 
 One of the common solutions to prevent XSRF is to record an unpredictable cookie for each user and each request (POST/PUT/DELETE) must have this cookie. If the cookie doesn't match, the request is probably a forged request.
 
@@ -13,21 +13,21 @@ Beego has built in XSRF protection. If you want to use it, you can either `enabl
 
     enablexsrf = true
     xsrfkey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o
-    xsrfexpire = 3600   
+    xsrfexpire = 3600
 
 or enable it in main enter function:
 
     beego.EnableXSRF = true
     beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
     beego.XSRFExpire = 3600  //过期时间，默认60秒
-    
+
 With XSRF enabled Beego will set a cookie `_xsrf` (expire in 60 seconds by default) for every user. If this cookie doesn't exist in a `POST`, `PUT`, or `DELETE` request, Beego will refuse the request. If you enabled XSRF protection, you need to add a field to provide `_xsrf` value to every form. You can directly use `XsrfFormHtml()` in the template to set it.
 
 We also set the global expiration time by `beego.XSRFExpire`. We can still change it in controllers for some particular logic:
 
 ```go
-func (this *HomeController) Get(){ 
-	this.XSRFExpire = 7200    
+func (this *HomeController) Get(){
+	this.XSRFExpire = 7200
 	this.Data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
 }
 ```
@@ -37,12 +37,12 @@ func (this *HomeController) Get(){
 Set data in controller:
 
 ```go
-func (this *HomeController) Get(){        
+func (this *HomeController) Get(){
     this.Data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
 }
 ```
 
-Then use it in template:  
+Then use it in template:
 
     <form action="/new_message" method="post">
       {{ .xsrfdata }}
@@ -77,7 +77,7 @@ Add `xsrf` to every request header by extending ajax.
 You need to save the `_xsrf` value in html:
 
 ```go
-func (this *HomeController) Get(){        
+func (this *HomeController) Get(){
     this.Data["xsrf_token"] = this.XsrfToken()
 }
 ```

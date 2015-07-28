@@ -295,7 +295,7 @@ namespace API:
 - NSBefore(filiterList ...FilterFunc)
 - NSAfter(filiterList ...FilterFunc)
 
-    For `BeforeRouter` and `finishRouter` filters. Can register multiple filters.
+    For `BeforeRouter` and `FinishRouter` filters. Can register multiple filters.
 
 - NSInclude(cList ...ControllerInterface)
 - NSRouter(rootpath string, c ControllerInterface, mappingMethods ...string)

@@ -11,11 +11,11 @@ Based on the design of beego's controller, you just need to embed the `beego.Con
 	    beego.Controller
 	}
 
-`beego.Controller` implemented interface `beego.ControllerInterface`.  `beego.ControllerInterface` defined these functions:
+`beego.Controller` implements interface `beego.ControllerInterface`.  `beego.ControllerInterface` defines these functions:
 
 - Init(ct *context.Context, childName string, app interface{})
 
-  This function will initialize Context, Controller name, template name, template variable container `Data`. `app` is the executing Controller's reflecttype. It can be used to execute sub class's methods.
+  This function will initialize Context, Controller name, template name, template variable container `Data`. `app` is the executing Controller's reflecttype. It can be used to execute subclass's methods.
 
 - Prepare()
 
@@ -23,38 +23,38 @@ Based on the design of beego's controller, you just need to embed the `beego.Con
 
 - Get()
 
-  This method will be executed if the HTTP request method is GET, return 403 by default. You can implement this method to handle GET request by overwriting it in the struct of sub class.
+  This method will be executed if the HTTP request method is GET, return 403 by default. You can implement this method to handle GET request by overwriting it in the struct of subclass.
 
 - Post()
 
-  This method will be executed if the HTTP request method is POST, return 403 by default. You can implement this method to handle POST request by overwriting it in the struct of sub class.
+  This method will be executed if the HTTP request method is POST, return 403 by default. You can implement this method to handle POST request by overwriting it in the struct of subclass.
 
 - Delete()
 
-  This method will be executed if the HTTP request method is DELETE, return 403 by default. You can implement this method to handle DELETE request by overwriting it in the struct of sub class.
+  This method will be executed if the HTTP request method is DELETE, return 403 by default. You can implement this method to handle DELETE request by overwriting it in the struct of subclass.
 
 - Put()
 
-  This method will be executed if the HTTP request method is PUT, return 403 by default. You can implement this method to handle PUT request by overwriting it in the struct of sub class.
+  This method will be executed if the HTTP request method is PUT, return 403 by default. You can implement this method to handle PUT request by overwriting it in the struct of subclass.
 
 - Head()
 
-  This method will be executed if the HTTP request method is HEAD, return 403 by default. You can implement this method to handle HEAD request by overwriting it in the struct of sub class.
+  This method will be executed if the HTTP request method is HEAD, return 403 by default. You can implement this method to handle HEAD request by overwriting it in the struct of subclass.
 
 - Patch()
 
-  This method will be executed if the HTTP request method is PATCH, return 403 by default. You can implement this method to handle PATCH request by overwriting it in the struct of sub class.
+  This method will be executed if the HTTP request method is PATCH, return 403 by default. You can implement this method to handle PATCH request by overwriting it in the struct of subclass.
 
 - Options()
 
-  This method will be executed if the HTTP request method is OPTIONS, return 403 by default. You can implement this method to handle OPTIONS request by overwriting it in the struct of sub class.
+  This method will be executed if the HTTP request method is OPTIONS, return 403 by default. You can implement this method to handle OPTIONS request by overwriting it in the struct of subclass.
 
 - Finish()
 
-  This method will be executed after finishing related HTTP method, it's empty by default. You can implement this method by overwriting it in the struct of sub class. Used for database closing, data cleaning and so on.
+  This method will be executed after finishing related HTTP method, it's empty by default. You can implement this method by overwriting it in the struct of subclass. Used for database closing, data cleaning and so on.
 
 - Render() error
-  
+
   This method is used to render template. Only executed if `beego.AutoRender` is true.
 
 By overwriting functions in struct, you can implement your own logic. For example:
@@ -103,16 +103,16 @@ type NestPreparer interface {
         NestPrepare()
 }
 
-// baseRouter implemented global settings for all other routers.
+// baseRouter implements global settings for all other routers.
 type baseRouter struct {
         beego.Controller
         i18n.Locale
         user    models.User
         isLogin bool
 }
-// Prepare implemented Prepare method for baseRouter.
+// Prepare implements Prepare method for baseRouter.
 func (this *baseRouter) Prepare() {
-        
+
         // page start time
         this.Data["PageStartTime"] = time.Now()
 
@@ -132,7 +132,7 @@ func (this *baseRouter) Prepare() {
 }
 ```
 
-In the example above, it defined base class and initialized some variables. It will test if the executing Controller is a implementing of NestPreparer, if it is call the method of sub class. Let's see the implementation of `NestPreparer`:
+The above example defined base class and initialized some variables. It will test if the executing Controller is an implementing of NestPreparer, if it is, then call the method of subclass. Let's see the implementation of `NestPreparer`:
 
 ```
 type BaseAdminRouter struct {
