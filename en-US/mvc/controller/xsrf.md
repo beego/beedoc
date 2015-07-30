@@ -9,19 +9,19 @@ sort: 4
 
 One of the common solutions to prevent XSRF is to record an unpredictable cookie for each user and each request (POST/PUT/DELETE) must have this cookie. If the cookie doesn't match, the request is probably a forged request.
 
-Beego has built in XSRF protection. If you want to use it, you can either `enablexsrf` in your configuration file:
+Beego has built-in XSRF protection. If you want to use it, you can either set `enablexsrf = true` in your configuration file:
 
     enablexsrf = true
     xsrfkey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o
-    xsrfexpire = 3600
+    xsrfexpire = 3600 // set cookie expire in 3600 seconds, default to 60 seconds if not specified
 
 or enable it in main enter function:
 
     beego.EnableXSRF = true
     beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
-    beego.XSRFExpire = 3600  //过期时间，默认60秒
+    beego.XSRFExpire = 3600
 
-With XSRF enabled Beego will set a cookie `_xsrf` (expire in 60 seconds by default) for every user. If this cookie doesn't exist in a `POST`, `PUT`, or `DELETE` request, Beego will refuse the request. If you enabled XSRF protection, you need to add a field to provide `_xsrf` value to every form. You can directly use `XsrfFormHtml()` in the template to set it.
+With XSRF enabled, Beego will set a cookie `_xsrf` for every user. If this cookie doesn't exist in a `POST`, `PUT`, or `DELETE` request, Beego will refuse the request. If you enabled XSRF protection, you need to add a field to provide `_xsrf` value to every form. You can directly use `XsrfFormHtml()` in the template to set it.
 
 We also set the global expiration time by `beego.XSRFExpire`. We can still change it in controllers for some particular logic:
 
@@ -72,7 +72,7 @@ jQuery.postJSON = function(url, args, callback) {
 
 #### Extending jQuery
 
-Add `xsrf` to every request header by extending ajax.
+Add `xsrf` to every request header by extending AJAX.
 
 You need to save the `_xsrf` value in html:
 
@@ -89,7 +89,7 @@ You can put it into head:
     <meta name="_xsrf" content="{{.xsrf_token}}" />
 </head>
 ```
-Extending ajax method, adding `_xsrf` into header. This also support jQuery methods which are using ajax internally such as post and get.
+Extending ajax method, adding `_xsrf` into header. This also supports jQuery methods which are using AJAX internally such as POST and GET.
 
 ```js
 var ajax = $.ajax;
@@ -113,13 +113,13 @@ $.extend({
 });
 ```
 
-For PUT and DELETE requests and POST methods which don't use form content as parameters, you can pass XSRF token by X-XSRFToken in HTTP header.
+For PUT and DELETE requests and POST requests which don't use form content as parameters, you can pass XSRF token by X-XSRFToken in HTTP header.
 
 If you need to customize XSRF behavior for different request, you can overwrite CheckXsrfCookie method of Controller. For example you need a API which doesn't support XSRF, you can disable XSRF proction by set `CheckXsrfCookie()` to empty. However, if you need to let the request with cookie support and without cookie support at the same time and current request is validated by cookie, it's important to use XSRF protection.
 
 ## support controller setting
 
-`XSRF` is a global variable, if you set it to true, all the request will validated. but sometimes API don't need validated. So you can controller it in the controllers:
+`XSRF` is a global variable, if you set it to `true`, every request will be validated. But sometimes, APIs don't need to be validated, then you can set XSRF to `false` in controllers:
 
 ```
 type AdminController struct{
@@ -130,4 +130,3 @@ func (a *AdminController) Prepare() {
 	a.EnableXSRF = false
 }
 ```
-
