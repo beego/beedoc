@@ -49,21 +49,6 @@
         	<td><a target="_blank" href="http://sj.n8n8.cn/">http://sj.n8n8.cn/</a></td>
         </tr>
 
-        <tr>
-        	<td>企业网站</td>
-        	<td>艾美</td>
-        	<td><a target="_blank" href="http://www.ibeautys.com/">http://ibeautys.com/</a></td>
-        </tr>
-
-        <tr>
-        	<td></td>
-        	<td>茵特拉</td>
-        	<td><a target="_blank" href="http://interla.net">http://interla.net</a></td>
-        </tr>
-                <tr>
-        	<td></td>
-        	<td>欧润吉广告</td>
-        	<td><a target="_blank" href="http://www.orangesh.com">http://www.orangesh.com</a></td>
-        </tr>
+        
     </tbody>
 </table>
