@@ -38,7 +38,7 @@ For more request information, you can get by `this.Ctx.Request`. For more refere
 
 ## Parse to struct
 
-If you want to assign the data in a form into struct, except assign them one by one, Beego have a easier way to do that which is mapping struct key with form name and parse all parameters into struct.
+If you want to assign the data submitted from a form into struct, other than assigning them one by one, Beego has an easier way to do that which is mapping struct fields with form's input elements and parsing all data into struct.
 
 Define struct:
 
@@ -74,11 +74,11 @@ func (this *MainController) Post() {
 Notes:
 
 * The definition of structTag form and [renderform method](../view/view.md#renderform) are using the same tag.
-* While define struct, if there is the form tag after that key, it will assign the value in the form which has the same name as that tag, otherwise it will assign the value in the form which has the same name as that field key. In the above example, Form value username and age will be assigned to Name and Age in user strut and Email will be assigned to Email in struct.
-* While call method ParseForm of Controller, the parameter pass in must be a pointer of struct, otherwise the assignment won't success and it will return a `xx must be a struct pointer` error.
+* While defining struct, if there is the form tag after that key, it will assign the value in the form which has the same name as that tag, otherwise it will assign the value in the form which has the same name as that field name. In the above example, Form value username and age will be assigned to Name and Age in user struct and Email will be assigned to Email in struct.
+* While calling method ParseForm of Controller, the parameter passed in must be a pointer to struct, otherwise the assignment won't success and it will return a `xx must be a struct pointer` error.
 * If you want to ignore some fields, there are two ways: one is using lowercase for that field; another is use `-` as the value of the tag.
 
-## Retrieve the data from request body
+## Retrieving data from request body
 
 In API application development, we we always use `JSON` or `XML` as the data type. So how can we retrieve the data from the request body?
 
@@ -97,7 +97,7 @@ func (this *ObejctController) Post() {
 
 ## Uploading files
 
-In Beego, you can uploading files easily. Just remember set attribute `enctype="multipart/form-data"` in your form, otherwise your browser won't upload your file.
+In Beego, you can upload files easily. Just remember set attribute `enctype="multipart/form-data"` in your form, otherwise your browser won't upload your file.
 
 Usually an uploaded file is stored in the system memory, but if the file size is bigger than the memory size limitation in the configuration file, the file will be stored in a temporary file. The default memory size is 64M and you can change it by:
 
@@ -117,7 +117,7 @@ This method is used to read the file name `the_file` from form and return the in
 
 This method implements the saving function based on the method `GetFile`
 
-Here is the example of saving file:
+Here is an example of saving file:
 
 ```go
 func (this *MainController) Post() {
@@ -126,26 +126,26 @@ func (this *MainController) Post() {
 ```
 ## Data Bind
 
-Data bind let user bind the request data to a params, the request url as follow:
+Data bind lets user bind the request data to a variable, the request url as follow:
 
 	?id=123&isok=true&ft=1.2&ol[0]=1&ol[1]=2&ul[]=str&ul[]=array&user.Name=astaxie
 
 ```go
-var id int  
+var id int
 ctx.Input.Bind(&id, "id")  //id ==123
 
-var isok bool  
+var isok bool
 ctx.Input.Bind(&isok, "isok")  //isok ==true
 
-var ft float64  
+var ft float64
 ctx.Input.Bind(&ft, "ft")  //ft ==1.2
 
-ol := make([]int, 0, 2)  
+ol := make([]int, 0, 2)
 ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
 
-ul := make([]string, 0, 2)  
+ul := make([]string, 0, 2)
 ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
 
-user struct{Name}  
+user struct{Name}
 ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
 ```
