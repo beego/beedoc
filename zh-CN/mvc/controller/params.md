@@ -115,13 +115,18 @@ Beego 提供了两个很方便的方法来处理文件上传：
 
 - SaveToFile(fromfile, tofile string) error
 
-	该方法是在 GetFile 的基础上实现了快速保存的功能
+	该方法是在 GetFile 的基础上实现了快速保存的功能 
+	fromfile 是提交时候的html表单中的name
+	
+```html
+<input type="file" name="uploadname" />
+```
 
 保存的代码例子如下：
 
 ```go
 func (this *MainController) Post() {
-	this.SaveToFile("the_file","/var/www/uploads/uploaded_file.txt")
+	this.SaveToFile("uploadname","/var/www/uploads/uploaded_file.txt")
 }
 ```
 
