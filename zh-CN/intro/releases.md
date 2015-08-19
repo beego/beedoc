@@ -2,6 +2,30 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.5.0
+新功能:
+1. 优雅重启模块：grace
+2. httplib增加JsonBody函数，支持raw body以Json格式发送
+3. context input增加 AcceptsHtml AcceptsXml AcceptsJson 函数
+4. 配置文件优先从Runmode中获取
+5. httplib 支持gzip
+6. Log模块默认不采用异步方式
+7. validation 增加循环嵌套验证
+8. 增加apk mime
+9. ORM支持eq和ne
+bugfix:
+1. ledis驱动的参数错误
+2. 当页面放置一段时间，验证码将从缓存中失效。当用户再来刷新验证码将出现验证码404。对于reload操作应该直接生成验证码。
+3. Controller定义Error异常
+4. 修复cookie无法在window下的IE正常工作
+5. GetInt函数当获取不存在的变量是返回nil错误
+6. 增加更多的手机验证码方式
+7. 修复路由的匹配问题
+8. panic返回 http 200
+9. redis session引起数据库设置错误
+10. https和http 直接的session无法共享
+11. memcache session引擎当没有数据的时候返回错误
+
 # beego 1.4.3
 新功能:
 1. ORM数据库创建和修改的时候支持default设置
