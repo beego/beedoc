@@ -2,6 +2,33 @@
 name: Release Notes
 sort: 2
 ---
+# beego 1.5.0
+New Features:
+
+1. Graceful shutdown
+2. Added `JsonBody` method to `httplib` which supporting sending raw body as JSON format
+3. Added `AcceptsHtml` `AcceptsXml` `AcceptsJson` methods to `context input`
+4. Get config files from Runmode first
+5. `httplib` supports `gzip`
+6. `log` module stop using asynchronous mode by default
+7. `validation` supports recursion
+8. Added `apk mime`
+9. `ORM` supports `eq` an `ne`
+
+Bugfixes:
+
+1. Wrong parameters for ledis driver.
+2. When user refresh the page after the captcha code expired from the cache, it returns 404. Generating new captcha code for reloading.
+3. Controller defines Error exception
+4. cookie doesn't work in window IE
+5. GetIn returns nil error while getting non-exist variable
+6. More cellphone validation code
+7. Wrong router matching
+8. The `panic` returns http 200
+9. The database setting erros caused by redis session
+10. The issue that https and http don't share session
+11. Memcache session driver returns error if it's empty
+
 # beego 1.4.3
 New Features:
 
