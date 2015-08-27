@@ -243,3 +243,15 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
  * AppConfigProvider
 
 	配置文件的格式，默认是ini，可以配置为xml，yaml，json					 			
+
+ * RouterCaseSensitive
+
+    是否路由忽略大小写匹配，默认是false，大小写敏感
+    
+ * AccessLogs
+
+    是否输出日志到Log，默认在prod模式下不会输出日志
+   
+ * Graceful
+
+    是否开启热升级，默认是false，关闭热升级     

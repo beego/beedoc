@@ -126,4 +126,8 @@ sess 对象具有如下方法：
 当 SessionProvider 为 couchbase 时，SessionSavePath 是 couchbase 的链接地址，采用了 [couchbase](https://github.com/couchbaselabs/go-couchbase)，如下所示：
 
 	beego.SessionProvider = "couchbase"
-	beego.SessionSavePath = "http://bucketname:bucketpass@myserver:8091/"			
+	beego.SessionSavePath = "http://bucketname:bucketpass@myserver:8091/"		
+    
+    
+## 特别注意点
+因为session内部采用了gob来注册存储的对象，例如struct，所以如果你采用了非memory的引擎，请自己在main.go的init里面注册需要保存的这些结构体，不然会引起应用重启之后出现无法解析的错误    	

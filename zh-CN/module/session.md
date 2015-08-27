@@ -3,6 +3,10 @@ name: session 模块
 sort: 1
 ---
 
+# 特别注意
+
+*这个文档是session独立模块，即你单独拿这个模块应用于其他应用中，如果你想在beego中使用session，请查看文档[session 控制](../mvc/controller/session.md)*
+
 # session 介绍
 
 session 模块是用来存储客户端用户，session 模块目前只支持 cookie 方式的请求，如果客户端不支持 cookie，那么就无法使用该模块。
