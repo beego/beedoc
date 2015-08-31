@@ -28,11 +28,11 @@ Input 对象是针对 request 的封装，里面通过 reqeust 实现很多方�
 	
 - Uri
 
-	用户请求的 RequestURI，例如 `/hi`
+	用户请求的 RequestURI，例如 `/hi?id=1001`
 	
 - Url
 
-	请求的 URL 地址，例如 `http://beego.me/about?username=astaxie`
+	请求的 URL 地址，例如 `/hi`
 	
 - Site
 
