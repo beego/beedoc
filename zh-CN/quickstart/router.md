@@ -50,7 +50,7 @@ func init() {
 
 	beego 会自动在 conf 目录下面去解析相应的配置文件 `app.conf`，这样就可以通过配置文件配置一些例如开启的端口，是否开启 session，应用名称等各种信息。
 	
-- 执行用户的hookfun
+- 执行用户的hookfunc
 
 	beego会执行用户注册的hookfunc，默认的已经存在了注册mime，用户可以通过函数`AddAPPStartHook`注册自己的启动函数。	
 	
