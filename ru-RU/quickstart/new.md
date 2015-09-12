@@ -1,5 +1,5 @@
 ---
-name: Create new project
+name: Создание нового проекта
 sort: 1
 ---
 
