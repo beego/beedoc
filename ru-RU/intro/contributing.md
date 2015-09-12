@@ -1,5 +1,5 @@
 ---
-name: Contributing
+name: Участие в разработке Beego
 sort: 1
 ---
 
