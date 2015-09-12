@@ -1,5 +1,5 @@
 ---
-name: Stand alone Deploy
+name: Независимое развертывание
 sort: 1
 ---
 
