@@ -1,21 +1,21 @@
 ---
 root: true
-name: Modules
+name: Модули
 sort: 5
 ---
 
-# Introduction of modules
+# Введение в модули
 
-Beego is evolving to a "LEGO model" which means becoming a modular system. Each module is one of the building blocks and you can build the application you want with these blocks. Since `beego 1.0` there are these modules below:
+Beego эволюционировал в "LEGO модель" что означает наличии модульной системы. Каждый модуль один из строительных блоков и вы можете строить ваше приложение из этих блоков. С версии 1.0 `beego` имеет следующие модули:
 
-- [Session Module](./session.md)
-- [Cache Module](./cache.md)
-- [Logs Module](./logs.md)
-- [Httplib Module](./httplib.md)
-- [Context Module](./context.md)
-- [Toolbox Module](./toolbox.md)
-- [Config Module](./config.md)
+- [Модуль сессии](./session.md)
+- [Модуль кеширования](./cache.md)
+- [Модуль логирования](./logs.md)
+- [Модуль httplib](./httplib.md)
+- [Модуль Context](./context.md)
+- [Модуль Toolbox](./toolbox.md)
+- [Модуль Config](./config.md)
 
-There are also these independent modules, which are available in separate repositories:
+Существуют независимые модули, которые доступные в отдельных репозитории:
 
-- [i18n Module](./i18n.md)
+- [Модуль i18n](./i18n.md)
