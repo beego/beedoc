@@ -1,5 +1,5 @@
 ---
-name: Static files
+name: Статические файлы
 sort: 6
 ---
 
