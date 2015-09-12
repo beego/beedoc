@@ -1,5 +1,5 @@
 ---
-name: Deploy with nginx
+name: Развертывание с nginx
 sort: 3
 ---
 
