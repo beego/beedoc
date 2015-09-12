@@ -1,5 +1,5 @@
 ---
-name: Logs Module
+name: Модуль логирования
 sort: 3
 ---
 
@@ -42,7 +42,7 @@ sort: 3
 
 Используйте `true` чтобы включить 'имя файла & номер строки', и `false` чтобы выключить. По умолчанию `false`.
 
-If your application encapsulates the call to the log methods, you may need use `SetLogFuncCallDepth` to set the number of stack frames to be skipped before the caller information is retrieved. The default is 2.
+Если ваше приложение инкапсулирует вызов методов логирования, вам, возможно, следует использовать `SetLogFuncCallDepth` to set the number of stack frames to be skipped before the caller information is retrieved. The default is 2.
 
 	log.SetLogFuncCallDepth(3)
 
