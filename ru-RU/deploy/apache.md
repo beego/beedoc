@@ -1,5 +1,5 @@
 ---
-name: Deploy with Apache
+name: Развертывание с Apache
 sort: 4
 ---
 
