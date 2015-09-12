@@ -3,29 +3,29 @@ name: Logs Module
 sort: 3
 ---
 
-# Logging
+# Логирование
 
-The logging module is inspired by `database/sql`. It supports file, console, net and smtp as destination providers by default. It can be installed like this:
+Модуль логирования вдохновлен `database/sql`. Поддерживает file, console, net и smtp как поставщиков по умолчанию. Может быть установлен следущим образом:
 
 	go get github.com/astaxie/beego/logs
 
-## Basic Usage
+## Начальное использование
 
-Import package:
+Импортируйте пакет:
 
 	import (
 		"github.com/astaxie/beego/logs"
 	)
 
-Initialize log variable (10000 is the cache size):
+Инициализируйте переменную log (размер кеша 10000):
 
 	log := NewLogger(10000)
 
-Then add the output provider (it supports outputting to multiple providers at the same time). The first parameter is the provider name (`console`, `file`, `conn` or `smtp`). The second parameter is a provider-specific configuration string (see below for details).
+Далее добавьте поставщика вывода (поддерживает несколько поставщиков вывода однавременно). Первый параметер - имя поставшика (`console`, `file`, `conn` or `smtp`). Второй параметер - специфичная для поставщика строка конфигурации (об этом смотрите ниже).
 
 	log.SetLogger("console", "")
 
-Then we can use it in our code:
+Затем, мы можем использовать это в нашем коде:
 
 	log.Trace("trace %s %s","param1","param2")
 	log.Debug("debug")
@@ -34,25 +34,25 @@ Then we can use it in our code:
 	log.Error("error")
 	log.Critical("critical")
 
-## Logging caller information (file name & line number)
+## Логирование информации о месте вызыва (имя файла & номер строки)
 
-The module can be configured to include the file & line number of the log calls in the logging output. This functionality is disabled by default, but can be enabled using the following code:
+Модуль может быть сконфигурирован чтобы добавлял имя файла & номер строки вызовов логера в выходном логе. Это возможность отключено по умолчанию, но может быть включена использую следующий код:
 
 	log.EnableFuncCallDepth(true)
 
-Use `true` to turn file & line number logging on, and `false` to turn it off. Default is `false`.
+Используйте `true` чтобы включить 'имя файла & номер строки', и `false` чтобы выключить. По умолчанию `false`.
 
 If your application encapsulates the call to the log methods, you may need use `SetLogFuncCallDepth` to set the number of stack frames to be skipped before the caller information is retrieved. The default is 2.
 
 	log.SetLogFuncCallDepth(3)
 
-## Provider configuration
+## Настройка поставщиков
 
-Each provider supports a set of configuration options.
+Каждый провайдер поддерживает набор конфигурационных опций.
 
 - console
 
-	Can set output level or use default. Uses `os.Stdout` by default.
+	Может настроить уровень логирования или использовать по-умолчанию. Используется `os.Stdout` по-умолчанию.
 
 		log := NewLogger(10000)
 		log.SetLogger("console", `{"level":1}`)
@@ -64,40 +64,40 @@ Each provider supports a set of configuration options.
 		log := NewLogger(10000)
 		log.SetLogger("file", `{"filename":"test.log"}`)
 
-	Parameters:
-	- filename: Save to filename.
-	- maxlines: Maximum lines each log file, 1000000 by default.
-	- maxsize: Maximum size of each log file, 1 << 28 or 256M by default.
-	- daily: If log rotate by day, true by default.
-	- maxdays: Maximum number of days log files will be kept, 7 by default.
-	- rotate: Enable logrotate or not, true by default.
-	- level: Log level, Trace by default.
+	Параметры:
+	- filename: Сохранить в файл.
+	- maxlines: Максимальное количество строк в лог файле, по-умолчанию - 1000000.
+	- maxsize: Максимальный размер каждого лог файла, по-умолчанию - 1 << 28 или 256M.
+	- daily: Заменять лог каждый день, по-умолчанию - true.
+	- maxdays: Максимальный размер дней которые будут сохраняться в логе, , по-умолчанию - 7.
+	- rotate: Включить logrotate, по-умолчанию - true.
+	- level: Уровень логирования, по умолчанию - Trace.
 
 - conn
 
-	Net output:
+	Логирование в сеть:
 
 		log := NewLogger(1000)
 		log.SetLogger("conn", `{"net":"tcp","addr":":7020"}`)
 
-	Parameters:
-	- reconnectOnMsg: If true: reopen and close connection every time a message is sent. False by default.
-	- reconnect: If true: auto connect. False by default.
-	- net: connection type: tcp, unix or udp.
-	- addr: net connection address.
-	- level: Log level, Trace by default.
+	Параметры:
+	- reconnectOnMsg: Если true: Переоткрыть и закрыть соединение каждый раз как сообщение будет отправлено. По-умолчанию - false.
+	- reconnect: Если true: автоматичетски подключаться.  По-умолчанию - False.
+	- net: тип подключения: tcp, unix или udp.
+	- addr: сетевой адрес.
+	- level: Уровень логирования, по умолчанию - Trace.
 
 - smtp
 
-	Log by email:
+	Логирование c отправкой на email:
 
 		log := NewLogger(10000)
 		log.SetLogger("smtp", `{"username":"beegotest@gmail.com","password":"xxxxxxxx","host":"smtp.gmail.com:587","sendTos":["xiemengjun@gmail.com"]}`)
 
-	Parameters:
-	- username: smtp username.
-	- password: smtp password.
-	- host: SMTP server host.
-	- sendTos: emails addresses to which the logs will be sent.
-	- subject: email subject, `Diagnostic message from server` by default.
-	- level: Log level, Trace by default.
+	Параметры:
+	- username: smtp пользователь.
+	- password: smtp пароль.
+	- host: SMTP адрес сервера.
+	- sendTos: emails адрес куда будут отправлены логи.
+	- subject: email тема, по умолчанию - `Diagnostic message from server`.
+	- level: Уровень логирования, по умолчанию - Trace.
