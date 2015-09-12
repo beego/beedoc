@@ -3,7 +3,7 @@ name: Release Notes
 sort: 2
 ---
 # beego 1.4.2
-New Features:
+Новые возможности:
 
 1. Added SQL Constructor inspired by ZEND ORM.
 2. Added `GetInt()`, `GetInt8()`, `GetInt16()`, `GetInt32()`, `GetInt64()` for Controller
@@ -37,7 +37,7 @@ New Features:
 20. off/on/yes/no/1/0 will parse to `bool` in form rendering. Support time format.
 21. Simplify the generating of SeesionID. Using golang buildin `rand` function other than `hmac_sha1`
 
-bugfix:
+Испраленны:
 
 1. XSRF verification failure while `PUT` and `DELETE` cased by lowercased `_method`
 2. No error message returned while initialize the cache by `StartAndGC`
@@ -55,7 +55,7 @@ bugfix:
 15. `urlfor` function calling useless {{placeholder}} #759
 
 # beego 1.4.1
-New features:
+Новые возможности:
 
 1. `context.Input.Url` get path info without domain scheme.
 2. Added plugin `apiauth` to simulate the `AWS` encrypted requests.
@@ -63,7 +63,7 @@ New features:
 4. Supportting pointer type in ORM.
 5. Added `BasicAuth`, cache for multiple requests
 
-bugfix:
+Испраленны:
 1. Router *.* can't be parsed
 
 # beego 1.3.0
@@ -205,7 +205,7 @@ beego.Run("127.0.0.1:8089")
 
 Hi guys! After the hard working for one month, we released the new awesome version 1.2.0. beego is the fastest Go framework in the latest [Web Framework Benchmarks](http://www.techempower.com/benchmarks/#section=data-r9&hw=i7&test=json) already though our goal is to make beego the best and easiest framework to use. In this new release, we improved even more in both usability and performance which is closer to native Go.
 
-### New Features:
+### Новые возможности:
 
 #### 1. `namespace` Support
 
@@ -380,7 +380,7 @@ this is a hot fixed:
 
 3. beego 1.1.2 supports `go test` parse config,but actually when call TestBeegoInit still can't parseconfig
 
-released data: 2014-04-04
+Дата выхода: 2014-04-04
 
 # beego 1.1.2
 The improvements:
@@ -398,10 +398,10 @@ The improvements:
 11. Supporting to run beego APP by using `go run main.go`
 12. Supporting to run test cases by using `go test`. Added TestBeegoInit function.
 
-released data: 2014-04-03
+Дата выхода: 2014-04-03
 
 # beego 1.1.1
-Added some new features and fixed some bugs in this release.
+Добавлены некоторые новые возможности и исправлены некоторые проблемы в этом выпуске.
 
 1. File engine can't delete file in session module which will raise reading failure.
 2. File cache can't read struct. Improved god automating register
@@ -419,12 +419,12 @@ Added some new features and fixed some bugs in this release.
 14. Supporting sql.Null* type in ORM
 15. Modified auto_now_add which will skip time setting if there is default value.
 
-released data: 2014-03-12
+Дата выхода: 2014-03-12
 
 # beego 1.1.0
-Added some new features and fixed some bugs in this release.
+Добавлены некоторые новые возможности и исправлены некоторые проблемы в этом выпуске.
 
-New features
+Новые возможности:
 
 1. Supporting AddAPPStartHook function
 2. Supporting plugin mode; Supporting AddGroupRouter for configuring plugin routes.
@@ -438,36 +438,36 @@ New features
 10. #436 insert multiple objects
 11. #384 query map to struct
 
-bugfix
+Исправления:
 
-1. Fixed the bug of FileCache
+1. Исправлен баг в FileCache
 2. Fixed the import lib of websocket
-3. Changed http status from 200 to 500 when there are internal error.
-4. gmfim map in memzipfile.go file should use some synchronization mechanism (for example sync.RWMutex) otherwise it errors sometimes.
-5. Fixed #440 on_delete bug that not getting deleted automatically
-6. Fixed #441 timezone bug
+3. Изменен http статус c 200 на 500 где произошла внутренняя ошибка.
+4. gmfim map в memzipfile.go файл должен использовать некоторый механизм синхронизации (например sync.RWMutex) в противном случае выдавать ошибку.
+5. Исправлен #440 on_delete bug that not getting deleted automatically
+6. Исправлен #441 баг с часовым поясом
 
-released data: 2014-02-10
+Дата выхода: 2014-02-10
 
 # beego 1.0 release
-After four months code refactoring, we released the first stable version of Beego. We did a lot of refactoring and improved a lot in detail. Here is the list of the main improvements:
+После четырех месяцев рефакторинга, мы выпустили первую стабильную версию Beego. Мы много отрефакторили и улучшили в деталях. Список основных улучшений:
 
-1. Modular design. Right now Beego is a light weight assembling framework with eight powerful stand alone modules including cache, config, logs, sessions, httplibs, toolbox, orm and context. It might have more in the future. You can use all of these stand alone modules in your other applications directly no matter it’s web applications or any other applications such as web games and mobile games.
+1. Модульный дизайн. Сейчас Beego легковесный фреймворк включающий 8 назависимых модулейcache, config, logs, sessions, httplibs, toolbox, orm и context. В будущем может быть больше. Вы можете использовать все эти автономные модули в ваших других приложениях напрямую независимо от того, что это веб-приложения или любые другие приложения, такие как веб-игры или игры для мобильных телефонов.
 
-2. Supervisor module. In the real world engineering, after the deployment of the application, we need to do many kinds of statistics and analytics for the application such as QPS statistics, GC analytics, memory and CPU monitoring and so on. When the live issue happends we also want to debug and profile our application on live. All of these real world engineering features are included in Beego. You can enable the supervisor module in Beego and visit it from default port 8088.
+2. Модуль Supervisor. В реальном мире, после развертывания приложения, мы должны иметь много видов статистики и аналитики для приложений, таких как QPS, GC аналитика, мониторинг памяти и процессора и так далее. Когда проблемы случаются в реальном времени мы также хотим отлаживать и профилировать наше приложение в реальном времени. Все эти функций, включаются в Beego. Вы можете включить модуль supervisor в Beego и посетить его с портом по умолчанию 8088.
 
-3. Detailed document. We rewritten all the document. We improved the document based on many advices from the users. To make it communicate easier for different language speakers, now the comments of the document in each language are separated.
+3. Подробная документация. Мы переписали все документация. Мы улучшили документация на основании многих советы от пользователей. Чтобы сделать общение проще на разных языках, комментарии документа на каждом языке разделяются.
 
-4. Demos. We provided three examples, chat room, url shortener and todo list. You can understand and use Beego easier and faster by learning the demos.
+4. Демо. Мы предоставили три примера, чат, URL Shortener и todo список. Вы можете понять и использовать Beego проще и быстрее, изучая демо.
 
-5. Redesigned Beego website. Nice people from Beego community helped Beego for logo design and website design.
+5. Переработанный Beego сайт. Хорошие люди из Beego сообщества помогли Beego в дизайне логотипа и веб-дизайна.
 
-6. More and more users. We listed our typical users in our homepage. They are all big companies and they are using Beego for their products already. Beego already tested by those live applications.
+6. Все больше и больше пользователей. Мы перечислили наши типичные пользователи в нашей домашней странице. Они все крупные компании, и они используют Beego для своих продуктов уже. Beego уже проходят проверку на этих живых приложениях.
 
-7. Growing active communities. There are more than 390 issues on github, more than 36 contributors and more than 700 commits. Google groups is also growing.
+7. Рост активного сообщества. Есть более чем 390 issue, на GitHub, более 36 contributors и более 700 commits. Группа Google также растет.
 
-8. More and more applications in Beego. There are some open source applications as well. E.g.: CMS system: https://github.com/insionng/toropress and admin system: https://github.com/beego/admin
+8. Все больше и больше приложений в Beego. Есть некоторые приложения с открытым исходным кодом, а также. Система CMS:: Например, https://github.com/insionng/toropress и админка: https://github.com/beego/admin
 
-9. Powerful assistance tools. bee is used to assist the development of Beego applications. It can create, compile, package the Beego application easily.
+9. Мощные инструменты помощи. bee используется для оказания помощи в разработке приложений Beego. Он может легко создать, собрать, упаковать приложение Beego.
 
-released data: 2013-12-19
+Дата выхода: 2013-12-19
