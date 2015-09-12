@@ -1,6 +1,6 @@
 ---
 root: true
-name: Demos
+name: Демо
 sort: 8
 ---
 
