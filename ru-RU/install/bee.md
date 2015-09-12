@@ -1,5 +1,5 @@
 ---
-name: Bee tool usage
+name: Использование инструментов разработки bee tool
 sort: 2
 ---
 
