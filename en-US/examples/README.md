@@ -5,7 +5,7 @@ sort: 8
 ---
 
 # Demos
-In this section we will show you some demo to let you learn Beego easier.
+In this section we will show you some demos to let you learn Beego easier.
 
 ## Chat Room
 We will use Beego and WebSocket to create a chat room.
