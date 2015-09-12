@@ -1,52 +1,52 @@
 ---
-name: Session Module
+name: Модуль сессий
 sort: 1
 ---
 
-# Introduction to Session Module
+# Введение в модуль сессий
 
-The session module is used to store user data between different requests. It only supports saving the session id into a cookie, so if the client doesn't support cookies, it won't work.
+Модуль сессий используется для хранения пользовательских данных между различными запросами. Поддерживается сохранение сессионого идентификатора в куки, таким образом если клиент не поддерживает куки, модуль не будет работать.
 
-It is inspired by `database/sql`, which means: one interface, multiple implementations. By default it supports four saving providers: memory, file, redis and mysql.
+Вдохновлен `database/sql`, что значит: один интерфейс, множество реализаций. По умолчанию поддерживает 4 провайдера: memory, file, redis и mysql.
 
-Install session module:
+Установка сессионого модуля:
 
 	go get github.com/astaxie/beego/session
 
-## Basic Usage:
+## Начальное использование:
 
-Import package first:
+Для начала, нужно импортировать пакет:
 
 	import (
 		"github.com/astaxie/beego/session"
 	)
 
-Then initialize a global variable as the session manager:
+Затем инициализировать глобальную переменную в качестве менеджера сессий:
 
 	var globalSessions *session.Manager
 
-Then initialize data in your main function:
+Затем инициализировать данные в вашей главной функции:
 
 	func init() {
 		globalSessions, _ = session.NewManager("memory", `{"cookieName":"gosessionid", "enableSetCookie,omitempty": true, "gclifetime":3600, "maxLifetime": 3600, "secure": false, "sessionIDHashFunc": "sha1", "sessionIDHashKey": "", "cookieLifeTime": 3600, "providerConfig": ""}`)
 		go globalSessions.GC()
 	}
 
-Paramters of NewManager:
+Параметры NewManager:
 
-1. Saving provider name: memory, file, mysql, redis
-2. A JSON string that contains the config information.
-	1. cookieName: Cookie name of session id saved on the client
-	2. enableSetCookie, omitempty: Whether to enable SetCookie, omitempty
-	3. gclifetime: The interval of GC.
-	4. maxLifetime: Expiration time of data saved on the server
-	5. secure: Enable https or not. There is `cookie.Secure` while configure cookie.
-	6. sessionIDHashFunc: SessionID generator function. `sha1` by default.
-	7. sessionIDHashKey: Hash key.
-	8. cookieLifeTime: Cookie expiration time on the client. 0 by default, which means life time of browser.
-	9. providerConfig: Provider-specific config. See below for more information.
+1. Имя провайдера: memory, file, mysql, redis
+2. JSON строка которая содержит конфигурационную информацию.
+	1. cookieName: Имя куки которая хранит сессионный идентификтор у клиента
+	2. enableSetCookie, omitempty: Включена ли SetCookie, omitempty
+	3. gclifetime: Интервал GC (сборщика мусора).
+	4. maxLifetime: Исчетение времени данных сохраненных на севрере
+	5. secure: Включена ли https или нет. There is `cookie.Secure` while configure cookie.
+	6. sessionIDHashFunc: Функция генератор SessionID. По-умолчанию `sha1`.
+	7. sessionIDHashKey: Хеш ключ.
+	8. cookieLifeTime: Время истечение куки на клиенте. По-умолчанию 0, что значит что значит время жизни браузера.
+	9. providerConfig: Провайдер специцичный конфиг. Смотрите ниже для большей информации.
 
-Then we can use session in our code:
+Затем вы сможете использовать сессию в вашем коде:
 
 	func login(w http.ResponseWriter, r *http.Request) {
 		sess := globalSessions.SessionStart(w, r)
@@ -60,16 +60,16 @@ Then we can use session in our code:
 		}
 	}
 
-Here is methods of globalSessions:
+Методы globalSessions:
 
-- `SessionStart` Return session object based on current request.
-- `SessionDestroy` Destroy current session object.
-- `SessionRegenerateId` Regenerate a new sessionID.
-- `GetActiveSession` Get active session user.
-- `SetHashFunc` Set sessionID generator function.
-- `SetSecure` Enable Secure of cookie or not.
+- `SessionStart` Вернуть объект сессии для текущего запроса.
+- `SessionDestroy` Уничтожить текущий сессионный объект.
+- `SessionRegenerateId` Сгенирировать новый sessionID.
+- `GetActiveSession` Получить активного юзера из сессии.
+- `SetHashFunc` Устаовить функцию генератор sessionID.
+- `SetSecure` Включить безопасную куку или нет.
 
-The returned session object is a Interface. Here are the methods:
+Возвращенный объект сессии является интерфейсом. Методы этого интерфейса:
 
 - `Set(key, value interface{}) error`
 - `Get(key interface{}) interface{}`
@@ -78,21 +78,21 @@ The returned session object is a Interface. Here are the methods:
 - `SessionRelease()`
 - `Flush() error`
 
-## Saving Provider Config
+## Конфигурация провайдера сессии
 
-We've already seen configuration of `memory` provider. Here is the config of the others:
+Мы уже видели конфигурацию `memory` провайдера. Ниже конфигурация других провайдеров:
 
 - `mysql`:
 
-	All the parameters are the same as memory's except the fourth param, e.g.:
+	Все переметры такие же как для `memory` кроме четвертого параметра, например:
 
 		username:password@protocol(address)/dbname?param=value
 
-	For details see the [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql#dsn-data-source-name) documentation.
+	Подробности можете посмотреть по адресу [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql#dsn-data-source-name).
 
 - `redis`:
 
-	Connection config: address,pool,password
+	Конфигурация соединения: address,pool,password
 
 		127.0.0.1:6379,100,astaxie
 
@@ -102,19 +102,19 @@ We've already seen configuration of `memory` provider. Here is the config of the
 
 		./tmp
 
-## Creating a new provider
+## Создание нового провайдера сессии
 
-Sometimes you need to create your own session provider. Session module uses interfaces, so you can implement this interface to create your own provider easily.
+Иногда, нам нужно создать собственный провайдер сессии. Сессиойнный модуль использует интерфейс, таким образом вы можете реализовать этото интерфейс чтобы создать ваш собсвенный провайдер довольно просто.
 
 
-	// SessionStore contains all data for one session process with specific id.
+	// SessionStore содержит все данные для одного сессиного процесса с уникальным id.
 	type SessionStore interface {
-		Set(key, value interface{}) error     // Set session value
-		Get(key interface{}) interface{}      // Get session value
-		Delete(key interface{}) error         // Delete session value
-		SessionID() string                    // Get current session ID
-		SessionRelease(w http.ResponseWriter) // Release the resource & save data to provider & return the data
-		Flush() error                         // Delete all data
+		Set(key, value interface{}) error     // Установить значение в сессию
+		Get(key interface{}) interface{}      // Получить значение из сессии
+		Delete(key interface{}) error         // Удалить значение из сессии
+		SessionID() string                    // Получить текущий session ID
+		SessionRelease(w http.ResponseWriter) // Освободиьт ресурсы & сохранить данные в провайдер & вернуть данные
+		Flush() error                         // Удалить все данные
 	}
 
 	type Provider interface {
@@ -123,11 +123,11 @@ Sometimes you need to create your own session provider. Session module uses inte
 		SessionExist(sid string) bool
 		SessionRegenerate(oldsid, sid string) (SessionStore, error)
 		SessionDestroy(sid string) error
-		SessionAll() int // Get all active session
+		SessionAll() int // Получить все активные сессии
 		SessionGC()
 	}
 
-At last, register your provider:
+В конце, зарегистрируйте ваш провайдер:
 
 	func init() {
 		// ownadapter is an instance of session.Provider
