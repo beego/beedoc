@@ -1,6 +1,6 @@
 ---
 root: true
-name: Beego introduction
+name: Введение в Beego
 sort: 0
 ---
 
