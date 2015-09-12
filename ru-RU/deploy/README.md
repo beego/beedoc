@@ -4,36 +4,36 @@ name: Deployment
 sort: 7
 ---
 
-# Releasing and Deploying
+# Выпуск и развертывание
 
-### Development mode
+### Режим разработки
 
-The application created by `bee` is development mode by default.
+Приложение созданное `bee` в режиме разработки по умолчанию.
 
-We can change the mode by:
+Мы можем изменить режим следующим образом:
 
 	beego.RunMode = "prod"
 
-Or change it in conf/app.conf:
+Или изменив это в файле conf/app.conf:
 
 	runmode = prod
 
 
-In development mode:
+В режиме разработчика:
 
-- If you don't have views folder, it will show this kind of error:
+- Если вы не имеете папку 'views', вы увидите следующую ошибку:
 
 		2013/04/13 19:36:17 [W] [stat views: no such file or directory]
 
-- Templates will load every time without cache.
+- Шаблоны никогда не будут загружены в кеш.
 
-- If error in the server, the browser will show this kind of view:
+- Если будет ошибки на сервере, в браузере будет следующий вид:
 
 ![](./../images/dev.png)
 
-### Releasing and Deploying
+###  Выпуск и развертывание
 
-The Go application is a bytecodes file after compiling. You just need to copy this file to the server and run it. Beego includes static files, configuration files and templates, so these three folders also need to be copied to server while deploying.
+Приложение на Go представляет собой байт-код файл после компиляции. Вы просто должны скопировать этот файл на серере и запустить его. Beego включает статические файлы, файлы конфигурации и шаблоны, таким образом эти три папки также должны быть скопированы на сервере во время развертывания.
 
 	$ mkdir /opt/app/beepkg
 	$ cp beepkg /opt/app/beepkg
@@ -41,7 +41,7 @@ The Go application is a bytecodes file after compiling. You just need to copy th
 	$ cp -fr static /opt/app/beepkg
 	$ cp -fr conf /opt/app/beepkg
 
-Here is the folder structure in `/opt/app/beepkg`:
+Здесь структура папок `/opt/app/beepkg`:
 
 	.
 	├── conf
@@ -54,14 +54,14 @@ Here is the folder structure in `/opt/app/beepkg`:
 	    └── index.tpl
 	├── beepkg
 
-Now we've copied our application to the server. Next step is deploy it.
+Теперь мы должны скопировать наше приложение на северер. Следующий шаг развернуть его.
 
-There are two ways to run it:
+Есть два способа запустить его:
 
 - [Stand alone deploy](./beego.md)
 - [Deploy with Supervisord ](./supervisor.md)
 	
-The application is exposed above, usually we will have a nginx or apache to serve and load balancing our application.
+Приложение будет открыто выше, обычно мы имеет nginx или apache на серере и балансировщик нагрузки для нашего приложения.
 
 - [Deploy with Nginx](./nginx.md)
 - [Deploy with Apache](./apache.md)
