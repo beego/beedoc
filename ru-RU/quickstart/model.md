@@ -1,5 +1,5 @@
 ---
-name: Models
+name: Модель
 sort: 4
 ---
 
