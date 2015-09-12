@@ -120,6 +120,11 @@ maxConn := 30
 orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8", maxIdle, maxConn)
 ```
 
+#### 如果远程访问,设置地址
+```
+orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/orm_test?charset=utf8")
+```
+
 #### SetMaxIdleConns
 
 根据数据库的别名，设置数据库的最大空闲连接
