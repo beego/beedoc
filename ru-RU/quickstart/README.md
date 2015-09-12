@@ -1,6 +1,6 @@
 ---
 root: true
-name: Quickstart
+name: Быстрый старт
 sort: 3
 ---
 
