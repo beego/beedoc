@@ -1,6 +1,6 @@
 ---
 root: true
-name: Install / Upgrade
+name: Установка / Обновление
 sort: 1
 ---
 
