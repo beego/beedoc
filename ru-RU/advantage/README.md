@@ -1,6 +1,6 @@
 ---
 root: true
-name: Advanced Beego
+name: Продвинутые функции Beego
 sort: 6
 ---
 
