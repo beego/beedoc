@@ -1,5 +1,5 @@
 ---
-name: Controller
+name: Контроллер
 sort: 3
 ---
 
