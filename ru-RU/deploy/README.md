@@ -1,6 +1,6 @@
 ---
 root: true
-name: Deployment
+name: Развертывание
 sort: 7
 ---
 
