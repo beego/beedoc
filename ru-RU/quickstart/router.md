@@ -1,5 +1,5 @@
 ---
-name: Routing setting
+name: Настройка роутига
 sort: 2
 ---
 
