@@ -1,11 +1,11 @@
 ---
-name: Chat Room
+name: Чат
 sort: 1
 ---
 
 # Чат
 
-Это простая демонстрация двух путей, которыми можно реализовать Web IM приложение:
+Это простая демонстрация двух способов, которыми можно реализовать Web IM приложение:
 
 Используя long polling.
 Используя WebSocket.
@@ -16,20 +16,20 @@ sort: 1
 
 ```bash
 WebIM/
-    WebIM.go            # File of main package
+    WebIM.go            # Главный пакет
     conf
-        app.conf        # Configuration file
+        app.conf        # Конфигурационный файл
     controllers
-        app.go          # The welcome screen that allows user to pick a technology and username
-        chatroom.go     # Functions for data management
-        longpolling.go  # Controller and methods for long polling chat demo
-        websocket.go    # Controller and methods for WebSocket chat demo
+        app.go          # Окно приветствия которое позволяет выбрать технологию и имя пользователя
+        chatroom.go     # Функции для манипулирования данными
+        longpolling.go  # Контроллер и методы для чата на long polling технологии
+        websocket.go    # Контроллер и методы для чата на WebSocket технологии
     models
-        archive.go      # Functions of chat data operations for both demos.
+        archive.go      # Общии функции для работы с данным (модель). Общие для обоих технологий (WebSocket и long polling)
     views
-        ...             # Template files
+        ...             # Файлы представления
     static
-        ...             # JavaScript and CSS files
+        ...             # JavaScript и CSS файлы
 ```
 
 [Посмотреть код на GitHub](https://github.com/beego/samples/tree/master/WebIM)
