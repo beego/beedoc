@@ -1,5 +1,5 @@
 ---
-name: Live Monitor
+name: Live мониторинг
 sort: 1
 ---
 
@@ -18,7 +18,7 @@ sort: 1
 	beego.AdminHttpAddr = "localhost"
 	beego.AdminHttpPort = 8888
 
-Откройте `http://localhost:8088/` в браузере и вы увидите `Welcome to Admin Dashboard`.
+Откройте в браузере `http://localhost:8088/` и вы увидите `Welcome to Admin Dashboard`.
 
 Это первая версия, но мы продолжаем разрабатывать мониторинг.
 
