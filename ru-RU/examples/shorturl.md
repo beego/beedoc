@@ -1,5 +1,5 @@
 ---
-name: URL Shortener
+name: Сервис коротких ссылок
 sort: 2
 ---
 
