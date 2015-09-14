@@ -1,5 +1,5 @@
 ---
-name: Live Monitor
+name: Live мониторинг
 sort: 1
 ---
 
