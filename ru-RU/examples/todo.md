@@ -1,5 +1,5 @@
 ---
-name: Todo List
+name: ToDo список
 sort: 3
 ---
 
