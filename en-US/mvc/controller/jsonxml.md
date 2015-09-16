@@ -27,7 +27,7 @@ Beego is also designed for API application. When we build API application, we of
 		this.ServeXml()
 	}
 	```
-  ServeJson will set `content-type` to `application/xml` and convert the data into XML.
+  ServeXml will set `content-type` to `application/xml` and convert the data into XML.
 
 - Respond with jsonp
 
