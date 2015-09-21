@@ -87,7 +87,7 @@ Different rendering types:
 
 ## Template Name
 
-Beego uses Go's builtin template engine, so the syntax is same as Go.  To learn more about template see [Templates](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/ebook/07.4.md).
+Beego uses Go's builtin template engine, so the syntax is same as Go.  To learn more about template see [Templates](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
 
 You can set template name in Controller and Beego will find the template file under the viewpath and render it automatically. In the config below, Beego will find add.tpl under admin and render it.
 
