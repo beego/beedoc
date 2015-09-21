@@ -86,7 +86,7 @@ In API application development, we we always use `JSON` or `XML` as the data typ
 2. Then in Controller you can
 
 ```go
-func (this *ObejctController) Post() {
+func (this *ObjectController) Post() {
 	var ob models.Object
 	json.Unmarshal(this.Ctx.Input.RequestBody, &ob)
 	objectid := models.AddOne(ob)
