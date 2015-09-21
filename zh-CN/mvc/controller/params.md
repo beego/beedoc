@@ -86,7 +86,7 @@ func (this *MainController) Post() {
 2. 在 Controller 中
 
 ```go
-func (this *ObejctController) Post() {
+func (this *ObjectController) Post() {
 	var ob models.Object
 	json.Unmarshal(this.Ctx.Input.RequestBody, &ob)
 	objectid := models.AddOne(ob)
