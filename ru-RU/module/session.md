@@ -49,8 +49,8 @@ sort: 1
 Затем вы сможете использовать сессию в вашем коде:
 
 	func login(w http.ResponseWriter, r *http.Request) {
-		sess := globalSessions.SessionStart(w, r)
-		defer sess.SessionRelease()
+		sess, _ := globalSessions.SessionStart(w, r)
+		defer sess.SessionRelease(w)
 		username := sess.Get("username")
 		if r.Method == "GET" {
 			t, _ := template.ParseFiles("login.gtpl")
