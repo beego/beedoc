@@ -53,8 +53,8 @@ NewManager 函数的参数的函数如下所示
 最后我们的业务逻辑处理函数中可以这样调用：
 
 	func login(w http.ResponseWriter, r *http.Request) {
-		sess := globalSessions.SessionStart(w, r)
-		defer sess.SessionRelease()
+		sess, _ := globalSessions.SessionStart(w, r)
+		defer sess.SessionRelease(w)
 		username := sess.Get("username")
 		if r.Method == "GET" {
 			t, _ := template.ParseFiles("login.gtpl")
