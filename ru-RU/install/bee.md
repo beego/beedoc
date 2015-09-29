@@ -5,7 +5,7 @@ sort: 2
 
 # Введение в инструменты разработки bee tool
 
-Bee tool - это проект, который помогает разрабатывать быстрее с beego. С bee tool мы можем создавать, автоматически компилировать, перезагружать, тестировать и деплоить приложения проще.
+Bee tool - это проект, который помогает разрабатывать быстрее с BeeGo. С bee tool мы можем создавать, автоматически компилировать, перезагружать, тестировать и деплоить приложения проще.
 
 ## Устанавливаем bee tool
 
@@ -20,7 +20,7 @@ Bee tool - это проект, который помогает разрабат
 Наберите `bee` в консоли. Вы должны увидеть следующее:
 
 ```
-Bee is a tool for managing beego framework.
+Bee is a tool for managing BeeGo framework.
 
 Usage:
 
@@ -39,7 +39,7 @@ The commands are:
 
 ### Команда new
 
-`new` создает новый веб-проект. Вы можете создать новый beego проект набрав `bee new <project name>` находясь в `$GOPATH/src`. Это сгенерирует все проектные папки и файлы:
+`new` создает новый веб-проект. Вы можете создать новый BeeGo проект набрав `bee new <project name>` находясь в `$GOPATH/src`. Это сгенерирует все проектные папки и файлы:
 
 ```
 bee new myproject
@@ -152,7 +152,7 @@ apiproject
 
 ### Команда test
 
-Это обёртка над `go test`. Она запускает тест-кейсы из папки tests в вашем beego проекте.
+Это обёртка над `go test`. Она запускает тест-кейсы из папки tests в вашем BeeGo проекте.
 
 ```
 bee test apiproject
@@ -209,7 +209,7 @@ drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
 
 ## Bee tool конфигурация
 
-Вы можете заметить, что в исходных кодах bee tool есть файл с именем `bee.json`. Это файл конфигурации beego. Полный список его возможностей всё еще не существует, но вот некоторые опции которые вы можете использовать уже сейчас:
+Вы можете заметить, что в исходных кодах bee tool есть файл с именем `bee.json`. Это файл конфигурации BeeGo. Полный список его возможностей всё еще не существует, но вот некоторые опции которые вы можете использовать уже сейчас:
 
 - `"version": 0`: version of file, for checking incompatible format version.
 - `"go_install": false`: if you use full import path like `github.com/user/repo/subpkg`, then you can enable this opetion to run `go install` and speed up you build processes.

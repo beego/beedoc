@@ -5,7 +5,7 @@ sort: 5
 
 # Создание шаблонов
 
-Когда мы создали контроллер, мы использовали строку `this.TplNames = "index.tpl"`, чтобы объявить шаблон для отображения. По умолчанию `beego.Controller` поддерживает расширения `tpl` и `html`. Вы можете вызвать `beego.AddTemplateExt`, чтобы добавить другие расширения. Итак, как шаблоны могут отобразить необходимые вам данные? Beego использует стандартный механизм шаблонов, встроенный в Go, поэтому это шаблоны Go, простые и ясные. Вы можете изучите использование шаблонов Go тут: [*Build Web Application with Golang*](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
+Когда мы создали контроллер, мы использовали строку `this.TplNames = "index.tpl"`, чтобы объявить шаблон для отображения. По умолчанию `beego.Controller` поддерживает расширения `tpl` и `html`. Вы можете вызвать `beego.AddTemplateExt`, чтобы добавить другие расширения. Итак, как шаблоны могут отобразить необходимые вам данные? BeeGo использует стандартный механизм шаблонов, встроенный в Go, поэтому это шаблоны Go, простые и ясные. Вы можете изучите использование шаблонов Go тут: [*Build Web Application with Golang*](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
 
 Давайте взгянем на пример:
 
@@ -14,7 +14,7 @@ sort: 5
 
 <html>
   	<head>
-    	<title>Beego</title>
+    	<title>BeeGo</title>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	</head>
   	
@@ -23,9 +23,9 @@ sort: 5
 			<div class="container">
 			<div class="row">
 			  <div class="hero-text">
-			    <h1>Welcome to Beego!</h1>
+			    <h1>Welcome to BeeGo!</h1>
 			    <p class="description">
-			    	Beego is a simple & powerful Go web framework which is inspired by tornado and sinatra.
+			    	BeeGo is a simple & powerful Go web framework which is inspired by tornado and sinatra.
 			    <br />
 			    	Official website: <a href="http://{{.Website}}">{{.Website}}</a>
 			    <br />
