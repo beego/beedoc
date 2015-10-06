@@ -53,7 +53,7 @@ func main() {
 
 We can define our own `404.html` to handle 404 error.
 
-Another cool feature of Go its support of customized string error handling function, Such as the code below which registers a database error page:
+Another cool feature of Beego is support of customized string error handling function, such as the code below which registers a database error page:
 
 ```go
 func dbError(rw http.ResponseWriter, r *http.Request){
@@ -70,10 +70,10 @@ func main() {
 }
 ```
 
-After registering this error handling code. you can call `this.Abort("dbError")` in every place in your code to handle the database error.
+After registering this error handling code, you can call `this.Abort("dbError")` in any place og your code to handle the database error.
 
 # Controller define Error
-from beego 1.4.3，support Controller define Error handle，so we can use the beego.Controller and the template render, useful context function.
+Beego 1.4.3 added support for Controller defined Error handlers, so we can use the `beego.Controller` and `template.Render` context functions
 
 ```
 package controllers
@@ -102,10 +102,10 @@ func (c *ErrorController) ErrorDb() {
 	c.TplNames = "dberror.tpl"
 }
 ```
-from the example we can know that all the error handle function hasprefix `Error`，the other string is the name of `Abort`，like `Error404` match `Abort("404")`
+From the example we can see, that all the error handle functions have prefix `Error`，the other string is the name of `Abort`，like `Error404` match `Abort("404")`
 
 
-we should use `beego.ErrorController` to register the error controller before `beego.Run` 
+Use `beego.ErrorController` to register the error controller before `beego.Run` 
 
 ```
 package main
