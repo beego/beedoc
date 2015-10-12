@@ -1,16 +1,16 @@
 ---
-name: Deploy with Supervisord 
+name: Развертывание с Supervisord 
 sort: 2
 ---
 
 # Supervisord
 
-Supervisord is a very useful process manager implemented in Python.  Supervisord can change your non-daemon application to daemon application. The application need to be non-daemon app. So if you want to use Supervisord to manage nginx, you need to set daemon off to run nginx in non-daemon mode.
+Supervisord - очент полезный процесс менеджер написанный на Python. Supervisord может преобразовать non-daemon приложение в daemon приложение. The application need to be non-daemon app. So if you want to use Supervisord to manage nginx, you need to set daemon off to run nginx in non-daemon mode.
 
 
-## Install Supervisord
+## Установка Supervisord
 
-1. install setuptools
+1. Установка setuptools
 
 		wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
 		
@@ -22,17 +22,17 @@ Supervisord is a very useful process manager implemented in Python.  Supervisord
 		
 		mkdir /etc/supervisord.conf.d
 
-2. config `/etc/supervisord.conf`
+2. Настройка `/etc/supervisord.conf`
 
 		[include]
 		files = /etc/supervisord.conf.d/*.conf
 
-3. Create new application to be managed
+3. Создайте новое приложение для управления
 
 		cd /etc/supervisord.conf.d
 		vim beepkg.conf
 	
-	Configurations：
+	Настройка：
 	
 		[program:beepkg]
 		directory = /opt/app/beepkg
@@ -43,18 +43,18 @@ Supervisord is a very useful process manager implemented in Python.  Supervisord
 		redirect_stderr = true
 		stdout_logfile = /var/log/supervisord/beepkg.log
 		
-## Supervisord Manage
+## Управление с Supervisord
 
-Supervisored provides two commands, supervisord and supervisorctl:
+Supervisored предоставляет две команды, supervisord и supervisorctl:
 
-* supervisord: Initialize Supervisord, run configed processes
-* supervisorctl stop programxxx: Stop process programxxx. programxxx is configed name in [program:beepkg]. Here is beepkg.
-* supervisorctl start programxxx: Run the process.
-* supervisorctl restart programxxx: Restart the process.
-* supervisorctl stop groupworker:  Restart all processes in group groupworker
-* supervisorctl stop all: Stop all processes. Notes: start, restart and stop won't reload the latest configs.
-* supervisorctl reload: Reload the latest configs.
-* supervisorctl update: Reload all the processes whoes config changed.
+* supervisord: Инициализирует Supervisord, запустит конфигурируемый процесс
+* supervisorctl stop programxxx: Остановит programxxx. programxxx is configed name in [program:beepkg]. Here is beepkg.
+* supervisorctl start programxxx: Запустить процесс programxxx.
+* supervisorctl restart programxxx: Перезапустит процесс programxxx.
+* supervisorctl stop groupworker:  Перезапустит все процессы в группе groupworker
+* supervisorctl stop all: Остановит все процессы. Заметка: start, restart и stop не перезапустят последний конфиг.
+* supervisorctl reload: Перезапустить последнюю конфигурацию.
+* supervisorctl update: Перезапустить все процессы где конфиг был изменен.
 
 
->>>Notes: The processes stopped by `stop` manually won't restart after reload or update.
+>>>Заметка: Процессы остановленный через `stop` вручную не будут перезапущенны после перезапуска или обновления.

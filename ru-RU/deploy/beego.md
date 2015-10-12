@@ -17,8 +17,7 @@ sort: 1
 
 ## Windows
 
-In Windows, set to auto running at backend on start. Two ways to do that:
-В Windows, надо настроить запуск приложения как сервиса. Есть два пути для этого:
+В Windows, установить автозапуск в фоне при старте ОС. Есть два способа для этого:
 
 1. Создать bat файл и запустить его через "Run"
 2. Создать сервис
