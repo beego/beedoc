@@ -62,7 +62,13 @@ UrlFor("TestController.GetUrl")
 ## How to use in template
 beego already register template function `urlfor`, you can use it like this:
 
-	{{urlfor "TestController.List"}}
+```
+{{urlfor "TestController.List"}}
+// Output /api/list
+
+{{urlfor "TestController.Get" ":last" "xie" ":first" "asta"}}
+// Output /person/xie/asta
+```
 	
 Why would you want to build URLs instead of hard-coding them into your templates? There are three good reasons for this:
 
