@@ -106,18 +106,16 @@ From the example we can see, that all the error handle functions have prefix `Er
 Use `beego.ErrorController` to register the error controller before `beego.Run`
 
 ```
-package main
+package routers
 
 import (
-	_ "btest/routers"
-	"btest/controllers"
-
-	"github.com/astaxie/beego"
+    "btest/controllers"
+    "github.com/astaxie/beego"
 )
 
-func main() {
-	beego.ErrorController(&controllers.ErrorController{})
-	beego.Run()
+func init() {
+    beego.ErrorController(&controllers.ErrorController{})
+    beego.Router("/", &controllers.MainController{})
 }
 
 ```
