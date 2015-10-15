@@ -91,11 +91,10 @@ func (c *ErrorController) Error404() {
 	c.TplNames = "404.tpl"
 }
 
-func (c *ErrorController) Error501() {
-	c.Data["content"] = "server error"
-	c.TplNames = "501.tpl"
+func (c *ErrorController) Error500() {
+	c.Data["content"] = "internal server error"
+	c.TplNames = "500.tpl"
 }
-
 
 func (c *ErrorController) ErrorDb() {
 	c.Data["content"] = "database is now down"
@@ -104,8 +103,7 @@ func (c *ErrorController) ErrorDb() {
 ```
 From the example we can see, that all the error handle functions have prefix `Error`，the other string is the name of `Abort`，like `Error404` match `Abort("404")`
 
-
-Use `beego.ErrorController` to register the error controller before `beego.Run` 
+Use `beego.ErrorController` to register the error controller before `beego.Run`
 
 ```
 package main
