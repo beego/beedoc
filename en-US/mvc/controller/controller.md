@@ -13,7 +13,7 @@ Based on the design of beego's controller, you just need to embed the `beego.Con
 
 `beego.Controller` implements interface `beego.ControllerInterface`.  `beego.ControllerInterface` defines these functions:
 
-- Init(ct *context.Context, childName string, app interface{})
+- Init(ct *context.Context, controllerName, actionName string, app interface{})
 
   This function will initialize Context, Controller name, template name, template variable container `Data`. `app` is the executing Controller's reflecttype. It can be used to execute subclass's methods.
 
