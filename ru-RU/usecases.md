@@ -54,5 +54,11 @@
         	<td>Interla</td>
         	<td><a target="_blank" href="http://interla.net">http://interla.net</a></td>
         </tr>
+        
+        <tr>
+        	<td>Интернет магазин</td>
+        	<td>Турецкая одежда в розницу Turkmoda.ru</td>
+        	<td><a target="_blank" href="http://turkmoda.ru">http://turkmoda.ru</a></td>
+        </tr>
     </tbody>
 </table>
