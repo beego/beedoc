@@ -1,27 +1,27 @@
 ---
-name: Httplib Module
+name: Модуль Httplib 
 sort: 4
 ---
 
-# Client Request
+# Запросы с клиента
 
-Similar to Curl, httplib is used to simulate http requests sent by clients. Similar to jQuery, it supports method chaining. It's easy to use. It can be installed by:
+Также как и Curl, httplib используется для эмуляции http запросов с клиента. Также как и jQuery, он поддердивает цепочки вызовов (fluent interface). Он прост в использовании. Может быть установен следующей командой:
 
 	go get github.com/astaxie/beego/httplib
 
-## Basic Usage
+## Базовое использование
 
-Import package:
+Импортируйте пакет:
 
 	import (
 		"github.com/astaxie/beego/httplib"
 	)	
 
-Initialize request method and url:
+Инициализируйте request метод и путь:
 
 	req:=httplib.Get("http://beego.me/")
 
-Send the request and retrieve the data in the response:
+Отправьте запрос и извлеките данные из запроса:
 
 	str, err := res.String()
 	if err != nil {
@@ -29,9 +29,9 @@ Send the request and retrieve the data in the response:
 	}
 	fmt.Println(str)
 	
-## Method Functions
+## Методы
 
-httplib supports these methods:
+httplib поддерживает следующие методы:
 
 - `Get(url string)`
 - `Post(url string)`
@@ -39,13 +39,13 @@ httplib supports these methods:
 - `Delete(url string)`
 - `Head(url string)`
 
-## Debug Output
+## Отладочный вывод
 
-Enable debug information output:
+Включите вывод отладочной информации:
 
 	req.Debug(true)
 
-Then it will output debug information:
+Затем это должно вывести отладочную информацию:
 
 	httplib.Get("http://beego.me/").Debug(true).Response()
 
@@ -54,17 +54,17 @@ Then it will output debug information:
 	Host: beego.me
 	User-Agent: beegoServer
 
-## HTTPS Request
+## HTTPS запрос
 
-If the requested scheme is https, we need to set TLS of client:
+Если запрашиваема схема https, мы должны установить TLS клиент:
 
 	req.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 
 [Learn more about TLS settings](http://gowalker.org/crypto/tls#Config)
 
-## Set Timeout
+## Установка таймаутов
 
-Can set request timeout and data reading timeout by:
+Можем установить таймауты и считывания данных по таймауту:
 
 	req.SetTimeout(connectTimeout, readWriteTimeout)
 
@@ -72,17 +72,17 @@ It is a function of request object. So it can be done like this:
 
 	httplib.Get("http://beego.me/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
 	
-## Set Request Params
+## Установить параметры запроса
 
-For Put or Post requests, we may need to send parameters. Parameters can be set like:
+Для PUT или POST запросов, мы можем отправить параметры. Параметры могут быть установлены так:
 
 	req:=httplib.Post("http://beego.me/")
 	req.Param("username","astaxie")
 	req.Param("password","123456")
 
-## Send big data
+## Отправка больших данных
 
-To simulate file uploading or to send big data, one can use the `Body` function:
+Чтобы симулировать загрузку файлов или отправить большые данные вы можете использовать `Body` функцию:
 
 	req:=httplib.Post("http://beego.me/")
 	bt,err:=ioutil.ReadFile("hello.txt")
@@ -91,24 +91,24 @@ To simulate file uploading or to send big data, one can use the `Body` function:
 	}
 	req.Body(bt)
 
-## Set header
+## Установить заголовоки
 
-To simulate header values, e.g.:
+Вы можете эмулировать HEADER заголовки, например:
 
 	Accept-Encoding:gzip,deflate,sdch
 	Host:beego.me
 	User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36
 
-Can use `Header` function:
+Можете использовать `Header` функцию:
 
 	req:=httplib.Post("http://beego.me/")
 	req.Header("Accept-Encoding","gzip,deflate,sdch")
 	req.Header("Host","beego.me")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
 
-## Upload file
+## Загрузка файла
 
-PostFile function the first params is the name of form, the second param is the filename or filepath you want to send. 
+У PostFile фукнции первый параметр является имя формы, второй параметр имя файла или путь до файла который вы собираетесь отправить. 
 
 ```
 b:=httplib.Post("http://beego.me/")
@@ -122,9 +122,9 @@ if err != nil {
 }
 ```
 
-## Get Response 
+## Получение ответа 
 
-Above settings are before sending request, how can we get response after request? Here are the ways:
+Как мы можем получить ответ после запроса? Ниже варианты:
 
 |Method                          |Type                     |Description                                                |
 |--------------------------------|-------------------------|-----------------------------------------------------------|
