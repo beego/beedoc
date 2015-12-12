@@ -3,42 +3,42 @@ name: Cache Module
 sort: 2
 ---
 
-# Cache Module
+# Модуль кеширования
 
-Beego's cache module is used for caching data, inspired by `database/sql`. It supports four cache providers: file, memcache, memory and redis. You can install it by:
+Модуль кеширования BeeGo используется для кеширования данных, вдохновлен модулем `database/sql`. Поддерживает 4 кеш провайдера: file, memcache, memory и redis. Вы можете установить модуль следующей командой:
 
 	go get github.com/astaxie/beego/cache
 
-If you use the `memcache` or `redis` provider, you should first install:
+Если вы используете `memcache` или `redis` провайдер, вы должны для начала установить их:
 
 	go get -u github.com/astaxie/beego/cache/memcache
 
-and then import:
+а затем импортировать:
 
 	import _ "github.com/astaxie/beego/cache/memcache"
 
-## Basic Usage
+## Базовое использование
 
-First step is importing the package:
+Первым шагом импортируйте пакет:
 
 	import (
 		"github.com/astaxie/beego/cache"
 	)
 
-Then initialize a global variable object:
+Затем инициализируйте глобальную переменную типа объект:
 
 	bm, err := cache.NewCache("memory", `{"interval":60}`)
 
-Then we can use `bm` to modify the cache:
+Затем мы можем использовать `bm` чтобы модифицировать кеш:
 
 	bm.Put("astaxie", 1, 10)
 	bm.Get("astaxie")
 	bm.IsExist("astaxie")
 	bm.Delete("astaxie")
 
-## Provider Settings
+## Настройка провайдера
 
-Here is how to configure the four providers:
+Ниже how to которое показывает как настроить 4 провайдера:
 
 - memory
 
@@ -52,19 +52,19 @@ Here is how to configure the four providers:
 
 - redis
 
-	redis is using [redigo](http://github.com/garyburd/redigo/redis)
+	redis в действии [redigo](http://github.com/garyburd/redigo/redis)
 
 		{"conn":":6039"}
 
 - memcache
 
-	memcache is using [vitess](http://code.google.com/p/vitess/go/memcache)
+	memcache в действии [vitess](http://code.google.com/p/vitess/go/memcache)
 
 		{"conn":"127.0.0.1:11211"}
 
-## Creating your own provider
+## Создание собственного провайдера
 
-The cache module uses the Cache interface, so you can create your own cache provider by implementing this interface and registering it.
+Кеш модуль использует интерфейс Cache, таким образом вы можете создать ваш собественный кеш провайдер, реализую этот интерфейс и зарегистрировав его.
 
 	type Cache interface {
 		Get(key string) interface{}
@@ -77,7 +77,7 @@ The cache module uses the Cache interface, so you can create your own cache prov
 		StartAndGC(config string) error
 	}
 
-Register your provider:
+Зарегистрируйте ваш провайдер:
 
 	func init() {
 		cache.Register("myowncache", NewOwnCache())
