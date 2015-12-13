@@ -1,5 +1,5 @@
 ---
-name: Cache Module
+name: Модуль кеширования
 sort: 2
 ---
 
