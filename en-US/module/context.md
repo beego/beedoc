@@ -132,7 +132,7 @@ Input object is the encapsulation of request. Here are the implemented methods:
 	
 ## Output Object
 
-Output object is the encapsulation of request. Here are the implemented methods:
+Output object is the encapsulation of response. Here are the implemented methods:
 
 - Header
 
