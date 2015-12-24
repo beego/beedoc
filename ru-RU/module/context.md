@@ -5,9 +5,9 @@ sort: 5
 
 # Модуль Контекст
 
-Контекст - обертка для работы с http запросам и ответами. Модуль Контекст предоставляется входной объект который который является запросоом и выходной объект который ялвяется ответом.
+Контекст - обертка для работы с http запросами и ответами. Модуль Контекст предоставляет входной объект который который является запросоом (request) и выходной объект который является ответом (response).
 
-## Объект контекст
+## Объект контекст 
 
 Ниже функции которые предоставлены для входного и выходного объекта контекста.
 - Redirect
@@ -16,11 +16,11 @@ sort: 5
 - GetCookie
 - SetCookie
 
-Объект контекста является параметром для функции Filter, таким образом вы можете использовать фильтр чтобы управлять процессом или завершить его предварительно.
+Объект контекста является параметром функции Filter, таким образом вы можете использовать фильтр чтобы управлять процессом или завершить его предварительно.
 
 ## Входной объект
 
-Входной объект представляет собой обертку запроса. Реализованные методы:
+Входной объект представляет собой обертку для запроса (request). Реализованные методы:
 
 - Protocol
 
@@ -130,82 +130,82 @@ sort: 5
 
   Установить значение `Data` в `Input`. `GetData` и `SetData` используются чтобы передать данные из Filter в Controller.
 	
-## Output Object
+## Выходной объект
 
-Output object is the encapsulation of request. Here are the implemented methods:
+Выходной объект представляет собой обертку для ответа (response). Реализованные методы:
 
 - Header
 
-  Set response header. E.g.: `Header("Server","beego")`
+  Установливает заголовки ответу. E.g.: `Header("Server","beego")`
 	
 - Body
 
-  Set response body. E.g.: `Body([]byte("astaxie"))`
+  Установливает тело ответа. E.g.: `Body([]byte("astaxie"))`
 
 - Cookie
 
-  Set response cookie. E.g.: `Cookie("sessionID","beegoSessionID")`
+  Установливает куки ответу. E.g.: `Cookie("sessionID","beegoSessionID")`
 	
 - Json
 
-  Parse Data into JSON and call `Body` to return it.
+  Распарсит данные в JSON и вызовет метод `Body` (описан выше) чтобы вернуть тело.
 	
 - Jsonp
 
-  Parse Data into JSONP and call `Body` to return it.
+  Распарсит данные в JSONP и вызовет метод `Body` (описан выше) чтобы вернуть тело.
 	
 - Xml
 
-  Parse Data into XML and call `Body` to return it.
+  Распарсит данные в XML и вызовет метод `Body`  (описан выше) чтобы вернуть его.
 	
 - Download
 
-  Pass in file path and output file.
+  Пройдет по пути и выдаст содержимое файл.
 	
 - ContentType
 
-  Set response ContentType
+  Установит ContentType ответа
 	
 - SetStatus
 
-  Set response status
+  Установит статус ответа
 	
 - Session
 
-  Set the value will be stored in server. E.g.: `Session("username","astaxie")`. Then it can be read later.
+  Установит значение которое будет сохраненено на сервер. E.g.: `Session("username","astaxie")`. И может быть считано позднее.
 	
 - IsCachable
 
-  Test if it's a cacheable status based on status.
+  Проверит закешировано ли содержимое.
 	
 - IsEmpty
 
-  Test if output is empty based on status.
+  Проверит пустой ли вывод.
 	
 - IsOk
 
-  Test if response is 200 based on status.
+  Проверит возвращен ли HTTP статус 200.
 
 - IsSuccessful
 
-  Test if response is successful based on status.
+  Проверит успешно ли завершен запрос.
 		
 - IsRedirect
 
-  Test if response is redirected based on status.
+  Проверит перенаправлен ли ответ.
 
 - IsForbidden
 
-  Test if response is forbidden based on status.
+  Проверит статус ответа Forbidden или нет.
 	
 - IsNotFound
 
-  Test if response is forbidden based on status.
+  Проверит статус ответа NotFound или нет.
 	
 - IsClientError
 
-  Test if response is client error based on status.
+  Проверит есть ли ошибка на стороне клиента или нет.
 	
 - IsServerError
 
-  Test if response is server error based on status.
+  Проверит есть ли ошибка на стороне сервера или нет.
