@@ -155,7 +155,7 @@ beego.Handler("/rpc", s)
 
 可用的 HTTP Method：
 
-* *：包含一下所有的函数
+* *：包含以下所有的函数
 * get ：GET 请求
 * post ：POST 请求
 * put ：PUT 请求
