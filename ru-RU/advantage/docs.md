@@ -170,10 +170,9 @@ func (c *CMSController) Product() {
 Что бы заставить это работать сделайте несколько шагов:
 
 1. Включите документацию задав `EnableDocs = true` в `conf/app.conf`
-2. Сгенерируйте файлы документации с помощью команды `bee generate docs`
-3. Импортируйте `_ "beeapi/docs"` в `main.go`
-4. Используйте `bee run watchall true -downdoc=true -gendoc=true` для запуска вашего API приложения и ребилда документации
-5. Откройте `swagger document from API project's URL and port. (see item #1 below)`
+2. Импортируйте `_ "beeapi/docs"` в `main.go`
+3. Используйте `bee run -downdoc=true -gendoc=true` для запуска вашего API приложения и ребилда документации
+4. Откройте `swagger document from API project's URL and port. (see item #1 below)`
 
 Документация вашего API готова. Откройте браузер и проверьте результат.
 

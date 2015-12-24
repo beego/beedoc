@@ -172,11 +172,9 @@ We defined the comment above for `CMSController` which will show for this module
 以下が動作させるためのステップです:
 
 1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`
-1. `conf/app.conf`に`EnableDocs = true`を設定することにより、ドキュメントを有効にしてください
-2. Generate document files by `bee generate docs`
-2. `bee generate docs`によって生成文書ファイルを生成してください。
+2. `conf/app.conf`に`EnableDocs = true`を設定することにより、ドキュメントを有効にしてください
 3. `main.go`にて`_ "beeapi/docs"をインポートしてください。
-4. APIアプリケーションの実行と自動的に文書を再構築するために、`bee run watchall true -downdoc=true -gendoc=true`を使用してください。
+4. APIアプリケーションの実行と自動的に文書を再構築するために、`bee run -downdoc=true -gendoc=true`を使用してください。
 5. Visit `swagger document from API project's URL and port.  (see item #1 below)
 5.訪問` APIプロジェクトのURLとポートから闊歩ドキュメント。 （以下の項目＃ 1を参照）
 
