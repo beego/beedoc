@@ -1,29 +1,29 @@
-# About
+# BeeGo haqida
 
 [![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego)
 
-This manual documents aspects of beego app framework.
+Ushbu qo'llanma BeeGo App Framework ni yoritib beradi.
 
-### New to beego? 
+### BeeGoda boshlovchimisiz?
 
-Read about the [Quick Start](quickstart).
+U holda [Tez boshlash](quickstart) haqida o'qing.
 
-### Can't find what you're looking for? 
+### Nimanidir topa olmayabsizmi?
 
-Search our [mailing list (beego-framework@googlegroups.com)](https://groups.google.com/forum/#!forum/beego-framework).
+U holda [tarqatmalar ro'yhatidan (beego-framework@googlegroups.com)](https://groups.google.com/forum/#!forum/beego-framework) qidirib ko'ring.
 
-### Need help? 
+### Yordam kerakmi?
 
-Send an email to the [beego-framework@googlegroups.com](mailto:beego-framework@googlegroups.com).
+Ushbu [beego-framework@googlegroups.com](mailto:beego-framework@googlegroups.com) email manzilga yoz.
 
-### Find a bug? 
+### Xato topdingizmi?
 
-Open an [issue on github](https://github.com/astaxie/beego/issues).
+[github da issue yarating](https://github.com/astaxie/beego/issues).
 
-### Want to be a contributor?
+### Loyihaga yordam bermoqchimisiz?
 
-Fork the [documentation project](https://github.com/beego/beedoc), edit and pull request.
+[Qo'llanmani](https://github.com/beego/beedoc) fork qiling, yaxshi imkoniyatlarni qo'shing va pull request bering.
 
-### Source code of this website?
+### Saytni manba kodini izlayabsizmi?
 
-Please visit [Beego Web](https://github.com/beego/beeweb).
+[Beego Web](https://github.com/beego/beeweb) ga tashrif buyuring.
