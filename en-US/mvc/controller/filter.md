@@ -44,7 +44,7 @@ var FilterUser = func(ctx *context.Context) {
 beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)
 ```
 
->>>For filters which use session, they must be executed after `BeforeRouter` because session is not initialized before that, and don't forget to enable beego session module (see [Session control](../controller/session.md))
+>>>For filters which use session, they must be executed after `BeforeRouter` because session is not initialized before that, and don't forget to enable Beego session module (see [Session control](../controller/session.md))
 
 
 You can run filters against requests which matching a regex router rules:
@@ -59,7 +59,7 @@ var FilterUser = func(ctx *context.Context) {
 beego.InsertFilter("/user/:id([0-9]+)", beego.BeforeRouter, FilterUser)
 ```
 ## Filter Implementation UrlManager
-Context.Input has new feature `RunController` and `RunMethod` from beego1.1.2. So we can control the router in our filter and skip the beego's router rule.
+Context.Input has new feature `RunController` and `RunMethod` from beego1.1.2. So we can control the router in our filter and skip the Beego's router rule.
 
 For example:
 

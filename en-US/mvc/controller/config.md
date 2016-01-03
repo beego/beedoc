@@ -11,7 +11,7 @@ Beego configuration file supports INI, XML, JSON, YAML. It uses INI format by de
 
 Beego will parse `conf/app.conf` file by default.
 
-You can initialize many beego default variables in this file:
+You can initialize many Beego default variables in this file:
 
 	appname = beepkg
 	httpaddr = "127.0.0.1"
@@ -21,7 +21,7 @@ You can initialize many beego default variables in this file:
 	autorecover = false
 	viewspath = "myview"
 
-These configurations will replace beego's default value.
+These configurations will replace Beego's default value.
 
 You can also configure many values which your application needs, such as database connection:
 
@@ -245,3 +245,15 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 * AppConfigProvider
 
   File format of AppConfig, default is `ini`. Could be `xml`, `yaml`, `json` as well.
+  
+* RouterCaseSensitive
+
+    Set the router case sensitivity. Default value is case sensitive.
+    
+* AccessLogs
+
+    Output access logs or not.  It won't output access logs under prod mode by default.
+   
+* Graceful
+
+    Enable graceful shutdown or not. Default is disabled.

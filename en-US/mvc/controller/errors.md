@@ -13,7 +13,7 @@ func (this *AddController) Get() {
 }
 ```
 
-If you want to stop this request and throw exception, you can do this in beego's controller:
+If you want to stop this request and throw exception, you can do this in Beego's controller:
 
 ```go
 func (this *MainController) Get() {

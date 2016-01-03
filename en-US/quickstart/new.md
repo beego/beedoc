@@ -5,7 +5,7 @@ sort: 1
 
 # Creating a new project
 
-Most beego projects are created with the [`bee` command](../install/bee.md). Before starting anything, please make sure that you've already installed the `bee` tool and the `beego` package. If you don't have them yet, please read [Installing beego](../install) and [Installing bee tool](../install/bee.md) before you proceed.
+Most Beego projects are created with the [`bee` command](../install/bee.md). Before starting anything, please make sure that you've already installed the `bee` tool and the `beego` package. If you don't have them yet, please read [Installing beego](../install) and [Installing bee tool](../install/bee.md) before you proceed.
 
 When you are ready, we can get started now. Open your terminal, then go to your `$GOPATH` directory and then type `bee new quickstart`:
 
@@ -29,7 +29,7 @@ When you are ready, we can get started now. Open your terminal, then go to your 
 	/gopath/src/quickstart/tests/default_test.go
 	2015/05/02 11:55:28 [SUCC] New application successfully created!
 
-The bee tool created a new beego project for you. Here is the structure:
+The bee tool created a new Beego project for you. Here is the structure:
 
 	quickstart
 	├── conf
@@ -69,7 +69,7 @@ After creating the project, we can run our project now. Go to the path of the ne
 	2015/05/02 12:01:36 [INFO] ./quickstart is running...
 	2015/05/02 12:01:38 [app.go:103] [I] http server Running on :8080
 
-We have a web application running on port `8080` (the default port of Beego) now. It's amazing, isn't it? We can do that without nginx or apache. Yes, you are right. Go has already implemented all the functions we need for the network layer and beego encapsulated them so we don't need nginx or apache here. Let's look at our application in the browser now:
+We have a web application running on port `8080` (the default port of Beego) now. It's amazing, isn't it? We can do that without nginx or apache. Yes, you are right. Go has already implemented all the functions we need for the network layer and Beego encapsulated them so we don't need nginx or apache here. Let's look at our application in the browser now:
 
 ![](../images/beerun.png)
 

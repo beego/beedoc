@@ -27,7 +27,7 @@ func (this *MainController) Get() {
 
 Let's take apart the different sections of the code.
 
-## How beego dispatches requests
+## How Beego dispatches requests
 
 At the beginning we create the `MainController`. It contains an anonymous struct field of type `beego.Controller`. This is called struct embedding and is the way how Go mimics inheritance. This means `MainController` automatically acquires all the methods of `beego.Controller`.
 

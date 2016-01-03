@@ -49,7 +49,7 @@ func init() {
 			),
 			beego.NSNamespace("/newsletter",
 				beego.NSInclude(
-					&controllers.NewsLettterController{},
+					&controllers.NewsLetterController{},
 				),
 			),
 			beego.NSNamespace("/cms",
@@ -112,7 +112,7 @@ func (c *CMSController) StaticBlock() {
 // @Param	size 			query	string		false		"size filter"
 // @Param	color 			query	string		false		"color filter"
 // @Param	format 			query	bool		false		"choose return format"
-// @Failure 400 not enough input
+// @Failure 400 no enough input
 // @Failure 500 get products common error
 // @router /products [get]
 func (c *CMSController) Product() {

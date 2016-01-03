@@ -5,7 +5,7 @@ sort: 2
 
 # Project routing settings
 
-So, we've created a beego project and ran it in the previous section. But how does it work? Let's investigate from the main file (main.go):
+So, we've created a Beego project and ran it in the previous section. But how does it work? Let's investigate from the main file (main.go):
 
 	package main
 	
@@ -52,8 +52,8 @@ The user can then visit `/user` to invoke the logic in UserController. This is o
     Beego has a very cool module which is called supervisor module. We can see the QPS, cpu, memory, GC, goroutine and thread information by visiting port 8088.
 
   - Listening on the service port
-    This last step gets beego listening for the http requests on port 8080. It takes advantage of goroutines by calling `ListenAndServe`.
+    This last step gets Beego listening for the http requests on port 8080. It takes advantage of goroutines by calling `ListenAndServe`.
 
   - After everything is running, our server will serve incoming requests from port 8080 and supervising from port 8088.
 
-We saw the whole process of running a beego project and some other functions. Let's see how the controller works in the [next section](controller.md).
+We saw the whole process of running a Beego project and some other functions. Let's see how the controller works in the [next section](controller.md).

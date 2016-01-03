@@ -2,9 +2,9 @@
 
 [![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego)
 
-This manual documents aspects of beego app framework.
+This manual documents aspects of Beego app framework.
 
-### New to beego? 
+### New to Beego? 
 
 Read about the [Quick Start](quickstart).
 

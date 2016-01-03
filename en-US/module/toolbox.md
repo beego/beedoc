@@ -264,3 +264,61 @@ Use the code below to test if the TaskFunc is working correctly.
 //	0 2 8-20/3 * * *                      run at 8:02, 11:02, 14:02, 17:02 and 20:02
 //	0 30 5 1,15 * *                       run at 5:30 of 1st and 15th of every month
 ```
+
+## Debug module
+
+We always use print for debugging. But the default output is not good enough for debugging. Beego provides this debug module
+
+- Display() print result to console
+- GetDisplayString() return the string
+
+It print key/value pairs. The following code:
+
+	Display("v1", 1, "v2", 2, "v3", 3)
+	
+will output:
+
+	2013/12/16 23:48:41 [Debug] at TestPrint() [/Users/astaxie/github/beego/toolbox/debug_test.go:13]
+	
+	[Variables]
+	v1 = 1
+	v2 = 2
+	v3 = 3	
+	
+For pointer type:
+
+	type mytype struct {
+		next *mytype
+		prev *mytype
+	}	
+	
+	var v1 = new(mytype)
+	var v2 = new(mytype)
+
+	v1.prev = nil
+	v1.next = v2
+
+	v2.prev = v1
+	v2.next = nil
+
+	Display("v1", v1, "v2", v2)
+
+The output result
+
+	2013/12/16 23:48:41 [Debug] at TestPrintPoint() [/Users/astaxie/github/beego/toolbox/debug_test.go:26]
+
+	[Variables]
+	v1 = &toolbox.mytype{
+	    next: &toolbox.mytype{
+	        next: nil,
+	        prev: 0x210335420,
+	    },
+	    prev: nil,
+	}
+	v2 = &toolbox.mytype{
+	    next: nil,
+	    prev: &toolbox.mytype{
+	        next: 0x210335430,
+	        prev: nil,
+	    },
+	}		

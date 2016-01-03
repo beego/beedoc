@@ -5,7 +5,7 @@ sort: 4
 
 # Apache configuration
 
-The concept of apache is same as the nginx, serving as a reverse proxy :TODO and sending requests to backend. Here is the configuration example:
+The concept of apache is same as the nginx, serving as a reverse proxy and sending requests to backend. Here is the configuration example:
 
 ```
 NameVirtualHost *:80

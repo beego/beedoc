@@ -33,7 +33,7 @@ In development mode:
 
 ### Releasing and Deploying
 
-The Go application is a bytecodes file after compiling. You just need to copy this file to the server and run it. Beego includes static files, configuration files and templates, so these three folders also need to be copied to server while deploying.
+The Go application is a bytecode file after compiling. You just need to copy this file to the server and run it. Beego includes static files, configuration files and templates, so these three folders also need to be copied to server while deploying.
 
 	$ mkdir /opt/app/beepkg
 	$ cp beepkg /opt/app/beepkg

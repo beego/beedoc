@@ -12,7 +12,7 @@ to its development and progress. Beego's source code is hosted on github
 (https://github.com/astaxie/beego), which provides a very easy way to fork the
 project and merge your contributions.
 
-### How can I become a contributor of beego?
+### How can I become a contributor of Beego?
 
 You can fork, modify and then send a Pull Request to us.
 We will review your code and give you feedback on your changes as soon as possible.
@@ -49,7 +49,7 @@ branching model, ongoing development happens in the `develop` branch. Therefore,
 please base your pull requests on the HEAD of the `develop` branch.
 
 
-### The git branches of beego
+### The git branches of Beego
 
 The master branch is relatively stable one where dev branch is for developers. Here is a
 sample figure to show you how our branches work:

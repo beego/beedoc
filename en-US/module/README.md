@@ -6,7 +6,7 @@ sort: 5
 
 # Introduction of modules
 
-beego is evolving to a "LEGO model" which means becoming a modular system. Each module is one of the building blocks and you can build the application you want with these blocks. Since `beego 1.0` there are these modules below:
+Beego is evolving to a "LEGO model" which means becoming a modular system. Each module is one of the building blocks and you can build the application you want with these blocks. Since `Beego 1.0` there are these modules below:
 
 - [Session Module](./session.md)
 - [Cache Module](./cache.md)

@@ -5,7 +5,7 @@ sort: 3
 
 # Todo List
 
-An AngularJS + beego project
+An AngularJS + Beego project
 
 ```bash
  bee new todo

@@ -14,7 +14,7 @@
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="MR3MV8ZX9BWJ2">
 <table>
-<tr><td><input type="hidden" name="on0" value="support beego">support beego</td></tr><tr><td><select name="os0">
+<tr><td><input type="hidden" name="on0" value="support Beego">support Beego</td></tr><tr><td><select name="os0">
 	<option value="Option 1">Option 1 $10.00 USD</option>
 	<option value="Option 2">Option 2 $20.00 USD</option>
 	<option value="Option 3">Option 3 $50.00 USD</option>

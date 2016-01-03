@@ -20,4 +20,4 @@ Beego supports multiple static file directories:
 
 With the above settings, request `/images/login/login.png` will find `application_path/images/login/login.png` and request `/static/img/logo.png` will find `public/img/logo.png` file.
 
-By default beego will check if the file exists, if not return 404 page.  If the request is for `index.html`, because `http.ServeFile` will redirect and don't display this page by default, you can set `beego.DirectoryIndex=true` to show `index.html` page. If this is enabled, users can see the file list while visit the directory.
+By default Beego will check if the file exists, if not return 404 page.  If the request is for `index.html`, because `http.ServeFile` will redirect and don't display this page by default, you can set `beego.DirectoryIndex=true` to show `index.html` page. If this is enabled, users can see the file list while visit the directory.

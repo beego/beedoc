@@ -7,13 +7,13 @@
 
 ### Slene
 
-- Team role: primarily responsible for ORM, maintainer of beego samples and official site.
+- Team role: primarily responsible for ORM, maintainer of Beego samples and official site.
 - Social network: [Sina Weibo](http://weibo.com/slene) [GitHub](https://github.com/slene) [Twitter](https://twitter.com/slene)
 
 
 ### ClownFish
 
-- Team role: primarily responsible for beego admin management system.
+- Team role: primarily responsible for Beego admin management system.
 - Social network: [GitHub](https://github.com/osgochina)
 
 ### Lei Cao

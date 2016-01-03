@@ -1,6 +1,6 @@
 # Thread-safe map
 
-We know that map is not thread safe in Go, if you don't know it, this article may be helpful for you: [atomic_maps](http://golang.org/doc/faq#atomic_maps). However, we need a kind of thread safe map in practice, especially when we are using goroutines. Therefore, beego provides a simple built-in thread safe map implementation.
+We know that map is not thread safe in Go, if you don't know it, this article may be helpful for you: [atomic_maps](http://golang.org/doc/faq#atomic_maps). However, we need a kind of thread safe map in practice, especially when we are using goroutines. Therefore, Beego provides a simple built-in thread safe map implementation.
 
 ```go
 bm := NewBeeMap()

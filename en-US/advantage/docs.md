@@ -128,7 +128,6 @@ We defined the comment above for `CMSController` which will show for this module
 
 - @Description
 
-
 	The description for this API. It's a string, all the content after the first space will be parsed as the description.
 
 - @Param

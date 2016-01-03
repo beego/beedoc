@@ -32,3 +32,4 @@ Before you can use the paginator in the view you have to set it in your controll
 Example templates (using Twitter Bootstrap):
 
 https://github.com/beego/wetalk/blob/master/views/base/paginator.html
+

@@ -9,7 +9,7 @@ We've already talked about that Beego is based on several independent modules. B
 
 ## Basic usage
 
-In our beego application we log as below:
+In our Beego application we log as below:
 
 	beego.Trace("this is trace")
 	beego.Debug("this is debug")

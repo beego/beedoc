@@ -5,7 +5,7 @@ sort: 3
 
 # Introduction to controller
 
-Based on the design of beego's controller, you just need to embed the `beego.Controller`:
+Based on the design of Beego's controller, you just need to embed the `beego.Controller`:
 
 	type xxxController struct {
 	    beego.Controller
@@ -174,3 +174,22 @@ func (this *BaseAdminRouter) Post(){
 ```
 
 Here is our logic of it: executes `Prepare` first. It is the order of Go to find methods in struct, finding towards parent classes one by one. While execute `BaseAdminRouter`, checks if it has `Prepare` method. If no, keep finding `baseRouter`. If yes, it will execute the logic and `this.AppController` in `baseRouter` is the current executing Controller `BaseAdminRouter`. Then it will execute `BaseAdminRouter.NestPrepare` method. Then it will start executing related `GET` or `POST` method.
+
+
+## Stop controller executing immediately
+
+Sometime we want to stop the following execution logic of the request immediately and return the response. Such as we authenticate user in `Prepare` method, if authenticate failed, we return response directly. You can use `StopRun()` to do it. 
+
+```
+type RController struct {
+    beego.Controller
+}
+
+func (this *RController) Prepare() {
+    this.Data["json"] = "astaxie"
+    this.ServeJson()
+    this.StopRun()
+}
+```
+
+>>> If you call `StopRun`, the `Finish` method won't be run anymore. If you need to free resources, please call `Finish` manually before call `StopRun`.

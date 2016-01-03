@@ -5,7 +5,7 @@ sort: 2
 
 # Routing
 
-When do we set the router? When we discuss MVC structure of beego, we learned there are three type of router in Beego. Let's see how to use them now.
+When do we set the router? When we discuss MVC structure of Beego, we learned there are three type of router in Beego. Let's see how to use them now.
 
 ## Basic router
 from beego1.2 we support RESTful function router。the basic router include the URI and closure function.
@@ -45,7 +45,7 @@ beego.Any("/foo",func(ctx *context.Context){
 * beego.Any(router, beego.FilterFunc)
 
 ### Handler register
-sometimes we already use the `net/http` or other packages implemented our system. but we want to integrate it into beego API or web system. Now it's super easy to do that like this:
+sometimes we already use the `net/http` or other packages implemented our system. but we want to integrate it into Beego API or web system. Now it's super easy to do that like this:
 
 ```
 s := rpc.NewServer()
@@ -75,7 +75,7 @@ The fixed routers above are most common routers. One fixed router, one controlle
 
 ## Regex router
 
-In order to make the router settings easier, beego references the router implementation in Sinatra. It supports many router types.
+In order to make the router settings easier, Beego references the router implementation in Sinatra. It supports many router types.
 
 - beego.Router("/api/?:id", &controllers.RController{})
 
@@ -234,7 +234,7 @@ It's exactly same as registering by Router functions:
     beego.Router("/staticblock/:key", &CMSController{}, "get:StaticBlock")
     beego.Router("/all/:key", &CMSController{}, "get:AllBlock")
 
-The `URLMapping` function above is a new function introduced in Beego 1.3. If you didn't use `URLMapping`, beego will find the function by reflection otherwise beego will find the function by `interface` which is much faster.
+The `URLMapping` function above is a new function introduced in Beego 1.3. If you didn't use `URLMapping`, Beego will find the function by reflection otherwise Beego will find the function by `interface` which is much faster.
 
 ## namespace
 
@@ -366,3 +366,43 @@ The methods below are methods for `*Namespace` object. It's not recommended. The
 	these functions are the same as mentioned earlier
 
 - Namespace(ns ...*Namespace)
+
+
+You can nest even more function:
+
+```
+//APIS
+ns :=
+	beego.NewNamespace("/api",
+		//此处正式版时改为验证加密请求
+		beego.NSCond(func(ctx *context.Context) bool {
+			if ua := ctx.Input.Request.UserAgent(); ua != "" {
+				return true
+			}
+			return false
+		}),
+		beego.NSNamespace("/ios",
+			//CRUD Create(创建)、Read(读取)、Update(更新)和Delete(删除)
+			beego.NSNamespace("/create",
+				// /api/ios/create/node/
+				beego.NSRouter("/node", &apis.CreateNodeHandler{}),
+				// /api/ios/create/topic/
+				beego.NSRouter("/topic", &apis.CreateTopicHandler{}),
+			),
+			beego.NSNamespace("/read",
+				beego.NSRouter("/node", &apis.ReadNodeHandler{}),
+				beego.NSRouter("/topic", &apis.ReadTopicHandler{}),
+			),
+			beego.NSNamespace("/update",
+				beego.NSRouter("/node", &apis.UpdateNodeHandler{}),
+				beego.NSRouter("/topic", &apis.UpdateTopicHandler{}),
+			),
+			beego.NSNamespace("/delete",
+				beego.NSRouter("/node", &apis.DeleteNodeHandler{}),
+				beego.NSRouter("/topic", &apis.DeleteTopicHandler{}),
+			)
+		),
+	)
+
+beego.AddNamespace(ns)
+```

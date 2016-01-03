@@ -3,6 +3,10 @@ name: Session Module
 sort: 1
 ---
 
+# Notes:
+
+* This document is for using `session` as a standalone module in other project. If you are using `session` with Beego, please check here [session control](../mvc/controller/session.md)*
+
 # Introduction to Session Module
 
 The session module is used to store user data between different requests. It only supports saving the session id into a cookie, so if the client doesn't support cookies, it won't work.

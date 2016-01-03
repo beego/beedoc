@@ -84,7 +84,7 @@ Here is some parameters used in Session module:
 - SessionCookieLifeTime
   The cookie expire time. The cookie is used to store data in client.
 
-from beego1.1.3, beego removed all the dependencies,if you use these storages: mysql, redis, couchbase, memcache, postgres. You should install them first:
+from beego1.1.3, Beego removed all the dependencies,if you use these storages: mysql, redis, couchbase, memcache, postgres. You should install them first:
 
 	go get -u github.com/astaxie/beego/session/mysql
 
@@ -121,3 +121,6 @@ When SessionProvider is couchbase，SessionSavePath is connection address for co
 
 	beego.SessionProvider = "couchbase"
 	beego.SessionSavePath = "http://bucketname:bucketpass@myserver:8091/"
+	
+## Note:
+Since session is using `gob` to register objects. So if you are using session engine other than `memory`, please register the objects you used in session before use them. You can use `gob.Register()` to register them in `init()` function. 
