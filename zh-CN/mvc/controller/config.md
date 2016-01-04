@@ -247,7 +247,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * RouterCaseSensitive
 
-    是否路由忽略大小写匹配，默认是false，大小写敏感
+    是否路由忽略大小写匹配，默认是true，大小写敏感
     
 * AccessLogs
 

@@ -248,12 +248,12 @@ Beego has many configurable variables. Let's have a look at these variables. It 
   
 * RouterCaseSensitive
 
-    Set the router case sensitivity. Default value is case sensitive.
+  Set the router case sensitivity or not. Default value is true.
     
 * AccessLogs
 
-    Output access logs or not.  It won't output access logs under prod mode by default.
+  Output access logs or not.  It won't output access logs under prod mode by default.
    
 * Graceful
 
-    Enable graceful shutdown or not. Default is disabled.
+  Enable graceful shutdown or not. Default is disabled.
