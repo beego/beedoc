@@ -14,11 +14,11 @@ sort: 6
 	│   └── js
 ```
 
-beego 默认注册了 static 目录为静态处理的目录，注册样式：URL 前缀和映射的目录：
+beego 默认注册了 static 目录为静态处理的目录，注册样式：URL 前缀和映射的目录（在/main.go文件中beego.Run()之前加入）：
 
 	StaticDir["/static"] = "static"
 	
-用户可以设置多个静态文件处理目录，例如你有多个文件下载目录 download1、download2，你可以这样映射：
+用户可以设置多个静态文件处理目录，例如你有多个文件下载目录 download1、download2，你可以这样映射（在/main.go文件中beego.Run()之前加入）：
 
 	beego.SetStaticPath("/down1", "download1")	
 	beego.SetStaticPath("/down2", "download2")	
