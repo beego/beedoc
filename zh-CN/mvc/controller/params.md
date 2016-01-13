@@ -119,7 +119,10 @@ Beego 提供了两个很方便的方法来处理文件上传：
 	fromfile 是提交时候的html表单中的name
 	
 ```html
-<input type="file" name="uploadname" />
+<form enctype="multipart/form-data" method="post">
+	<input type="file" name="uploadname" />
+	<input type="submit">
+</form>
 ```
 
 保存的代码例子如下：
