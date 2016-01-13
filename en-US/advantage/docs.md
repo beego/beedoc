@@ -1,15 +1,19 @@
 ---
-name: Automated API Document
+name: Automated API Documentation
 sort: 2
 ---
 
 # Automated API Document
 
-Automated document is a very cool feature that I wish to have. Now it became real in Beego. As I said Beego will not only boost the development of API but also make the API easy to use for the user. Ok, let's try it out now. First create a new API application by `bee api beeapi`
+Automated documentation is a very cool feature that I wish to have. Now it became real in Beego. As I said Beego will not only boost the development of API but also make the API easy to use for the user. 
+
+Beego implemented the [swagger specification](http://swagger.io/) for API documentation. It's very easy to create powerful interactive API documentation.
+
+Ok, let's try it out now. First let's create a new API application by `bee api beeapi`
 
 # API global settings
 
-Add the comments at the top of `routers/router.go`:
+Add the following comments at the top of `routers/router.go`:
 
 ```
 // @APIVersion 1.0.0
@@ -30,7 +34,7 @@ The comments above set the global information. The available settings:
 - @LicenseUrl
 
 ## Router Parsing
-Right now automated API document only supports namespace+Include and only supports two levels parsing. The first level is API version and the second level is the modules.
+Right now automated API documentation only supports namespace+Include and only supports two levels parsing. The first level is API version and the second level is the modules.
 
 ```
 func init() {
@@ -68,7 +72,7 @@ func init() {
 ```
 
 ## Application Comment
-The most important part of comment. For example:
+This is the most important part of comment. For example:
 
 ```
 package controllers
@@ -87,10 +91,10 @@ func (c *CMSController) URLMapping() {
 
 // @Title getStaticBlock
 // @Description get all the staticblock by key
-// @Param	key		path 	string	true		"The email for login"
-// @Success 200 {object} models.ZDTCustomer.Customer
-// @Failure 400 Invalid email supplied
-// @Failure 404 User not found
+// @Param	key		path 	string	true		"The static block key."
+// @Success 200 {object} ZDT.ZDTMisc.CmsResponse
+// @Failure 400 Bad request
+// @Failure 404 Not found
 // @router /staticblock/:key [get]
 func (c *CMSController) StaticBlock() {
 
@@ -120,7 +124,9 @@ func (c *CMSController) Product() {
 }
 ```
 
-We defined the comment above for `CMSController` which will show for this module. Then we need to define the comment for every functions. Below is the supported comments:
+In the code above, we defined the comment on top of of `CMSController` is the information for this module. Then we defined the comment for every controller methods. 
+
+Below is a list of supported comments for generating swagger APIs:
 
 - @Title
 
@@ -133,8 +139,9 @@ We defined the comment above for `CMSController` which will show for this module
 - @Param
 
 	`@Param` defines the parameters sent to the server. There are five columns for each `@Param`:
-	1. parameter name;
-	2. parameter sending type; It can be `form`, `query`, `path`, `body` or `header`. `form` means the parameter send by POST. `query` means the parameter in url send by GET. `path` means the parameter in the url path, such as key in the former example. `body` means the raw data send from request body. `header` means the parameter in request header.
+	1. parameter key;
+	2. parameter sending type; It can be `form`, `query`, `path`, `body` or `header`. `form` means the parameter sends by POST. `query` means the parameter sends by GET in url. 
+	`path` means the parameter in the url path, such as key in the former example. `body` means the raw data send from request body. `header` means the parameter is in request header.
 	3. parameter data type
 	4. required
 	5. comment

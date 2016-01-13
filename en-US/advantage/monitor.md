@@ -9,7 +9,7 @@ We talked about toolbox module before. It will listen `127.0.0.1:8088` by defaul
 
 >>> For security reason it is recommend to block 8088 in firewall.
 
-Monitor is disabled by default. You can enable it by setting bellow line in `conf/app.conf` file:
+Monitor is disabled by default. You can enable it by adding the following line in `conf/app.conf` file:
 
 	EnableAdmin = true
 
@@ -20,34 +20,15 @@ Also you can change the port it listened:
 
 Open browser and visit `http://localhost:8088/` you will see `Welcome to Admin Dashboard`.
 
-It's the first version now. We will keep on developing it.
-
 ## Requests statistics
 
 Visit `http://localhost:8088/qps` you will see it:
 
-	| requestUrl                                        | method     | times            | used             | max used         | min used         | avg used         |
-	| /                                                 | GET        |  2               | 2.35ms           | 1.30ms           | 1.04ms           | 1.17ms           |
-	| /favicon.ico                                      | GET        |  1               | 79.30us          | 79.30us          | 79.30us          | 79.30us          |
-	| /src/xx                                           | GET        |  1               | 923.09us         | 923.09us         | 923.09us         | 923.09us         |
-	| /src                                              | GET        |  1               | 792.93us         | 792.93us         | 792.93us         | 792.93us         |
-	| /123                                              | GET        |  1               | 906.04us         | 906.04us         | 906.04us         | 906.04us         |
+![](../images/monitoring.png)
 
 ## Performance profiling
 
-There are several params for profiling. Visit `http://localhost:8088/prof` and with params below and you can get different information.
-
-	request url like '/prof?command=lookup goroutine'
-	the command have below types:
-	1. lookup goroutine
-	2. lookup heap
-	3. lookup threadcreate
-	4. lookup block
-	5. start cpuprof
-	6. stop cpuprof
-	7. get memprof
-	8. gc summary
-
+Also you can see the information for `goroutine`, `heap`, `threadcreate`, `block`, `cpuprof`, `memoryprof`, `gc summary` and do profiling.
 
 ## Healthcheck
 

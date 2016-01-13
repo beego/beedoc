@@ -5,14 +5,14 @@ sort: 1
 
 # Chat Room
 
-This sample demonstrates two ways to implement Web IM app:
+This demo shows two ways of implementing Web IM app:
 
 Using long polling.
 Using WebSocket.
 
-Both of them save data in memory as default so everything will start over every time, but you can change setting in `conf/app.conf` to enable database use.
+Both of them save data in memory as default so everything will start over again every time, but you can change setting in `conf/app.conf` to enable database adapter.
 
-Here is the project organization:
+Here is the project structure:
 
 ```bash
 WebIM/
