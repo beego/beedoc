@@ -128,8 +128,13 @@ Beego 提供了两个很方便的方法来处理文件上传：
 保存的代码例子如下：
 
 ```go
-func (this *MainController) Post() {
-	this.SaveToFile("uploadname","/var/www/uploads/uploaded_file.txt")
+func (c *FormController) Post() {
+	_, h, err := c.GetFile("uploadname")
+	if err != nil {
+		fmt.Println("getfile err ", err)
+	} else {
+		c.SaveToFile("uploadname", "/www/"+h.Filename)
+	}
 }
 ```
 
