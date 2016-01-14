@@ -129,7 +129,8 @@ Beego 提供了两个很方便的方法来处理文件上传：
 
 ```go
 func (c *FormController) Post() {
-	_, h, err := c.GetFile("uploadname")
+	f, h, err := c.GetFile("uploadname")
+	defer f.Close()
 	if err != nil {
 		fmt.Println("getfile err ", err)
 	} else {
