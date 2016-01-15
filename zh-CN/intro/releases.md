@@ -4,6 +4,7 @@ sort: 2
 ---
 # beego 1.6.0
 新功能：
+
 1. 文件log支持rotate支持类似`xx.2013-01-01.2.log`这样的输出 [#1265](https://github.com/astaxie/beego/pull/1265)
 2. context.response 支持了原生的Flush，Hijack，CloseNotify
 3. ORM支持Distinct操作 [#1276](https://github.com/astaxie/beego/pull/1276)
@@ -18,6 +19,7 @@ sort: 2
 12. validation支持自定义验证函数
 
 bugfix:
+
 1. context里面bind函数如果参数为空crash [#1245](https://github.com/astaxie/beego/issues/1245)
 2. ORM中manytomany获取reverse的时候出错。[#671](https://github.com/astaxie/beego/issues/671)
 3. http: multiple response.WriteHeader calls [#1329](https://github.com/astaxie/beego/pull/1329)
@@ -36,6 +38,7 @@ bugfix:
 16. graceful导致panic问题 negative WaitGroup counter
 
 优化:
+
 1. example 移到了 [samples](https://github.com/beego/samples)
 2. 所有代码符合golint规范
 3. 重写路由树底层，性能提升三倍左右
@@ -49,6 +52,7 @@ bugfix:
 
 # beego 1.5.0
 新功能:
+
 1. 优雅重启模块：grace
 2. httplib增加JsonBody函数，支持raw body以Json格式发送
 3. context input增加 AcceptsHtml AcceptsXml AcceptsJson 函数
@@ -58,7 +62,9 @@ bugfix:
 7. validation 增加循环嵌套验证
 8. 增加apk mime
 9. ORM支持eq和ne
+
 bugfix:
+
 1. ledis驱动的参数错误
 2. 当页面放置一段时间，验证码将从缓存中失效。当用户再来刷新验证码将出现验证码404。对于reload操作应该直接生成验证码。
 3. Controller定义Error异常
@@ -73,6 +79,7 @@ bugfix:
 
 # beego 1.4.3
 新功能:
+
 1. ORM数据库创建和修改的时候支持default设置
 2. 改进日志文件行数统计
 3. sesesion ledis支持选择数据库
@@ -86,6 +93,7 @@ bugfix:
 11. 改进ORM interface，可以模拟interface
 
 bugfix:
+
 1. context subdomain获取的子域名不正确
 2. beego.AppConfig.Strings 当数据为空时判定不正确
 3. utils/pagination 修复不能修改分页属性
