@@ -2,6 +2,51 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.6.0
+新功能：
+1. 文件log支持rotate支持类似`xx.2013-01-01.2.log`这样的输出 [#1265](https://github.com/astaxie/beego/pull/1265)
+2. context.response 支持了原生的Flush，Hijack，CloseNotify
+3. ORM支持Distinct操作 [#1276](https://github.com/astaxie/beego/pull/1276)
+4. 新增加模板函数map_get [#1305](https://github.com/astaxie/beego/pull/1305)
+5. ORM支持tidb引擎 [#1366](https://github.com/astaxie/beego/pull/1366)
+6. httplib请求参数支持[]string [#1308](https://github.com/astaxie/beego/pull/1308)
+7. ORM querySeter添加GroupBy方法 [#1345](https://github.com/astaxie/beego/pull/1345)
+8. Session的MySQL引擎支持自定义表名 [#1348](https://github.com/astaxie/beego/pull/1348)
+9. log的file引擎性能提升30%，同时支持自定义创建的文件权限 [#1560](https://github.com/astaxie/beego/pull/1560)
+10. session支持通过query获取 [#1507](https://github.com/astaxie/beego/pull/1507)
+11. Cache模块支持多个Cache对象，之前N调用ewCache获取的是同一个Cache，现在会初始化不同的Cache对象。
+12. validation支持自定义验证函数
+
+bugfix:
+1. context里面bind函数如果参数为空crash [#1245](https://github.com/astaxie/beego/issues/1245)
+2. ORM中manytomany获取reverse的时候出错。[#671](https://github.com/astaxie/beego/issues/671)
+3. http: multiple response.WriteHeader calls [#1329](https://github.com/astaxie/beego/pull/1329)
+4. ParseForm解析日期使用当前的timezone [#1343](https://github.com/astaxie/beego/pull/1343)
+5. log引擎里面Smtp发送邮件无法认证
+6. 修复路由规则的一些issue: `/topic/:id/?:auth`, `/topic/:id/?:auth:int` [#1349](https://github.com/astaxie/beego/pull/1349)
+7. 修复注释文档解析的时候nil引起crash [#1367](https://github.com/astaxie/beego/pull/1367)
+8. static目录下的index.html无法读取
+9. dbBase.Update失败不返回err [#1384](https://github.com/astaxie/beego/pull/1384)
+10. validation里面设置的Required只对int有效，int64无效
+11. ORM创建外键是string类型的主键时创建varchar(0)的字符问题 [#1379](https://github.com/astaxie/beego/pull/1379)
+12. graceful同时开启http和https的时候出错 [#1414](https://github.com/astaxie/beego/pull/1414)
+13. ListenTCP4开启之后如果httpaddr为空还是监控TCP6
+14. migration不支持postgres [#1434](https://github.com/astaxie/beego/pull/1434)
+15. ORM text、bool等默认值问题导致创建表出错
+16. graceful导致panic问题 negative WaitGroup counter
+
+优化:
+1. example 移到了 [samples](https://github.com/beego/samples)
+2. 所有代码符合golint规范
+3. 重写路由树底层，性能提升三倍左右
+4. 每次请求的context采用sync.Pool复用，内存和性能提升
+5. 模板编译优化速度，按需编译 [#1298](https://github.com/astaxie/beego/pull/1298)
+6. 优化了beego的配置管理，采用统一的BConfig，更易读易管理
+7. 优化了beego的整体结构代码，使得代码更易读维护
+8. 所有初始化的信息统一到AddAPPStartHook函数中去，易于管理
+9. 移除了middleware，之后全部采用plugins来管理插件
+10. 重构Error处理，使得Error更加易懂
+
 # beego 1.5.0
 新功能:
 1. 优雅重启模块：grace
