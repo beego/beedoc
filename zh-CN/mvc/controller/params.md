@@ -119,14 +119,23 @@ Beego 提供了两个很方便的方法来处理文件上传：
 	fromfile 是提交时候的html表单中的name
 	
 ```html
-<input type="file" name="uploadname" />
+<form enctype="multipart/form-data" method="post">
+	<input type="file" name="uploadname" />
+	<input type="submit">
+</form>
 ```
 
 保存的代码例子如下：
 
 ```go
-func (this *MainController) Post() {
-	this.SaveToFile("uploadname","/var/www/uploads/uploaded_file.txt")
+func (c *FormController) Post() {
+	f, h, err := c.GetFile("uploadname")
+	defer f.Close()
+	if err != nil {
+		fmt.Println("getfile err ", err)
+	} else {
+		c.SaveToFile("uploadname", "/www/"+h.Filename)
+	}
 }
 ```
 

@@ -265,7 +265,7 @@ Use the code below to test if the TaskFunc is working correctly.
 //	0 30 5 1,15 * *                       run at 5:30 of 1st and 15th of every month
 ```
 
-## Debug module
+## Debug module (Already moved to utils module)
 
 We always use print for debugging. But the default output is not good enough for debugging. Beego provides this debug module
 
