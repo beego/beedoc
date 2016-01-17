@@ -2,6 +2,55 @@
 name: Release Notes
 sort: 2
 ---
+# beego 1.6.0
+
+New features:
+
+1. `log` supports rotating files like `xx.2013-01-01.2.log` [#1265](https://github.com/astaxie/beego/pull/1265)
+2. `context.response` supports Flush, Hijack, CloseNotify
+3. ORM supports Distinct [#1276](https://github.com/astaxie/beego/pull/1276)
+4. `map_get` template method [#1305](https://github.com/astaxie/beego/pull/1305)
+5. ORM supports [tidb](https://github.com/pingcap/tidb) engine [#1366](https://github.com/astaxie/beego/pull/1366)
+6. httplib request supports []string [#1308](https://github.com/astaxie/beego/pull/1308)
+7. ORM `querySeter` added `GroupBy`  method [#1345](https://github.com/astaxie/beego/pull/1345)
+8. Session's MySQL engine supports custom table name [#1348](https://github.com/astaxie/beego/pull/1348)
+9. Performance of log's file engine improved 30%; Supports set log file's permission [#1560](https://github.com/astaxie/beego/pull/1560)
+10. Get session by query [#1507](https://github.com/astaxie/beego/pull/1507)
+11. Cache module supports multiple Cache objects.
+12. validation supports custom validation functions
+
+bugfix:
+
+1. `bind` method in `context` caused crash when parameter is empty. [#1245](https://github.com/astaxie/beego/issues/1245)
+2. manytomany in ORM reverse error [#671](https://github.com/astaxie/beego/issues/671)
+3. http: multiple response.WriteHeader calls [#1329](https://github.com/astaxie/beego/pull/1329)
+4. ParseForm uses local timezone while parsing date [#1343](https://github.com/astaxie/beego/pull/1343)
+5. Emails sent by log's SMTP engine can't be authorised
+6. Fixed some issues in router: `/topic/:id/?:auth`, `/topic/:id/?:auth:int` [#1349](https://github.com/astaxie/beego/pull/1349)
+7. Fixed the crash caused by nil while parsing comment documentation. [#1367](https://github.com/astaxie/beego/pull/1367)
+8. Can't read `index.html` in static folder
+9. `dbBase.Update` doesn't return err if failed [#1384](https://github.com/astaxie/beego/pull/1384)
+10. `Required` in `validation` only works for int but not for int64
+11. orm: Fix handling of rel(fk) to model with string pk [#1379](https://github.com/astaxie/beego/pull/1379)
+12. graceful error while both http and https enabled [#1414](https://github.com/astaxie/beego/pull/1414)
+13. If ListenTCP4 enabled and httpaddr is empty, it still listens TCP6
+14. migration doesn't support postgres [#1434](https://github.com/astaxie/beego/pull/1434)
+15. Default values of ORM text, bool will cause error while creating tables.
+16. graceful panic: negative WaitGroup counter
+
+Improvement:
+
+1. Moved example to [samples](https://github.com/beego/samples)
+2. Passed golint
+3. Rewrote router, improved performance by 3 times.
+4. Used `sync.Pool` for `context` to improve performance
+5. Improved template compiling speed. [#1298](https://github.com/astaxie/beego/pull/1298)
+6. Improved config
+7. Refactored whole codebase for readability and maintainability
+8. Moved all init code into `AddAPPStartHook`
+9. Removed `middleware`. Will only use `plugins`
+10. Refactored `Error` handling.
+
 # Beego 1.5.0
 New Features:
 

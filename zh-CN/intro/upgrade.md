@@ -2,6 +2,11 @@
 name: 升级指南
 sort: 3
 ---
+## beego 1.6.0升级指南
+获取最新版本的bee工具 `go get -u github.com/beego/bee`
+
+然后进入项目，执行: `bee fix`
+
 ## beego1.4.2升级指南
 
 GetInt函数需要改成GetInt64
@@ -13,7 +18,7 @@ GetInt函数需要改成GetInt64
 		beego.AddFilter("/user/*", "BeforeRouter", cpt.Handler)
 
  	修改为
-	
+
 		beego.InsertFilter("/user/*", beego.BeforeRouter, cpt.Handler)
 
 1. 之前的beego.AfterStatic已经删除，和beego.BeforeRouter处于同一个级别的过滤，所以删除了该定义变量
