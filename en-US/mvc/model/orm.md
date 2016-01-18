@@ -48,7 +48,7 @@ import (
 )
 
 func init() {
-	orm.RegisterDriver("mysql", orm.DR_MySQL)
+	orm.RegisterDriver("mysql", orm.DR_MySQL) // version 1.6 uses DRMySQL
 
 	orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8")
 }
@@ -86,6 +86,12 @@ import (
 Three default databases:
 
 ```go
+// For version 1.6
+orm.DRMySQL
+orm.DRSqlite
+orm.DRPostgres
+
+// < 1.6
 orm.DR_MySQL
 orm.DR_Sqlite
 orm.DR_Postgres
