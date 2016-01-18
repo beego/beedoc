@@ -27,7 +27,7 @@ bugfix:
 5. log引擎里面Smtp发送邮件无法认证
 6. 修复路由规则的一些issue: `/topic/:id/?:auth`, `/topic/:id/?:auth:int` [#1349](https://github.com/astaxie/beego/pull/1349)
 7. 修复注释文档解析的时候nil引起crash [#1367](https://github.com/astaxie/beego/pull/1367)
-8. static目录下的index.html无法读取
+8. static目录下的index.html无法读取[#1508](https://github.com/astaxie/beego/pull/1508)
 9. dbBase.Update失败不返回err [#1384](https://github.com/astaxie/beego/pull/1384)
 10. validation里面设置的Required只对int有效，int64无效
 11. ORM创建外键是string类型的主键时创建varchar(0)的字符问题 [#1379](https://github.com/astaxie/beego/pull/1379)
