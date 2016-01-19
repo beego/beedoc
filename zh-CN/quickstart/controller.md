@@ -21,7 +21,7 @@ type MainController struct {
 func (this *MainController) Get() {
         this.Data["Website"] = "beego.me"
         this.Data["Email"] = "astaxie@gmail.com"
-        this.TplNames = "index.tpl"
+        this.TplName = "index.tpl"
 }
 ```
 
@@ -33,7 +33,7 @@ func (this *MainController) Get() {
 
 里面的代码是需要执行的逻辑，这里只是简单的输出数据，我们可以通过各种方式获取数据，然后赋值到 `this.Data` 中，这是一个用来存储输出数据的 map，可以赋值任意类型的值，这里我们只是简单举例输出两个字符串。
 
-最后一个就是需要去渲染的模板，`this.TplNames` 就是需要渲染的模板，这里指定了 `index.tpl`，如果用户不设置该参数，那么默认会去到模板目录的 `Controller/<方法名>.tpl` 查找，例如上面的方法会去 `MainController/Get.tpl`。
+最后一个就是需要去渲染的模板，`this.TplName` 就是需要渲染的模板，这里指定了 `index.tpl`，如果用户不设置该参数，那么默认会去到模板目录的 `Controller/<方法名>.tpl` 查找，例如上面的方法会去 `MainController/Get.tpl`。
 
 用户设置了模板之后系统会自动的调用 `Render` 函数（这个函数是在 beego.Controller 中实现的），所以无需用户自己来调用渲染。
 
