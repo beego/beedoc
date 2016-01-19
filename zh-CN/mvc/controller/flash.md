@@ -13,14 +13,14 @@ func (c *MainController) Get() {
 	flash:=beego.ReadFromRequest(&c.Controller)
 	if n,ok:=flash.Data["notice"];ok{
 		//显示设置成功
-		c.TplNames = "set_success.html"
+		c.TplName = "set_success.html"
 	}else if n,ok=flash.Data["error"];ok{
 		//显示错误
-		c.TplNames = "set_error.html"
+		c.TplName = "set_error.html"
 	}else{
 		// 不然默认显示设置页面
 		c.Data["list"]=GetInfo()
-		c.TplNames = "setting_list.html"
+		c.TplName = "setting_list.html"
 	}
 }
 
