@@ -9,7 +9,7 @@ Beego supports custom filter middlewares. E.g.: user authentication and force re
 
 To use a filter function, insert it:
 
-	beego.InsertFilter(pattern string, pos int, filter FilterFunc)
+	beego.InsertFilter(pattern string, pos int, filter FilterFunc, skip ...bool)
 
 Here is the FilterFunc signature:
 
@@ -19,7 +19,7 @@ Don't forget to import *context* if it hasn't been imported yet:
 
 	import "github.com/astaxie/beego/context"
 
-InsertFilter's three parameters:
+InsertFilter's four parameters:
 
 - pattern: string or regex to match against router rules. Use `/*` to match all.
 - pos: the place to execute Filter. There are four fixed parameters. They represent different execution process.
@@ -28,6 +28,7 @@ InsertFilter's three parameters:
 	- beego.AfterExec: After executing Controller.
 	- beego.FinishRouter: After finishing router.
 - filter: filter function type FilterFunc func(*context.Context)
+- skip: whether go on running if has output. default is false.
 
 >>> from beego1.3 AddFilter is removed
 
