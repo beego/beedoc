@@ -70,7 +70,7 @@ func (this *AddController) Prepare() {
 func (this *AddController) Get() {
     this.Data["content"] = "value"
     this.Layout = "admin/layout.html"
-    this.TplNames = "admin/add.tpl"
+    this.TplName = "admin/add.tpl"
 }
 
 func (this *AddController) Post() {
@@ -164,11 +164,11 @@ func (this *BaseAdminRouter) NestPrepare() {
 }
 
 func (this *BaseAdminRouter) Get(){
-	this.TplNames = "Get.tpl"
+	this.TplName = "Get.tpl"
 }
 
 func (this *BaseAdminRouter) Post(){
-	this.TplNames = "Post.tpl"
+	this.TplName = "Post.tpl"
 }
 ```
 
