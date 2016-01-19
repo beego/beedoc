@@ -68,6 +68,8 @@ AppConfig 主要方法如下：
 
 上面的配置文件就是在不同的runmode下解析不同的配置，例如在dev模式下，httpport是8080，在prod模式下是8088，在test模式下是8888.其他配置文件同理。解析的时候优先解析runmode下的配置，然后解析默认的配置。
 
+读取不同模式下配置参数的方法是“模式::配置参数名”，比如：beego.AppConfig.String("dev::mysqluser")。
+
 对于自定义的参数，需使用beego.GetConfig(typ, key string)来获取指定runmode下的配置（需1.4.0以上版本），typ为参数类型，key为参数名。
 
 ### 多个配置文件

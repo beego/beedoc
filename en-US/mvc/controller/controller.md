@@ -5,6 +5,8 @@ sort: 3
 
 # Introduction to controller
 
+>> Important changes for this specific doc for version 1.6: `this.serveJson()` is now `this.serveJSON` and `this.TplNames` is `this.TplName`
+
 Based on the design of Beego's controller, you just need to embed the `beego.Controller`:
 
 	type xxxController struct {

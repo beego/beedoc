@@ -26,7 +26,7 @@ func (this *MainController) Get() {
 		this.SetSession("asta", v.(int)+1)
 		this.Data["Email"] = v.(int)
 	}
-	this.TplNames = "index.tpl"
+	this.TplName = "index.tpl"
 }
 ```
 
@@ -88,18 +88,18 @@ type ErrorController struct {
 
 func (c *ErrorController) Error404() {
 	c.Data["content"] = "page not found"
-	c.TplNames = "404.tpl"
+	c.TplName = "404.tpl"
 }
 
 func (c *ErrorController) Error501() {
 	c.Data["content"] = "server error"
-	c.TplNames = "501.tpl"
+	c.TplName = "501.tpl"
 }
 
 
 func (c *ErrorController) ErrorDb() {
 	c.Data["content"] = "database is now down"
-	c.TplNames = "dberror.tpl"
+	c.TplName = "dberror.tpl"
 }
 ```
 通过上面的例子我们可以看到，所有的函数都是有一定规律的，都是`Error`开头，后面的名字就是我们调用`Abort`的名字，例如`Error404`函数其实调用对应的就是`Abort("404")`

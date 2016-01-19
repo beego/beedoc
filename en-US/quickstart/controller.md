@@ -21,7 +21,7 @@ type MainController struct {
 func (this *MainController) Get() {
         this.Data["Website"] = "beego.me"
         this.Data["Email"] = "astaxie@gmail.com"
-        this.TplNames = "index.tpl"
+        this.TplNames = "index.tpl" // version 1.6 use this.TplName = "index.tpl"
 }
 ```
 
@@ -39,7 +39,7 @@ We talked about the fact that Beego is a RESTful framework so our requests will 
 
 The logic in our `Get` method just outputs some data. We can get our data by many ways and store it in `this.Data` which is a `map[string]interface{}`. We can assign any type of data here. In this case we just assigned two strings.
 
-The last thing to be done is rendering the template. `this.TplNames` specifies the template which will be rendered: Here it's `index.tpl`. If you don't set the template, it will default to `controller/method_name.tpl`. For example, in this case it would try to find `maincontroller/get.tpl`.
+The last thing to be done is rendering the template. `this.TplNames` (v1.6 uses `this.TplName`) specifies the template which will be rendered: Here it's `index.tpl`. If you don't set the template, it will default to `controller/method_name.tpl`. For example, in this case it would try to find `maincontroller/get.tpl`.
 
 Beego will call the `Render` function (which is implemented in `beego.Controller`) automatically if you set up the template, so you don't need to render it manually.
 
