@@ -39,3 +39,5 @@ Beego is also designed for API application. When we build API application, we of
 	}
 	```
   ServeJsonp will set `content-type` to `application/javascript` and JSONify the data and respond to jsonp based on the request parameter `callback`.
+
+In version 1.6 names of methods were changed, it is ServeJSON(), ServeXML(), ServeJSONP() from now.
