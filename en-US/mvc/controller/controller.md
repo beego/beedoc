@@ -195,3 +195,28 @@ func (this *RController) Prepare() {
 ```
 
 >>> If you call `StopRun`, the `Finish` method won't be run anymore. If you need to free resources, please call `Finish` manually before call `StopRun`.
+
+
+## Using PUT method in HTTP form
+
+XHTML 1.x forms only support GET and POST. GET and POST are the only allowed values for the "method" attribute. But if just you want to, you can simply do this:
+
+Add a hidden input in the post form:
+
+```
+<form method="post" ...>
+  <input type="hidden" name="_method" value="put" />
+```
+
+Then add a filter in Beego to check if the requests should be treated as put or not:
+
+```go
+var FilterMethod = func(ctx *context.Context) {
+    if ctx.BeegoInput.Query("_method")!="" && ctx.BeegoInput.IsPost(){
+          ctx.Request.Method = ctx.BeegoInput.Query("_method")
+    }
+}
+
+beego.InsertFilter("*", beego.BeforeRouter, FilterMethod)
+```
+
