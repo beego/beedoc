@@ -13,7 +13,7 @@ It very easy to use session in Beego, just switch session on in main function:
 
 Or you can switch it on in configuration file:
 
-	sessionon = true
+	SessionOn = true
 
 After switching on the session, you can use it like this:
 
