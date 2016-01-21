@@ -76,6 +76,7 @@ import (
 	"fmt"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
+	//_ "https://github.com/mattn/go-sqlite3" // use sqlite instead of mysql
 )
 
 // Model Struct
@@ -87,12 +88,14 @@ type User struct {
 func init() {
 	// set default database
 	orm.RegisterDataBase("default", "mysql", "root:root@/my_db?charset=utf8", 30)
+	//orm.RegisterDataBase("sqlite_db", "sqlite", "./filename.db")  // use sqlite instead of mysql
 	
 	// register model
 	orm.RegisterModel(new(User))
 
 	// create table
 	orm.RunSyncdb("default", false, true)
+	//orm.RunSyncdb("sqlite_db", false, true)
 }
 
 func main() {
