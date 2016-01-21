@@ -191,3 +191,27 @@ func (this *RController) Prepare() {
 ```
 
 >>> 调用 StopRun 之后，如果你还定义了 Finish 函数就不会再执行，如果需要释放资源，那么请自己在调用 StopRun 之前手工调用 Finish 函数。
+
+
+## 在表单中使用 PUT 方法
+
+首先要说明, 在 XHTML 1.x 标准中, 表单只支持 GET 或者 PUT 方法. 虽然说根据标准, 你不应该将表单提交到 PUT 方法, 但是如果你真想的话, 也很容易, 通常可以这么做:
+
+首先表单本身还是使用 POST 方法提交, 但是可以在表单中添加一个隐藏字段:
+
+```
+<form method="post" ...>
+  <input type="hidden" name="_method" value="put" />
+```
+
+接着在 Beego 中添加一个过滤器来判断是否将请求当做 PUT 来解析:
+
+```go
+var FilterMethod = func(ctx *context.Context) {
+    if ctx.BeegoInput.Query("_method")!="" && ctx.BeegoInput.IsPost(){
+          ctx.Request.Method = ctx.BeegoInput.Query("_method")
+    }
+}
+
+beego.InsertFilter("*", beego.BeforeRouter, FilterMethod)
+```
