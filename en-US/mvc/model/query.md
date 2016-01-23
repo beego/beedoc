@@ -172,6 +172,7 @@ QuerySeter is the API of advanced query. Here are its methods:
 	* [Limit(int, ...int64) QuerySeter](#limit)
 	* [Offset(int64) QuerySeter](#offset)
 	* [OrderBy(...string) QuerySeter](#orderby)
+	* [Distinct() QuerySeter](#distinct)
 	* [RelatedSel(...interface{}) QuerySeter](#relatedsel)
 	* [Count() (int64, error)](#count)
 	* [Exist() bool](#exist)
@@ -273,6 +274,15 @@ qs.OrderBy("id", "-profile__age")
 
 qs.OrderBy("-profile__age", "profile")
 // ORDER BY profile.age DESC, profile_id ASC
+```
+
+### Distinct
+	
+Same as `distinct` statement in sql, return only distinct (different) values
+
+```go
+qs.Distinct()
+// SELECT DISTINCT
 ```
 
 ### RelatedSel

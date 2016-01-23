@@ -177,6 +177,7 @@ QuerySeter 是高级查询使用的接口，我们来熟悉下他的接口方法
 	* [Limit(int, ...int64) QuerySeter](#limit)
 	* [Offset(int64) QuerySeter](#offset)
 	* [OrderBy(...string) QuerySeter](#orderby)
+	* [Distinct() QuerySeter](#distinct)
 	* [RelatedSel(...interface{}) QuerySeter](#relatedsel)
 	* [Count() (int64, error)](#count)
 	* [Exist() bool](#exist)
@@ -280,6 +281,15 @@ qs.OrderBy("id", "-profile__age")
 
 qs.OrderBy("-profile__age", "profile")
 // ORDER BY profile.age DESC, profile_id ASC
+```
+
+### Distinct
+	
+对应 sql 的 `distinct` 语句, 返回不重复的值.
+
+```go
+qs.Distinct()
+// SELECT DISTINCT
 ```
 
 ### RelatedSel
