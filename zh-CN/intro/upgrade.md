@@ -4,6 +4,7 @@ sort: 3
 ---
 ## beego 1.6.0升级指南
 获取最新版本的bee工具 `go get -u github.com/beego/bee`
+更新beego框架 `go get -u github.com/astaxie/beego`
 
 然后进入项目，执行: `bee fix`
 
