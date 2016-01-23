@@ -104,3 +104,10 @@ sort: 3
 	- sendTos   邮件需要发送的人，支持多个
 	- subject   发送邮件的标题，默认是 `Diagnostic message from server`
 	- level 日志发送的级别，默认是 Trace 级别
+
+- ElasticSearch 
+    
+    输出到 ElasticSearch:
+    
+   		log := NewLogger(10000)
+   		log.SetLogger("es", `{"dsn":"http://localhost:9200/","level":1}`)

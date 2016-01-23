@@ -107,3 +107,11 @@ Each provider supports a set of configuration options.
 	- sendTos: emails addresses to which the logs will be sent.
 	- subject: email subject, `Diagnostic message from server` by default.
 	- level: Log level, Trace by default.
+	
+	
+- ElasticSearch 
+    
+    Log to ElasticSearch:
+    
+   		log := NewLogger(10000)
+   		log.SetLogger("es", `{"dsn":"http://localhost:9200/","level":1}`)
