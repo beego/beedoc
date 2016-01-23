@@ -74,6 +74,7 @@ The cache module uses the Cache interface, so you can create your own cache prov
 
 	type Cache interface {
 		Get(key string) interface{}
+        GetMulti(keys []string) []interface{}
 		Put(key string, val interface{}, timeout int64) error
 		Delete(key string) error
 		Incr(key string) error

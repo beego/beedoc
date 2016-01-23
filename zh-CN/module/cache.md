@@ -74,6 +74,7 @@ cache 模块采用了接口的方式实现，因此用户可以很方便的实�
 
 	type Cache interface {
 		Get(key string) interface{}
+        GetMulti(keys []string) []interface{}
 		Put(key string, val interface{}, timeout int64) error
 		Delete(key string) error
 		Incr(key string) error
