@@ -45,6 +45,12 @@ sort: 3
 如果你的应用自己封装了调用log包,那么需要设置SetLogFuncCallDepth,默认是2,也就是直接调用的层级,如果你封装了多层,那么需要根据自己的需求进行调整.
 
 	log.SetLogFuncCallDepth(3)
+	
+## 异步输出日志
+
+为了提升性能, 可以设置异步输出:
+
+    log.Async()
 
 ## 引擎配置设置
 

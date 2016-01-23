@@ -45,6 +45,12 @@ Use `true` to turn file & line number logging on, and `false` to turn it off. De
 If your application encapsulates the call to the log methods, you may need use `SetLogFuncCallDepth` to set the number of stack frames to be skipped before the caller information is retrieved. The default is 2.
 
 	log.SetLogFuncCallDepth(3)
+	
+## Logging asynchronously
+
+You can set logger to asynchronously logging to improve performance:
+
+    log.Async()
 
 ## Provider configuration
 
