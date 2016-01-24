@@ -45,6 +45,12 @@ sort: 3
 如果你的应用自己封装了调用log包,那么需要设置SetLogFuncCallDepth,默认是2,也就是直接调用的层级,如果你封装了多层,那么需要根据自己的需求进行调整.
 
 	log.SetLogFuncCallDepth(3)
+	
+## 异步输出日志
+
+为了提升性能, 可以设置异步输出:
+
+    log.Async()
 
 ## 引擎配置设置
 
@@ -69,6 +75,7 @@ sort: 3
 	- maxdays 文件最多保存多少天，默认保存 7 天
 	- rotate 是否开启 logrotate，默认是 true
 	- level 日志保存的时候的级别，默认是 Trace 级别
+	- perm: 日志文件权限
 	
 - conn
 
@@ -98,3 +105,10 @@ sort: 3
 	- sendTos   邮件需要发送的人，支持多个
 	- subject   发送邮件的标题，默认是 `Diagnostic message from server`
 	- level 日志发送的级别，默认是 Trace 级别
+
+- ElasticSearch 
+    
+    输出到 ElasticSearch:
+    
+   		log := NewLogger(10000)
+   		log.SetLogger("es", `{"dsn":"http://localhost:9200/","level":1}`)

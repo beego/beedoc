@@ -52,9 +52,15 @@ beego 的 cache 模块是用来做数据缓存的，设计思路来自于 `datab
 		
 - redis
 
-	配置信息如下所示，redis 采用了库 [redigo](http://github.com/garyburd/redigo/redis)，表示 redis 的连接地址：
+	配置信息如下所示，redis 采用了库 [redigo](https://github.com/garyburd/redigo/tree/master/redis):
 	
-		{"conn":":6039"}
+		{"key":"collectionName","conn":":6039","dbNum":"0","password":"thePassWord"}
+	
+	* key: Redis collection 的名称
+	* conn: Redis 连接信息
+	* dbNum: 连接 Redis 时的 DB 编号. 默认是0.
+	* password: 用于连接有密码的 Redis 服务器.
+
 		
 - memcache
 
@@ -68,6 +74,7 @@ cache 模块采用了接口的方式实现，因此用户可以很方便的实�
 
 	type Cache interface {
 		Get(key string) interface{}
+        GetMulti(keys []string) []interface{}
 		Put(key string, val interface{}, timeout int64) error
 		Delete(key string) error
 		Incr(key string) error
