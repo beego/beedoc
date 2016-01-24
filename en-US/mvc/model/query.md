@@ -171,6 +171,7 @@ QuerySeter is the API of advanced query. Here are its methods:
 	* [SetCond(*Condition) QuerySeter](#setcond)
 	* [Limit(int, ...int64) QuerySeter](#limit)
 	* [Offset(int64) QuerySeter](#offset)
+	* [GroupBy(...string) QuerySeter](#groupby)
 	* [OrderBy(...string) QuerySeter](#orderby)
 	* [Distinct() QuerySeter](#distinct)
 	* [RelatedSel(...interface{}) QuerySeter](#relatedsel)
@@ -260,6 +261,13 @@ Set offset lines:
 ```go
 qs.Offset(20)
 // LIMIT 1000 OFFSET 20
+```
+
+### GroupBy
+
+```go
+qs.GroupBy("id", "age")
+// GROUP BY id,age
 ```
 
 ### OrderBy

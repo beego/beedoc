@@ -176,6 +176,7 @@ QuerySeter 是高级查询使用的接口，我们来熟悉下他的接口方法
 	* [SetCond(*Condition) QuerySeter](#setcond)
 	* [Limit(int, ...int64) QuerySeter](#limit)
 	* [Offset(int64) QuerySeter](#offset)
+	* [GroupBy(...string) QuerySeter](#groupby)
 	* [OrderBy(...string) QuerySeter](#orderby)
 	* [Distinct() QuerySeter](#distinct)
 	* [RelatedSel(...interface{}) QuerySeter](#relatedsel)
@@ -267,6 +268,13 @@ qs.Limit(-1, 100)
 ```go
 qs.Offset(20)
 // LIMIT 1000 OFFSET 20
+```
+
+### GroupBy
+
+```go
+qs.GroupBy("id", "age")
+// GROUP BY id,age
 ```
 
 ### OrderBy
