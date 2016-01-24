@@ -78,6 +78,7 @@ Each provider supports a set of configuration options.
 	- maxdays: Maximum number of days log files will be kept, 7 by default.
 	- rotate: Enable logrotate or not, true by default.
 	- level: Log level, Trace by default.
+	- perm: Log file permission
 
 - conn
 

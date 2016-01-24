@@ -75,6 +75,7 @@ sort: 3
 	- maxdays 文件最多保存多少天，默认保存 7 天
 	- rotate 是否开启 logrotate，默认是 true
 	- level 日志保存的时候的级别，默认是 Trace 级别
+	- perm: 日志文件权限
 	
 - conn
 
