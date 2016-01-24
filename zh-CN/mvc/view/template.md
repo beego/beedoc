@@ -55,3 +55,41 @@ beego 支持用户定义模板函数，但是必须在 `beego.Run()` 调用之�
 * renderform
 
 	根据 StructTag 直接生成对应的表单，使用方法 {{&struct | renderform}}。
+	
+* assets_js
+
+    为 js 文件生成一个 `<script>` 标签. 使用方法 {{assets_js src}}
+
+* assets_css
+
+    为 css 文件生成一个 `<link>` 标签. 使用方法 {{assets_css src}}
+
+* config
+
+    获取 AppConfig 的值. 使用方法 {{config configType configKey defaultValue}}. 可选的 configType 有 String, Bool, Int, Int64, Float, DIY
+
+* map_get
+
+    获取 `map` 的值
+
+    用法:
+    
+        // In controller
+        Data["m"] = map[string]interface{} {
+            "a": 1,
+            "1": map[string]float64{
+                "c": 4,
+            },
+        }
+
+        // In view
+        {{ map_get m "a" }} // return 1
+        {{ map_get m 1 "c" }} // return 4
+        
+* urlfor
+
+    获取控制器方法的 URL
+     
+        {{urlfor "TestController.List"}}
+        
+    [详见](zh-CN/mvc/controller/urlbuilding.md#模板中如何使用)
