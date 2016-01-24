@@ -37,15 +37,29 @@ beego 默认会解析当前应用下的 `conf/app.conf` 文件。
 	beego.AppConfig.String("mysqlurls")
 	beego.AppConfig.String("mysqldb")
 
-AppConfig 主要方法如下：
+AppConfig 的方法如下：
 
-- Bool(key string) (bool, error)
+- Set(key, val string) error
+- String(key string) string
+- Strings(key string) []string
 - Int(key string) (int, error)
 - Int64(key string) (int64, error)
+- Bool(key string) (bool, error)
 - Float(key string) (float64, error)
-- String(key string) string
+- DefaultString(key string, defaultVal string) string
+- DefaultStrings(key string, defaultVal []string)
+- DefaultInt(key string, defaultVal int) int
+- DefaultInt64(key string, defaultVal int64) int64
+- DefaultBool(key string, defaultVal bool) bool
+- DefaultFloat(key string, defaultVal float64) float64
+- DIY(key string) (interface{}, error)
+- GetSection(section string) (map[string]string, error)
+- SaveConfigFile(filename string) error
 
-###### －－更多方法请查阅源码
+在使用 ini 类型的配置文件中, key 支持 section::key 模式. 
+
+你可以用 Default* 方法返回默认值.
+
 
 ### 不同级别的配置
 
@@ -133,7 +147,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 	`beego.BConfig.RouterCaseSensitive = true`
 
-* BeegoServerName
+* ServerName
 
 	beego 服务器默认在请求的时候输出 server 为 beego。
 
@@ -206,12 +220,13 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 * StaticDir
 
 	静态文件目录设置，默认是static
-	1. 单个目录，相同于`beego.SetStaticPath("/download","download")`
+	
+	可配置单个或多个目录:
+	1. 单个目录, `StaticDir = download`. 相当于`beego.SetStaticPath("/download","download")`
+	
+	2. 多个目录, `StaticDir = download:down download2:down2`. 相当于`beego.SetStaticPath("/download","down")`和`beego.SetStaticPath("/download2","down2")`
 
-		StaticDir = download
-	2. 多个目录，相当于`beego.SetStaticPath("/download","down")`和`beego.SetStaticPath("/download2","down2")`
-
-	StaticDir = download:down download2:down2
+    `beego.BConfig.WebConfig.StaticDir`
 
 * StaticExtensionsToGzip
 
@@ -386,10 +401,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * SessionProviderConfig
 
-	 配置信息，根据不同的引擎设置不同的配置信息，详细的配置请看下面的引擎设置，详细参见 session模块中的`引擎设置`。
-
-	 `beego.BConfig.WebConfig.Session.SessionGCMaxLifetime = 3600`
-
+	 配置信息，根据不同的引擎设置不同的配置信息，详细的配置请看下面的引擎设置，详细参见 [session 模块](zh-CN/module/session.md)
 
 * SessionCookieLifeTime
 
