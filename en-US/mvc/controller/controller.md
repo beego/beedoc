@@ -189,7 +189,7 @@ type RController struct {
 
 func (this *RController) Prepare() {
     this.Data["json"] = "astaxie"
-    this.ServeJson()
+    this.ServeJSON()
     this.StopRun()
 }
 ```
