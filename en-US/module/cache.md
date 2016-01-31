@@ -52,9 +52,15 @@ Here is how to configure the four providers:
 
 - redis
 
-	redis is using [redigo](http://github.com/garyburd/redigo/redis)
+	redis is using [redigo](https://github.com/garyburd/redigo/tree/master/redis)
 
-		{"conn":":6039"}
+		{"key":"collectionName","conn":":6039","dbNum":"0","password":"thePassWord"}
+	
+	* key: the Redis collection name
+	* conn: Redis connection info
+	* dbNum: Select the DB with having the specified zero-based numeric index.
+	* password: the password for connecting password-protected Redis server
+
 
 - memcache
 
@@ -68,6 +74,7 @@ The cache module uses the Cache interface, so you can create your own cache prov
 
 	type Cache interface {
 		Get(key string) interface{}
+        GetMulti(keys []string) []interface{}
 		Put(key string, val interface{}, timeout int64) error
 		Delete(key string) error
 		Incr(key string) error

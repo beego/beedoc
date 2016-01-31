@@ -37,13 +37,29 @@ Then you can read these configurations like this:
 	beego.AppConfig.String("mysqlurls")
 	beego.AppConfig.String("mysqldb")
 
-AppConfig supports:
+AppConfig's methods:
 
-- Bool(key string) (bool, error)
+- Set(key, val string) error
+- String(key string) string
+- Strings(key string) []string
 - Int(key string) (int, error)
 - Int64(key string) (int64, error)
+- Bool(key string) (bool, error)
 - Float(key string) (float64, error)
-- String(key string) string
+- DefaultString(key string, defaultVal string) string
+- DefaultStrings(key string, defaultVal []string)
+- DefaultInt(key string, defaultVal int) int
+- DefaultInt64(key string, defaultVal int64) int64
+- DefaultBool(key string, defaultVal bool) bool
+- DefaultFloat(key string, defaultVal float64) float64
+- DIY(key string) (interface{}, error)
+- GetSection(section string) (map[string]string, error)
+- SaveConfigFile(filename string) error
+
+The key supports section::key when using ini type.
+ 
+You can use Default* methods to return default value if can't read from config file.
+
 
 ### The Configurations for Different Environments
 
@@ -66,194 +82,367 @@ You can set configurations for different runmode under their own sections. Beego
 
 The configurations above set up httpport for dev, prod and test environment. Beego will take httpport = 8080 for current runmode "dev".
 
-### Beego default variables
+To get the config under different runmode, you can use "runmode::key". Such as `beego.AppConfig.String("dev::mysqluser")`
+
+For custom configs, you need to use `beego.GetConfig(typ, key string)` to get the config. (1.4.0+).
+
+
+### Multiple config files
+INI config file supports `include` to including multiple config files.
+
+app.conf
+
+	appname = beepkg
+	httpaddr = "127.0.0.1"
+	httpport = 9090
+
+	include "app2.conf"
+
+app2.conf
+
+	runmode ="dev"
+	autorender = false
+	autorecover = false
+	viewspath = "myview"
+
+	[dev]
+	httpport = 8080
+	[prod]
+	httpport = 8088
+	[test]
+	httpport = 8888
+
+
+
+### Beego default config variables
 
 Beego has many configurable variables. Let's have a look at these variables. It will help us to know how to use them in development. (You can configure and overwrite them in `conf/app.conf`. Case insensitive.):
 
-* AppName
-
-  Application name, Beego by default. It's project_name if the application is created by `bee new project_name`
-
-* AppPath
-
-  Application path. It will get the first parameter of the executed command by `os.Args[0]`. So you need to execute by full path if you are using supervisor to manage processes.
+#### Basic config
 
 * AppConfigPath
 
-  Application configuration file path. It is `conf/app.conf` by default.  You can change it to your own file.
-
-* CopyRequestBody
-
-  Flag of copy raw request body in context, disabled by default
-
-* EnableHttpListen
-
-  Enable http listen or not, enabled by default.
-
-* HttpAddr
-
-  Application listening address, empty by default which will listen all network adapter's IPs.
-
-* HttpPort
-
-  Application listening port, 8080 by default.
-
-* EnableHttpTLS
-
-  Enable https or not, disabled by default.
-
-* HttpsPort
-
-  Application listening https port, 10443 by default.
-
-* HttpCertFile
-
-  If https is enabled, the path of certfile.
-
-* HttpKeyFile
-
-  If https is enabled, the path of keyfile.
-
-* HttpServerTimeOut
-
-  Config the http timeout, 0 by default which means no timeout.
-
-* RunMode
-
-  The application mode, dev by default. In dev mode it will show user friendly error pages as we saw before.
-
-* AutoRender
-
-  Use auto render or not, true by default. Should set it to false for API application, no need to render template.
-
-* RecoverPanic
-
-  Recover from panic or not, true by default. It will recover from exceptions without exiting application.
-
-* ViewsPath
-
-  The path of templates, views by default.
-
-* SessionOn
-
-  Enable session or not, false by default.
-
-* SessionProvider
-
-  Session provider, memory by default.
-
-* SessionName
-
-  The session cookie name stored in browser. beegosessionID by default.
-
-* SessionGCMaxLifetime
-
-  Session expire time, 3600s by default.
-
-* SessionSavePath
-
-  Session save path, empty by default.
-
-* SessionHashFunc
-
-  Function that generate sessionID, sha1 by default.
-
-* SessionHashKey
-
-  Hash key of session.
-
-* SessionCookieLifeTime
-
-  The valid time of cookie in browser for session, 3600s by default.
-
-* UseFcgi
-
-  Enable fastcgi or not, false by default.
-
-* MaxMemory
-
-  Memory cache size for file uploading, `1 << 26`(64M) by default.
-
-* EnableGzip
-
-  Enable Gzip or not, false by default. If Gzip is enabled, the output of template will be compressed by Gzip or zlib according to `Accept-Encoding` of browser.
-
-* DirectoryIndex
-
-  Enable list static directory or not, disabled by default. It will return 403 error.
-
-* BeegoServerName
-
-  Beego server will output `beego` as server name.
-
-* EnableAdmin
-
-  Enable supervisor module or not, disabled by default.
-
-* AdminHttpAddr
-
-  Listening address of supervisor, `localhost` by default.
-
-* AdminHttpPort
-  Listening port of supervisor, 8088 by default.
-
-* TemplateLeft
-
-  Left mark of template, `{{` by default.
-
-* TemplateRight
-
-  Right mark of template, `}}` by default.
-
-* ErrorsShow
-
-  Show error or not, show by default.
-
-* EnableXSRF
-  Enable XSRF
-
-* XSRFKEY
-
-  XSRF key, beegoxsrf by default.
-
-* XSRFExpire
-
-  XSRF expire time, 0 by default.
-
-* FlashName
-
-  Flash Cookie name，default is `BEEGO_FLASH`
-
-* FlashSeperator
-
-  Flash data seperator，default is `BEEGOFLASH`
-
-* StaticDir
-
-  set the static file，default is `static`
- 	1. one dir，the same as `beego.SetStaticPath("/download","download")`
-
-		StaticDir = download
-  	2. multi dirs, the same as `beego.SetStaticPath("/download","down")` and `beego.SetStaticPath("/download2","down2")`
-
-    StaticDir = download:down download2:down2
-
-* EnableDocs
-
-  Enable Docs or not, default is `false`
+    Application configuration file path. It is `conf/app.conf` by default.  You can change it to your own file.
+  
+    `beego.AppConfigPath = "conf/app2.conf"`
 
 * AppConfigProvider
 
-  File format of AppConfig, default is `ini`. Could be `xml`, `yaml`, `json` as well.
+    File format of AppConfig, default is `ini`. Could be `xml`, `yaml`, `json` as well.
+
+	`beego.AppConfigProvider = "ini"`
+
+#### App config
+
+* AppName
+
+    Application name, Beego by default. It's project_name if the application is created by `bee new project_name`
   
+  	`beego.BConfig.AppName = "beego"`
+  	
+* RunMode
+
+    The application mode, dev by default. In dev mode it will show user friendly error pages as we saw before.
+    
+    `beego.BConfig.RunMode = "dev"`
+ 
 * RouterCaseSensitive
 
-  Set the router case sensitivity or not. Default value is true.
+    Set the router case sensitivity or not. Default value is true.
     
-* AccessLogs
-
-  Output access logs or not.  It won't output access logs under prod mode by default.
+    `beego.BConfig.RouterCaseSensitive = true`
    
+* ServerName
+
+    Beego server will output `beego` as server name by default.
+
+	`beego.BConfig.ServerName = "beego"`
+	
+* RecoverPanic
+
+    Recover from panic or not, true by default. It will recover from exceptions without exiting application.
+    
+    `beego.BConfig.RecoverPanic = true`
+
+* CopyRequestBody
+
+    Flag of copy raw request body in context, true by default except GET, HEAD or file uploading.
+  
+  	`beego.BConfig.CopyRequestBody = true`
+
+* EnableGzip
+
+    Enable Gzip or not, false by default. If Gzip is enabled, the output of template will be compressed by Gzip or zlib according to `Accept-Encoding` of browser.
+  
+    `beego.BConfig.EnableGzip = false`
+
+* MaxMemory
+
+    Memory cache size for file uploading, `1 << 26`(64M) by default.
+    
+    `beego.BConfig.MaxMemory = 1 << 26`
+
+* EnableErrorsShow
+
+    Whether show error messages or not. True by default.
+
+	`beego.BConfig.EnableErrorsShow = true`
+
+#### Web config
+
+* AutoRender
+
+    Use auto render or not, true by default. Should set it to false for API application, no need to render template.
+  
+    `beego.BConfig.WebConfig.AutoRender = true`
+    
+* EnableDocs
+
+    Enable Docs or not, default is `false`
+
+	`beego.BConfig.WebConfig.EnableDocs = true`
+
+* FlashName
+
+    Flash Cookie name，default is `BEEGO_FLASH`
+    
+  	`beego.BConfig.WebConfig.FlashName = "BEEGO_FLASH"`
+
+* FlashSeperator
+
+    Flash data seperator，default is `BEEGOFLASH`
+  
+  	`beego.BConfig.WebConfig.FlashSeperator = "BEEGOFLASH"`
+
+* DirectoryIndex
+
+    Enable list static directory or not, disabled by default. It will return 403 error.
+
+	`beego.BConfig.WebConfig.DirectoryIndex = false`
+
+* StaticDir
+
+    Set the static file dir(s), default is `static`
+    
+ 	1. Single dir, `StaticDir = download`. Same as `beego.SetStaticPath("/download","download")`
+
+  	2. Multiple dirs, `StaticDir = download:down download2:down2`. Same as `beego.SetStaticPath("/download","down")` and `beego.SetStaticPath("/download2","down2")`
+
+    `beego.BConfig.WebConfig.StaticDir = map[string]string{"download":"download"}`
+
+
+* StaticExtensionsToGzip
+
+    Set a list of file extensions. The static file with the extension will supports gzip compress. It supports `.css` and `.js` by default.
+    
+	`beego.BConfig.WebConfig.StaticExtensionsToGzip = []string{".css", ".js"}`
+	
+    Same as in config file StaticExtensionsToGzip = .css, .js
+
+* TemplateLeft
+
+    Left mark of template, `{{` by default.
+
+	`beego.BConfig.WebConfig.TemplateLeft="{{"`
+
+* TemplateRight
+
+    Right mark of template, `}}` by default.
+    
+    `beego.BConfig.WebConfig.TemplateRight="}}"`
+
+* ViewsPath
+
+    The path of templates, views by default.
+    
+	`beego.BConfig.WebConfig.ViewsPath="views"`
+
+* EnableXSRF
+    Enable XSRF
+
+	`beego.BConfig.WebConfig.EnableXSRF = false`
+	
+* XSRFKEY
+
+    XSRF key, beegoxsrf by default.
+
+	`beego.BConfig.WebConfig.XSRFKEY = "beegoxsrf"`
+	
+* XSRFExpire
+
+    XSRF expire time, 0 by default.
+
+	`beego.BConfig.WebConfig.XSRFExpire = 0`
+
+#### HTTP Server config
+
 * Graceful
 
-  Enable graceful shutdown or not. Default is disabled.
+    Enable graceful shutdown or not. Default is disabled.
+  
+  	`beego.BConfig.Listen.Graceful=false`
+  
+* ServerTimeOut
+
+    Set the http timeout. Default is 0, no timeout.
+
+	`beego.BConfig.Listen.ServerTimeOut=0`
+
+* ListenTCP4
+
+    The address type. Default is "tcp4". The value can be "tcp", "tcp4", "tcp6", "unix" or "unixpacket"
+
+	`beego.BConfig.Listen.ListenTCP4 = "tcp4"`
+
+* EnableHTTP
+
+	Weather enable HTTP listen. Default is true.
+
+	`beego.BConfig.Listen.EnableHTTP = true`
+
+* HTTPAddr
+
+	The address app listens to. Default is empty, listen all IPs.
+
+	`beego.BConfig.Listen.HTTPAddr = ""`
+
+* HTTPPort
+
+    The port the app listens to. Default is 8080
+
+	`beego.BConfig.Listen.HTTPPort = 8080`
+
+* EnableHTTPS
+
+    Whether enable HTTPS or not. Default is false. To enable, set `EnableHTTPListen = false` and set `HTTPSCertFile` and `HTTPSKeyFile`
+
+	`beego.BConfig.Listen.EnableHTTPS = false`
+
+* HTTPSAddr
+
+	The address app listens to. Default is empty, listen all IPs.
+
+	`beego.BConfig.Listen.HTTPSAddr = ""`
+
+* HTTPSPort
+
+    The port the app listens to. Default is 10443
+
+	`beego.BConfig.Listen.HTTPPort = 10443`
+
+* HTTPSCertFile
+
+	SSL cert path. Default is empty.
+
+	`beego.BConfig.Listen.HTTPSCertFile = "conf/ssl.crt"`
+
+* HTTPSKeyFile
+
+	SSL key path. Default is empty.
+
+	`beego.BConfig.Listen.HTTPSKeyFile = "conf/ssl.key"`
+
+* EnableAdmin
+
+    Enable supervisor module or not, disabled by default.
+
+	`beego.BConfig.Listen.AdminEnable = false`
+
+* AdminAddr
+
+    The address admin app listens to. Default is "localhost".
+    
+    `beego.BConfig.Listen.AdminAddr = "localhost"`
+
+* AdminPort
+
+    The port the admin app listens to. Default is 8088.
+    
+	`beego.BConfig.Listen.AdminPort = 8088`
+
+* EnableFcgi
+
+    Whether enable fastcgi or not. Default is false 
+    
+    `beego.BConfig.Listen.EnableFcgi = false`
+
+* EnableStdIo
+
+	Whether use fastcgi standard I/O. Default is false
+
+	`beego.BConfig.Listen.EnableStdIo = false`
+
+#### Session config
+
+* SessionOn
+
+    Enable session or not, false by default.
+    
+	`beego.BConfig.WebConfig.Session.SessionOn = false`
+
+* SessionProvider
+
+    Session provider, memory by default.
+    
+    `beego.BConfig.WebConfig.Session.SessionProvider = ""`
+
+* SessionName
+
+    The session cookie name stored in browser. beegosessionID by default.
+    
+  	`beego.BConfig.WebConfig.Session.SessionName = "beegosessionID"`
+  	
+* SessionGCMaxLifetime
+
+    Session expire time, 3600s by default.
+  
+  	`beego.BConfig.WebConfig.Session.SessionGCMaxLifetime = 3600`
+  	
+* SessionProviderConfig
+
+    The session provider config. Different config for different provider. Please check [session](en-US/module/session.md).
+
+* SessionCookieLifeTime
+
+    The valid time of cookie in browser for session, 3600s by default.
+
+	`beego.BConfig.WebConfig.Session.SessionCookieLifeTime = 3600`
+
+* SessionAutoSetCookie
+
+	Enable SetCookie or not. Default is true.
+
+	`beego.BConfig.WebConfig.Session.SessionAutoSetCookie = true`
+
+* SessionDomain
+
+session cookie domain. Default is empty.
+
+`beego.BConfig.WebConfig.Session.SessionDomain = ""`
+
+#### Log config
+
+	For detail, see [logs module](en-US/module/logs.md)
+ 
+* AccessLogs
+
+    Output access logs or not.  It won't output access logs under prod mode by default.
+
+	`beego.BConfig.Log.AccessLogs = false`
+
+* FileLineNum
+
+    Whether print line number or not. Default is true. This config is not supported in config file.
+
+	`beego.BConfig.Log.FileLineNum = true`
+
+* Outputs
+
+    Log outputs config. This config is not supported in config file.
+
+	`beego.BConfig.Log.Outputs = map[string]string{"console": ""}`
+
+	or
+
+	`beego.BConfig.Log.Outputs["console"] = ""`
+

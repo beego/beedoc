@@ -45,6 +45,12 @@ Use `true` to turn file & line number logging on, and `false` to turn it off. De
 If your application encapsulates the call to the log methods, you may need use `SetLogFuncCallDepth` to set the number of stack frames to be skipped before the caller information is retrieved. The default is 2.
 
 	log.SetLogFuncCallDepth(3)
+	
+## Logging asynchronously
+
+You can set logger to asynchronously logging to improve performance:
+
+    log.Async()
 
 ## Provider configuration
 
@@ -72,6 +78,7 @@ Each provider supports a set of configuration options.
 	- maxdays: Maximum number of days log files will be kept, 7 by default.
 	- rotate: Enable logrotate or not, true by default.
 	- level: Log level, Trace by default.
+	- perm: Log file permission
 
 - conn
 
@@ -101,3 +108,11 @@ Each provider supports a set of configuration options.
 	- sendTos: emails addresses to which the logs will be sent.
 	- subject: email subject, `Diagnostic message from server` by default.
 	- level: Log level, Trace by default.
+	
+	
+- ElasticSearch 
+    
+    Log to ElasticSearch:
+    
+   		log := NewLogger(10000)
+   		log.SetLogger("es", `{"dsn":"http://localhost:9200/","level":1}`)

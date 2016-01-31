@@ -48,7 +48,7 @@ import (
 )
 
 func init() {
-	orm.RegisterDriver("mysql", orm.DR_MySQL) // version 1.6 uses DRMySQL
+	orm.RegisterDriver("mysql", orm.DRMySQL)
 
 	orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8")
 }
@@ -102,7 +102,7 @@ orm.DR_Postgres
 // param 2: database type
 // This mapping driverName and database type
 // mysql / sqlite3 / postgres registered by default already
-orm.RegisterDriver("mysql", orm.DR_MySQL)
+orm.RegisterDriver("mysql", orm.DRMySQL)
 ```
 
 #### RegisterDataBase
@@ -369,13 +369,13 @@ o1 := orm.NewOrm()
 o1.Using("db1")
 dr := o1.Driver()
 fmt.Println(dr.Name() == "db1") // true
-fmt.Println(dr.Type() == orm.DR_MySQL) // true
+fmt.Println(dr.Type() == orm.DRMySQL) // true
 
 o2 := orm.NewOrm()
 o2.Using("db2")
 dr = o2.Driver()
 fmt.Println(dr.Name() == "db2") // true
-fmt.Println(dr.Type() == orm.DR_Sqlite) // true
+fmt.Println(dr.Type() == orm.DRSqlite) // true
 ```
 
 ## Print out SQL query in debugging mode
