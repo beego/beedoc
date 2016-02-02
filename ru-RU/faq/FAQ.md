@@ -12,7 +12,7 @@ sort: 99
 
 2. Может ли BeeGo использовать для реальных проектов?
 
-  Да. BeeGo уже используется для реальных проектов. E.g.: SNDA CND system, 360 search API, Bmob mobile cloud API, weico backend API etc. Все они являются высоконагруженными реальными проектами.
+  Да. BeeGo уже используется для реальных проектов. E.g.: SNDA CDN system, 360 search API, Bmob mobile cloud API, weico backend API etc. Все они являются высоконагруженными реальными проектами.
 
 3. Может ли API которое я использую сейчас быть поломано в будущем?
 
