@@ -220,7 +220,7 @@ drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
 
 ### version 命令
 
-这个命令是动态获取bee、beego和Go的版本，这样一旦用户出现错误，可以通过改命令来查看当前的版本
+这个命令是动态获取bee、beego和Go的版本，这样一旦用户出现错误，可以通过该命令来查看当前的版本
 
 ```
 $ bee version
