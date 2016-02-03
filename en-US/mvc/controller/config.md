@@ -142,7 +142,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
   	
 * RunMode
 
-    The application mode, dev by default. In dev mode it will show user friendly error pages as we saw before.
+    The application mode, which can be `dev`, `prod` or `test`, `dev` by default. In `dev` mode it will show user friendly error pages as we saw before but it won't show in `prod` mode.
     
     `beego.BConfig.RunMode = "dev"`
  

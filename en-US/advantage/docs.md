@@ -34,7 +34,7 @@ The comments above set the global information. The available settings:
 - @LicenseUrl
 
 ## Router Parsing
-Right now automated API documentation only supports namespace+Include and only supports two levels parsing. The first level is API version and the second level is the modules.
+Right now automated API documentation only supports `NSNamespace` and `NSInclude` and it only supports two levels parsing. The first level is API version and the second level is the modules.
 
 ```
 func init() {

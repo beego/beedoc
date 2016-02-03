@@ -14,6 +14,9 @@ A beego Web server checks for updates to this repository (https://github.com/bee
 
 beego documentation is written using standard markdown syntax (https://guides.github.com/features/mastering-markdown/).  Please submit your changes using the same syntax.
 
+## Community
+
+Welcome to join us in Slack: [https://beego.slack.com](https://beego.slack.com), you can get invited [here](https://github.com/beego/beedoc/issues/232)
 
 ## License
 
