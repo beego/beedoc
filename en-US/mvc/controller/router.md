@@ -292,8 +292,8 @@ namespace API:
 
     if the namespaceCond return true will run this namespace, otherwise, won't run
 
-- NSBefore(filiterList ...FilterFunc)
-- NSAfter(filiterList ...FilterFunc)
+- NSBefore(filterList ...FilterFunc)
+- NSAfter(filterList ...FilterFunc)
 
     For `BeforeRouter` and `FinishRouter` filters. Can register multiple filters.
 
