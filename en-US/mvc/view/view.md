@@ -87,11 +87,13 @@ Different rendering types:
 
 ## Template Name
 
+> From version 1.6: this.TplNames is this.TplName
+
 Beego uses Go's builtin template engine, so the syntax is same as Go.  To learn more about template see [Templates](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
 
 You can set template name in Controller and Beego will find the template file under the viewpath and render it automatically. In the config below, Beego will find add.tpl under admin and render it.
 
-	this.TplNames = "admin/add.tpl"
+	this.TplName = "admin/add.tpl"
 
 Beego supports `.tpl` and `.html` file extensions by default. If you're using other extensions, you must set it in the configuration first:
 
@@ -108,7 +110,7 @@ It is Controller name + "/" + request method name + "." + template extension. So
 Beego supports layout design. For example, if in your application the main navigation and footer don't change and only the content part is different, you can use a layout like this:
 
 	this.Layout = "admin/layout.html"
-	this.TplNames = "admin/add.tpl"
+	this.TplName = "admin/add.tpl"
 
 In `layout.html` you must set a variable like this:
 
@@ -183,7 +185,7 @@ type BlogsController struct {
 
 func (this *BlogsController) Get() {
     this.Layout = "layout_blog.tpl"
-    this.TplNames = "blogs/index.tpl"
+    this.TplName = "blogs/index.tpl"
     this.LayoutSections = make(map[string]string)
     this.LayoutSections["HtmlHead"] = "blogs/html_head.tpl"
     this.LayoutSections["Scripts"] = "blogs/scripts.tpl"
@@ -198,7 +200,7 @@ for example:
 
 controller:
 
-	this.TplNames = "blog/add.tpl"
+	this.TplName = "blog/add.tpl"
 	this.Data["SomeVar"] = "SomeValue"
 	this.Data["Title"] = "Add"
 
@@ -274,7 +276,7 @@ controller：
 
 	func (this *AddController) Get() {
 	    this.Data["Form"] = &User{}
-	    this.TplNames = "index.tpl"
+	    this.TplName = "index.tpl"
 	}
 
 The param of Form must be a pointer to a struct.
