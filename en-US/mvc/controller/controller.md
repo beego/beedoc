@@ -5,7 +5,7 @@ sort: 3
 
 # Introduction to controller
 
->> Important changes for this specific doc for version 1.6: `this.serveJson()` is now `this.serveJSON` and `this.TplNames` is `this.TplName`
+> From version 1.6: `this.serveJson()` is `this.serveJSON` and `this.TplNames` is `this.TplName`
 
 Based on the design of Beego's controller, you just need to embed the `beego.Controller`:
 
@@ -73,7 +73,7 @@ func (this *AddController) Prepare() {
 func (this *AddController) Get() {
     this.Data["content"] = "value"
     this.Layout = "admin/layout.html"
-    this.TplNames = "admin/add.tpl"
+    this.TplName = "admin/add.tpl"
 }
 
 func (this *AddController) Post() {
@@ -167,11 +167,11 @@ func (this *BaseAdminRouter) NestPrepare() {
 }
 
 func (this *BaseAdminRouter) Get(){
-	this.TplNames = "Get.tpl"
+	this.TplName = "Get.tpl"
 }
 
 func (this *BaseAdminRouter) Post(){
-	this.TplNames = "Post.tpl"
+	this.TplName = "Post.tpl"
 }
 ```
 
@@ -219,4 +219,3 @@ var FilterMethod = func(ctx *context.Context) {
 
 beego.InsertFilter("*", beego.BeforeRouter, FilterMethod)
 ```
-

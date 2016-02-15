@@ -87,19 +87,27 @@ Different rendering types:
 
 ## Template Name
 
+> From version 1.6: this.TplNames is this.TplName
+
 Beego uses Go's builtin template engine, so the syntax is same as Go.  To learn more about template see [Templates](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
 
 You can set template name in Controller and Beego will find the template file under the viewpath and render it automatically. In the config below, Beego will find add.tpl under admin and render it.
 
-	this.TplNames = "admin/add.tpl"
+```go
+this.TplName = "admin/add.tpl"
+```
 
 Beego supports `.tpl` and `.html` file extensions by default. If you're using other extensions, you must set it in the configuration first:
 
-	beego.AddTemplateExt("file_extension_you_needed")
+```go
+beego.AddTemplateExt("file_extension_you_needed")
+```
 
-If TplNames is not set in Controller while `autorender` is enabled, Beego will use TplNames below by default:
+If `TplName` is not set in Controller while `autorender` is enabled, Beego will use `TplName` as below by default:
 
-	c.TplNames = strings.ToLower(c.controllerName) + "/" + strings.ToLower(c.actionName) + "." + c.TplExt
+```go
+c.TplName = strings.ToLower(c.controllerName) + "/" + strings.ToLower(c.actionName) + "." + c.TplExt
+```
 
 It is Controller name + "/" + request method name + "." + template extension. So if the Controller name is `AddController`, request method is `POST` and the default template extension is `tpl`, Beego will render `/viewpath/addcontroller/post.tpl` template file.
 
@@ -107,14 +115,16 @@ It is Controller name + "/" + request method name + "." + template extension. So
 
 Beego supports layout design. For example, if in your application the main navigation and footer don't change and only the content part is different, you can use a layout like this:
 
-	this.Layout = "admin/layout.html"
-	this.TplNames = "admin/add.tpl"
+```go
+this.Layout = "admin/layout.html"
+this.TplName = "admin/add.tpl"
+```
 
 In `layout.html` you must set a variable like this:
 
 	{{.LayoutContent}}
 
-Beego will parse file of `TplNames` and assign it to `LayoutContent` then render `layout.html`.
+Beego will parse file of `TplName` and assign it to `LayoutContent` then render `layout.html`.
 
 Beego will cache all the template files. You can also implement a layout this way:
 
@@ -176,14 +186,14 @@ scripts.tpl：
 
 Here is the logic in Controller:
 
-```
+```go
 type BlogsController struct {
     beego.Controller
 }
 
 func (this *BlogsController) Get() {
     this.Layout = "layout_blog.tpl"
-    this.TplNames = "blogs/index.tpl"
+    this.TplName = "blogs/index.tpl"
     this.LayoutSections = make(map[string]string)
     this.LayoutSections["HtmlHead"] = "blogs/html_head.tpl"
     this.LayoutSections["Scripts"] = "blogs/scripts.tpl"
@@ -198,9 +208,11 @@ for example:
 
 controller:
 
-	this.TplNames = "blog/add.tpl"
-	this.Data["SomeVar"] = "SomeValue"
-	this.Data["Title"] = "Add"
+```go
+this.TplName = "blog/add.tpl"
+this.Data["SomeVar"] = "SomeValue"
+this.Data["Title"] = "Add"
+```
 
 template add.tpl:
 
@@ -250,13 +262,15 @@ layout_blog.tpl:
 
 Define struct:
 
-	type User struct {
-		Id    int         `form:"-"`
-		Name  interface{} `form:"username"`
-		Age   int         `form:"age,text,age:"`
-		Sex   string
-		Intro string `form:",textarea"`
-	}
+```go
+type User struct {
+	Id    int         `form:"-"`
+	Name  interface{} `form:"username"`
+	Age   int         `form:"age,text,age:"`
+	Sex   string
+	Intro string `form:",textarea"`
+}
+```
 
 * StructTag definition uses `form` as tag. It uses same tags as [Parse Form](../controller/params.md#parse-to-struct). There are three optional params separated by ',':
 
@@ -272,10 +286,12 @@ Define struct:
 
 controller：
 
-	func (this *AddController) Get() {
-	    this.Data["Form"] = &User{}
-	    this.TplNames = "index.tpl"
-	}
+```go
+func (this *AddController) Get() {
+    this.Data["Form"] = &User{}
+    this.TplName = "index.tpl"
+}
+```
 
 The param of Form must be a pointer to a struct.
 
@@ -288,8 +304,8 @@ template:
 The code above will generate the form below:
 
 ```
-	Name: <input name="username" type="text" value="test"></br>
-	Age: <input name="age" type="text" value="0"></br>
-	Gender: <input name="Sex" type="text" value=""></br>
-	Intro: <input name="Intro" type="textarea" value="">
+Name: <input name="username" type="text" value="test"></br>
+Age: <input name="age" type="text" value="0"></br>
+Gender: <input name="Sex" type="text" value=""></br>
+Intro: <input name="Intro" type="textarea" value="">
 ```
