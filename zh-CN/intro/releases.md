@@ -15,7 +15,7 @@ sort: 2
 8. Session的MySQL引擎支持自定义表名 [#1348](https://github.com/astaxie/beego/pull/1348)
 9. log的file引擎性能提升30%，同时支持自定义创建的文件权限 [#1560](https://github.com/astaxie/beego/pull/1560)
 10. session支持通过query获取 [#1507](https://github.com/astaxie/beego/pull/1507)
-11. Cache模块支持多个Cache对象，之前N调用ewCache获取的是同一个Cache，现在会初始化不同的Cache对象。
+11. Cache模块支持多个Cache对象，之前调用NewCache获取的是同一个Cache，现在会初始化不同的Cache对象。
 12. validation支持自定义验证函数
 
 bugfix:
