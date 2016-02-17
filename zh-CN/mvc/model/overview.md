@@ -36,7 +36,7 @@ beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Dja
 
 ## 修改日志
 
-* 2016-01-18: [规范了数据库驱动的命名](zh-CN/mvc/model/orm.md#RegisterDriver)
+* 2016-01-18: [规范了数据库驱动的命名](orm.md#registerdriver)
 * 2014-03-10: [GetDB](orm.md#getdb) 从注册的数据库中返回 *sql.DB. [ResetModelCache](orm.md#resetmodelcache) 重置已注册的模型struct
 * 2014-02-10: 随着beego1.1.0的发布提交的改进
   - 关于 [时区设置](orm.md#时区设置)
