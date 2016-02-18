@@ -171,9 +171,9 @@ func (c *CMSController) Product() {
 	两种解决方案：
 	- 把swagger集成到应用中，下载请到[swagger](https://github.com/beego/swagger/releases),然后放在项目目录下：
 
-			if beego.RunMode == "dev" {
-				beego.DirectoryIndex = true
-				beego.StaticDir["/swagger"] = "swagger"
+			if beego.BConfig.RunMode == "dev" {
+				beego.BConfig.WebConfig.DirectoryIndex = true
+				beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 			}		
 	- API增加CORS支持
 
