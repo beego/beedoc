@@ -18,7 +18,7 @@ beego 默认会解析当前应用下的 `conf/app.conf` 文件。
 	httpport = 9090
 	runmode ="dev"
 	autorender = false
-	autorecover = false
+	recoverpanic = false
 	viewspath = "myview"
 
 上面这些参数会替换 beego 默认的一些参数。
@@ -70,7 +70,7 @@ AppConfig 的方法如下：
 	httpport = 9090
 	runmode ="dev"
 	autorender = false
-	autorecover = false
+	recoverpanic = false
 	viewspath = "myview"
 
 	[dev]
@@ -101,7 +101,7 @@ app2.conf
 
 	runmode ="dev"
 	autorender = false
-	autorecover = false
+	recoverpanic = false
 	viewspath = "myview"
 
 	[dev]
