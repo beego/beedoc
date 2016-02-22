@@ -18,7 +18,7 @@ You can initialize many Beego default variables in this file:
 	httpport = 9090
 	runmode ="dev"
 	autorender = false
-	autorecover = false
+	recoverpanic = false
 	viewspath = "myview"
 
 These configurations will replace Beego's default value.
@@ -70,7 +70,7 @@ You can set configurations for different runmode under their own sections. Beego
   httpport = 9090
   runmode ="dev"
   autorender = false
-  autorecover = false
+  recoverpanic = false
   viewspath = "myview"
 
   [dev]
@@ -102,7 +102,7 @@ app2.conf
 
 	runmode ="dev"
 	autorender = false
-	autorecover = false
+	recoverpanic = false
 	viewspath = "myview"
 
 	[dev]
