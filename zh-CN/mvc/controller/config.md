@@ -315,7 +315,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * EnableHTTPS
 
-	是否启用 HTTPS，默认是 false 关闭。当需要启用时，先设置 EnableHTTPListen = false，并设置`HTTPSCertFile` 和 `HTTPSKeyFile`
+	是否启用 HTTPS，默认是 false 关闭。当需要启用时，先设置 EnableHTTPS = true，并设置`HTTPSCertFile` 和 `HTTPSKeyFile`
 
 	`beego.BConfig.Listen.EnableHTTPS = false`
 
@@ -329,7 +329,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 	应用监听端口，默认为 10443
 
-	`beego.BConfig.Listen.HTTPPort = 10443`
+	`beego.BConfig.Listen.HTTPSPort = 10443`
 
 * HTTPSCertFile
 
