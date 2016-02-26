@@ -314,7 +314,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * EnableHTTPS
 
-    Whether enable HTTPS or not. Default is false. To enable, set `EnableHTTPListen = false` and set `HTTPSCertFile` and `HTTPSKeyFile`
+    Whether enable HTTPS or not. Default is false. To enable, set `EnableHTTPS = true` and set `HTTPSCertFile` and `HTTPSKeyFile`
 
 	`beego.BConfig.Listen.EnableHTTPS = false`
 
@@ -328,7 +328,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
     The port the app listens to. Default is 10443
 
-	`beego.BConfig.Listen.HTTPPort = 10443`
+	`beego.BConfig.Listen.HTTPSPort = 10443`
 
 * HTTPSCertFile
 
