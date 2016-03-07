@@ -10,6 +10,10 @@ Beego is also designed for API application. When we build API application, we of
 - Respond with JSON data:
 
 	```go
+	type mystruct struct {
+	  FieldOne string `json:"field_one"`
+	}
+	
 	func (this *AddController) Get() {
 		mystruct := { ... }
 		this.Data["json"] = &mystruct
