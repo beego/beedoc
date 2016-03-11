@@ -2,6 +2,35 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.6.1
+新增功能：
+1. ORM支持Oracle驱动
+2. ORM的Model支持inline
+3. Cache支持ssdb引擎
+4. console支持颜色输出配置
+5. 添加travis的自动化集成测试
+6. 日志新增mulitfile引擎，支持不同级别的输出到不同的文件
+
+bugfix：
+1. cookie时间设置
+2. 路由规则里面的匹配 [#1580](https://github.com/astaxie/beego/issues/1580)
+3. 在beego.Run()之前没有log输出
+4. config获取[]string为空的时候返回为空，应该返回nil
+5. ini接口保存的时候需要注释不正确
+6. 异步存储日志的时候时间可能延迟的问题
+7. 配置文件解析两次，导致部署key获取失败
+8. 正则路由无法解析本身带有`()`的问题
+9. mail发送中文附件和title乱码的问题
+10. ORM里面缺少Distinct的接口定义
+11. Layout编译失败
+12. logrotate的时候文件名不正确
+13. CORS插件失败的时候不生效
+14. filters的路径参数和路由参数冲突
+15. 静态文件找不到返回200，应该返回404
+16. 添加GroupBy的interface支持
+17. Go1.6的并发访问map引起静态文件换成奔溃
+18. httplib JSONBody输出的时候采用json.Encoder会输出一个额外的换行符
+
 # beego 1.6.0
 新功能：
 
