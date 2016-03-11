@@ -28,8 +28,9 @@ bugfix：
 14. filters的路径参数和路由参数冲突
 15. 静态文件找不到返回200，应该返回404
 16. 添加GroupBy的interface支持
-17. Go1.6的并发访问map引起静态文件换成奔溃
+17. Go1.6的并发访问map引起静态文件换成崩溃
 18. httplib JSONBody输出的时候采用json.Encoder会输出一个额外的换行符
+19. 异步模式下，log调用flush，Close的时候日志丢失
 
 # beego 1.6.0
 新功能：
