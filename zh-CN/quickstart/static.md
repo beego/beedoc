@@ -23,4 +23,4 @@ beego 默认注册了 static 目录为静态处理的目录，注册样式：URL
 	beego.SetStaticPath("/down1", "download1")	
 	beego.SetStaticPath("/down2", "download2")	
 	
-这样用户访问 URL `http://localhost/down1/123.txt` 则会请求 download1 目录下的 123.txt 文件。
+这样用户访问 URL `http://localhost:8080/down1/123.txt` 则会请求 download1 目录下的 123.txt 文件。
