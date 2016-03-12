@@ -19,7 +19,7 @@ httplib 库主要用来模拟客户端发送 HTTP 请求，类似于 Curl 工具
 
 然后初始化请求方法，返回对象
 
-	req:=httplib.Get("http://beego.me/")
+	req := httplib.Get("http://beego.me/")
 
 然后我们就可以获取数据了
 
@@ -76,7 +76,7 @@ httplib 包里面支持如下的方法返回 request 对象：
 
 对于 Put 或者 Post 请求，需要发送参数，那么可以通过 Param 发送 k/v 数据，如下所示：
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	req.Param("username","astaxie")
 	req.Param("password","123456")
 	
@@ -84,7 +84,7 @@ httplib 包里面支持如下的方法返回 request 对象：
 
 有时候需要上传文件之类的模拟，那么如何发送这个文件数据呢？可以通过 Body 函数来操作，举例如下：
 	
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	bt,err:=ioutil.ReadFile("hello.txt")
 	if err!=nil{
 		log.Fatal("read file err:",err)
@@ -101,7 +101,7 @@ httplib 包里面支持如下的方法返回 request 对象：
 	
 可以通过 Header 函数来设置，如下所示：
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	req.Header("Accept-Encoding","gzip,deflate,sdch")
 	req.Header("Host","beego.me")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")

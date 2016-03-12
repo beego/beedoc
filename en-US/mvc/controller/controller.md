@@ -5,7 +5,7 @@ sort: 3
 
 # Introduction to controller
 
-> From version 1.6: `this.serveJson()` is `this.serveJSON` and `this.TplNames` is `this.TplName`
+> From version 1.6: `this.ServeJson()` is `this.ServeJSON()` and `this.TplNames` is `this.TplName`
 
 Based on the design of Beego's controller, you just need to embed the `beego.Controller`:
 
@@ -188,7 +188,7 @@ type RController struct {
 }
 
 func (this *RController) Prepare() {
-    this.Data["json"] = "astaxie"
+    this.Data["json"] = map[string]interface{}{"name": "astaxie"}
     this.ServeJSON()
     this.StopRun()
 }

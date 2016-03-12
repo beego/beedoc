@@ -19,7 +19,7 @@ sort: 4
 
 Инициализируйте request метод и путь:
 
-	req:=httplib.Get("http://beego.me/")
+	req := httplib.Get("http://beego.me/")
 
 Отправьте запрос и извлеките данные из запроса:
 
@@ -76,7 +76,7 @@ It is a function of request object. So it can be done like this:
 
 Для PUT или POST запросов, мы можем отправить параметры. Параметры могут быть установлены так:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	req.Param("username","astaxie")
 	req.Param("password","123456")
 
@@ -84,7 +84,7 @@ It is a function of request object. So it can be done like this:
 
 Чтобы симулировать загрузку файлов или отправить большые данные вы можете использовать `Body` функцию:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	bt,err:=ioutil.ReadFile("hello.txt")
 	if err!=nil{
 		log.Fatal("read file err:",err)
@@ -101,7 +101,7 @@ It is a function of request object. So it can be done like this:
 
 Можете использовать `Header` функцию:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	req.Header("Accept-Encoding","gzip,deflate,sdch")
 	req.Header("Host","beego.me")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")

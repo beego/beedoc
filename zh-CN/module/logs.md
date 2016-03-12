@@ -58,13 +58,13 @@ sort: 3
    
 	可以设置输出的级别，或者不设置保持默认，默认输出到 `os.Stdout`：
 	
-		log := NewLogger(10000)
+		log := logs.NewLogger(10000)
 		log.SetLogger("console", `{"level":1}`)						
 - file 
 
 	设置的例子如下所示：
 	
-		log := NewLogger(10000)
+		log := logs.NewLogger(10000)
 		log.SetLogger("file", `{"filename":"test.log"}`)
 		
 	主要的参数如下说明：
@@ -95,7 +95,7 @@ sort: 3
 
 	邮件发送，设置的例子如下所示：
 	
-		log := NewLogger(10000)
+		log := logs.NewLogger(10000)
 		log.SetLogger("smtp", `{"username":"beegotest@gmail.com","password":"xxxxxxxx","host":"smtp.gmail.com:587","sendTos":["xiemengjun@gmail.com"]}`)	
 		
 	主要的参数说明如下：
@@ -110,5 +110,5 @@ sort: 3
     
     输出到 ElasticSearch:
     
-   		log := NewLogger(10000)
+   		log := logs.NewLogger(10000)
    		log.SetLogger("es", `{"dsn":"http://localhost:9200/","level":1}`)
