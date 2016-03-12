@@ -61,7 +61,7 @@ The ini file supports configuration sections. You can get values inside a sectio
 For example:
 
 	[demo]
-	key1="asta"
+	key1 = "asta"
 	key2 = "xie"
 
 You can use `iniconf.String("demo::key2")` to get the value.

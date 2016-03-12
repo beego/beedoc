@@ -19,7 +19,7 @@ sort: 3
 
 Инициализируйте переменную log (размер кеша 10000):
 
-	log := NewLogger(10000)
+	log := logs.NewLogger(10000)
 
 Далее добавьте поставщика вывода (поддерживает несколько поставщиков вывода одновременно). Первый параметр - имя поставщика (`console`, `file`, `conn` or `smtp`). Второй параметр - специфичная для поставщика строка конфигурации (об этом смотрите ниже).
 
@@ -54,14 +54,14 @@ sort: 3
 
 	Может настроить уровень логирования или использовать значение по-умолчанию. Используется `os.Stdout` по-умолчанию.
 
-		log := NewLogger(10000)
+		log := logs.NewLogger(10000)
 		log.SetLogger("console", `{"level":1}`)
 
 - file
 
 	E.g.:
 
-		log := NewLogger(10000)
+		log := logs.NewLogger(10000)
 		log.SetLogger("file", `{"filename":"test.log"}`)
 
 	Параметры:
@@ -91,7 +91,7 @@ sort: 3
 
 	Логирование c отправкой на email:
 
-		log := NewLogger(10000)
+		log := logs.NewLogger(10000)
 		log.SetLogger("smtp", `{"username":"beegotest@gmail.com","password":"xxxxxxxx","host":"smtp.gmail.com:587","sendTos":["xiemengjun@gmail.com"]}`)
 
 	Параметры:

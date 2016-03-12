@@ -90,8 +90,8 @@ func (this *ObjectController) Post() {
 	var ob models.Object
 	json.Unmarshal(this.Ctx.Input.RequestBody, &ob)
 	objectid := models.AddOne(ob)
-	this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
-	this.ServeJson()
+	this.Data["json"] = map[string]interface{}{"ObjectId": objectid }
+	this.ServeJSON()
 }
 ```
 

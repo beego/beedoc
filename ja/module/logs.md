@@ -19,7 +19,7 @@ Import package:
 
 Initialize log variable (10000 is the cache size):
 
-	log := NewLogger(10000)
+	log := logs.NewLogger(10000)
 
 Then add the output provider (it supports outputting to multiple providers at the same time). The first parameter is the provider name (`console`, `file`, `conn` or `smtp`). The second parameter is a provider-specific configuration string (see below for details).
 
@@ -54,14 +54,14 @@ Each provider supports a set of configuration options.
 
 	Can set output level or use default. Uses `os.Stdout` by default.
 
-		log := NewLogger(10000)
+		log := logs.NewLogger(10000)
 		log.SetLogger("console", `{"level":1}`)
 
 - file
 
 	E.g.:
 
-		log := NewLogger(10000)
+		log := logs.NewLogger(10000)
 		log.SetLogger("file", `{"filename":"test.log"}`)
 
 	Parameters:
@@ -91,7 +91,7 @@ Each provider supports a set of configuration options.
 
 	Log by email:
 
-		log := NewLogger(10000)
+		log := logs.NewLogger(10000)
 		log.SetLogger("smtp", `{"username":"beegotest@gmail.com","password":"xxxxxxxx","host":"smtp.gmail.com:587","sendTos":["xiemengjun@gmail.com"]}`)
 
 	Parameters:

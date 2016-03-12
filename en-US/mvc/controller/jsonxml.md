@@ -17,7 +17,7 @@ Beego is also designed for API application. When we build API application, we of
 	func (this *AddController) Get() {
 		mystruct := { ... }
 		this.Data["json"] = &mystruct
-		this.ServeJson()
+		this.ServeJSON()
 	}
 	```
   ServeJson will set `content-type` to `application/json` and JSONify the data.
@@ -39,7 +39,7 @@ Beego is also designed for API application. When we build API application, we of
 	func (this *AddController) Get() {
 		mystruct := { ... }
 		this.Data["jsonp"] = &mystruct
-		this.ServeJsonp()
+		this.ServeJSONP()
 	}
 	```
   ServeJsonp will set `content-type` to `application/javascript` and JSONify the data and respond to jsonp based on the request parameter `callback`.

@@ -45,7 +45,7 @@ sort: 7
 >>> 例如下面这样的配置文件
 
 >>>		[demo]
->>>		key1="asta"
+>>>		key1 = "asta"
 >>>		key2 = "xie"
 
 >>> 那么可以通过 `iniconf.String("demo::key2")` 获取值

@@ -5,7 +5,7 @@ sort: 3
 
 # 控制器介绍
 
->> 提示：在v1.6中，此文档所涉及的API有重大变更，`this.serveJson()` 更改为 `this.ServeJSON()`，`this.TplNames` 更改为 `this.TplName`。
+>> 提示：在v1.6中，此文档所涉及的API有重大变更，`this.ServeJson()` 更改为 `this.ServeJSON()`，`this.TplNames` 更改为 `this.TplName`。
 
 基于 beego 的 Controller 设计，只需要匿名组合 `beego.Controller` 就可以了，如下所示：
 
@@ -186,7 +186,7 @@ type RController struct {
 }
 
 func (this *RController) Prepare() {
-    this.Data["json"] = "astaxie"
+    this.Data["json"] = map[string]interface{}{"name": "astaxie"}
     this.ServeJSON()
     this.StopRun()
 }
