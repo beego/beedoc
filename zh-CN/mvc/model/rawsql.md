@@ -17,7 +17,7 @@ p.Raw("SELECT name FROM user WHERE id IN (?, ?, ?)", ids)
 创建一个 **RawSeter**
 
 ```go
-o := NewOrm()
+o := orm.NewOrm()
 var r RawSeter
 r = o.Raw("UPDATE user SET name = ? WHERE name = ?", "testing", "slene")
 ```
@@ -101,7 +101,7 @@ res, err := r.SetArgs("arg1", "arg2").Exec()
 
 Raw SQL 查询获得的结果集 Value 为 `string` 类型，NULL 字段的值为空 ``
 
-> from beego 1.1.0 
+> from beego 1.1.0
 > Values, ValuesList, ValuesFlat 的参数，可以指定返回哪些 Columns 的数据
 > 通常情况下，是无需指定的，因为 sql 语句中你可以自行设置 SELECT 的字段
 
