@@ -82,7 +82,7 @@ sort: 3
 	设置的例子如下所示：
 	
 		log := logs.NewLogger(10000)
-		log.SetLogger("file", ``{"filename":"test.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}``)
+		log.SetLogger("multifile", ``{"filename":"test.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}``)
 		
 	主要的参数如下说明(除separate外,均与file相同)：
 	- filename 保存的文件名
