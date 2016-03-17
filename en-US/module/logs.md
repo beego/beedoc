@@ -79,6 +79,24 @@ Each provider supports a set of configuration options.
 	- rotate: Enable logrotate or not, true by default.
 	- level: Log level, Trace by default.
 	- perm: Log file permission
+	
+- multifile 
+
+	E.g.:
+
+		log := logs.NewLogger(10000)
+		log.SetLogger("multifile", ``{"filename":"test.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}``)
+
+	Parameters:
+	- filename: Save to filename.
+	- maxlines: Maximum lines each log file, 1000000 by default.
+	- maxsize: Maximum size of each log file, 1 << 28 or 256M by default.
+	- daily: If log rotate by day, true by default.
+	- maxdays: Maximum number of days log files will be kept, 7 by default.
+	- rotate: Enable logrotate or not, true by default.
+	- level: Log level, Trace by default.
+	- perm: Log file permission
+	- separate: Log file will separate to test.error.log/test.debug.log as the log level set in the json array
 
 - conn
 

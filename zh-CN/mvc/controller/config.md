@@ -171,6 +171,16 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 	是否开启 gzip 支持，默认为 false 不支持 gzip，一旦开启了 gzip，那么在模板输出的内容会进行 gzip 或者 zlib 压缩，根据用户的 Accept-Encoding 来判断。
 
 	`beego.BConfig.EnableGzip = false`
+	
+	Gzip允许用户自定义压缩级别、压缩长度阈值和针对请求类型压缩:
+	
+	1. 压缩级别, `gzipCompressLevel = 9`,取值为1~9,如果不设置为1(最快压缩) 
+	
+	2. 压缩长度阈值, `gzipMinLength = 256`,当原始内容长度大于此阈值时才开启压缩,默认为20B(ngnix默认长度) 
+	
+	3. 请求类型, `includedMethods = get;post`,针对哪些请求类型进行压缩,默认只针对GET请求压缩 
+	
+	
 
 
 * MaxMemory
