@@ -175,6 +175,14 @@ Beego has many configurable variables. Let's have a look at these variables. It 
     Enable Gzip or not, false by default. If Gzip is enabled, the output of template will be compressed by Gzip or zlib according to `Accept-Encoding` of browser.
   
     `beego.BConfig.EnableGzip = false`
+    
+    Further properties as below:
+    
+    `gzipMinLength = 9` The compression level used for deflate compression(0-9),default is 9 (best speed). 
+    
+    `gzipCompressLevel = 256` Original content will only be compressed if content length is either unknown or greater than gzipMinLength.(default length is 20B,same as nginx).  
+    
+    `includedMethods = get;post` List of HTTP methods to compress. If not set, only GET requests are compressed.
 
 * MaxMemory
 
