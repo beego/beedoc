@@ -5,13 +5,13 @@ sort: 5
 
 # Session control
 
-Beego has a built-in session module. It supports memory, file, mysql, redis, couchbase, memcache, postgres as the save provider. You can also implement your own provider according the interface.
+Beego has a built-in session module. It supports memory, file, mysql, redis, couchbase, memcache and postgres as the save provider. You can also implement your own provider according to the interface.
 
-It very easy to use session in Beego, just switch session on in main function:
+It very easy to use session in Beego, just switch session on in the main function:
 
 	beego.SessionOn = true
 
-Or you can switch it on in configuration file:
+Or you can switch it on in the configuration file:
 
 	SessionOn = true
 
@@ -55,16 +55,16 @@ sess object has following methods:
 * SessionRelease
 * Flush
 
-But I recommend you to use SetSession, GetSession and DelSession to prevent forgetting release resource by yourself.
+But I recommend that you use SetSession, GetSession and DelSession to prevent forgetting to release resource by yourself.
 
-Here is some parameters used in Session module:
+Here are some parameters used in the Session module:
 
 - SessionOn
 
   Enable Session or not, `false` by default. Parameter name in configuration file: sessionon
 
 - SessionProvider
-  Set Session provider, memory by default. It also support file, mysql and redis. Parameter name in configuration file: sessionprovider
+  Set Session provider, which is set to memory by default. It also supports file, mysql and redis. Parameter name in configuration file: sessionprovider
 
 - SessionName
   Set the cookie name. Session is stored in browser's cookies by default. The default name is beegosessionID. Parameter name in configuration file: sessionname.
@@ -84,7 +84,7 @@ Here is some parameters used in Session module:
 - SessionCookieLifeTime
   The cookie expire time. The cookie is used to store data in client.
 
-from beego1.1.3, Beego removed all the dependencies,if you use these storages: mysql, redis, couchbase, memcache, postgres. You should install them first:
+from beego version 1.1.3 onwards, Beego removed all the dependencies, if you use these storages: mysql, redis, couchbase, memcache, postgres. You should install them first:
 
 	go get -u github.com/astaxie/beego/session/mysql
 
@@ -123,4 +123,4 @@ When SessionProvider is couchbase，SessionSavePath is connection address for co
 	beego.SessionSavePath = "http://bucketname:bucketpass@myserver:8091/"
 	
 ## Note:
-Since session is using `gob` to register objects. So if you are using session engine other than `memory`, please register the objects you used in session before use them. You can use `gob.Register()` to register them in `init()` function. 
+Session uses `gob` to register objects. If you are using a session engine other than `memory`, please register the objects you use in session before using them. You can use `gob.Register()` to register them in `init()` function. 
