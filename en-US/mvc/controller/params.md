@@ -25,7 +25,7 @@ func (this *MainController) Post() {
 }
 ```
 
-If you need the data in other types. Such as int other than int64, then you need to do so:
+If you need the data converted to another type such as int rather than int64, then you need to convert the type like so:
 
 ```go
 func (this *MainController) Post() {
@@ -34,11 +34,11 @@ func (this *MainController) Post() {
 }
 ```
 
-For more request information, you can get by `this.Ctx.Request`. For more reference see [Request](http://gowalker.org/net/http#Request).
+For more information aboutthe request, you can get this by accessing `this.Ctx.Request`. For more details see [Request](http://gowalker.org/net/http#Request).
 
 ## Parse to struct
 
-If you want to assign the data submitted from a form into struct, other than assigning them one by one, Beego has an easier way to do that which is mapping struct fields with form's input elements and parsing all data into struct.
+If you wish to assign the data submitted from a form into a struct rather than assigning them one by one, Beego has an easier way to do that. This approach consists of mapping struct fields to the  form's input elements and parsing all data into a struct.
 
 Define struct:
 
@@ -74,16 +74,16 @@ func (this *MainController) Post() {
 Notes:
 
 * The definition of structTag form and [renderform method](../view/view.md#renderform) are using the same tag.
-* While defining struct, if there is the form tag after that key, it will assign the value in the form which has the same name as that tag, otherwise it will assign the value in the form which has the same name as that field name. In the above example, Form value username and age will be assigned to Name and Age in user struct and Email will be assigned to Email in struct.
-* While calling method ParseForm of Controller, the parameter passed in must be a pointer to struct, otherwise the assignment won't success and it will return a `xx must be a struct pointer` error.
-* If you want to ignore some fields, there are two ways: one is using lowercase for that field; another is use `-` as the value of the tag.
+* While defining the struct, if there is a form tag after the key, it will assign the value in the form which has the same name as that tag, otherwise it will assign the value in the form which has the same name as that field name. In the above example, Form value username and age will be assigned to Name and Age in user struct and Email will be assigned to Email in struct.
+* While calling the method ParseForm of the Controller, the parameter passed in must be a pointer to a struct, otherwise the assignment will fail and it will return a `xx must be a struct pointer` error.
+* If you want to ignore some fields, there are two ways: the first is using lowercase for that field; the second is to use `-` as the value of the tag.
 
 ## Retrieving data from request body
 
 In API application development, we we always use `JSON` or `XML` as the data type. So how can we retrieve the data from the request body?
 
 1. Set `copyrequestbody = true` in configuration file.
-2. Then in Controller you can
+2. Then in the Controller you can
 
 ```go
 func (this *ObjectController) Post() {
@@ -97,7 +97,7 @@ func (this *ObjectController) Post() {
 
 ## Uploading files
 
-In Beego, you can upload files easily. Just remember set attribute `enctype="multipart/form-data"` in your form, otherwise your browser won't upload your file.
+In Beego, you can upload files easily. Just remember to set attribute `enctype="multipart/form-data"` in your form, otherwise your browser won't upload your file.
 
 Usually an uploaded file is stored in the system memory, but if the file size is bigger than the memory size limitation in the configuration file, the file will be stored in a temporary file. The default memory size is 64M and you can change it by:
 
@@ -107,7 +107,7 @@ Or you can set it in the configuration file:
 
 	maxmemory = 1<<22
 
-Beego provided two functions to handle file upload easily:
+Beego provides two functions to handle file uploads easily:
 
 - GetFile(key string) (multipart.File, *multipart.FileHeader, error)
 
@@ -117,7 +117,7 @@ This method is used to read the file name `the_file` from form and return the in
 
 This method implements the saving function based on the method `GetFile`
 
-Here is an example of saving file:
+Here is an example of saving a file:
 
 ```go
 func (this *MainController) Post() {
@@ -126,7 +126,7 @@ func (this *MainController) Post() {
 ```
 ## Data Bind
 
-Data bind lets user bind the request data to a variable, the request url as follow:
+Data bind lets the user bind the request data to a variable, the request url as follow:
 
 	?id=123&isok=true&ft=1.2&ol[0]=1&ol[1]=2&ul[]=str&ul[]=array&user.Name=astaxie
 
