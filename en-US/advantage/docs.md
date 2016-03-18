@@ -5,7 +5,7 @@ sort: 2
 
 # Automated API Document
 
-Automated documentation is a very cool feature that I wish to have. Now it became real in Beego. As I said Beego will not only boost the development of API but also make the API easy to use for the user. 
+Automated documentation is a very cool feature that I found to be desirable. Now it became a reality in Beego. As I said Beego will not only boost the development of your API but also make the API easy to use for the user. 
 
 Beego implemented the [swagger specification](http://swagger.io/) for API documentation. It's very easy to create powerful interactive API documentation.
 
@@ -34,7 +34,7 @@ The comments above set the global information. The available settings:
 - @LicenseUrl
 
 ## Router Parsing
-Right now automated API documentation only supports `NSNamespace` and `NSInclude` and it only supports two levels parsing. The first level is API version and the second level is the modules.
+Right now automated API documentation only supports `NSNamespace` and `NSInclude` and it only supports two levels of parsing. The first level is the API version and the second level is the modules.
 
 ```
 func init() {
@@ -124,17 +124,17 @@ func (c *CMSController) Product() {
 }
 ```
 
-In the code above, we defined the comment on top of of `CMSController` is the information for this module. Then we defined the comment for every controller methods. 
+In the code above, we defined the comment on top of `CMSController` is the information for this module. Then we defined the comment for every controller's methods. 
 
 Below is a list of supported comments for generating swagger APIs:
 
 - @Title
 
-	The title for this API. It's a string, all the content after the first space will be parsed as the title.
+	The title for this API. It's a string, and all the content after the first space will be parsed as the title.
 
 - @Description
 
-	The description for this API. It's a string, all the content after the first space will be parsed as the description.
+	The description for this API. It's a string, and all the content after the first space will be parsed as the description.
 
 - @Param
 
@@ -151,7 +151,7 @@ Below is a list of supported comments for generating swagger APIs:
 	The success message returned to client. Three parameters.
 	1. status code.
 	2. return type; Must wrap with {}.
-	3. returned object or string. For {object}, use path and the object name of your project here and `bee` tool will look up the object while generate the docs. For example `models.ZDTProduct.ProductList` represents `ProductList` object under `/models/ZDTProduct`
+	3. returned object or string. For {object}, use path and the object name of your project here and `bee` tool will look up the object while generating the docs. For example `models.ZDTProduct.ProductList` represents `ProductList` object under `/models/ZDTProduct`
 
 	>>> Use space to separate these three parameters
 
@@ -169,7 +169,7 @@ Below is a list of supported comments for generating swagger APIs:
 
 ## Generate document automatically
 
-To make it work following the steps:
+Make it work by following the steps:
 1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`.
 3. Import `_ "beeapi/docs"` in `main.go`.
 4. Use `bee run -downdoc=true -gendoc=true` to run your API application and rebuild document automatically.
