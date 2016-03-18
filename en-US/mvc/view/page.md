@@ -5,8 +5,8 @@ sort: 4
 
 # Pagination
 
-We use pagination in template very often. How can we do that?
-We create these demo for pagination. Hope it's useful for you.
+We use often pagination in templates. How do we do that?
+We have created this demo for pagination. We hope it's useful to you.
 
 ## Controllers
 
