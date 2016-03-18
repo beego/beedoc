@@ -388,7 +388,7 @@ for _, user := range users {
 // EXECUTE INSERT INTO user (`name`, ...) VALUES ("slene", ...)
 // EXECUTE ...
 // ...
-i.Close() // Don't forget close the statement
+i.Close() // Don't forget to close the statement
 ```
 
 ### All
@@ -627,7 +627,7 @@ var posts []*Post
 num, err := dORM.QueryTable("post").Filter("Tags__Tag__Name", "golang").All(&posts)
 ```
 
-Query how many tags do the post have with post title:
+Query how many tags does the post have with post title:
 
 ```go
 var tags []*Tag
