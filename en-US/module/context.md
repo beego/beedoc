@@ -5,22 +5,22 @@ sort: 5
 
 # Context Module
 
-Context is a encapsulation for http request and response. Context module provides Input object for user input which is request and Output object for output which response.
+The Context module is an encapsulation for http request and response. The Context module provides an Input object for user input which is the request and an Output object for output which is the response.
 
 ## Context Object
 
-Here are the functions encapsulated for input and output in context object.
+Here are the functions encapsulated for input and output in the context object.
 - Redirect
 - Abort
 - WriteString
 - GetCookie
 - SetCookie
 
-Context object is the parameter of Filter function so that you can use filter to manipulate it or finish the process in advance.
+Context object is the parameter of a Filter function so that you can use a filter to manipulate it or finish the process in advance.
 
 ## Input Object
 
-Input object is the encapsulation of request. Here are the implemented methods:
+The Input object is the encapsulation of request. Here are the implemented methods:
 
 - Protocol
 
@@ -52,7 +52,7 @@ Input object is the encapsulation of request. Here are the implemented methods:
 	
 - Method
 
-  The request method. It's standard http request method. E.g.: `GET`, `POST,
+  The request method. It's a standard http request method. E.g.: `GET`, `POST`,
 	
 - Is
 
@@ -64,7 +64,7 @@ Input object is the encapsulation of request. Here are the implemented methods:
 	
 - IsSecure
 
-  Test if the request is a https request. Return true or false.
+  Test if the request is an https request. Return true or false.
 	
 - IsWebsocket
 
@@ -72,11 +72,11 @@ Input object is the encapsulation of request. Here are the implemented methods:
 	
 - IsUpload
 
-  Test if there is file uploaded in the request. Return true or false.
+  Test if there a is file uploaded in the request. Return true or false.
 	
 - IP
 
-  Return the IP of the request user. If the user is using proxy, it will get the real IP recursively.
+  Return the IP of the requesting user. If the user is using a proxy, it will get the real IP recursively.
 	
 - Proxy
 
@@ -100,7 +100,7 @@ Input object is the encapsulation of request. Here are the implemented methods:
 
 - Param
   
-  Can be set in router config. Userd to get those params. E.g.: `Param(":id")` return 12
+  Can be set in router config. Used to get those params. E.g.: `Param(":id")` return 12
 	
 - Query
 
@@ -116,11 +116,11 @@ Input object is the encapsulation of request. Here are the implemented methods:
 	
 - Session
 
-  You can be initialized session. It is Session object in session module of Beego. Return the related data stored in server.
+  Return initialized session. It is the Session object in the session module of Beego. Return the related data stored on the server.
 	
 - Body
   
-  Return request body. E.g.: in API application request send JSON data and it can't be retrieved by Query. You need use Body to get the JSON data.
+  Return request body. E.g.: in API application request sends JSON data and it can't be retrieved by Query. You need to use Body to get the JSON data.
 	
 - GetData
 
@@ -172,7 +172,7 @@ Output object is the encapsulation of response. Here are the implemented methods
 	
 - Session
 
-  Set the value will be stored in server. E.g.: `Session("username","astaxie")`. Then it can be read later.
+  Set the value which will be stored on the server. E.g.: `Session("username","astaxie")`. Then it can be read later.
 	
 - IsCachable
 
