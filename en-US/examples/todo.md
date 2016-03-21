@@ -1,9 +1,9 @@
 ---
-name: Todo List
+name: To-do List
 sort: 3
 ---
 
-# Todo List
+# To-do List
 
 An AngularJS + Beego project
 
