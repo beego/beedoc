@@ -5,7 +5,7 @@ sort: 6
 
 # Flash Messages
 
-This flash it not related to Adobe/Macromedia Flash at all. It's the temporary messages between two logic blocks. All the flash messages will be clear after the very next logic block. Usually it is used to transform notes and error messages. It is good for [Post/Redirect/Get](http://en.wikipedia.org/wiki/Post/Redirect/Get) model. For example:
+This flash it not related to Adobe/Macromedia Flash at all. It relates to the temporary messages between two logic blocks. All the flash messages will be cleared after the very next logic block. Usually it is used to transform notes and error messages. It's application is well suited to the [Post/Redirect/Get](http://en.wikipedia.org/wiki/Post/Redirect/Get) model. For example:
 
 ```go
 // Display settings message
@@ -48,12 +48,12 @@ func (c *MainController) Post() {
 }
 ```
 
-The logic of code above:
+The logic of the code above is explained below:
 
 1. Executing GET method. There's no flash data, so display settings page.
-2. After submission, execute POST and initialize a flash. If checking failed, set error flash message. If pass, save settings and set success flash message.
+2. After submission, execute POST and initialize a flash. If checking failed, set error flash message. If checking passed, save settings and set flash message to successful.
 3. Redirect to GET request.
-4. GET request receives flash message and execute the related logic. Show error page or success page bases on the type of message.
+4. GET request receives flash message and executes the related logic. Show error page or success page based on the type of message.
 
 `ReadFromRequest` already implemented assigning message to flash by default, so you can use it in your template:
 
