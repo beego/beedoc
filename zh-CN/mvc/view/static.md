@@ -7,16 +7,16 @@ sort: 3
 
 Go 语言内部其实已经提供了 `http.ServeFile`，通过这个函数可以实现静态文件的服务。beego 针对这个功能进行了一层封装，通过下面的方式进行静态文件注册：
 
-	beego.SetStaticPath("/static","public")
+	beego.SetStaticPath("public","/static")
 
 - 第一个参数是路径，url 路径信息
 - 第二个参数是静态文件目录（相对应用所在的目录）
 
 beego 支持多个目录的静态文件注册，用户可以注册如下的静态文件目录：
 
-	beego.SetStaticPath("/images","images")
-	beego.SetStaticPath("/css","css")
-	beego.SetStaticPath("/js","js")
+	beego.SetStaticPath("images","/images")
+	beego.SetStaticPath("css","/css")
+	beego.SetStaticPath("js","/js")
 
 设置了如上的静态目录之后，用户访问 `/images/login/login.png`，那么就会访问应用对应的目录下面的 `images/login/login.png` 文件。如果是访问 `/static/img/logo.png`，那么就访问 `public/img/logo.png`文件。
 
