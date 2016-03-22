@@ -5,7 +5,7 @@ sort: 8
 
 # Model Definition
 
-The complicated model definition is not compulsory. It's　used for
+Complicated model definition is not compulsory. It is　used for
 database data converting and [Scheme Generating](cmd.md#自动建表)
 
 Table name conversion :TODO is camel case to snake case.
@@ -14,8 +14,8 @@ Table name conversion :TODO is camel case to snake case.
 	Auth_User -> auth__user
 	DB_AuthUser -> d_b__auth_user
 
-Except the leading capital letter :TODO, replace captital case letter
-into `_` and it's lower case. Remaining all the other `_`.
+Except the leading capital letter :TODO, replace capital case letter
+into `_` and it's lower case. All the other `_` remain.
 
 ## Custom table name
 
@@ -30,7 +30,7 @@ func (u *User) TableName() string {
 }
 ```
 
-If set [prefix](orm.md#registermodelwithprefix) to `prefix_`, the table name will be `prefix_auth_user`.
+If you set [prefix](orm.md#registermodelwithprefix) to `prefix_`, the table name will be `prefix_auth_user`.
 
 ## Custom index
 
@@ -59,11 +59,11 @@ func (u *User) TableUnique() [][]string {
 ```
 ## Custom engine
 
-Only support MySQL
+Only supports MySQL database
 
-The default engine is the default engine of current database engine of your mysql settings.
+The default engine is the default engine of the current database engine of your mysql settings.
 
-You can set `TableEngine` function in model to choose the engine you want to use.
+You can set `TableEngine` function in the model to choose the engine you want to use.
 
 ```go
 type User struct {
@@ -84,7 +84,7 @@ func (u *User) TableEngine() string {
 orm:"null;rel(fk)"
 ```
 
-Use `;` as separator of multiple settings. Use `,` as separator if a setting have multiple values.
+Use `;` as the separator of multiple settings. Use `,` as the separator if a setting has multiple values.
 
 #### Ignore field
 
@@ -102,15 +102,15 @@ type User struct {
 
 When Field type is int, int32, int64, uint, uint32 or uint64, you can set it as auto increment.
 
-* If there is no primary key in model definition, the filed `Id` with one of the types above will be considered as auto increment key
+* If there is no primary key in the model definition, the field `Id` with one of the types above will be considered as auto increment key
 
-Because of the design of go, even if you are using uint64, you can't use it's maximum. It still treated as int64.
+Because of the design of go, even if you are using uint64, you can't use it's maximum. It is still treated as int64.
 
 See issue [6113](http://code.google.com/p/go/issues/detail?id=6113)
 
 #### pk
 
-Set as primary key. Used for using other type filed as primary key.
+Set as primary key. Used for using other type field as primary key.
 
 #### null
 
@@ -167,8 +167,8 @@ Created time.Time `orm:"auto_now_add;type(datetime)"`
 Updated time.Time `orm:"auto_now;type(datetime)"`
 ```
 
-* auto_now: every saving will update time.
-* auto_now_add: set time at the first saving
+* auto_now: every save will update time.
+* auto_now_add: set time at the first save
 
 This setting won't affect massive `update`.
 
@@ -267,14 +267,14 @@ type Tag struct {
 This setting is for `orm:"rel(m2m)"` field
 
 	rel_table       Set the auto generated m2m connecting table name
-	rel_through     If you want to use custom m2m connecting table, set name by this.
+	rel_through     If you want to use custom m2m connecting table, set name by using this setting.
                   Format: pkg.path.byModelName
-                  For example: app.models.PostTagRel PostTagRel table need to have relationship to Post table and Tag table.
+                  For example: app.models.PostTagRel PostTagRel table needs to have a relationship to Post table and Tag table.
                   
 
 If rel_table is set, rel_through is ignored.
 
-You can set like this:
+You can set these as follows: 
 
 `orm:"rel(m2m);rel_table(the_table_name)"`
 
@@ -323,9 +323,9 @@ Assume Post -> User is ManyToOne relationship by foreign key.
 
     o.Filter("Id", 1).Delete()
 
-This will delete User with Id 1 and all his Post.
+This will delete User with Id 1 and all his Posts.
 
-If you don't want to delete the Post, need to set `set_null`
+If you don't want to delete the Posts, you need to set `set_null`
 
 ```go
 type Post struct {
@@ -337,7 +337,7 @@ type Post struct {
 
 In this case, only set related Post.user_id to NULL while deleting.
 
-Usually for performance purpose, it doesn't matter to have redundant data. The massive deletion is the real problem
+Usually for performance purposes, it doesn't matter to have redundant data. The massive deletion is the real problem
 
 ```go
 type Post struct {
@@ -347,11 +347,11 @@ type Post struct {
 }
 ```
 
-So just don't change Post (ignore it) while delete User.
+So just don't change Post (ignore it) while deleting User.
 
 ## Model fields mapping with database type
 
-Here is the recommended database type mapping. It's also the standard of table generation.
+Here is the recommended database type mapping. It's also the standard for table generation.
 
 All the fields are **NOT NULL** by default.
 
