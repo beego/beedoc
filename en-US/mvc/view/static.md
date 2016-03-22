@@ -7,16 +7,16 @@ sort: 3
 
 Go already has the built-in `http.ServeFile` package to serve static files. Beego made a wrapper for it. To register static files use:
 
-	beego.SetStaticPath("/static","public")
+	beego.SetStaticPath("public","/static")
 
 - The first parameter is the url path
 - The second parameter is the static file directory path. (relative to the application directory)
 
 Beego supports multiple static file directories:
 
-	beego.SetStaticPath("/images","images")
-	beego.SetStaticPath("/css","css")
-	beego.SetStaticPath("/js","js")
+	beego.SetStaticPath("images","/images")
+	beego.SetStaticPath("css","/css")
+	beego.SetStaticPath("js","/js")
 
 With the above settings, request `/images/login/login.png` will find `application_path/images/login/login.png` and request `/static/img/logo.png` will find `public/img/logo.png` file.
 
