@@ -5,17 +5,17 @@ sort: 1
 
 # Template Parsing
 
-Beego uses Go's builtin package `html/template` as the template parser.  Upon startup, it will compile and cache the templates into a map for efficient rendering.
+Beego uses Go's built-in package `html/template` as the template parser.  Upon startup, it will compile and cache the templates into a map for efficient rendering.
 
 ## Template Directory
 
-The default template directory for Beego is `views`. Template files can be put in this directory and Beego will parse and cache them automatically. However if the development mode is enabled, Beego parses templates every time without caching. Beego can only have one template directory which can be customized:
+The default template directory for Beego is `views`. Template files can be put into this directory and Beego will parse and cache them automatically. However if the development mode is enabled, Beego parses templates every time without caching. Beego can only have one template directory which can be customized:
 
 	beego.ViewsPath = "myviewpath"
 
 ## Auto Rendering
 
-You don't need to render and output template manually. Beego will call Render automatically after finishing the method. You can disable auto rendering in configuration file or in `main.go` if you don't need it.
+You don't need to render and output templates manually. Beego will call Render automatically after finishing the method. You can disable auto rendering in the configuration file or in `main.go` if you don't need it.
 
 In configuration file:
 
@@ -34,7 +34,7 @@ Go uses `{{` and `}}` as the default template tags. In the case that these tags 
 
 ## Template Data
 
-Template gets its data from `this.Data` in Controller. So for example if you need `{{.Content}}` in template, you need to assign it in Controller first:
+Template gets its data from `this.Data` in Controller. So for example if you need `{{.Content}}` in the template, you need to assign it in the Controller first:
 
 	this.Data["Content"] = "value"
 
@@ -49,36 +49,36 @@ Different rendering types:
 			Age  int
 		}
 
-  Assign value in Controller:
+  Assign value in the Controller:
 
 		this.Data["a"]=&A{Name:"astaxie",Age:25}
 
-  Render it in template:
+  Render it in the template:
 
 		the username is {{.a.Name}}
 		the age is {{.a.Age}}
 
 - map
 
-  Assign value in Controller:
+  Assign value in the Controller:
 
 		mp["name"]="astaxie"
 		mp["nickname"] = "haha"
 		this.Data["m"]=mp
 
-  Render it in template:
+  Render it in the template:
 
 		the username is {{.m.name}}
 		the username is {{.m.nickname}}
 
 - slice
 
-  Assign value in Controller:
+  Assign value in the Controller:
 
 		ss :=[]string{"a","b","c"}
 		this.Data["s"]=ss
 
-  Render it in template:
+  Render it in the template:
 
 		{{range $key, $val := .s}}
 		{{$key}}
@@ -89,9 +89,9 @@ Different rendering types:
 
 > From version 1.6: this.TplNames is this.TplName
 
-Beego uses Go's builtin template engine, so the syntax is same as Go.  To learn more about template see [Templates](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
+Beego uses Go's built-in template engine, so the syntax is same as Go.  To learn more about template see [Templates](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/07.4.md).
 
-You can set template name in Controller and Beego will find the template file under the viewpath and render it automatically. In the config below, Beego will find add.tpl under admin and render it.
+You can set the template name in Controller and Beego will find the template file under the viewpath and render it automatically. In the config below, Beego will find add.tpl under admin and render it.
 
 ```go
 this.TplName = "admin/add.tpl"
@@ -100,10 +100,10 @@ this.TplName = "admin/add.tpl"
 Beego supports `.tpl` and `.html` file extensions by default. If you're using other extensions, you must set it in the configuration first:
 
 ```go
-beego.AddTemplateExt("file_extension_you_needed")
+beego.AddTemplateExt("file_extension_you_need")
 ```
 
-If `TplName` is not set in Controller while `autorender` is enabled, Beego will use `TplName` as below by default:
+If `TplName` is not set in the Controller while `autorender` is enabled, Beego will use `TplName` as below by default:
 
 ```go
 c.TplName = strings.ToLower(c.controllerName) + "/" + strings.ToLower(c.actionName) + "." + c.TplExt
@@ -113,7 +113,7 @@ It is Controller name + "/" + request method name + "." + template extension. So
 
 ## Layout Design
 
-Beego supports layout design. For example, if in your application the main navigation and footer don't change and only the content part is different, you can use a layout like this:
+Beego supports layout design. For example, if in your application the main navigation and footer does not change and only the content part is different, you can use a layout like this:
 
 ```go
 this.Layout = "admin/layout.html"
@@ -124,7 +124,7 @@ In `layout.html` you must set a variable like this:
 
 	{{.LayoutContent}}
 
-Beego will parse file of `TplName` and assign it to `LayoutContent` then render `layout.html`.
+Beego will parse the file named `TplName` and assign it to `LayoutContent` then render `layout.html`.
 
 Beego will cache all the template files. You can also implement a layout this way:
 
@@ -184,7 +184,7 @@ scripts.tpl：
 </script>
 ```
 
-Here is the logic in Controller:
+Here is the logic in the Controller:
 
 ```go
 type BlogsController struct {
@@ -202,7 +202,7 @@ func (this *BlogsController) Get() {
 ```
 ## Another approach
 
-We can also only specify the template the controller is going to use and let the template system handle the layout:
+We can also just specify the template the controller is going to use and let the template system handle the layout:
 
 for example:
 
@@ -272,17 +272,17 @@ type User struct {
 }
 ```
 
-* StructTag definition uses `form` as tag. It uses same tags as [Parse Form](../controller/params.md#parse-to-struct). There are three optional params separated by ',':
+* StructTag definition uses `form` as tag. It uses the same tags as [Parse Form](../controller/params.md#parse-to-struct). There are three optional params separated by ',':
 
-  * The first param is `name` attribute of the form field. If empty, will use `struct field name` as the value.
+  * The first param is `name` attribute of the form field. If empty, it will use `struct field name` as the value.
   * The second param is the form field type. If empty, it is assumed as `text`.
-  * The third param is the tag of form field. If empty, will use `struct field name` as the tag name.
+  * The third param is the tag of form field. If empty, it will use `struct field name` as the tag name.
 
 * If the `form` tag only has one value, it is the `name` attribute of the form field. Except last value can be ignore all the other place must be separated by ','. E.g.: `form:",,username:"`
 
 * To ignore a field there are two ways:
-  * The first one is to use lowercase for the field name in the struct.
-  * The second one is to set `-` as the value of `form` tag.
+  * The first way is to use lowercase for the field name in the struct.
+  * The second way is to set `-` as the value of `form` tag.
 
 controller：
 
