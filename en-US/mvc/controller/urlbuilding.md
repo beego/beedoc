@@ -35,7 +35,7 @@ func (this *TestController) GetUrl() {
 }
 ```
 
-Here show how to register router:
+This is how you register the router:
 
 ```
 beego.Router("/api/list", &TestController{}, "*:List")
@@ -43,7 +43,7 @@ beego.Router("/person/:last/:first", &TestController{})
 beego.AutoRouter(&TestController{})
 ```
 
-Here show how to generate url:
+This is how you generate the url:
 
 ```
 UrlFor("TestController.List")
@@ -59,8 +59,8 @@ UrlFor("TestController.GetUrl")
 // Output /Test/GetUrl
 ```
 
-## How to use in template
-beego already register template function `urlfor`, you can use it like this:
+## This is how you use it in a template
+beego has already registered the template function `urlfor`. You can use it like this:
 
 ```
 {{urlfor "TestController.List"}}
