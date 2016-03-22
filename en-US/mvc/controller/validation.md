@@ -5,7 +5,7 @@ sort: 9
 
 # Form validation
 
-Form validation module is used for data validation and error collection.
+The Form validation module is used for data validation and error collection.
 
 ## Installing and testing
 
@@ -40,7 +40,7 @@ func main() {
     valid.Range(u.Age, 0, 18, "age")
 
     if valid.HasErrors() {
-        // If there are error messages which means the validation didn't pass
+        // If there are error messages it means the validation didn't pass
         // Print error message
         for _, err := range valid.Errors {
             log.Println(err.Key, err.Message)
