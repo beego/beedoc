@@ -5,7 +5,7 @@ sort: 3
 
 # Logging
 
-The logging module is inspired by `database/sql`. It supports file, console, net and smtp as destination providers by default. It can be installed like this:
+The logging module is inspired by `database/sql`. It supports file, console, net and smtp as destination providers by default. It is installed like this:
 
 	go get github.com/astaxie/beego/logs
 
@@ -48,7 +48,7 @@ If your application encapsulates the call to the log methods, you may need use `
 	
 ## Logging asynchronously
 
-You can set logger to asynchronously logging to improve performance:
+You can set logger to asynchronous logging to improve performance:
 
     log.Async()
 
@@ -72,9 +72,9 @@ Each provider supports a set of configuration options.
 
 	Parameters:
 	- filename: Save to filename.
-	- maxlines: Maximum lines each log file, 1000000 by default.
+	- maxlines: Maximum lines for each log file, 1000000 by default.
 	- maxsize: Maximum size of each log file, 1 << 28 or 256M by default.
-	- daily: If log rotate by day, true by default.
+	- daily: If log rotates by day, true by default.
 	- maxdays: Maximum number of days log files will be kept, 7 by default.
 	- rotate: Enable logrotate or not, true by default.
 	- level: Log level, Trace by default.
@@ -89,9 +89,9 @@ Each provider supports a set of configuration options.
 
 	Parameters:
 	- filename: Save to filename.
-	- maxlines: Maximum lines each log file, 1000000 by default.
+	- maxlines: Maximum lines for each log file, 1000000 by default.
 	- maxsize: Maximum size of each log file, 1 << 28 or 256M by default.
-	- daily: If log rotate by day, true by default.
+	- daily: If log rotates by day, true by default.
 	- maxdays: Maximum number of days log files will be kept, 7 by default.
 	- rotate: Enable logrotate or not, true by default.
 	- level: Log level, Trace by default.
@@ -123,7 +123,7 @@ Each provider supports a set of configuration options.
 	- username: smtp username.
 	- password: smtp password.
 	- host: SMTP server host.
-	- sendTos: emails addresses to which the logs will be sent.
+	- sendTos: email addresses to which the logs will be sent.
 	- subject: email subject, `Diagnostic message from server` by default.
 	- level: Log level, Trace by default.
 	
