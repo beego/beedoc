@@ -32,7 +32,8 @@ The second parameter is a provider-specific configuration string (see below for 
 
 Then we can use it in our code:
 
-	package main
+
+    package main
     
     import (
     	"github.com/astaxie/beego/logs"
@@ -56,7 +57,8 @@ Then we can use it in our code:
 
 beego/logs supports to declare a single logger to use
     
-		package main
+        
+        package main
         
         import (
         	"github.com/astaxie/beego/logs"

@@ -28,7 +28,8 @@ sort: 3
 
 然后我们就可以在我们的逻辑中开始任意的使用了：
 
-	package main
+
+    package main
     
     import (
     	"github.com/astaxie/beego/logs"
@@ -51,7 +52,7 @@ sort: 3
 ### 多个实例
 一般推荐使用通用方式进行日志，但依然支持单独声明来使用独立的日志
 
-		package main
+        package main
         
         import (
         	"github.com/astaxie/beego/logs"
