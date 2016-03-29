@@ -190,7 +190,7 @@ beego.Handler("/rpc", s)
 	/controller/simple
 	/controller/simple.html
 	/controller/simple.json
-	/controller/simple.rss
+	/controller/simple.xml
 	
 可以通过 `this.Ctx.Input.Param(":ext")` 获取后缀名。
 

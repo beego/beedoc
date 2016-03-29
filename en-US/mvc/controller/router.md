@@ -190,7 +190,7 @@ All the urls below will map to the `simple` method of `controller`.
 	/controller/simple
 	/controller/simple.html
 	/controller/simple.json
-	/controller/simple.rss
+	/controller/simple.xml
 
 Then you can get the extension name of the url by accessing `this.Ctx.Input.Param(":ext")`.
 
