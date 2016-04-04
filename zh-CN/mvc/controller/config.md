@@ -405,7 +405,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * SessionAutoSetCookie
 
-	是否开启SetCookie, 默认 true 不开启。
+	是否开启SetCookie, 默认值 true 开启。
 
 	`beego.BConfig.WebConfig.Session.SessionAutoSetCookie = true`
 
