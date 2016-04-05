@@ -111,6 +111,14 @@ app2.conf
 	[test]
 	httpport = 8888
 
+### 支持环境变量配置
+配置文件解析支持从环境变量中获取配置项，配置项格式：`${环境变量}`。例如下面的配置中优先使用环境变量中配置的 runmode 和 httpport,如果有配置环境变量 ProRunMode 则优先使用该环境变量值。如果不存在或者为空，则使用 "dev" 作为 runmode。
+
+app.conf
+
+	runmode  = "${ProRunMode||dev}"
+	httpport = "${ProPort||9090}"
+
 ### 系统默认参数
 
 beego 中带有很多可配置的参数，我们来一一认识一下它们，这样有利于我们在接下来的 beego 开发中可以充分的发挥他们的作用(你可以通过在`conf/app.conf`中设置对应的值，不区分大小写)：
@@ -411,7 +419,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * SessionAutoSetCookie
 
-	是否开启SetCookie, 默认 true 不开启。
+	是否开启SetCookie, 默认值 true 开启。
 
 	`beego.BConfig.WebConfig.Session.SessionAutoSetCookie = true`
 
