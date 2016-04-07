@@ -147,20 +147,20 @@ func (c *FormController) Post() {
 
 ```		
 var id int  
-ctx.Input.Bind(&id, "id")  //id ==123
+this.Ctx.Input.Bind(&id, "id")  //id ==123
 
 var isok bool  
-ctx.Input.Bind(&isok, "isok")  //isok ==true
+this.Ctx.Input.Bind(&isok, "isok")  //isok ==true
 
 var ft float64  
-ctx.Input.Bind(&ft, "ft")  //ft ==1.2
+this.Ctx.Input.Bind(&ft, "ft")  //ft ==1.2
 
 ol := make([]int, 0, 2)  
-ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
+this.Ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
 
 ul := make([]string, 0, 2)  
-ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
+this.Ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
 
 user struct{Name}  
-ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
+this.Ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
 ```
