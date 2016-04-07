@@ -11,7 +11,7 @@ beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Dja
 
 目前该框架仍处于开发阶段，可能发生任何导致不兼容的改动。
 
-**已支持数据库：**
+**已支持数据库驱动：**
 
 * MySQL：[github.com/go-sql-driver/mysql](https://github.com/go-sql-driver/mysql)
 * PostgreSQL：[github.com/lib/pq](https://github.com/lib/pq)
