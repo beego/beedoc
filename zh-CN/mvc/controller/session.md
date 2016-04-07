@@ -41,7 +41,7 @@ session 有几个方便的方法：
 
 session 操作主要有设置 session、获取 session、删除 session。
 
-当然你要可以通过下面的方式自己控制相应的逻辑这些逻辑：
+当然你可以通过下面的方式自己控制这些逻辑：
 
 	sess:=this.StartSession()
 	defer sess.SessionRelease()
