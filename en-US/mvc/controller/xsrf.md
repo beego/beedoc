@@ -21,14 +21,14 @@ or enable it in the main application entry function:
     beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
     beego.XSRFExpire = 3600
 
-With XSRF enabled, Beego will set a cookie `_xsrf` for every user. If this cookie doesn't exist in a `POST`, `PUT`, or `DELETE` request, Beego will refuse the request. If you enabled XSRF protection, you need to add a field to provide `_xsrf` value to every form. You can directly add `XsrfFormHtml()` in the template to set it.
+With XSRF enabled, Beego will set a cookie `_xsrf` for every user. If this cookie doesn't exist in a `POST`, `PUT`, or `DELETE` request, Beego will refuse the request. If you enabled XSRF protection, you need to add a field to provide `_xsrf` value to every form. You can directly add `XSRFFormHTML()` in the template to set it.
 
 We also set the global expiration time by `beego.XSRFExpire`. We can still change it in controllers for some particular logic:
 
 ```go
 func (this *HomeController) Get(){
 	this.XSRFExpire = 7200
-	this.Data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
+	this.Data["xsrfdata"]=template.HTML(this.XSRFFormHTML())
 }
 ```
 
@@ -38,7 +38,7 @@ Set data in controller:
 
 ```go
 func (this *HomeController) Get(){
-    this.Data["xsrfdata"]=template.HTML(this.XsrfFormHtml())
+    this.Data["xsrfdata"]=template.HTML(this.XSRFFormHTML())
 }
 ```
 
@@ -78,7 +78,7 @@ You need to save the `_xsrf` value in html:
 
 ```go
 func (this *HomeController) Get(){
-    this.Data["xsrf_token"] = this.XsrfToken()
+    this.Data["xsrf_token"] = this.XSRFToken()
 }
 ```
 
@@ -115,7 +115,7 @@ $.extend({
 
 For PUT and DELETE requests and POST requests which don't use form content as parameters, you can pass XSRF token by X-XSRFToken in HTTP header.
 
-If you need to customize XSRF behavior for different requests, you can overwrite the CheckXsrfCookie method of the Controller. For example if you need an API which doesn't support XSRF, you can disable XSRF proction by setting `CheckXsrfCookie()` to empty. However, if you need to accommodate requests with and without cookie support at the same time and the request is validated by cookie, then it's important to use XSRF protection.
+If you need to customize XSRF behavior for different requests, you can overwrite the CheckXSRFCookie method of the Controller. For example if you need an API which doesn't support XSRF, you can disable XSRF proction by setting `CheckXSRFCookie()` to empty. However, if you need to accommodate requests with and without cookie support at the same time and the request is validated by cookie, then it's important to use XSRF protection.
 
 ## support controller setting
 
