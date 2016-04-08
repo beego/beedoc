@@ -9,6 +9,13 @@ sort: 5
 
 ## context 对象
 
+context 对象中的元素有：
+-Input          *BeegoInput
+-Output         *BeegoOutput
+-Request        *http.Request
+-ResponseWriter *Response
+-_xsrfToken     string
+
 context 对象是对 Input 和 Output 的封装，里面封装了几个方法：
 - Redirect
 - Abort
