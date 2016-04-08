@@ -141,9 +141,9 @@ num, err := qs.Filter("User__Name", "slene").All(&posts)
 
 ```go
 var maps []orm.Params
-num, err := o.Raw("SELECT id FROM user WHERE name = ?", "slene").Values(&maps)
-if num > 0 {
-	fmt.Println(maps[0]["id"])
+num, err := o.Raw("SELECT * FROM user").Values(&maps)
+for _,term := range maps{
+	fmt.Println(term["id"],":",term["name"])
 }
 ```
 
