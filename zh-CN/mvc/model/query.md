@@ -561,6 +561,8 @@ o.QueryTable("user").Filter("Id", 1).RelatedSel().One(user)
 fmt.Println(user.Profile)
 // 因为在 Profile 里定义了反向关系的 User，所以 Profile 里的 User 也是自动赋值过的，可以直接取用。
 fmt.Println(user.Profile.User)
+
+// [SELECT T0.`id`, T0.`name`, T0.`profile_id`, T1.`id`, T1.`age` FROM `user` T0 INNER JOIN `profile` T1 ON T1.`id` = T0.`profile_id` WHERE T0.`id` = ? LIMIT 1000] - `1`
 ```
 
 通过 User 反向查询 Profile：
