@@ -31,7 +31,7 @@ sort: 2
 
 Затем мы можем использовать `bm` чтобы модифицировать кеш:
 
-	bm.Put("astaxie", 1, 10)
+	bm.Put("astaxie", 1, 10*time.Second)
 	bm.Get("astaxie")
 	bm.IsExist("astaxie")
 	bm.Delete("astaxie")
@@ -68,7 +68,7 @@ sort: 2
 
 	type Cache interface {
 		Get(key string) interface{}
-		Put(key string, val interface{}, timeout int64) error
+		Put(key string, val interface{}, timeout time.Duration) error
 		Delete(key string) error
 		Incr(key string) error
 		Decr(key string) error
