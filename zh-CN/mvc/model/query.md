@@ -631,7 +631,7 @@ type Tag struct {
 }
 ```
 
-通过 tag name 查询哪些 post 使用了这个 tag
+一条Post纪录可能对应不同的Tag纪录,一条Tag纪录可能对应不同的Post纪录，所以Post和Tag属于多对多关系,通过 tag name 查询哪些 post 使用了这个 tag
 
 ```go
 var posts []*Post
