@@ -8,7 +8,7 @@ sort: 2
 When do we set the router? When we discussed the MVC structure of Beego, we learnt that there are three types of router in Beego. Let's see how to use them now.
 
 ## Basic router
-from beego version 1.2 we began supporting a RESTful function router。the basic router includes the URI and closure function.
+From beego version 1.2 we began supporting a RESTful function router. The basic router includes the URI and closure function.
 
 ### GET router
 
@@ -45,7 +45,7 @@ beego.Any("/foo",func(ctx *context.Context){
 * beego.Any(router, beego.FilterFunc)
 
 ### Handler register
-sometimes it may be that we already use the `net/http` or other packages implemented in our system. But we may want to integrate it into the Beego API or web system. Now it's super easy to do that like this:
+Sometimes it may be that we already use the `net/http` or other packages implemented in our system. But we may want to integrate it into the Beego API or web system. Now it's super easy to do that like this:
 
 ```
 s := rpc.NewServer()
@@ -79,39 +79,39 @@ In order to make the router settings easier, Beego references the router impleme
 
 - beego.Router("/api/?:id", &controllers.RController{})
 
-  default   //matching /api/123    :id = 123  can matching /api/
+  *default matching* /api/123    :id = 123  *can matching* /api/
 
 - beego.Router("/api/:id", &controllers.RController{})
 
-  default //matching /api/123    :id = 123  can't matching /api/
+  *default matching* /api/123    :id = 123  *can't matching* /api/
 
 - beego.Router("/api/:id([0-9]+)", &controllers.RController{})
 
-  Customized regex //matching /api/123 :id = 123
+  *Customized regex matching* /api/123 :id = 123
 
 - beego.Router("/user/:username([\w]+)", &controllers.RController{})
 
-  Regex string matching //matching /user/astaxie :username = astaxie
+  *Regex string matching* /user/astaxie :username = astaxie
 
 - beego.Router("/download/\*.\*", &controllers.RController{})
 
-  *matching //matching /download/file/api.xml :path= file/api :ext=xml
+  *matching* /download/file/api.xml :path= file/api :ext=xml
 
 - beego.Router("/download/ceshi/*", &controllers.RController{})
 
-  *full matching //matching /download/ceshi/file/api.json :splat=file/api.json
+  *full matching* /download/ceshi/file/api.json :splat=file/api.json
 
 - beego.Router("/:id:int", &controllers.RController{})
 
-  int type matching //matching :id is int type. Beego implements ([0-9]+) for you
+  *int type matching* :id is int type. Beego implements ([0-9]+) for you
 
 - beego.Router("/:hello:string", &controllers.RController{})
 
-  string type matching //matching :hello is string type. Beego implements ([\w]+) for you
+  *string type matching* :hello is string type. Beego implements ([\w]+) for you
 
 - beego.Router("/cms_:id([0-9]+).html", &controllers.CmsController{})
 
-  has prefix regex. :id is the regex. //matching cms_123.html :id = 123
+  *has prefix regex* :id is the regex. *matching* cms_123.html :id = 123
 
 In controller, you can get the variables like this:
 
