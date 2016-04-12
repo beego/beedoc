@@ -415,8 +415,10 @@ type Post struct {
 | :---   	   | :---
 | int, int32, int64, uint, uint32, uint64 - 设置 auto 或者名称为 `Id` 时 | serial
 | bool | bool
-| string - 默认为 size 255 | varchar(size)
+| string - 若没有指定 size 默认为 text | varchar(size)
 | string - 设置 type(text) 时 | text
+| string - 设置 type(json) 时 | json
+| string - 设置 type(jsonb) 时 | jsonb
 | time.Time - 设置 type 为 date 时 | date
 | time.Time | timestamp with time zone
 | byte | smallint CHECK("column" >= 0 AND "column" <= 255)
