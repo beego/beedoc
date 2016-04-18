@@ -7,16 +7,16 @@ sort: 1
 
 前面介绍了 toolbox 模块，beego 默认是关闭的，在进程开启的时候监控端口，但是默认是监听在 `127.0.0.1:8088`，这样无法通过外网访问。当然你可以通过各种方法访问，例如 nginx 代理。
 
->>>为了安全，建议用户在防火墙中把 8088 端口给屏蔽了。
+>>>为了安全，建议用户在防火墙中把 8088 端口给屏蔽了。你可以在conf/app.conf中打开它
 
 默认监控是关闭的，你可以通过设置参数配置开启监控：
 
-	beego.EnableAdmin = true
+	EnableAdmin = true
 	
 而且你还可以修改监听的地址和端口：
 
-	beego.AdminHttpAddr = "localhost"
-	beego.AdminHttpPort = 8088
+	AdminHttpAddr = "localhost"
+	AdminHttpPort = 8088
 	
 打开浏览器，输入 URL：`http://localhost:8088/`，你会看到一句欢迎词：`Welcome to Admin Dashboard`。
 
