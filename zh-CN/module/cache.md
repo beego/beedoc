@@ -30,7 +30,7 @@ beego 的 cache 模块是用来做数据缓存的，设计思路来自于 `datab
 
 然后我们就可以使用bm增删改缓存：
 
-	bm.Put("astaxie", 1, 10)
+	bm.Put("astaxie", 1, 10*time.Second)
 	bm.Get("astaxie")
 	bm.IsExist("astaxie")
 	bm.Delete("astaxie")
