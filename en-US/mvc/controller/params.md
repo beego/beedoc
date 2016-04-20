@@ -80,7 +80,7 @@ Notes:
 
 ## Retrieving data from request body
 
-In API application development, we we always use `JSON` or `XML` as the data type. So how can we retrieve the data from the request body?
+In API application development, we always use `JSON` or `XML` as the data type. So how can we retrieve the data from the request body?
 
 1. Set `copyrequestbody = true` in configuration file.
 2. Then in the Controller you can
