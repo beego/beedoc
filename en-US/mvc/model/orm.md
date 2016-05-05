@@ -51,7 +51,7 @@ func init() {
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 
 	orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8")
-	//orm.RegisterDataBase("default", "mysql", "root:password@tcp(localhost:3306)/orm_test?charset=utf8&loc=Asia/Kuala_Lumpur")
+	//orm.RegisterDataBase("default", "mysql", "root:password@tcp(localhost:3306)/orm_test?charset=utf8&loc=Asia%2FKuala_Lumpur")
 }
 
 func main() {
