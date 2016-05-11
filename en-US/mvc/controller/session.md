@@ -61,7 +61,7 @@ Here are some parameters used in the Session module:
 
 - SessionOn
 
-  Enable Session or not, `false` by default. Parameter name in configuration file: sessionon
+  Enable Session or not, `false` by default. Parameter name in configuration file: `SessionOn`
 
 - SessionProvider
   Set Session provider, which is set to memory by default. It also supports file, mysql and redis. Parameter name in configuration file: sessionprovider
