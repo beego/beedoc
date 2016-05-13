@@ -7,11 +7,7 @@ sort: 5
  
 beego 内置了 session 模块，目前 session 模块支持的后端引擎包括 memory、cookie、file、mysql、redis、couchbase、memcache、postgres，用户也可以根据相应的 interface 实现自己的引擎。
 
-beego 中使用 session 相当方便，只要在 main 入口函数中设置如下：
-
-	beego.SessionOn = true
-
-或者通过配置文件配置如下：
+beego 中使用 session 相当方便，只要在配置文件中配置如下：
 
 	sessionon = true
 
@@ -74,9 +70,9 @@ sess 对象具有如下方法：
 
 	设置 Session 过期的时间，默认值是 3600 秒，配置文件对应的参数：sessiongcmaxlifetime。
 
-- SessionSavePath
+- SessionProviderConfig
 
-	设置对应 file、mysql、redis 引擎的保存路径或者链接地址，默认值是空，配置文件对应的参数：sessionsavepath。
+	设置对应 file、mysql、redis 引擎的保存路径或者链接地址，默认值是空，配置文件对应的参数：sessionproviderconfig。
 	
 - SessionHashFunc
 
@@ -98,35 +94,35 @@ sess 对象具有如下方法：
 
 	import _ "github.com/astaxie/beego/session/mysql"	
 
-当 SessionProvider 为 file 时，SessionSavePath 是只保存文件的目录，如下所示：
+当 SessionProvider 为 file 时，SessionProviderConfig 是只保存文件的目录，如下所示：
 
-	beego.SessionProvider = "file"
-	beego.SessionSavePath = "./tmp"
+	SessionProvider = "file"
+	SessionProviderConfig = "./tmp"
 
-当 SessionProvider 为 mysql 时，SessionSavePath 是链接地址，采用 [go-sql-driver](https://github.com/go-sql-driver/mysql)，如下所示：
+当 SessionProvider 为 mysql 时，SessionProviderConfig 是链接地址，采用 [go-sql-driver](https://github.com/go-sql-driver/mysql)，如下所示：
 
-	beego.SessionProvider = "mysql"
-	beego.SessionSavePath = "username:password@protocol(address)/dbname?param=value"
+	SessionProvider = "mysql"
+	SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
 
-当 SessionProvider 为 redis 时，SessionSavePath 是 redis 的链接地址，采用了 [redigo](https://github.com/garyburd/redigo)，如下所示：
+当 SessionProvider 为 redis 时，SessionProviderConfig 是 redis 的链接地址，采用了 [redigo](https://github.com/garyburd/redigo)，如下所示：
 
-	beego.SessionProvider = "redis"
-	beego.SessionSavePath = "127.0.0.1:6379"
+	SessionProvider = "redis"
+	SessionProviderConfig = "127.0.0.1:6379"
 	
-当 SessionProvider 为 memcache 时，SessionSavePath 是 memcache 的链接地址，采用了 [memcache](https://github.com/beego/memcache)，如下所示：
+当 SessionProvider 为 memcache 时，SessionProviderConfig 是 memcache 的链接地址，采用了 [memcache](https://github.com/beego/memcache)，如下所示：
 
-	beego.SessionProvider = "memcache"
-	beego.SessionSavePath = "127.0.0.1:7080"
+	SessionProvider = "memcache"
+	SessionProviderConfig = "127.0.0.1:7080"
 	
-当 SessionProvider 为 postgres 时，SessionSavePath 是 postgres 的链接地址，采用了 [postgres](https://github.com/lib/pq)，如下所示：
+当 SessionProvider 为 postgres 时，SessionProviderConfig 是 postgres 的链接地址，采用了 [postgres](https://github.com/lib/pq)，如下所示：
 
-	beego.SessionProvider = "postgresql"
-	beego.SessionSavePath = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
+	SessionProvider = "postgresql"
+	SessionProviderConfig = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
 	
-当 SessionProvider 为 couchbase 时，SessionSavePath 是 couchbase 的链接地址，采用了 [couchbase](https://github.com/couchbaselabs/go-couchbase)，如下所示：
+当 SessionProvider 为 couchbase 时，SessionProviderConfig 是 couchbase 的链接地址，采用了 [couchbase](https://github.com/couchbaselabs/go-couchbase)，如下所示：
 
-	beego.SessionProvider = "couchbase"
-	beego.SessionSavePath = "http://bucketname:bucketpass@myserver:8091/"		
+	SessionProvider = "couchbase"
+	SessionProviderConfig = "http://bucketname:bucketpass@myserver:8091/"		
     
     
 ## 特别注意点
