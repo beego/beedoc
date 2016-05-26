@@ -352,7 +352,7 @@ fmt.Printf("Affected Num: %s, %s", num, err)
 ```go
 // 假设 user struct 里有一个 nums int 字段
 num, err := o.QueryTable("user").Update(orm.Params{
-	"nums": orm.ColValue(orm.Col_Add, 100),
+	"nums": orm.ColValue(orm.ColAdd, 100),
 })
 // SET nums = nums + 100
 ```
@@ -360,10 +360,10 @@ num, err := o.QueryTable("user").Update(orm.Params{
 orm.ColValue 支持以下操作
 
 ```go
-Col_Add      // 加
-Col_Minus    // 减
-Col_Multiply // 乘
-Col_Except   // 除
+ColAdd      // 加
+ColMinus    // 减
+ColMultiply // 乘
+ColExcept   // 除
 ```
 
 ### Delete
