@@ -9,11 +9,11 @@ sort: 4
 
 One of the most common solutions to prevent XSRF is to record an unpredictable cookie for each user and each request (POST/PUT/DELETE) must have this cookie. If the cookie doesn't match, the request is probably a forged request.
 
-Beego has built-in XSRF protection. If you want to use it, you can either set `enablexsrf = true` in your configuration file:
+Beego has built-in XSRF protection. If you want to use it, you can either set `EnableXSRF = true` in your configuration file:
 
-    enablexsrf = true
-    xsrfkey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o
-    xsrfexpire = 3600 // set cookie expire in 3600 seconds, default to 60 seconds if not specified
+    EnableXSRF = true
+    XSRFKey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o
+    XSRFExpire = 3600 // set cookie expire in 3600 seconds, default to 60 seconds if not specified
 
 or enable it in the main application entry function:
 
