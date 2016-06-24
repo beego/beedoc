@@ -164,29 +164,6 @@ After modifying the `default.go` file in the `controllers` folder, we can see th
 Refreshing the browser should show the results of the new modifications.
 
 
-### Command `test`
-
-This is a wrapper of `go test`. It will run test cases under test folder of Beego project:
-
-```
-bee test apiproject
-13-11-25 10:46:57 [INFO] Initializing watcher...
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject/controllers)
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject/models)
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject)
-13-11-25 10:46:57 [INFO] Start building...
-13-11-25 10:46:58 [SUCC] Build was successful
-13-11-25 10:46:58 [INFO] Restarting apiproject ...
-13-11-25 10:46:58 [INFO] ./apiproject is running...
-13-11-25 10:46:58 [INFO] Start testing...
-13-11-25 10:46:59 [TRAC] ============== Test Begin ===================
-PASS
-ok  	apiproject/tests	0.100s
-13-11-25 10:47:00 [TRAC] ============== Test End ===================
-13-11-25 10:47:00 [SUCC] Test finish
-```
-
-
 ### Command `pack`
 
 `pack` command is used to compress the project into a single file. Then we can deploy the project by uploading and extracting the zip file to the server.

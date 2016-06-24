@@ -28,7 +28,7 @@ To query the object by conditions see [Query in advance](query.md#all)
 o := orm.NewOrm()
 user := User{Id: 1}
 
-err = o.Read(&user)
+err := o.Read(&user)
 
 if err == orm.ErrNoRows {
 	fmt.Println("No result found.")
@@ -43,7 +43,7 @@ Read uses primary key by default. But it can use other fields as well:
 
 ```go
 user := User{Name: "slene"}
-err = o.Read(&user, "Name")
+err := o.Read(&user, "Name")
 ...
 ```
 Other fields of the object are set to the default value according to the field type.

@@ -5,7 +5,7 @@ sort: 2
 
 # bee 工具简介
 
-bee 工具是一个为了协助快速开发 beego 项目而创建的项目，您可以通过 bee 快速创建项目、实现热编译、开发测试以及开发完之后打包发布的一整套从创建、开发到部署的方案。
+bee 工具是一个为了协助快速开发 beego 项目而创建的项目，通过bee您可以很容易的进行beego项目的创建、热编译、开发、测试、和部署。
 
 ## bee 工具的安装
 
@@ -164,32 +164,9 @@ bee run
 
 刷新浏览器我们看到新的修改内容已经输出。
 
-
-### test 命令
-
-这是基于 `go test` 进行封装的一个命令，执行 beego 项目 test 目录下的测试用例：
-
-```
-bee test apiproject
-13-11-25 10:46:57 [INFO] Initializing watcher...
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject/controllers)
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject/models)
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject)
-13-11-25 10:46:57 [INFO] Start building...
-13-11-25 10:46:58 [SUCC] Build was successful
-13-11-25 10:46:58 [INFO] Restarting apiproject ...
-13-11-25 10:46:58 [INFO] ./apiproject is running...
-13-11-25 10:46:58 [INFO] Start testing...
-13-11-25 10:46:59 [TRAC] ============== Test Begin ===================
-PASS
-ok  	apiproject/tests	0.100s
-13-11-25 10:47:00 [TRAC] ============== Test End ===================
-13-11-25 10:47:00 [SUCC] Test finish
-```
-
 ### pack 命令
 
-`pack` 目录用来发布应用的时候打包，会把项目打包成 zip 包，这样我们部署的时候直接打包之后的项目上传，解压就可以部署了：
+`pack` 目录用来发布应用的时候打包，会把项目打包成 zip 包，这样我们部署的时候直接把打包之后的项目上传，解压就可以部署了：
 
 ```
 bee pack

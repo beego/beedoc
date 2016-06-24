@@ -7,7 +7,7 @@ sort: 5
 
 Beego has a built-in session module. It supports memory, file, mysql, redis, couchbase, memcache and postgres as the save provider. You can also implement your own provider according to the interface.
 
-It very easy to use session in Beego, just switch session on in the main function:
+It is very easy to use session in Beego, just switch session on in the main function:
 
 	beego.SessionOn = true
 
@@ -61,7 +61,7 @@ Here are some parameters used in the Session module:
 
 - SessionOn
 
-  Enable Session or not, `false` by default. Parameter name in configuration file: sessionon
+  Enable Session or not, `false` by default. Parameter name in configuration file: `SessionOn`
 
 - SessionProvider
   Set Session provider, which is set to memory by default. It also supports file, mysql and redis. Parameter name in configuration file: sessionprovider
