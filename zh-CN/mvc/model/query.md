@@ -561,6 +561,8 @@ o.QueryTable("user").Filter("Id", 1).RelatedSel().One(user)
 fmt.Println(user.Profile)
 // 因为在 Profile 里定义了反向关系的 User，所以 Profile 里的 User 也是自动赋值过的，可以直接取用。
 fmt.Println(user.Profile.User)
+
+// [SELECT T0.`id`, T0.`name`, T0.`profile_id`, T1.`id`, T1.`age` FROM `user` T0 INNER JOIN `profile` T1 ON T1.`id` = T0.`profile_id` WHERE T0.`id` = ? LIMIT 1000] - `1`
 ```
 
 通过 User 反向查询 Profile：
@@ -593,6 +595,7 @@ if err == nil {
 		fmt.Printf("Id: %d, UserName: %d, Title: %s\n", post.Id, post.User.UserName, post.Title)
 	}
 }
+// [SELECT T0.`id`, T0.`title`, T0.`user_id`, T1.`id`, T1.`name`, T1.`profile_id`, T2.`id`, T2.`age` FROM `post` T0 INNER JOIN `user` T1 ON T1.`id` = T0.`user_id` INNER JOIN `profile` T2 ON T2.`id` = T1.`profile_id` WHERE T0.`user_id` = ? LIMIT 1000] - `1`
 ```
 
 根据 Post.Title 查询对应的 User：
@@ -628,7 +631,7 @@ type Tag struct {
 }
 ```
 
-通过 tag name 查询哪些 post 使用了这个 tag
+一条Post纪录可能对应不同的Tag纪录,一条Tag纪录可能对应不同的Post纪录，所以Post和Tag属于多对多关系,通过 tag name 查询哪些 post 使用了这个 tag
 
 ```go
 var posts []*Post
