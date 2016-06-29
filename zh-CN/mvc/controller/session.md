@@ -100,33 +100,33 @@ sess 对象具有如下方法：
 
 当 SessionProvider 为 file 时，SessionSavePath 是只保存文件的目录，如下所示：
 
-	beego.SessionProvider = "file"
-	beego.SessionSavePath = "./tmp"
+	beego.BConfig.WebConfig.Session.SessionProvider = "file"
+	beego.BConfig.WebConfig.Session.SessionProviderConfig = "./tmp"
 
-当 SessionProvider 为 mysql 时，SessionSavePath 是链接地址，采用 [go-sql-driver](https://github.com/go-sql-driver/mysql)，如下所示：
+当 SessionProvider 为 mysql 时，SessionProviderConfig 是链接地址，采用 [go-sql-driver](https://github.com/go-sql-driver/mysql)，如下所示：
 
-	beego.SessionProvider = "mysql"
-	beego.SessionSavePath = "username:password@protocol(address)/dbname?param=value"
+	beego.BConfig.WebConfig.Session.SessionProvider = "mysql"
+	beego.BConfig.WebConfig.Session.SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
 
-当 SessionProvider 为 redis 时，SessionSavePath 是 redis 的链接地址，采用了 [redigo](https://github.com/garyburd/redigo)，如下所示：
+当 SessionProvider 为 redis 时，SessionProviderConfig 是 redis 的链接地址，采用了 [redigo](https://github.com/garyburd/redigo)，如下所示：
 
-	beego.SessionProvider = "redis"
-	beego.SessionSavePath = "127.0.0.1:6379"
+	beego.BConfig.WebConfig.Session.SessionProvider = "redis"
+	beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
 	
-当 SessionProvider 为 memcache 时，SessionSavePath 是 memcache 的链接地址，采用了 [memcache](https://github.com/beego/memcache)，如下所示：
+当 SessionProvider 为 memcache 时，SessionProviderConfig 是 memcache 的链接地址，采用了 [memcache](https://github.com/beego/memcache)，如下所示：
 
-	beego.SessionProvider = "memcache"
-	beego.SessionSavePath = "127.0.0.1:7080"
+	beego.BConfig.WebConfig.Session.SessionProvider = "memcache"
+	beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:7080"
 	
-当 SessionProvider 为 postgres 时，SessionSavePath 是 postgres 的链接地址，采用了 [postgres](https://github.com/lib/pq)，如下所示：
+当 SessionProvider 为 postgres 时，SessionProviderConfig 是 postgres 的链接地址，采用了 [postgres](https://github.com/lib/pq)，如下所示：
 
-	beego.SessionProvider = "postgresql"
-	beego.SessionSavePath = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
+	beego.BConfig.WebConfig.Session.SessionProvider = "postgresql"
+	beego.BConfig.WebConfig.Session.SessionProviderConfig = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
 	
-当 SessionProvider 为 couchbase 时，SessionSavePath 是 couchbase 的链接地址，采用了 [couchbase](https://github.com/couchbaselabs/go-couchbase)，如下所示：
+当 SessionProvider 为 couchbase 时，SessionProviderConfig 是 couchbase 的链接地址，采用了 [couchbase](https://github.com/couchbaselabs/go-couchbase)，如下所示：
 
-	beego.SessionProvider = "couchbase"
-	beego.SessionSavePath = "http://bucketname:bucketpass@myserver:8091/"		
+	beego.BConfig.WebConfig.Session.SessionProvider = "couchbase"
+	beego.BConfig.WebConfig.Session.SessionProviderConfig = "http://bucketname:bucketpass@myserver:8091"
     
     
 ## 特别注意点
