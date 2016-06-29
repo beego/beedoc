@@ -74,9 +74,9 @@ sess 对象具有如下方法：
 
 	设置 Session 过期的时间，默认值是 3600 秒，配置文件对应的参数：sessiongcmaxlifetime。
 
-- SessionSavePath
+- SessionProviderConfig
 
-	设置对应 file、mysql、redis 引擎的保存路径或者链接地址，默认值是空，配置文件对应的参数：sessionsavepath。
+	设置对应 file、mysql、redis 引擎的保存路径或者链接地址，默认值是空，配置文件对应的参数：sessionproviderconfig。
 	
 - SessionHashFunc
 
