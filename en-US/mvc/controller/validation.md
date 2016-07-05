@@ -17,6 +17,45 @@ Testing:
 
 	go test github.com/astaxie/beego/validation
 
+## Localization
+
+In order to localize validation error messages, one might use `SetDefaultMessage` function of the `validation` package.
+
+Note that format markers (`%d`, `%s`) must be preserved in translated text to provide resulting messages with validation context values.
+
+Default template messages are present in `validation.MessageTmpls` variable.
+
+Simple message localization for Russian language:
+
+```go
+import "github.com/astaxie/beego/validation"
+
+func init() {
+	validation.SetDefaultMessage(map[string]string{
+		"Required":     "Должно быть заполнено",
+		"Min":          "Минимально допустимое значение %d",
+		"Max":          "Максимально допустимое значение %d",
+		"Range":        "Должно быть в диапазоне от %d до %d",
+		"MinSize":      "Минимально допустимая длина %d",
+		"MaxSize":      "Максимально допустимая длина %d",
+		"Length":       "Длина должна быть равна %d",
+		"Alpha":        "Должно состоять из букв",
+		"Numeric":      "Должно состоять из цифр",
+		"AlphaNumeric": "Должно состоять из букв или цифр",
+		"Match":        "Должно совпадать с %s",
+		"NoMatch":      "Не должно совпадать с %s",
+		"AlphaDash":    "Должно состоять из букв, цифр или символов (-_)",
+		"Email":        "Должно быть в правильном формате email",
+		"IP":           "Должен быть правильный IP адрес",
+		"Base64":       "Должно быть представлено в правильном формате base64",
+		"Mobile":       "Должно быть правильным номером мобильного телефона",
+		"Tel":          "Должно быть правильным номером телефона",
+		"Phone":        "Должно быть правильным номером телефона или мобильного телефона",
+		"ZipCode":      "Должно быть правильным почтовым индексом",
+	})
+}
+```
+
 ## Examples:
 
 Direct use:
