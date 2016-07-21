@@ -34,7 +34,7 @@ func (this *MainController) Post() {
 }
 ```
 
-For more information aboutthe request, you can get this by accessing `this.Ctx.Request`. For more details see [Request](http://gowalker.org/net/http#Request).
+For more information about the request, you can get this by accessing `this.Ctx.Request`. For more details see [Request](http://gowalker.org/net/http#Request).
 
 ## Parse to struct
 
