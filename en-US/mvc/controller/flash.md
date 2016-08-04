@@ -5,7 +5,7 @@ sort: 6
 
 # Flash Messages
 
-This flash it not related to Adobe/Macromedia Flash at all. It relates to the temporary messages between two logic blocks. All the flash messages will be cleared after the very next logic block. Usually it is used to transform notes and error messages. It's application is well suited to the [Post/Redirect/Get](http://en.wikipedia.org/wiki/Post/Redirect/Get) model. For example:
+This flash is not related to Adobe/Macromedia Flash at all. It relates to the temporary messages between two logic blocks. All the flash messages will be cleared after the very next logic block. Usually it is used to transform notes and error messages. It's application is well suited to the [Post/Redirect/Get](http://en.wikipedia.org/wiki/Post/Redirect/Get) model. For example:
 
 ```go
 // Display settings message
