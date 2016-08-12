@@ -1,43 +1,43 @@
 ---
-name: Config Module
+name: Модуль конфигурации
 sort: 7
 ---
 
-# Parsing Configuration Files
+# Разбираем конфигурационный файл
 
-The config module is used for parsing configuration files, inspired by `database/sql`. It supports ini, json, xml and yaml files. You can install it by:
+Модуль конфигурации используется для парсинга конфигурационных файлов, вдохновленный `database/sql`. Он поддерживает: ini, json, xml and yaml файлы. Установить его можно так:
 
 	go get github.com/astaxie/beego/config
 
-If you want to parse xml or yaml, you should first install:
+Если вы хотите распарсить xml или yaml, вы должны сначало установить:
 
 	go get -u github.com/astaxie/beego/config/xml
 
-and then import:
+и потом импортировать:
 
 	import _ "github.com/astaxie/beego/config/xml"
 
-## Basic Usage
+## Простое использование
 
-Initialize a parser object:
+Инициализируем объект для парсинга:
 
 	iniconf, err := NewConfig("ini", "testini.conf")
 	if err != nil {
 		t.Fatal(err)
 	}
 
-Get data from parser:
+Получаем данные:
 
 	iniconf.String("appname")
 
-### Parser methods
+### Методы парсера
 
-Here are the parser's methods:
+Тут методы парсера:
 
-* **Setting values:**
+* **Установка значений:**
 	* `Set(key, val string) error`
 	* `SaveConfigFile(filename string) error`
-* **Getting values:**
+* **Получение значений:**
 	* `String(key string) string`
 	* `Strings(key string) []string`
 	* `Int(key string) (int, error)`
@@ -46,7 +46,7 @@ Here are the parser's methods:
 	* `Float(key string) (float64, error)`
 	* `DIY(key string) (interface{}, error)`
 	* `GetSection(section string) (map[string]string, error)`
-* **Getting values or a default value:**
+* **Получение значений или значения по-умолчанию:**
 	* `DefaultString(key string, defaultval string) string`
 	* `DefaultStrings(key string, defaultval []string) []string`
 	* `DefaultInt(key string, defaultval int) int`
@@ -54,14 +54,14 @@ Here are the parser's methods:
 	* `DefaultBool(key string, defaultval bool) bool`
 	* `DefaultFloat(key string, defaultval float64) float64`
 
-### Configuration sections
+### Секции конфигурации
 
-The ini file supports configuration sections. You can get values inside a section by using `section::key`.
+Файлый конфигурации поддерживают секции. Вы можете получить значения внутри секции так `section::key`.
 
-For example:
+Для примера:
 
 	[demo]
 	key1 = "asta"
 	key2 = "xie"
 
-You can use `iniconf.String("demo::key2")` to get the value.
+Вы можете использовать `iniconf.String("demo::key2")` для получение значения.
