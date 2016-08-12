@@ -42,7 +42,7 @@ sort: 3
 
 Используйте `true`, чтобы включить 'имя файла & номер строки', и `false`, чтобы выключить. По-умолчанию `false`.
 
-Если ваше приложение инкапсулирует вызов методов логирования, вам, возможно, следует использовать `SetLogFuncCallDepth` to set the number of stack frames to be skipped before the caller information is retrieved. The default is 2.
+Если ваше приложение инкапсулирует вызов методов логирования, вам, возможно, следует использовать `SetLogFuncCallDepth` для установки глубины слоев, которые будут пропущены перед выводом информациим. По-умолчанию это 2.
 
 	log.SetLogFuncCallDepth(3)
 
@@ -59,7 +59,7 @@ sort: 3
 
 - file
 
-	E.g.:
+	Например:
 
 		log := logs.NewLogger(10000)
 		log.SetLogger("file", `{"filename":"test.log"}`)
