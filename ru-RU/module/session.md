@@ -9,7 +9,7 @@ sort: 1
 
 Вдохновлен `database/sql`, что значит: один интерфейс, множество реализаций. По умолчанию поддерживает 4 провайдера: memory, file, redis и mysql.
 
-Установка сессионого модуля:
+Установка сессионного модуля:
 
 	go get github.com/astaxie/beego/session
 
@@ -40,11 +40,11 @@ sort: 1
 	2. enableSetCookie, omitempty: Включена ли SetCookie, omitempty
 	3. gclifetime: Интервал GC (сборщика мусора).
 	4. maxLifetime: Исчетение времени данных сохраненных на севрере
-	5. secure: Включена ли https или нет. There is `cookie.Secure` while configure cookie.
+	5. secure: Включена ли https или нет. Настроить можно будет через `cookie.Secure`.
 	6. sessionIDHashFunc: Функция генератор SessionID. По-умолчанию `sha1`.
 	7. sessionIDHashKey: Хеш ключ.
 	8. cookieLifeTime: Время истечение куки на клиенте. По-умолчанию 0, что значит что значит время жизни браузера.
-	9. providerConfig: Провайдер специцичный конфиг. Смотрите ниже для большей информации.
+	9. providerConfig: Провайдер специфичный конфиг. Смотрите ниже для большей информации.
 
 Затем вы сможете использовать сессию в вашем коде:
 
@@ -98,7 +98,7 @@ sort: 1
 
 - `file`:
 
-	The session save path. Create new files in two levels by default.  E.g.: if sessionID is `xsnkjklkjjkh27hjh78908` the file will be saved as `./tmp/x/s/xsnkjklkjjkh27hjh78908`
+	Путь для сохранения сессий. По умолчанию создает файлы на два уровня ниже.  Например: если sessionID - `xsnkjklkjjkh27hjh78908` файл будет сохранен так `./tmp/x/s/xsnkjklkjjkh27hjh78908`
 
 		./tmp
 
@@ -113,7 +113,7 @@ sort: 1
 		Get(key interface{}) interface{}      // Получить значение из сессии
 		Delete(key interface{}) error         // Удалить значение из сессии
 		SessionID() string                    // Получить текущий session ID
-		SessionRelease(w http.ResponseWriter) // Освободиьт ресурсы & сохранить данные в провайдер & вернуть данные
+		SessionRelease(w http.ResponseWriter) // Освободить ресурсы & сохранить данные в провайдер & вернуть данные
 		Flush() error                         // Удалить все данные
 	}
 
@@ -130,6 +130,6 @@ sort: 1
 В конце, зарегистрируйте ваш провайдер:
 
 	func init() {
-		// ownadapter is an instance of session.Provider
+		// own adapter is an instance of session.Provider
 		session.Register("own", ownadapter)
 	}
