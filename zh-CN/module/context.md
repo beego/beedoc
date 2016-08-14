@@ -119,7 +119,7 @@ Input 对象是针对 request 的封装，里面通过 reqeust 实现很多方�
 	
 - Body
 
-	返回请求 Body 中数据，例如 API 应用中，很多用户直接发送 json 数据包，那么通过 Query 这种函数无法获取数据，就必须通过该函数获取数据。
+	返回请求 Body 中数据，例如 API 应用中，很多用户直接发送 json 数据包，那么通过 Query 这种函数无法获取数据，就必须通过该函数获取数据。该函数已经beego1.5版本之后删除，目前可以通过RequestBody获取数据。
 	
 - GetData
 
