@@ -79,11 +79,11 @@ In order to make the router settings easier, Beego references the router impleme
 
 - beego.Router("/api/?:id", &controllers.RController{})
 
-  *default matching* /api/123    :id = 123  *can matching* /api/
+  *default matching* /api/123    :id = 123  *can match* /api/
 
 - beego.Router("/api/:id", &controllers.RController{})
 
-  *default matching* /api/123    :id = 123  *can't matching* /api/
+  *default matching* /api/123    :id = 123  *can't match* /api/
 
 - beego.Router("/api/:id([0-9]+)", &controllers.RController{})
 
