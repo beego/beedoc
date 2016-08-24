@@ -7,7 +7,7 @@ sort: 1
 
 We discussed the toolbox module before. It will listen on `127.0.0.1:8088` by default when the application is running. It can't be accessed from the internet but you can browse to it by other means such as by nginx proxy.
 
->>> For security reason it is recommend that you block port 8088 in firewall.
+>>> For security reason it is recommended that you block port 8088 in firewall.
 
 Monitor is disabled by default. You can enable it by adding the following line in `conf/app.conf` file:
 
