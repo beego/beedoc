@@ -30,9 +30,7 @@ func main() {
     logs.Critical("oh my god")
 }
 ```
-
 ![](https://cloud.githubusercontent.com/assets/707691/14017109/f608b658-f1ff-11e5-8d57-72030cfe4f5d.png)
-
 7. session增加Log，一旦错误发生可以记录日志. [#1833](https://github.com/astaxie/beego/pull/1833)
 8. logs包添加两个public函数,`EnableFuncCallDepth`和`SetLogFuncCallDepth`, 用来设置函数的调用层级. [#1837](https://github.com/astaxie/beego/pull/1837)
 9. 支持`go run`运行beego的项目代码 [#1840](https://github.com/astaxie/beego/pull/1840)
@@ -45,6 +43,7 @@ func main() {
     允许用户可以在http头和URL中带sid [#1897](https://github.com/astaxie/beego/pull/1897)
 16. 自动化路由改进生成的文件名，之前太长了 [#1924](https://github.com/astaxie/beego/pull/1924)
 17. 支持复杂的模板引擎. ace jade [#1940](https://github.com/astaxie/beego/pull/1940)
+
 ```
 beego.AddTemplateEngine("ace", func(root, path string, funcs template.FuncMap) (*template.Template, error) {
         aceOptions := &ace.Options{DynamicReload: true, FuncMap: funcs}
