@@ -2,6 +2,94 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.7.0
+新增改进功能：
+1. Filter访问速度提升7.5倍以上 [#1799](https://github.com/astaxie/beego/pull/1799)
+2. Gzip压缩的时候支持不同的level [#1808](https://github.com/astaxie/beego/pull/1808)
+3. ORM PK支持负数 [#1810](https://github.com/astaxie/beego/pull/1810)
+4. ORM 支持自定义自增ID的值 [#1826](https://github.com/astaxie/beego/pull/1826)
+5. Context 下载文件函数改进：下载文件之前先检查是否存在 [#1827](https://github.com/astaxie/beego/pull/1827)
+6. log增加 `GetLogger`函数，可以增加相应的前缀 [#1832](https://github.com/astaxie/beego/pull/1832)
+
+```
+package main
+
+import "github.com/astaxie/beego/logs"
+
+func main() {
+    logs.Warn("this is a warn message")
+
+    l := logs.GetLogger("HTTP")
+    l.Println("this is a message of http")
+
+    logs.GetLogger("orm").Println("this is a message of orm")
+
+    logs.Debug("my book is bought in the year of ", 2016)
+    logs.Info("this %s cat is %v years old", "yellow", 3)
+    logs.Error(1024, "is a very", "good", 2.5, map[string]int{"id": 1})
+    logs.Critical("oh my god")
+}
+```
+
+![](https://cloud.githubusercontent.com/assets/707691/14017109/f608b658-f1ff-11e5-8d57-72030cfe4f5d.png)
+
+7. session增加Log，一旦错误发生可以记录日志. [#1833](https://github.com/astaxie/beego/pull/1833)
+8. logs包添加两个public函数,`EnableFuncCallDepth`和`SetLogFuncCallDepth`, 用来设置函数的调用层级. [#1837](https://github.com/astaxie/beego/pull/1837)
+9. 支持`go run`运行beego的项目代码 [#1840](https://github.com/astaxie/beego/pull/1840)
+10. 添加`ExecuteTemplate`函数，这样用户就可以通过这种方式访问template，而不是直接访问map，因为map有并发读写问题 [#1848](https://github.com/astaxie/beego/pull/1848)
+11. ORM 字段支持`time`类型 [#1856](https://github.com/astaxie/beego/pull/1856)
+12. ORM One接口只获取一条 [#1874](https://github.com/astaxie/beego/pull/1874)
+13. ORM支持json jsonb类型   [#1875](https://github.com/astaxie/beego/pull/1875)
+14. ORM默认使用text类型 [#1879](https://github.com/astaxie/beego/pull/1879)
+15. session配置三个配置，`EnableSidInHttpHeader` `EnableSidInUrlQuery` `SessionNameInHttpHeader`,
+    允许用户可以在http头和URL中带sid [#1897](https://github.com/astaxie/beego/pull/1897)
+16. 自动化路由改进生成的文件名，之前太长了 [#1924](https://github.com/astaxie/beego/pull/1924)
+17. 支持复杂的模板引擎. ace jade [#1940](https://github.com/astaxie/beego/pull/1940)
+```
+beego.AddTemplateEngine("ace", func(root, path string, funcs template.FuncMap) (*template.Template, error) {
+        aceOptions := &ace.Options{DynamicReload: true, FuncMap: funcs}
+        aceBasePath := filepath.Join(root, "base/base")
+        aceInnerPath := filepath.Join(root, strings.TrimSuffix(path, ".ace"))
+
+        tpl, err := ace.Load(aceBasePath, aceInnerPath, aceOptions)
+        if err != nil {
+            return nil, fmt.Errorf("error loading ace template: %v", err)
+        }
+
+        return tpl, nil
+    })
+```
+18. session引擎支持ssdb [#1953](https://github.com/astaxie/beego/pull/1953)
+19. RenderForm支持输出required [#1993](https://github.com/astaxie/beego/pull/1993)
+20. 让打印的beego日志更加美观 [#1997](https://github.com/astaxie/beego/pull/1997)
+![](https://cloud.githubusercontent.com/assets/1248967/16153054/f654b08e-34a4-11e6-894d-24f16ab847a7.png)
+21. ORM支持struct中带有`time.Time`指针 [#2006](https://github.com/astaxie/beego/pull/2006)
+22. Controller中增加 `TplPrefix` 这样就可以在baseController制定读取模板的前缀目录 [#2030](https://github.com/astaxie/beego/pull/2030)
+23. jsonb函数中增加js函数的判断，避免函数不存在时候出错.  [#2045](https://github.com/astaxie/beego/pull/2045)
+24. ORM增加`InsertOrUpdate`函数 [#2053](https://github.com/astaxie/beego/pull/2053)
+25. Filter函数增加重置参数的参数. 因为`beego.InsertFilter("*", beego.BeforeStatic, RedirectHTTP)`
+的时候，参数会赋值给`:splat`,从而影响后续如果路由里面也有想用的路由，
+那么就会引起冲突，因此增加这样的函数以方便用户重置。 [#2085](https://github.com/astaxie/beego/pull/2085)
+26. session包配置采用对象初始化，而抛弃传递json的方式. 如果独立使用session包的可能会引起兼容性问题 [#2096](https://github.com/astaxie/beego/pull/2096)
+
+
+bugfix:
+1. 静态路由中`/m`自动跳转到`/m/` [#1792](https://github.com/astaxie/beego/pull/1792)
+2. test的时候解析配置文件出错 [#1794](https://github.com/astaxie/beego/pull/1794)
+3. 文件rotato的时候产生race condition [#1803](https://github.com/astaxie/beego/pull/1803)
+4. 修复multiple response.WriteHeader calls的错误 [#1805](https://github.com/astaxie/beego/pull/1805)
+5. ORM 如果主键是uint的时候panic [#1828](https://github.com/astaxie/beego/pull/1828)
+6. 日志rotate的时候如果当前时间小于2000 panic [#]()
+7. context重用导致XSRF重用[#1863](https://github.com/astaxie/beego/pull/1863)
+8. ORM InsertMulti的时候当是*类型时panic [#1882](https://github.com/astaxie/beego/pull/1882)
+9. task中任务在很微小的时间内可能存在执行多次的情况 [#1909](https://github.com/astaxie/beego/pull/1909)
+10. IE浏览器下载文件名混乱 [#1912](https://github.com/astaxie/beego/pull/1912)
+11. ORM DISTINCT实现 [#1938](https://github.com/astaxie/beego/pull/1938)
+12. Logs包里面设置文件的permit时候，int无法设置. [#1948](https://github.com/astaxie/beego/pull/1948) [#2003](https://github.com/astaxie/beego/pull/2003)
+13. QueryRow 和 QueryRows 查询获取数据后外键字段不填充值 [#1964](https://github.com/astaxie/beego/pull/1964)
+14. 当beego应用跑在代理之后的时候，scheme通过`X-Forwarded-Proto`获取 [#2050](https://github.com/astaxie/beego/pull/2050)
+15. 静态文件访问目录时候跳转到`目录/`的时候自动带上参数 [#2064](https://github.com/astaxie/beego/pull/2064)
+
 # beego 1.6.1
 新增功能：
 1. ORM支持Oracle驱动
