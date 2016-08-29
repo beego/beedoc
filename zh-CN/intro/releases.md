@@ -71,7 +71,7 @@ beego.AddTemplateEngine("ace", func(root, path string, funcs template.FuncMap) (
 的时候，参数会赋值给`:splat`,从而影响后续如果路由里面也有想用的路由，
 那么就会引起冲突，因此增加这样的函数以方便用户重置。 [#2085](https://github.com/astaxie/beego/pull/2085)
 26. session包配置采用对象初始化，而抛弃传递json的方式. 如果独立使用session包的可能会引起兼容性问题 [#2096](https://github.com/astaxie/beego/pull/2096)
-
+27. Swagger迁移到2.0版本，现在生产的代码无需依赖API，直接生产swagger.json 
 
 bugfix:
 1. 静态路由中`/m`自动跳转到`/m/` [#1792](https://github.com/astaxie/beego/pull/1792)
