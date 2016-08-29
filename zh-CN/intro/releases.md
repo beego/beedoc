@@ -43,7 +43,6 @@ func main() {
     允许用户可以在http头和URL中带sid [#1897](https://github.com/astaxie/beego/pull/1897)
 16. 自动化路由改进生成的文件名，之前太长了 [#1924](https://github.com/astaxie/beego/pull/1924)
 17. 支持复杂的模板引擎. ace jade [#1940](https://github.com/astaxie/beego/pull/1940)
-
 ```
 beego.AddTemplateEngine("ace", func(root, path string, funcs template.FuncMap) (*template.Template, error) {
         aceOptions := &ace.Options{DynamicReload: true, FuncMap: funcs}
@@ -58,6 +57,7 @@ beego.AddTemplateEngine("ace", func(root, path string, funcs template.FuncMap) (
         return tpl, nil
     })
 ```
+[#1940](https://github.com/astaxie/beego/pull/1940)
 18. session引擎支持ssdb [#1953](https://github.com/astaxie/beego/pull/1953)
 19. RenderForm支持输出required [#1993](https://github.com/astaxie/beego/pull/1993)
 20. 让打印的beego日志更加美观 [#1997](https://github.com/astaxie/beego/pull/1997)
