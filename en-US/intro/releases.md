@@ -2,6 +2,122 @@
 name: Release Notes
 sort: 2
 ---
+# beego 1.7.0
+New features:
+1. Improved Filter speed by 7.5+ times [#1799](https://github.com/astaxie/beego/pull/1799)
+2. Multiple level for Gzip compression [#1808](https://github.com/astaxie/beego/pull/1808)
+3. Negative numbers for ORM PK [#1810](https://github.com/astaxie/beego/pull/1810)
+4. Custom auto-increasing ID for ORM [#1826](https://github.com/astaxie/beego/pull/1826)
+5. Improved Context file downloading: check file existence before download[#1827](https://github.com/astaxie/beego/pull/1827)
+6. `GetLogger` method for log module [#1832](https://github.com/astaxie/beego/pull/1832)
+
+```
+package main
+
+import "github.com/astaxie/beego/logs"
+
+func main() {
+    logs.Warn("this is a warn message")
+
+    l := logs.GetLogger("HTTP")
+    l.Println("this is a message of http")
+
+    logs.GetLogger("orm").Println("this is a message of orm")
+
+    logs.Debug("my book is bought in the year of ", 2016)
+    logs.Info("this %s cat is %v years old", "yellow", 3)
+    logs.Error(1024, "is a very", "good", 2.5, map[string]int{"id": 1})
+    logs.Critical("oh my god")
+}
+```
+![](https://cloud.githubusercontent.com/assets/707691/14017109/f608b658-f1ff-11e5-8d57-72030cfe4f5d.png)
+7. Log for session if error occurred. [#1833](https://github.com/astaxie/beego/pull/1833)
+8. Public methods for logs: `EnableFuncCallDepth` and `SetLogFuncCallDepth` for setting function call level. [#1837](https://github.com/astaxie/beego/pull/1837)
+9. Use `go run` to run beego project [#1840](https://github.com/astaxie/beego/pull/1840)
+10. Added `ExecuteTemplate` method which is used to access template other than use map since map is not safe for concurrent reading and writing. [#1848](https://github.com/astaxie/beego/pull/1848)
+11. `time` type for ORM field [#1856](https://github.com/astaxie/beego/pull/1856)
+12. ORM One only fetch one record [#1874](https://github.com/astaxie/beego/pull/1874)
+13. ORM suports json jsonb type   [#1875](https://github.com/astaxie/beego/pull/1875)
+14. ORM uses text type by default. [#1879](https://github.com/astaxie/beego/pull/1879)
+15. session configurations: `EnableSidInHttpHeader` `EnableSidInUrlQuery` `SessionNameInHttpHeader` let user pass sid in http header or in URL. [#1897](https://github.com/astaxie/beego/pull/1897)
+16. Shorten fileanme of auto-generated router file name. [#1924](https://github.com/astaxie/beego/pull/1924)
+17. Complex template engine. ace jade [#1940](https://github.com/astaxie/beego/pull/1940)
+```
+beego.AddTemplateEngine("ace", func(root, path string, funcs template.FuncMap) (*template.Template, error) {
+        aceOptions := &ace.Options{DynamicReload: true, FuncMap: funcs}
+        aceBasePath := filepath.Join(root, "base/base")
+        aceInnerPath := filepath.Join(root, strings.TrimSuffix(path, ".ace"))
+
+        tpl, err := ace.Load(aceBasePath, aceInnerPath, aceOptions)
+        if err != nil {
+            return nil, fmt.Errorf("error loading ace template: %v", err)
+        }
+
+        return tpl, nil
+    })
+```
+[#1940](https://github.com/astaxie/beego/pull/1940)
+18. session suports ssdb [#1953](https://github.com/astaxie/beego/pull/1953)
+19. RenderForm supports required [#1993](https://github.com/astaxie/beego/pull/1993)
+20. Beautified beego logs [#1997](https://github.com/astaxie/beego/pull/1997)
+![](https://cloud.githubusercontent.com/assets/1248967/16153054/f654b08e-34a4-11e6-894d-24f16ab847a7.png)
+21. ORM suports `time.Time` pointer in struct [#2006](https://github.com/astaxie/beego/pull/2006)
+22. `TplPrefix` in Controller for setting prefix folder in baseController [#2030](https://github.com/astaxie/beego/pull/2030)
+23. js function checking in jsonb to avoid non-exist methods.  [#2045](https://github.com/astaxie/beego/pull/2045)
+24. `InsertOrUpdate` method in ORM [#2053](https://github.com/astaxie/beego/pull/2053)
+25. Filter method added parameter for resetting parameters. Because when using `beego.InsertFilter("*", beego.BeforeStatic, RedirectHTTP)`
+parameter will be assigned to `:splat` which will affect other useful routers. [#2085](https://github.com/astaxie/beego/pull/2085)
+26. session initialized by object other than json. *It might have issue for the projects use session module separately.* [#2096](https://github.com/astaxie/beego/pull/2096)
+27. Upgraded Swagger to 2.0. The code generated now doesn't rely on API. beego generat swagger.json directly.
+
+bugfix:
+1. `/m` redirect to `/m/` automatically in static reouters. [#1792](https://github.com/astaxie/beego/pull/1792)
+2. Parsing config file error while testing [#1794](https://github.com/astaxie/beego/pull/1794)
+3. Race condition while rotate file. [#1803](https://github.com/astaxie/beego/pull/1803)
+4. Fixed multiple response.WriteHeader calls error. [#1805](https://github.com/astaxie/beego/pull/1805)
+5. Fixed panic if primary key is uint in ORM [#1828](https://github.com/astaxie/beego/pull/1828)
+6. Fixed panic if current time is less than 2000 while rotate logs. [#]()
+7. Fixed XSRF reuse caused by context reuse.[#1863](https://github.com/astaxie/beego/pull/1863)
+8. Panic while InsertMulti * type in ORM [#1882](https://github.com/astaxie/beego/pull/1882)
+9. Multiple execution of task in a very short time. [#1909](https://github.com/astaxie/beego/pull/1909)
+10. Garbled file name in IE [#1912](https://github.com/astaxie/beego/pull/1912)
+11. ORM DISTINCT [#1938](https://github.com/astaxie/beego/pull/1938)
+12. Can't use int while setting file permit in Logs module. [#1948](https://github.com/astaxie/beego/pull/1948) [#2003](https://github.com/astaxie/beego/pull/2003)
+13. Empty foreign key for QueryRow and QueryRows. [#1964](https://github.com/astaxie/beego/pull/1964)
+14. Retrieving scheme from X-Forwarded-Proto when it isn't none. [#2050](https://github.com/astaxie/beego/pull/2050)
+15. Add query parameters for redirecting static path to `path/` [#2064](https://github.com/astaxie/beego/pull/2064)
+
+# beego 1.6.1
+New features
+
+1. Oracle driver for ORM
+2. inline mode for ORM Model
+3. ssdb engine for Cache
+4. Color scheme configure for console out
+5. travis integration
+6. mulitfile engine for Log. Write logs from different levels to different files.
+
+bugfix：
+1. cookie time config
+2. Router rule mapping [#1580](https://github.com/astaxie/beego/issues/1580)
+3. No logs before beego.Run()
+4. Returning nil while []string is empty in config
+5. Wrong comment for ini engine 
+6. Log time delay while store log asynchronously
+7. Config file parsed twice.
+8. Can't handle `()` in URL for regex router.
+9. Chinese encoding issue in mail
+10. No Distinct in ORM
+11. Compiling error in Layout 
+12. Wrong file name in logrotate
+13. Invalid CORS if CORS plugin fail.
+14. Conflicting between path params and router params in filters
+15. Return 404 other than 200 if static files are not found.
+16. Added GroupBy interface
+17. Static file crush caused by accessing map concurrently of Go 1.6
+18. Extra newline output by json.Encoder of JSONBody in httplib
+19. Missing log when Close if use flush in log under asynchronous mode.
+
 # beego 1.6.0
 
 New features:
