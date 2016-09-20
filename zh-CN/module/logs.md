@@ -93,12 +93,12 @@ sort: 3
 - console
    
 	可以设置输出的级别，或者不设置保持默认，默认输出到 `os.Stdout`：
-		logs.SetLogger("console", `{"level":1}`)						
+		logs.SetLogger(logs.AdapterConsole, `{"level":1}`)						
 - file 
 
 	设置的例子如下所示：
 	
-		logs.SetLogger("file", `{"filename":"test.log"}`)
+		logs.SetLogger(logs.AdapterFile, `{"filename":"test.log"}`)
 		
 	主要的参数如下说明：
 	- filename 保存的文件名
@@ -114,7 +114,7 @@ sort: 3
 
 	设置的例子如下所示：
 	
-		logs.SetLogger("multifile", ``{"filename":"test.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}``)
+		logs.SetLogger(logs.AdapterMultiFile, ``{"filename":"test.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}``)
 		
 	主要的参数如下说明(除separate外,均与file相同)：
 	- filename 保存的文件名
@@ -132,7 +132,7 @@ sort: 3
 
 	网络输出，设置的例子如下所示：
 	
-		logs.SetLogger("conn", `{"net":"tcp","addr":":7020"}`)
+		logs.SetLogger(logs.AdapterConn, `{"net":"tcp","addr":":7020"}`)
 		
 	主要的参数说明如下：
 	- reconnectOnMsg 是否每次链接都重新打开链接，默认是 false
@@ -145,7 +145,7 @@ sort: 3
 
 	邮件发送，设置的例子如下所示：
 	
-		logs.SetLogger("smtp", `{"username":"beegotest@gmail.com","password":"xxxxxxxx","host":"smtp.gmail.com:587","sendTos":["xiemengjun@gmail.com"]}`)	
+		logs.SetLogger(logs.AdapterMail, `{"username":"beegotest@gmail.com","password":"xxxxxxxx","host":"smtp.gmail.com:587","sendTos":["xiemengjun@gmail.com"]}`)	
 		
 	主要的参数说明如下：
 	- username smtp 验证的用户名
@@ -159,4 +159,16 @@ sort: 3
     
     输出到 ElasticSearch:
     
-   		logs.SetLogger("es", `{"dsn":"http://localhost:9200/","level":1}`)
+   		logs.SetLogger(logs.AdapterEs, `{"dsn":"http://localhost:9200/","level":1}`)
+
+- 简聊
+
+    输出到简聊：
+    
+    		logs.SetLogger(logs.AdapterJianLiao, `{"authorname":"xxx","title":"beego", "webhookurl":"https://jianliao.com/xxx", "redirecturl":"https://jianliao.com/xxx","imageurl":"https://jianliao.com/xxx","level":1}`)
+    		
+- slack
+- 
+    输出到slack:
+    
+                logs.SetLogger(logs.AdapterSlack, `{"webhookurl":"https://slack.com/xxx","level":1}`)
