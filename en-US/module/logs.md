@@ -99,13 +99,13 @@ Each provider supports a set of configuration options.
 
 	Can set output level or use default. Uses `os.Stdout` by default.
 
-		logs.SetLogger("console", `{"level":1}`)
+		logs.SetLogger(logs.AdapterConsole, `{"level":1}`)
 
 - file
 
 	E.g.:
 
-		logs.SetLogger("file", `{"filename":"test.log"}`)
+		logs.SetLogger(logs.AdapterFile, `{"filename":"test.log"}`)
 
 	Parameters:
 	- filename: Save to filename.
@@ -121,7 +121,7 @@ Each provider supports a set of configuration options.
 
 	E.g.:
 
-		logs.SetLogger("multifile", ``{"filename":"test.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}``)
+		logs.SetLogger(logs.AdapterMultiFile, ``{"filename":"test.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}``)
 
 	Parameters:
 	- filename: Save to filename.
@@ -138,7 +138,7 @@ Each provider supports a set of configuration options.
 
 	Net output:
 
-		logs.SetLogger("conn", `{"net":"tcp","addr":":7020"}`)
+		logs.SetLogger(logs.AdapterConn, `{"net":"tcp","addr":":7020"}`)
 
 	Parameters:
 	- reconnectOnMsg: If true: reopen and close connection every time a message is sent. False by default.
@@ -151,7 +151,7 @@ Each provider supports a set of configuration options.
 
 	Log by email:
 
-		logs.SetLogger("smtp", `{"username":"beegotest@gmail.com","password":"xxxxxxxx","host":"smtp.gmail.com:587","sendTos":["xiemengjun@gmail.com"]}`)
+		logs.SetLogger(logs.AdapterMail, `{"username":"beegotest@gmail.com","password":"xxxxxxxx","host":"smtp.gmail.com:587","sendTos":["xiemengjun@gmail.com"]}`)
 
 	Parameters:
 	- username: smtp username.
@@ -166,4 +166,16 @@ Each provider supports a set of configuration options.
     
     Log to ElasticSearch:
     
-   		logs.SetLogger("es", `{"dsn":"http://localhost:9200/","level":1}`)
+   		logs.SetLogger(logs.AdapterEs, `{"dsn":"http://localhost:9200/","level":1}`)
+
+- JianLiao
+
+    Log to JianLiao
+    
+        logs.SetLogger(logs.AdapterJianLiao, `{"authorname":"xxx","title":"beego", "webhookurl":"https://jianliao.com/xxx", "redirecturl":"https://jianliao.com/xxx","imageurl":"https://jianliao.com/xxx","level":1}`)
+
+- Slack
+
+   Log to Slack
+   
+   	logs.SetLogger(logs.AdapterSlack, `{"webhookurl":"https://slack.com/xxx","level":1}`)
