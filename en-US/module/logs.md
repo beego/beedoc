@@ -178,4 +178,4 @@ Each provider supports a set of configuration options.
 
    Log to Slack
    
-   	logs.SetLogger(logs.AdapterSlack, `{"webhookurl":"https://slack.com/xxx","level":1}`)
+   		logs.SetLogger(logs.AdapterSlack, `{"webhookurl":"https://slack.com/xxx","level":1}`)
