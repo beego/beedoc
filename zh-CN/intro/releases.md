@@ -2,6 +2,24 @@
 name: 发布版本
 sort: 2
 ---
+# beego 1.7.1
+新增功能:
+1. access log增加IP [#2156](https://github.com/astaxie/beego/pull/2156)
+2. orm增加新接口ReadForUpdate [#2158](https://github.com/astaxie/beego/pull/2158)
+3. 参数bind支持数组form，columns[0].Data=foo&columns[1].Data=bar&columns[2].Data=baz [#2111](https://github.com/astaxie/beego/pull/2111)
+4. 自定义recover函数，增加配置`beego.BConfig.RecoverFunc`，默认和原来保持一致，但是用户可以自己定义 [#2004](https://github.com/astaxie/beego/issues/2004)
+5. memcache cache 同时支持byte和string的存储，这样就可以通过gob保存struct [#1521](https://github.com/astaxie/beego/issues/1521)
+6. ORM delete支持按照指定条件删除 (#1802)[https://github.com/astaxie/beego/issues/1802]
+7. swagger的支持输出yaml (#2162)[https://github.com/astaxie/beego/pull/2162]
+8. 增加RunController 和 RunMethod,让用户自定义路由规则 (#2017)[https://github.com/astaxie/beego/issues/2017]
+
+修复bug:
+1. 静态目录如果已经存在index.html,当访问目录的时候不会自动添加/, 例如访问/swagger不会跳转到/swagger/，这样会导致相对的css和js访问不存在 [#2142](https://github.com/astaxie/beego/issues/2142)
+2. beego admin ui里面访问时间排序没有安装us,ms排序，而是安装字符排序 [#1877](https://github.com/astaxie/beego/issues/1877)
+3. captcha生产图片的时候，自定义height和width crash [#2161](https://github.com/astaxie/beego/issues/2161)
+4. DELETE请求下开启了CopyBody情况下，如果body为空panic [#1656](https://github.com/astaxie/beego/issues/1656)
+
+
 # beego 1.7.0
 新增改进功能：
 1. Filter访问速度提升7.5倍以上 [#1799](https://github.com/astaxie/beego/pull/1799)
