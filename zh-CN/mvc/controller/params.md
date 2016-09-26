@@ -134,7 +134,7 @@ func (c *FormController) Post() {
 	if err != nil {
 		fmt.Println("getfile err ", err)
 	} else {
-		c.SaveToFile("uploadname", "/www/"+h.Filename)
+		c.SaveToFile("uploadname", "static/upload/" + h.Filename) // 保存位置在 static/upload,没有文件夹要先创建
 	}
 }
 ```
