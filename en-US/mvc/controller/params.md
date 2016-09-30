@@ -9,7 +9,11 @@ We need to access the data passed by user from GET, POST and other methods. Beeg
 
 - GetString(key string) string
 - GetStrings(key string) []string
-- GetInt(key string) (int64, error)
+- GetInt(key string) (int, error)
+- GetInt8(key string) (int8, error)
+- GetInt16(key string) (int16, error)
+- GetInt32(key string) (int32, error)
+- GetInt64(key string) (int64, error)
 - GetBool(key string) (bool, error)
 - GetFloat(key string) (float64, error)
 
@@ -22,15 +26,6 @@ func (this *MainController) Post() {
 		this.Ctx.WriteString("jsoninfo is empty")
 		return
 	}
-}
-```
-
-If you need the data converted to another type such as int rather than int64, then you need to convert the type like so:
-
-```go
-func (this *MainController) Post() {
-	id := this.Input().Get("id")
-	intid, err := strconv.Atoi(id)
 }
 ```
 
