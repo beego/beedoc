@@ -118,7 +118,7 @@ orm.DR_Postgres
 // 参数2   数据库类型
 // 这个用来设置 driverName 对应的数据库类型
 // mysql / sqlite3 / postgres 这三种是默认已经注册过的，所以可以无需设置
-orm.RegisterDriver("mymysql", orm.DRMySQL)
+orm.RegisterDriver("mysql", orm.DRMySQL)
 ```
 
 #### RegisterDataBase
