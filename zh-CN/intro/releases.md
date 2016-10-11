@@ -15,7 +15,7 @@ sort: 2
 
 修复bug:
 1. 静态目录如果已经存在index.html,当访问目录的时候不会自动添加/, 例如访问/swagger不会跳转到/swagger/，这样会导致相对的css和js访问不存在 [#2142](https://github.com/astaxie/beego/issues/2142)
-2. beego admin ui里面访问时间排序没有安装us,ms排序，而是安装字符排序 [#1877](https://github.com/astaxie/beego/issues/1877)
+2. beego admin ui里面访问时间排序没有按照us,ms排序，而是按照字符排序 [#1877](https://github.com/astaxie/beego/issues/1877)
 3. captcha生产图片的时候，自定义height和width crash [#2161](https://github.com/astaxie/beego/issues/2161)
 4. DELETE请求下开启了CopyBody情况下，如果body为空panic [#1656](https://github.com/astaxie/beego/issues/1656)
 
