@@ -108,6 +108,17 @@ sess 对象具有如下方法：
 	beego.BConfig.WebConfig.Session.SessionProvider = "mysql"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
 
+    需要特别注意的是，在使用mysql存储session信息的时候，需要事先在mysql创建表，建表语句如下
+
+```
+    CREATE TABLE `session` (
+        `session_key` char(64) NOT NULL,
+        `session_data` blob,
+        `session_expiry` int(11) unsigned NOT NULL,
+        PRIMARY KEY (`session_key`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+```
+
 当 SessionProvider 为 redis 时，SessionProviderConfig 是 redis 的链接地址，采用了 [redigo](https://github.com/garyburd/redigo)，如下所示：
 
 	beego.BConfig.WebConfig.Session.SessionProvider = "redis"
