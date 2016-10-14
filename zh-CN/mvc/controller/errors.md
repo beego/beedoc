@@ -5,7 +5,7 @@ sort: 10
 
 # 错误处理
 
-我们在做 Web 开发的时候，经常会遇到页面调整和错误处理，beego 这这方面也进行了考虑，通过 `Redirect` 方法来进行跳转：
+我们在做 Web 开发的时候，经常会遇到页面调整和错误处理，beego 这方面也进行了考虑，通过 `Redirect` 方法来进行跳转：
 
 ```go
 func (this *AddController) Get() {
@@ -34,7 +34,7 @@ func (this *MainController) Get() {
 
 ![](../../images/401.png)
 
-beego 框架默认支持 404、401、403、500、503 这几种错误的处理。用户可以自定义相应的错误处理，例如下面重新定义 404 页面：
+beego 框架默认支持 401、403、404、500、503 这几种错误的处理。用户可以自定义相应的错误处理，例如下面重新定义 404 页面：
 
 ```go
 func page_not_found(rw http.ResponseWriter, r *http.Request){
