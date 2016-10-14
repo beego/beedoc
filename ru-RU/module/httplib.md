@@ -132,5 +132,5 @@ if err != nil {
 |`req.Bytes()`                   |`([]byte, error)`        |Возвращает необработанное тело ответа.                     |
 |`req.String()`                  |`(string, error)`        |Возвращает необработанное тело ответа.                     |
 |`req.ToFile(filename string)`   |`error`                  |Сохраняем тело ответа в файл.                              |
-|`req.ToJson(result interface{})`|`error`                  |Разбираем JSON ответ в результирующий объект.              |
+|`req.ToJSON(result interface{})`|`error`                  |Разбираем JSON ответ в результирующий объект.              |
 |`req.ToXml(result interface{})` |`error`                  |Разбираем XML ответ в результирующий объект.               |

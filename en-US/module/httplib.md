@@ -132,5 +132,5 @@ The settings above are before sending request, how can we get response after req
 |`req.Bytes()`                   |`([]byte, error)`        |Return raw response body.                                  |
 |`req.String()`                  |`(string, error)`        |Return raw response body.                                  |
 |`req.ToFile(filename string)`   |`error`                  |Save response body into a file.                            |
-|`req.ToJson(result interface{})`|`error`                  |Parse JSON response into the result object.                |
+|`req.ToJSON(result interface{})`|`error`                  |Parse JSON response into the result object.                |
 |`req.ToXml(result interface{})` |`error`                  |Parse XML response into the result object.                 |
