@@ -28,8 +28,9 @@ import "github.com/astaxie/beego/context"
 InsertFilter's four parameters:
 
 - `pattern`: string or regex to match against router rules. Use `/*` to match all.
-- `pos`: the place to execute the Filter. There are four fixed parameters. They represent different execution processes.
- 	- beego.BeforeRouter: before finding router.
+- `pos`: the place to execute the Filter. There are five fixed parameters. They represent different execution processes.
+	- beego.BeforeStatic: Before finding the static file.  
+ 	- beego.BeforeRouter: Before finding router.
 	- beego.BeforeExec: After finding router and before executing the matched Controller.
 	- beego.AfterExec: After executing Controller.
 	- beego.FinishRouter: After finishing router.
