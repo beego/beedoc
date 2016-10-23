@@ -2,6 +2,24 @@
 name: Release Notes
 sort: 2
 ---
+# beego 1.7.1
+New features:
+1. Added IP for access log [#2156](https://github.com/astaxie/beego/pull/2156)
+2. ReadForUpdate or ORM [#2158](https://github.com/astaxie/beego/pull/2158)
+3. Parameters binding supports form，columns[0].Data=foo&columns[1].Data=bar&columns[2].Data=baz [#2111](https://github.com/astaxie/beego/pull/2111)
+4. Added `beego.BConfig.RecoverFunc` for custom recover method. [#2004](https://github.com/astaxie/beego/issues/2004)
+5. memcache cache supports byte and string. So as to cache struct by gob[#1521](https://github.com/astaxie/beego/issues/1521)
+6. ORM delete by condition. [#1802](https://github.com/astaxie/beego/issues/1802)
+7. swagger doc supports yaml [#2162](https://github.com/astaxie/beego/pull/2162)
+8. Added RunController and RunMethod for customized router rules [#2017](https://github.com/astaxie/beego/issues/2017)
+
+Bug fixes:
+1. No / added while visiting static folder who contains index.html. For example visit /swagger won't redirect to /swagger/ so that relitive css and js won't be access. [#2142](https://github.com/astaxie/beego/issues/2142)
+2. Time in Beego admin UI displayed alphabetically other than ordered by us or ms. [#1877](https://github.com/astaxie/beego/issues/1877)
+3. Crash while captcha generates by custom height and width. [#2161](https://github.com/astaxie/beego/issues/2161)
+4. Panic while empty body requested with DELETE method when CopyBody enabled. [#1656](https://github.com/astaxie/beego/issues/1656)
+
+
 # beego 1.7.0
 New features:
 1. Improved Filter speed by 7.5+ times [#1799](https://github.com/astaxie/beego/pull/1799)
