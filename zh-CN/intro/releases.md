@@ -9,9 +9,9 @@ sort: 2
 3. 参数bind支持数组form，columns[0].Data=foo&columns[1].Data=bar&columns[2].Data=baz [#2111](https://github.com/astaxie/beego/pull/2111)
 4. 自定义recover函数，增加配置`beego.BConfig.RecoverFunc`，默认和原来保持一致，但是用户可以自己定义 [#2004](https://github.com/astaxie/beego/issues/2004)
 5. memcache cache 同时支持byte和string的存储，这样就可以通过gob保存struct [#1521](https://github.com/astaxie/beego/issues/1521)
-6. ORM delete支持按照指定条件删除 (#1802)[https://github.com/astaxie/beego/issues/1802]
-7. swagger的支持输出yaml (#2162)[https://github.com/astaxie/beego/pull/2162]
-8. 增加RunController 和 RunMethod,让用户自定义路由规则 (#2017)[https://github.com/astaxie/beego/issues/2017]
+6. ORM delete支持按照指定条件删除 [#1802](https://github.com/astaxie/beego/issues/1802)
+7. swagger的支持输出yaml [#2162](https://github.com/astaxie/beego/pull/2162)
+8. 增加RunController 和 RunMethod,让用户自定义路由规则 [#2017](https://github.com/astaxie/beego/issues/2017)
 
 修复bug:
 1. 静态目录如果已经存在index.html,当访问目录的时候不会自动添加/, 例如访问/swagger不会跳转到/swagger/，这样会导致相对的css和js访问不存在 [#2142](https://github.com/astaxie/beego/issues/2142)
