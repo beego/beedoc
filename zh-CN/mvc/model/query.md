@@ -532,7 +532,7 @@ var list orm.ParamsList
 num, err := o.QueryTable("user").ValuesFlat(&list, "name")
 if err == nil {
 	fmt.Printf("Result Nums: %d\n", num)
-	fmt.Printf("All User Names: %s", strings.Join(list, ", ")
+	fmt.Printf("All User Names: %s", strings.Join(list, ", "))
 }
 ```
 
