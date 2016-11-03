@@ -116,7 +116,7 @@ sess 对象具有如下方法：
         `session_data` blob,
         `session_expiry` int(11) unsigned NOT NULL,
         PRIMARY KEY (`session_key`)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+    ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 ```
 
 当 SessionProvider 为 redis 时，SessionProviderConfig 是 redis 的链接地址，采用了 [redigo](https://github.com/garyburd/redigo)，如下所示：
