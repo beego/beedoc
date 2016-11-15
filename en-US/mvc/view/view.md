@@ -226,7 +226,7 @@ template add.tpl:
     		<h2>{{ .Title }}</h2>
     		<p> This is SomeVar: {{ .SomeVar }}</p>
 	{{ end }}
-	
+
 	{{ define "js" }}
 		<script src="/static/js/current.js"></script>
 	{{ end}}
@@ -243,19 +243,21 @@ layout_blog.tpl:
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
-     {{ template "css" . }}
+     {{ block "css" . }}{{ end }}
 </head>
 <body>
 
     <div class="container">
-        {{ template "content" . }}
+        {{ block "content" . }}{{ end }}
     </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-     {{ template "js" . }}
+     {{ block "js" . }}{{ end }}
 </body>
 </html>
 ```
+
+Using `block` action instead of `template` allows us to have default block content and skipping blocks that we don't need in every template (for example, if we don't need css block in `add.tpl` template - we will not define it and that won't raise an error)
 
 
 ## renderform
