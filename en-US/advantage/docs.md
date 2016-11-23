@@ -90,6 +90,7 @@ func (c *CMSController) URLMapping() {
 }
 
 // @Title getStaticBlock
+// @Summary Get static block
 // @Description get all the staticblock by key
 // @Param	key		path 	string	true		"The static block key."
 // @Success 200 {object} ZDT.ZDTMisc.CmsResponse
@@ -101,6 +102,7 @@ func (c *CMSController) StaticBlock() {
 }
 
 // @Title Get Product list
+// @Summary Get product list
 // @Description Get Product list by some info
 // @Success 200 {object} models.ZDTProduct.ProductList
 // @Param	category_id		query	int	false		"category id"
@@ -131,6 +133,10 @@ Below is a list of supported comments for generating swagger APIs:
 - @Title
 
 	The title for this API. It's a string, and all the content after the first space will be parsed as the title.
+	
+- @Summary
+
+	Short description for this API. It's a string, and all the content after the first space will be parsed as the description.
 
 - @Description
 
