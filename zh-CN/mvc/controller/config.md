@@ -16,7 +16,7 @@ beego 默认会解析当前应用下的 `conf/app.conf` 文件。
 	appname = beepkg
 	httpaddr = "127.0.0.1"
 	httpport = 9090
-	runmode ="dev"
+	runmode =dev
 	autorender = false
 	recoverpanic = false
 	viewspath = "myview"
