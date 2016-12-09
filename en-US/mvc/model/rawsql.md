@@ -5,7 +5,7 @@ sort: 5
 
 # Raw SQL to query
 
-* Using Raw SQL to query don't need ORM definition
+* Using Raw SQL to query doesnt require ORM definition
 * Multiple databases support `?` as placeholders and auto convert.
 * The params of query support Model Struct, Slice and Array
 
@@ -101,7 +101,7 @@ The resultSet values returned by Raw SQL query are `string`. NULL field will ret
 
 > from Beego 1.1.0 
 > Values, ValuesList, ValuesFlat. The returned fields can be specified.
-> General you don't need specify. Because the field names already defined in your SQL.
+> Generally you don't need to specify. Because the field names are already defined in your SQL.
 
 #### Values
 
@@ -186,7 +186,7 @@ fmt.Println(res.Found) // 200
 
 #### Prepare
 
-Prepare once and exec multiple times to improve the speed of batch execuation.
+Prepare once and exec multiple times to improve the speed of batch execution.
 
 ```go
 p, err := o.Raw("UPDATE user SET name = ? WHERE name = ?").Prepare()

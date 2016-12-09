@@ -5,13 +5,11 @@ sort: 1
 
 # 模型（Models）－ beego ORM
 
-[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego/orm)
-
 beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Django ORM 和 SQLAlchemy。
 
 目前该框架仍处于开发阶段，可能发生任何导致不兼容的改动。
 
-**已支持数据库：**
+**已支持数据库驱动：**
 
 * MySQL：[github.com/go-sql-driver/mysql](https://github.com/go-sql-driver/mysql)
 * PostgreSQL：[github.com/lib/pq](https://github.com/lib/pq)
@@ -141,9 +139,9 @@ num, err := qs.Filter("User__Name", "slene").All(&posts)
 
 ```go
 var maps []orm.Params
-num, err := o.Raw("SELECT id FROM user WHERE name = ?", "slene").Values(&maps)
-if num > 0 {
-	fmt.Println(maps[0]["id"])
+num, err := o.Raw("SELECT * FROM user").Values(&maps)
+for _,term := range maps{
+	fmt.Println(term["id"],":",term["name"])
 }
 ```
 

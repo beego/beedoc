@@ -38,9 +38,15 @@ type Post struct {
     Tags  []*Tag `orm:"rel(m2m)"`
 }
 
+type Tag struct {
+    Id    int
+    Name  string
+    Posts []*Post `orm:"reverse(many)"`
+}
+
 func init() {
 	// 需要在init中注册定义的model
-	orm.RegisterModel(new(User), new(Profile))
+	orm.RegisterModel(new(User), new(Profile), new(Tag))
 }
 ```
 
@@ -112,7 +118,7 @@ orm.DR_Postgres
 // 参数2   数据库类型
 // 这个用来设置 driverName 对应的数据库类型
 // mysql / sqlite3 / postgres 这三种是默认已经注册过的，所以可以无需设置
-orm.RegisterDriver("mymysql", orm.DRMySQL)
+orm.RegisterDriver("mysql", orm.DRMySQL)
 ```
 
 #### RegisterDataBase

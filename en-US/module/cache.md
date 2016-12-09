@@ -52,19 +52,19 @@ Here is how to configure the four providers:
 
 - redis
 
-	redis is using [redigo](https://github.com/garyburd/redigo/tree/master/redis)
+	redis uses [redigo](https://github.com/garyburd/redigo/tree/master/redis)
 
 		{"key":"collectionName","conn":":6039","dbNum":"0","password":"thePassWord"}
 	
 	* key: the Redis collection name
 	* conn: Redis connection info
-	* dbNum: Select the DB with having the specified zero-based numeric index.
+	* dbNum: Select the DB having the specified zero-based numeric index.
 	* password: the password for connecting password-protected Redis server
 
 
 - memcache
 
-	memcache is using [vitess](http://code.google.com/p/vitess/go/memcache)
+	memcache uses [vitess](http://code.google.com/p/vitess/go/memcache)
 
 		{"conn":"127.0.0.1:11211"}
 

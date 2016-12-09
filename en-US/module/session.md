@@ -5,7 +5,7 @@ sort: 1
 
 # Notes:
 
-* This document is for using `session` as a standalone module in other project. If you are using `session` with Beego, please check here [session control](../mvc/controller/session.md)*
+* This document is for using `session` as a standalone module in other projects. If you are using `session` with Beego, please check here [session control](../mvc/controller/session.md)*
 
 # Introduction to Session Module
 
@@ -36,7 +36,7 @@ Then initialize data in your main function:
 		go globalSessions.GC()
 	}
 
-Paramters of NewManager:
+Parameters of NewManager:
 
 1. Saving provider name: memory, file, mysql, redis
 2. A JSON string that contains the config information.
@@ -64,14 +64,14 @@ Then we can use session in our code:
 		}
 	}
 
-Here is methods of globalSessions:
+Here are the methods of globalSessions:
 
 - `SessionStart` Return session object based on current request.
 - `SessionDestroy` Destroy current session object.
 - `SessionRegenerateId` Regenerate a new sessionID.
 - `GetActiveSession` Get active session user.
 - `SetHashFunc` Set sessionID generator function.
-- `SetSecure` Enable Secure of cookie or not.
+- `SetSecure` Enable Secure cookie or not.
 
 The returned session object is a Interface. Here are the methods:
 
@@ -84,11 +84,11 @@ The returned session object is a Interface. Here are the methods:
 
 ## Saving Provider Config
 
-We've already seen configuration of `memory` provider. Here is the config of the others:
+We've already seen configuration of `memory` provider. Here is the configuration of the others:
 
 - `mysql`:
 
-	All the parameters are the same as memory's except the fourth param, e.g.:
+	All the parameters are the same as memory's except the fourth parameter, e.g.:
 
 		username:password@protocol(address)/dbname?param=value
 
@@ -108,7 +108,7 @@ We've already seen configuration of `memory` provider. Here is the config of the
 
 ## Creating a new provider
 
-Sometimes you need to create your own session provider. Session module uses interfaces, so you can implement this interface to create your own provider easily.
+Sometimes you need to create your own session provider. The Session module uses interfaces, so you can implement this interface to create your own provider easily.
 
 
 	// SessionStore contains all data for one session process with specific id.
@@ -131,7 +131,7 @@ Sometimes you need to create your own session provider. Session module uses inte
 		SessionGC()
 	}
 
-At last, register your provider:
+Finally, register your provider:
 
 	func init() {
 		// ownadapter is an instance of session.Provider

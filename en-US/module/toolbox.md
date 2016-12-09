@@ -43,9 +43,9 @@ It will return the database status accordingly.
 
 ## Profiling
 
-Monitoring the performance of running processes is a very good way to optimize performance and to look for issues of our application. E.g.: information of GC and goroutine.
+Monitoring the performance of running processes is a very good way to optimize performance and to look for issues in our application. E.g.: information of GC and goroutine.
 
-Profile provides a easy entry for you to debug the application. It uses the `ProcessInput` entry function to process the requests. Here are some debugging types:
+Profile provides a easy entry point for you to debug the application. It uses the `ProcessInput` entry function to process the requests. Here are some debugging types:
 
 - lookup goroutine
 

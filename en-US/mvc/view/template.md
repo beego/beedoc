@@ -18,7 +18,7 @@ Then you can use these functions in template:
 
 	{{.Content | hi}}
 
-Here are Beego's buildin template functions:
+Here are Beego's built-in template functions:
 
 * dateformat
 
@@ -30,11 +30,11 @@ Here are Beego's buildin template functions:
 
 * compare
 
-  Compare two objects. If they are same return true otherwise return false. {{compare .A .B}}
+  Compare two objects. If they are the same return true otherwise return false. {{compare .A .B}}
 
 * substr
 
-  Return sub string. support UTF-8 string. {{substr .Str 0 30}}
+  Return sub string. supports UTF-8 string. {{substr .Str 0 30}}
 
 * html2str
 

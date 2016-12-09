@@ -5,12 +5,12 @@ sort: 1
 
 # Chat Room
 
-This demo shows two ways of implementing Web IM app:
+This demo shows two ways of implementing a Web Instant Messaging application:
 
 Using long polling.
 Using WebSocket.
 
-Both of them save data in memory as default so everything will start over again every time, but you can change setting in `conf/app.conf` to enable database adapter.
+Both of them save data in memory by default so everything will be lost every time the application restarts, but you can change this setting in `conf/app.conf` to enable a database adapter for data persistence.
 
 Here is the project structure:
 
@@ -20,7 +20,7 @@ WebIM/
     conf
         app.conf        # Configuration file
     controllers
-        app.go          # The welcome screen that allows user to pick a technology and username
+        app.go          # The welcome screen that allows the user to pick a technology and username
         chatroom.go     # Functions for data management
         longpolling.go  # Controller and methods for long polling chat demo
         websocket.go    # Controller and methods for WebSocket chat demo

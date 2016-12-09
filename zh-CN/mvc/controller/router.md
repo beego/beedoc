@@ -91,7 +91,7 @@ beego.Handler("/rpc", s)
 
 	自定义正则匹配 //匹配 /api/123 :id = 123
 
-- beego.Router("/user/:username([\w]+)", &controllers.RController{})
+- beego.Router("/user/:username([\\w]+)", &controllers.RController{})
 
 	正则字符串匹配 //匹配 /user/astaxie :username = astaxie
 
@@ -190,7 +190,7 @@ beego.Handler("/rpc", s)
 	/controller/simple
 	/controller/simple.html
 	/controller/simple.json
-	/controller/simple.rss
+	/controller/simple.xml
 	
 可以通过 `this.Ctx.Input.Param(":ext")` 获取后缀名。
 

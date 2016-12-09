@@ -25,3 +25,11 @@ You can register multiple static directories. For example if you require two dow
 
 Visiting the URL `http://localhost/down1/123.txt` will request the file `123.txt` in the `download1` directory.
 To remove the default `/static -> static` mapping, you can use `beego.DelStaticPath("/static")`.
+
+# Implementation
+
+To implement this in your Web Application, register your Static directory to your routes.go files
+
+	beego.SetStaticPath("/down1", "download1")
+
+Save it, and now you can access it in your browser.

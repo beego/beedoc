@@ -5,7 +5,7 @@ sort: 1
 
 # Configuration
 
-Beego configuration file supports INI, XML, JSON, YAML. It uses INI format by default. It is flexible and easy to configure.
+The Beego configuration file supports the following formats: INI, XML, JSON, YAML. It uses INI format by default. It is flexible and easy to configure.
 
 ## The default configurations parsing
 
@@ -23,14 +23,14 @@ You can initialize many Beego default variables in this file:
 
 These configurations will replace Beego's default value.
 
-You can also configure many values which your application needs, such as database connection:
+You can also configure many values which your application needs, such as database connection details:
 
 	mysqluser = "root"
 	mysqlpass = "rootpass"
 	mysqlurls = "127.0.0.1"
 	mysqldb   = "beego"
 
-Then you can read these configurations like this:
+Then you can access these configurations like this:
 
 	beego.AppConfig.String("mysqluser")
 	beego.AppConfig.String("mysqlpass")
@@ -56,9 +56,9 @@ AppConfig's methods:
 - GetSection(section string) (map[string]string, error)
 - SaveConfigFile(filename string) error
 
-The key supports section::key when using ini type.
+The key supports the section::key pattern when using ini type.
  
-You can use Default* methods to return default value if can't read from config file.
+You can use Default* methods to return default values if can't read from config file.
 
 
 ### The Configurations for Different Environments
@@ -136,25 +136,25 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * AppName
 
-    Application name, Beego by default. It's project_name if the application is created by `bee new project_name`
+    Application name, Beego by default. It is set to project_name if the application is created by `bee new project_name`
   
   	`beego.BConfig.AppName = "beego"`
   	
 * RunMode
 
-    The application mode, which can be `dev`, `prod` or `test`, `dev` by default. In `dev` mode it will show user friendly error pages as we saw before but it won't show in `prod` mode.
+    The application mode, which can be `dev`, `prod` or `test`, `dev` by default. In `dev` mode it will show user friendly error pages as we saw before but user friendly error pages will not be rendered in `prod` mode.
     
     `beego.BConfig.RunMode = "dev"`
  
 * RouterCaseSensitive
 
-    Set the router case sensitivity or not. Default value is true.
+    Set whether the router is case-sensitive or not. Default value is true.
     
     `beego.BConfig.RouterCaseSensitive = true`
    
 * ServerName
 
-    Beego server will output `beego` as server name by default.
+    Beego server will output `beego` as the server name by default.
 
 	`beego.BConfig.ServerName = "beego"`
 	
@@ -172,9 +172,17 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * EnableGzip
 
-    Enable Gzip or not, false by default. If Gzip is enabled, the output of template will be compressed by Gzip or zlib according to `Accept-Encoding` of browser.
+    Enable Gzip or not, false by default. If Gzip is enabled, the output of template will be compressed by Gzip or zlib 	    according to `Accept-Encoding` of browser.
   
     `beego.BConfig.EnableGzip = false`
+    
+    Further properties as below:
+    
+    `gzipCompressLevel = 9` The compression level used for deflate compression(0-9),default is 9 (best speed). 
+    
+    `gzipMinLength = 256` Original content will only be compressed if content length is either unknown or greater than gzipMinLength.(default length is 20B,same as nginx).  
+    
+    `includedMethods = get;post` List of HTTP methods to compress. If not set, only GET requests are compressed.
 
 * MaxMemory
 
@@ -184,7 +192,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * EnableErrorsShow
 
-    Whether show error messages or not. True by default.
+    Whether to show error messages or not. True by default.
 
 	`beego.BConfig.EnableErrorsShow = true`
 
@@ -192,7 +200,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * AutoRender
 
-    Use auto render or not, true by default. Should set it to false for API application, no need to render template.
+    Use auto render or not, true by default. Should set it to false for API application as there is no need to render templates.
   
     `beego.BConfig.WebConfig.AutoRender = true`
     
@@ -210,13 +218,13 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * FlashSeperator
 
-    Flash data seperator，default is `BEEGOFLASH`
+    Flash data separator，default is `BEEGOFLASH`
   
   	`beego.BConfig.WebConfig.FlashSeperator = "BEEGOFLASH"`
 
 * DirectoryIndex
 
-    Enable list static directory or not, disabled by default. It will return 403 error.
+    Enable listing of static directory or not, disabled by default. It will return 403 error.
 
 	`beego.BConfig.WebConfig.DirectoryIndex = false`
 
@@ -233,7 +241,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * StaticExtensionsToGzip
 
-    Set a list of file extensions. The static file with the extension will supports gzip compress. It supports `.css` and `.js` by default.
+    Set a list of file extensions. Any static file with the extension in the list will support gzip compression. It supports `.css` and `.js` by default.
     
 	`beego.BConfig.WebConfig.StaticExtensionsToGzip = []string{".css", ".js"}`
 	
@@ -253,7 +261,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * ViewsPath
 
-    The path of templates, views by default.
+    The path of the location of the templates. This is set to views by default.
     
 	`beego.BConfig.WebConfig.ViewsPath="views"`
 
@@ -296,37 +304,37 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * EnableHTTP
 
-	Weather enable HTTP listen. Default is true.
+	Whether to enable HTTP listen or not. Default is true.
 
 	`beego.BConfig.Listen.EnableHTTP = true`
 
 * HTTPAddr
 
-	The address app listens to. Default is empty, listen all IPs.
+	The address the app listens to. Default is empty ie listen to all IPs.
 
 	`beego.BConfig.Listen.HTTPAddr = ""`
 
 * HTTPPort
 
-    The port the app listens to. Default is 8080
+    The port the app listens on. Default is 8080
 
 	`beego.BConfig.Listen.HTTPPort = 8080`
 
 * EnableHTTPS
 
-    Whether enable HTTPS or not. Default is false. To enable, set `EnableHTTPS = true` and set `HTTPSCertFile` and `HTTPSKeyFile`
+    Whether to enable HTTPS or not. Default is false. To enable, set `EnableHTTPS = true` and set `HTTPSCertFile` and `HTTPSKeyFile`
 
 	`beego.BConfig.Listen.EnableHTTPS = false`
 
 * HTTPSAddr
 
-	The address app listens to. Default is empty, listen all IPs.
+	The address the app listens to. Default is empty ie listen to all IPs.
 
 	`beego.BConfig.Listen.HTTPSAddr = ""`
 
 * HTTPSPort
 
-    The port the app listens to. Default is 10443
+    The port the app listens on. Default is 10443
 
 	`beego.BConfig.Listen.HTTPSPort = 10443`
 
@@ -356,19 +364,19 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * AdminPort
 
-    The port the admin app listens to. Default is 8088.
+    The port the admin app listens on. Default is 8088.
     
 	`beego.BConfig.Listen.AdminPort = 8088`
 
 * EnableFcgi
 
-    Whether enable fastcgi or not. Default is false 
+    Whether to enable fastcgi or not. Default is false 
     
     `beego.BConfig.Listen.EnableFcgi = false`
 
 * EnableStdIo
 
-	Whether use fastcgi standard I/O. Default is false
+	Whether to use fastcgi standard I/O or not. Default is false
 
 	`beego.BConfig.Listen.EnableStdIo = false`
 
@@ -404,13 +412,13 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * SessionCookieLifeTime
 
-    The valid time of cookie in browser for session, 3600s by default.
+    The valid expiry time of cookie in browser for session, 3600s by default.
 
 	`beego.BConfig.WebConfig.Session.SessionCookieLifeTime = 3600`
 
 * SessionAutoSetCookie
 
-	Enable SetCookie or not. Default is true.
+	Enable whether to SetCookie or not. Default is true.
 
 	`beego.BConfig.WebConfig.Session.SessionAutoSetCookie = true`
 
@@ -432,7 +440,7 @@ session cookie domain. Default is empty.
 
 * FileLineNum
 
-    Whether print line number or not. Default is true. This config is not supported in config file.
+    Whether to print line number or not. Default is true. This config is not supported in config file.
 
 	`beego.BConfig.Log.FileLineNum = true`
 

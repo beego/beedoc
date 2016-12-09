@@ -5,7 +5,7 @@ sort: 8
 
 # JSON, XML and JSONP
 
-Beego is also designed for API application. When we build API application, we often need to respond with JSON or XML. Beego provides a simple approach:
+Beego is also designed for the creation of API applications. When we build an API application, we often need to respond with JSON or XML. Beego provides a simple approach:
 
 - Respond with JSON data:
 
@@ -42,6 +42,6 @@ Beego is also designed for API application. When we build API application, we of
 		this.ServeJSONP()
 	}
 	```
-  ServeJsonp will set `content-type` to `application/javascript` and JSONify the data and respond to jsonp based on the request parameter `callback`.
+  ServeJsonp will set `content-type` to `application/javascript` , JSONify the data and respond to jsonp based on the request parameter `callback`.
 
-In version 1.6 names of methods were changed, it is ServeJSON(), ServeXML(), ServeJSONP() from now.
+In version 1.6 names of methods were changed, it is ServeJSON(), ServeXML(), ServeJSONP() from now on.

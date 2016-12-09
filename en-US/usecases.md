@@ -54,5 +54,11 @@
         	<td>Interla</td>
         	<td><a target="_blank" href="http://interla.net">http://interla.net</a></td>
         </tr>
+
+        <tr>
+        	<td>Flipkart - Image Delivery</td>
+        	<td>Web Server which resizes images and works as a fallback to CDN</td>
+        	<td><a target="_blank" href="github.com/flipkart-incubator/lenna">Git Hub</a></td>
+        </tr>
     </tbody>
 </table>
