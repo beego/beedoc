@@ -32,6 +32,12 @@ The comments above set the global information. The available settings:
 - @TermsOfServiceUrl
 - @License
 - @LicenseUrl
+- @Name
+- @URL
+- @LicenseUrl
+- @License
+- @Schemes
+- @Host
 
 ## Router Parsing
 Right now automated API documentation only supports `NSNamespace` and `NSInclude` and it only supports two levels of parsing. The first level is the API version and the second level is the modules.
@@ -90,11 +96,14 @@ func (c *CMSController) URLMapping() {
 }
 
 // @Title getStaticBlock
+// @Summary getStaticBlock
+// @Deprecated Deprecated
 // @Description get all the staticblock by key
-// @Param	key		path 	string	true		"The static block key."
+// @Param	key	path	string	true	"The static block key."	default_value
 // @Success 200 {object} ZDT.ZDTMisc.CmsResponse
 // @Failure 400 Bad request
 // @Failure 404 Not found
+// @Accept json
 // @router /staticblock/:key [get]
 func (c *CMSController) StaticBlock() {
 
@@ -128,6 +137,10 @@ In the code above, we defined the comment on top of `CMSController` is the infor
 
 Below is a list of supported comments for generating swagger APIs:
 
+- @Accept
+	Aceept type json/xml/html/plain
+- @Deprecated
+	Deprecated flag.
 - @Title
 
 	The title for this API. It's a string, and all the content after the first space will be parsed as the title.
@@ -145,6 +158,7 @@ Below is a list of supported comments for generating swagger APIs:
 	3. parameter data type
 	4. required
 	5. comment
+	6. default value
 
 - @Success
 
@@ -171,9 +185,8 @@ Below is a list of supported comments for generating swagger APIs:
 
 Make it work by following the steps:
 1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`.
-3. Import `_ "beeapi/docs"` in `main.go`.
-4. Use `bee run -downdoc=true -gendoc=true` to run your API application and rebuild document automatically.
-5. Visit `swagger document from API project's URL and port.  (see item #1 below)
+2. Use `bee run -downdoc=true -gendoc=true` to run your API application and rebuild document automatically.
+3. Visit `swagger document from API project's URL and port.  (see item #1 below)
 
 Your API document is available now. Open your browser and check it.
 
