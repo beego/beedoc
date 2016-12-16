@@ -166,9 +166,9 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * CopyRequestBody
 
-    Flag of copy raw request body in context, true by default except GET, HEAD or file uploading.
+    Flag of copy raw request body in context, false by default except GET, HEAD or file uploading.
   
-  	`beego.BConfig.CopyRequestBody = true`
+  	`beego.BConfig.CopyRequestBody = false`
 
 * EnableGzip
 
@@ -208,7 +208,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
     Enable Docs or not, default is `false`
 
-	`beego.BConfig.WebConfig.EnableDocs = true`
+	`beego.BConfig.WebConfig.EnableDocs = false`
 
 * FlashName
 
@@ -251,19 +251,19 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
     Left mark of template, `{{` by default.
 
-	`beego.BConfig.WebConfig.TemplateLeft="{{"`
+	`beego.BConfig.WebConfig.TemplateLeft = "{{"`
 
 * TemplateRight
 
     Right mark of template, `}}` by default.
     
-    `beego.BConfig.WebConfig.TemplateRight="}}"`
+    `beego.BConfig.WebConfig.TemplateRight = "}}"`
 
 * ViewsPath
 
     The path of the location of the templates. This is set to views by default.
     
-	`beego.BConfig.WebConfig.ViewsPath="views"`
+	`beego.BConfig.WebConfig.ViewsPath = "views"`
 
 * EnableXSRF
     Enable XSRF
@@ -288,13 +288,13 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
     Enable graceful shutdown or not. Default is disabled.
   
-  	`beego.BConfig.Listen.Graceful=false`
+  	`beego.BConfig.Listen.Graceful = false`
   
 * ServerTimeOut
 
     Set the http timeout. Default is 0, no timeout.
 
-	`beego.BConfig.Listen.ServerTimeOut=0`
+	`beego.BConfig.Listen.ServerTimeOut = 0`
 
 * ListenTCP4
 
@@ -358,9 +358,9 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 * AdminAddr
 
-    The address admin app listens to. Default is "localhost".
+    The address admin app listens to. Default is "".
     
-    `beego.BConfig.Listen.AdminAddr = "localhost"`
+    `beego.BConfig.Listen.AdminAddr = ""`
 
 * AdminPort
 
@@ -392,7 +392,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
     Session provider, memory by default.
     
-    `beego.BConfig.WebConfig.Session.SessionProvider = ""`
+    `beego.BConfig.WebConfig.Session.SessionProvider = "memory"`
 
 * SessionName
 
