@@ -15,6 +15,12 @@ You can install bee tool by following command:
 
 `bee` is installed into `GOPATH/bin` by default. You need to add `GOPATH/bin` to your PATH, otherwise the `bee` command won't work.
 
+## build bee command tool 
+
+Building bee command tool by following command:
+
+	go build github.com/beego/bee
+
 ## bee tool commands
 
 Type `bee` in command line. We can see following messages:
