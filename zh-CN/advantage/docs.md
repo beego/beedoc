@@ -134,7 +134,7 @@ func (c *CMSController) Product() {
 
 	参数，表示需要传递到服务器端的参数，有五列参数，使用空格或者tab分割，五个分别表示的含义如下
 	1. 参数名
-	2. 参数类型，可以有的值是form、query、path、body、header，form表示是post请求的数据，query表示带在url之后的参数，path表示请求路径上得参数，例如上面例子里面的key，body表示是一个raw数据请求，header表示带在header信息中得参数。
+	2. 参数类型，可以有的值是formData、query、path、body、header，formData表示是post请求的数据，query表示带在url之后的参数，path表示请求路径上得参数，例如上面例子里面的key，body表示是一个raw数据请求，header表示带在header信息中得参数。
 	3. 参数类型
 	4. 是否必须
 	5. 注释
