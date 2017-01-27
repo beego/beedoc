@@ -9,7 +9,7 @@ Beego has a built-in session module. It supports memory, file, mysql, redis, cou
 
 It is very easy to use session in Beego, just switch session on in the main function:
 
-	beego.SessionOn = true
+	beego.BConfig.WebConfig.Session.SessionOn = true
 
 Or you can switch it on in the configuration file:
 
