@@ -37,7 +37,7 @@ We talked about the fact that Beego is a RESTful framework so our requests will 
 
 ## The `Get` method
 
-The logic in our `Get` method just outputs some data. We can get our data by many ways and store it in `this.Data` which is a `map[string]interface{}`. We can assign any type of data here. In this case we just assigned two strings.
+The logic in our `Get` method just outputs some data. We can get our data by many ways and store it in `this.Data` which is a `map[interface{}]interface{}`. We can assign any type of data here. In this case we just assigned two strings.
 
 The last thing to be done is rendering the template. `this.TplNames` (v1.6 uses `this.TplName`) specifies the template which will be rendered: Here it's `index.tpl`. If you don't set the template, it will default to `controller/method_name.tpl`. For example, in this case it would try to find `maincontroller/get.tpl`.
 
