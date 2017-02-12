@@ -14,12 +14,12 @@ o := orm.NewOrm()
 user := new(User)
 user.Name = "slene"
 
-fmt.Println(o.Insert(user))
+fmt.Println(o.Insert(&user))
 
 user.Name = "Your"
-fmt.Println(o.Update(user))
-fmt.Println(o.Read(user))
-fmt.Println(o.Delete(user))
+fmt.Println(o.Update(&user))
+fmt.Println(o.Read(&user))
+fmt.Println(o.Delete(&user))
 ```
 
 如果需要通过条件查询获取对象，请参见[高级查询](query.md#all)
