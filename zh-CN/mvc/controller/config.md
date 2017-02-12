@@ -193,6 +193,11 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 	`beego.BConfig.EnableErrorsShow = true`
 
+* EnableErrorsRender
+
+	是否将错误信息进行渲染，默认值为true，即出错会提示友好的出错页面，对于API类型的应用可能需要将该选项设置为false以阻止在`dev`模式下不必要的模板渲染信息返回。
+
+
 #### Web配置
 
 * AutoRender

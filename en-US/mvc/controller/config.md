@@ -188,6 +188,10 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
 	`beego.BConfig.EnableErrorsShow = true`
 
+* EnableErrorsRender
+
+	Whether to render error messages or not. True by default, user friendly error pages will not be rendered even in dev `RunMode` if this value is false.
+
 #### Web config
 
 * AutoRender
