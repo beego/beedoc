@@ -5,7 +5,7 @@ sort: 6
 
 # 核心工具模块
 
-这个模块主要是参考了 Dropwizard 框架，是一位用户提醒我说有这么一个框架，然后里面实现一些很酷的东西。那个 [issue](https://github.com/astaxie/beego/issues/128) 详细描述了该功能的雏形，然后就在参考该功能的情况下增加了一些额外的很酷的功能，接下来我讲一一，介绍这个模块中的几个功能：健康检查、性能调试、访问统计、计划任务。
+这个模块主要是参考了 Dropwizard 框架，是一位用户提醒我说有这么一个框架，然后里面实现一些很酷的东西。那个 [issue](https://github.com/astaxie/beego/issues/128) 详细描述了该功能的雏形，然后就在参考该功能的情况下增加了一些额外的很酷的功能，接下来我将一一介绍这个模块中的几个功能：健康检查、性能调试、访问统计、计划任务。
 
 ## 如何安装
 
@@ -33,13 +33,13 @@ func (dc *DatabaseCheck) Check() error {
 toolbox.AddHealthCheck("database",&DatabaseCheck{})
 ```
 
-加入之后，你可以往你的管理端口`/healthcheck`发送GET请求：
+加入之后，你可以往你的管理端口 `/healthcheck` 发送GET请求：
 
 	$ curl http://beego.me:8088/healthcheck
 	* deadlocks: OK
 	* database: OK
 	
-如果检测显示是正确的，那么输出OK，如果检测出错，显示出错的信息。
+如果检测显示是正确的，那么输出 OK，如果检测出错，显示出错的信息。
 	
 ## profile
 
@@ -261,7 +261,7 @@ spec 格式是参照 crontab 做的，详细的解释如下所示：
 
 ## 调试模块(已移动到utils模块)
 
-我们经常需要打印一些参数进行调试，但是默认的参数打印总是不是很完美，也没办法定位代码行之类的，所以 beego的 toolbox 模块进行了 debug 模块的开发，主要包括了两个函数：
+我们经常需要打印一些参数进行调试，但是默认的参数打印总是不是很完美，也没办法定位代码行之类的，所以 beego 的 toolbox 模块进行了 debug 模块的开发，主要包括了两个函数：
 
 - Display()  直接打印结果到 console
 - GetDisplayString() 返回打印的字符串
