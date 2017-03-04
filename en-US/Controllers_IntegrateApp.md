@@ -60,7 +60,7 @@ func (m *MainController) Get() {
 
 func main() {
 	beego.Router("/", &MainController{})
-	beego.Handler("/chat/:info(.*)", sockjs.NewHandler("/chat", opt, YouHandlerFunc))
+	beego.Handler("/chat/:info(.*)", sockjs.NewHandler("/chat", sockjs.DefaultOptions, YouHandlerFunc))
 	beego.Run()
 }
 ```
