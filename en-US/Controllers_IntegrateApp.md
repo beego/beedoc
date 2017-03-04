@@ -6,7 +6,7 @@ Beego supports to integrate third-party application, you can customize `http.Han
 
 sockjshandler implemented interface `http.Handler`.
 
-Beego has an example for supporting chat of sockjs, here is the code:
+Beego has an example for supporting echo app of sockjs, here is the code:
 
 ```go
 package main
@@ -20,20 +20,35 @@ import (
 
 var users *sockjs.SessionPool = sockjs.NewSessionPool()
 
-func chatHandler(s sockjs.Session) {
-	users.Add(s)
-	defer users.Remove(s)
-	
-	for {
-		m := s.Receive()
-		if m == nil {
-			break
+func LiveUpdate(session sockjs.Session) {
+	var closedSession = make(chan struct{})
+	reader := make(chan string)
+	go func() {
+		for {
+			reader <- "echo"
+			time.Sleep(time.Second)
 		}
-		fullAddr := s.Info().RemoteAddr
-		addr := fullAddr[:strings.LastIndex(fullAddr, ":")]
-		m = []byte(fmt.Sprintf("%s: %s", addr, m))
-		users.Broadcast(m)
+	}()
+	go func() {
+		for {
+			select {
+			case <-closedSession:
+				return
+			case msg := <-reader:
+				if err := session.Send(msg); err != nil {
+					return
+				}
+			}
+		}
+	}()
+	for {
+		if _, err := session.Recv(); err == nil {
+			continue
+		}
+		break
 	}
+	close(closedSession)
+	log.Println("sockjs session closed")
 }
 
 type MainController struct {
@@ -50,5 +65,39 @@ func main() {
 	beego.Run()
 }
 ```
+JS code:
+```
+if (!window.location.origin) { // Some browsers (mainly IE) do not have this property, so we need to build it manually...
+    window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
+}
+var recInterval = null;
+var socket = null;
 
-The above example implemented a simple chat room for sockjs, and you can use `http.Handler` for more extensions.
+
+var new_conn = function() {
+    socket = new SockJS('/live_update', null, {
+        'protocols_whitelist': ['websocket', 'xdr-streaming', 'xhr-streaming',
+            'iframe-eventsource', 'iframe-htmlfile',
+            'xdr-polling', 'xhr-polling', 'iframe-xhr-polling',
+            'jsonp-polling'
+        ]
+    });
+    clearInterval(recInterval);
+
+    socket.onclose = function() {
+        socket = null;
+        recInterval = setInterval(function() {
+            new_conn();
+        }, 2000);
+    };
+    socket.onmessage = function(e) {
+        document.getElementById("output").value += e.data +"\n";
+    };
+};
+
+(function () {
+    new_conn();
+})();
+
+```
+The above example implemented a simple echo app for sockjs, and you can use `http.Handler` for more extensions.
