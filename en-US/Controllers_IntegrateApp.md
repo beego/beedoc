@@ -12,13 +12,12 @@ Beego has an example for supporting echo app of sockjs, here is the code:
 package main
 
 import (
-	"fmt"
-	"github.com/astaxie/beego"
-	"gopkg.in/igm/sockjs-go.v2/sockjs"
-	"strings"
-)
+	"log"
 
-var users *sockjs.SessionPool = sockjs.NewSessionPool()
+	"time"
+
+	"gopkg.in/igm/sockjs-go.v2/sockjs"
+)
 
 func LiveUpdate(session sockjs.Session) {
 	var closedSession = make(chan struct{})
