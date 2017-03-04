@@ -2,7 +2,7 @@
 
 Beego supports to integrate third-party application, you can customize `http.Handler` as follows:
 
-	beego.RouterHandler("/chat/:info(.*)", sockjshandler)
+	beego.Handler("/chat/:info(.*)", sockjs.NewHandler("/chat", opt, YouHandlerFunc))
 
 sockjshandler implemented interface `http.Handler`.
 
@@ -14,7 +14,7 @@ package main
 import (
 	"fmt"
 	"github.com/astaxie/beego"
-	"github.com/fzzy/sockjs-go/sockjs"
+	"gopkg.in/igm/sockjs-go.v2/sockjs"
 	"strings"
 )
 
@@ -45,10 +45,8 @@ func (m *MainController) Get() {
 }
 
 func main() {
-	conf := sockjs.NewConfig()
-	sockjshandler := sockjs.NewHandler("/chat", chatHandler, conf)
 	beego.Router("/", &MainController{})
-	beego.RouterHandler("/chat/:info(.*)", sockjshandler)
+	beego.Handler("/chat/:info(.*)", sockjs.NewHandler("/chat", opt, YouHandlerFunc))
 	beego.Run()
 }
 ```
