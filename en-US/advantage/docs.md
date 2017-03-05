@@ -153,7 +153,7 @@ Below is a list of supported comments for generating swagger APIs:
 
 	`@Param` defines the parameters sent to the server. There are five columns for each `@Param`:
 	1. parameter key;
-	2. parameter sending type; It can be `form`, `query`, `path`, `body` or `header`. `form` means the parameter sends by POST. `query` means the parameter sends by GET in url. 
+	2. parameter sending type; It can be `formData`, `query`, `path`, `body` or `header`. `formData` means the parameter sends by POST ( set Content-Type to application/x-www-form-urlencoded ) . `query` means the parameter sends by GET in url. 
 	`path` means the parameter in the url path, such as key in the former example. `body` means the raw data send from request body. `header` means the parameter is in request header.
 	3. parameter data type
 	4. required
