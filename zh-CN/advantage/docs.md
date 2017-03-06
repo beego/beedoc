@@ -134,7 +134,7 @@ func (c *CMSController) Product() {
 
 	参数，表示需要传递到服务器端的参数，有五列参数，使用空格或者tab分割，五个分别表示的含义如下
 	1. 参数名
-	2. 参数类型，可以有的值是form、query、path、body、header，form表示是post请求的数据，query表示带在url之后的参数，path表示请求路径上得参数，例如上面例子里面的key，body表示是一个raw数据请求，header表示带在header信息中得参数。
+	2. 参数类型，可以有的值是formData、query、path、body、header，formData表示是post请求的数据，query表示带在url之后的参数，path表示请求路径上得参数，例如上面例子里面的key，body表示是一个raw数据请求，header表示带在header信息中得参数。
 	3. 参数类型
 	4. 是否必须
 	5. 注释
@@ -154,7 +154,7 @@ func (c *CMSController) Product() {
 	路由信息，包含两个参数，使用空格分隔，第一个是请求的路由地址，支持正则和自定义路由，和之前的路由规则一样，第二个参数是支持的请求方法,放在`[]`之中，如果有多个方法，那么使用`,`分隔。
 
 ## 如何自动化生成文档
-要是的文档工作，你需要做几个事情，
+要使得文档工作，你需要做几个事情，
 
 - 第一开启应用内文档开关，在配置文件中设置：`EnableDocs = true`,
 - 然后在你的`main.go`函数中引入`_ "beeapi/docs"`。
@@ -171,9 +171,9 @@ func (c *CMSController) Product() {
 	两种解决方案：
 	- 把swagger集成到应用中，下载请到[swagger](https://github.com/beego/swagger/releases),然后放在项目目录下：
 
-			if beego.RunMode == "dev" {
-				beego.DirectoryIndex = true
-				beego.StaticDir["/swagger"] = "swagger"
+			if beego.BConfig.RunMode == "dev" {
+				beego.BConfig.WebConfig.DirectoryIndex = true
+				beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 			}		
 	- API增加CORS支持
 

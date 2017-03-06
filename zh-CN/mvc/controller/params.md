@@ -91,7 +91,7 @@ func (this *ObjectController) Post() {
 	json.Unmarshal(this.Ctx.Input.RequestBody, &ob)
 	objectid := models.AddOne(ob)
 	this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
-	this.ServeJson()
+	this.ServeJSON()
 }
 ```
 
@@ -134,7 +134,7 @@ func (c *FormController) Post() {
 	if err != nil {
 		fmt.Println("getfile err ", err)
 	} else {
-		c.SaveToFile("uploadname", "/www/"+h.Filename)
+		c.SaveToFile("uploadname", "static/upload/" + h.Filename) // 保存位置在 static/upload,没有文件夹要先创建
 	}
 }
 ```
@@ -147,20 +147,20 @@ func (c *FormController) Post() {
 
 ```		
 var id int  
-ctx.Input.Bind(&id, "id")  //id ==123
+this.Ctx.Input.Bind(&id, "id")  //id ==123
 
 var isok bool  
-ctx.Input.Bind(&isok, "isok")  //isok ==true
+this.Ctx.Input.Bind(&isok, "isok")  //isok ==true
 
 var ft float64  
-ctx.Input.Bind(&ft, "ft")  //ft ==1.2
+this.Ctx.Input.Bind(&ft, "ft")  //ft ==1.2
 
 ol := make([]int, 0, 2)  
-ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
+this.Ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
 
 ul := make([]string, 0, 2)  
-ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
+this.Ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
 
 user struct{Name}  
-ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
+this.Ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
 ```

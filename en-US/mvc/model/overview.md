@@ -7,9 +7,9 @@ sort: 1
 
 [![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego/orm)
 
-Beego ORM is a powerful ORM framework in Go. It's inspired by Django ORM and SQLAlchemy.
+Beego ORM is a powerful ORM framework written in Go. It is inspired by Django ORM and SQLAlchemy.
 
-This framework is still under development so any kind of incompatible changes might happen.
+This framework is still under development so compatibility is not guaranteed.
 
 **Supported Database:**
 
@@ -17,7 +17,7 @@ This framework is still under development so any kind of incompatible changes mi
 * PostgreSQL：[github.com/lib/pq](https://github.com/lib/pq)
 * Sqlite3：[github.com/mattn/go-sqlite3](https://github.com/mattn/go-sqlite3)
 
-All of the database drivers passed the tests. But we still need your feedback and bug reports.
+All of the database drivers have passed the tests. But we still need your feedback and bug reports.
 
 **ORM Features:**
 
@@ -36,7 +36,7 @@ You can learn more in the document.
 
 ## Change log
 
-* 2016-01-18: [Renamed the drivers name](en-US/mvc/model/orm.md#RegisterDriver)
+* 2016-01-18: [Renamed the drivers name](orm.md#RegisterDriver)
 * 2014-03-10: [GetDB](orm.md#getdb) Get *sql.DB from registered databases. [ResetModelCache](orm.md#resetmodelcache) reset registered models.
 * 2014-02-10: beego1.1.0 Change log
   - About [Timezone](orm.md#时区设置)
@@ -76,7 +76,7 @@ package main
 import (
 	"fmt"
 	"github.com/astaxie/beego/orm"
-	_ "github.com/go-sql-driver/mysql" // import your used driver
+	_ "github.com/go-sql-driver/mysql" // import your required driver
 )
 
 // Model Struct
@@ -168,7 +168,7 @@ func main() {
 ...
 ```
 
-It will output every query statements including execution, preparation and transactions.
+It will output every query statement including execution, preparation and transactions.
 
 For example:
 
@@ -177,7 +177,7 @@ For example:
 ...
 ```
 
-Notes: It is not recommended to enable debug mode in production environment.
+Notes: It is not recommended to enable debug mode in a production environment.
 
 ## Index
 

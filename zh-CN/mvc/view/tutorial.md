@@ -241,7 +241,7 @@ call 可以调用函数，并传入参数
 index 支持 map, slice, array, string，读取指定类型对应下标的值
 
 ```
-this.Data["Maps"] = map[string]{"name": "Beego"}
+this.Data["Maps"] = map[string]string{"name": "Beego"}
 ```
 
 ```

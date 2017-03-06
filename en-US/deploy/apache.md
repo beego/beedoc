@@ -1,11 +1,11 @@
 ---
-name: Deploy with Apache
+name: Deployment with Apache
 sort: 4
 ---
 
-# Apache configuration
+# Apache deployment and configuration
 
-The concept of apache is same as the nginx, serving as a reverse proxy and sending requests to backend. Here is the configuration example:
+Apache is a web server and is set up to perform the same functions as nginx, serving as a reverse proxy and sending requests to the backend. Here is a configuration example:
 
 ```
 NameVirtualHost *:80

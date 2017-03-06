@@ -5,7 +5,7 @@ sort: 2
 
 # Automated API Document
 
-Automated documentation is a very cool feature that I wish to have. Now it became real in Beego. As I said Beego will not only boost the development of API but also make the API easy to use for the user. 
+Automated documentation is a very cool feature that I found to be desirable. Now it became a reality in Beego. As I said Beego will not only boost the development of your API but also make the API easy to use for the user. 
 
 Beego implemented the [swagger specification](http://swagger.io/) for API documentation. It's very easy to create powerful interactive API documentation.
 
@@ -32,9 +32,15 @@ The comments above set the global information. The available settings:
 - @TermsOfServiceUrl
 - @License
 - @LicenseUrl
+- @Name
+- @URL
+- @LicenseUrl
+- @License
+- @Schemes
+- @Host
 
 ## Router Parsing
-Right now automated API documentation only supports `NSNamespace` and `NSInclude` and it only supports two levels parsing. The first level is API version and the second level is the modules.
+Right now automated API documentation only supports `NSNamespace` and `NSInclude` and it only supports two levels of parsing. The first level is the API version and the second level is the modules.
 
 ```
 func init() {
@@ -90,11 +96,14 @@ func (c *CMSController) URLMapping() {
 }
 
 // @Title getStaticBlock
+// @Summary getStaticBlock
+// @Deprecated Deprecated
 // @Description get all the staticblock by key
-// @Param	key		path 	string	true		"The static block key."
+// @Param	key	path	string	true	"The static block key."	default_value
 // @Success 200 {object} ZDT.ZDTMisc.CmsResponse
 // @Failure 400 Bad request
 // @Failure 404 Not found
+// @Accept json
 // @router /staticblock/:key [get]
 func (c *CMSController) StaticBlock() {
 
@@ -124,34 +133,39 @@ func (c *CMSController) Product() {
 }
 ```
 
-In the code above, we defined the comment on top of of `CMSController` is the information for this module. Then we defined the comment for every controller methods. 
+In the code above, we defined the comment on top of `CMSController` is the information for this module. Then we defined the comment for every controller's methods. 
 
 Below is a list of supported comments for generating swagger APIs:
 
+- @Accept
+	Aceept type json/xml/html/plain
+- @Deprecated
+	Deprecated flag.
 - @Title
 
-	The title for this API. It's a string, all the content after the first space will be parsed as the title.
+	The title for this API. It's a string, and all the content after the first space will be parsed as the title.
 
 - @Description
 
-	The description for this API. It's a string, all the content after the first space will be parsed as the description.
+	The description for this API. It's a string, and all the content after the first space will be parsed as the description.
 
 - @Param
 
 	`@Param` defines the parameters sent to the server. There are five columns for each `@Param`:
 	1. parameter key;
-	2. parameter sending type; It can be `form`, `query`, `path`, `body` or `header`. `form` means the parameter sends by POST. `query` means the parameter sends by GET in url. 
+	2. parameter sending type; It can be `formData`, `query`, `path`, `body` or `header`. `formData` means the parameter sends by POST ( set Content-Type to application/x-www-form-urlencoded ) . `query` means the parameter sends by GET in url. 
 	`path` means the parameter in the url path, such as key in the former example. `body` means the raw data send from request body. `header` means the parameter is in request header.
 	3. parameter data type
 	4. required
 	5. comment
+	6. default value
 
 - @Success
 
 	The success message returned to client. Three parameters.
 	1. status code.
 	2. return type; Must wrap with {}.
-	3. returned object or string. For {object}, use path and the object name of your project here and `bee` tool will look up the object while generate the docs. For example `models.ZDTProduct.ProductList` represents `ProductList` object under `/models/ZDTProduct`
+	3. returned object or string. For {object}, use path and the object name of your project here and `bee` tool will look up the object while generating the docs. For example `models.ZDTProduct.ProductList` represents `ProductList` object under `/models/ZDTProduct`
 
 	>>> Use space to separate these three parameters
 
@@ -169,11 +183,10 @@ Below is a list of supported comments for generating swagger APIs:
 
 ## Generate document automatically
 
-To make it work following the steps:
+Make it work by following the steps:
 1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`.
-3. Import `_ "beeapi/docs"` in `main.go`.
-4. Use `bee run -downdoc=true -gendoc=true` to run your API application and rebuild document automatically.
-5. Visit `swagger document from API project's URL and port.  (see item #1 below)
+2. Use `bee run -downdoc=true -gendoc=true` to run your API application and rebuild document automatically.
+3. Visit `swagger document from API project's URL and port.  (see item #1 below)
 
 Your API document is available now. Open your browser and check it.
 

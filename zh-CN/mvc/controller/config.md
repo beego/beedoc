@@ -18,12 +18,14 @@ beego 默认会解析当前应用下的 `conf/app.conf` 文件。
 	httpport = 9090
 	runmode ="dev"
 	autorender = false
-	autorecover = false
+	recoverpanic = false
 	viewspath = "myview"
 
-上面这些参数会替换 beego 默认的一些参数。
+上面这些参数会替换 beego 默认的一些参数, beego 的参数主要有哪些呢？请参考https://godoc.org/github.com/astaxie/beego#pkg-constants。
+BConfig就是beego里面的默认的配置，你也可以直接通过`beego.BConfig.AppName="beepkg"`这样来修改，和上面的配置效果一样，只是一个在代码里面写死了，
+而配置文件就会显得更加灵活。
 
-你可以在配置文件中配置应用需要用的一些配置信息，例如下面所示的数据库信息：
+你也可以在配置文件中配置应用需要用的一些配置信息，例如下面所示的数据库信息：
 
 	mysqluser = "root"
 	mysqlpass = "rootpass"
@@ -70,7 +72,7 @@ AppConfig 的方法如下：
 	httpport = 9090
 	runmode ="dev"
 	autorender = false
-	autorecover = false
+	recoverpanic = false
 	viewspath = "myview"
 
 	[dev]
@@ -84,7 +86,7 @@ AppConfig 的方法如下：
 
 读取不同模式下配置参数的方法是“模式::配置参数名”，比如：beego.AppConfig.String("dev::mysqluser")。
 
-对于自定义的参数，需使用beego.GetConfig(typ, key string)来获取指定runmode下的配置（需1.4.0以上版本），typ为参数类型，key为参数名。
+对于自定义的参数，需使用beego.GetConfig(tpy, key string, defaultVal interface{})来获取指定runmode下的配置（需1.4.0以上版本），typ为参数类型，key为参数名, defaultVal为默认值。
 
 ### 多个配置文件
 INI格式配置支持`include`方式，引用多个配置文件，例如下面的两个配置文件效果同上：
@@ -101,7 +103,7 @@ app2.conf
 
 	runmode ="dev"
 	autorender = false
-	autorecover = false
+	recoverpanic = false
 	viewspath = "myview"
 
 	[dev]
@@ -125,15 +127,12 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 #### 基础配置
 
-* AppConfigPath
-配置文件路径，默认是应用程序对应的目录下的 `conf/app.conf`，用户可以在程序代码中修改该值配置自己的配置文件
-`beego.AppConfigPath = "conf/app2.conf"`
+* BConfig
+保存了所有beego里面的系统默认参数，你可以通过`beego.BConfig`来访问和修改底下的所有配置信息.
 
-* AppConfigProvider
-
-	配置文件的格式，默认是ini，可以配置为xml，yaml，json
-
-	`beego.AppConfigProvider = "ini"`
+>>配置文件路径，默认是应用程序对应的目录下的 `conf/app.conf`，用户可以在程序代码中加载自己的配置文件
+>>`beego.LoadAppConfig("ini", "conf/app2.conf")`
+>>也可以加载多个文件，只要你调用多次就可以了，如果后面的文件和前面的key冲突，那么以最新加载的为最新值
 
 #### App配置
 
@@ -171,7 +170,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 	是否允许在HTTP请求时，返回原始请求体数据字节，默认为 true （GET or HEAD or 上传文件请求除外）。
 
-	`beego.BConfig.CopyRequestBody = true`
+	`beego.BConfig.CopyRequestBody = false`
 
 
 * EnableGzip
@@ -179,7 +178,14 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 	是否开启 gzip 支持，默认为 false 不支持 gzip，一旦开启了 gzip，那么在模板输出的内容会进行 gzip 或者 zlib 压缩，根据用户的 Accept-Encoding 来判断。
 
 	`beego.BConfig.EnableGzip = false`
-
+	
+	Gzip允许用户自定义压缩级别、压缩长度阈值和针对请求类型压缩:
+	
+	1. 压缩级别, `gzipCompressLevel = 9`,取值为1~9,如果不设置为1(最快压缩) 
+	
+	2. 压缩长度阈值, `gzipMinLength = 256`,当原始内容长度大于此阈值时才开启压缩,默认为20B(ngnix默认长度) 
+	
+	3. 请求类型, `includedMethods = get;post`,针对哪些请求类型进行压缩,默认只针对GET请求压缩 
 
 * MaxMemory
 
@@ -250,7 +256,6 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 	等价config文件中
 
 		StaticExtensionsToGzip = .css, .js
-
 
 * TemplateLeft
 

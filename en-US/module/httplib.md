@@ -5,7 +5,7 @@ sort: 4
 
 # Client Request
 
-Similar to Curl, httplib is used to simulate http requests sent by clients. Similar to jQuery, it supports method chaining. It's easy to use. It can be installed by:
+Similar to Curl, httplib is used to simulate http requests sent by clients. Similar to jQuery, it supports method chaining. It's easy to use and it can be installed by:
 
 	go get github.com/astaxie/beego/httplib
 
@@ -19,7 +19,7 @@ Import package:
 
 Initialize request method and url:
 
-	req:=httplib.Get("http://beego.me/")
+	req := httplib.Get("http://beego.me/")
 
 Send the request and retrieve the data in the response:
 
@@ -56,7 +56,7 @@ Then it will output debug information:
 
 ## HTTPS Request
 
-If the requested scheme is https, we need to set TLS of client:
+If the requested scheme is https, we need to set the TLS of client:
 
 	req.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 
@@ -74,9 +74,9 @@ It is a function of request object. So it can be done like this:
 	
 ## Set Request Params
 
-For Put or Post requests, we may need to send parameters. Parameters can be set like:
+For Put or Post requests, we may need to send parameters. Parameters can be set in the following manner:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	req.Param("username","astaxie")
 	req.Param("password","123456")
 
@@ -84,7 +84,7 @@ For Put or Post requests, we may need to send parameters. Parameters can be set 
 
 To simulate file uploading or to send big data, one can use the `Body` function:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	bt,err:=ioutil.ReadFile("hello.txt")
 	if err!=nil{
 		log.Fatal("read file err:",err)
@@ -101,14 +101,14 @@ To simulate header values, e.g.:
 
 Can use `Header` function:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	req.Header("Accept-Encoding","gzip,deflate,sdch")
 	req.Header("Host","beego.me")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
 
 ## Upload file
 
-PostFile function the first params is the name of form, the second param is the filename or filepath you want to send. 
+PostFile function requires the first parameter to be the name of form and the second parameter is the filename or filepath you want to send. 
 
 ```
 b:=httplib.Post("http://beego.me/")
@@ -124,7 +124,7 @@ if err != nil {
 
 ## Get Response 
 
-Above settings are before sending request, how can we get response after request? Here are the ways:
+The settings above are before sending request, how can we get response after request? Here are the ways:
 
 |Method                          |Type                     |Description                                                |
 |--------------------------------|-------------------------|-----------------------------------------------------------|
@@ -132,5 +132,5 @@ Above settings are before sending request, how can we get response after request
 |`req.Bytes()`                   |`([]byte, error)`        |Return raw response body.                                  |
 |`req.String()`                  |`(string, error)`        |Return raw response body.                                  |
 |`req.ToFile(filename string)`   |`error`                  |Save response body into a file.                            |
-|`req.ToJson(result interface{})`|`error`                  |Parse JSON response into the result object.                |
+|`req.ToJSON(result interface{})`|`error`                  |Parse JSON response into the result object.                |
 |`req.ToXml(result interface{})` |`error`                  |Parse XML response into the result object.                 |

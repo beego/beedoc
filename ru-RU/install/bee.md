@@ -33,7 +33,6 @@ The commands are:
     pack        compress an beego project
     api         create an api application base on beego framework
     router      auto-generate routers for the app controllers
-    test        test the app
     bale        packs non-Go files to Go source files
 ```
 
@@ -150,27 +149,6 @@ apiproject
 В сравнении с веб-приложением, приложение для API не содержит файлы статики и шаблоны, но
 имеет модуль для запуска unit тестирования.
 
-### Команда test
-
-Это обёртка над `go test`. Она запускает тест-кейсы из папки tests в вашем BeeGo проекте.
-
-```
-bee test apiproject
-13-11-25 10:46:57 [INFO] Initializing watcher...
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject/controllers)
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject/models)
-13-11-25 10:46:57 [TRAC] Directory(/gopath/src/apiproject)
-13-11-25 10:46:57 [INFO] Start building...
-13-11-25 10:46:58 [SUCC] Build was successful
-13-11-25 10:46:58 [INFO] Restarting apiproject ...
-13-11-25 10:46:58 [INFO] ./apiproject is running...
-13-11-25 10:46:58 [INFO] Start testing...
-13-11-25 10:46:59 [TRAC] ============== Test Begin ===================
-PASS
-ok  	apiproject/tests	0.100s
-13-11-25 10:47:00 [TRAC] ============== Test End ===================
-13-11-25 10:47:00 [SUCC] Test finish
-```
 
 ### Команда pack
 

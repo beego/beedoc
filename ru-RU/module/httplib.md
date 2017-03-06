@@ -19,7 +19,7 @@ sort: 4
 
 Инициализируйте request метод и путь:
 
-	req:=httplib.Get("http://beego.me/")
+	req := httplib.Get("http://beego.me/")
 
 Отправьте запрос и извлеките данные из запроса:
 
@@ -60,7 +60,7 @@ httplib поддерживает следующие методы:
 
 	req.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 
-[Learn more about TLS settings](http://gowalker.org/crypto/tls#Config)
+[Узнайте больше о настройках TLS](http://gowalker.org/crypto/tls#Config)
 
 ## Установка таймаутов
 
@@ -68,7 +68,7 @@ httplib поддерживает следующие методы:
 
 	req.SetTimeout(connectTimeout, readWriteTimeout)
 
-It is a function of request object. So it can be done like this:
+Это функция работает с объектом запроса, а значит мы можем сделать так:
 
 	httplib.Get("http://beego.me/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
 	
@@ -76,7 +76,7 @@ It is a function of request object. So it can be done like this:
 
 Для PUT или POST запросов, мы можем отправить параметры. Параметры могут быть установлены так:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	req.Param("username","astaxie")
 	req.Param("password","123456")
 
@@ -84,7 +84,7 @@ It is a function of request object. So it can be done like this:
 
 Чтобы симулировать загрузку файлов или отправить большые данные вы можете использовать `Body` функцию:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	bt,err:=ioutil.ReadFile("hello.txt")
 	if err!=nil{
 		log.Fatal("read file err:",err)
@@ -101,14 +101,14 @@ It is a function of request object. So it can be done like this:
 
 Можете использовать `Header` функцию:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	req.Header("Accept-Encoding","gzip,deflate,sdch")
 	req.Header("Host","beego.me")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
 
 ## Загрузка файла
 
-У PostFile фукнции первый параметр является имя формы, второй параметр имя файла или путь до файла который вы собираетесь отправить. 
+У PostFile функции первый параметр является имя формы, второй параметр имя файла или путь до файла который вы собираетесь отправить. 
 
 ```
 b:=httplib.Post("http://beego.me/")
@@ -126,11 +126,11 @@ if err != nil {
 
 Как мы можем получить ответ после запроса? Ниже варианты:
 
-|Method                          |Type                     |Description                                                |
+|Метод                           |Тип                      |Описание                                                   |
 |--------------------------------|-------------------------|-----------------------------------------------------------|
-|`req.Response()`                |`(*http.Response, error)`|This is a `http.Response` object. You can get data from it.|
-|`req.Bytes()`                   |`([]byte, error)`        |Return raw response body.                                  |
-|`req.String()`                  |`(string, error)`        |Return raw response body.                                  |
-|`req.ToFile(filename string)`   |`error`                  |Save response body into a file.                            |
-|`req.ToJson(result interface{})`|`error`                  |Parse JSON response into the result object.                |
-|`req.ToXml(result interface{})` |`error`                  |Parse XML response into the result object.                 |
+|`req.Response()`                |`(*http.Response, error)`|Объект`http.Response`. Из него вы сможете получить данные. |
+|`req.Bytes()`                   |`([]byte, error)`        |Возвращает необработанное тело ответа.                     |
+|`req.String()`                  |`(string, error)`        |Возвращает необработанное тело ответа.                     |
+|`req.ToFile(filename string)`   |`error`                  |Сохраняем тело ответа в файл.                              |
+|`req.ToJSON(result interface{})`|`error`                  |Разбираем JSON ответ в результирующий объект.              |
+|`req.ToXml(result interface{})` |`error`                  |Разбираем XML ответ в результирующий объект.               |

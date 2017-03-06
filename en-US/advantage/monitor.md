@@ -5,15 +5,15 @@ sort: 1
 
 # Live Monitor
 
-We talked about toolbox module before. It will listen `127.0.0.1:8088` by default when application is running. It can't be accessed from internet but you can visit it by other ways such as nginx proxy.
+We discussed the toolbox module before. It will listen on `127.0.0.1:8088` by default when the application is running. It can't be accessed from the internet but you can browse to it by other means such as by nginx proxy.
 
->>> For security reason it is recommend to block 8088 in firewall.
+>>> For security reason it is recommended that you block port 8088 in firewall.
 
 Monitor is disabled by default. You can enable it by adding the following line in `conf/app.conf` file:
 
 	EnableAdmin = true
 
-Also you can change the port it listened:
+Also you can change the port it listens on:
 
 	AdminHttpAddr = "localhost"
 	AdminHttpPort = 8088
@@ -22,13 +22,13 @@ Open browser and visit `http://localhost:8088/` you will see `Welcome to Admin D
 
 ## Requests statistics
 
-Visit `http://localhost:8088/qps` you will see it:
+Browse to `http://localhost:8088/qps` and you will see the following:
 
 ![](../images/monitoring.png)
 
 ## Performance profiling
 
-Also you can see the information for `goroutine`, `heap`, `threadcreate`, `block`, `cpuprof`, `memoryprof`, `gc summary` and do profiling.
+You can also see the information for `goroutine`, `heap`, `threadcreate`, `block`, `cpuprof`, `memoryprof`, `gc summary` and do profiling.
 
 ## Healthcheck
 

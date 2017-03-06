@@ -5,7 +5,7 @@ sort: 10
 
 # Error Handling
 
-In web development, we need to be able to redirect pages and handle errors. Beego uses `Redirect` for it:
+In web development, we need to be able to redirect pages and handle errors. Beego uses `Redirect` for page redirection and error handling:
 
 ```go
 func (this *AddController) Get() {
@@ -13,7 +13,7 @@ func (this *AddController) Get() {
 }
 ```
 
-If you want to stop this request and throw exception, you can do this in Beego's controller:
+If you want to stop this request and throw an exception, you can do this in Beego's controller:
 
 ```go
 func (this *MainController) Get() {
@@ -30,11 +30,11 @@ func (this *MainController) Get() {
 }
 ```
 
-The `this.Abort("401")` won't execute any more and it will show this page:
+The `this.Abort("401")` will stop any further execution and it will show this page:
 
 ![](../../images/401.png)
 
-Beego supports 404, 401, 403, 500, 503 error handling by default. You can also define custom error handling page. For example redefined 404 page:
+Beego supports 404, 401, 403, 500, 503 error handling by default. You can also define a custom error handling page. For example redefined 404 page:
 
 ```go
 func page_not_found(rw http.ResponseWriter, r *http.Request){
@@ -45,15 +45,15 @@ func page_not_found(rw http.ResponseWriter, r *http.Request){
 }
 
 func main() {
-	beego.Errorhandler("404",page_not_found)
+	beego.ErrorHandler("404",page_not_found)
 	beego.Router("/", &controllers.MainController{})
 	beego.Run()
 }
 ```
 
-We can define our own `404.html` to handle 404 error.
+We can therefore define our own `404.html` page to handle a 404 error.
 
-Another cool feature of Beego is support of customized string error handling function, such as the code below which registers a database error page:
+Another cool feature of Beego is support for customized string error handling functions, such as the code below which registers a database error page:
 
 ```go
 func dbError(rw http.ResponseWriter, r *http.Request){
@@ -64,16 +64,16 @@ func dbError(rw http.ResponseWriter, r *http.Request){
 }
 
 func main() {
-	beego.Errorhandler("dbError",dbError)
+	beego.ErrorHandler("dbError",dbError)
 	beego.Router("/", &controllers.MainController{})
 	beego.Run()
 }
 ```
 
-After registering this error handling code, you can call `this.Abort("dbError")` in any place og your code to handle the database error.
+After registering this error handling code, you can call `this.Abort("dbError")` at any point in your code to handle the database error.
 
 # Controller define Error
-Beego 1.4.3 added support for Controller defined Error handlers, so we can use the `beego.Controller` and `template.Render` context functions
+Beego version 1.4.3 added support for Controller defined Error handlers, so we can use the `beego.Controller` and `template.Render` context functions
 
 ```
 package controllers
@@ -101,7 +101,7 @@ func (c *ErrorController) ErrorDb() {
 	c.TplNames = "dberror.tpl"
 }
 ```
-From the example we can see, that all the error handle functions have prefix `Error`，the other string is the name of `Abort`，like `Error404` match `Abort("404")`
+From the example we can see that all the error handling functions have the prefix `Error`，the other string is the name of `Abort`，like `Error404` match `Abort("404")`
 
 Use `beego.ErrorController` to register the error controller before `beego.Run`
 

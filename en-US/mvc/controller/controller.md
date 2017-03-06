@@ -5,7 +5,7 @@ sort: 3
 
 # Introduction to controller
 
->> Important changes for this specific doc for version 1.6: `this.serveJson()` is now `this.serveJSON` and `this.TplNames` is `this.TplName`
+> From version 1.6: `this.ServeJson()` is `this.ServeJSON()` and `this.TplNames` is `this.TplName`
 
 Based on the design of Beego's controller, you just need to embed the `beego.Controller`:
 
@@ -25,19 +25,19 @@ Based on the design of Beego's controller, you just need to embed the `beego.Con
 
 - Get()
 
-  This method will be executed if the HTTP request method is GET, return 403 by default. You can implement this method to handle GET request by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is GET, and returns 403 by default. You can implement this method to handle GET requests by overwriting it in the struct of subclass.
 
 - Post()
 
-  This method will be executed if the HTTP request method is POST, return 403 by default. You can implement this method to handle POST request by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is POST, and returns 403 by default. You can implement this method to handle POST requests by overwriting it in the struct of subclass.
 
 - Delete()
 
-  This method will be executed if the HTTP request method is DELETE, return 403 by default. You can implement this method to handle DELETE request by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is DELETE, and returns 403 by default. You can implement this method to handle DELETE requests by overwriting it in the struct of subclass.
 
 - Put()
 
-  This method will be executed if the HTTP request method is PUT, return 403 by default. You can implement this method to handle PUT request by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is PUT, and returns 403 by default. You can implement this method to handle PUT requests by overwriting it in the struct of subclass.
 
 - Head()
 
@@ -45,19 +45,19 @@ Based on the design of Beego's controller, you just need to embed the `beego.Con
 
 - Patch()
 
-  This method will be executed if the HTTP request method is PATCH, return 403 by default. You can implement this method to handle PATCH request by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is PATCH, and returns 403 by default. You can implement this method to handle PATCH requests by overwriting it in the struct of subclass.
 
 - Options()
 
-  This method will be executed if the HTTP request method is OPTIONS, return 403 by default. You can implement this method to handle OPTIONS request by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is OPTIONS, and returns 403 by default. You can implement this method to handle OPTIONS requests by overwriting it in the struct of subclass.
 
 - Finish()
 
-  This method will be executed after finishing related HTTP method, it's empty by default. You can implement this method by overwriting it in the struct of subclass. Used for database closing, data cleaning and so on.
+  This method will be executed after finishing the related HTTP method. It is empty by default. You can implement this method by overwriting it in the struct of subclass. It is used for database closing, data cleaning and so on.
 
 - Render() error
 
-  This method is used to render template. Only executed if `beego.AutoRender` is true.
+  This method is used to render templates. It is only executed if `beego.AutoRender` is set to true.
 
 By overwriting functions in struct, you can implement your own logic. For example:
 
@@ -73,7 +73,7 @@ func (this *AddController) Prepare() {
 func (this *AddController) Get() {
     this.Data["content"] = "value"
     this.Layout = "admin/layout.html"
-    this.TplNames = "admin/add.tpl"
+    this.TplName = "admin/add.tpl"
 }
 
 func (this *AddController) Post() {
@@ -96,9 +96,9 @@ func (this *AddController) Post() {
 }
 ```
 
-In the example above, it implemented RESTful structure by overwriting functions.
+In the example above, it has implemented a RESTful structure by overwriting functions.
 
-Now let's see a popular architecture: Implementing a baseController and some initializing methods then other controllers just inherit from it.
+Now let's see a popular architecture: Implementing a baseController and some initializing methods. Other controllers then just inherit from it.
 
 ```
 type NestPreparer interface {
@@ -134,7 +134,7 @@ func (this *baseRouter) Prepare() {
 }
 ```
 
-The above example defined base class and initialized some variables. It will test if the executing Controller is an implementing of NestPreparer, if it is, then call the method of subclass. Let's see the implementation of `NestPreparer`:
+The above example defines a base class and initializes some variables. It will test if the executing Controller is an implementation of NestPreparer. If it is, then it calls the method of subclass. Let's see the implementation of `NestPreparer`:
 
 ```
 type BaseAdminRouter struct {
@@ -167,20 +167,20 @@ func (this *BaseAdminRouter) NestPrepare() {
 }
 
 func (this *BaseAdminRouter) Get(){
-	this.TplNames = "Get.tpl"
+	this.TplName = "Get.tpl"
 }
 
 func (this *BaseAdminRouter) Post(){
-	this.TplNames = "Post.tpl"
+	this.TplName = "Post.tpl"
 }
 ```
 
-Here is our logic of it: executes `Prepare` first. It is the order of Go to find methods in struct, finding towards parent classes one by one. While execute `BaseAdminRouter`, checks if it has `Prepare` method. If no, keep finding `baseRouter`. If yes, it will execute the logic and `this.AppController` in `baseRouter` is the current executing Controller `BaseAdminRouter`. Then it will execute `BaseAdminRouter.NestPrepare` method. Then it will start executing related `GET` or `POST` method.
+Here is our logic: first execute `Prepare`. Go will search for methods in the struct by looking in the parent classes. While executing `BaseAdminRouter`, it checks whether there is a `Prepare` method. If not, it keeps searching `baseRouter`. If yes, it will execute the logic and `this.AppController` in `baseRouter` is the currently executing Controller `BaseAdminRouter`. Then it will execute `BaseAdminRouter.NestPrepare` method. Then it will start executing the related `GET` or `POST` method.
 
 
 ## Stop controller executing immediately
 
-Sometime we want to stop the following execution logic of the request immediately and return the response. Such as we authenticate user in `Prepare` method, if authenticate failed, we return response directly. You can use `StopRun()` to do it. 
+Sometime we want to stop the following execution logic of the request immediately and return the response. When we authenticate user in `Prepare` method, if the authentication failed, we return a response directly. You can use `StopRun()` to do it. 
 
 ```
 type RController struct {
@@ -188,18 +188,18 @@ type RController struct {
 }
 
 func (this *RController) Prepare() {
-    this.Data["json"] = "astaxie"
+    this.Data["json"] = map[string]interface{}{"name": "astaxie"}
     this.ServeJSON()
     this.StopRun()
 }
 ```
 
->>> If you call `StopRun`, the `Finish` method won't be run anymore. If you need to free resources, please call `Finish` manually before call `StopRun`.
+>>> If you call `StopRun`, the `Finish` method won't be run. If you need to free resources, please call `Finish` manually before call `StopRun`.
 
 
 ## Using PUT method in HTTP form
 
-XHTML 1.x forms only support GET and POST. GET and POST are the only allowed values for the "method" attribute. But if just you want to, you can simply do this:
+XHTML 1.x forms only support GET and POST. GET and POST are the only allowed values for the "method" attribute. But if you want to, you can simply do this:
 
 Add a hidden input in the post form:
 
@@ -208,7 +208,7 @@ Add a hidden input in the post form:
   <input type="hidden" name="_method" value="put" />
 ```
 
-Then add a filter in Beego to check if the requests should be treated as put or not:
+Then add a filter in Beego to check if the requests should be treated as a put request:
 
 ```go
 var FilterMethod = func(ctx *context.Context) {
@@ -219,4 +219,3 @@ var FilterMethod = func(ctx *context.Context) {
 
 beego.InsertFilter("*", beego.BeforeRouter, FilterMethod)
 ```
-

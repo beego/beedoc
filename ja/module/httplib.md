@@ -19,7 +19,7 @@ Import package:
 
 Initialize request method and url:
 
-	req:=httplib.Get("http://beego.me/")
+	req := httplib.Get("http://beego.me/")
 
 Send the request and retrieve the data in the response:
 
@@ -76,7 +76,7 @@ It is a function of request object. So it can be done like this:
 
 For Put or Post requests, we may need to send parameters. Parameters can be set like:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	req.Param("username","astaxie")
 	req.Param("password","123456")
 
@@ -84,7 +84,7 @@ For Put or Post requests, we may need to send parameters. Parameters can be set 
 
 To simulate file uploading or to send big data, one can use the `Body` function:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	bt,err:=ioutil.ReadFile("hello.txt")
 	if err!=nil{
 		log.Fatal("read file err:",err)
@@ -101,7 +101,7 @@ To simulate header values, e.g.:
 
 Can use `Header` function:
 
-	req:=httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.me/")
 	req.Header("Accept-Encoding","gzip,deflate,sdch")
 	req.Header("Host","beego.me")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")

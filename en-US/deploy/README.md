@@ -21,7 +21,7 @@ Or change it in conf/app.conf:
 
 In development mode:
 
-- If you don't have views folder, it will show this kind of error:
+- If you don't have a views folder, it will show this kind of error:
 
 		2013/04/13 19:36:17 [W] [stat views: no such file or directory]
 
@@ -61,7 +61,7 @@ There are two ways to run it:
 - [Stand alone deploy](./beego.md)
 - [Deploy with Supervisord ](./supervisor.md)
 	
-The application is exposed above, then usually we will have a nginx or apache to serve and load balancing our application.
+The application is exposed above, then usually we will have a nginx or apache to serve pages and perform load balancing on our application.
 
 - [Deploy with Nginx](./nginx.md)
 - [Deploy with Apache](./apache.md)
