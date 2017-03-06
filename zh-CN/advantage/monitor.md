@@ -11,17 +11,17 @@ sort: 1
 
 默认监控是关闭的，你可以通过设置参数配置开启监控：
 
-	EnableAdmin = true
-	
+	beego.EnableAdmin = true
+
 而且你还可以修改监听的地址和端口：
 
-	AdminHttpAddr = "localhost"
-	AdminHttpPort = 8088
-	
+	beego.AdminAddr = "localhost"
+	beego.AdminPort = 8088
+
 打开浏览器，输入 URL：`http://localhost:8088/`，你会看到一句欢迎词：`Welcome to Admin Dashboard`。
 
 目前由于刚做出来第一版本，因此还需要后续继续界面的开发。
-	
+
 ## 请求统计信息
 
 访问统计的 URL 地址 `http://localhost:8088/qps`，展现如下所示：
@@ -38,7 +38,7 @@ sort: 1
 
 ## 定时任务
 
-用户需要在应用中添加了 task，才能执行相应的任务检查和手工触发任务。
+用户需要在应用中添加了 [task](../module/toolbox.md#task)，才能执行相应的任务检查和手工触发任务。
 
 - 检查任务状态URL：`http://localhost:8088/task`
 - 手工执行任务URL：`http://localhost:8088/runtask?taskname=任务名`

@@ -416,8 +416,10 @@ All the fields are **NOT NULL** by default.
 | :---   	   | :---
 | int, int32, int64, uint, uint32, uint64 - set as auto or name is `Id` | serial
 | bool | bool
-| string - default size 255 | varchar(size)
+| string - if not set size default text | varchar(size)
 | string - set type(text) | text
+| string - set type(json) | json
+| string - set type(jsonb) | jsonb
 | time.Time - set type as date | date
 | time.Time | timestamp with time zone
 | byte | smallint CHECK("column" >= 0 AND "column" <= 255)

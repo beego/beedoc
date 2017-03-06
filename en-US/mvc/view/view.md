@@ -9,9 +9,20 @@ Beego uses Go's built-in package `html/template` as the template parser.  Upon s
 
 ## Template Directory
 
+
 The default template directory for Beego is `views`. Template files can be put into this directory and Beego will parse and cache them automatically. However if the development mode is enabled, Beego parses templates every time without caching. Beego can only have one template directory which can be customized:
 
 	beego.ViewsPath = "myviewpath"
+
+You can add alternative template directories by calling 
+	
+	beego.AddViewPath("moreViews")
+	
+This will parse and cache template files in this directory and allow you to use them by setting ViewPath on a Controller:
+
+	this.ViewPath = "moreViews"
+
+Setting a ViewPath to a directory which was not previously registered with AddViewPath() will fail with "Unknown view path"
 
 ## Auto Rendering
 
