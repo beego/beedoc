@@ -22,7 +22,7 @@ beego 默认会解析当前应用下的 `conf/app.conf` 文件。
 	viewspath = "myview"
 
 上面这些参数会替换 beego 默认的一些参数, beego 的参数主要有哪些呢？请参考https://godoc.org/github.com/astaxie/beego#pkg-constants。
-BConfig就是beego里面的默认的配置，你也可以直接通过`beego.BConfig.AppName="beepkg"`这样来修改，和上面的配置效果一样，只是一个在代码里面写死了，
+BConfig 就是 beego 里面的默认的配置，你也可以直接通过`beego.BConfig.AppName="beepkg"`这样来修改，和上面的配置效果一样，只是一个在代码里面写死了，
 而配置文件就会显得更加灵活。
 
 你也可以在配置文件中配置应用需要用的一些配置信息，例如下面所示的数据库信息：
@@ -58,14 +58,14 @@ AppConfig 的方法如下：
 - GetSection(section string) (map[string]string, error)
 - SaveConfigFile(filename string) error
 
-在使用 ini 类型的配置文件中, key 支持 section::key 模式. 
+在使用 ini 类型的配置文件中, key 支持 section::key 模式.
 
 你可以用 Default* 方法返回默认值.
 
 
 ### 不同级别的配置
 
-在配置文件里面支持section，可以有不同的Runmode的配置，默认优先读取runmode下的配置信息，例如下面的配置文件：
+在配置文件里面支持 section，可以有不同的 Runmode 的配置，默认优先读取 runmode 下的配置信息，例如下面的配置文件：
 
 	appname = beepkg
 	httpaddr = "127.0.0.1"
@@ -82,14 +82,14 @@ AppConfig 的方法如下：
 	[test]
 	httpport = 8888
 
-上面的配置文件就是在不同的runmode下解析不同的配置，例如在dev模式下，httpport是8080，在prod模式下是8088，在test模式下是8888.其他配置文件同理。解析的时候优先解析runmode下的配置，然后解析默认的配置。
+上面的配置文件就是在不同的 runmode 下解析不同的配置，例如在 dev 模式下，httpport 是 8080，在 prod 模式下是 8088，在 test 模式下是 8888。其他配置文件同理。解析的时候优先解析 runmode 下的配置，然后解析默认的配置。
 
 读取不同模式下配置参数的方法是“模式::配置参数名”，比如：beego.AppConfig.String("dev::mysqluser")。
 
-对于自定义的参数，需使用beego.GetConfig(tpy, key string, defaultVal interface{})来获取指定runmode下的配置（需1.4.0以上版本），typ为参数类型，key为参数名, defaultVal为默认值。
+对于自定义的参数，需使用 beego.GetConfig(tpy, key string, defaultVal interface{}) 来获取指定 runmode 下的配置（需 1.4.0 以上版本），typ 为参数类型，key 为参数名, defaultVal 为默认值。
 
 ### 多个配置文件
-INI格式配置支持`include`方式，引用多个配置文件，例如下面的两个配置文件效果同上：
+INI 格式配置支持 `include` 方式，引用多个配置文件，例如下面的两个配置文件效果同上：
 
 app.conf
 
@@ -123,22 +123,22 @@ app.conf
 
 ### 系统默认参数
 
-beego 中带有很多可配置的参数，我们来一一认识一下它们，这样有利于我们在接下来的 beego 开发中可以充分的发挥他们的作用(你可以通过在`conf/app.conf`中设置对应的值，不区分大小写)：
+beego 中带有很多可配置的参数，我们来一一认识一下它们，这样有利于我们在接下来的 beego 开发中可以充分的发挥他们的作用(你可以通过在 `conf/app.conf` 中设置对应的值，不区分大小写)：
 
 #### 基础配置
 
 * BConfig
-保存了所有beego里面的系统默认参数，你可以通过`beego.BConfig`来访问和修改底下的所有配置信息.
+保存了所有 beego 里面的系统默认参数，你可以通过 `beego.BConfig` 来访问和修改底下的所有配置信息.
 
 >>配置文件路径，默认是应用程序对应的目录下的 `conf/app.conf`，用户可以在程序代码中加载自己的配置文件
 >>`beego.LoadAppConfig("ini", "conf/app2.conf")`
->>也可以加载多个文件，只要你调用多次就可以了，如果后面的文件和前面的key冲突，那么以最新加载的为最新值
+>>也可以加载多个文件，只要你调用多次就可以了，如果后面的文件和前面的 key 冲突，那么以最新加载的为最新值
 
-#### App配置
+#### App 配置
 
 * AppName
 
-	应用名称，默认是 beego。通过`bee new`创建的是创建的项目名。
+	应用名称，默认是 beego。通过 `bee new` 创建的是创建的项目名。
 
 	`beego.BConfig.AppName = "beego"`
 
@@ -160,7 +160,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 	`beego.BConfig.ServerName = "beego"`
 
-* RecoverPanic  
+* RecoverPanic
 
 	是否异常恢复，默认值为 true，即当应用出现异常的情况，通过 recover 恢复回来，而不会导致应用异常退出。
 
@@ -168,7 +168,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * CopyRequestBody
 
-	是否允许在HTTP请求时，返回原始请求体数据字节，默认为 true （GET or HEAD or 上传文件请求除外）。
+	是否允许在 HTTP 请求时，返回原始请求体数据字节，默认为 true （GET or HEAD or 上传文件请求除外）。
 
 	`beego.BConfig.CopyRequestBody = false`
 
@@ -178,14 +178,14 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 	是否开启 gzip 支持，默认为 false 不支持 gzip，一旦开启了 gzip，那么在模板输出的内容会进行 gzip 或者 zlib 压缩，根据用户的 Accept-Encoding 来判断。
 
 	`beego.BConfig.EnableGzip = false`
-	
+
 	Gzip允许用户自定义压缩级别、压缩长度阈值和针对请求类型压缩:
-	
-	1. 压缩级别, `gzipCompressLevel = 9`,取值为1~9,如果不设置为1(最快压缩) 
-	
-	2. 压缩长度阈值, `gzipMinLength = 256`,当原始内容长度大于此阈值时才开启压缩,默认为20B(ngnix默认长度) 
-	
-	3. 请求类型, `includedMethods = get;post`,针对哪些请求类型进行压缩,默认只针对GET请求压缩 
+
+	1. 压缩级别, `gzipCompressLevel = 9`,取值为 1~9,如果不设置为 1(最快压缩)
+
+	2. 压缩长度阈值, `gzipMinLength = 256`,当原始内容长度大于此阈值时才开启压缩,默认为 20B(ngnix默认长度)
+
+	3. 请求类型, `includedMethods = get;post`,针对哪些请求类型进行压缩,默认只针对 GET 请求压缩
 
 * MaxMemory
 
@@ -201,7 +201,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * EnableErrorsRender
 
-	是否将错误信息进行渲染，默认值为true，即出错会提示友好的出错页面，对于API类型的应用可能需要将该选项设置为false以阻止在`dev`模式下不必要的模板渲染信息返回。
+	是否将错误信息进行渲染，默认值为 true，即出错会提示友好的出错页面，对于 API 类型的应用可能需要将该选项设置为 false 以阻止在 `dev` 模式下不必要的模板渲染信息返回。
 
 
 #### Web配置
@@ -214,19 +214,19 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * EnableDocs
 
-	是否开启文档内置功能，默认是false
+	是否开启文档内置功能，默认是 false
 
 	`beego.BConfig.WebConfig.EnableDocs = true`
 
 * FlashName
 
-	Flash数据设置时Cookie的名称，默认是 BEEGO_FLASH
+	Flash 数据设置时 Cookie 的名称，默认是 BEEGO_FLASH
 
 	`beego.BConfig.WebConfig.FlashName = "BEEGO_FLASH"`
 
 * FlashSeperator
 
-	Flash数据的分隔符，默认是 BEEGOFLASH
+	Flash 数据的分隔符，默认是 BEEGOFLASH
 
 	`beego.BConfig.WebConfig.FlashSeperator = "BEEGOFLASH"`
 
@@ -239,21 +239,21 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 * StaticDir
 
 	静态文件目录设置，默认是static
-	
+
 	可配置单个或多个目录:
-	1. 单个目录, `StaticDir = download`. 相当于`beego.SetStaticPath("/download","download")`
-	
-	2. 多个目录, `StaticDir = download:down download2:down2`. 相当于`beego.SetStaticPath("/download","down")`和`beego.SetStaticPath("/download2","down2")`
+	1. 单个目录, `StaticDir = download`. 相当于 `beego.SetStaticPath("/download","download")`
+
+	2. 多个目录, `StaticDir = download:down download2:down2`. 相当于 `beego.SetStaticPath("/download","down")` 和 `beego.SetStaticPath("/download2","down2")`
 
     `beego.BConfig.WebConfig.StaticDir`
 
 * StaticExtensionsToGzip
 
-	允许哪些后缀名的静态文件进行gzip压缩，默认支持 .css 和 .js
+	允许哪些后缀名的静态文件进行 gzip 压缩，默认支持 .css 和 .js
 
 	`beego.BConfig.WebConfig.StaticExtensionsToGzip = []string{".css", ".js"}`
 
-	等价config文件中
+	等价 config 文件中
 
 		StaticExtensionsToGzip = .css, .js
 
@@ -297,7 +297,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * Graceful
 
-	是否开启热升级，默认是false，关闭热升级。
+	是否开启热升级，默认是 false，关闭热升级。
 
 	`beego.BConfig.Listen.Graceful=false`
 
@@ -309,13 +309,13 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * ListenTCP4
 
-	监听本地网络地址类型，默认为 "tcp4"，该值可以是"tcp", "tcp4", "tcp6", "unix" or "unixpacket"之一。
+	监听本地网络地址类型，默认为 "tcp4"，该值可以是 "tcp", "tcp4", "tcp6", "unix" or "unixpacket" 之一。
 
 	`beego.BConfig.Listen.ListenTCP4 = "tcp4"`
 
 * EnableHTTP
 
-	是否启用HTTP监听，默认是true。
+	是否启用 HTTP 监听，默认是 true。
 
 	`beego.BConfig.Listen.EnableHTTP = true`
 
@@ -333,7 +333,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * EnableHTTPS
 
-	是否启用 HTTPS，默认是 false 关闭。当需要启用时，先设置 EnableHTTPS = true，并设置`HTTPSCertFile` 和 `HTTPSKeyFile`
+	是否启用 HTTPS，默认是 false 关闭。当需要启用时，先设置 EnableHTTPS = true，并设置 `HTTPSCertFile` 和 `HTTPSKeyFile`
 
 	`beego.BConfig.Listen.EnableHTTPS = false`
 
@@ -351,13 +351,13 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * HTTPSCertFile
 
-	开启HTTPS后，ssl证书路径，默认为空。
+	开启 HTTPS 后，ssl 证书路径，默认为空。
 
 	`beego.BConfig.Listen.HTTPSCertFile = "conf/ssl.crt"`
 
 * HTTPSKeyFile
 
-	开启 HTTPS 之后，SSL证书keyfile 的路径。
+	开启 HTTPS 之后，SSL 证书 keyfile 的路径。
 
 	`beego.BConfig.Listen.HTTPSKeyFile = "conf/ssl.key"`
 
@@ -436,7 +436,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * SessionDomain
 
-session cookie存储域名, 默认空。
+session cookie 存储域名, 默认空。
 
 `beego.BConfig.WebConfig.Session.SessionDomain = ""`
 
@@ -446,7 +446,7 @@ session cookie存储域名, 默认空。
 
 * AccessLogs
 
-	是否输出日志到Log，默认在prod模式下不会输出日志，默认为 false 不输出日志。，此参数不支持配置文件配置。
+	是否输出日志到 Log，默认在 prod 模式下不会输出日志，默认为 false 不输出日志。此参数不支持配置文件配置。
 
 	`beego.BConfig.Log.AccessLogs = false`
 
@@ -458,7 +458,7 @@ session cookie存储域名, 默认空。
 
 * Outputs
 
-	日志输出配置，参考logs模块，console file 等配置，此参数不支持配置文件配置。
+	日志输出配置，参考 logs 模块，console file 等配置，此参数不支持配置文件配置。
 
 	`beego.BConfig.Log.Outputs = map[string]string{"console": ""}`
 

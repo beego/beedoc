@@ -5,9 +5,9 @@ sort: 6
 
 # 构造查询
 
-**QueryBuilder** 提供了一个简便，流畅的SQL查询构造器。在不影响代码可读性的前提下用来快速的建立SQL语句。
+**QueryBuilder** 提供了一个简便，流畅的 SQL 查询构造器。在不影响代码可读性的前提下用来快速的建立 SQL 语句。
 
-**QueryBuilder**在功能上与 ORM 重合， 但是各有利弊。ORM更适用于简单的CRUD操作，而 QueryBuilder 则更适用于复杂的查询，例如查询中包含子查询和多重联结。
+**QueryBuilder** 在功能上与 ORM 重合， 但是各有利弊。ORM 更适用于简单的 CRUD 操作，而 QueryBuilder 则更适用于复杂的查询，例如查询中包含子查询和多重联结。
 
 使用方法:
 
@@ -32,15 +32,15 @@ qb.Select("user.name",
 	OrderBy("name").Desc().
 	Limit(10).Offset(0)
 
-// 导出SQL语句
+// 导出 SQL 语句
 sql := qb.String()
 
-// 执行SQL语句
+// 执行 SQL 语句
 o := orm.NewOrm()
 o.Raw(sql, 20).QueryRows(&users)
 ```
 
-完整API接口:
+完整 API 接口:
 
 ```go
 type QueryBuilder interface {

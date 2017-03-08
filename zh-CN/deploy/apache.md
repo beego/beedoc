@@ -20,7 +20,7 @@ NameVirtualHost *:80
 	ProxyPass / http://127.0.0.1:8080/
 	ProxyPassReverse / http://127.0.0.1:8080/
 </VirtualHost>
- 
+
 <VirtualHost *:80>
 	ServerAdmin webmaster@dummy-host.example.com
 	ServerName www.b.com

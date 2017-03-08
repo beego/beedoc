@@ -13,22 +13,22 @@ beego 有内建的 XSRF 的防范机制，要使用此机制，你需要在应�
 
     enablexsrf = true
     xsrfkey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o
-    xsrfexpire = 3600   
+    xsrfexpire = 3600
 
 或者直接在 main 入口处这样设置：
 
     beego.EnableXSRF = true
     beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
-    beego.XSRFExpire = 3600  //过期时间，默认1小时 
-    
+    beego.XSRFExpire = 3600  //过期时间，默认1小时
+
 
 如果开启了 XSRF，那么 beego 的 Web 应用将对所有用户设置一个 `_xsrf` 的 cookie 值（默认过期 1 小时），如果 `POST PUT DELET` 请求中没有这个 cookie 值，那么这个请求会被直接拒绝。如果你开启了这个机制，那么在所有被提交的表单中，你都需要加上一个域来提供这个值。你可以通过在模板中使用 专门的函数 `XSRFFormHTML()` 来做到这一点：
 
 过期时间上面我们设置了全局的过期时间 `beego.XSRFExpire`，但是有些时候我们也可以在控制器中修改这个过期时间，专门针对某一类处理逻辑：
 
 ```go
-func (this *HomeController) Get(){ 
-	this.XSRFExpire = 7200    
+func (this *HomeController) Get(){
+	this.XSRFExpire = 7200
 	this.Data["xsrfdata"]=template.HTML(this.XSRFFormHTML())
 }
 ```
@@ -38,11 +38,11 @@ func (this *HomeController) Get(){
 在 Controller 中这样设置数据：
 
 ```go
-func (this *HomeController) Get(){        
+func (this *HomeController) Get(){
     this.Data["xsrfdata"]=template.HTML(this.XSRFFormHTML())
 }
 ```
-  
+
 然后在模板中这样设置：
 
     <form action="/new_message" method="post">
@@ -78,7 +78,7 @@ jQuery.postJSON = function(url, args, callback) {
 需要你在 html 里保存一个 `_xsrf` 值
 
 ```go
-func (this *HomeController) Get(){        
+func (this *HomeController) Get(){
     this.Data["xsrf_token"] = this.XsrfToken()
 }
 ```
@@ -121,7 +121,7 @@ $.extend({
 
 ## 支持controller 级别的屏蔽
 
-XSRF 之前是全局设置的一个参数,如果设置了那么所有的API请求都会进行验证,但是有些时候API 逻辑是不需要进行验证的,因此现在支持在controller 级别设置屏蔽:
+XSRF 之前是全局设置的一个参数,如果设置了那么所有的 API 请求都会进行验证,但是有些时候API 逻辑是不需要进行验证的,因此现在支持在controller 级别设置屏蔽:
 
 ```
 type AdminController struct{

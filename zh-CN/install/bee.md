@@ -5,18 +5,18 @@ sort: 2
 
 # bee 工具简介
 
-bee 工具是一个为了协助快速开发 beego 项目而创建的项目，通过bee您可以很容易的进行beego项目的创建、热编译、开发、测试、和部署。
+bee 工具是一个为了协助快速开发 beego 项目而创建的项目，通过 bee 您可以很容易的进行 beego 项目的创建、热编译、开发、测试、和部署。
 
 ## bee 工具的安装
 
 您可以通过如下的方式安装 bee 工具：
 
 	go get github.com/beego/bee
-	
-安装完之后，`bee`可执行文件默认存放在`$GOPATH/bin`里面，所以您需要把`$GOPATH/bin`添加到您的环境变量中，才可以进行下一步。
+
+安装完之后，`bee` 可执行文件默认存放在 `$GOPATH/bin` 里面，所以您需要把 `$GOPATH/bin` 添加到您的环境变量中，才可以进行下一步。
 
 >>> 如何添加环境变量，请自行搜索
->>> 如果你本机设置了`GOBIN`，那么上面的命令就会安装到`GOBIN`下，请添加GOBIN到你的环境变量中
+>>> 如果你本机设置了 `GOBIN`，那么上面的命令就会安装到 `GOBIN` 下，请添加 GOBIN 到你的环境变量中
 
 ## bee 工具命令详解
 
@@ -39,7 +39,7 @@ The commands are:
     version     show the bee & beego version
     generate    source code generator
     migrate     run database migrations
-```	
+```
 
 ### new 命令
 
@@ -126,13 +126,13 @@ apiproject
 
 从上面的目录我们可以看到和 Web 项目相比，少了 static 和 views 目录，多了一个 test 模块，用来做单元测试的。
 
-同时，该命令还支持一些自定义参数自动连接数据库创建相关model和controller:
+同时，该命令还支持一些自定义参数自动连接数据库创建相关 model 和 controller:
 bee api [appname] [-tables=""] [-driver=mysql] [-conn=root:@tcp(127.0.0.1:3306)/test]
-如果conn参数为空则创建一个示例项目，否则将基于链接信息链接数据库创建项目。
+如果 conn 参数为空则创建一个示例项目，否则将基于链接信息链接数据库创建项目。
 
 ### run 命令
 
-我们在开发 Go 项目的时候最大的问题是经常需要自己手动去编译再运行，`bee run` 命令是监控 beego 的项目，通过 [fsnotify](https://github.com/howeyc/fsnotify)监控文件系统。但是注意该命令必须在`$GOPATH/src/appname`下执行。
+我们在开发 Go 项目的时候最大的问题是经常需要自己手动去编译再运行，`bee run` 命令是监控 beego 的项目，通过 [fsnotify](https://github.com/howeyc/fsnotify)监控文件系统。但是注意该命令必须在 `$GOPATH/src/appname` 下执行。
 这样我们在开发过程中就可以实时的看到项目修改之后的效果：
 
 ```
@@ -198,7 +198,7 @@ drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
 
 ### version 命令
 
-这个命令是动态获取bee、beego和Go的版本，这样一旦用户出现错误，可以通过该命令来查看当前的版本
+这个命令是动态获取 bee、beego 和 Go 的版本，这样一旦用户出现错误，可以通过该命令来查看当前的版本
 
 ```
 $ bee version
@@ -208,7 +208,7 @@ Go    :go version go1.3.3 darwin/amd64
 ```
 
 ### generate 命令
-这个命令是用来自动化的生成代码的，包含了从数据库一键生成model，还包含了scaffold的，通过这个命令，让大家开发代码不再慢
+这个命令是用来自动化的生成代码的，包含了从数据库一键生成 model，还包含了 scaffold 的，通过这个命令，让大家开发代码不再慢
 
 ```
 bee generate scaffold [scaffoldname] [-fields=""] [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]

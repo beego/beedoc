@@ -38,9 +38,9 @@ beego 是一个典型的 MVC 框架，它的整个执行逻辑如下图所示：
 
 - [路由设置](controller/router.md)
 - [控制器函数](controller/controller.md)
-- [xsrf过滤](controller/xsrf.md)
-- [session控制](controller/session.md)
-- [flash数据](controller/flash.md)
+- [xsrf 过滤](controller/xsrf.md)
+- [session 控制](controller/session.md)
+- [flash 数据](controller/flash.md)
 - [请求数据处理](controller/params.md)
 - [多种格式数据输出](controller/jsonxml.md)
 - [表单数据验证](controller/validation.md)

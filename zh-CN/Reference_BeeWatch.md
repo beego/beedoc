@@ -45,7 +45,7 @@ Bee Watch 是一个可以使用 “go get” 安装的 Go 项目，您可以执�
 		test := "fail to watch"
 
 		// 增加监视变量，参数必须为偶数。
-		// 需要注意的是您必须传递被监视变量的地址。	
+		// 需要注意的是您必须传递被监视变量的地址。
 		// 该功能当前只支持基本类型。
 		// 在下面的例子中，'test' 不会被监视。
 		beewatch.AddWatchVars("test", test, "App Name", &appName,
@@ -73,7 +73,7 @@ Bee Watch 是一个可以使用 “go get” 安装的 Go 项目，您可以执�
 		case <-time.After(3 * time.Second):
 			beewatch.Trace().Printf("Done debug")
 		}
-	
+
 		// 关闭调试器，当您调试 Web 服务器时，可忽略该操作。
 		beewatch.Close()
 	}
