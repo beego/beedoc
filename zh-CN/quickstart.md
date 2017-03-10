@@ -7,7 +7,7 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 您需要安装 Go 1.1+ 以确保所有功能的正常使用。
 
 你需要安装 Beego 和 [Bee](http://beego.me/docs/install/bee.md) 的开发工具:
-	
+
 	$ go get github.com/astaxie/beego
 	$ go get github.com/beego/bee
 
@@ -41,19 +41,19 @@ Windows 平台下输入：
 下面这个示例程序将会在浏览器中打印 “Hello world”，以此说明使用 beego 构建 Web 应用程序是多么的简单！
 
 	package main
-	
+
 	import (
 		"github.com/astaxie/beego"
 	)
-	
+
 	type MainController struct {
 		beego.Controller
 	}
-	
+
 	func (this *MainController) Get() {
 		this.Ctx.WriteString("hello world")
 	}
-	
+
 	func main() {
 		beego.Router("/", &MainController{})
 		beego.Run()

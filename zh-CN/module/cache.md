@@ -15,7 +15,7 @@ beego 的 cache 模块是用来做数据缓存的，设计思路来自于 `datab
 
 >>>而且需要在使用的地方引入包
 
-    import _ "github.com/astaxie/beego/cache/memcache"			
+    import _ "github.com/astaxie/beego/cache/memcache"
 ## 使用入门
 
 首先引入包：
@@ -43,7 +43,7 @@ beego 的 cache 模块是用来做数据缓存的，设计思路来自于 `datab
 
 	配置信息如下所示，配置的信息表示 GC 的时间，表示每个 60s 会进行一次过期清理：
 
-		{"interval":60}													
+		{"interval":60}
 - file
 
 	配置信息如下所示，配置 `CachePath` 表示缓存的文件目录，`FileSuffix` 表示文件后缀，`DirectoryLevel` 表示目录层级，`EmbedExpiry` 表示过期设置
@@ -82,7 +82,7 @@ cache 模块采用了接口的方式实现，因此用户可以很方便的实�
 		IsExist(key string) bool
 		ClearAll() error
 		StartAndGC(config string) error
-	}		
+	}
 
 用户开发完毕在最后写类似这样的：
 

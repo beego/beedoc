@@ -37,7 +37,7 @@ r = o.Raw("UPDATE user SET name = ? WHERE name = ?", "testing", "slene")
 
 #### Exec
 
-执行sql语句，返回 [sql.Result](http://gowalker.org/database/sql#Result) 对象
+执行 sql 语句，返回 [sql.Result](http://gowalker.org/database/sql#Result) 对象
 
 ```go
 res, err := o.Raw("UPDATE user SET name = ?", "your").Exec()

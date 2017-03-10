@@ -8,7 +8,7 @@ sort: 2
 什么是路由设置呢？前面介绍的 MVC 结构执行时，介绍过 beego 存在三种方式的路由:固定路由、正则路由、自动路由，接下来详细的讲解如何使用这三种路由。
 
 ## 基础路由
-从beego1.2版本开始支持了基本的RESTful函数式路由,应用中的大多数路由都会定义在 `routers/router.go` 文件中。最简单的beego路由由URI和闭包函数组成。
+从 beego 1.2 版本开始支持了基本的 RESTful 函数式路由,应用中的大多数路由都会定义在 `routers/router.go` 文件中。最简单的 beego 路由由 URI 和闭包函数组成。
 
 ### 基本 GET 路由
 
@@ -17,7 +17,7 @@ beego.Get("/",func(ctx *context.Context){
      ctx.Output.Body([]byte("hello world"))
 })
 ```
-	
+
 ### 基本 POST 路由
 
 ```
@@ -26,7 +26,7 @@ beego.Post("/alice",func(ctx *context.Context){
 })
 ```
 
-### 注册一个可以响应任何HTTP的路由
+### 注册一个可以响应任何 HTTP 的路由
 
 ```
 beego.Any("/foo",func(ctx *context.Context){
@@ -44,8 +44,8 @@ beego.Any("/foo",func(ctx *context.Context){
 * beego.Delete(router, beego.FilterFunc)
 * beego.Any(router, beego.FilterFunc)
 
-### 支持自定义的handler实现
-有些时候我们已经实现了一些rpc的应用,但是想要集成到beego中,或者其他的httpserver应用,集成到beego中来.现在可以很方便的集成:
+### 支持自定义的 handler 实现
+有些时候我们已经实现了一些 rpc 的应用,但是想要集成到 beego 中,或者其他的 httpserver 应用,集成到 beego 中来.现在可以很方便的集成:
 
 ```
 s := rpc.NewServer()
@@ -54,9 +54,9 @@ s.RegisterService(new(HelloService), "")
 beego.Handler("/rpc", s)
 ```
 
-`beego.Handler(router, http.Handler)`这个函数是关键,第一个参数表示路由URI,第二个就是你自己实现的`http.Handler`,注册之后就会把所有rpc作为前缀的请求分发到`http.Handler`中进行处理.
+`beego.Handler(router, http.Handler)` 这个函数是关键,第一个参数表示路由 URI, 第二个就是你自己实现的 `http.Handler`, 注册之后就会把所有 rpc 作为前缀的请求分发到 `http.Handler` 中进行处理.
 
-这个函数其实还有第三个参数就是是否是前缀匹配,默认是false, 如果设置了true,那么就会在路由匹配的时候前缀匹配,即`/rpc/user`这样的也会匹配去运行
+这个函数其实还有第三个参数就是是否是前缀匹配,默认是 false, 如果设置了 true, 那么就会在路由匹配的时候前缀匹配,即 `/rpc/user` 这样的也会匹配去运行
 ### 路由参数
 后面会讲到固定路由,正则路由,这些参数一样适用于上面的这些函数
 
@@ -72,8 +72,8 @@ beego.Handler("/rpc", s)
 	beego.Router("/admin", &admin.UserController{})
 	beego.Router("/admin/index", &admin.ArticleController{})
 	beego.Router("/admin/addpkg", &admin.AddController{})
-	
-如上所示的路由就是我们最常用的路由方式，一个固定的路由，一个控制器，然后根据用户请求方法不同请求控制器中对应的方法，典型的 RESTful 方式。	
+
+如上所示的路由就是我们最常用的路由方式，一个固定的路由，一个控制器，然后根据用户请求方法不同请求控制器中对应的方法，典型的 RESTful 方式。
 
 ## 正则路由
 
@@ -81,11 +81,11 @@ beego.Handler("/rpc", s)
 
 - beego.Router("/api/?:id", &controllers.RController{})
 
-	默认匹配   //匹配 /api/123    :id = 123  可以匹配/api/这个URL
-	
+	默认匹配   //匹配 /api/123    :id = 123  可以匹配 /api/ 这个URL
+
 - beego.Router("/api/:id", &controllers.RController{})
 
-	默认匹配   //匹配 /api/123    :id = 123  不可以匹配/api/这个URL	
+	默认匹配   //匹配 /api/123    :id = 123  不可以匹配 /api/ 这个URL
 
 - beego.Router("/api/:id([0-9]+)", &controllers.RController{})
 
@@ -105,17 +105,17 @@ beego.Handler("/rpc", s)
 
 - beego.Router("/:id:int", &controllers.RController{})
 
-	int 类型设置方式，匹配 :id为int类型，框架帮你实现了正则([0-9]+)
+	int 类型设置方式，匹配 :id为int 类型，框架帮你实现了正则 ([0-9]+)
 
 - beego.Router("/:hi:string", &controllers.RController{})
 
-	string 类型设置方式，匹配 :hi为string类型。框架帮你实现了正则([\w]+)
+	string 类型设置方式，匹配 :hi 为 string 类型。框架帮你实现了正则 ([\w]+)
 
 - beego.Router("/cms_:id([0-9]+).html", &controllers.CmsController{})
 
-	带有前缀的自定义正则 //匹配 :id为正则类型。匹配 cms_123.html这样的url :id = 123
-	
-	
+	带有前缀的自定义正则 //匹配 :id 为正则类型。匹配 cms_123.html 这样的 url :id = 123
+
+
 
 可以在 Controller 中通过如下方式获取上面的变量：
 
@@ -130,7 +130,7 @@ beego.Handler("/rpc", s)
 上面列举的是默认的请求方法名（请求的 method 和函数名一致，例如 `GET` 请求执行 `Get` 函数，`POST` 请求执行 `Post` 函数），如果用户期望自定义函数名，那么可以使用如下方式：
 
 	beego.Router("/",&IndexController{},"*:Index")
-	
+
 使用第三个参数，第三个参数就是用来设置对应 method 到函数名，定义如下
 
 * `*`表示任意的 method 都执行该函数
@@ -144,32 +144,32 @@ beego.Handler("/rpc", s)
 	beego.Router("/api/create",&RestController{},"post:CreateFood")
 	beego.Router("/api/update",&RestController{},"put:UpdateFood")
 	beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
-	
+
 以下是多个 HTTP Method 指向同一个函数的示例：
 
 	beego.Router("/api",&RestController{},"get,post:ApiFunc")
-	
+
 以下是不同的 method 对应不同的函数，通过 ; 进行分割的示例：
 
 	beego.Router("/simple",&SimpleController{},"get:GetFunc;post:PostFunc")
 
 可用的 HTTP Method：
 
-* *：包含以下所有的函数
-* get ：GET 请求
-* post ：POST 请求
-* put ：PUT 请求
-* delete ：DELETE 请求
-* patch ：PATCH 请求
-* options ：OPTIONS 请求
-* head ：HEAD 请求
+* *: 包含以下所有的函数
+* get: GET 请求
+* post: POST 请求
+* put: PUT 请求
+* delete: DELETE 请求
+* patch: PATCH 请求
+* options: OPTIONS 请求
+* head: HEAD 请求
 
 如果同时存在 * 和对应的 HTTP Method，那么优先执行 HTTP Method 的方法，例如同时注册了如下所示的路由：
 
 	beego.Router("/simple",&SimpleController{},"*:AllFunc;post:PostFunc")
 那么执行 `POST` 请求的时候，执行 `PostFunc` 而不执行 `AllFunc`。
 
->>>自定义函数的路由默认不支持RESTful的方法，也就是如果你设置了`beego.Router("/api",&RestController{},"post:ApiFunc")` 这样的路由，如果请求的方法是`POST`，那么不会默认去执行`Post`函数。
+>>>自定义函数的路由默认不支持 RESTful 的方法，也就是如果你设置了 `beego.Router("/api",&RestController{},"post:ApiFunc")` 这样的路由，如果请求的方法是 `POST`，那么不会默认去执行 `Post` 函数。
 
 ## 自动匹配
 
@@ -180,22 +180,22 @@ beego.Handler("/rpc", s)
 
 	/object/login   调用 ObjectController 中的 Login 方法
 	/object/logout  调用 ObjectController 中的 Logout 方法
-除了前缀两个` /:controller/:method `的匹配之外，剩下的 url beego会帮你自动化解析为参数，保存在 `this.Ctx.Input.Params` 当中：
+除了前缀两个 `/:controller/:method` 的匹配之外，剩下的 url beego 会帮你自动化解析为参数，保存在 `this.Ctx.Input.Params` 当中：
 
 	/object/blog/2013/09/12  调用 ObjectController 中的 Blog 方法，参数如下：map[0:2013 1:09 2:12]
 方法名在内部是保存了用户设置的，例如 Login，url 匹配的时候都会转化为小写，所以，`/object/LOGIN` 这样的 `url` 也一样可以路由到用户定义的 `Login` 方法中。
 
-现在已经可以通过自动识别出来下面类似的所有url，都会把请求分发到 `controller` 的 `simple` 方法：
+现在已经可以通过自动识别出来下面类似的所有 url，都会把请求分发到 `controller` 的 `simple` 方法：
 
 	/controller/simple
 	/controller/simple.html
 	/controller/simple.json
 	/controller/simple.xml
-	
+
 可以通过 `this.Ctx.Input.Param(":ext")` 获取后缀名。
 
 ## 注解路由
-从beego1.3版本开始支持了注解路由，用户无需在router中注册路由，只需要Include相应地controller，然后在controller的method方法上面写上router注释（// @router）就可以了，详细的使用请看下面的例子：
+从 beego 1.3 版本开始支持了注解路由，用户无需在 router 中注册路由，只需要 Include 相应地 controller，然后在 controller 的 method 方法上面写上 router 注释（// @router）就可以了，详细的使用请看下面的例子：
 
 ```
 // CMS API
@@ -220,30 +220,30 @@ func (this *CMSController) AllBlock() {
 }
 ```
 
-可以在`router.go`中通过如下方式注册路由：
+可以在 `router.go` 中通过如下方式注册路由：
 
 	beego.Include(&CMSController{})
 
 
-beego自动会进行源码分析，注意只会在dev模式下进行生成，生成的路由放在“/routers/commentsRouter.go”文件中。
+beego 自动会进行源码分析，注意只会在 dev 模式下进行生成，生成的路由放在 "/routers/commentsRouter.go" 文件中。
 
 这样上面的路由就支持了如下的路由：
 
 * GET /staticblock/:key
 * GET /all/:key
 
-其实效果和自己通过Router函数注册是一样的：
+其实效果和自己通过 Router 函数注册是一样的：
 
 	beego.Router("/staticblock/:key", &CMSController{}, "get:StaticBlock")
 	beego.Router("/all/:key", &CMSController{}, "get:AllBlock")
-	
-同时大家注意到新版本里面增加了URLMapping这个函数，这是新增加的函数，用户如果没有进行注册，那么就会通过反射来执行对应的函数，如果注册了就会通过interface来进行执行函数，性能上面会提升很多。
-	
+
+同时大家注意到新版本里面增加了 URLMapping 这个函数，这是新增加的函数，用户如果没有进行注册，那么就会通过反射来执行对应的函数，如果注册了就会通过 interface 来进行执行函数，性能上面会提升很多。
+
 ## namespace
 
 ```
-//初始化namespace
-ns := 
+//初始化 namespace
+ns :=
 beego.NewNamespace("/v1",
 	beego.NSCond(func(ctx *context.Context) bool {
 		if ctx.Input.Domain() == "api.beego.me" {
@@ -271,35 +271,35 @@ beego.NewNamespace("/v1",
 		),
 	),
 )
-//注册namespace
+//注册 namespace
 beego.AddNamespace(ns)
 ```
-上面这个代码支持了如下这样的请求URL
+上面这个代码支持了如下这样的请求 URL
 
 * GET /v1/notallowed
 * GET /v1/version
 * GET /v1/changepassword
 * POST /v1/changepassword
 * GET /v1/shop/123
-* GET /v1/cms/ 对应MainController、CMSController、BlockController中得注解路由
+* GET /v1/cms/ 对应 MainController、CMSController、BlockController 中得注解路由
 
-而且还支持前置过滤,条件判断,无限嵌套namespace
+而且还支持前置过滤,条件判断,无限嵌套 namespace
 
-namespace的接口如下:
+namespace 的接口如下:
 
 - NewNamespace(prefix string, funcs ...interface{})
 
-	初始化namespace对象,下面这些函数都是namespace对象的方法,但是强烈推荐使用NS开头的相应函数注册，因为这样更容易通过gofmt工具看的更清楚路由的级别关系
-	
+	初始化 namespace 对象,下面这些函数都是 namespace 对象的方法,但是强烈推荐使用 NS 开头的相应函数注册，因为这样更容易通过 gofmt 工具看的更清楚路由的级别关系
+
 - NSCond(cond namespaceCond)
 
-	支持满足条件的就执行该namespace,不满足就不执行
-	
+	支持满足条件的就执行该 namespace, 不满足就不执行
+
 - NSBefore(filiterList ...FilterFunc)
 - NSAfter(filiterList ...FilterFunc)
 
-	上面分别对应beforeRouter和FinishRouter两个过滤器，可以同时注册多个过滤器
-	
+	上面分别对应 beforeRouter 和 FinishRouter 两个过滤器，可以同时注册多个过滤器
+
 - NSInclude(cList ...ControllerInterface)
 - NSRouter(rootpath string, c ControllerInterface, mappingMethods ...string)
 - NSGet(rootpath string, f FilterFunc)
@@ -313,15 +313,15 @@ namespace的接口如下:
 - NSHandler(rootpath string, h http.Handler)
 - NSAutoRouter(c ControllerInterface)
 - NSAutoPrefix(prefix string, c ControllerInterface)
-	
-	上面这些都是设置路由的函数,详细的使用和上面beego的对应函数是一样的
-	
+
+	上面这些都是设置路由的函数,详细的使用和上面 beego 的对应函数是一样的
+
 - NSNamespace(prefix string, params ...innnerNamespace)
 
-	嵌套其他namespace
-	
+	嵌套其他 namespace
+
 	```
-	ns := 
+	ns :=
   	beego.NewNamespace("/v1",
 		beego.NSNamespace("/shop",
 			beego.NSGet("/:id", func(ctx *context.Context) {
@@ -339,22 +339,22 @@ namespace的接口如下:
 			}),
 		),
 	)
-	```	
-	
+	```
 
-下面这些函数都是属于*Namespace对象的方法：不建议直接使用，当然效果和上面的NS开头的函数是一样的，只是上面的方式更优雅，写出来的代码更容易看得懂
 
-- Cond(cond namespaceCond)  
+下面这些函数都是属于 *Namespace 对象的方法：不建议直接使用，当然效果和上面的 NS 开头的函数是一样的，只是上面的方式更优雅，写出来的代码更容易看得懂
 
-	支持满足条件的就执行该namespace,不满足就不执行,例如你可以根据域名来控制namespace
-	
+- Cond(cond namespaceCond)
+
+	支持满足条件的就执行该 namespace, 不满足就不执行,例如你可以根据域名来控制 namespace
+
 - Filter(action string, filter FilterFunc)
 
-	action表示你需要执行的位置,before和after分别表示执行逻辑之前和执行逻辑之后的filter
-	
+	action 表示你需要执行的位置, before 和 after 分别表示执行逻辑之前和执行逻辑之后的 filter
+
 - Router(rootpath string, c ControllerInterface, mappingMethods ...string)
 
-	
+
 - AutoRouter(c ControllerInterface)
 - AutoPrefix(prefix string, c ControllerInterface)
 - Get(rootpath string, f FilterFunc)
@@ -367,7 +367,7 @@ namespace的接口如下:
 - Any(rootpath string, f FilterFunc)
 - Handler(rootpath string, h http.Handler)
 
-	上面这些都是设置路由的函数,详细的使用和上面beego的对应函数是一样的
+	上面这些都是设置路由的函数,详细的使用和上面 beego 的对应函数是一样的
 
 - Namespace(ns ...*Namespace)
 

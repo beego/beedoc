@@ -28,7 +28,7 @@ func (u *User) TableName() string {
 }
 ```
 
-如果[前缀设置](orm.md#registermodelwithprefix)为`prefix_`那么表名为：prefix_auth_user
+如果[前缀设置](orm.md#registermodelwithprefix)为 `prefix_` 那么表名为：prefix_auth_user
 
 ## 自定义索引
 
@@ -273,7 +273,7 @@ type Tag struct {
 
 当设置 rel_table 时会忽略 rel_through
 
-设置方法： 
+设置方法：
 
 `orm:"rel(m2m);rel_table(the_table_name)"`
 

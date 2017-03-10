@@ -7,7 +7,7 @@ sort: 1
 
 前面介绍了 toolbox 模块，beego 默认是关闭的，在进程开启的时候监控端口，但是默认是监听在 `127.0.0.1:8088`，这样无法通过外网访问。当然你可以通过各种方法访问，例如 nginx 代理。
 
->>>为了安全，建议用户在防火墙中把 8088 端口给屏蔽了。你可以在conf/app.conf中打开它
+>>>为了安全，建议用户在防火墙中把 8088 端口给屏蔽了。你可以在 conf/app.conf 中打开它
 
 默认监控是关闭的，你可以通过设置参数配置开启监控：
 
@@ -40,8 +40,8 @@ sort: 1
 
 用户需要在应用中添加了 [task](../module/toolbox.md#task)，才能执行相应的任务检查和手工触发任务。
 
-- 检查任务状态URL：`http://localhost:8088/task`
-- 手工执行任务URL：`http://localhost:8088/runtask?taskname=任务名`
+- 检查任务状态 URL：`http://localhost:8088/task`
+- 手工执行任务 URL：`http://localhost:8088/runtask?taskname=任务名`
 
 ## 配置信息
 

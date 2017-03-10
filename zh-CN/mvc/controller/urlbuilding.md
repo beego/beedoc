@@ -60,10 +60,10 @@ UrlFor("TestController.GetUrl")
 ```
 
 ## 模板中如何使用
-默认情况下，beego已经注册了urlfor函数，用户可以通过如下的代码进行调用
+默认情况下，beego 已经注册了 urlfor 函数，用户可以通过如下的代码进行调用
 
 	{{urlfor "TestController.List"}}
-	
+
 为什么不在把 URL 写死在模板中，反而要动态构建？有两个很好的理由：
 
 1. 反向解析通常比硬编码 URL 更直观。同时，更重要的是你可以只在一个地方改变 URL ，而不用到处乱找。

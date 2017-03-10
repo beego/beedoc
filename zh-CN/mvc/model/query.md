@@ -30,7 +30,7 @@ QuerySeter 中用于描述字段和 sql 操作符，使用简单的 expr 查询�
 ```go
 qs.Filter("id", 1) // WHERE id = 1
 qs.Filter("profile__age", 18) // WHERE profile.age = 18
-qs.Filter("Profile__Age", 18) // 使用字段名和Field名都是允许的
+qs.Filter("Profile__Age", 18) // 使用字段名和 Field 名都是允许的
 qs.Filter("profile__age", 18) // WHERE profile.age = 18
 qs.Filter("profile__age__gt", 18) // WHERE profile.age > 18
 qs.Filter("profile__age__gte", 18) // WHERE profile.age >= 18
@@ -251,7 +251,7 @@ qs.Limit(10)
 // LIMIT 10
 
 qs.Limit(10, 20)
-// LIMIT 10 OFFSET 20 注意跟SQL反过来的
+// LIMIT 10 OFFSET 20 注意跟 SQL 反过来的
 
 qs.Limit(-1)
 // no limit
@@ -262,7 +262,7 @@ qs.Limit(-1, 100)
 ```
 
 ### Offset
-	
+
 设置 偏移行数
 
 ```go
@@ -292,7 +292,7 @@ qs.OrderBy("-profile__age", "profile")
 ```
 
 ### Distinct
-	
+
 对应 sql 的 `distinct` 语句, 返回不重复的值.
 
 ```go
@@ -313,7 +313,7 @@ qs.RelatedSel()
 // INNER JOIN user ... LEFT OUTER JOIN profile ...
 
 qs.RelatedSel("user")
-// INNER JOIN user ... 
+// INNER JOIN user ...
 // 设置 expr 只对设置的字段进行关系查询
 
 // 对设置 null 属性的 Field 将使用 LEFT OUTER JOIN
@@ -600,7 +600,7 @@ if err == nil {
 
 根据 Post.Title 查询对应的 User：
 
-RegisterModel 时，ORM也会自动建立 User 中 Post 的反向关系，所以可以直接进行查询
+RegisterModel 时，ORM 也会自动建立 User 中 Post 的反向关系，所以可以直接进行查询
 
 ```go
 var user User
@@ -612,7 +612,7 @@ if err == nil {
 
 #### Post 和 Tag 是 ManyToMany 关系
 
-设置 rel(m2m) 以后，ORM会自动创建中间表
+设置 rel(m2m) 以后，ORM 会自动创建中间表
 
 ```go
 type Post struct {
@@ -631,7 +631,7 @@ type Tag struct {
 }
 ```
 
-一条Post纪录可能对应不同的Tag纪录,一条Tag纪录可能对应不同的Post纪录，所以Post和Tag属于多对多关系,通过 tag name 查询哪些 post 使用了这个 tag
+一条 Post 纪录可能对应不同的 Tag 纪录,一条 Tag 纪录可能对应不同的 Post 纪录，所以 Post 和 Tag 属于多对多关系,通过 tag name 查询哪些 post 使用了这个 tag
 
 ```go
 var posts []*Post
@@ -699,7 +699,7 @@ o := orm.NewOrm()
 post := Post{Id: 1}
 m2m := o.QueryM2M(&post, "Tags")
 // 第一个参数的对象，主键必须有值
-// 第二个参数为对象需要操作的M2M字段
+// 第二个参数为对象需要操作的 M2M 字段
 // QueryM2Mer 的 api 将作用于 Id 为 1 的 Post
 ```
 

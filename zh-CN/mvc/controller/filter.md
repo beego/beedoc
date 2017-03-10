@@ -21,11 +21,11 @@ InsertFilter 函数的三个必填参数，一个可选参数
 	- AfterExec 执行完 Controller 逻辑之后执行的过滤器
 	- FinishRouter 执行完逻辑之后执行的过滤器
 - filter filter 函数 type FilterFunc func(*context.Context)
-- params 
-  1. 设置 returnOnOutput 的值(默认true), 是否允许如果有输出是否跳过其他filters，默认只要有输出就不再执行其他filters
-  2. 是否重置filters的参数，默认是false，因为在filters的pattern和本身的路由的pattern冲突的时候，可以把filters的参数重置，这样可以保证在后续的逻辑中获取到正确的参数，例如设置了`/api/*`的filter，同时又设置了`/api/docs/*`的router，那么在访问`/api/docs/swagger/abc.js`的时候，在执行filters的时候设置`:splat`参数为`docs/swagger/abc.js`，但是如果不清楚filter的这个路由参数，就会在执行路由逻辑的时候保持`docs/swagger/abc.js`，如果设置了true，就会重置`:splat`参数.
+- params
+  1. 设置 returnOnOutput 的值(默认 true), 是否允许如果有输出是否跳过其他 filters，默认只要有输出就不再执行其他 filters
+  2. 是否重置 filters 的参数，默认是 false，因为在 filters 的 pattern 和本身的路由的 pattern 冲突的时候，可以把 filters 的参数重置，这样可以保证在后续的逻辑中获取到正确的参数，例如设置了 `/api/*` 的 filter，同时又设置了 `/api/docs/*` 的 router，那么在访问 `/api/docs/swagger/abc.js` 的时候，在执行 filters 的时候设置 `:splat` 参数为 `docs/swagger/abc.js`，但是如果不清楚 filter 的这个路由参数，就会在执行路由逻辑的时候保持 `docs/swagger/abc.js`，如果设置了 true，就会重置 `:splat` 参数.
 
->>> AddFilter 从beego1.3版本开始已经废除
+>>> AddFilter 从beego1.3 版本开始已经废除
 
 如下例子所示，验证用户是否已经登录，应用于全部的请求：
 
@@ -54,19 +54,19 @@ var FilterUser = func(ctx *context.Context) {
 beego.InsertFilter("/user/:id([0-9]+)",beego.BeforeRouter,FilterUser)
 ```
 ## 过滤器实现路由
-beego1.1.2开始Context.Input中增加了RunController和RunMethod,这样我们就可以在执行路由查找之前,在filter中实现自己的路由规则.
+beego1.1.2 开始 Context.Input 中增加了 RunController 和 RunMethod, 这样我们就可以在执行路由查找之前,在 filter 中实现自己的路由规则.
 
 如下示例实现了如何实现自己的路由规则:
 
 ```go
 var UrlManager = func(ctx *context.Context) {
-    //数据库读取全部的url mapping数据
+    // 数据库读取全部的 url mapping 数据
 	urlMapping := model.GetUrlMapping()
 	for baseurl,rule:=range urlMapping {
 		if baseurl == ctx.Request.RequestURI {
 			ctx.Input.RunController = rule.controller
-			ctx.Input.RunMethod = rule.method		
-			break				
+			ctx.Input.RunMethod = rule.method
+			break
 		}
 	}
 }

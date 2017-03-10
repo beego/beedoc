@@ -38,9 +38,9 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 	$ curl http://beego.me:8088/healthcheck
 	* deadlocks: OK
 	* database: OK
-	
+
 如果检测显示是正确的，那么输出 OK，如果检测出错，显示出错的信息。
-	
+
 ## profile
 
 对于运行中的进程的性能监控是我们进行程序调优和查找问题的最佳方法，例如 GC、goroutine 等基础信息。profile 提供了方便的入口方便用户来调试程序，他主要是通过入口函数 `ProcessInput` 来进行处理各类请求，主要包括以下几种调试：
@@ -48,7 +48,7 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 - lookup goroutine
 
 	打印出来当前全部的 goroutine 执行的情况，非常方便查找各个 goroutine 在做的事情：
-	
+
 		goroutine 3 [running]:
 		runtime/pprof.writeGoroutineStacks(0x634238, 0xc210000008, 0x62b000, 0xd200000000000000)
 			/Users/astaxie/go/src/pkg/runtime/pprof/pprof.go:511 +0x7c
@@ -64,7 +64,7 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 			/Users/astaxie/go/src/pkg/testing/testing.go:391 +0x8b
 		created by testing.RunTests
 			/Users/astaxie/go/src/pkg/testing/testing.go:471 +0x8b2
-		
+
 		goroutine 1 [chan receive]:
 		testing.RunTests(0x315668, 0x532320, 0x4, 0x4, 0x1)
 			/Users/astaxie/go/src/pkg/testing/testing.go:472 +0x8d5
@@ -76,11 +76,11 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 - lookup heap
 
 	用来打印当前 heap 的信息：
-	
+
 		heap profile: 1: 288 [2: 296] @ heap/1048576
 		1: 288 [2: 296] @
-		
-		
+
+
 		# runtime.MemStats
 		# Alloc = 275504
 		# TotalAlloc = 275512
@@ -107,7 +107,7 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 - lookup threadcreate
 
 	查看创建线程的信息：
-	
+
 		threadcreate profile: total 4
 		1 @ 0x17f68 0x183c7 0x186a8 0x188cc 0x19ca9 0xcf41 0x139a3 0x196c0
 		#	0x183c7	newm+0x27			/Users/astaxie/go/src/pkg/runtime/proc.c:896
@@ -116,7 +116,7 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 		#	0x19ca9	runtime.entersyscallblock+0x129	/Users/astaxie/go/src/pkg/runtime/proc.c:1514
 		#	0xcf41	runtime.notetsleepg+0x71	/Users/astaxie/go/src/pkg/runtime/lock_sema.c:253
 		#	0x139a3	runtime.MHeap_Scavenger+0xa3	/Users/astaxie/go/src/pkg/runtime/mheap.c:463
-		
+
 		1 @ 0x17f68 0x183c7 0x186a8 0x188cc 0x189c3 0x1969b 0x2618b
 		#	0x183c7	newm+0x27		/Users/astaxie/go/src/pkg/runtime/proc.c:896
 		#	0x186a8	startm+0xb8		/Users/astaxie/go/src/pkg/runtime/proc.c:974
@@ -124,11 +124,11 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 		#	0x189c3	stoplockedm+0x83	/Users/astaxie/go/src/pkg/runtime/proc.c:1049
 		#	0x1969b	runtime.gosched0+0x8b	/Users/astaxie/go/src/pkg/runtime/proc.c:1382
 		#	0x2618b	runtime.mcall+0x4b	/Users/astaxie/go/src/pkg/runtime/asm_amd64.s:178
-		
+
 		1 @ 0x17f68 0x183c7 0x170bc 0x196c0
 		#	0x183c7	newm+0x27		/Users/astaxie/go/src/pkg/runtime/proc.c:896
 		#	0x170bc	runtime.main+0x3c	/Users/astaxie/go/src/pkg/runtime/proc.c:191
-		
+
 		1 @
 
 - lookup block
@@ -153,8 +153,8 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 - gc summary
 
 	查看 GC 信息
-	
-		NumGC:2 Pause:54.54us Pause(Avg):170.82us Overhead:177.49% Alloc:248.97K Sys:3.88M Alloc(Rate):1.23G/s Histogram:287.09us 287.09us 287.09us 
+
+		NumGC:2 Pause:54.54us Pause(Avg):170.82us Overhead:177.49% Alloc:248.97K Sys:3.88M Alloc(Rate):1.23G/s Histogram:287.09us 287.09us 287.09us
 
 ## statistics
 
@@ -172,9 +172,9 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 	toolbox.StatisticsMap.AddStatistics("POST", "/api/user/xiemengjun", "&admin.user", time.Duration(13000))
 	toolbox.StatisticsMap.AddStatistics("DELETE", "/api/user", "&admin.user", time.Duration(1400))
 
-获取统计信息	
-	
-	toolbox.StatisticsMap.GetMap(os.Stdout)	
+获取统计信息
+
+	toolbox.StatisticsMap.GetMap(os.Stdout)
 
 输出如下格式的信息：
 
@@ -184,7 +184,7 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 	| /api/user                                         | DELETE     |  1               | 1.40us           | 1.40us           | 1.40us           | 1.40us           |
 	| /api/admin                                        | POST       |  1               | 14.00us          | 14.00us          | 14.00us          | 14.00us          |
 	| /api/user/astaxie                                 | POST       |  1               | 12.00us          | 12.00us          | 12.00us          | 12.00us          |
-	| /api/user/xiemengjun                              | POST       |  1               | 13.00us          | 13.00us          | 13.00us          | 13.00us          |	
+	| /api/user/xiemengjun                              | POST       |  1               | 13.00us          | 13.00us          | 13.00us          | 13.00us          |
 
 ## task
 
@@ -193,14 +193,14 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 1. 初始化一个任务
 
 		tk1 := toolbox.NewTask("tk1", "0 12 * * * *", func() error { fmt.Println("tk1"); return nil })
-	
+
 	函数原型：
-	
-	NewTask(tname string, spec string, f TaskFunc) *Task	
+
+	NewTask(tname string, spec string, f TaskFunc) *Task
 	- tname 任务名称
 	- spec 定时任务格式，请参考下面的详细介绍
-	- f 执行的函数 func() error 
-	
+	- f 执行的函数 func() error
+
 2. 可以测试开启运行
 
 	可以通过如下的代码运行 TaskFunc，和 spec 无关，用于检测写的函数是否如预期所希望的这样：
@@ -209,17 +209,17 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 		if err != nil {
 			t.Fatal(err)
 		}
-	
-3. 加入全局的计划任务列表	
-	
+
+3. 加入全局的计划任务列表
+
 		toolbox.AddTask("tk1", tk1)
 
 4. 开始执行全局的任务
 
 		toolbox.StartTask()
 		defer toolbox.StopTask()
-		
-### spec 详解		
+
+### spec 详解
 
 spec 格式是参照 crontab 做的，详细的解释如下所示：
 
@@ -271,23 +271,23 @@ spec 格式是参照 crontab 做的，详细的解释如下所示：
 使用很方便，是 key/value 串出现的，如下示例：
 
 	Display("v1", 1, "v2", 2, "v3", 3)
-	
+
 打印结果如下：
 
 	2013/12/16 23:48:41 [Debug] at TestPrint() [/Users/astaxie/github/beego/toolbox/debug_test.go:13]
-	
+
 	[Variables]
 	v1 = 1
 	v2 = 2
-	v3 = 3	
-	
+	v3 = 3
+
 指针类型的打印如下：
 
 	type mytype struct {
 		next *mytype
 		prev *mytype
-	}	
-	
+	}
+
 	var v1 = new(mytype)
 	var v2 = new(mytype)
 
@@ -317,4 +317,4 @@ spec 格式是参照 crontab 做的，详细的解释如下所示：
 	        next: 0x210335430,
 	        prev: nil,
 	    },
-	}		
+	}

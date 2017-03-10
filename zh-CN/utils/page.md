@@ -28,7 +28,7 @@ func PageUtil(count int, pageNo int, pageSize int, list interface{}) Page {
 }
 ```
 
-页面是使用js插件进行分页 https://github.com/lyonlai/bootstrap-paginator 
+页面是使用 js 插件进行分页 https://github.com/lyonlai/bootstrap-paginator
 
 ```
 <script type="text/javascript" src="/static/js/bootstrap-paginator.min.js"></script>

@@ -7,7 +7,7 @@ sort: 8
 
 beego 当初设计的时候就考虑了 API 功能的设计，而我们在设计 API 的时候经常是输出 JSON 或者 XML 数据，那么 beego 提供了这样的方式直接输出：
 
-注意struct属性应该 为 exported Identifier
+注意 struct 属性应该 为 exported Identifier
 首字母应该大写
 - JSON 数据直接输出：
 
@@ -21,7 +21,7 @@ beego 当初设计的时候就考虑了 API 功能的设计，而我们在设计
 	调用 ServeJSON 之后，会设置 `content-type` 为 `application/json`，然后同时把数据进行 JSON 序列化输出。
 
 - XML 数据直接输出：
-	
+
 	```go
 	func (this *AddController) Get() {
 		mystruct := { ... }
@@ -41,6 +41,6 @@ beego 当初设计的时候就考虑了 API 功能的设计，而我们在设计
 	}
 	```
 	调用 ServeJSONP 之后，会设置 `content-type` 为 `application/javascript`，然后同时把数据进行 JSON 序列化，然后根据请求的 callback 参数设置 jsonp 输出。
-	
-	
+
+
 开发模式下序列化后输出的是格式化易阅读的 JSON 或 XML 字符串；在生产模式下序列化后输出的是压缩的字符串。
