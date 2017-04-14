@@ -104,19 +104,6 @@ sess 对象具有如下方法：
 	beego.BConfig.WebConfig.Session.SessionProvider="file"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = "./tmp"
 
-当 SessionProvider 为 mysql SessionProviderConfig 是链接地址，采用 [go-sql-driver](https://github.com/go-sql-driver/mysql)，如下所示：
-
-	beego.BConfig.WebConfig.Session.SessionProvider = "mysql"
-	beego.BConfig.WebConfig.Session.SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
-
-当 SessionProvider 为 redis 时，SessionProviderConfig 是 redis 的链接地址，采用了 [redigo](https://github.com/garyburd/redigo)，如下所示：
-
-	beego.BConfig.WebConfig.Session.SessionProvider = "redis"
-	beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
-
-	beego.BConfig.WebConfig.Session.SessionProvider = "file"
-	beego.BConfig.WebConfig.Session.SessionProviderConfig = "./tmp"
-
 当 SessionProvider 为 mysql 时，SessionProviderConfig 是链接地址，采用 [go-sql-driver](https://github.com/go-sql-driver/mysql)，如下所示：
 
 	beego.BConfig.WebConfig.Session.SessionProvider = "mysql"
