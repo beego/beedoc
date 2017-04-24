@@ -10,3 +10,4 @@ sort: 7
 - [支付宝 SDK](https://github.com/ascoders/alipay)
 - [pongo2](https://github.com/oal/beego-pongo2)
 - [keenio](https://github.com/pabdavis/beego_keenio)
+- [casbin - RBAC ACL plugins](https://github.com/hsluoyz/casbin)
