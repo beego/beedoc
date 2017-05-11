@@ -196,18 +196,19 @@ Your API document is available now. Open your browser and check it.
 
 ## Problems You May Have
 1. CORS
-	Two solutions
+	Two solutions:
 	1. Integrate `swagger` into the application. Download [swagger](https://github.com/beego/swagger/releases) and put it into project folder. (`bee run -downdoc=true` will also download it and put it into project folder)
 	And before 	`beego.Run()` in `func main()` of `main.go`
-
-		if beego.RunMode == "dev" {
-			beego.DirectoryIndex = true
-			beego.StaticDir["/swagger"] = "swagger"
+		```go
+		if beego.BConfig.RunMode == "dev" {
+			beego.BConfig.WebConfig.DirectoryIndex = true
+			beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 		}
+		```
+		And then visit `swagger` document from API project's URL and port.
 
-	And then visit `swagger` document from API project's URL and port.
 	2. Make API support CORS
-
-			ctx.Output.Header("Access-Control-Allow-Origin", "*")
-
+		```go
+		ctx.Output.Header("Access-Control-Allow-Origin", "*")
+		```
 2. Other problems. This is a feature used in my own project. If you have some other problems please fire issues to us.
