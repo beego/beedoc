@@ -79,7 +79,7 @@ jQuery.postJSON = function(url, args, callback) {
 
 ```go
 func (this *HomeController) Get(){
-    this.Data["xsrf_token"] = this.XsrfToken()
+    this.Data["xsrf_token"] = this.XSRFToken()
 }
 ```
 
