@@ -161,10 +161,14 @@ func (c *TaskController) MyMethod(id *int) (*MyModel, error) {
 
 Automatic Parameter Routing works best together with `@Param` annotations. The following features are supported with annotations:
 - If a parameter is marked as required, Beego will return an error if the parameter is not present in the http request:  
-`// @Param   brand_id    query   int true       "brand id"`  
+```go
+// @Param   brand_id    query   int true       "brand id"
+```
 (the `true` option in the annotation above indicates that brand_id is a required parameter)
 - If a parameter has a default value and it does not exist in the http request, Beego will pass that default value to the method:  
-`// @Param   brand_id    query   int false  5  "brand id"`  
+```go
+// @Param   brand_id    query   int false  5  "brand id"
+```
 (the `5` in the annotation above indicates that this is the default value for that parameter)
 - The location parameter in the annotation indicates where beego will search for that parameter in the request (i.e. query, header, body etc.)  
 ```go
@@ -173,8 +177,10 @@ Automatic Parameter Routing works best together with `@Param` annotations. The f
 // @Param   token	header  string	false "auth token"
 // @Param   task	body	{models.Task} false "the task object"
 ```
-- If a parameter name in the http request is different from the method parameter name, you can "redirect" the parameter using the `=>` notation. This is useful for example, if a header name is `X-Token` and the method parameter is named x_token:  
-`// @Param   X-Token=>x_token	header  string	false "auth token"`
+- If a parameter name in the http request is different from the method parameter name, you can "redirect" the parameter using the `=>` notation. This is useful, for example, When a header name is `X-Token` and the method parameter is named `x_token`:  
+```go
+// @Param   X-Token=>x_token	header  string	false "auth token"
+```
 - A parameterswagger data type can be inferred from the method to make maintainance easier. Just use the `auto` data type to let bee generate the correct swagger documentation:  
 ```go
 // @Param   id     query   auto true       "task id"
