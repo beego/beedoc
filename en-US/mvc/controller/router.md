@@ -236,6 +236,25 @@ It's exactly same as registering by Router functions:
 
 The `URLMapping` function above is a new function introduced in Beego 1.3. If you didn't use `URLMapping`, Beego will find the function by reflection otherwise Beego will find the function by `interface` which is much faster.
 
+## Automatic Parameter Handling
+Beego version XX.Y (justifies 2.0? :) introduced support for automatic injection of http request parameters as method arguments and method return values as http responses. 
+For example, defining the following controller method:
+
+```
+// @router /tasks/:id
+func (c *TaskController) MyMethod(id int, field string) (map[string]interface{}, error) {
+	if u, err := getObjectField(id, field); err == nil {
+		return u, nil
+	} else {
+		return nil, httpResponse.NotFound
+	}
+}
+```
+
+will automatically route the http parameters id and field (i.e. `/tasks/5?field=name` ) to the correct method parameters and will render the method return value as JSON. If the method will return an error, it will be rendered as an http status code
+If the parameter does not exist in the http request, it will be passed to the method as the zero value for that parameter unless you mark that parameter as 'required' (using annotations) which will return an error without calling the method
+For more information, see [Parameters](params.md)
+
 ## namespace
 
 ```
