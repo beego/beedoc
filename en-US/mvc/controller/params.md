@@ -140,9 +140,9 @@ func (c *TaskController) MyMethod(id *int) (*MyModel, error) {
 ```
 
 In the code above, the method can return three different results:
-- `MyModel` with a nil `error`
-- nil `MyModel` with a non-nil `error`
-- `MyModel` and a non-nil `error`
+- Only `MyModel` (nil `error`)
+- Only `error` (nil `MyModel`)
+- Both `MyModel` and `error`
 
 When a regular type is returned, it is rendered to the response directly as JSON. When an error is returned it is rendered as an http status code. Altough the first two options are more common, Beego will handle all cases correctrly and supports returning both response body and http error if both values are non-nil.
 A few helper types allow you toy return common http status codes easily. For example, you can return `404 Not Found`, `302 Redirect` or other http status codes like in the following example:
