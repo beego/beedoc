@@ -152,8 +152,8 @@ func (c *TaskController) MyMethod(id *int) (*MyModel, error) {
     return nil, context.NotFound
   } else if /* some error */ {
     return nil, context.StatusCode(401)
-  } else /* redirect */ {
-  	return nil, context.Redirect("/login")
+  } else {
+  	return &MyModel{}, nil
   }
 }
 ```
