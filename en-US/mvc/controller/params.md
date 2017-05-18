@@ -181,7 +181,7 @@ Automatic Parameter Routing works best together with `@Param` annotations. The f
 ```go
 // @Param   X-Token=>x_token	header  string	false "auth token"
 ```
-- A parameterswagger data type can be inferred from the method to make maintainance easier. Just use the `auto` data type to let bee generate the correct swagger documentation:  
+- A parameter swagger data type can be inferred from the method to make maintainance easier. Just use the `auto` data type and let Bee generate the correct swagger documentation:  
 ```go
 // @Param   id     query   auto true       "task id"
 // @router /tasks
