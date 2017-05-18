@@ -75,7 +75,7 @@ Notes:
 
 ## Automatic Parameter Routing
 
-Automatic parameter routing removes the need for boilerplate code like this.GetString(..), this.GetInt(..) etc. and instead, injects https parameters directly as method parameters and renders the method return values as http responses. This works in conjunction with annotations to create a seamless integration.
+Automatic parameter routing removes the need for boilerplate code like `this.GetString(..)`, `this.GetInt(..)` etc. and instead injects https parameters directly as method parameters and renders the method return values as http response. This works in conjunction with annotations to create a seamless integration.
 
 ### How does it work?
 
@@ -87,7 +87,7 @@ func (c *TaskController) MyMethod(id int) {
 }
 ```
 
-When an http request comes in that matches the routing you defined, Beego will scan the parameters in the method signature and will try to find matching http request paramters, convert them to the correct parameter type and pass them to your method. By default, Beego will look for parameters in the quey string (when using `GET`) or form data (when using `POST`). If your routing definition contains parameters, then Beego will automatically search for them in the path:
+When an http request comes in that matches the routing you defined, Beego will scan the parameters in the method signature and will try to find matching http request paramters (where method parameter name is the http request parameter name), convert them to the correct parameter type and pass them to your method. By default, Beego will look for parameters in the quey string (when using `GET`) or form data (when using `POST`). If your routing definition contains parameters, then Beego will automatically search for them in the path:
 ```go
 // @router /task/:id
 func (c *TaskController) MyMethod(id int) {
@@ -122,7 +122,7 @@ int, int64, uint etc. | anywhere | "1","-100" | Uses `strconv.Atoi(value)`
 float32,float64 | anywhere | "1.5", "-3.5" | Uses `strconv.ParseFloat()` 
 bool | anywhere | "1", "T", "false" | Uses `strconv.ParseBool()` 
 time.Time | anywhere | "2017-01-01" "2017-01-01T00:00:00Z" | Uses RFC3339 or short date format (`"2006-01-02"`) when parsing
-[]string, []int etc. | query | "A,B,C" "1,2,3" | Any type is supported as a slice. When it is located in the query string, it is parsed as a command separated list
+[]string, []int etc. | query | "A,B,C" "1,2,3" | Any type is supported as a slice. When it is located in the query string, it is parsed as a comma separated list
 []string, []int etc. | body | \["A","B","C"] [1,2,3] | When slices are located in the request body they are parsed as JSON arrays
 []byte | anywhere | "ABC" | byte[] is not treated as an array but as a string
 \*int, \*string, \*float etc. | anywhere | Pointers will receive null if the parameter is missing from the request otherwise, it will behave the same as defined in the other rows
