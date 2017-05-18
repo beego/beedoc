@@ -246,7 +246,7 @@ func (c *TaskController) MyMethod(id int, field string) (map[string]interface{},
 	if u, err := getObjectField(id, field); err == nil {
 		return u, nil
 	} else {
-		return nil, httpResponse.NotFound
+		return nil, context.NotFound
 	}
 }
 ```
