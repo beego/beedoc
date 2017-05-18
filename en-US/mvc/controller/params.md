@@ -149,11 +149,11 @@ A few helper types allow you toy return common http status codes easily. For exa
 ```go
 func (c *TaskController) MyMethod(id *int) (*MyModel, error) {
   if /* not found */ {
-    return nil, httpResponse.NotFound
+    return nil, context.NotFound
   } else if /* some error */ {
-    return nil, httpResponse.StatusCode(401)
+    return nil, context.StatusCode(401)
   } else /* redirect */ {
-  	return nil, httpResponse.Redirect("/login")
+  	return nil, context.Redirect("/login")
   }
 }
 ```
