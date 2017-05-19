@@ -124,6 +124,8 @@ maxConn := 30
 orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8", maxIdle, maxConn)
 ```
 
+See [Test.md](https://beego.me/docs/mvc/model/test.md) for more information on database connection strings.
+
 #### SetMaxIdleConns
 
 Set maximum idle connections according to database alias:
