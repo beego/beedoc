@@ -80,6 +80,7 @@ Automatic parameter routing removes the need for boilerplate code like `this.Get
 ### How does it work?
 
 Start by defining a regular controller method with a `@router` annotation and add parameters to the method signature
+
 ```go
 // @router /tasks
 func (c *TaskController) MyMethod(id int) {
@@ -88,6 +89,7 @@ func (c *TaskController) MyMethod(id int) {
 ```
 
 When an http request comes in that matches the routing you defined, Beego will scan the parameters in the method signature and will try to find matching http request paramters (where method parameter name is the http request parameter name), convert them to the correct parameter type and pass them to your method. By default, Beego will look for parameters in the quey string (when using `GET`) or form data (when using `POST`). If your routing definition contains parameters, then Beego will automatically search for them in the path:
+
 ```go
 // @router /task/:id
 func (c *TaskController) MyMethod(id int) {
@@ -97,6 +99,7 @@ func (c *TaskController) MyMethod(id int) {
 
 You can also use annotations to indicate a parameter is passed in a header or in the request body and bego will search for it accordingly.
 If a parameter is not found in the http request, it will be passed to your controller method as a zero value (i.e. 0 for int, false for bool etc.). If you define a default value for that parameter in annotations, beego will pass that default value if it is missing. If you want to differentiate between missing parameters and default values, you can define the parameter as a pointer, e.g.: 
+
 ```go
 // @router /tasks
 func (c *TaskController) MyMethod(id *int) {
@@ -104,6 +107,7 @@ func (c *TaskController) MyMethod(id *int) {
 }
 ```
 In the above case, if the paramter was missing, `id` will be null but if it exists and equals to zero, `id` will be 0. If you are using annotations to create swagger documentation, you can mark a parameter as `required`. In this case, if the parameter is missing in the request, a `400 Bad Request` error will be returned to the client:
+
 ```go
 // @Param   id     query   int true       "task id"
 // @router /tasks
@@ -146,6 +150,7 @@ In the code above, the method can return three different results:
 
 When a regular type is returned, it is rendered to the response directly as JSON. When an error is returned it is rendered as an http status code. Altough the first two options are more common, Beego will handle all cases correctrly and supports returning both response body and http error if both values are non-nil.
 A few helper types allow you toy return common http status codes easily. For example, you can return `404 Not Found`, `302 Redirect` or other http status codes like in the following example:
+
 ```go
 func (c *TaskController) MyMethod(id *int) (*MyModel, error) {
   if /* not found */ {
@@ -161,16 +166,19 @@ func (c *TaskController) MyMethod(id *int) (*MyModel, error) {
 
 Automatic Parameter Routing works best together with `@Param` annotations. The following features are supported with annotations:
 - If a parameter is marked as required, Beego will return an error if the parameter is not present in the http request:  
+
 ```go
 // @Param   brand_id    query   int true       "brand id"
 ```
 (the `true` option in the annotation above indicates that brand_id is a required parameter)
 - If a parameter has a default value and it does not exist in the http request, Beego will pass that default value to the method:  
+
 ```go
 // @Param   brand_id    query   int false  5  "brand id"
 ```
 (the `5` in the annotation above indicates that this is the default value for that parameter)
 - The location parameter in the annotation indicates where beego will search for that parameter in the request (i.e. query, header, body etc.)  
+
 ```go
 // @Param   brand_id    path   	int 	true  "brand id"
 // @Param   category    query 	string	false "category" 
@@ -178,10 +186,12 @@ Automatic Parameter Routing works best together with `@Param` annotations. The f
 // @Param   task	body	{models.Task} false "the task object"
 ```
 - If a parameter name in the http request is different from the method parameter name, you can "redirect" the parameter using the `=>` notation. This is useful, for example, When a header name is `X-Token` and the method parameter is named `x_token`:  
+
 ```go
 // @Param   X-Token=>x_token	header  string	false "auth token"
 ```
 - A parameter swagger data type can be inferred from the method to make maintainance easier. Just use the `auto` data type and let Bee generate the correct swagger documentation:  
+
 ```go
 // @Param   id     query   auto true       "task id"
 // @router /tasks
