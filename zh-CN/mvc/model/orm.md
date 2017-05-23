@@ -46,7 +46,7 @@ type Tag struct {
 
 func init() {
 	// 需要在init中注册定义的model
-	orm.RegisterModel(new(User), new(Profile), new(Tag))
+	orm.RegisterModel(new(User), new(Post), new(Profile), new(Tag))
 }
 ```
 
