@@ -12,12 +12,12 @@ You will need to install or upgrade Beego and the [Bee](http://beego.me/docs/ins
 	$ go get -u github.com/beego/bee
 
 
-For convenience, you should add `$GOPATH/bin` to your` $PATH` environment variable. Please make sure you have already set the GOPATH environment variable. 
+For convenience, you should add `$GOPATH/bin` to your `$PATH` environment variable. Please make sure you have already set the `$GOPATH` environment variable. 
 
-	# if you havn't set GOPATH
+	# if you havn't set $GOPATH
 	$ echo 'export GOPATH="~/go"' >> ~/.profile # or ~/.zshrc, ~/.cshrc, whatever shell you use
 	
-	# if you have already set GOPATH
+	# if you have already set $GOPATH
 	$ echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile # or ~/.zshrc, ~/.cshrc, whatever shell you use
 	$ exec $SHELL
 
