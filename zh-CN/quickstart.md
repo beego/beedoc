@@ -11,7 +11,7 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 	$ go get -u github.com/astaxie/beego
 	$ go get -u github.com/beego/bee
 
-为了更加方便的操作，请将 `$GOPATH/bin` 加入到你的 $PATH 变量中。请确保在此之前您已经添加了 $GOPATH 变量。
+为了更加方便的操作，请将 `$GOPATH/bin` 加入到你的 `$PATH` 变量中。请确保在此之前您已经添加了 `$GOPATH` 变量。
 
         # 如果您还没添加 $GOPATH 变量
 	$ echo 'export GOPATH="~/go"' >> ~/.profile # 或者 ~/.zshrc, ~/.cshrc, 您所使用的sh对应的配置文件
