@@ -6,13 +6,20 @@ Beego contains sample applications to help you learn and use the Beego app frame
 
 You will need a functioning Go 1.1 installation for this to work.
 
-You will need to install Beego and the [Bee](http://beego.me/docs/install/bee.md) dev tool: 
+You will need to install or upgrade Beego and the [Bee](http://beego.me/docs/install/bee.md) dev tool: 
 	
-	$ go get github.com/astaxie/beego
-	$ go get github.com/beego/bee
+	$ go get -u github.com/astaxie/beego
+	$ go get -u github.com/beego/bee
 
 
-For convenience, you should add `$GOPATH/bin` to your` $PATH` environment variable.
+For convenience, you should add `$GOPATH/bin` to your` $PATH` environment variable. Please make sure you have already set the GOPATH environment variable. 
+
+	# if you havn't set GOPATH
+	$ echo 'export GOPATH="~/go"' >> ~/.profile # or ~/.zshrc, ~/.cshrc, whatever shell you use
+	
+	# if you have already set GOPATH
+	$ echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile # or ~/.zshrc, ~/.cshrc, whatever shell you use
+	$ exec $SHELL
 
 Want to quickly see how it works? Then just set things up like this:
 
