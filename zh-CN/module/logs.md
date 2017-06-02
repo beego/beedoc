@@ -114,7 +114,7 @@ sort: 3
 
 	设置的例子如下所示：
 
-		logs.SetLogger(logs.AdapterMultiFile, ``{"filename":"test.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}``)
+		logs.SetLogger(logs.AdapterMultiFile, `{"filename":"test.log","separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"]}`)
 
 	主要的参数如下说明(除 separate 外,均与file相同)：
 	- filename 保存的文件名
