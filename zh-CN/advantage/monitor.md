@@ -11,12 +11,12 @@ sort: 1
 
 默认监控是关闭的，你可以通过设置参数配置开启监控：
 
-	beego.EnableAdmin = true
+	enableadmin = true
 
 而且你还可以修改监听的地址和端口：
 
-	beego.AdminAddr = "localhost"
-	beego.AdminPort = 8088
+	adminaddr = "localhost"
+	adminport = 8088
 
 打开浏览器，输入 URL：`http://localhost:8088/`，你会看到一句欢迎词：`Welcome to Admin Dashboard`。
 
