@@ -15,8 +15,8 @@ Monitor is disabled by default. You can enable it by adding the following line i
 
 Also you can change the port it listens on:
 
-	AdminHttpAddr = "localhost"
-	AdminHttpPort = 8088
+	AdminAddr = "localhost"
+	AdminPort = 8088
 
 Open browser and visit `http://localhost:8088/` you will see `Welcome to Admin Dashboard`.
 
