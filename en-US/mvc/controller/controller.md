@@ -212,8 +212,8 @@ Then add a filter in Beego to check if the requests should be treated as a put r
 
 ```go
 var FilterMethod = func(ctx *context.Context) {
-    if ctx.BeegoInput.Query("_method")!="" && ctx.BeegoInput.IsPost(){
-          ctx.Request.Method = ctx.BeegoInput.Query("_method")
+    if ctx.Input.Query("_method")!="" && ctx.Input.IsPost(){
+          ctx.Request.Method = ctx.Input.Query("_method")
     }
 }
 
