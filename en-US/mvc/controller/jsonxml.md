@@ -28,7 +28,7 @@ Beego is also designed for the creation of API applications. When we build an AP
 	func (this *AddController) Get() {
 		mystruct := { ... }
 		this.Data["xml"]=&mystruct
-		this.ServeXml()
+		this.ServeXML()
 	}
 	```
   ServeXml will set `content-type` to `application/xml` and convert the data into XML.
