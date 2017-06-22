@@ -100,7 +100,7 @@ When SessionProvider is file, SessionSavePath is the save path of session files.
 When SessionProvider is mysql, SessionSavePath is connection address which is using [go-sql-driver](https://github.com/go-sql-driver/mysql). For example:
 
 	beego.SessionProvider = "mysql"
-	beego.SessionSavePath = "username:password@protocol(address)/dbname?param=value"
+	beego.SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
 
 When SessionProvider is redis, SessionSavePath is connection address for redis which is using [redigo](https://github.com/garyburd/redigo). For example:
 
