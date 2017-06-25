@@ -278,7 +278,7 @@ You can set these as follows:
 
 `orm:"rel(m2m);rel_table(the_table_name)"`
 
-`orm:"rel(m2m);rel_through(pkg.path.ModelName)"`
+`orm:"rel(m2m);rel_through(project_path/current_package.ModelName)"`
 
 #### on_delete
 
