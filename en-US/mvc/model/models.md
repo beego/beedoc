@@ -270,15 +270,15 @@ This setting is for `orm:"rel(m2m)"` field
 	rel_through     If you want to use custom m2m connecting table, set name by using this setting.
                   Format: pkg.path.byModelName
                   For example: app.models.PostTagRel PostTagRel table needs to have a relationship to Post table and Tag table.
-                  
+
 
 If rel_table is set, rel_through is ignored.
 
-You can set these as follows: 
+You can set these as follows:
 
 `orm:"rel(m2m);rel_table(the_table_name)"`
 
-`orm:"rel(m2m);rel_through(pkg.path.ModelName)"`
+`orm:"rel(m2m);rel_through(project_path/current_package.ModelName)"`
 
 #### on_delete
 
