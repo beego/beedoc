@@ -23,7 +23,7 @@ go build main.go
 # If possible, go run main.go orm has the same result.
 ```
 
-## Table Auto Generating
+## Database Schema Generation
 
 ```bash
 ./main orm syncdb -h

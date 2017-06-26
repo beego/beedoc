@@ -5,17 +5,15 @@ sort: 8
 
 # Model Definition
 
-Complicated model definition is not compulsory. It is　used for
-database data converting and [Scheme Generating](cmd.md#自动建表)
+Model names are used for database data conversion and [Database Schema Generation](cmd.md#database-schema-generation)
 
-Table name conversion :TODO is camel case to snake case.
+Table name conversion is camel case for the model to snake case for the table like the following
 
 	AuthUser -> auth_user
 	Auth_User -> auth__user
 	DB_AuthUser -> d_b__auth_user
 
-Except the leading capital letter :TODO, replace capital case letter
-into `_` and it's lower case. All the other `_` remain.
+In other words, all is converted to lower case and `_` is the separator. Every uppercase add a separator before it, except the first one.
 
 ## Custom table name
 
@@ -270,15 +268,15 @@ This setting is for `orm:"rel(m2m)"` field
 	rel_through     If you want to use custom m2m connecting table, set name by using this setting.
                   Format: pkg.path.byModelName
                   For example: app.models.PostTagRel PostTagRel table needs to have a relationship to Post table and Tag table.
-                  
+
 
 If rel_table is set, rel_through is ignored.
 
-You can set these as follows: 
+You can set these as follows:
 
 `orm:"rel(m2m);rel_table(the_table_name)"`
 
-`orm:"rel(m2m);rel_through(pkg.path.ModelName)"`
+`orm:"rel(m2m);rel_through(project_path/current_package.ModelName)"`
 
 #### on_delete
 
