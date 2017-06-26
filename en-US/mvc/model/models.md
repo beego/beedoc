@@ -7,7 +7,7 @@ sort: 8
 
 Model names are used for database data conversion and [Database Schema Generation](cmd.md#database-schema-generation)
 
-Table name conversion is camel case for the model to snake case for the table like the following
+Table name conversion is camel case for the model to snake case for the table like the following:
 
 	AuthUser -> auth_user
 	Auth_User -> auth__user
