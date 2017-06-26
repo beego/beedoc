@@ -5,17 +5,15 @@ sort: 8
 
 # Model Definition
 
-Complicated model definition is not compulsory. It is　used for
-database data converting and [Scheme Generating](cmd.md#自动建表)
+Model names are used for database data conversion and [Database Schema Generation](cmd.md#database-schema-generation)
 
-Table name conversion :TODO is camel case to snake case.
+Table name conversion is camel case for the model to snake case for the table like the following
 
 	AuthUser -> auth_user
 	Auth_User -> auth__user
 	DB_AuthUser -> d_b__auth_user
 
-Except the leading capital letter :TODO, replace capital case letter
-into `_` and it's lower case. All the other `_` remain.
+In other words, all is converted to lower case and `_` is the separator. Every uppercase add a separator before it, except the first one.
 
 ## Custom table name
 
