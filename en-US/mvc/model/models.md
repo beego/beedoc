@@ -7,7 +7,7 @@ sort: 8
 
 Model names are used for database data conversion and [Database Schema Generation](cmd.md#database-schema-generation)
 
-Table name conversion is camel case for the model to snake case for the table like the following:
+Table name conversion consists in translating camel case used for model names to snake case for table names as follows:
 
 	AuthUser -> auth_user
 	Auth_User -> auth__user
@@ -196,9 +196,9 @@ type User struct {
 }
 ```
 
-## Relationship
+## Relationships
 
-#### rel / reverse
+#### One to one
 
 **RelOneToOne**:
 
@@ -220,6 +220,8 @@ type Profile struct {
 }
 ```
 
+#### One to many
+
 **RelForeignKey**:
 
 ```go
@@ -239,6 +241,8 @@ type User struct {
 	...
 }
 ```
+
+#### Many to many
 
 **RelManyToMany**:
 
@@ -260,14 +264,16 @@ type Tag struct {
 }
 ```
 
-#### rel_table / rel_through
+In this example, by default the auto-generated table name is: `post_tag`.
 
-This setting is for `orm:"rel(m2m)"` field
+##### rel_table / rel_through
 
-	rel_table       Set the auto generated m2m connecting table name
+This setting is for `orm:"rel(m2m)"` field:
+
+	rel_table       Set the auto-generated m2m connecting table name
 	rel_through     If you want to use custom m2m connecting table, set name by using this setting.
-                  Format: pkg.path.byModelName
-                  For example: app.models.PostTagRel PostTagRel table needs to have a relationship to Post table and Tag table.
+                  Format: `project_path/current_package.ModelName`
+                  For example: `app/models.PostTagRel` PostTagRel table needs to have a relationship to Post table and Tag table.
 
 
 If rel_table is set, rel_through is ignored.
