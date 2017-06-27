@@ -7,6 +7,8 @@ sort: 8
 
 Model names are used for database data conversion and [Database Schema Generation](cmd.md#database-schema-generation)
 
+## Naming conventions
+
 Table name conversion consists in translating camel case used for model names to snake case for table names as follows:
 
 	AuthUser -> auth_user
@@ -265,6 +267,8 @@ type Tag struct {
 ```
 
 In this example, by default the auto-generated table name is: `post_tag`.
+The name of the struct in which we have `orm:"rel(m2m)"` defines the first half part, the name of the struct in which we have `orm:"reverse(many)"` defines the other half.
+It respects the naming conversion convention we have seen in [Naming conventions](#naming-conventions)
 
 ##### rel_table / rel_through
 
