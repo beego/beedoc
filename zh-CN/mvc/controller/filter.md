@@ -9,12 +9,12 @@ beego 支持自定义过滤中间件，例如安全验证，强制跳转等。
 
 过滤器函数如下所示：
 
-	beego.InsertFilter(pattern string, postion int, filter FilterFunc, params ...bool)
+	beego.InsertFilter(pattern string, position int, filter FilterFunc, params ...bool)
 
 InsertFilter 函数的三个必填参数，一个可选参数
 
 - pattern 路由规则，可以根据一定的规则进行路由，如果你全匹配可以用 `*`
-- postion 执行 Filter 的地方，四个固定参数如下，分别表示不同的执行过程
+- position 执行 Filter 的地方，四个固定参数如下，分别表示不同的执行过程
   - BeforeStatic 静态地址之前
 	- BeforeRouter 寻找路由之前
 	- BeforeExec 找到路由之后，开始执行相应的 Controller 之前
