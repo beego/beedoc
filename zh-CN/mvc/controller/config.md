@@ -375,9 +375,9 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * AdminPort
 
-监控程序监听的地址，默认值是 8088 。
+	监控程序监听的地址，默认值是 8088 。
 
-`beego.BConfig.Listen.AdminPort = 8088`
+	`beego.BConfig.Listen.AdminPort = 8088`
 
 * EnableFcgi
 
@@ -436,9 +436,9 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * SessionDomain
 
-session cookie 存储域名, 默认空。
+	session cookie 存储域名, 默认空。
 
-`beego.BConfig.WebConfig.Session.SessionDomain = ""`
+	`beego.BConfig.WebConfig.Session.SessionDomain = ""`
 
 #### Log配置
 
