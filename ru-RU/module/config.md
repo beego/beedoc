@@ -9,7 +9,7 @@ sort: 7
 
 	go get github.com/astaxie/beego/config
 
-Если вы хотите распарсить xml или yaml, вы должны сначало установить:
+Если вы хотите распарсить xml или yaml, вы должны сначала установить:
 
 	go get -u github.com/astaxie/beego/config/xml
 
