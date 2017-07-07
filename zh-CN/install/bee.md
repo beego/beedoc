@@ -127,7 +127,7 @@ apiproject
 从上面的目录我们可以看到和 Web 项目相比，少了 static 和 views 目录，多了一个 test 模块，用来做单元测试的。
 
 同时，该命令还支持一些自定义参数自动连接数据库创建相关 model 和 controller:
-bee api [appname] [-tables=""] [-driver=mysql] [-conn=root:@tcp(127.0.0.1:3306)/test]
+`bee api [appname] [-tables=""] [-driver=mysql] [-conn="root:<password>@tcp(127.0.0.1:3306)/test"]`
 如果 conn 参数为空则创建一个示例项目，否则将基于链接信息链接数据库创建项目。
 
 ### run 命令
