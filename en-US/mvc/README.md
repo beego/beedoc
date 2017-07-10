@@ -34,7 +34,7 @@ Let's describe the whole process:
 20. If there is no router found till now, the 404 page will be shown.
 21. Eventually, all logic went to supervise checking. If the supervisor module is enabled (default on port 8088), the request will be sent to supervisor module to log QPS of the request, visiting time, request url and so on.
 
-Now let dive into the first step of Beego's MVC, routing:
+Now let's dive into the first step of Beego's MVC, routing:
 
 - [Routing](controller/router.md)
 - [Controller functions](controller/controller.md)
