@@ -17,9 +17,9 @@ Beego has built-in XSRF protection. If you want to use it, you can either set `E
 
 or enable it in the main application entry function:
 
-    beego.EnableXSRF = true
-    beego.XSRFKEY = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
-    beego.XSRFExpire = 3600
+    beego.BConfig.WebConfig.EnableXSRF = true
+    beego.BConfig.WebConfig.XSRFKey = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
+    beego.BConfig.WebConfig.XSRFExpire = 3600
 
 With XSRF enabled, Beego will set a cookie `_xsrf` for every user. If this cookie doesn't exist in a `POST`, `PUT`, or `DELETE` request, Beego will refuse the request. If you enabled XSRF protection, you need to add a field to provide `_xsrf` value to every form. You can directly add `XSRFFormHTML()` in the template to set it.
 
