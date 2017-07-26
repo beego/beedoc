@@ -60,5 +60,11 @@
         	<td>Web Server which resizes images and works as a fallback to CDN</td>
         	<td><a target="_blank" href="github.com/flipkart-incubator/lenna">Git Hub</a></td>
         </tr>
+        
+        <tr>
+        	<td>Singulerp - ERP</td>
+        	<td>Subscription based Cloud ERP for Manufacturing Industry.</td>
+        	<td><a target="_blank" href="https://singulerp.com">Singulerp.com</a></td>
+        </tr>
     </tbody>
 </table>
