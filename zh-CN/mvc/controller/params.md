@@ -130,12 +130,12 @@ Beego 提供了两个很方便的方法来处理文件上传：
 ```go
 func (c *FormController) Post() {
 	f, h, err := c.GetFile("uploadname")
-	defer f.Close()
 	if err != nil {
-		fmt.Println("getfile err ", err)
-	} else {
-		c.SaveToFile("uploadname", "static/upload/" + h.Filename) // 保存位置在 static/upload, 没有文件夹要先创建
+		log.Fatal("getfile err ", err)
 	}
+	defer f.Close()
+	c.SaveToFile("uploadname", "static/upload/" + h.Filename) // 保存位置在 static/upload, 没有文件夹要先创建
+	
 }
 ```
 
