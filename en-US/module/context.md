@@ -88,7 +88,7 @@ The Input object is the encapsulation of request. Here are the implemented metho
 	
 - SubDomains
 
-  Return the root domain of request. For example, request domain is `blog.beego.me`, then this function returns `beego.me`.
+  Return the sub domains of the request. For example, request domain is `blog.beego.me`, then this function returns `blog`.
 	
 - Port
 
