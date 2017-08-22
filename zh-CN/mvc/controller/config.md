@@ -365,7 +365,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 	是否开启进程内监控模块，默认 false 关闭。
 
-	`beego.BConfig.Listen.AdminEnable = false`
+	`beego.BConfig.Listen.EnableAdmin = false`
 
 * AdminAddr
 
