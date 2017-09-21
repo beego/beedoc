@@ -123,7 +123,7 @@ bulk 为 1 时，将会顺序插入 slice 中的数据
 ```go
 o := orm.NewOrm()
 user := User{Id: 1}
-if o.Read(&user) != nil {
+if o.Read(&user) == nil {
 	user.Name = "MyName"
 	if num, err := o.Update(&user); err == nil {
 		fmt.Println(num)
