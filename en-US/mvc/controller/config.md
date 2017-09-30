@@ -358,7 +358,7 @@ Beego has many configurable variables. Let's have a look at these variables. It 
 
     Enable supervisor module or not, disabled by default.
 
-	`beego.BConfig.Listen.AdminEnable = false`
+	`beego.BConfig.Listen.EnableAdmin = false`
 
 * AdminAddr
 
