@@ -5,7 +5,7 @@ sort: 3
 
 # Controller logic
 
-We learned how we dispatch the users' requests to controllers in the previous section. In this section we will learn how to write a controller. Let's start with some code:
+The previous section covered user requests to controllers. This section will explain how to write a controller. Let's start with some code:
 
 ```
 package controllers
@@ -25,22 +25,22 @@ func (this *MainController) Get() {
 }
 ```
 
-Let's take apart the different sections of the code.
+The following is a breakdown of the different sections of this code.
 
 ## How Beego dispatches requests
 
-At the beginning we create the `MainController`. It contains an anonymous struct field of type `beego.Controller`. This is called struct embedding and is the way how Go mimics inheritance. This means `MainController` automatically acquires all the methods of `beego.Controller`.
+The `MainController` is the first thing created. It contains an anonymous struct field of type `beego.Controller`. This is called struct embedding and is the way that Go mimics inheritance. Because of this `MainController` automatically acquires all the methods of `beego.Controller`.
 
-`beego.Controller` has lots of methods such as `Init`, `Prepare`, `Post`, `Get`, `Delete` and `Head`. We can overwrite these functions by implementing them. In this case we overwrote the `Get` method.
+`beego.Controller` has several functions such as `Init`, `Prepare`, `Post`, `Get`, `Delete` and `Head`. These functions can be overwritten by implementing them. In this example the `Get` method was overwritten.
 
 We talked about the fact that Beego is a RESTful framework so our requests will run the related `req.Method` method by default. For example, if the browser sends a `GET` request, it will execute the `Get` method in `MainController`. Therefore the `Get` method and the logic we defined above will be executed.
 
 ## The `Get` method
 
-The logic in our `Get` method just outputs some data. We can get our data by many ways and store it in `this.Data` which is a `map[interface{}]interface{}`. We can assign any type of data here. In this case we just assigned two strings.
+The logic of the `Get` method only outputs data. This data will be stored in `this.Data`, a `map[interface{}]interface{}`.  Any type of data can be assigned here. In this case only two strings are assigned.
 
-The last thing to be done is rendering the template. `this.TplNames` (v1.6 uses `this.TplName`) specifies the template which will be rendered: Here it's `index.tpl`. If you don't set the template, it will default to `controller/method_name.tpl`. For example, in this case it would try to find `maincontroller/get.tpl`.
+Finally the template will be rendered. `this.TplNames` (v1.6 uses `this.TplName`) specifies the template which will be rendered. In this case it is `index.tpl`.  If a template is not set it will default to `controller/method_name.tpl`. For example, in this case it would try to find `maincontroller/get.tpl`.
 
-Beego will call the `Render` function (which is implemented in `beego.Controller`) automatically if you set up the template, so you don't need to render it manually.
+There is no need to render manually.  Beego will call the `Render` function (which is implemented in `beego.Controller`) automatically if it is set up in the template.
 
-This was only a brief introduction. Check out the controller section in the [MVC Introduction](../mvc/) to learn more. [In the next section](model.md) we will talk about how to write models.
+Check the controller section in the [MVC Introduction](../mvc/) to learn more about these functions. [The next section](model.md) will describe model writing.
