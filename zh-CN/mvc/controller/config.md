@@ -168,7 +168,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * CopyRequestBody
 
-	是否允许在 HTTP 请求时，返回原始请求体数据字节，默认为 true （GET or HEAD or 上传文件请求除外）。
+	是否允许在 HTTP 请求时，返回原始请求体数据字节，默认为 false （GET or HEAD or 上传文件请求除外）。
 
 	`beego.BConfig.CopyRequestBody = false`
 
