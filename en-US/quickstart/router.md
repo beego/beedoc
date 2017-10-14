@@ -5,7 +5,7 @@ sort: 2
 
 # Project routing settings
 
-So, we've created a Beego project and ran it in the previous section. But how does it work? Let's investigate from the main file (main.go):
+The previous section covered creating and running a Beego project.  This section will investigate the operation of the main file (main.go):
 
 	package main
 	
@@ -18,7 +18,7 @@ So, we've created a Beego project and ran it in the previous section. But how do
 	        beego.Run()
 	}
 
-At first, the code imports the package `quickstart/routers`. Let's have a look there (routers/router.go):
+This code imports the package `quickstart/routers`. This file contains the following (routers/router.go):
 
 	package routers
 
@@ -31,29 +31,31 @@ At first, the code imports the package `quickstart/routers`. Let's have a look t
 	        beego.Router("/", &controllers.MainController{})
 	}
 
-In total, there are two relevant lines here. The first one registers the router by calling `beego.Router` and the second one is `beego.Run`. What did these two lines do?
+There are two relevant lines here; `beego.Router` and `beego.Run`.
 
-1. Actually beego.Router registered an address. The first argument is the request uri, which is `/` here. This means that the request doesn't have any uri. The second argument is the Controller that will handle the requests for this uri. We can also register a router like this:
+1.  `beego.Router` is used to register a router address. This command accepts two arguments. The first argument specifes the request uri, which is `/` here to indicate that no uri is requested.  The second argument is used to indicate the Controller that will handle requests for this uri. 
+
+Alternately, a router can be registered in this format:
 
 		beego.Router("/user", &controllers.UserController{})
-The user can then visit `/user` to invoke the logic in UserController. That's how easy routers are. For further information on router usage please see [beego router settings](../mvc/controller/router.md).
+The user can visit `/user` to invoke the logic in UserController. For further information on router usage please see [beego router settings](../mvc/controller/router.md).
 
-2. After `beego.Run` is executed, we can see that it's listening on the port. Behind the scenes, it did a lot of work:
-  - Parsing the [configuration file](../mvc/controller/config.md)
-    Beego will parse the configuration file `app.conf` in conf folder. There we can change the port, enable session management and change the application's name by setting the corresponding options.
+2. `beego.Run` will actively listen on the specified port when executed. The following tasks are performed behind the scenes upon execution:
+  - Parse the [configuration file](../mvc/controller/config.md)
+    Beego will parse the configuration file `app.conf` in conf folder to change the port, enable session management and set the application's name.
 
-  - Initializing the [user session](../mvc/controller/session.md)
-    Beego will initialize the user session, depending on the setting in the configuration file.
+  - Initialize the [user session](../mvc/controller/session.md)
+    Beego will initialize the user session, based on the setting in the configuration file.
 
-  - Compiling the [views](view.md)
-    Beego will compile the views in the views folder when it's starting so as to avoid compiling them multiple times, which is definitely more efficient.
+  - Compile the [views](view.md)
+    Beego will compile the views in the views folder.  This is done on startup to avoid compiling multiple times and improve efficiency.
 
   - Starting the [supervisor module](../advantage/monitor.md)
-    Beego has a very cool module which is called supervisor module. We can see the QPS, cpu, memory, GC, goroutine and thread information by visiting port 8088.
+    By visiting port `8088` the user can access information about QPS, cpu, memory, GC, goroutine and thread information.
 
-  - Listening on the service port
-    This last step gets Beego listening for the http requests on port 8080. It takes advantage of goroutines by calling `ListenAndServe`.
+  - Listen on the service port
+    Beego will listen http requests on port `8080`. It takes advantage of goroutines by calling `ListenAndServe`.
 
-  - After everything is running, our server will serve incoming requests from port 8080 and supervising from port 8088.
+  - When the application is running our server will serve incoming requests from port `8080` and supervising from port `8088`.
 
-We saw the whole process of running a Beego project and some other functions. Let's see how the controller works in the [next section](controller.md).
+The next section will cover the operation of the controller [next section](controller.md).
