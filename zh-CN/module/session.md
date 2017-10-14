@@ -32,7 +32,16 @@ session 模块参考了 `database/sql` 的引擎写法，采用了一个接口�
 接着在你的入口函数中初始化数据：
 
 	func init() {
-		globalSessions, _ = session.NewManager("memory", `{"cookieName":"gosessionid", "enableSetCookie,omitempty": true, "gclifetime":3600, "maxLifetime": 3600, "secure": false, "sessionIDHashFunc": "sha1", "sessionIDHashKey": "", "cookieLifeTime": 3600, "providerConfig": ""}`)
+	        sessionConfig := &session.ManagerConfig{
+		CookieName:"gosessionid", 
+		EnableSetCookie: true, 
+		Gclifetime:3600,
+		Maxlifetime: 3600, 
+		Secure: false,
+		CookieLifeTime: 3600,
+		ProviderConfig: "./tmp",
+		}
+		globalSessions, _ = session.NewManager("memory",sessionConfig)
 		go globalSessions.GC()
 	}
 
