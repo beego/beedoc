@@ -12,12 +12,12 @@ sort: 1
 
 Часто задаваемые вопросы:
 
-- git is not installed. Please install git for your system.
-- git https is not accessible. Please config local git and close https validation:
+- git is not installed. Пожалуйста, установите git на вашу систему.
+- git https is not accessible. Пожалуйста, настройте конфигурационный локальный файл гита и закройте https валидацию:
 
 		git config --global http.sslVerify false
 
-- How can I install beego offline? There is no good solution now. We will creat packages for downloading and installing for every release.
+- Как я могу установить beego оффлайн? Пока что нету хорошего решения. Мы собираемся создавать пакеты для загрузки и установки для каждого релиза.
 
 # Обновление BeeGo
 
