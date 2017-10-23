@@ -6,35 +6,35 @@ sort: 4
 
 # Introduction to Beego's MVC
  
-Beego is a typical MVC framework. Here is it's request handling logic:
+Beego uses a typical Model-View-Controller (MVC) framework. This diagram illustrates how request handling logicis processed:
 
 ![](../images/detail.png)
 
-Let's describe the whole process:
+The whole logic handling process is explained below:
 
-1. Receive data from the listening port, 8080 by default.
-2. Beego start process the request data after the request reach port 8080
-3. Initializing Context object. Setting Input if the request is WebSocket request as well as checking if the request method is in the standard methods (get, post, put, delete, patch, options, head) in order to protect from hostile attack.
-4. If user set `BeforeRouter` filter, executing `BeforeRouter` filter. If `responseWriter` has output data already while executing this filter, finishing this request and jump to supervise checking.
-5. Starting handling static files. If the request url is matching the prefix that set by `StaticDir`, the `ServeFile` in `http` package will be used to handle the static file requests.
-6. If it's not static file request, it will initialize session module (if session module is enabled). So you need to know it will have a error if you are using session in `BeforeRouter` filter. You should put it into `AfterStatic` filter.
-7. Executing `AfterStatic` filter. If `responseWriter` has output data already while executing this filter, finishing this request and jump to supervise checking.
-8. After filters executed it will start to match request url with fixed routing rules. Which means if the request url is `/hello/world`, the `/hello` is not a matching. Only the whole string matching is considered as a matching. If there is a matching, it will execute the matched logic. Otherwise it will go into the regex matching.
-9. Regex matching is based on the order that use add them which means the order of the regex routing rules will affect your matching. If some rule is matching, it will execute the matched logic. Otherwise it will go into auto matching.
-10. If user registered `AutoRouter`, `controller/method` will be used to match the Controller and method. If matching founded, it will execute it otherwise it will jump to supervise checking.
-11. If Controller found, it will start the logic. The first one is `BeforeExec`. If `responseWriter` has output data already while executing this filter, finishing this request and jump to supervise checking.
-12. Controller will start executing `Init` function. It will initialize some basic information. Usually it will initialize `bee.Controller`, so it's not recommended to modify this function while inheriting the Controller.
-13. If XSRF is enabled, it will call `XsrfToken` of `Controller`. If it's a POST request, `CheckXsrfCookie` will be called.
-14. Executing `Prepare` function of `Controller`. Usually this function is for the user to do the initialization. If `responseWriter` has output data already while executing this filter, it will go to the `Finish` function directly.
-15. If there is no output, it will execute the function that is registered by user. If there is no function registered by user, the method in `http.Method` (GET/POST and so on) will be called and execute the logic such as reading data, assigning data, and rendering template or output JSON or XML.
-16. If there is no output by `responseWrite`, `Render` function will be called to output template.
-17. Execute the `Finish` function of `Controller`. This function is used for user to override it in order to release some resources such as data initialized in `Init`.
-18. Execute the `AfterExec` filter and if there is output it will jump to supervise checking.
-19. Execute the `Destructor` in `Controller` for releasing data allocated in `Init`.
-20. If there is no router found till now, the 404 page will be shown.
-21. Eventually, all logic went to supervise checking. If the supervisor module is enabled (default on port 8088), the request will be sent to supervisor module to log QPS of the request, visiting time, request url and so on.
+1. Data is recieved from the listening port.  The listening port is set to 8080 by default.
+2. Beego begins processing the requested data after the request reachs port 8080
+3. The Context object is initialized. WebSocket requests will be set as Input after the request method has been verified as a standard method (get, post, put, delete, patch, options, head) in order to protect from hostile attack.
+4. If the `BeforeRouter` filter has been set by the user it is executed. If `responseWriter` has output data while executing this filter the request will be finished and the supervise checking step (see item 21) will be performed next.
+5. Start handling of static files. If the requested url matches the prefix set by `StaticDir`, the `ServeFile` in the `http` package will be used to handle the static file requests.
+6. If the request is not for a static file, and the session module is enabled, the session module will initialize. An error will occur if session is being used in the `BeforeRouter` filter (see item 4).  Use the `AfterStatic` filter (see item 7) instead to avoid this error.
+7. The `AfterStatic` filter is executed. If `responseWriter` already has output data while executing this filter the request will be finished and the supervise checking step (see item 21) will be performed next.
+8. After all filters have been executed Beego will start to match any requested urls with fixed routing rules. These connections will only be made if the whole string matches. For example: `/hello` does not match the url of `/hello/world`.  If any matching pairs are found the appropriate logic will execute.
+9. Regex matching is executed based on the order that the user added. This means the order of the regex routing rules will affect Regex matching. If any matches are found the appropriate logic will execute.
+10. If the user registered `AutoRouter`, `controller/method` will be used to match the Controller and method. If any matches are found the appropriate logic will execute. Otherwise the supervise checking step (see item 21) will be performed next.
+11. If a Controller is found Beego will start this logic. `BeforeExec` will execute first. If `responseWriter` already has output data while executing this filter the request will be finished and the supervise checking step (see item 21) will be performed next.
+12. Controller will start executing the `Init` function to initialize basic information. `bee.Controller` will usually be initialized as part of this item, so modifiying this function is not recommened while inheriting the Controller.
+13. If XSRF is enabled it will call `XsrfToken` of `Controller`. If this is a POST request `CheckXsrfCookie` will be called.
+14. The `Prepare` function of `Controller` will be executed. This function is normally used by the user to launch initialization. If `responseWriter` already has data while executing this filter it will go directly to the `Finish` function (see item 17).
+15. If there is no output the user registered function will be executed. If there is no function registered by the user the method in `http.Method` (GET/POST and so on) will be called.  This will execute logic inluding reading data, assigning data, rendering templates, or outputing JSON or XML.
+16. If there is no output by `responseWrite` the `Render` function will be called to output template.
+17. Execute the `Finish` function of `Controller`. This function works as an override to allow the user to release resources, such as data initialized in `Init`.
+18. Execute the `AfterExec` filter.  If there is output it will jump to the supervise checking step (see item 21).
+19. Execute `Destructor` in `Controller` to release data allocated in `Init`.
+20. If there is no router has been found the 404 page will be shown.
+21. Eventually, all logic paths lead to supervise checking. If the supervisor module is enabled (default on port 8088), the request will be sent to supervisor module to log data such as QPS of the request, visiting time, and request url.
 
-Now let's dive into the first step of Beego's MVC, routing:
+The next sections will detail the first step of Beego's MVC, routing:
 
 - [Routing](controller/router.md)
 - [Controller functions](controller/controller.md)
