@@ -309,9 +309,9 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 * ListenTCP4
 
-	监听本地网络地址类型，默认为 "tcp4"，该值可以是 "tcp", "tcp4", "tcp6", "unix" or "unixpacket" 之一。
-
-	`beego.BConfig.Listen.ListenTCP4 = "tcp4"`
+	监听本地网络地址类型，默认是TCP6，可以通过设置为true设置为TCP4。
+	
+	`beego.BConfig.Listen.ListenTCP4 = true`
 
 * EnableHTTP
 
