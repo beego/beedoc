@@ -304,9 +304,9 @@ Beego includes many configurable variables. These can be configured and overwrit
 
 * ListenTCP4
 
-    Set the address type. By default this is `tcp4`. Other valid types include `tcp`, `tcp4`, `tcp6`, `unix` or `unixpacket`.
+    Set the address type. default is `tcp6` but we can set it to true to force use `TCP4`.
 
-	`beego.BConfig.Listen.ListenTCP4 = "tcp4"`
+	`beego.BConfig.Listen.ListenTCP4 = true`
 
 * EnableHTTP
 
