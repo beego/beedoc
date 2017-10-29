@@ -5,10 +5,10 @@ sort: 2
 
 # Routing
 
-When do we set the router? When we discussed the MVC structure of Beego, we learnt that there are three types of router in Beego. Let's see how to use them now.
+This chapter will cover the three types of routers incorprated into Beego.
 
 ## Basic router
-From beego version 1.2 we began supporting a RESTful function router. The basic router includes the URI and closure function.
+Beego supports a RESTful function router. This basic router includes the URI and closure functions.
 
 ### GET router
 
@@ -26,7 +26,7 @@ beego.Post("/alice",func(ctx *context.Context){
 })
 ```
 
-### support all HTTP router
+### support all HTTP routers
 
 ```
 beego.Any("/foo",func(ctx *context.Context){
@@ -45,7 +45,7 @@ beego.Any("/foo",func(ctx *context.Context){
 * beego.Any(router, beego.FilterFunc)
 
 ### Handler register
-Sometimes it may be that we already use the `net/http` or other packages implemented in our system. But we may want to integrate it into the Beego API or web system. Now it's super easy to do that like this:
+In cases where where packages such as `net/http` are already implemented in a system they can be integrated into the Beego API or web system by following this procedure:
 
 ```
 s := rpc.NewServer()
@@ -54,28 +54,28 @@ s.RegisterService(new(HelloService), "")
 beego.Handler("/rpc", s)
 ```
 
-`beego.Handler(router, http.Handler)`,the first parameter represents the URI, the second parameter represents `http.Handler`. When you register this, then all the requests to `/rpc` will call `http.Handler`.
+`beego.Handler(router, http.Handler)` the first parameter represents the URI, and the second parameter represents `http.Handler`. When this is registered all requests to `/rpc` will call `http.Handler`.
 
-In fact there is a third parameter `isPrefix`, whose default value is `false`. If you set this parameter to `true`,then all the matches will comply with prefix matching, So the url `/rpc/user` will also call the register.
+There is also a third parameter, `isPrefix`.  If this parameter is set to `true` all the matches will comply with prefix matching, meaning that the url `/rpc/user` will also call the register. By default this value is `false`.
 
 ## RESTful router
 
-Let's talk about RESTful first. RESTful is a popular approach in API development. Beego supports it implicitly. Executing `Get` method for GET request and `Post` method for POST request. The default router is RESTful.
+RESTful is a popular approach to API development that Beego supports implicitly, executing `Get` method for GET request and `Post` method for POST request. The default router is RESTful.
 
 ## Fixed router
 
-Fixed router is a full matching router, such as:
+A fixed router is a full matching router, such as:
 
 	beego.Router("/", &controllers.MainController{})
 	beego.Router("/admin", &admin.UserController{})
 	beego.Router("/admin/index", &admin.ArticleController{})
 	beego.Router("/admin/addpkg", &admin.AddController{})
 
-The fixed routers above are the most common routers. One fixed router, one controller. This results in the execution of a different method based on each request method. It's a typical RESTful router.
+The fixed routers above are typical RESTful routers in their most common configuration, with one fixed router and one controller. This results in the execution of a different method based on each request method.
 
 ## Regex router
 
-In order to make the router settings easier, Beego references the router implementation approach found in Sinatra. It supports many router types.
+To simplify router configuration, Beego uses the router implementation approach found in Sinatra to support many router types.
 
 - beego.Router("/api/?:id", &controllers.RController{})
 
@@ -113,7 +113,7 @@ In order to make the router settings easier, Beego references the router impleme
 
   *has prefix regex* :id is the regex. *matching* cms_123.html :id = 123
 
-In controller, you can get the variables like this:
+The variables can be accessed in the controller like this:
 
 	this.Ctx.Input.Param(":id")
 	this.Ctx.Input.Param(":username")
@@ -123,7 +123,7 @@ In controller, you can get the variables like this:
 
 ## Custom methods and RESTful rules
 
-The examples above use default method names (the request method name is same as the controller method name, such as `GET` request executes `Get` method and `POST` request executes `Post` method). If you want to use different controller method names, you can do this:
+The examples above use default method names, where the request method name is same as the controller method name.  For example as `GET` request executes `Get` method and `POST` request executes `Post` method.  Different controller method names can be set like this:
 
 	beego.Router("/",&IndexController{},"*:Index")
 
@@ -160,7 +160,7 @@ Below are the acceptable HTTP methods:
 * options ：OPTIONS request
 * head ：HEAD request
 
-If * and other HTTP methods are used together, the HTTP method will be executed first. For example:
+If * and other HTTP methods are used together the HTTP method will be executed first. For example:
 
 	beego.Router("/simple",&SimpleController{},"*:AllFunc;post:PostFunc")
 
@@ -170,11 +170,11 @@ The router of custom methods does not support RESTful behaviour by default which
 
 ## Auto matching
 
-Firstly you need to register controller as an auto-router.
+To use auto matching the controller must be registered as an auto-router.
 
 	beego.AutoRouter(&controllers.ObjectController{})
 
-Then Beego will retrieve all the methods in that controller by reflection and you can call the related methods in this way:
+Beego will retrieve all the methods in that controller by reflection. The related methods can be called like this:
 
 	/object/login   will call Login method of ObjectController
 	/object/logout  will call Logout method of ObjectController
@@ -192,10 +192,10 @@ All the urls below will map to the `simple` method of `controller`.
 	/controller/simple.json
 	/controller/simple.xml
 
-Then you can get the extension name of the url by accessing `this.Ctx.Input.Param(":ext")`.
+The extension name of the url can be reached by accessing `this.Ctx.Input.Param(":ext")`.
 
 ## Annotations
-Beego version 1.3 introduced support for annotation routers. You don't need to register all the routers inside `router.go`. You only need to `Include` the controller. For example:
+Not all routers need to be registered inside `router.go`. Only the controller needs to be registered using `Include`. For example:
 
 ```
 // CMS API
@@ -218,26 +218,26 @@ func (this *CMSController) AllBlock() {
 }
 ```
 
-Then you can register the routers in `router.go`
+The routers can then be registered in `router.go`
 
     beego.Include(&CMSController{})
 
-beego will parse the source code automatically. Notes: it will only be generated under dev mode.
+Beego will parse the source code automatically when under dev mode.
 
-Then the following routers will be supported:
+The following routers will be supported:
 
 * GET /staticblock/:key
 * GET /all/:key
 
-It's exactly same as registering by Router functions:
+This is exactly same as registering by Router functions:
 
     beego.Router("/staticblock/:key", &CMSController{}, "get:StaticBlock")
     beego.Router("/all/:key", &CMSController{}, "get:AllBlock")
 
-The `URLMapping` function above is a new function introduced in Beego 1.3. If you didn't use `URLMapping`, Beego will find the function by reflection otherwise Beego will find the function by `interface` which is much faster.
+If you do not use `URLMapping` Beego will find the function by reflection, otherwise Beego will find the function with the must faster `interface`.
 
 ## Automatic Parameter Handling
-Beego version 1.8.3 introduced support for automatic injection of http request parameters as method arguments and method return values as http responses. 
+Beego supports automatic injection of http request parameters as method arguments, and method return values as http responses. 
 For example, defining the following controller method:
 
 ```
@@ -251,8 +251,8 @@ func (c *TaskController) MyMethod(id int, field string) (map[string]interface{},
 }
 ```
 
-will automatically route the http parameters id and field (i.e. `/tasks/5?field=name` ) to the correct method parameters and will render the method return value as JSON. If the method will return an error, it will be rendered as an http status code
-If the parameter does not exist in the http request, it will be passed to the method as the zero value for that parameter unless you mark that parameter as 'required' (using annotations) which will return an error without calling the method
+will automatically route the http parameters id and field (i.e. `/tasks/5?field=name` ) to the correct method parameters, and will render the method return value as JSON. If the method returns an error it will be rendered as an http status code.
+If the parameter does not exist in the http request it will be passed to the method as the zero value for that parameter, unless that parameter is marked as 'required' using annotations.  This will return an error without calling the method.
 For more information, see [Parameters](params.md)
 
 ## namespace
@@ -305,16 +305,16 @@ namespace API:
 - NewNamespace(prefix string,...interface{})
 
     Create a namespace object. The namespace object's methods are listed below.
-    We recommend that you use these methods beginning with `NS` as it is compatible with the gofmt tool.
+    For compatibility with the gofmt tool is is recommend that these method names begin with `NS`.
 
 - NSCond(cond namespaceCond)
 
-    if the namespaceCond returns true this namespace will be run, otherwise it won't run
+    if the namespaceCond returns true this namespace will be run.
 
 - NSBefore(filterList ...FilterFunc)
 - NSAfter(filterList ...FilterFunc)
 
-    For `BeforeRouter` and `FinishRouter` filters. One can register multiple filters.
+    For `BeforeRouter` and `FinishRouter` filters. Multiple filters can be registered.
 
 - NSInclude(cList ...ControllerInterface)
 - NSRouter(rootpath string, c ControllerInterface, mappingMethods ...string)
@@ -330,7 +330,7 @@ namespace API:
 - NSAutoRouter(c ControllerInterface)
 - NSAutoPrefix(prefix string, c ControllerInterface)
 
-    These are methods to set up routers which are the same as the basic routers.
+    These are methods to set up routers equivilant to the basic routers.
 
 - NSNamespace(prefix string, params ...innnerNamespace)
 
@@ -357,11 +357,11 @@ namespace API:
     )
     ```
 
-The methods below are methods for the`*Namespace` object. It is not recommended. They have the same functionality as the methods with `NS`. But the methods list above with `NS` are more elegant and easier to read.
+The methods below are for the`*Namespace` object and are not recommended. They have the same functionality as methods with `NS`, but are less elegant and harder to read.
 
 - Cond(cond namespaceCond)
 
-	if the namespaceCond return true will run this namespace,unwise won't run
+	if the namespaceCond return true will run this namespace.
 
 - Filter(action string, filter FilterFunc)
 
@@ -387,7 +387,7 @@ The methods below are methods for the`*Namespace` object. It is not recommended.
 - Namespace(ns ...*Namespace)
 
 
-You can nest even more function:
+More functions can be nested:
 
 ```
 //APIS
