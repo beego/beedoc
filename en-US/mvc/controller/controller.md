@@ -5,9 +5,9 @@ sort: 3
 
 # Introduction to controller
 
-> From version 1.6: `this.ServeJson()` is `this.ServeJSON()` and `this.TplNames` is `this.TplName`
+> Note: From version 1.6: `this.ServeJson()` has been changed to `this.ServeJSON()` and `this.TplNames` has been changed to `this.TplName`
 
-Based on the design of Beego's controller, you just need to embed the `beego.Controller`:
+Beego's controller needs to be embeded as `beego.Controller`:
 
 	type xxxController struct {
 	    beego.Controller
@@ -17,49 +17,49 @@ Based on the design of Beego's controller, you just need to embed the `beego.Con
 
 - Init(ct *context.Context, controllerName, actionName string, app interface{})
 
-  This function will initialize Context, Controller name, template name, template variable container `Data`. `app` is the executing Controller's reflecttype. It can be used to execute subclass's methods.
+  This function will initialize Context, Controller name, template name, template variable container `Data`. `app` is the executing Controller's reflecttype. This can be used to execute the subclass's methods.
 
 - Prepare()
 
-  You can use this function for extension, it will execute before the methods below. You can overwrite it to implement functions such as user validation.
+  This function is used for extension and will execute before the methods below. It can be overwritten to implement functions such as user validation.
 
 - Get()
 
-  This method will be executed if the HTTP request method is GET, and returns 403 by default. You can implement this method to handle GET requests by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is GET. It returns 403 by default. This can be used to handle GET requests by overwriting them in the struct of subclass.
 
 - Post()
 
-  This method will be executed if the HTTP request method is POST, and returns 403 by default. You can implement this method to handle POST requests by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is POST.  It returns 403 by default. This can be used to handle POST requests by overwriting them in the struct of subclass.
 
 - Delete()
 
-  This method will be executed if the HTTP request method is DELETE, and returns 403 by default. You can implement this method to handle DELETE requests by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is DELETE.  It returns 403 by default. This can be used to handle DELETE requests by overwriting them in the struct of subclass.
 
 - Put()
 
-  This method will be executed if the HTTP request method is PUT, and returns 403 by default. You can implement this method to handle PUT requests by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is PUT. It returns 403 by default. This can be used to handle PUT requests by overwriting them in the struct of subclass.
 
 - Head()
 
-  This method will be executed if the HTTP request method is HEAD, return 403 by default. You can implement this method to handle HEAD request by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is HEAD. It return 403 by default. This can be used to handle HEAD requests by overwriting them in the struct of subclass.
 
 - Patch()
 
-  This method will be executed if the HTTP request method is PATCH, and returns 403 by default. You can implement this method to handle PATCH requests by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is PATCH. It returns 403 by default. This can be used to handle PATCH requests by overwriting them in the struct of subclass.
 
 - Options()
 
-  This method will be executed if the HTTP request method is OPTIONS, and returns 403 by default. You can implement this method to handle OPTIONS requests by overwriting it in the struct of subclass.
+  This method will be executed if the HTTP request method is OPTIONS. It returns 403 by default. This can be used to handle OPTIONS requests by overwriting them in the struct of subclass.
 
 - Finish()
 
-  This method will be executed after finishing the related HTTP method. It is empty by default. You can implement this method by overwriting it in the struct of subclass. It is used for database closing, data cleaning and so on.
+  This method will be executed after finishing the related HTTP method. It is empty by default. This can be implemented by overwriting it in the struct of subclass. It is used for database closing, data cleaning and so on.
 
 - Render() error
 
   This method is used to render templates. It is only executed if `beego.AutoRender` is set to true.
 
-By overwriting functions in struct, you can implement your own logic. For example:
+Custom logica can be implemented by overwriting functions in struct. For example:
 
 ```
 type AddController struct {
@@ -96,9 +96,9 @@ func (this *AddController) Post() {
 }
 ```
 
-In the example above, it has implemented a RESTful structure by overwriting functions.
+In the example above a RESTful structure has been implemented by overwriting functions.
 
-Now let's see a popular architecture: Implementing a baseController and some initializing methods. Other controllers then just inherit from it.
+The following example implements a baseController and other initialization methods that will be inherited by other controllers:
 
 ```
 type NestPreparer interface {
@@ -134,7 +134,9 @@ func (this *baseRouter) Prepare() {
 }
 ```
 
-The above example defines a base class and initializes some variables. It will test if the executing Controller is an implementation of NestPreparer. If it is, then it calls the method of subclass. Let's see the implementation of `NestPreparer`:
+The above example defines a base class and initializes some variables. It will test if the executing Controller is an implementation of NestPreparer. If it is it calls the method of subclass. 
+
+The example below shows an implementation of `NestPreparer`:
 
 ```
 type BaseAdminRouter struct {
@@ -175,12 +177,12 @@ func (this *BaseAdminRouter) Post(){
 }
 ```
 
-Here is our logic: first execute `Prepare`. Go will search for methods in the struct by looking in the parent classes. While executing `BaseAdminRouter`, it checks whether there is a `Prepare` method. If not, it keeps searching `baseRouter`. If yes, it will execute the logic and `this.AppController` in `baseRouter` is the currently executing Controller `BaseAdminRouter`. Then it will execute `BaseAdminRouter.NestPrepare` method. Then it will start executing the related `GET` or `POST` method.
+The above example first executes `Prepare`. Go will search for methods in the struct by looking in the parent classes. `BaseAdminRouter` will execute and checks whether there is a `Prepare` method. If not it keeps searching `baseRouter`. If there is it will execute the logic. `this.AppController` in `baseRouter` is the currently executing Controller `BaseAdminRouter`. Next, it will execute `BaseAdminRouter.NestPrepare` method. Finally, it will start executing the related `GET` or `POST` method.
 
 
 ## Stop controller executing immediately
 
-Sometime we want to stop the following execution logic of the request immediately and return the response. When we authenticate user in `Prepare` method, if the authentication failed, we return a response directly. You can use `StopRun()` to do it. 
+To stop the execution logic of a request and return the response immediately use `StopRun()`. For example, when a user authentication fails in `Prepare` method a response will be returned immediately. 
 
 ```
 type RController struct {
@@ -194,12 +196,12 @@ func (this *RController) Prepare() {
 }
 ```
 
->>> If you call `StopRun`, the `Finish` method won't be run. If you need to free resources, please call `Finish` manually before call `StopRun`.
+>>> If you call `StopRun` the `Finish` method won't be run. To free resources call `Finish` manually before calling `StopRun`.
 
 
 ## Using PUT method in HTTP form
 
-XHTML 1.x forms only support GET and POST. GET and POST are the only allowed values for the "method" attribute. But if you want to, you can simply do this:
+Since XHTML 1.x forms only support GET and POST these are the only allowed values for the "method" attribute. Optionally, this can be extended as follows:
 
 Add a hidden input in the post form:
 
