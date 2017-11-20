@@ -3,6 +3,15 @@ name: Filters
 sort: 5
 ---
 
+# Pre-condition
+Code level
+
+`beego.BConfig.WebConfig.Session.SessionOn = true`
+
+Or you can switch it on in the configuration file:
+
+```SessionOn = true```
+
 # Filters
 
 Beego supports custom filter middlewares. E.g.: user authentication and force redirection.
