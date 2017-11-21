@@ -3,6 +3,17 @@ name: Filters
 sort: 5
 ---
 
+# Pre-condition
+Code level
+
+`beego.BConfig.WebConfig.Session.SessionOn = true`
+
+Or you can switch it on in the configuration file:
+
+```SessionOn = true```
+
+Otherwise it will cause a `Handler crashed with error runtime error: invalid memory address or nil pointer dereference` error
+
 # Filters
 
 Beego supports custom filter middlewares. E.g.: user authentication and force redirection.
