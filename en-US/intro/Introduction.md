@@ -10,7 +10,7 @@ Beego is a RESTful HTTP framework for the rapid development of Go applications i
 
 ## The architecture of Beego
 
-Beego is built upon 8 loosely linked modules that can be used indepentently or as part of Beego's HTTP logic.  This high level of modularity gives Beego an unprecidented level of flexibility to meet develper needs.
+Beego is built upon 8 loosely linked modules that can be used indepentently or as part of Beego's HTTP logic. This high level of modularity gives Beego an unprecedented level of flexibility to meet developer needs.
 
 ![](../images/architecture.png)
 
