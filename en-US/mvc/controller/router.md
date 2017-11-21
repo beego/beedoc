@@ -389,11 +389,11 @@ The methods below are for the`*Namespace` object and are not recommended. They h
 
 More functions can be nested:
 
-```
+```go
 //APIS
 ns :=
 	beego.NewNamespace("/api",
-		//此处正式版时改为验证加密请求
+		//It should verify the encrypted request in the production using
 		beego.NSCond(func(ctx *context.Context) bool {
 			if ua := ctx.Input.Request.UserAgent(); ua != "" {
 				return true
@@ -401,7 +401,7 @@ ns :=
 			return false
 		}),
 		beego.NSNamespace("/ios",
-			//CRUD Create(创建)、Read(读取)、Update(更新)和Delete(删除)
+			//CRUD Create, Read, Update and Delete
 			beego.NSNamespace("/create",
 				// /api/ios/create/node/
 				beego.NSRouter("/node", &apis.CreateNodeHandler{}),
