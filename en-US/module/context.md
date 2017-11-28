@@ -56,7 +56,7 @@ The Input object is the encapsulation of request. Here are the implemented metho
 	
 - Is
 
-  Test if it's a http method. E.g.: `Is('GET')` will return true or false
+  Test if it's a http method. E.g.: `Is("GET")` will return true or false
 	
 - IsAjax
 
