@@ -56,7 +56,7 @@ sort: 5
 	
 - Is
 
-  Проверка HTTP метода. Например: `Is('GET')` вернет true или false
+  Проверка HTTP метода. Например: `Is("GET")` вернет true или false
 	
 - IsAjax
 
