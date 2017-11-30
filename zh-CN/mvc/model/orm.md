@@ -374,7 +374,7 @@ fmt.Println(dr.Type() == orm.DRSqlite) // true
 
 简单的设置 Debug 为 true 打印查询的语句
 
-可能存在性能问题，不建议使用在产品模式
+可能存在性能问题，不建议使用在生产模式
 
 ```go
 func main() {
