@@ -55,7 +55,7 @@ sess object has following methods:
 * SessionRelease
 * Flush
 
-The use of SetSession, GetSession and DelSession is recommended to automate resource releasing.
+SetSession, GetSession and DelSession methods are recommended for session operation as it will release resource automatically.
 
 Here are some parameters used in the Session module:
 
