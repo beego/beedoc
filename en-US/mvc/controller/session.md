@@ -5,7 +5,7 @@ sort: 5
 
 # Session control
 
-Beego has a built-in session module that supports memory, file, mysql, redis, couchbase, memcache and postgres as the save provider. Other prividers can be implemented according to the interface.
+Beego has a built-in session module that supports memory, file, mysql, redis, couchbase, memcache and postgres as the save provider. Other providers can be implemented according to the interface.
 
 To use session in Beego switch it on in the main function:
 
