@@ -68,7 +68,7 @@ func init() {
 
 - 是否启动管理模块
 
-	beego 目前做了一个很酷的模块，应用内监控模块，会在 8088 端口做一个内部监听，我们可以通过这个端口查询到 QPS、CPU、内存、GC、goroutine、thread 等统计信息。
+	beego 目前做了一个很酷的模块，应用内[监控模块](../advantage/monitor.md)，会在 8088 端口做一个内部监听，我们可以通过这个端口查询到 QPS、CPU、内存、GC、goroutine、thread 等统计信息。
 
 - 监听服务端口
 
