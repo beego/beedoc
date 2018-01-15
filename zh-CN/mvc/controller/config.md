@@ -86,7 +86,7 @@ AppConfig 的方法如下：
 
 读取不同模式下配置参数的方法是“模式::配置参数名”，比如：beego.AppConfig.String("dev::mysqluser")。
 
-对于自定义的参数，需使用 beego.GetConfig(tpy, key string, defaultVal interface{}) 来获取指定 runmode 下的配置（需 1.4.0 以上版本），typ 为参数类型，key 为参数名, defaultVal 为默认值。
+对于自定义的参数，需使用 beego.GetConfig(typ, key string, defaultVal interface{}) 来获取指定 runmode 下的配置（需 1.4.0 以上版本），typ 为参数类型，key 为参数名, defaultVal 为默认值。
 
 ### 多个配置文件
 INI 格式配置支持 `include` 方式，引用多个配置文件，例如下面的两个配置文件效果同上：
