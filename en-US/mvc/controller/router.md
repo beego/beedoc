@@ -5,7 +5,7 @@ sort: 2
 
 # Routing
 
-This chapter will cover the three types of routers incorprated into Beego.
+This chapter will cover the three types of routers incorporated into Beego.
 
 ## Basic router
 Beego supports a RESTful function router. This basic router includes the URI and closure functions.
