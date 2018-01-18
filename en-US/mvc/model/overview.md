@@ -17,18 +17,18 @@ This framework is still under development so compatibility is not guaranteed.
 * PostgreSQL：[github.com/lib/pq](https://github.com/lib/pq)
 * Sqlite3：[github.com/mattn/go-sqlite3](https://github.com/mattn/go-sqlite3)
 
-All of the database drivers have passed the tests. But we still need your feedback and bug reports.
+All of the database drivers have passed the tests, but we still need your feedback and bug reports.
 
 **ORM Features:**
 
-* Supports all the types in Go
-* The CRUD is easy to use.
-* Auto Join connection tables.
+* Supports all the types in Go.
+* CRUD is easy to use.
+* Auto join connection tables.
 * Compatible with crossing database queries.
-* Supports raw SQL query and mapping
-* Strict and well covered test cases ensure the ORM's stability.
+* Supports raw SQL query and mapping.
+* Strict and well-covered test cases ensure the ORM's stability.
 
-You can learn more in the document.
+You can learn more in this documentation.
 
 **Install ORM:**
 
