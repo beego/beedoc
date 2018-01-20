@@ -5,7 +5,7 @@ sort: 5
 
 # Raw SQL to query
 
-* Using Raw SQL to query doesnt require ORM definition
+* Using Raw SQL to query doesn't require an ORM definition
 * Multiple databases support `?` as placeholders and auto convert.
 * The params of query support Model Struct, Slice and Array
 
