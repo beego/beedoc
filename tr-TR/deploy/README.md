@@ -65,5 +65,5 @@ Bunun için iki yol vardır:
 
 Uygulamalarımızda genellikle sayfaları yayınlamak için ve yük dengeleme (load balancing) yapabilmek için nginx veya apache kullanırız. Bunun için bilgiler :
 
-- [Deploy with Nginx](./nginx.md)
-- [Deploy with Apache](./apache.md)
+- [Nginx ile deploy](./nginx.md)
+- [Apache ile deploy](./apache.md)
