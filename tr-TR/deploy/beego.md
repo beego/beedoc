@@ -3,21 +3,21 @@ name: Stand alone Deployment
 sort: 1
 ---
 
-# Stand alone Deployment
+# Kendi başına çalışan uygulama deploymentı
 
-This will run application in the backend as a daemon.
+Uygulamanın arka planda deamon olarak çalıştırılması demektir. (Görev yöneticisinde yeni bir görev yaratmak gibi)
 
 ## linux
 
-In Linux we can use `nohup` command to run the application in the backend:
+Linux'ta `nohup` komutunu kullanarak uygulamanın arka planda çalışması şu şekilde sağlanır :
 
 	nohup ./beepkg &
 	
-Your application is running in the keep process of Linux.
+Uygulamanız artık Linux'ta çalışan bir process olarak kalacaktır.
 
 ## Windows
 
-In Windows, set to auto run in the backend on start. Two ways to do that:
+Windows'ta başlangıçta otomatik olarak çalıştırmak için iki yol vardır:
 
-1. Create a bat file and put it into "Run"
-2. Create a service
+1. Bat dosyası olışturmak ve içerisine "Run" eklemek
+2. Servis oluşturmak

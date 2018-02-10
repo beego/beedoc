@@ -5,13 +5,14 @@ sort: 2
 
 # Supervisord
 
-Supervisord is a very useful process manager implemented in Python.  Supervisord can change your non-daemon application into a daemon application. The application needs to be a non-daemon app. 
-So if you want to use Supervisord to manage nginx, you need to set daemon off to run nginx in non-daemon mode.
+Supervisord Python ile oluşturulmuş çok kullanışlı bir process (süreç) yöneticisidir. Supervisord deamon olmayan uygulamalarınızı deamon uygulamaya çevirir. 
+
+Eğer Supervisord kullanarak nginx'i yönetmek isterseniz deamon özelliğini kapatıp nginx'i deamon olmayan modda çalıştırmanız gerekmektedir.
 
 
-## Install Supervisord
+## Supervisord Kurulumu
 
-1. install setuptools
+1. Kurulum dosyalarını yükleme
 
 		wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
 		
@@ -28,12 +29,12 @@ So if you want to use Supervisord to manage nginx, you need to set daemon off to
 		[include]
 		files = /etc/supervisord.conf.d/*.conf
 
-3. Create new application to be managed
+3. Yönetmek için yeni bir uygulama oluşturulur
 
 		cd /etc/supervisord.conf.d
 		vim beepkg.conf
 	
-	Configurations：
+	Konfigürasyonlar :
 	
 		[program:beepkg]
 		directory = /opt/app/beepkg
@@ -44,18 +45,19 @@ So if you want to use Supervisord to manage nginx, you need to set daemon off to
 		redirect_stderr = true
 		stdout_logfile = /var/log/supervisord/beepkg.log
 		
-## Supervisord Manage
+## Supervisord Yönetimi
 
-Supervisord provides two commands, supervisord and supervisorctl:
+Supervisord iki komut ile çalışır, supervisord ve supervisorctl :
 
-* supervisord: Initialize Supervisord, run configed processes
-* supervisorctl stop programxxx: Stop process programxxx. programxxx is configed name in [program:beepkg]. Here is beepkg.
-* supervisorctl start programxxx: Run the process.
-* supervisorctl restart programxxx: Restart the process.
-* supervisorctl stop groupworker:  Restart all processes in group groupworker
-* supervisorctl stop all: Stop all processes. Notes: start, restart and stop won't reload the latest configs.
-* supervisorctl reload: Reload the latest configs.
-* supervisorctl update: Reload all the processes who's config has changed.
+* supervisord:  Supervisord'u hazır hale getirir ve config edilmiş processleri çalıştırır.
+* supervisorctl stop programxxx: programxxx processlerini durdurur. programxxx [program:beepkg] adıyla config edilir. (beepkg)
+* supervisorctl start programxxx: Process çalıştırır.
+* supervisorctl restart programxxx: Processleri tekrar çalıştırır.
+* supervisorctl stop groupworker: Groupworker grubundaki tüm processleri tekrar çalıştırır.
+* supervisorctl stop all: Tüm processleri durdurur. Not : start, stop, restart ve stop son configleri yenilemez (reload yapmaz)
+* supervisorctl reload: Tüm configleri yeniler
+* supervisorctl update: Tüm processleri değişen configleriyle beraber yeniler.
 
 
->>>Notes: The processes stopped by `stop` manually won't restart after reload or update.
+>>> Not : `stop` komutuyla manuel olarak durdurulan processler, reload veya update işlemlerinden sonra yeniden başlamayacaklardır.
+

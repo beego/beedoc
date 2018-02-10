@@ -4,20 +4,21 @@ name: FAQ
 sort: 99
 ---
 
-# FAQ
+# S.S.S (Sıkça Sorulan Sorular)
 
-1. Can't find the template files or configuration files or nil pointer error?
+1. Template dosyaları veya konfigürasyon dosyaları bulunamadı (nil pointer) hatası alıyorum ? Nasıl çözülür?
 
-    It may be because you used `go run main.go` to run your application. `go run` will compile the file and put it into a tmp folder to run it. But Beego needs the static files, templates and config files. So you need to use `go build` and run the application by `./app`. Or you can use `bee run app` to run your application.
+    Uygulamayı `go run main.go` komutu ile çalıştırdığınızdan kaynaklanabilir. `go run` main dosyasını compile eder ve çıktısını tmp klasörüne koyarak uygulamayı çalıştırır. Fakat Beego'nun statik dosyalara, templatelere ve config dosyasına da ihtiyacı vardır. Bu nedenle `go build` komutunu çalıştırıp `./app` dizini içerisinden uygulamayı çalıştırmanız gerekmektedir. Ya da `bee run app` komutuyla da uygulamanızı çalıştırabilirsiniz.
 
-2. Can Beego be used for production?
+2. Beego production ortamı için kullanılabilir mi?
 
-    Yes. Beego has been used in production. E.g.: SNDA's CDN system, 360 search API, Bmob mobile cloud API, weico backend API etc. They are all high concurrence and high performance applications. 
+    Evet. Beego production ortamında kullanılmıştır. Örneğin SNDA'in CDN sisteminde, 360 arama API'nda, Bmob mobile cloud API'nda, weico backend API'nda kullanılmıştır. Hepsi yüksek dağıtılabilir ve yüksek performanslı uygulamalardır.
 
-3. Will the future upgrades affect the API I am using right now?
+3.  Gelecek güncellemeler şu an kullandığım API'yı etkileyecek mi?
 
-    Beego is keeping the stable API since version 0.1. Many applications upgraded to the latest Beego easily. We will try to keep the API stable in the future.
+    Beego 0.1 versiyonundan beri kararlı API durumunda kalmaktadır. Birçok uygulama son Beego sürümüne kolayca yükseltilmiştir. Bizler gelecekte de API'ı kararlı bir durumda tutmaya çalışacağız.
 
-4. Will Beego keep developing?
+4.  Beego geliştirilmeye devam edecek mi?
 
-    Many people are worried about open source projects that stop developing. We have four people who are contributing to the code. We can keep making Beego better and better.
+    Birçok insan açık kaynak projelerin gelişiminin durması hakkında endişe yaşıyor. Bizler koda katkıda bulunan dört insanız ve Beego'nun çok daha iyi olmasını sağlayacağız.
+

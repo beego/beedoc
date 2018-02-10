@@ -3,12 +3,12 @@ name: To-do List
 sort: 3
 ---
 
-# To-do List
+# Yapılacaklar listesi uygulaması (To-do list uygulaması)
 
-An AngularJS + Beego project
+AngularJS + Beego projesidir. Terminal üzerinden `bee new todo` yazarak oluşturabilirsiniz. Çıktısı aşağıdaki gibi olacaktır :
 
 ```bash
- bee new todo
+bee new todo
 [INFO] Creating application...
 /Users/astaxie/gopath/src/todo/
 /Users/astaxie/gopath/src/todo/conf/
@@ -26,4 +26,4 @@ An AngularJS + Beego project
 13-12-14 10:05:44 [SUCC] New application successfully created!
 ```
 
-[Browse the code on GitHub](https://github.com/beego/samples/tree/master/todo)
+[Kodu GitHub'ta görüntüle](https://github.com/beego/samples/tree/master/todo)

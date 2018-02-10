@@ -4,21 +4,25 @@ name: Demos
 sort: 8
 ---
 
-# Demos
-In this section we have provided some demo applications to help you learn Beego better.
+# Demolar
 
-## Chat Room
-We use Beego and WebSocket to build a web Instant Messaging application.
+Bu kısımda Beego'yu öğrenmenize yardımcı olmak için bazı demo uygulamaları  geliştirdik.
 
-[Browse the code on GitHub](https://github.com/beego/samples/tree/master/WebIM)
+## Chat Odası
 
-## URL shortener API service
-URL shortener will help you understand how to develop a high performance API service with Beego.
+Beego ve WebSocket kullanarak Anlık Mesajlaşma Uygulaması (web) yaptık.
 
-[Browse the code on GitHub](https://github.com/beego/samples/tree/master/shorturl)
+[Kodu GitHub'ta Görüntüle](https://github.com/beego/samples/tree/master/WebIM)
 
-## To-do list
-To-do list is a web application built with AngularJS and Beego
+## URL kısaltan API servisi
 
-[Browse the code on GitHub](https://github.com/beego/samples/tree/master/todo)
+URL kısaltıcı, Beego ile nasıl yüksek performanslı API yapabileceğinizi anlamanızda yardımcı olacak.
+
+[Kodu GitHub'ta Görüntüle](https://github.com/beego/samples/tree/master/shorturl)
+
+## Yapılacaklar listesi uygulaması (To-do list uygulaması)
+
+To-do list AngularJS ve Beego ile yapılmış web uygulamasıdır.
+
+[Kodu GitHub'ta Görüntüle](https://github.com/beego/samples/tree/master/todo)
 ./monitor.md

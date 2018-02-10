@@ -3,33 +3,36 @@ name: Chat Room
 sort: 1
 ---
 
-# Chat Room
+# Chat Odası
 
-This demo shows two ways of implementing a Web Instant Messaging application:
+Bu demo Anlık Mesajlaşma Uygulaması (web) yapımını iki yol ile gösterecektir :
 
-Using long polling.
-Using WebSocket.
+1. Long polling kullanımı ile yapma
+2. WebSocket ile yapma
 
-Both of them save data in memory by default so everything will be lost every time the application restarts, but you can change this setting in `conf/app.conf` to enable a database adapter for data persistence.
+## WebSocket ile yapma
 
-Here is the project structure:
+İki yolla da hafızada duran kayıtlı veriler uygulama baştan başladığında kaybolacaktır. Fakat bunu `conf/app.conf` dosyası içerisinden değiştirebilirsiniz. (database adapter for data persistence kuralını aktif ederek)
+
+Projenin yapısı aşağıdaki gibidir :
+
 
 ```bash
 WebIM/
-    WebIM.go            # File of main package
+    WebIM.go            # Main paketi dosyası
     conf
-        app.conf        # Configuration file
+        app.conf        # Konfigürasyon dosyası
     controllers
-        app.go          # The welcome screen that allows the user to pick a technology and username
-        chatroom.go     # Functions for data management
-        longpolling.go  # Controller and methods for long polling chat demo
-        websocket.go    # Controller and methods for WebSocket chat demo
+        app.go          # Kullanıcının kullanıcı adı seçebileceği "hoşgeldiniz" ekranı
+        chatroom.go     # Veri yönetimi için fonksiyonlar
+        longpolling.go  # Long polling demosu için Controller ve metodları
+        websocket.go    # WebSocket demosu için Controller and metodları
     models
-        archive.go      # Functions of chat data operations for both demos.
+        archive.go      # Chat veri operasyonları için fonksiyonlar (Her iki demo için)
     views
-        ...             # Template files
+        ...             # Template dosyaları
     static
-        ...             # JavaScript and CSS files
+        ...             # JavaScript ve CSS dosyaları
 ```
 
-[Browse the code on GitHub](https://github.com/beego/samples/tree/master/WebIM)
+[Kodu GitHub'ta Görüntüle](https://github.com/beego/samples/tree/master/WebIM)

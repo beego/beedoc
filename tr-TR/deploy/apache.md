@@ -3,9 +3,9 @@ name: Deployment with Apache
 sort: 4
 ---
 
-# Apache deployment and configuration
+# Apache deployment ve ayarları
 
-Apache is a web server and is set up to perform the same functions as nginx, serving as a reverse proxy and sending requests to the backend. Here is a configuration example:
+Apache bir web sunucusudur. nginx gibi reverse proxy sunma, sunucudan backende istek gönderme gibi fonksiyonları vardır. Örnek bir konfigürasyon aşağıdaki gibidir : 
 
 ```
 NameVirtualHost *:80

@@ -3,10 +3,12 @@ name: Deployment with nginx
 sort: 3
 ---
 
-# Deployment with Nginx
+# nginx ile deployment
 
-Go already has a standalone http server. But we still want to have nginx to do more for us such as logging, CC attack and act as a static file server because nginx performs well as a web server. 
-So Go can just focus on functionality and logic. We can also use the nginx proxy to deploy multiple applications at the same time. Here is an example of two applications that share port 80 but have different domains, and requests are forwarding to different applications by nginx.
+Go halihazırda kendi kendine çalışabilen bir http sunucuya sahiptir. Fakat sunucumuzda loglama, CC ataklarına karşı savunma ve statik dosya sunucusu gibi bazı ekstra özellikler isteyebiliriz. nginx bir web server olarak bunları iyi yapmaktadır.  
+
+Bu yaklaşımda Go sadece fonksiyonelliğe ve uygulamanın mantığına odaklanabilir. Biz de nginx proxy ile birden fazla uygulamayı aynı anda deploy edebiliriz. Aşağıda iki uygulamanın 80 portunu paylaştığı ama değişik domainlere sahip olduğu bir senaryo göreceksiniz. Bu konfigürasyonda nginx kendisine gelen istekleri başka uygulamalara yönlendiriyor : 
+
 
 ```
 server {
