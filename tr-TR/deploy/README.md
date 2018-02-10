@@ -34,7 +34,7 @@ Development modundayken :
 
 ### Releasing ve Deploying
 
-Go uygulaması compile edildikten sonra bytecode dosyası haline gelir. Siz de sadece bu dosyayı sunucunuza kopyalayıp uygulamanızı çalıştırabilirsiniz. Fakat unutmayın Beego statik dosyalar,konfigurasyon dosyaları ve templateler gibi 3 klasörü içerebilir. Bu nedenle deploy yaparken bu klasörleri de sunucuya kopyalamalısınız :
+Go uygulaması derlendikten sonra bytecode dosyası haline gelir. Siz de sadece bu dosyayı sunucunuza kopyalayıp uygulamanızı çalıştırabilirsiniz. Fakat unutmayın Beego statik dosyalar,konfigurasyon dosyaları ve templateler gibi 3 klasörü içerebilir. Bu nedenle deploy yaparken bu klasörleri de sunucuya kopyalamalısınız :
 
 	$ mkdir /opt/app/beepkg
 	$ cp beepkg /opt/app/beepkg
