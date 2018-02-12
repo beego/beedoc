@@ -5,10 +5,9 @@ sort: 3
 
 # nginx ile deployment
 
-Go halihazırda kendi kendine çalışabilen bir http sunucuya sahiptir. Fakat sunucumuzda loglama, CC ataklarına karşı savunma ve statik dosya sunucusu gibi bazı ekstra özellikler isteyebiliriz. nginx bir web server olarak bunları iyi yapmaktadır.  
+Go halihazırda kendi kendine çalışabilen bir http sunucuya sahiptir. Fakat sunucumuzda loglama, CC ataklarına karşı savunma ve statik dosya sunucusu gibi bazı ekstra özellikler isteyebiliriz. nginx bir web server olarak bunları iyi yapmaktadır.
 
-Bu yaklaşımda Go sadece fonksiyonelliğe ve uygulamanın mantığına odaklanabilir. Biz de nginx proxy ile birden fazla uygulamayı aynı anda deploy edebiliriz. Aşağıda iki uygulamanın 80 portunu paylaştığı ama değişik domainlere sahip olduğu bir senaryo göreceksiniz. Bu konfigürasyonda nginx kendisine gelen istekleri başka uygulamalara yönlendiriyor : 
-
+Bu yaklaşımda Go sadece fonksiyonelliğe ve uygulamanın mantığına odaklanabilir. Biz de nginx proxy ile birden fazla uygulamayı aynı anda deploy edebiliriz. Aşağıda iki uygulamanın 80 portunu paylaştığı ama değişik domainlere sahip olduğu bir senaryo göreceksiniz. Bu konfigürasyonda nginx kendisine gelen istekleri başka uygulamalara yönlendiriyor :
 
 ```
 server {

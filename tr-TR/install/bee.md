@@ -3,21 +3,27 @@ name: bee tool usage
 sort: 2
 ---
 
-# Introduction to bee tool
+# bee aracına giriş
 
-Bee tool is a project for rapid Beego development. With bee tool developers can create, auto compile and reload, develop, test, and deploy Beego applications quickly and easily.
+bee aracı hızlı Beego geliştirmesi yapmak içindir. bee aracı ile kolayca
 
-## Installing bee tool
+* Beego uygulamaları oluşturabilirsiniz
+* Otomatik derleme ve yenileme (auto compile & reload) yapabilirsiniz
+* Geliştirme, test ve deploy yapabilirsiniz
 
-Install bee tool with the following command:
+## bee aracının kurulumu
 
-	go get github.com/beego/bee
+Aşağıdaki komutu çalıştırarak bee aracını yükleyiniz :
 
-`bee` is installed into `GOPATH/bin` by default. You need to add `GOPATH/bin` to your PATH, otherwise the `bee` command won't work.
+    go get github.com/beego/bee
 
-## bee tool commands
+`bee`, sabit olarak `GOPATH/bin` dizininde yüklenecektir.
 
-Type `bee` in command line and the following messages with be displayed:
+Not : `bee` komutunun çağrıldığında çalışması için `GOPATH/bin` dizininin sistem PATH'inizde ekli olması gerekmektedir.
+
+# bee aracı komutları
+
+Komut satırına `bee` yazdığınızda aşağıdaki mesaj görüntülenecektir :
 
 ```
 bee is a tool for managing Beego framework.
@@ -38,9 +44,9 @@ The commands are:
 	migrate     run database migrations
 ```
 
-### Command `new`
+### Komut : `new`
 
-The `new` command can create a new web project. You can create a new Beego project by typing `bee new <project name>` under `$GOPATH/src`. This will generate all the default project folders and files:
+`new` komutu yeni bir web projesi oluşturur. `bee new <proje adı>` komutunu `$GOPATH/src` dizini altında çalıştırarak yeni bir Beego projesi oluşturabilirsiniz. Bu komut sabit olarak aşağıdaki proje klasörlerini ve dosyalarını oluşturur :
 
 ```
 bee new myproject
@@ -83,10 +89,11 @@ myproject
 8 directories, 4 files
 ```
 
-### Command `api`
+### Komut : `api`
 
-The `new` command is used for crafting new web applications. The `api` command is used to create new API applications.
-Here is the result of running `bee api project_name`:
+`new` komutu yeni bir web uygulaması oluşturmak içindi. `api` komutu ise yeni bir API uyguluması oluşturmak içindir.
+
+`bee api <proje adı>` komutu çalıştığında sonuç aşağıdaki gibi olur :
 
 ```
 bee api apiproject
@@ -102,7 +109,8 @@ create models object.go: /gopath/src/apiproject/models/object.go
 create main.go: /gopath/src/apiproject/main.go
 ```
 
-Below is the generated project structure of a new API application:
+Oluşturduğunuz yeni API uygulamasının proje yapısı aşağıdaki gibi olacaktır :
+
 
 ```
 apiproject
@@ -123,16 +131,21 @@ apiproject
     └── default_test.go
 ```
 
-Compare this to the `bee new myproject` command seen earlier.
-Note that the new API application doesn't have a `static` and `views` folder.
+Bu proje yapısıyla `bee new <proje adı>` komutuyla oluşturduğunuz projenin farkına bakınız.
 
-You can also create a model and controller based on the database schema by providing database conn:
+API uygulamasının `static` ve `views` klasörlerine sahip olmadığını göreceksiniz.
+
+Ayrıca mevcutta bir veritabanınız varsa Beego veritabanı bağlantınız üzerinden uyumlu model ve controller'ları oluşturabilir.
+
+Örnek :
 
 `bee api [appname] [-tables=""] [-driver=mysql] [-conn=root:@tcp(127.0.0.1:3306)/test]`
 
-### Command `run`
+### Komut : `run`
 
-The `bee run` command will supervise the file system of any Beego project using [inotify](http://en.wikipedia.org/wiki/Inotify).  The results will autocompile and display immediately after any modification in the Beego project folders.
+`bee run` komutu [inotify](http://en.wikipedia.org/wiki/Inotify) kullanarak Beego projesinin dosya sistemini denetler ve çalışmasını sağlar. Beego proje klasörleri içerisinde yapılan değişiklikler otomatik olarak derlenir (autocompile) ve görüntülenir.
+
+`bee run` komutu çalıştırıldığında komut satırında aşağıdaki gibi bir sonuç görünecektir :
 
 ```
 13-11-25 09:53:04 [INFO] Uses 'myproject' as 'appname'
@@ -145,11 +158,12 @@ The `bee run` command will supervise the file system of any Beego project using 
 13-11-25 09:53:16 [INFO] Restarting myproject ...
 13-11-25 09:53:16 [INFO] ./myproject is running...
 ```
-Visting `http://localhost:8080/` with a web browser will display your app running:
+
+Sonrasında uygulamanız çalışırken `http://localhost:8080/` adresini ziyaret ettiğinizde sonuç aşağıdaki gibi olacaktır :
 
 ![](../images/beerun.png)
 
-After modifying the `default.go` file in the `controllers` folder, the following output will be displayed in the command line:
+Eğer uygulama çalışırken `controllers` klasörü içerisindeki `default.go` dosyasını değiştirirseniz komut satırı çıktısı şu şekilde olacaktır :
 
 ```
 13-11-25 10:11:20 [EVEN] "/gopath/src/myproject/controllers/default.go": DELETE|MODIFY
@@ -161,12 +175,11 @@ After modifying the `default.go` file in the `controllers` folder, the following
 13-11-25 10:11:23 [INFO] ./myproject is running...
 ```
 
-Refresh the browser to show the results of the new modifications.
+Sonrasında yaptığınız değişikleri görmek için tarayıcınızı yenileyebilirsiniz.
 
+### Komut : `pack`
 
-### Command `pack`
-
-The `pack` command is used to compress the project into a single file. The compressed file can be deployed by uploading and extracting the zip file to the server.
+`pack` komutu proje dosyalarınızı sıkıştırarak tek dosya haline getirir. Sıkıştırılmış zip dosyasını sunucunuza yükleyip çıkardıktan sonra deploy işlemini yapabilirsiniz.
 
 ```
 bee pack
@@ -179,7 +192,7 @@ exclude suffix: .go:.DS_Store:.tmp
 file write to `/gopath/src/apiproject/apiproject.tar.gz`
 ```
 
-The compressed file will be in the project folder:
+Sıkıştırılmış dosya, siz komutu çalıştırdıktan sonra proje klasörü içinde olacaktır :
 
 ```
 rwxr-xr-x  1 astaxie  staff  8995376 11 25 22:46 apiproject
@@ -191,13 +204,13 @@ drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 models
 drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
 ```
 
-### Command `bale`
+### Komut : `bale`
 
-This command is currently only available to the developer team. It is used to compress all static files in to a single binary file so that they do not need to carry static files including js, css, images and views when publishing the project. Those files will be self-extracting with non-overwrite when the program starts.
+Bu komut şu an için sadece geliştirici takım için erişilebilir durumdadır. Projedeki tüm statik dosyaları tek binary dosya haline getirir. Deployment yaparken js,css,resim ve view tipindeki dosyaları ayrıca sunucuya taşımanız gerekmez. Bu dosyalar uygulama başladığında üzerlerine yazılamayacak şekilde kendi kendilerini çıkarırlar (self-extracting).
 
-### Command `version`
+### Komut : `version`
 
-This command displays the version of `bee`, `beego`, and `go`.
+Bu komut `bee`, `beego`, ve `go` versiyonlarını görüntüler :
 
 ```
 $ bee version
@@ -206,9 +219,9 @@ Beego :1.4.2
 Go    :go version go1.3.3 darwin/amd64
 ```
 
-### Command `generate`
-This command will generate the routers by analyzing the functions in controllers.
+### Komut : `generate`
 
+Bu komut controller dosyaları içerisindeki fonksiyonlara bakarak router'lar oluşturur.
 
 ```
 bee generate scaffold [scaffoldname] [-fields=""] [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
@@ -248,9 +261,9 @@ bee generate appcode [-tables=""] [-driver=mysql] [-conn="root:@tcp(127.0.0.1:33
     -level:  [1 | 2 | 3], 1 = models; 2 = models,controllers; 3 = models,controllers,router
 ```
 
+### Komut : `migrate`
 
-### Command `migrate`
-This command will run database migration scripts.
+Bu komut database migration scriptlerini çalıştırır.
 
 ```
 bee migrate [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
@@ -274,14 +287,19 @@ bee migrate refresh [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
     -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
 ```
 
+## bee aracı konfigürasyonu
 
-## bee tool configuration
+`bee.json`, bee aracı kaynak kodu klasörünün altında olan Beego konfigürasyon dosyasıdır. Bu dosya hala geliştirilmektedir fakat bazı seçenekler kullanıma hazırdır :
 
-The file `bee.json` in the bee tool source code folder is the Beego configuration file. This file is still under develpment, but some options are already available to use:
-
-- `"version": 0`: version of file, for checking incompatible format version.
-- `"go_install": false`: if you use a full import path like `github.com/user/repo/subpkg` you can enable this option to run `go install` and speed up you build processes.
-- `"watch_ext": []`: add other file extensions to watch (only watch `.go` files by default). For example, `.ini`, `.conf`, etc.
-- `"dir_structure":{}`: if your folder names are not the same as MVC classic names you can use this option to change them.
-- `"cmd_args": []`: add command arguments for every start.
-- `"envs": []`: set environment variables for every start.
+* `"version": 0`:
+    Dosyanın versiyonu,uyumlu olmayan format versiyon kontrolü.
+* `"go_install": false`:
+    Eğer tüm pathleri projeye dahil ettiyseniz (örn : `github.com/user/repo/subpkg`) `go install` komutunu çalıştırarak derlenme sürecinizi hızlandırabilirsiniz.
+* `"watch_ext": []`:
+    Diğer dosya uzantılarını watch (değişiklik izleme) moduna ekler. (default olarak sadece `.go` uzantılı dosyalar watch modundadır). Örnek parametreler : `.ini`, `.conf` vb'dir.
+* `"dir_structure":{}`:
+    Eğer klasör isimleriniz MVC klasik adlandırmasıyla aynı değilse bu seçenek ile değişiklik yapabilirsiniz.
+* `"cmd_args": []`: 
+    Her çalışma durumu için yeni parametreler girmenizi sağlar.
+* `"envs": []`: 
+    Her çalışma durumu için sistem değişkenlere (enviroment variables) değer atamanızı sağlar.

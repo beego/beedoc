@@ -4,32 +4,39 @@ name: Install / Upgrade
 sort: 1
 ---
 
-# Installing Beego
+# Beego kurulumu
 
-You can use the classic Go way to install Beego:
+Klasik Go yöntemiyle Beego'yu yükleyebilirsiniz :
 
-	go get github.com/astaxie/beego
+    go get github.com/astaxie/beego
 
-Frequently asked questions:
+Sıkça karşılaşılan durumlar ve çözümleri :
 
-- git is not installed. Please install git for your system.
-- git https is not accessible. Please config local git and close https validation:
+* git is not installed :
 
-		git config --global http.sslVerify false
+  git sisteminizde kurulu değil. Lütfen git yükleyiniz.
 
-- How can I install Beego offline? There is no good solution for now. We will create packages for downloading and installing for future releases.
+* "git https is not accessible. Please config local git and close https validation hatası" çözümü:
 
-# Upgrading Beego
+  git config --global http.sslVerify false
 
-You can upgrade Beego through Go command or download and upgrade from source code.
+* Beego'yu internet bağlantısı olmadan nasıl yüklerim?
 
-- Through Go command (Recommended):
+  Şu an bunun için iyi bir çözümümüz yoktur. İndirip yükleme yapmanız için gelecek sürümlerde paketler oluşturacağız.
 
-		go get -u github.com/astaxie/beego
+# Beego'yu güncellemek
 
-- Through source code: visit `https://github.com/astaxie/beego` and download the source code. Copy and overwrite to path `$GOPATH/src/github.com/astaxie/beego`. Then run `go install` to upgrade Beego:
+Beego'yu Go komutu ile güncelleyebilirsiniz. Ya da Beego kaynak kodlarını indirip güncelleme işlemini yapabilirsiniz.
 
-		go install 	github.com/astaxie/beego
+* Go komutu ile güncelleme (Önerilen):
 
-**Upgrading Prior to 1.0:** The API of Beego is stable after 1.0 and compatible with every upgrade. If you are still using a version lower than 1.0 you may need to configure your parameters based on the latest API.
+  go get -u github.com/astaxie/beego
+
+* `https://github.com/astaxie/beego` adresini ziyaret ederek kaynak kodu indirebilirsiniz. Daha sonra bu dosyaları kopyalayıp `$GOPATH/src/github.com/astaxie/beego` dizini içerisindeki dosyaların üzerine yazın. Son adım olarak `go install` komutu ile güncelleme işlemini tamamlayın :
+
+	go install github.com/astaxie/beego
+
+**1.0 Sürümü Öncesine Güncelleme:**
+
+Beego API 1.0 sürümünden sonra gelen güncellemelerle kararlı hale gelmiştir. Fakat 1.0'dan daha düşük bir versiyon kullanıyorsanız son API sürümünü baz alarak uygulama parametrelerinizi ayarlamanız gerekebilir.
 

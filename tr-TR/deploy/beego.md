@@ -11,8 +11,8 @@ Uygulamanın arka planda deamon olarak çalıştırılması demektir. (Görev y�
 
 Linux'ta `nohup` komutunu kullanarak uygulamanın arka planda çalışması şu şekilde sağlanır :
 
-	nohup ./beepkg &
-	
+    nohup ./beepkg &
+
 Uygulamanız artık Linux'ta çalışan bir process olarak kalacaktır.
 
 ## Windows

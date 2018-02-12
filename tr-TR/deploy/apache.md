@@ -5,7 +5,7 @@ sort: 4
 
 # Apache deployment ve ayarları
 
-Apache bir web sunucusudur. nginx gibi reverse proxy sunma, sunucudan backende istek gönderme gibi fonksiyonları vardır. Örnek bir konfigürasyon aşağıdaki gibidir : 
+Apache bir web sunucusudur. nginx gibi reverse proxy sunma, sunucudan backende istek gönderme gibi fonksiyonları vardır. Örnek bir konfigürasyon aşağıdaki gibidir :
 
 ```
 NameVirtualHost *:80
@@ -20,7 +20,7 @@ NameVirtualHost *:80
 	ProxyPass / http://127.0.0.1:8080/
 	ProxyPassReverse / http://127.0.0.1:8080/
 </VirtualHost>
- 
+
 <VirtualHost *:80>
 	ServerAdmin webmaster@dummy-host.example.com
 	ServerName www.b.com
