@@ -38,7 +38,7 @@ Beego supports 404, 401, 403, 500, 503 error handling by default. You can also d
 
 ```go
 func page_not_found(rw http.ResponseWriter, r *http.Request){
-	t,_:= template.ParseFiles(beego.ViewsPath+"/404.html")
+	t,_:= template.ParseFiles(beego.BConfig.WebConfig.ViewsPath +"/404.html")
 	data :=make(map[string]interface{})
 	data["content"] = "page not found"
 	t.Execute(rw, data)
@@ -57,7 +57,7 @@ Another cool feature of Beego is support for customized string error handling fu
 
 ```go
 func dbError(rw http.ResponseWriter, r *http.Request){
-	t,_:= template.ParseFiles(beego.ViewsPath+"/dberror.html")
+	t,_:= template.ParseFiles(beego.BConfig.WebConfig.ViewsPath+"/dberror.html")
 	data :=make(map[string]interface{})
 	data["content"] = "database is now down"
 	t.Execute(rw, data)
