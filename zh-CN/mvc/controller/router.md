@@ -39,6 +39,7 @@ beego.Any("/foo",func(ctx *context.Context){
 * beego.Get(router, beego.FilterFunc)
 * beego.Post(router, beego.FilterFunc)
 * beego.Put(router, beego.FilterFunc)
+* beego.Patch(router, beego.FilterFunc)
 * beego.Head(router, beego.FilterFunc)
 * beego.Options(router, beego.FilterFunc)
 * beego.Delete(router, beego.FilterFunc)
