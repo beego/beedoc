@@ -85,7 +85,7 @@ if err == nil {
 }
 ```
 
-After creation it will assign values for auto fields.
+After creation, it will assign values for auto fields.
 
 ## InsertMulti
 
@@ -153,6 +153,6 @@ if num, err := o.Delete(&User{Id: 1}); err == nil {
 
 Delete will also manipulate reverse relationships. E.g.: `Post` has a foreign key to `User`. If on_delete is set to `cascade`, `Post` will be deleted while delete `User`.
 
-After deleting it will clean up values for auto fields.
+After deleting, it will clean up values for auto fields.
 
-**Changed in 1.0.3** After deleting it will **not** clean up values for auto fields.
+**Changed in 1.0.3** After deleting, it will **not** clean up values for auto fields.
