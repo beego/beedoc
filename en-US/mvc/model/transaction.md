@@ -5,7 +5,7 @@ sort: 7
 
 # Transaction
 
-ORM has the basic transaction support
+ORM has basic transaction support
 
 ```go
 o := NewOrm()
