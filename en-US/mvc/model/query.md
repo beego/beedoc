@@ -5,7 +5,7 @@ sort: 4
 
 # Advanced Queries
 
-ORM uses **QuerySeter** to organize query, every method that returns  **QuerySeter** will give you a new **QuerySeter** object.
+ORM uses **QuerySeter** to organize queries.  Every method that returns  **QuerySeter** will give you a new **QuerySeter** object.
 
 
 Basic Usage:
@@ -27,7 +27,7 @@ expr describes fields and SQL operators in `QuerySeter`.
 
 Field combination orders are decided by the relationship of tables. For example, `User` has a foreign key to `Profile`, so if you want to use `Profile.Age` as the condition, you have to use the expression `Profile__Age`. Note that the separator is double under scores `__`. `Expr` can also append operators at the end to execute related SQL. For example, `Profile__Age__gt` represents condition query `Profile.Age > 18`.
 
-Comments below describe SQL statements that are similar to the expr, not the exactly generated results.
+Comments below describe SQL statements that are similar to the expr, but may not be the exact generated results.
 
 ```go
 qs.Filter("id", 1) // WHERE id = 1
@@ -163,7 +163,7 @@ qs.Filter("profile__isnull", false)
 
 ## Advanced Query API
 
-QuerySeter is the API of advanced query. Here are its methods:
+QuerySeter is the API of advanced queries. Here are its methods:
 
 * type QuerySeter interface {
 	* [Filter(string, ...interface{}) QuerySeter](#filter)
@@ -187,9 +187,9 @@ QuerySeter is the API of advanced query. Here are its methods:
 	* [ValuesFlat(*ParamsList, string) (int64, error)](#valuesflat)
 * }
 
-* Every API call that returns **QuerySeter** will give you a new **QuerySeter** object. It won't affect the previous object
+* Every API call that returns **QuerySeter** will give you a new **QuerySeter** object. It won't affect the previous object.
 
-* Advanced query uses `Filter` and `Exclude` to do conditional queries.  There are two filter rules: contain and exclude
+* Advanced queries use `Filter` and `Exclude` to do conditional queries.  There are two filter rules - contain and exclude
 
 ### Filter
 
@@ -531,7 +531,7 @@ if err == nil {
 
 ## Relational Query
 
-Let's see how to do Relational Query by looking at [Model Definition](orm.md)
+Let's see how to do a Relational Query by looking at [Model Definition](orm.md)
 
 #### User and Profile is OnToOne relation
 
