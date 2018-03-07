@@ -17,8 +17,8 @@ In our Beego application we log as below:
 	beego.Warn("this is warn")
 	beego.Error("this is error")
 	beego.Critical("this is critical")
-	beego.Alert("this is alert)
-	beego.Emergency("this is emergency)
+	beego.Alert("this is alert")
+	beego.Emergency("this is emergency")
 
 ## Configure output
 
