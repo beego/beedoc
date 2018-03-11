@@ -13,12 +13,12 @@ In our Beego application we log as below:
 
 	beego.Debug("this is debug")
 	beego.Info("this is info")
-	beego.Notice("this is notice)
+	beego.Notice("this is notice")
 	beego.Warn("this is warn")
 	beego.Error("this is error")
 	beego.Critical("this is critical")
-	beego.Alert("this is alert)
-	beego.Emergency("this is emergency)
+	beego.Alert("this is alert")
+	beego.Emergency("this is emergency")
 
 ## Configure output
 
