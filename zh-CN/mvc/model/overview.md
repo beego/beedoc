@@ -110,7 +110,7 @@ func main() {
 
 	// read one
 	u := User{Id: user.Id}
-	err := o.Read(&u)
+	err = o.Read(&u)
 	fmt.Printf("ERR: %v\n", err)
 
 	// delete
