@@ -10,24 +10,35 @@ Supervisord 是用 Python 实现的一款非常实用的进程管理工具，sup
 
 ## supervisord 安装
 
-1. 安装 setuptools
+1. 下载更新meld3
 
-		wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+		wget https://pypi.python.org/packages/0f/5e/3a57c223d8faba2c3c2d69699f7e6cfdd1e5cc31e79cdd0dd48d44580b50/meld3-1.0.1.tar.gz
+	
+		tar -xvf meld3-1.0.1.tar.gz
+	
+		cd meld3-1.0.1
+	
+		python setup.py install
 
-		sh setuptools-0.6c11-py2.7.egg
+1. 下载supervisor
 
-		easy_install supervisor
-
-		echo_supervisord_conf >/etc/supervisord.conf
+		wget https://pypi.python.org/packages/12/50/cd330d1a0daffbbe54803cb0c4c1ada892b5d66db08befac385122858eee/supervisor-3.1.4.tar.gz
+	
+		tar -xvf supervisor-3.1.4.tar.gz
+	
+		cd supervisor-3.1.4
+	
+		python setup.py install
+	
+		echo_supervisord_conf>/etc/supervisord.conf
 
 		mkdir /etc/supervisord.conf.d
-
-2. 修改配置 `/etc/supervisord.conf`
+3. 修改配置 `/etc/supervisord.conf`
 
 		[include]
 		files = /etc/supervisord.conf.d/*.conf
 
-3. 新建管理的应用
+4. 新建管理的应用
 
 		cd /etc/supervisord.conf.d
 		vim beepkg.conf
