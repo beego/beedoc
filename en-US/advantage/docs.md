@@ -186,7 +186,7 @@ Below is a list of supported comments for generating swagger APIs:
 Make it work by following the steps:
 1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`.
 2. Use `bee run -downdoc=true -gendoc=true` to run your API application and rebuild documentation automatically.
-3. Visit `swagger document from API project's URL and port.  (see item #1 below)
+3. Visit `/swagger` in your project.  (see image #1 below)
 
 Your API documentation is available now. Open your browser and check it out.
 
@@ -205,7 +205,7 @@ Your API documentation is available now. Open your browser and check it out.
 			beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 		}
 		```
-		And then visit `swagger` document from API project's URL and port.
+		And then visit `/swagger` in your project.
 
 	2. Make API support CORS
 		```go
