@@ -1,5 +1,5 @@
 ---
-name: Release Notes
+name: Release Notları
 sort: 2
 ---
 # beego 1.9.0

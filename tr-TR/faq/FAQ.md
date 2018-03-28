@@ -4,7 +4,7 @@ name: FAQ
 sort: 99
 ---
 
-# S.S.S (Sıkça Sorulan Sorular)
+# S.S.S. (Sıkça Sorulan Sorular)
 
 1. Template dosyaları veya konfigürasyon dosyaları bulunamadı (nil pointer) hatası alıyorum ? Nasıl çözülür?
 

@@ -3,34 +3,39 @@ name: Contributing
 sort: 1
 ---
 
-# Contributing to Beego
+# Beego'ya katkıda bulunmak
 
-## Introduction
+## Giriş
 
-Beego is free and open source software, which means that anyone can contribute
-to its development and progress under the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0.html). Beego's source code is hosted on github
-(https://github.com/astaxie/beego).
+Beego ücretsiz ve açık kaynak bir yazılım olmakla birlikte herhangi bir kişi Apache 2.0 Lisansı (http://www.apache.org/licenses/LICENSE-2.0.html) altında yazılımın geliştirilmesine katkıda bulunabilir. Beego'nun kaynak kodları github üzerinde yayınlanmaktadır (https://github.com/astaxie/beego).
 
-### How can I become a contributor of Beego?
+### Nasıl Beego destekçisi olabilirim ?
 
-You can fork, modify and then send a Pull Request to us.
-We will review your code and give you feedback on your changes as soon as possible.
+Fork yapabilir, değiştirebilir ve bize Pull Request gönderebilirsiniz.
+Bizler kodunuzu inceleyeceğiz ve mümkün olan en kısa zamanda değişiklikleriniz hakkında geri bildirim vereceğiz.
 
-## Pull Requests
+## Pull Request'ler
 
-The process for pull requests for new features and bug fixes are not the same.
+Yeni geliştirmeler ve hata düzeltmeleri için pull request süreçleri aynı değildir.
 
-### Bug fixes
+### Hata düzeltmeleri (Bug fixes)
 
-Pull requests for bug fixes do not need to create an issue first. If you have a
-solution to a bug, please describe your solution in detail in your pull request.
+Hata düzeltmeleri için yeni bir issue oluşturmanız gerekli değildir. Eğer hatayı çözmek için çözümünüz varsa lütfen pull request gönderirken çözümünüzün açıklamasını belirtiniz.
 
-### Documentation improvements
+### Dökümantasyon geliştirmeleri
 
-You can help improve the documentation by submitting a pull request to the
-[beedoc](https://github.com/beego/beedoc) repository.
+[beedoc](https://github.com/beego/beedoc) projesine pull request göndererek dökümantasyonun geliştirilmesine yardımcı olabilirsiniz.
 
-### New features proposals
+### Yeni özellik önerileri
+
+Yeni bir özellik için pull request göndermeden önce `[Proposal]` başlığı altında yeni bir issue oluşturmalısınız. Burada yeni özelliğin tanımını ve yaklaşımını da belirtmeniz gerekmektedir.
+
+Öneriler çekirdek geliştirici takımındaki kişiler tarafından incelenecek ve tartışılacaktır. Bunun sonucunda kabul edilecek veya reddedilecektir.
+
+Öneriniz kabul edildiğinde yeni özelliği eklemek için implementasyonlarınızı oluşturun ve pull request olarak gönderin. Eğer rehberdeki adımlar takip edilmezse pull request'iniz kabul edilmeyecektir.
+
+Beego [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/) branch modelleme
+
 
 Before you submit a pull request for a new feature, you should first create an
 issue with `[Proposal]` in the title, describing the new feature, as well as the
@@ -46,7 +51,6 @@ request will be rejected immediately.
 Since Beego follows the [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/)
 branching model, ongoing development happens in the `develop` branch. Therefore,
 please base your pull requests on the HEAD of the `develop` branch.
-
 
 ### The git branches of Beego
 

@@ -3,46 +3,47 @@ name: Cache Module
 sort: 2
 ---
 
-# Cache Module
+# Cache Modülü
 
-Beego's cache module is used for caching data, inspired by `database/sql`. It supports four cache providers: file, memcache, memory and redis. You can install it by:
+Beego'nun cache modülü veriyi cachelemek için kullanılır. `database/sql` paketinden ilham alınarak oluşturulan modül file, memcache, memory ve redis cache'i desteklemektedir. Yüklemek için aşağıdaki komutu çalıştırabilirsiniz : 
 
 	go get github.com/astaxie/beego/cache
 
-If you use the `memcache` or `redis` provider, you should first install:
+Eğer `memcache` veya `redis` kullanıyorsanız öncelikle aşağıdaki komutu çalıştırmalısınız : 
 
 	go get -u github.com/astaxie/beego/cache/memcache
 
-and then import:
+sonrasında proje dosyanızda kullanacağınız yere aşağıdaki paketi dahil etmelisiniz :
 
 	import _ "github.com/astaxie/beego/cache/memcache"
 
-## Basic Usage
+## Basit Kullanım
 
-First step is importing the package:
+İlk adım olarak proje dosyanızda kullanacağınız yere aşağıdaki paketi dahil etmelisiniz :
 
 	import (
 		"github.com/astaxie/beego/cache"
 	)
 
-Then initialize a global variable object:
+Sonra global değişken olarak objeyi oluşturmalısınız :
 
 	bm, err := cache.NewCache("memory", `{"interval":60}`)
 
-Then we can use `bm` to modify the cache:
+Sonra `bm` olarak oluşturduğumuz caching değişkenini istediğimiz gibi düzenleyebiliriz :
 
 	bm.Put("astaxie", 1, 10*time.Second)
 	bm.Get("astaxie")
 	bm.IsExist("astaxie")
 	bm.Delete("astaxie")
 
-## Provider Settings
 
-Here is how to configure the four providers:
+## Sağlayıcı (Provider) Ayarları
+
+Dört sağlayıcıyı aşağıdaki gibi ayarlayabiliriz : 
 
 - memory
 
-	`interval` stands for GC time, which means the cache will be cleared every 60s:
+	`interval` GC zamanı anlamına gelir. Önbellek her 60 saniyede bir silinir :
 
 		{"interval":60}
 
@@ -52,25 +53,25 @@ Here is how to configure the four providers:
 
 - redis
 
-	redis uses [redigo](https://github.com/garyburd/redigo/tree/master/redis)
+	redis için [redigo](https://github.com/garyburd/redigo/tree/master/redis) kullanılmaktadır.
 
-		{"key":"collectionName","conn":":6039","dbNum":"0","password":"thePassWord"}
+		{"key":"kolesiyonAdı","conn":":6039","dbNum":"0","password":"şifre"}
 
-	* key: the Redis collection name
-	* conn: Redis connection info
-	* dbNum: Select the DB having the specified zero-based numeric index.
-	* password: the password for connecting password-protected Redis server
+	* key: Redis collection adı
+	* conn: Redis bağlantı bilgisi
+	* dbNum: DB içerisinde bulunduğu index (sıfır tabanlı)
+	* password: Şifreyle korunan Redis sunucusu için şifre
 
 
 - memcache
 
-	memcache uses [vitess](http://code.google.com/p/vitess/go/memcache)
+	memcache için [vitess](http://code.google.com/p/vitess/go/memcache) paketi kullanılmaktadır.
 
 		{"conn":"127.0.0.1:11211"}
 
-## Creating your own provider
+## Kendi sağlayıcını kullanma
 
-The cache module uses the Cache interface, so you can create your own cache provider by implementing this interface and registering it.
+Cache modülü Cache interface'ini kullanmaktadır. Siz de bu interface'i kullanarak kendi cache sağlayınızı oluşturup kullanabilirsiniz.
 
 	type Cache interface {
 		Get(key string) interface{}
@@ -84,8 +85,8 @@ The cache module uses the Cache interface, so you can create your own cache prov
 		StartAndGC(config string) error
 	}
 
-Register your provider:
+Sağlayıcıyı kullanmak için:
 
 	func init() {
-		cache.Register("myowncache", NewOwnCache())
+		cache.Register("kendicacheim", NewOwnCache())
 	}

@@ -4,25 +4,25 @@ name: Beego introduction
 sort: 0
 ---
 
-# What is Beego?
+# Beego Nedir?
 
-Beego is a RESTful HTTP framework for the rapid development of Go applications including APIs, web apps and backend services with integrated Go specific features such as interfaces and struct embedding.
+Beego, Go dili ile hızlıca API'ları, web uygulamalarını ve backend servislerini geliştirmenizi sağlayan RESTful HTTP framework'tür. Go'nun spesifik interface ve struct embedding yapılarına bağlı olarak çalışır.
 
-## The architecture of Beego
+## Beego'nun mimarisi
 
-Beego is built upon 8 loosely linked modules that can be used independently or as part of Beego's HTTP logic. This high level of modularity gives Beego an unprecedented level of flexibility to meet developer needs.
+Beego bağımsız veya Beego'nun HTTP mantığının bir parçası olarak kullanılabilecek 8 gevşek bağlantılı (loosely linked) modül üzerine kurulmuştur. Bu yüksek seviyedeki modülerlik Beego'ya, geliştirici ihtiyaçlarını karşılayabilmek için eşi görülmemiş esneklik sağlar.
 
 ![](../images/architecture.png)
 
-## The execution logic of Beego
+## Beego'nun çalışma mantığı
 
-Beego uses a standard Model-View-Controller (MVC) architecture for logic execution.
+Beego çalışma mantığı olarak standart Model-View-Controller (MVC) mimarisini kullanır.
 
 ![](../images/flow.png)
 
-## The project structure of Beego
+## Beego'nun proje yapısı
 
-Here is the typical folder structure of a Beego project:
+Tipik bir Beego projesinin klasör yapısı: 
 
 ```
 ├── conf
@@ -43,8 +43,8 @@ Here is the typical folder structure of a Beego project:
     └── index.tpl
 ```
 
-M (models), V (views), C (controllers) each have top level folders. `main.go` is the entry point.
+M (modeller), V (viewlar), C (controllerlar) üst seviye klasörlerdir. `main.go` ise giriş noktasıdır.
 
-## Creating a Beego project
+## Beego projesi oluşturmak
 
-Ready to try Beego?  You can use the [bee tool to create a new project](../install/bee.md).
+Beego'yu denemek için hazır mısın? Yeni proje oluşturmak için [bee aracını](../install/bee.md) kullanabilirsin.
