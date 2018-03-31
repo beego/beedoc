@@ -111,7 +111,7 @@ Raw SQL 查询获得的结果集 Value 为 `string` 类型，NULL 字段的值�
 
 ```go
 var maps []orm.Params
-num, err = o.Raw("SELECT user_name FROM user WHERE status = ?", 1).Values(&maps)
+num, err := o.Raw("SELECT user_name FROM user WHERE status = ?", 1).Values(&maps)
 if err == nil && num > 0 {
 	fmt.Println(maps[0]["user_name"]) // slene
 }
@@ -123,7 +123,7 @@ if err == nil && num > 0 {
 
 ```go
 var lists []orm.ParamsList
-num, err = o.Raw("SELECT user_name FROM user WHERE status = ?", 1).ValuesList(&lists)
+num, err := o.Raw("SELECT user_name FROM user WHERE status = ?", 1).ValuesList(&lists)
 if err == nil && num > 0 {
 	fmt.Println(lists[0][0]) // slene
 }
@@ -135,7 +135,7 @@ if err == nil && num > 0 {
 
 ```go
 var list orm.ParamsList
-num, err = o.Raw("SELECT id FROM user WHERE id < ?", 10).ValuesFlat(&list)
+num, err := o.Raw("SELECT id FROM user WHERE id < ?", 10).ValuesFlat(&list)
 if err == nil && num > 0 {
 	fmt.Println(list) // []{"1","2","3",...}
 }
