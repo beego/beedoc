@@ -21,7 +21,7 @@ beego 默认会解析当前应用下的 `conf/app.conf` 文件。
 	recoverpanic = false
 	viewspath = "myview"
 
-上面这些参数会替换 beego 默认的一些参数, beego 的参数主要有哪些呢？请参考https://godoc.org/github.com/astaxie/beego#pkg-constants。
+上面这些参数会替换 beego 默认的一些参数, beego 的参数主要有哪些呢？请参考https://godoc.org/github.com/astaxie/beego#pkg-constants 。
 BConfig 就是 beego 里面的默认的配置，你也可以直接通过`beego.BConfig.AppName="beepkg"`这样来修改，和上面的配置效果一样，只是一个在代码里面写死了，
 而配置文件就会显得更加灵活。
 
