@@ -88,9 +88,13 @@ func (this *MainController) Post() {
 ```go
 func (this *ObjectController) Post() {
 	var ob models.Object
-	json.Unmarshal(this.Ctx.Input.RequestBody, &ob)
-	objectid := models.AddOne(ob)
-	this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
+	var err error
+	if err = json.Unmarshal(this.Ctx.Input.RequestBody, &ob); err == nil {
+	    objectid := models.AddOne(ob)
+	    this.Data["json"] = "{\"ObjectId\":\"" + objectid + "\"}"
+	} else {
+	    this.Data["json"] = err.Error()
+	}
 	this.ServeJSON()
 }
 ```
