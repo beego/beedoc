@@ -111,7 +111,7 @@ func main() {
 StructTag 可用的验证函数：
 
 * `Required` 不为空，即各个类型要求不为其零值
-* `Min(min int)` 最小值，有效类型：`int`，其他类型都将不能通过验证)
+* `Min(min int)` 最小值，有效类型：`int`，其他类型都将不能通过验证
 * `Max(max int)` 最大值，有效类型：`int`，其他类型都将不能通过验证
 * `Range(min, max int)` 数值的范围，有效类型：`int`，他类型都将不能通过验证
 * `MinSize(min int)` 最小长度，有效类型：`string slice`，其他类型都将不能通过验证
