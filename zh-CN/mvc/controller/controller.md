@@ -105,14 +105,14 @@ type NestPreparer interface {
 }
 
 // baseRouter implemented global settings for all other routers.
-type baseRouter struct {
+type baseController struct {
         beego.Controller
         i18n.Locale
         user    models.User
         isLogin bool
 }
 // Prepare implemented Prepare method for baseRouter.
-func (this *baseRouter) Prepare() {
+func (this *baseController) Prepare() {
 
         // page start time
         this.Data["PageStartTime"] = time.Now()
@@ -137,7 +137,7 @@ func (this *baseRouter) Prepare() {
 
 ```
 type BaseAdminRouter struct {
-    baseRouter
+    baseController
 }
 
 func (this *BaseAdminRouter) NestPrepare() {
@@ -174,7 +174,7 @@ func (this *BaseAdminRouter) Post(){
 }
 ```
 
-这样我们的执行器执行的逻辑是这样的，首先执行 Prepare，这个就是 Go 语言中 struct 中寻找方法的顺序，依次往父类寻找。执行 `BaseAdminRouter` 时，查找他是否有 `Prepare` 方法，没有就寻找 `baseRouter`，找到了，那么就执行逻辑，然后在 `baseRouter` 里面的 `this.AppController` 即为当前执行的控制器 `BaseAdminRouter`，因为会执行 `BaseAdminRouter.NestPrepare` 方法。然后开始执行相应的 Get 方法或者 Post 方法。
+这样我们的执行器执行的逻辑是这样的，首先执行 Prepare，这个就是 Go 语言中 struct 中寻找方法的顺序，依次往父类寻找。执行 `BaseAdminRouter` 时，查找他是否有 `Prepare` 方法，没有就寻找 `baseController`，找到了，那么就执行逻辑，然后在 `baseController` 里面的 `this.AppController` 即为当前执行的控制器 `BaseAdminRouter`，因为会执行 `BaseAdminRouter.NestPrepare` 方法。然后开始执行相应的 Get 方法或者 Post 方法。
 
 ## 提前终止运行
 
