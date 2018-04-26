@@ -56,10 +56,11 @@ Here is the folder structure in `/opt/app/beepkg`:
 
 Now we've copied our entire application to the server. Next step is deploy it.
 
-There are two ways to run it:
+There are three ways to run it:
 
 - [Stand alone deploy](./beego.md)
 - [Deploy with Supervisord ](./supervisor.md)
+- [Deploy with Systemctl ](./systemctl.md)
 	
 The application is exposed above, then usually we will have a nginx or apache to serve pages and perform load balancing on our application.
 
