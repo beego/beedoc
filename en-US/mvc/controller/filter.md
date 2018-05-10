@@ -4,22 +4,36 @@ sort: 5
 ---
 
 # Filters
-
 Beego supports custom filter middlewares. E.g.: user authentication and force redirection.
 
-To use a filter function, insert it as follows:
+# Activating Filters
+Before filters can be used, filters must be activated.
+
+Filters can be activated at the code level:
+
+`beego.BConfig.WebConfig.Session.SessionOn = true`
+
+Filters can also be activated in the configuration file:
+
+```SessionOn = true```
+
+Attempting to use a filter without activation will cause a `Handler crashed with error runtime error: invalid memory address or nil pointer dereference` error
+
+# Inserting Filters
+
+A filter function can be inserted as follows:
 
 ```go
 beego.InsertFilter(pattern string, pos int, filter FilterFunc, params ...bool)
 ```
 
-Here is the FilterFunc signature:
+This is the FilterFunc signature:
 
 ```go
 type FilterFunc func(*context.Context)
 ```
 
-Don't forget to import *context* if it hasn't been imported yet:
+The *context* must be imported if this has not already been done:
 
 ```go
 import "github.com/astaxie/beego/context"
@@ -28,7 +42,7 @@ import "github.com/astaxie/beego/context"
 InsertFilter's four parameters:
 
 - `pattern`: string or regex to match against router rules. Use `/*` to match all.
-- `pos`: the place to execute the Filter. There are five fixed parameters. They represent different execution processes.
+- `pos`: the place to execute the Filter. There are five fixed parameters representing different execution processes.
 	- beego.BeforeStatic: Before finding the static file.  
  	- beego.BeforeRouter: Before finding router.
 	- beego.BeforeExec: After finding router and before executing the matched Controller.
@@ -57,10 +71,10 @@ var FilterUser = func(ctx *context.Context) {
 beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)
 ```
 
->For filters which use session, they must be executed after `BeforeRouter` because session is not initialized before that, and don't forget to enable Beego session module (see [Session control](../controller/session.md))
+>Filters which use session must be executed after `BeforeRouter` because session is not initialized before that. Beego session module must be enabled first. (see [Session control](../controller/session.md))
 
 
-You can run filters against requests which use a regex router rule for matching:
+Filters can be run against requests which use a regex router rule for matching:
 
 ```go
 var FilterUser = func(ctx *context.Context) {
@@ -72,7 +86,7 @@ var FilterUser = func(ctx *context.Context) {
 beego.InsertFilter("/user/:id([0-9]+)", beego.BeforeRouter, FilterUser)
 ```
 ## Filter Implementation UrlManager
-Context.Input has new features `RunController` and `RunMethod` from beego version 1.1.2. So we can control the router in our filter and skip the Beego's router rule.
+Context.Input has new features `RunController` and `RunMethod` from beego version 1.1.2.  These can control the router in the filter and skip the Beego router rule.
 
 For example:
 

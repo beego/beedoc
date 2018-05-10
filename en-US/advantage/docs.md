@@ -3,7 +3,7 @@ name: Automated API Documentation
 sort: 2
 ---
 
-# Automated API Document
+# Automated API Documentation
 
 Automated documentation is a very cool feature that I found to be desirable. Now it became a reality in Beego. As I said Beego will not only boost the development of your API but also make the API easy to use for the user. 
 
@@ -181,14 +181,14 @@ Below is a list of supported comments for generating swagger APIs:
 	1. The request's router address.
 	2. Supported request methods. Wrap in `[]`. Use `,` to separate multiple methods.
 
-## Generate document automatically
+## Generate documentation automatically
 
 Make it work by following the steps:
 1. Enable docs by setting `EnableDocs = true` in `conf/app.conf`.
-2. Use `bee run -downdoc=true -gendoc=true` to run your API application and rebuild document automatically.
-3. Visit `swagger document from API project's URL and port.  (see item #1 below)
+2. Use `bee run -downdoc=true -gendoc=true` to run your API application and rebuild documentation automatically.
+3. Visit `/swagger` in your project.  (see image #1 below)
 
-Your API document is available now. Open your browser and check it.
+Your API documentation is available now. Open your browser and check it out.
 
 ![](../images/docs.png)
 
@@ -196,18 +196,19 @@ Your API document is available now. Open your browser and check it.
 
 ## Problems You May Have
 1. CORS
-	Two solutions
+	Two solutions:
 	1. Integrate `swagger` into the application. Download [swagger](https://github.com/beego/swagger/releases) and put it into project folder. (`bee run -downdoc=true` will also download it and put it into project folder)
 	And before 	`beego.Run()` in `func main()` of `main.go`
-
-		if beego.RunMode == "dev" {
-			beego.DirectoryIndex = true
-			beego.StaticDir["/swagger"] = "swagger"
+		```go
+		if beego.BConfig.RunMode == "dev" {
+			beego.BConfig.WebConfig.DirectoryIndex = true
+			beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 		}
+		```
+		And then visit `/swagger` in your project.
 
-	And then visit `swagger` document from API project's URL and port.
 	2. Make API support CORS
-
-			ctx.Output.Header("Access-Control-Allow-Origin", "*")
-
+		```go
+		ctx.Output.Header("Access-Control-Allow-Origin", "*")
+		```
 2. Other problems. This is a feature used in my own project. If you have some other problems please fire issues to us.

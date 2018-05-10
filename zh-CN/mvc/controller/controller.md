@@ -5,7 +5,7 @@ sort: 3
 
 # 控制器介绍
 
->> 提示：在v1.6中，此文档所涉及的API有重大变更，`this.ServeJson()` 更改为 `this.ServeJSON()`，`this.TplNames` 更改为 `this.TplName`。
+>> 提示：在 v1.6 中，此文档所涉及的 API 有重大变更，`this.ServeJson()` 更改为 `this.ServeJSON()`，`this.TplNames` 更改为 `this.TplName`。
 
 基于 beego 的 Controller 设计，只需要匿名组合 `beego.Controller` 就可以了，如下所示：
 
@@ -16,7 +16,7 @@ sort: 3
 
 - Init(ct *context.Context, childName string, app interface{})
 
-	这个函数主要初始化了 Context、相应的 Controller 名称，模板名，初始化模板参数的容器 Data，app即为当前执行的Controller的reflecttype，这个app可以用来执行子类的方法。
+	这个函数主要初始化了 Context、相应的 Controller 名称，模板名，初始化模板参数的容器 Data，app 即为当前执行的 Controller 的 reflecttype，这个 app 可以用来执行子类的方法。
 
 - Prepare()
 
@@ -113,7 +113,7 @@ type baseRouter struct {
 }
 // Prepare implemented Prepare method for baseRouter.
 func (this *baseRouter) Prepare() {
-        
+
         // page start time
         this.Data["PageStartTime"] = time.Now()
 

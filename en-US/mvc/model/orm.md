@@ -5,7 +5,7 @@ sort: 2
 
 # ORM Usage
 
-The example of beego/orm is set out below:
+An example of beego/orm is set out below.
 
 All the code samples in this section are based on this example unless otherwise stated.
 
@@ -124,6 +124,8 @@ maxConn := 30
 orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8", maxIdle, maxConn)
 ```
 
+See [Test.md](https://beego.me/docs/mvc/model/test.md) for more information on database connection strings.
+
 #### SetMaxIdleConns
 
 Set maximum idle connections according to database alias:
@@ -157,7 +159,7 @@ ORM will get timezone of database while performing `RegisterDataBase`. When sett
 
 **Note:**
 
-* Because of Sqlite3 set and get use UTC time by default.
+* In Sqlite3, set and get use UTC time by default.
 * When using `go-sql-driver` driver，please pay attention to your DSN config.
   From a version of `go-sql-driver` the default uses utc timezone not local. So if you use another timezone, please set it.
   eg: `root:root@/orm_test?charset=utf8&loc=Asia%2FShanghai`
@@ -165,9 +167,9 @@ ORM will get timezone of database while performing `RegisterDataBase`. When sett
 
 ## Registering Model
 
-This is compulsory if you use orm.QuerySeter for advanced query.
+Registering a model is mandatory if you use orm.QuerySeter for advanced queries.
 
-Otherwise you don't need to do this if you use raw SQL query and map struct only. [Raw SQL Query](rawsql.md)
+Otherwise, you don't need to do this if you're using raw SQL queries and map struct only. [See Raw SQL Query](rawsql.md)
 
 #### RegisterModel
 
@@ -202,7 +204,7 @@ For detailed struct definition, see [Model define](models.md)
 
 You may want Beego to automatically create your database tables.
 One way to do this is by using the method described in the [cli](cmd.md) documentation. 
-Alternatively you could choose to autogenerate your tables by including the following
+Alternatively, you could choose to autogenerate your tables by including the following
 in your main.go file in your main block. 
 
 ```go
@@ -238,9 +240,9 @@ The created table name is prefix_user
 
 #### NewOrmWithDB
 
-You may need to manage db pools by yourself. (eg: need two query in one connection)
+You may need to manage db pools by yourself. (eg: needing two queries in one connection)
 
-But you want use orm awesome features. Bingo!
+But you want to use awesome orm features. Voila!
 
 ```go
 var driverName, aliasName string
@@ -253,7 +255,7 @@ o := orm.NewOrmWithDB(driverName, aliasName, db)
 
 #### GetDB
 
-Get *sql.DB from registered databases. Will use `default` as default if you do not set.
+Get *sql.DB from the registered databases. This will use `default` as default if you do not set.
 
 ```go
 db, err := orm.GetDB()
@@ -378,11 +380,11 @@ fmt.Println(dr.Name() == "db2") // true
 fmt.Println(dr.Type() == orm.DRSqlite) // true
 ```
 
-## Print out SQL query in debugging mode
+## Print out SQL queries in debugging mode
 
-Setting `orm.Debug` to true will print out SQL queries
+Setting `orm.Debug` to true will print out SQL queries.
 
-It may cause performance issues. It's not recommend to be used in a production env.
+It may cause performance issues. It is not recommended to be used in a production env.
 
 ```go
 func main() {

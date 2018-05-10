@@ -61,9 +61,9 @@ Go 语言的应用最后编译之后是一个二进制文件，你只需要 copy
 这里部署首先你需要把应用跑起来，这分为两种方式：
 
 - [独立部署](./beego.md)
-- [Supervisord部署](./supervisor.md)
-	
-上面只是把应用程序完全暴露在外部，我们大多数的应用会在前端部署一个nginx或者apache利用这些成熟的HTTP服务器做负载均衡或者其他认证之类的。
+- [Supervisord 部署](./supervisor.md)
 
-- [Nginx部署](./nginx.md)
-- [Apache部署](./apache.md)
+上面只是把应用程序完全暴露在外部，我们大多数的应用会在前端部署一个 nginx 或者 apache 利用这些成熟的 HTTP 服务器做负载均衡或者其他认证之类的。
+
+- [Nginx 部署](./nginx.md)
+- [Apache 部署](./apache.md)

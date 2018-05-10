@@ -5,7 +5,7 @@ sort: 10
 
 # 错误处理
 
-我们在做 Web 开发的时候，经常会遇到页面调整和错误处理，beego 这方面也进行了考虑，通过 `Redirect` 方法来进行跳转：
+我们在做 Web 开发的时候，经常需要页面跳转和错误处理，beego 这方面也进行了考虑，通过 `Redirect` 方法来进行跳转：
 
 ```go
 func (this *AddController) Get() {
@@ -38,7 +38,7 @@ beego 框架默认支持 401、403、404、500、503 这几种错误的处理。
 
 ```go
 func page_not_found(rw http.ResponseWriter, r *http.Request){
-	t,_:= template.New("404.html").ParseFiles(beego.ViewsPath+"/404.html")
+	t,_:= template.New("404.html").ParseFiles(beego.BConfig.WebConfig.ViewsPath+"/404.html")
 	data :=make(map[string]interface{})
 	data["content"] = "page not found"
 	t.Execute(rw, data)
@@ -57,7 +57,7 @@ beego 更加人性化的还有一个设计就是支持用户自定义字符串�
 
 ```go
 func dbError(rw http.ResponseWriter, r *http.Request){
-	t,_:= template.New("dberror.html").ParseFiles(beego.ViewsPath+"/dberror.html")
+	t,_:= template.New("dberror.html").ParseFiles(beego.BConfig.WebConfig.ViewsPath+"/dberror.html")
 	data :=make(map[string]interface{})
 	data["content"] = "database is now down"
 	t.Execute(rw, data)
@@ -72,8 +72,8 @@ func main() {
 
 一旦在入口注册该错误处理代码，那么你可以在任何你的逻辑中遇到数据库错误调用 `this.Abort("dbError")` 来进行异常页面处理。
 
-# Controller定义Error
-从1.4.3版本开始，支持Controller方式定义Error错误处理函数，这样就可以充分利用系统自带的模板处理，以及context等方法。
+# Controller 定义 Error
+从 1.4.3 版本开始，支持 Controller 方式定义 Error 错误处理函数，这样就可以充分利用系统自带的模板处理，以及 context 等方法。
 
 ```
 package controllers
@@ -102,10 +102,10 @@ func (c *ErrorController) ErrorDb() {
 	c.TplName = "dberror.tpl"
 }
 ```
-通过上面的例子我们可以看到，所有的函数都是有一定规律的，都是`Error`开头，后面的名字就是我们调用`Abort`的名字，例如`Error404`函数其实调用对应的就是`Abort("404")`
+通过上面的例子我们可以看到，所有的函数都是有一定规律的，都是 `Error` 开头，后面的名字就是我们调用 `Abort` 的名字，例如 `Error404` 函数其实调用对应的就是 `Abort("404")`
 
 
-我们就只要在`beego.Run`之前采用`beego.ErrorController`注册这个错误处理函数就可以了
+我们就只要在 `beego.Run` 之前采用 `beego.ErrorController` 注册这个错误处理函数就可以了
 
 ```
 package main

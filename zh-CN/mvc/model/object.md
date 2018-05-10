@@ -3,9 +3,9 @@ name: CRUD 操作
 sort: 3
 ---
 
-# 对象的CRUD操作
+# 对象的 CRUD 操作
 
-如果已知主键的值，那么可以使用这些方法进行CRUD操作
+如果已知主键的值，那么可以使用这些方法进行 CRUD 操作
 
 对 object 操作的四个方法 Read / Insert / Update / Delete
 
@@ -30,7 +30,7 @@ fmt.Println(o.Delete(user))
 o := orm.NewOrm()
 user := User{Id: 1}
 
-err = o.Read(&user)
+err := o.Read(&user)
 
 if err == orm.ErrNoRows {
 	fmt.Println("查询不到")
@@ -62,7 +62,7 @@ err = o.Read(&user, "Name")
 ```go
 o := orm.NewOrm()
 user := User{Name: "slene"}
-// 三个返回参数依次为：是否新创建的，对象Id值，错误
+// 三个返回参数依次为：是否新创建的，对象 Id 值，错误
 if created, id, err := o.ReadOrCreate(&user, "Name"); err == nil {
 	if created {
 		fmt.Println("New Insert an object. Id:", id)

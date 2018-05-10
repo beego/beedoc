@@ -8,8 +8,8 @@ BeeGo содержит тестовое приложение на котором
 
 Вам нужно установить BeeGo и иснтрумент разработчика [Bee](http://beego.me/docs/install/bee.md):
 
-	$ go get github.com/astaxie/beego
-	$ go get github.com/beego/bee
+	$ go get -u github.com/astaxie/beego
+	$ go get -u github.com/beego/bee
 
 
 Для удобства, вы должны добавить `$GOPATH/bin` в вашу переменную окружения `$PATH`.

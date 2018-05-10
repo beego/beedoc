@@ -78,20 +78,20 @@ sess 对象具有如下方法：
 - beego.BConfig.WebConfig.Session.SessionProviderConfig
 
 	设置对应 file、mysql、redis 引擎的保存路径或者链接地址，默认值是空，配置文件对应的参数：sessionproviderconfig。
-	
+
 - beego.BConfig.WebConfig.Session.SessionHashFunc
 
-	默认值为sha1，采用sha1加密算法生产sessionid
-	
+	默认值为 sha1，采用 sha1 加密算法生产 sessionid
+
 - beego.BConfig.WebConfig.Session.SessionHashKey
 
-	默认的key是beegoserversessionkey，建议用户使用的时候修改该参数
-	
+	默认的 key 是 beegoserversessionkey，建议用户使用的时候修改该参数
+
 - beego.BConfig.WebConfig.Session.SessionCookieLifeTime
 
-	设置cookie的过期时间，cookie是用来存储保存在客户端的数据。
+	设置 cookie 的过期时间，cookie 是用来存储保存在客户端的数据。
 
-从beego1.1.3版本开始移除了第三方依赖库,也就是如果你想使用mysql、redis、couchbase、memcache、postgres这些引擎,那么你首先需要安装
+从 beego1.1.3 版本开始移除了第三方依赖库,也就是如果你想使用 mysql、redis、couchbase、memcache、postgres 这些引擎,那么你首先需要安装
 
 	go get -u github.com/astaxie/beego/session/mysql
 
@@ -104,25 +104,12 @@ sess 对象具有如下方法：
 	beego.BConfig.WebConfig.Session.SessionProvider="file"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = "./tmp"
 
-当 SessionProvider 为 mysql SessionProviderConfig 是链接地址，采用 [go-sql-driver](https://github.com/go-sql-driver/mysql)，如下所示：
-
-	beego.BConfig.WebConfig.Session.SessionProvider = "mysql"
-	beego.BConfig.WebConfig.Session.SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
-
-当 SessionProvider 为 redis 时，SessionProviderConfig 是 redis 的链接地址，采用了 [redigo](https://github.com/garyburd/redigo)，如下所示：
-
-	beego.BConfig.WebConfig.Session.SessionProvider = "redis"
-	beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
-
-	beego.BConfig.WebConfig.Session.SessionProvider = "file"
-	beego.BConfig.WebConfig.Session.SessionProviderConfig = "./tmp"
-
 当 SessionProvider 为 mysql 时，SessionProviderConfig 是链接地址，采用 [go-sql-driver](https://github.com/go-sql-driver/mysql)，如下所示：
 
 	beego.BConfig.WebConfig.Session.SessionProvider = "mysql"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
 
-    需要特别注意的是，在使用mysql存储session信息的时候，需要事先在mysql创建表，建表语句如下
+    需要特别注意的是，在使用 mysql 存储 session 信息的时候，需要事先在 mysql 创建表，建表语句如下
 
 ```
     CREATE TABLE `session` (
@@ -137,21 +124,21 @@ sess 对象具有如下方法：
 
 	beego.BConfig.WebConfig.Session.SessionProvider = "redis"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
-	
+
 当 SessionProvider 为 memcache 时，SessionProviderConfig 是 memcache 的链接地址，采用了 [memcache](https://github.com/beego/memcache)，如下所示：
 
 	beego.BConfig.WebConfig.Session.SessionProvider = "memcache"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:7080"
-	
+
 当 SessionProvider 为 postgres 时，SessionProviderConfig 是 postgres 的链接地址，采用了 [postgres](https://github.com/lib/pq)，如下所示：
 
 	beego.BConfig.WebConfig.Session.SessionProvider = "postgresql"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
-	
+
 当 SessionProvider 为 couchbase 时，SessionProviderConfig 是 couchbase 的链接地址，采用了 [couchbase](https://github.com/couchbaselabs/go-couchbase)，如下所示：
 
 	beego.BConfig.WebConfig.Session.SessionProvider = "couchbase"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = "http://bucketname:bucketpass@myserver:8091"
-    
+
 ## 特别注意点
-因为session内部采用了gob来注册存储的对象，例如struct，所以如果你采用了非memory的引擎，请自己在main.go的init里面注册需要保存的这些结构体，不然会引起应用重启之后出现无法解析的错误    	
+因为 session 内部采用了 gob 来注册存储的对象，例如 struct，所以如果你采用了非 memory 的引擎，请自己在 main.go 的 init 里面注册需要保存的这些结构体，不然会引起应用重启之后出现无法解析的错误

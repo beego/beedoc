@@ -72,14 +72,14 @@ import (
 // 各个函数之间用分号 ";" 分隔，分号后面可以有空格
 // 参数用括号 "()" 括起来，多个参数之间用逗号 "," 分开，逗号后面可以有空格
 // 正则函数(Match)的匹配模式用两斜杠 "/" 括起来
-// 各个函数的结果的key值为字段名.验证函数名
+// 各个函数的结果的 key 值为字段名.验证函数名
 type user struct {
     Id     int
-    Name   string `valid:"Required;Match(/^Bee.*/)"` // Name 不能为空并且以Bee开头
+    Name   string `valid:"Required;Match(/^Bee.*/)"` // Name 不能为空并且以 Bee 开头
     Age    int    `valid:"Range(1, 140)"` // 1 <= Age <= 140，超出此范围即为不合法
-    Email  string `valid:"Email; MaxSize(100)"` // Email字段需要符合邮箱格式，并且最大长度不能大于100个字符
-    Mobile string `valid:"Mobile"` // Mobile必须为正确的手机号
-    IP     string `valid:"IP"` // IP必须为一个正确的IPv4地址
+    Email  string `valid:"Email; MaxSize(100)"` // Email 字段需要符合邮箱格式，并且最大长度不能大于 100 个字符
+    Mobile string `valid:"Mobile"` // Mobile 必须为正确的手机号
+    IP     string `valid:"IP"` // IP 必须为一个正确的 IPv4 地址
 }
 
 // 如果你的 struct 实现了接口 validation.ValidFormer
@@ -119,12 +119,12 @@ StructTag 可用的验证函数：
 * `Length(length int)` 指定长度，有效类型：`string slice`，其他类型都将不能通过验证
 * `Alpha` alpha字符，有效类型：`string`，其他类型都将不能通过验证
 * `Numeric` 数字，有效类型：`string`，其他类型都将不能通过验证
-* `AlphaNumeric` alpha字符或数字，有效类型：`string`，其他类型都将不能通过验证
+* `AlphaNumeric` alpha 字符或数字，有效类型：`string`，其他类型都将不能通过验证
 * `Match(pattern string)` 正则匹配，有效类型：`string`，其他类型都将被转成字符串再匹配(fmt.Sprintf("%v", obj).Match)
-* `AlphaDash` alpha字符或数字或横杠`-_`，有效类型：`string`，其他类型都将不能通过验证
+* `AlphaDash` alpha 字符或数字或横杠 `-_`，有效类型：`string`，其他类型都将不能通过验证
 * `Email` 邮箱格式，有效类型：`string`，其他类型都将不能通过验证
-* `IP`  IP格式，目前只支持IPv4格式验证，有效类型：`string`，其他类型都将不能通过验证
-* `Base64` base64编码，有效类型：`string`，其他类型都将不能通过验证
+* `IP` IP 格式，目前只支持 IPv4 格式验证，有效类型：`string`，其他类型都将不能通过验证
+* `Base64` base64 编码，有效类型：`string`，其他类型都将不能通过验证
 * `Mobile` 手机号，有效类型：`string`，其他类型都将不能通过验证
 * `Tel` 固定电话号，有效类型：`string`，其他类型都将不能通过验证
 * `Phone` 手机号或固定电话号，有效类型：`string`，其他类型都将不能通过验证

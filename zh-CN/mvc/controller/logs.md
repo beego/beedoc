@@ -26,11 +26,11 @@ beego 之前介绍的时候说过是基于几个模块搭建的，beego 的日�
 
 	beego.SetLogger("file", `{"filename":"logs/test.log"}`)
 
-更多详细的日志配置请查看 [日志配置](../../module/logs.md)	
-	
+更多详细的日志配置请查看 [日志配置](../../module/logs.md)
+
 这个默认情况就会同时输出到两个地方，一个 console，一个 file，如果只想输出到文件，就需要调用删除操作：
 
-	beego.BeeLogger.DelLogger("console")	
+	beego.BeeLogger.DelLogger("console")
 
 ## 设置级别
 
@@ -48,15 +48,15 @@ beego 之前介绍的时候说过是基于几个模块搭建的，beego 的日�
 级别依次降低，默认全部打印，但是一般我们在部署环境，可以通过设置级别设置日志级别：
 
 	beego.SetLevel(beego.LevelInformational)
-	
+
 ## 输出文件名和行号
 
 日志默认不输出调用的文件名和文件行号,如果你期望输出调用的文件名和文件行号,可以如下设置
 
 	beego.SetLogFuncCall(true)
-	
-开启传入参数true,关闭传入参数false,默认是关闭的.			
-	
+
+开启传入参数 true, 关闭传入参数 false, 默认是关闭的.
+
 ## 完整示例
 
 ```go
@@ -79,7 +79,7 @@ func internalCalculationFunc(x, y int) (result int, err error) {
     }
     retVal := z - 3
     beego.Debug("Returning ", retVal)
-    
+
     return retVal, nil
 }
 
@@ -91,12 +91,12 @@ func processInput(input inputData) {
         }
     }()
     beego.Informational("Received input signal. x:", input.x, " y:", input.y)
-    
+
     res, err := internalCalculationFunc(input.x, input.y)
     if err != nil {
         beego.Warning("Error in calculation:", err.Error())
     }
-    
+
     beego.Informational("Returning result: ", res, " error: ", err)
     outputs <- outputData{result: res, error: err != nil}
 }
@@ -106,13 +106,13 @@ func main() {
     outputs = make(chan outputData)
     criticalChan = make(chan int)
     beego.Informational("App started.")
-    
+
     go consumeResults(outputs)
     beego.Informational("Started receiving results.")
-    
+
     go generateInputs(inputs)
     beego.Informational("Started sending signals.")
-    
+
     for {
         select {
         case input := <-inputs:

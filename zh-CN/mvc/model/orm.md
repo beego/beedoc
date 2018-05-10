@@ -46,7 +46,7 @@ type Tag struct {
 
 func init() {
 	// 需要在init中注册定义的model
-	orm.RegisterModel(new(User), new(Profile), new(Tag))
+	orm.RegisterModel(new(User), new(Post), new(Profile), new(Tag))
 }
 ```
 
@@ -128,7 +128,7 @@ ORM 必须注册一个别名为 `default` 的数据库，作为默认使用。
 ORM 使用 golang 自己的连接池
 
 ```go
-// 参数1        数据库的别名，用来在ORM中切换数据库使用
+// 参数1        数据库的别名，用来在 ORM 中切换数据库使用
 // 参数2        driverName
 // 参数3        对应的链接字符串
 orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8")
@@ -150,7 +150,7 @@ orm.SetMaxIdleConns("default", 30)
 
 #### SetMaxOpenConns
 
-根据数据库的别名，设置数据库的最大数据库连接  (go >= 1.2)
+根据数据库的别名，设置数据库的最大数据库连接 (go >= 1.2)
 
 ```go
 orm.SetMaxOpenConns("default", 30)
@@ -176,7 +176,7 @@ ORM 在进行 RegisterDataBase 的同时，会获取数据库使用的时区，�
 
 * 鉴于 Sqlite3 的设计，存取默认都为 UTC 时间
 * 使用 go-sql-driver 驱动时，请注意参数设置
-  从某一版本开始，驱动默认使用UTC时间，而非本地时间，所以请指定时区参数或者全部以UTC时间存取
+  从某一版本开始，驱动默认使用 UTC 时间，而非本地时间，所以请指定时区参数或者全部以 UTC 时间存取
   例如：`root:root@/orm_test?charset=utf8&loc=Asia%2FShanghai`
   参见 [loc](https://github.com/go-sql-driver/mysql#loc) / [parseTime](https://github.com/go-sql-driver/mysql#parsetime)
 
@@ -235,7 +235,7 @@ orm.RegisterModelWithPrefix("prefix_", new(User))
 ```go
 var driverName, aliasName string
 // driverName 是驱动的名称
-// aliasName 是当前db的自定义别名
+// aliasName 是当前 db 的自定义别名
 var db *sql.DB
 ...
 o := orm.NewOrmWithDB(driverName, aliasName, db)
@@ -259,7 +259,7 @@ if err != nil {
 
 #### ResetModelCache
 
-重置已经注册的模型struct，一般用于编写测试用例
+重置已经注册的模型 struct，一般用于编写测试用例
 
 ```go
 orm.ResetModelCache()
@@ -374,7 +374,7 @@ fmt.Println(dr.Type() == orm.DRSqlite) // true
 
 简单的设置 Debug 为 true 打印查询的语句
 
-可能存在性能问题，不建议使用在产品模式
+可能存在性能问题，不建议使用在生产模式
 
 ```go
 func main() {

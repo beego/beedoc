@@ -16,7 +16,7 @@ sort: 5
     	<title>Beego</title>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	</head>
-  	
+
   	<body>
   		<header class="hero-unit" style="background-color:#A9F16C">
 			<div class="container">

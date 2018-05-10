@@ -29,7 +29,7 @@ beego 的项目基本都是通过 `bee` 命令来创建的，所以在创建项�
 	/gopath/src/quickstart/tests/default_test.go
 	/gopath/src/quickstart/main.go
 	2014/11/06 18:17:09 [SUCC] New application successfully created!
-	
+
 通过一个简单的命令就创建了一个 beego 项目。他的目录结构如下所示
 
 	quickstart
@@ -48,9 +48,9 @@ beego 的项目基本都是通过 `bee` 命令来创建的，所以在创建项�
 	|-- tests
 	|   `-- default_test.go
 	`-- views
-	    `-- index.tpl	
+	    `-- index.tpl
 
-从目录结构中我们也可以看出来这是一个典型的MVC架构的应用，`main.go` 是入口文件。				
+从目录结构中我们也可以看出来这是一个典型的 MVC 架构的应用，`main.go` 是入口文件。
 ## 运行项目
 
 beego 项目创建之后，我们就开始运行项目，首先进入创建的项目，我们使用 `bee run` 来运行该项目，这样就可以做到热编译的效果：

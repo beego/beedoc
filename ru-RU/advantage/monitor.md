@@ -11,12 +11,12 @@ sort: 1
 
 Мониторинг выключен по умолчанию. Вы можете включить его:
 
-	beego.EnableAdmin = true
+	EnableAdmin = true
 
 И вы можете изменить порт, на котором работает мониторинг:
 
-	beego.AdminHttpAddr = "localhost"
-	beego.AdminHttpPort = 8888
+	AdminAddr = "localhost"
+	AdminPort = 8888
 
 Откройте в браузере `http://localhost:8088/` и вы увидите `Welcome to Admin Dashboard`.
 
@@ -55,7 +55,7 @@ sort: 1
 
 ## Задачи
 
-Вы модете добавить задачу в ваше приложение и проверить статус этой задачи или запустить её вручную
+Вы можете добавить задачу в ваше приложение и проверить статус этой задачи или запустить её вручную
 
 - Проверка статуса задачи: `http://localhost:8088/task`
 - Ручной запуск задачи: `http://localhost:8088/runtask?taskname=task_name`

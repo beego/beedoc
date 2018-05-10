@@ -17,13 +17,13 @@ Frequently asked questions:
 
 		git config --global http.sslVerify false
 
-- How can I install Beego offline? There is no good solution now. We will create packages for downloading and installing for every release.
+- How can I install Beego offline? There is no good solution for now. We will create packages for downloading and installing for future releases.
 
 # Upgrading Beego
 
 You can upgrade Beego through Go command or download and upgrade from source code.
 
-- Through Go command: we recommand you use this way to upgrade Beego:
+- Through Go command (Recommended):
 
 		go get -u github.com/astaxie/beego
 
@@ -31,5 +31,5 @@ You can upgrade Beego through Go command or download and upgrade from source cod
 
 		go install 	github.com/astaxie/beego
 
-**Upgrading Prior to 1.0:** The API of Beego is already stable after 1.0. Basically it's compatible with every upgrade. If you are still using a version lower than 1.0, you might need to change some methods and parameters based on the latest API.
+**Upgrading Prior to 1.0:** The API of Beego is stable after 1.0 and compatible with every upgrade. If you are still using a version lower than 1.0 you may need to configure your parameters based on the latest API.
 

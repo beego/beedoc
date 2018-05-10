@@ -5,7 +5,7 @@ sort: 5
 
 # Raw SQL to query
 
-* Using Raw SQL to query doesnt require ORM definition
+* Using Raw SQL to query doesn't require an ORM definition
 * Multiple databases support `?` as placeholders and auto convert.
 * The params of query support Model Struct, Slice and Array
 
@@ -109,7 +109,7 @@ The key => value pairs of resultSet:
 
 ```go
 var maps []orm.Params
-num, err = o.Raw("SELECT user_name FROM user WHERE status = ?", 1).Values(&maps)
+num, err := o.Raw("SELECT user_name FROM user WHERE status = ?", 1).Values(&maps)
 if err == nil && num > 0 {
 	fmt.Println(maps[0]["user_name"]) // slene
 }
@@ -121,7 +121,7 @@ slice of resultSet
 
 ```go
 var lists []orm.ParamsList
-num, err = o.Raw("SELECT user_name FROM user WHERE status = ?", 1).ValuesList(&lists)
+num, err := o.Raw("SELECT user_name FROM user WHERE status = ?", 1).ValuesList(&lists)
 if err == nil && num > 0 {
 	fmt.Println(lists[0][0]) // slene
 }
@@ -133,7 +133,7 @@ Return slice of a single field:
 
 ```go
 var list orm.ParamsList
-num, err = o.Raw("SELECT id FROM user WHERE id < ?", 10).ValuesFlat(&list)
+num, err := o.Raw("SELECT id FROM user WHERE id < ?", 10).ValuesFlat(&list)
 if err == nil && num > 0 {
 	fmt.Println(list) // []{"1","2","3",...}
 }
