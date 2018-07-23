@@ -364,6 +364,7 @@ type Post struct {
 | uint64 - 设置 auto 或者名称为 `Id` 时 | bigint unsigned AUTO_INCREMENT
 | bool | bool
 | string - 默认为 size 255 | varchar(size)
+| string - 设置 type(char) 时 | char(size)
 | string - 设置 type(text) 时 | longtext
 | time.Time - 设置 type 为 date 时 | date
 | time.Time | datetime
@@ -390,6 +391,7 @@ type Post struct {
 | int, int32, int64, uint, uint32, uint64 - 设置 auto 或者名称为 `Id` 时 | integer AUTOINCREMENT
 | bool | bool
 | string - 默认为 size 255 | varchar(size)
+| string - 设置 type(char) 时 | character(size)
 | string - 设置 type(text) 时 | text
 | time.Time - 设置 type 为 date 时 | date
 | time.Time | datetime
@@ -416,6 +418,7 @@ type Post struct {
 | int, int32, int64, uint, uint32, uint64 - 设置 auto 或者名称为 `Id` 时 | serial
 | bool | bool
 | string - 若没有指定 size 默认为 text | varchar(size)
+| string - 设置 type(char) 时 | char(size)
 | string - 设置 type(text) 时 | text
 | string - 设置 type(json) 时 | json
 | string - 设置 type(jsonb) 时 | jsonb
