@@ -373,6 +373,7 @@ All the fields are **NOT NULL** by default.
 | uint64 - set as auto or name is `Id` | bigint unsigned AUTO_INCREMENT
 | bool | bool
 | string - default size 255 | varchar(size)
+| string - set type(char) | char(size)
 | string - set type(text) | longtext
 | time.Time - set type as date | date
 | time.Time | datetime
@@ -399,6 +400,7 @@ All the fields are **NOT NULL** by default.
 | int, int32, int64, uint, uint32, uint64 - set as auto or name is `Id` | integer AUTOINCREMENT
 | bool | bool
 | string - default size 255 | varchar(size)
+| string - set type(char) | character(size)
 | string - set type(text) | text
 | time.Time - set type as date | date
 | time.Time | datetime
@@ -425,6 +427,7 @@ All the fields are **NOT NULL** by default.
 | int, int32, int64, uint, uint32, uint64 - set as auto or name is `Id` | serial
 | bool | bool
 | string - if not set size default text | varchar(size)
+| string - set type(char) | char(size)
 | string - set type(text) | text
 | string - set type(json) | json
 | string - set type(jsonb) | jsonb
