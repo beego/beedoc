@@ -104,10 +104,6 @@ When Field type is int, int32, int64, uint, uint32 or uint64, you can set it as 
 
 * If there is no primary key in the model definition, the field `Id` with one of the types above will be considered as auto increment key
 
-Because of the design of go, even if you are using uint64, you can't use it's maximum. It is still treated as int64.
-
-See issue [6113](http://code.google.com/p/go/issues/detail?id=6113)
-
 #### pk
 
 Set as primary key. Used for using other type field as primary key.
