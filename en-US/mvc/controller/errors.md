@@ -88,17 +88,17 @@ type ErrorController struct {
 
 func (c *ErrorController) Error404() {
 	c.Data["content"] = "page not found"
-	c.TplNames = "404.tpl"
+	c.TplName = "404.tpl"
 }
 
 func (c *ErrorController) Error500() {
 	c.Data["content"] = "internal server error"
-	c.TplNames = "500.tpl"
+	c.TplName = "500.tpl"
 }
 
 func (c *ErrorController) ErrorDb() {
 	c.Data["content"] = "database is now down"
-	c.TplNames = "dberror.tpl"
+	c.TplName = "dberror.tpl"
 }
 ```
 From the example we can see that all the error handling functions have the prefix `Error`，the other string is the name of `Abort`，like `Error404` match `Abort("404")`
