@@ -17,6 +17,9 @@ beego 的安装是典型的 Go 安装包的形式：
 
 		git config --global http.sslVerify false
 
+- 提示无法识别的导入路径autocert
+  package golang.org/x/crypto/acme/autocert: unrecognized import path "golang.org/x/crypto/acme/autocert"
+  可以自己到这里来下载源码包https://github.com/golang/crypto  然后放置在${GOROOT}\golang.org\x目录下
 - 无法上网怎么安装 beego，目前没有好的办法，接下来我们会整理一个全包下载，每次发布正式版本都会提供这个全包下载，包含依赖包。
 
 # beego 的升级
