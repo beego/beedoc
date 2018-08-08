@@ -91,9 +91,14 @@ sort: 3
 ## 引擎配置设置
 
 - console
-
-	可以设置输出的级别，或者不设置保持默认，默认输出到 `os.Stdout`：
-		logs.SetLogger(logs.AdapterConsole, `{"level":1}`)
+        命令行输出，默认输出到`os.Stdout`：
+	
+		logs.SetLogger(logs.AdapterConsole, `{"level":1,"color":true}`)
+		
+	主要的参数如下说明：
+	- level 输出的日志级别
+	- color 是否开启打印日志彩色打印(需环境支持彩色输出)
+	
 - file
 
 	设置的例子如下所示：
