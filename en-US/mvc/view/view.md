@@ -27,7 +27,7 @@ In main.go:
 
 ## Template Tags
 
-Go uses `{{` and `}}` as the default template tags. In the case that these tags conflict with other template tags as in AngularJS, we can use other tags. To do so, add these to the configuration:
+Go uses `{{` and `}}` as the default template tags. In the case that these tags conflict with other template tags as in AngularJS, we can use other tags. To do so, add these to the main.go:
 
 	beego.TemplateLeft = "<<<"
 	beego.TemplateRight = ">>>"
