@@ -40,6 +40,6 @@ Let's look at an example:
 </html>
 ```
 
-Tthe data was assigned into a map type variable `Data` in the controller, which is used as the rendering context.  The data can now be accessed and output by using the keys `.Website` and `.Email`. 
+The data was assigned into a map type variable `Data` in the controller, which is used as the rendering context.  The data can now be accessed and output by using the keys `.Website` and `.Email`. 
 
 [The next section](static.md). will describe how to serve static files.

@@ -197,6 +197,19 @@ type User struct {
 }
 ```
 
+#### Comment
+
+为字段添加注释
+
+```go
+type User struct {
+	...
+	Status int `orm:"default(1)" description:"状态"`
+	...
+}
+```
+
+
 ## 表关系设置
 
 #### rel / reverse

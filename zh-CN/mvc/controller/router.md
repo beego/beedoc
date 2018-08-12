@@ -82,27 +82,27 @@ beego.Handler("/rpc", s)
 
 - beego.Router("/api/?:id", &controllers.RController{})
 
-	默认匹配   //匹配 /api/123    :id = 123  可以匹配 /api/ 这个URL
+	默认匹配   //例如对于URL"/api/123"可以匹配成功，此时变量":id"值为"123"
 
 - beego.Router("/api/:id", &controllers.RController{})
 
-	默认匹配   //匹配 /api/123    :id = 123  不可以匹配 /api/ 这个URL
+	默认匹配   //例如对于URL"/api/123"可以匹配成功，此时变量":id"值为"123"，但URL"/api/"匹配失败
 
 - beego.Router("/api/:id([0-9]+)", &controllers.RController{})
 
-	自定义正则匹配 //匹配 /api/123 :id = 123
+	自定义正则匹配 //例如对于URL"/api/123"可以匹配成功，此时变量":id"值为"123"
 
-- beego.Router("/user/:username([\\w]+)", &controllers.RController{})
+- beego.Router("/user/:username([\\\\w]+)", &controllers.RController{})
 
-	正则字符串匹配 //匹配 /user/astaxie :username = astaxie
+	正则字符串匹配 //例如对于URL"/user/astaxie"可以匹配成功，此时变量":username"值为"astaxie"
 
 - beego.Router("/download/\*.\*", &controllers.RController{})
 
-	*匹配方式 //匹配 /download/file/api.xml :path= file/api :ext=xml
+	*匹配方式 //例如对于URL"/download/file/api.xml"可以匹配成功，此时变量":path"值为"file/api"， ":ext"值为"xml"
 
 - beego.Router("/download/ceshi/*", &controllers.RController{})
 
-	*全匹配方式 //匹配 /download/ceshi/file/api.json :splat=file/api.json
+	*全匹配方式 //例如对于URL"/download/ceshi/file/api.json"可以匹配成功，此时变量":splat"值为"file/api.json"
 
 - beego.Router("/:id:int", &controllers.RController{})
 

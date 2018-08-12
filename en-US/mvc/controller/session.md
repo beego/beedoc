@@ -15,7 +15,7 @@ Or it can be activated in the configuration file:
 
 	SessionOn = true
 
-After being swited on, session can used like this:
+After being switched on, session can used like this:
 
 ```go
 func (this *MainController) Get() {
