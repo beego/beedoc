@@ -243,7 +243,7 @@ bugfix:
 
 1. ORM 数据库创建和修改的时候支持 default 设置
 2. 改进日志文件行数统计
-3. sesesion ledis 支持选择数据库
+3. session ledis 支持选择数据库
 4. session redis 支持选择数据库
 5. cache redis 支持选择数据库
 6. UrlFor 支持任意类型的参数
@@ -268,7 +268,7 @@ bugfix:
 
 1. 增加了 SQL 构造器，参考了 ZEND 框架的 ORM
 2. Controller 获取参数增加了 GetInt(), GetInt8(), GetInt16(), GetInt32(), GetInt64()
-3. 优化日志提示，增加日志输出过滤设置 FilterHandler，默认静态文件不输出匹配日志输出
+3. 优化日志提示，增加日志输出过滤设置 FilterHandler，默认静态文件不输出匹配日志
 4. 静态目录支持 index.html 输出，静态目录自动增加 /
 5. flash 支持 success 和 set 函数，支持各种一次性的数据
 6. 路由支持大小写忽略设置，RouterCaseSensitive，默认是大小写敏感的 URL，根据用户注册的URL进行匹配
@@ -295,8 +295,8 @@ bugfix:
 17. Session 增加新的引擎 ledis
 18. 改进 httplib 文件上传，采用了 io.Pipe 支持超大文件上传
 19. 支持应用启动直接绑定到 TCP4 地址上，Go 默认是绑定到 ipv6，增加配置参数 ListenTCP4
-20. 表单数据渲染支持 off/on/yes/no/1/0 解析到 bool，支 time 格式的解析
-21. 简化了 SessionID 的生成，不在采用 hmac_sha1 算法，直接通过 golang 内置的 rand 获取
+20. 表单数据渲染支持 off/on/yes/no/1/0 解析到 bool，支持 time 格式的解析
+21. 简化了 SessionID 的生成，不再采用 hmac_sha1 算法，直接通过 golang 内置的 rand 获取
 
 bugfix:
 
@@ -788,7 +788,7 @@ beego 1.1.2 版本发布,这个版本主要是一些改进:
 
 4. 修复验证模块返回自定义验证信息
 
-5. 改进 logs 模块, 增加 Init 处理 error,设置一些不必要的 publice 函数为 pravite
+5. 改进 logs 模块, 增加 Init 处理 error,设置一些不必要的 public 函数为 private
 
 6. 增加 PostgreSQL 的 session 引擎
 
