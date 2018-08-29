@@ -23,7 +23,7 @@ func (this *TestController) List() {
 }
 
 func (this *TestController) Params() {
-	this.Ctx.Output.Body([]byte(this.Ctx.Input.Params["0"] + this.Ctx.Input.Params["1"] + this.Ctx.Input.Params["2"]))
+	this.Ctx.Output.Body([]byte(this.Ctx.Input.Params()["0"] + this.Ctx.Input.Params()["1"] + this.Ctx.Input.Params()["2"]))
 }
 
 func (this *TestController) Myext() {
