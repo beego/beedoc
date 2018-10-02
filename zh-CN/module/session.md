@@ -104,8 +104,9 @@ globalSessions 有多个函数如下所示：
 - redis
 
 	配置文件信息如下所示，表示链接的地址，连接池，访问密码，没有保持为空：
-	    注意：若使用redis等引擎作为session backend，请在使用前导入 <_ "github.com/astaxie/beego/session/redis">
-	    否则会在运行时发生错误，使用其他引擎时也是同理。
+	> 注意：若使用redis等引擎作为session backend，请在使用前导入 < _ "github.com/astaxie/beego/session/redis" >
+	        否则会在运行时发生错误，使用其他引擎时也是同理。
+	        
 		127.0.0.1:6379,100,astaxie
 
 - file
