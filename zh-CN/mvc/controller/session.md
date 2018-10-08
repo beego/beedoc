@@ -99,7 +99,7 @@ sess 对象具有如下方法：
 
 	import _ "github.com/astaxie/beego/session/mysql"
 
-当 SessionProvider 为 file SessionProviderConfig 是只保存文件的目录，如下所示：
+当 SessionProvider 为 file SessionProviderConfig 是指保存文件的目录，如下所示：
 
 	beego.BConfig.WebConfig.Session.SessionProvider="file"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = "./tmp"
