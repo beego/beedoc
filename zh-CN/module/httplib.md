@@ -106,6 +106,26 @@ httplib 包里面支持如下的方法返回 request 对象：
 	req.Header("Host","beego.me")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
 
+## 设置 transport 
+
+http请求的传输由`http.RoundTrip`承载，因此我们可以实现接口以实现链接的控制。通过设置，我们可以实现长连接，如下所示:
+
+	var tp http.RoundTripper = &http.Transport{
+		DialContext: (&net.Dialer{
+			Timeout:   30 * time.Second,
+			KeepAlive: 30 * time.Second,
+			DualStack: true,
+		}).DialContext,
+		MaxIdleConns:          100,
+		IdleConnTimeout:       90 * time.Second,
+		ExpectContinueTimeout: 1 * time.Second,
+	}
+
+	req := httplib.NewBeegoRequest("url", "GET")
+	req.SetTransport(tp)
+
+
+
 ## httplib支持文件直接上传接口
 
 PostFile 第一个参数是 form 表单的字段名,第二个是需要发送的文件名或者文件路径
