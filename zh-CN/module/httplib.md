@@ -121,7 +121,7 @@ http请求的传输由`http.RoundTrip`承载，因此我们可以实现接口以
 		ExpectContinueTimeout: 1 * time.Second,
 	}
 
-	req := httplib.NewBeegoRequest("url", "GET")
+	req := httplib.Post("http://beego.me/")
 	req.SetTransport(tp)
 
 
