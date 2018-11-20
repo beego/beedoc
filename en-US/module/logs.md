@@ -27,7 +27,7 @@ Then add the output provider (it supports outputting to multiple providers at th
 	log.SetLogger("console")
 	
 The second parameter is a provider-specific configuration string (see below for details).
-    logs.SetLogger(logs.AdapterFile,`{"filename":"project.log","level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10}`)
+    logs.SetLogger(logs.AdapterFile,`{"filename":"project.log","level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10,"color":true}`)
 
 
 Then we can use it in our code:
