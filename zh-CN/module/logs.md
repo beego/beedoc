@@ -24,7 +24,7 @@ sort: 3
 
 添加输出引擎也支持第二个参数,用来表示配置信息，详细的配置请看下面介绍：
 
-    logs.SetLogger(logs.AdapterFile,`{"filename":"project.log","level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10}`)
+    logs.SetLogger(logs.AdapterFile,`{"filename":"project.log","level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10,"color":true}`)
 
 然后我们就可以在我们的逻辑中开始任意的使用了：
 
