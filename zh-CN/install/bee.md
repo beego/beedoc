@@ -23,7 +23,7 @@ bee 工具是一个为了协助快速开发 beego 项目而创建的项目，通
 我们在命令行输入 `bee`，可以看到如下的信息：
 
 ```
-Bee is a tool for managing beego framework.
+Bee is a Fast and Flexible tool for managing your Beego Web Application.
 
 Usage:
 
@@ -31,14 +31,26 @@ Usage:
 
 The commands are:
 
+    version     show the bee & beego version
+    migrate     run database migrations
+    api         create an api application base on beego framework
+    bale        packs non-Go files to Go source files    
     new         create an application base on beego framework
     run         run the app which can hot compile
     pack        compress an beego project
-    api         create an api application base on beego framework
-    bale        packs non-Go files to Go source files
-    version     show the bee & beego version
-    generate    source code generator
-    migrate     run database migrations
+    fix         Fixes your application by making it compatible with newer versions of Beego
+    dlv         Start a debugging session using Delve
+    dockerize   Generates a Dockerfile for your Beego application
+    generate    Source code generator
+    hprose      Creates an RPC application based on Hprose and Beego frameworks
+    new         Creates a Beego application
+    pack        Compresses a Beego application into a single file
+    rs          Run customized scripts
+    run         Run the application by starting a local development server
+    server      serving static content over HTTP on port
+    
+Use bee help [command] for more information about a command.
+    
 ```
 
 ### new 命令
