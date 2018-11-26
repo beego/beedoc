@@ -273,6 +273,23 @@ bee migrate refresh [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
     -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
 ```
 
+### dockerize 命令
+这个命令可以通过生成Dockerfile文件来实现docker化你的应用。
+
+例子: 生成一个以1.6.4版本Go环境为基础镜像的Dockerfile,,并暴露9000端口:
+```
+$ bee dockerize -image="library/golang:1.6.4" -expose=9000
+______
+| ___ \
+| |_/ /  ___   ___
+| ___ \ / _ \ / _ \
+| |_/ /|  __/|  __/
+\____/  \___| \___| v1.6.2
+2016/12/26 22:34:54 INFO     ▶ 0001 Generating Dockerfile...
+2016/12/26 22:34:54 SUCCESS  ▶ 0002 Dockerfile generated.
+```
+更多帮助信息可执行`bee help dockerize`.
+
 ## bee 工具配置文件
 
 您可能已经注意到，在 bee 工具的源码目录下有一个 `bee.json` 文件，这个文件是针对 bee 工具的一些行为进行配置。该功能还未完全开发完成，不过其中的一些选项已经可以使用：
