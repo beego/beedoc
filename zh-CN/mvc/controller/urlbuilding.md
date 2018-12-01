@@ -46,16 +46,16 @@ beego.AutoRouter(&TestController{})
 那么通过方式可以获取相应的URL地址：
 
 ```
-this.URLFor("TestController.List")
+beego.URLFor("TestController.List")
 // 输出 /api/list
 
-this.URLFor("TestController.Get", ":last", "xie", ":first", "asta")
+beego.URLFor("TestController.Get", ":last", "xie", ":first", "asta")
 // 输出 /person/xie/asta
 
-this.URLFor("TestController.Myext")
+beego.URLFor("TestController.Myext")
 // 输出 /Test/Myext
 
-this.URLFor("TestController.GetUrl")
+beego.URLFor("TestController.GetUrl")
 // 输出 /Test/GetUrl
 ```
 
