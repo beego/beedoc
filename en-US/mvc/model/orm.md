@@ -282,7 +282,7 @@ orm.ResetModelCache()
 Let's see how to use Ormer API:
 
 ```go
-var o Ormer
+var o orm.Ormer
 o = orm.NewOrm() // create a Ormer // While running NewOrm, it will run orm.BootStrap (only run once in the whole app lifetime) to validate the definition between models and cache it.
 ```
 Switching database or using transactions will affect Ormer object and all its queries.
@@ -315,7 +315,7 @@ Pass in a table name or a Model object and return a [QuerySeter](query.md#querys
 
 ```go
 o := orm.NewOrm()
-var qs QuerySeter
+var qs orm.QuerySeter
 qs = o.QueryTable("user")
 // Panics if the table can't be found
 ```
@@ -348,7 +348,7 @@ Raw function will return a [RawSeter](rawsql.md) to execute a query with the SQL
 
 ```go
 o := NewOrm()
-var r RawSeter
+var r orm.RawSeter
 r = o.Raw("UPDATE user SET name = ? WHERE name = ?", "testing", "slene")
 ```
 
