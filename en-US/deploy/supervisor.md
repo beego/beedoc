@@ -1,53 +1,61 @@
 ---
-name: Deployment with Systemctl 
+name: Deployment with Supervisord 
 sort: 2
 ---
 
-# Systemctl
+# Supervisord
 
-Systemctl command is a command used to manage and control services. It allows you to enable, disable, view, start, stop, or restart system services.
- 
-## Install beego application as a service
+Supervisord is a very useful process manager implemented in Python.  Supervisord can change your non-daemon application into a daemon application. The application needs to be a non-daemon app. 
+So if you want to use Supervisord to manage nginx, you need to set daemon off to run nginx in non-daemon mode.
 
-1. Pack your application using `bee pack` command. Copy the resultant `.tar.gz` file to target server.
+
+## Install Supervisord
+
+1. install setuptools
+
+		wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
 		
-2. Unpack 
-                
-		mkdir -p /usr/local/beepkg && cd "$_"
-		tar -xvzf *.tar.gz
-		rm -rf *.tar.gz
+		sh setuptools-0.6c11-py2.7.egg 
 		
-3. Configure service parameters
-
-		cat <<'EOF' > /etc/systemd/system/beepkg.service
-        [Unit]
-        Description=beepkg
-        AssertPathExists=/usr/local/beepkg
-        
-        [Service]
-        WorkingDirectory=/usr/local/beepkg
-        ExecStart=/usr/local/beepkg/beepkg
-        
-        ExecReload=/bin/kill -HUP $MAINPID
-        LimitNOFILE=65536
-        Restart=always
-        RestartSec=5
-        
-        [Install]
-        WantedBy=multi-user.target
-        EOF
-
-3. Install service 
-
-        chmod +x beepkg
-        chmod 644 /etc/systemd/system/beepkg.service
-        systemctl daemon-reload
-        systemctl enable beepkg
-        systemctl start beepkg
-        systemctl status beepkg
-
+		easy_install supervisor
 		
+		echo_supervisord_conf >/etc/supervisord.conf
 		
+		mkdir /etc/supervisord.conf.d
+
+2. config `/etc/supervisord.conf`
+
+		[include]
+		files = /etc/supervisord.conf.d/*.conf
+
+3. Create new application to be managed
+
+		cd /etc/supervisord.conf.d
+		vim beepkg.conf
+	
+	Configurations：
+	
+		[program:beepkg]
+		directory = /opt/app/beepkg
+		command = /opt/app/beepkg/beepkg
+		autostart = true
+		startsecs = 5
+		user = root
+		redirect_stderr = true
+		stdout_logfile = /var/log/supervisord/beepkg.log
+		
+## Supervisord Manage
+
+Supervisord provides two commands, supervisord and supervisorctl:
+
+* supervisord: Initialize Supervisord, run configed processes
+* supervisorctl stop programxxx: Stop process programxxx. programxxx is configed name in [program:beepkg]. Here is beepkg.
+* supervisorctl start programxxx: Run the process.
+* supervisorctl restart programxxx: Restart the process.
+* supervisorctl stop groupworker:  Restart all processes in group groupworker
+* supervisorctl stop all: Stop all processes. Notes: start, restart and stop won't reload the latest configs.
+* supervisorctl reload: Reload the latest configs.
+* supervisorctl update: Reload all the processes who's config has changed.
 
 
-
+>>>Notes: The processes stopped by `stop` manually won't restart after reload or update.
