@@ -211,7 +211,7 @@ func (this *RController) Prepare() {
 ```go
 var FilterMethod = func(ctx *context.Context) {
     if ctx.BeegoInput.Query("_method")!="" && ctx.BeegoInput.IsPost(){
-          ctx.Request.Method = ctx.BeegoInput.Query("_method")
+          ctx.Request.Method = strings.ToUpper(c.BeegoInput.Query("_method"))
     }
 }
 
