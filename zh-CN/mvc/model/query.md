@@ -92,13 +92,13 @@ qs.Filter("name__icontains", "slene")
 ### in
 
 ```go
-qs.Filter("profile__age__in", 17, 18, 19, 20)
-// WHERE profile.age IN (17, 18, 19, 20)
+qs.Filter("age__in", 17, 18, 19, 20)
+// WHERE age IN (17, 18, 19, 20)
 
 
 ids:=[]int{17,18,19,20}
-qs.Filter("profile__age__in", ids)
-// WHERE profile.age IN (17, 18, 19, 20)
+qs.Filter("age__in", ids)
+// WHERE age IN (17, 18, 19, 20)
 
 // 同上效果
 ```
