@@ -33,7 +33,7 @@ Windows users：
     > cd %GOPATH%/src
     > bee new hello
     > cd hello
-    > bee run hello
+    > bee run
 
 These commands help you:
 
