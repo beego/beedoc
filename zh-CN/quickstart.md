@@ -25,14 +25,14 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 	$ cd $GOPATH/src
 	$ bee new hello
 	$ cd hello
-	$ bee run hello
+	$ bee run
 
 Windows 平台下输入：
 
     >cd %GOPATH%/src
     >bee new hello
     >cd hello
-    >bee run hello
+    >bee run
 
 这些指令帮助您：
 
