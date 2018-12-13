@@ -288,7 +288,9 @@ bee migrate refresh [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
 ### `dockerize` 命令
 这个命令可以通过生成Dockerfile文件来实现docker化你的应用。
 
-例子: 生成一个以1.6.4版本Go环境为基础镜像的Dockerfile,,并暴露9000端口:
+例子:   
+生成一个以1.6.4版本Go环境为基础镜像的Dockerfile,并暴露9000端口:
+
 ```
 $ bee dockerize -image="library/golang:1.6.4" -expose=9000
 ______
@@ -300,6 +302,7 @@ ______
 2016/12/26 22:34:54 INFO     ▶ 0001 Generating Dockerfile...
 2016/12/26 22:34:54 SUCCESS  ▶ 0002 Dockerfile generated.
 ```
+
 更多帮助信息可执行`bee help dockerize`.
 
 ## bee 工具配置文件
