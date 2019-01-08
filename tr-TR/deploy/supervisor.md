@@ -13,7 +13,7 @@ Eğer Supervisord kullanarak nginx'i yönetmek isterseniz deamon özelliğini ka
 
 1. Kurulum dosyalarını yükleme
 
-       wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+       wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
 
        sh setuptools-0.6c11-py2.7.egg
 
