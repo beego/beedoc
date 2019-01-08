@@ -12,7 +12,7 @@ Supervisord 是用 Python 实现的一款非常实用的进程管理工具，sup
 
 1. 安装 setuptools
 
-		wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+		wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
 
 		sh setuptools-0.6c11-py2.7.egg
 

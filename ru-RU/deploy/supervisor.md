@@ -11,7 +11,7 @@ Supervisord - очень полезный процесс менеджер нап
 
 1. Установка setuptools
 
-		wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+		wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
 		
 		sh setuptools-0.6c11-py2.7.egg 
 		
