@@ -23,7 +23,7 @@ bee 工具是一个为了协助快速开发 beego 项目而创建的项目，通
 我们在命令行输入 `bee`，可以看到如下的信息：
 
 ```
-Bee is a tool for managing beego framework.
+Bee is a Fast and Flexible tool for managing your Beego Web Application.
 
 Usage:
 
@@ -31,17 +31,29 @@ Usage:
 
 The commands are:
 
+    version     show the bee & beego version
+    migrate     run database migrations
+    api         create an api application base on beego framework
+    bale        packs non-Go files to Go source files    
     new         create an application base on beego framework
     run         run the app which can hot compile
     pack        compress an beego project
-    api         create an api application base on beego framework
-    bale        packs non-Go files to Go source files
-    version     show the bee & beego version
-    generate    source code generator
-    migrate     run database migrations
+    fix         Fixes your application by making it compatible with newer versions of Beego
+    dlv         Start a debugging session using Delve
+    dockerize   Generates a Dockerfile for your Beego application
+    generate    Source code generator
+    hprose      Creates an RPC application based on Hprose and Beego frameworks
+    new         Creates a Beego application
+    pack        Compresses a Beego application into a single file
+    rs          Run customized scripts
+    run         Run the application by starting a local development server
+    server      serving static content over HTTP on port
+    
+Use bee help [command] for more information about a command.
+    
 ```
 
-### new 命令
+### `new` 命令
 
 `new` 命令是新建一个 Web 项目，我们在命令行下执行 `bee new <项目名>` 就可以创建一个新的项目。但是注意该命令必须在 `$GOPATH/src` 下执行。最后会在 `$GOPATH/src` 相应目录下生成如下目录结构的项目：
 
@@ -86,7 +98,7 @@ myproject
 8 directories, 4 files
 ```
 
-### api 命令
+### `api` 命令
 
 上面的 `new` 命令是用来新建 Web 项目，不过很多用户使用 beego 来开发 API 应用。所以这个 `api` 命令就是用来创建 API 应用的，执行命令之后如下所示：
 
@@ -130,7 +142,7 @@ apiproject
 `bee api [appname] [-tables=""] [-driver=mysql] [-conn="root:<password>@tcp(127.0.0.1:3306)/test"]`
 如果 conn 参数为空则创建一个示例项目，否则将基于链接信息链接数据库创建项目。
 
-### run 命令
+### `run` 命令
 
 我们在开发 Go 项目的时候最大的问题是经常需要自己手动去编译再运行，`bee run` 命令是监控 beego 的项目，通过 [fsnotify](https://github.com/howeyc/fsnotify)监控文件系统。但是注意该命令必须在 `$GOPATH/src/appname` 下执行。
 这样我们在开发过程中就可以实时的看到项目修改之后的效果：
@@ -165,7 +177,7 @@ bee run
 
 刷新浏览器我们看到新的修改内容已经输出。
 
-### pack 命令
+### `pack` 命令
 
 `pack` 目录用来发布应用的时候打包，会把项目打包成 zip 包，这样我们部署的时候直接把打包之后的项目上传，解压就可以部署了：
 
@@ -192,11 +204,11 @@ drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 models
 drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
 ```
 
-### bale 命令
+### `bale` 命令
 
 这个命令目前仅限内部使用，具体实现方案未完善，主要用来压缩所有的静态文件变成一个变量申明文件，全部编译到二进制文件里面，用户发布的时候携带静态文件，包括 js、css、img 和 views。最后在启动运行时进行非覆盖式的自解压。
 
-### version 命令
+### `version` 命令
 
 这个命令是动态获取 bee、beego 和 Go 的版本，这样一旦用户出现错误，可以通过该命令来查看当前的版本
 
@@ -207,7 +219,7 @@ beego :1.4.2
 Go    :go version go1.3.3 darwin/amd64
 ```
 
-### generate 命令
+### `generate` 命令
 这个命令是用来自动化的生成代码的，包含了从数据库一键生成 model，还包含了 scaffold 的，通过这个命令，让大家开发代码不再慢
 
 ```
@@ -248,7 +260,7 @@ bee generate appcode [-tables=""] [-driver=mysql] [-conn="root:@tcp(127.0.0.1:33
     -level:  [1 | 2 | 3], 1 = models; 2 = models,controllers; 3 = models,controllers,router
 ```
 
-### migrate 命令
+### `migrate` 命令
 这个命令是应用的数据库迁移命令，主要是用来每次应用升级，降级的SQL管理。
 
 ```
@@ -272,6 +284,26 @@ bee migrate refresh [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
     -driver: [mysql | postgresql | sqlite], the default is mysql
     -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
 ```
+
+### `dockerize` 命令
+这个命令可以通过生成Dockerfile文件来实现docker化你的应用。
+
+例子:   
+生成一个以1.6.4版本Go环境为基础镜像的Dockerfile,并暴露9000端口:
+
+```
+$ bee dockerize -image="library/golang:1.6.4" -expose=9000
+______
+| ___ \
+| |_/ /  ___   ___
+| ___ \ / _ \ / _ \
+| |_/ /|  __/|  __/
+\____/  \___| \___| v1.6.2
+2016/12/26 22:34:54 INFO     ▶ 0001 Generating Dockerfile...
+2016/12/26 22:34:54 SUCCESS  ▶ 0002 Dockerfile generated.
+```
+
+更多帮助信息可执行`bee help dockerize`.
 
 ## bee 工具配置文件
 

@@ -4,36 +4,45 @@
 
 Beego contains sample applications to help you learn and use the Beego app framework.
 
-You will need a functioning Go 1.1 installation for this to work.
+You will need a [Go](https://golang.org) 1.1+ installation for this to work.
 
-You will need to install or upgrade Beego and the [Bee](http://beego.me/docs/install/bee.md) dev tool: 
-	
-	$ go get -u github.com/astaxie/beego
-	$ go get -u github.com/beego/bee
+You will need to install or upgrade [Beego](http://beego.me/docs/install/bee.md) and the [Bee](http://beego.me/docs/install/bee.md) dev tool:
 
+```
+go get -u github.com/astaxie/beego
+go get -u github.com/beego/bee
+```
 
 For convenience, you should add `$GOPATH/bin` to your `$PATH` environment variable. Please make sure you have already set the `$GOPATH` environment variable. 
 
-	# if you havn't set $GOPATH
-	$ echo 'export GOPATH="$HOME/go"' >> ~/.profile # or ~/.zshrc, ~/.cshrc, whatever shell you use
-	
-	# if you have already set $GOPATH
-	$ echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile # or ~/.zshrc, ~/.cshrc, whatever shell you use
-	$ exec $SHELL
+If you haven't set `$GOPATH` add it to the shell you're using (~/.profile, ~/.zshrc, ~/.cshrc or any other).
+
+For example `~/.zsh`
+```
+echo 'export GOPATH="$HOME/go"' >> ~/.zsh
+```
+
+If you have already set `$GOPATH`
+```
+echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile # or ~/.zshrc, ~/.cshrc, whatever shell you use
+exec $SHELL
+```
 
 Want to quickly see how it works? Then just set things up like this:
-
-	$ cd $GOPATH/src
-	$ bee new hello
-	$ cd hello
-	$ bee run
+```
+cd $GOPATH/src
+bee new hello
+cd hello
+bee run
+```
 
 Windows users：
-
-    > cd %GOPATH%/src
-    > bee new hello
-    > cd hello
-    > bee run hello
+```
+cd %GOPATH%/src
+bee new hello
+cd hello
+bee run
+```
 
 These commands help you:
 
@@ -47,25 +56,26 @@ Once it's running, open a browser to [http://localhost:8080/](http://localhost:8
 ## Simple example
 
 The following example prints `Hello world` to your browser, it shows how easy it is to build a web application with beego.
+```go
+package main
 
-	package main
-	
-	import (
-		"github.com/astaxie/beego"
-	)
-	
-	type MainController struct {
-		beego.Controller
-	}
-	
-	func (this *MainController) Get() {
-		this.Ctx.WriteString("hello world")
-	}
-	
-	func main() {
-		beego.Router("/", &MainController{})
-		beego.Run()
-	}
+import (
+	"github.com/astaxie/beego"
+)
+
+type MainController struct {
+	beego.Controller
+}
+
+func (this *MainController) Get() {
+	this.Ctx.WriteString("hello world")
+}
+
+func main() {
+	beego.Router("/", &MainController{})
+	beego.Run()
+}
+```
 
 Save file as `hello.go`, build and run it:
 

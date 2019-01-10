@@ -270,7 +270,7 @@ orm.ResetModelCache()
 使用 ORM 必然接触的 Ormer 接口，我们来熟悉一下
 
 ```go
-var o Ormer
+var o orm.Ormer
 o = orm.NewOrm() // 创建一个 Ormer
 // NewOrm 的同时会执行 orm.BootStrap (整个 app 只执行一次)，用以验证模型之间的定义并缓存。
 ```
@@ -305,7 +305,7 @@ o = orm.NewOrm() // 创建一个 Ormer
 
 ```go
 o := orm.NewOrm()
-var qs QuerySeter
+var qs orm.QuerySeter
 qs = o.QueryTable("user")
 // 如果表没有定义过，会立刻 panic
 ```
@@ -337,8 +337,8 @@ o2.Using("db2")
 Raw 函数，返回一个 [RawSeter](rawsql.md) 用以对设置的 sql 语句和参数进行操作
 
 ```go
-o := NewOrm()
-var r RawSeter
+o := orm.NewOrm()
+var r orm.RawSeter
 r = o.Raw("UPDATE user SET name = ? WHERE name = ?", "testing", "slene")
 ```
 

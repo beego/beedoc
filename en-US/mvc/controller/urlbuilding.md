@@ -46,16 +46,16 @@ beego.AutoRouter(&TestController{})
 This is how you generate the url:
 
 ```
-URLFor("TestController.List")
+beego.URLFor("TestController.List")
 // Output /api/list
 
-URLFor("TestController.Get", ":last", "xie", ":first", "asta")
+beego.URLFor("TestController.Get", ":last", "xie", ":first", "asta")
 // Output /person/xie/asta
 
-URLFor("TestController.Myext")
+beego.URLFor("TestController.Myext")
 // Output /Test/Myext
 
-URLFor("TestController.GetUrl")
+beego.URLFor("TestController.GetUrl")
 // Output /Test/GetUrl
 ```
 

@@ -92,13 +92,13 @@ qs.Filter("name__icontains", "slene")
 ### in
 
 ```go
-qs.Filter("profile__age__in", 17, 18, 19, 20)
-// WHERE profile.age IN (17, 18, 19, 20)
+qs.Filter("age__in", 17, 18, 19, 20)
+// WHERE age IN (17, 18, 19, 20)
 
 
 ids:=[]int{17,18,19,20}
-qs.Filter("profile__age__in", ids)
-// WHERE profile.age IN (17, 18, 19, 20)
+qs.Filter("age__in", ids)
+// WHERE age IN (17, 18, 19, 20)
 
 // 同上效果
 ```
@@ -460,7 +460,7 @@ o.QueryTable("post").Filter("Content__istartswith", "prefix string").One(&post, 
 
 返回结果集的 key => value 值
 
-key 为 Model 里的 Field name，value 的值 以 string 保存
+key 为Model里的Field name, value的值是interface{}类型,例如，如果你要将value赋值给struct中的某字段，需要根据结构体对应字段类型使用[断言](https://golang.org/ref/spec#Type_assertions)获取真实值。举例:`Name : m["Name"].(string)`
 
 ```go
 var maps []orm.Params
