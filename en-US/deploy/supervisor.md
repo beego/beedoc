@@ -13,7 +13,7 @@ So if you want to use Supervisord to manage nginx, you need to set daemon off to
 
 1. install setuptools
 
-		wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+		wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
 		
 		sh setuptools-0.6c11-py2.7.egg 
 		
