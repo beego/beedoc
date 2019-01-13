@@ -22,7 +22,7 @@ InsertFilter 函数的三个必填参数，一个可选参数
 	- FinishRouter 执行完逻辑之后执行的过滤器
 - filter filter 函数 type FilterFunc func(*context.Context)
 - params
-  1. 设置 returnOnOutput 的值(默认 true), 是否允许如果有输出是否跳过其他 filters，默认只要有输出就不再执行其他 filters
+  1. 设置 returnOnOutput 的值(默认 true), 如果在进行到此过滤之前已经有输出，是否需要继续执行此过滤器
   2. 是否重置 filters 的参数，默认是 false，因为在 filters 的 pattern 和本身的路由的 pattern 冲突的时候，可以把 filters 的参数重置，这样可以保证在后续的逻辑中获取到正确的参数，例如设置了 `/api/*` 的 filter，同时又设置了 `/api/docs/*` 的 router，那么在访问 `/api/docs/swagger/abc.js` 的时候，在执行 filters 的时候设置 `:splat` 参数为 `docs/swagger/abc.js`，但是如果不清楚 filter 的这个路由参数，就会在执行路由逻辑的时候保持 `docs/swagger/abc.js`，如果设置了 true，就会重置 `:splat` 参数.
 
 >>> AddFilter 从beego1.3 版本开始已经废除
