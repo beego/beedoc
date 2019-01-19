@@ -59,7 +59,7 @@ Beego's controller needs to be embeded as `beego.Controller`:
 
   This method is used to render templates. It is only executed if `beego.AutoRender` is set to true.
 
-Custom logica can be implemented by overwriting functions in struct. For example:
+Custom logic can be implemented by overwriting functions in struct. For example:
 
 ```
 type AddController struct {
