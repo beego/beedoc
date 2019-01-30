@@ -13,7 +13,7 @@ func (this *AddController) Get() {
 }
 ```
 
-如何中止此次请求并抛出异常，beego 可以在控制器中这操作：
+如何中止此次请求并抛出异常，beego 可以在控制器中这样操作：
 
 ```go
 func (this *MainController) Get() {
