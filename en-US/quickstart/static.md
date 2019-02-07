@@ -18,7 +18,7 @@ Beego registers the static directory as the static path by default. Registered r
 
 	StaticDir["/static"] = "static"
 
-You can register multiple static directories. For example two different download directoriesm, `download1` and `download2`, can be set using:
+You can register multiple static directories. For example two different download directories, `download1` and `download2`, can be set using:
 
 	beego.SetStaticPath("/down1", "download1")
 	beego.SetStaticPath("/down2", "download2")
