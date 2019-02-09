@@ -80,6 +80,6 @@ For example:
 	token = ${TOKEN||astaxie}
 	user = ${MyUser||beego}
 
-If the environment variable `$TOKEN` is set, its value will be used for the `token` configuration value and `beego.AppConfig.String("token")` would return its value. If `$TOKEN` is not set, the value would then be astaxie.
+If the environment variable `$TOKEN` is set, its value will be used for the `token` configuration value and `beego.AppConfig.String("token")` would return its value. If `$TOKEN` is not set, the value would then be the string `astaxie`.
 
-**Please note**: The environment variables are only read when the configuration file is parsed, not when configuration item is obtained by a function.
+**Please note**: The environment variables are only read when the configuration file is parsed, not when configuration item is obtained by a function like `beego.AppConfig.String(string)`.
