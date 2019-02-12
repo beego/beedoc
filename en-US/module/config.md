@@ -65,3 +65,21 @@ For example:
 	key2 = "xie"
 
 You can use `iniconf.String("demo::key2")` to get the value.
+
+### How to Obtain Environment Variables
+
+After Pull Request "Support get environment variables in config #1636" was merged into the code, beego supports using environment variables in the configuration file.
+
+The format for this is `${ENVIRONMENTVARIABLE}` within the configuration file which is equivalent to `value = os.Getenv('ENVIRONMENTVARIABLE')`. Beego will only check for environment variables if the value begins with `${` and ends with `}`.
+
+Additionally, a default value can be configured for the case that there is no environment variable set or the environment variable is empty. This is accomplished by using the format `${ENVVAR||defaultvalue}`, for example `${GOPATH||/home/asataxie/workspace/go}`. This `||` is used to split environment values and default values. See `/config/config_test.go` in the [beego repo](https://github.com/astaxie/beego) for more examples and edge cases about how these environment variables and default values are parsed.
+
+For example:
+
+	password = ${MyPWD}
+	token = ${TOKEN||astaxie}
+	user = ${MyUser||beego}
+
+If the environment variable `$TOKEN` is set, its value will be used for the `token` configuration value and `beego.AppConfig.String("token")` would return its value. If `$TOKEN` is not set, the value would then be the string `astaxie`.
+
+**Please note**: The environment variables are only read when the configuration file is parsed, not when configuration item is obtained by a function like `beego.AppConfig.String(string)`.
