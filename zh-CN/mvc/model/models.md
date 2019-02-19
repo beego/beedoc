@@ -204,11 +204,12 @@ type User struct {
 ```go
 type User struct {
 	...
-	Status int `orm:"default(1)" description:"状态"`
+	Status int `orm:"default(1)" description:(这是状态字段)`
 	...
 }
 ```
 
+注意: 注释中禁止包含引号
 
 ## 表关系设置
 
