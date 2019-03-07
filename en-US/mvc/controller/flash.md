@@ -55,14 +55,16 @@ The logic of the code above is as follows:
 3. Redirect to GET request.
 4. GET request receives flash message and executes the related logic. Show error page or success page based on the type of message.
 
-`ReadFromRequest` already implemented assigning message to flash by default, so you can use it in your template:
+`ReadFromRequest` assigns messages to flash, so you can use it in your template:
 
 	{{.flash.error}}
 	{{.flash.warning}}
+	{{.flash.success}}
 	{{.flash.notice}}
 
-There are 3 different levels of flash messages:
+There are 4 different levels of flash messages:
 
 * Notice: Notice message
+* Success: Success message
 * Warning: Warning message
 * Error: Error message
