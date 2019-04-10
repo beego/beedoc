@@ -33,6 +33,12 @@ In development mode:
 
 ### Releasing and Deploying
 
+#### Deployment on [Render](https://render.com)
+Render is a modern cloud platform that offers native support for Go, fully-managed SSL, zero-downtime deploys, managed PostgreSQL, HTTP/2, and websocket support. It integrates with GitHub and builds your Beego app automatically on every push to your repository.
+
+Follow the Render [guide to deploying Gin projects](https://render.com/docs/deploy-beego).
+
+#### Traditional Server Deployment
 The Go application is a bytecode file after compiling. You just need to copy this file to the server and run it. But remember Beego might also include static files, configuration files and templates, so these three folders also need to be copied to server while deploying.
 
 	$ mkdir /opt/app/beepkg
@@ -61,8 +67,9 @@ There are three ways to run it:
 - [Stand alone deploy](./beego.md)
 - [Deploy with Supervisord ](./supervisor.md)
 - [Deploy with Systemctl ](./systemctl.md)
-	
+
 The application is exposed above, then usually we will have a nginx or apache to serve pages and perform load balancing on our application.
 
 - [Deploy with Nginx](./nginx.md)
 - [Deploy with Apache](./apache.md)
+
