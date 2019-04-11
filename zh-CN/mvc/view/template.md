@@ -83,8 +83,8 @@ beego 支持用户定义模板函数，但是必须在 `beego.Run()` 调用之�
         }
 
         // In view
-        {{ map_get m "a" }} // return 1
-        {{ map_get m 1 "c" }} // return 4
+        {{ map_get .m "a" }} // return 1
+        {{ map_get .m 1 "c" }} // return 4
         
 * urlfor
 
