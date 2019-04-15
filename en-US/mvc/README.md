@@ -6,7 +6,7 @@ sort: 4
 
 # Introduction to Beego's MVC
  
-Beego uses a typical Model-View-Controller (MVC) framework. This diagram illustrates how request handling logicis processed:
+Beego uses a typical Model-View-Controller (MVC) framework. This diagram illustrates how request handling logic is processed:
 
 ![](../images/detail.png)
 
