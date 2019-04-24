@@ -9,6 +9,8 @@ We have already spoken about how Beego is based on several independent modules. 
 
 ## Basic usage
 
+NOTE: The following is no longer available. Instead, use [logs](../../module/logs.md) package.
+
 In our Beego application we log as below:
 
 	beego.Debug("this is debug")
