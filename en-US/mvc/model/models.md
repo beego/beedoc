@@ -202,7 +202,7 @@ Set comment value for field.
 ```go
 type User struct {
 	...
-	Status int `orm:"default(1)" description:(this is status)`
+	Status int `orm:"default(1);description(this is status)"`
 	...
 }
 ```
