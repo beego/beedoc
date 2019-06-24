@@ -156,7 +156,7 @@ Beego includes many configurable variables. These can be configured and overwrit
    
 * ServerName
 
-    The Beego server name.  By defalt this name is `beego`.
+    The Beego server name.  By default this name is `beego`.
 
 	`beego.BConfig.ServerName = "beego"`
 	
@@ -230,7 +230,7 @@ Beego includes many configurable variables. These can be configured and overwrit
 
 * DirectoryIndex
 
-    Enable listing of the static directory. By defalt this is False and will return a 403 error.
+    Enable listing of the static directory. By default this is False and will return a 403 error.
 
 	`beego.BConfig.WebConfig.DirectoryIndex = false`
 
@@ -364,7 +364,7 @@ Beego includes many configurable variables. These can be configured and overwrit
 
 * AdminAddr
 
-    Set the address the admin app listens to. By defalt this is blank and the app will listen to any IP.
+    Set the address the admin app listens to. By default this is blank and the app will listen to any IP.
     
     `beego.BConfig.Listen.AdminAddr = ""`
 
@@ -390,7 +390,7 @@ Beego includes many configurable variables. These can be configured and overwrit
 
 * SessionOn
 
-    Enable session. By defalt this is False.
+    Enable session. By default this is False.
     
 	`beego.BConfig.WebConfig.Session.SessionOn = false`
 
