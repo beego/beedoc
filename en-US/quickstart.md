@@ -56,8 +56,7 @@ Once it's running, open a browser to [http://localhost:8080/](http://localhost:8
 ## Simple example
 
 The following example prints `Hello world` to your browser, it shows how easy it is to build a web application with beego.
-```
-go
+```go
 package main
 
 import (
