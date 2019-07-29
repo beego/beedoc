@@ -228,7 +228,7 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 
 	Flash 数据的分隔符，默认是 BEEGOFLASH
 
-	`beego.BConfig.WebConfig.FlashSeperator = "BEEGOFLASH"`
+	`beego.BConfig.WebConfig.FlashSeparator = "BEEGOFLASH"`
 
 * DirectoryIndex
 
