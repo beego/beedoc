@@ -41,7 +41,7 @@ type Post struct {
 type Tag struct {
     Id    int
     Name  string
-    Posts []*Post `orm:"reverse(many)"`
+    Posts []*Post `orm:"reverse(many)"` //设置多对多反向关系
 }
 
 func init() {
