@@ -45,7 +45,7 @@ beego.Any("/foo",func(ctx *context.Context){
 * beego.Any(router, beego.FilterFunc)
 
 ### Handler register
-In cases where where packages such as `net/http` are already implemented in a system they can be integrated into the Beego API or web system by following this procedure:
+In cases where packages such as `net/http` are already implemented in a system they can be integrated into the Beego API or web system by following this procedure:
 
 ```
 s := rpc.NewServer()
