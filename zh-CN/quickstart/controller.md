@@ -25,7 +25,7 @@ func (this *MainController) Get() {
 }
 ```
 
-上面的代码显示首先我们声明了一个控制器 `MainController`，这个控制器里面内嵌了 `beego.Controller`，这就是 Go 的嵌入方式，也就是 `MainController` 自动拥有了所有 `beego.Controller` 的方法。
+上面的代码显示首先我们声明了一个控制器 `MainController`，这个控制器里面组合了 `beego.Controller`，这就是 Go 的组合方式，也就是 `MainController` 自动拥有了所有 `beego.Controller` 的方法。
 
 而 `beego.Controller` 拥有很多方法，其中包括 `Init`、`Prepare`、`Post`、`Get`、`Delete`、`Head` 等方法。我们可以通过重写的方式来实现这些方法，而我们上面的代码就是重写了 `Get` 方法。
 
