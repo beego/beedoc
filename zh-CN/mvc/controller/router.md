@@ -82,7 +82,7 @@ beego.Handler("/rpc", s)
 
 - beego.Router("/api/?:id", &controllers.RController{})
 
-	默认匹配   //例如对于URL"/api/123"可以匹配成功，此时变量":id"值为"123"
+	默认匹配   //例如对于URL"/api/123"可以匹配成功，此时变量":id"值为"123"，URL"/api/"可正常匹配
 
 - beego.Router("/api/:id", &controllers.RController{})
 
