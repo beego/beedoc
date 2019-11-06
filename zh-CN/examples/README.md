@@ -25,3 +25,8 @@ sort: 8
 该示例通过编写一个 Todo 列表来展示如何使用 beego 来创建典型的 Web 应用程序。
 
 [到 GitHub 上浏览代码](https://github.com/beego/samples/tree/master/todo)
+
+## 大表分表
+
+这个例子演示了如何使用 beego 对大表取模分表并使用orm增删改查
+- [大表分表](bigtable.md)
