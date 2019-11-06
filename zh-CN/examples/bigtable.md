@@ -48,7 +48,6 @@ type FileStatList []*FileStat
 
 // 操作数据库模型
 type fileStatModel struct {
-	BaseModel
 }
 
 // 实例化
