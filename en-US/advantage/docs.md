@@ -15,7 +15,7 @@ Ok, let's try it out now. First let's create a new API application by `bee api b
 
 Add the following comments at the top of `routers/router.go`:
 
-```
+```go
 // @APIVersion 1.0.0
 // @Title mobile API
 // @Description mobile has every tool to get any job done, so codename for the new mobile APIs.
@@ -42,7 +42,7 @@ The comments above set the global information. The available settings:
 ## Router Parsing
 Right now automated API documentation only supports `NSNamespace` and `NSInclude` and it only supports two levels of parsing. The first level is the API version and the second level is the modules.
 
-```
+```go
 func init() {
 	ns :=
 		beego.NewNamespace("/v1",
@@ -80,7 +80,7 @@ func init() {
 ## Application Comment
 This is the most important part of comment. For example:
 
-```
+```go
 package controllers
 
 import "github.com/astaxie/beego"
