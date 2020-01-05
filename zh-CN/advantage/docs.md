@@ -7,6 +7,8 @@ sort: 2
 
 自动化文档一直是我梦想中的一个功能，这次借着公司的项目终于实现了出来，我说过 beego 不仅仅要让开发 API 快，而且让使用 API 的用户也能快速的使用我们开发的 API，这个就是我开发这个项目的初衷。好了，赶紧动手实践一把吧，首先 `bee api beeapi` 新建一个 API 应用做起来吧。
 
+Beego 实现了 [swagger specification](http://swagger.io/) 作为API文档，这可以很容易地创建强大的交互式API文档。
+
 # API 全局设置
 
 必须设置在 `routers/router.go` 中，文件的注释，最顶部：
@@ -28,11 +30,17 @@ package routers
 - @TermsOfServiceUrl
 - @License
 - @LicenseUrl
+- @Name
+- @URL
+- @LicenseUrl
+- @License
+- @Schemes
+- @Host
 
 ## 路由解析须知
 目前自动化文档只支持如下的写法的解析，其他写法函数不会自动解析，即 namespace+Include 的写法，而且只支持二级解析，一级版本号，二级分别表示应用模块
 
-```
+```go
 func init() {
 	ns :=
 		beego.NewNamespace("/v1",
@@ -70,7 +78,7 @@ func init() {
 ## 应用注释
 接下来就是我们最重要的注释了，就是我们定义的，我们先来看一个例子：
 
-```
+```go
 package controllers
 
 import "github.com/astaxie/beego"
@@ -86,11 +94,14 @@ func (c *CMSController) URLMapping() {
 }
 
 // @Title getStaticBlock
+// @Summary getStaticBlock
+// @Deprecated Deprecated
 // @Description get all the staticblock by key
-// @Param	key		path 	string	true		"The email for login"
-// @Success 200 {object} models.ZDTCustomer.Customer
-// @Failure 400 Invalid email supplied
-// @Failure 404 User not found
+// @Param	key	path	string	true	"The static block key."	default_value
+// @Success 200 {object} ZDT.ZDTMisc.CmsResponse
+// @Failure 400 Bad request
+// @Failure 404 Not found
+// @Accept json
 // @router /staticblock/:key [get]
 func (c *CMSController) StaticBlock() {
 
@@ -122,9 +133,21 @@ func (c *CMSController) Product() {
 
 首先是 CMSController 定义上面的注释，这个是用来显示这个模块的作用。接下来就是每一个函数上面的注释，这里列出来支持的各种注释：
 
+- @Accept
+
+	接受的媒体类型 json/xml/html/plain
+
+- @Deprecated
+
+	弃用标识。
+
+- @Summary
+
+	这个 API 所表达的含义，是一个文本，空格之后的内容全部解析为 Summary，会在文档中显示为标题。
+
 - @Title
 
-	这个 API 所表达的含义，是一个文本，空格之后的内容全部解析为 title
+	这个 API 所表达的含义，是一个文本，在整个 API 文档中不能出现重复。会解析到opeationID中。
 
 - @Description
 
@@ -138,12 +161,13 @@ func (c *CMSController) Product() {
 	3. 参数类型
 	4. 是否必须
 	5. 注释
+	6. 默认值
 
 - @Success
 
 	成功返回给客户端的信息，三个参数，第一个是 status code。第二个参数是返回的类型，必须使用 {} 包含，第三个是返回的对象或者字符串信息，如果是 {object} 类型，那么 bee 工具在生成 docs 的时候会扫描对应的对象，这里填写的是想对你项目的目录名和对象，例如 `models.ZDTProduct.ProductList` 就表示 `/models/ZDTProduct` 目录下的 `ProductList` 对象。
 
-	>>>三个参数必须通过空格分隔
+	>>> 三个参数必须通过空格分隔
 
 - @Failure
 
@@ -169,14 +193,17 @@ func (c *CMSController) Product() {
 ## 可能遇到的问题
 1. CORS
 	两种解决方案：
-	- 把 swagger 集成到应用中，下载请到[swagger](https://github.com/beego/swagger/releases),然后放在项目目录下：
+	1. 把 swagger 集成到应用中，下载请到[swagger](https://github.com/beego/swagger/releases),然后放在项目目录下：
+		```go
+		if beego.BConfig.RunMode == "dev" {
+			beego.BConfig.WebConfig.DirectoryIndex = true
+			beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
+		}
+		```
+		然后在你的项目中访问 `/swagger`。
 
-			if beego.BConfig.RunMode == "dev" {
-				beego.BConfig.WebConfig.DirectoryIndex = true
-				beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
-			}
-	- API 增加 CORS 支持
-
-			ctx.Output.Header("Access-Control-Allow-Origin", "*")
-
+	2. API 增加 CORS 支持
+		```go
+		ctx.Output.Header("Access-Control-Allow-Origin", "*")
+		```
 2. 未知错误，因为这是我自己项目中使用的，所以可能大家在写的过程中会遇到一些莫名的错误，请提 issue 去吧！
