@@ -121,7 +121,16 @@ app2.conf
 Beego includes many configurable variables. These can be configured and overwritten in `conf/app.conf`.
 
 #### Basic config
-
+```go
+// now only support ini, next will support json.
+func parseConfig(appConfigPath string) (err error) {
+	AppConfig, err = newAppConfig(appConfigProvider, appConfigPath)
+	if err != nil {
+		return err
+	}
+	return assignConfig(AppConfig)
+}
+```
 * LoadAppConfig
     The file format of LoadAppConfig. By default this is `ini`. Other valid formats include `xml`, `yaml`, and `json`.
     The application configuration file path. By default this is `conf/app.conf`.  
