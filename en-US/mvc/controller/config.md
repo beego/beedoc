@@ -122,17 +122,11 @@ Beego includes many configurable variables. These can be configured and overwrit
 
 #### Basic config
 
-* AppConfigPath
-
+* LoadAppConfig
+    The file format of LoadAppConfig. By default this is `ini`. Other valid formats include `xml`, `yaml`, and `json`.
     The application configuration file path. By default this is `conf/app.conf`.  
-  
-    `beego.AppConfigPath = "conf/app2.conf"`
 
-* AppConfigProvider
-
-    The file format of AppConfig. By default this is `ini`. Other valid formats include `xml`, `yaml`, and `json`.
-
-	`beego.AppConfigProvider = "ini"`
+    `beego.LoadAppConfig("yaml", "conf/app.conf")`
 
 #### App config
 
