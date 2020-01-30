@@ -43,7 +43,6 @@ The commands are:
     dockerize   Generates a Dockerfile for your Beego application
     generate    Source code generator
     hprose      Creates an RPC application based on Hprose and Beego frameworks
-    new         Creates a Beego application
     pack        Compresses a Beego application into a single file
     rs          Run customized scripts
     run         Run the application by starting a local development server
