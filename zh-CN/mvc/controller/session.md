@@ -107,7 +107,7 @@ sess 对象具有如下方法：
 当 SessionProvider 为 mysql 时，SessionProviderConfig 是链接地址，采用 [go-sql-driver](https://github.com/go-sql-driver/mysql)，如下所示：
 
 	beego.BConfig.WebConfig.Session.SessionProvider = "mysql"
-	beego.BConfig.WebConfig.Session.SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
+	beego.BConfig.WebConfig.Session.SessionProviderConfig = "username:password@protocol(address)/dbname"
 
     需要特别注意的是，在使用 mysql 存储 session 信息的时候，需要事先在 mysql 创建表，建表语句如下
 
