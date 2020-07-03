@@ -274,7 +274,7 @@ qs.GroupBy("id", "age")
 
 Param uses **expr**
 
-Using `-` at the beginning of expr stands for order by `DESC`
+Using `-` at the beginning of expr stands for order by `ASC`
 
 ```go
 qs.OrderBy("id", "-profile__age")
