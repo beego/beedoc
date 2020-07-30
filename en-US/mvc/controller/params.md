@@ -14,6 +14,10 @@ Beego will automatically parse data passed by user from GET, POST and other meth
 - GetInt16(key string) (int16, error)
 - GetInt32(key string) (int32, error)
 - GetInt64(key string) (int64, error)
+- GetUint8(key string) (uint8, error)
+- GetUint16(key string) (uint16, error)
+- GetUint32(key string) (uint32, error)
+- GetUint64(key string) (uint64, error)
 - GetBool(key string) (bool, error)
 - GetFloat(key string) (float64, error)
 
