@@ -46,10 +46,16 @@
         	<td><a target="_blank" href="http://www.veryhour.com">http://veryhour.com</a></td>
         </tr>
 
-           <tr>
+        <tr>
         	<td>股票应用</td>
         	<td>数据查询</td>
         	<td><a target="_blank" href="http://sj.n8n8.cn/">http://sj.n8n8.cn/</a></td>
+        </tr>
+        
+        <tr>
+        	<td>haokiu</td>
+        	<td>技术博客</td>
+        	<td><a target="_blank" href="https://haokiu.com">https://haokiu.com</a></td>
         </tr>
 
 
