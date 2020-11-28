@@ -61,7 +61,7 @@ jQuery.postJSON = function(url, args, callback) {
    args._xsrf = base64_decode(xsrflist[0]);
     $.ajax({url: url, data: $.param(args), dataType: "text", type: "POST",
         success: function(response) {
-        callback(eval("(" + response + ")"));
+        callback(response);
     }});
 };
 ```
