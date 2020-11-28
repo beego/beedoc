@@ -88,13 +88,17 @@ func (c *CMSController) URLMapping() {
 // @Title getStaticBlock
 // @Description get all the staticblock by key
 // @Param	key		path 	string	true		"The email for login"
-// @Success 200 {object} models.ZDTCustomer.Customer
+// @Success 200 {object} models.ZDTCustomer.Customer 
 // @Failure 400 Invalid email supplied
 // @Failure 404 User not found
 // @router /staticblock/:key [get]
 func (c *CMSController) StaticBlock() {
 
 }
+
+注：如果希望model中struct对象的某些字段在接口文档中不显示，可以使用 json:"-" 标记，如下：
+Id         int         `orm:"column(id);auto" json:"-"`
+
 
 // @Title Get Product list
 // @Description Get Product list by some info
