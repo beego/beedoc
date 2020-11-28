@@ -141,10 +141,10 @@ beego.Handler("/rpc", s)
 
 以下是一个 RESTful 的设计示例：
 
-	beego.Router("/api/list",&RestController{},"*:ListFood")
-	beego.Router("/api/create",&RestController{},"post:CreateFood")
-	beego.Router("/api/update",&RestController{},"put:UpdateFood")
-	beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
+	beego.Router("/api/food",&RestController{},"get:ListFood")
+	beego.Router("/api/food",&RestController{},"post:CreateFood")
+	beego.Router("/api/food",&RestController{},"put:UpdateFood")
+	beego.Router("/api/food",&RestController{},"delete:DeleteFood")
 
 以下是多个 HTTP Method 指向同一个函数的示例：
 
@@ -152,7 +152,7 @@ beego.Handler("/rpc", s)
 
 以下是不同的 method 对应不同的函数，通过 ; 进行分割的示例：
 
-	beego.Router("/simple",&SimpleController{},"get:GetFunc;post:PostFunc")
+	beego.Router("/api/food",&RestController{},"get:ListFood;post:CreateFood;put:UpdateFood;delete:DeleteFood")
 
 可用的 HTTP Method：
 
