@@ -282,7 +282,7 @@ beego.AddNamespace(ns)
 * GET /v1/changepassword
 * POST /v1/changepassword
 * GET /v1/shop/123
-* GET /v1/cms/ 对应 MainController、CMSController、BlockController 中得注解路由
+* GET /v1/cms/ 对应 MainController、CMSController、BlockController 中的注解路由
 
 而且还支持前置过滤,条件判断,无限嵌套 namespace
 
