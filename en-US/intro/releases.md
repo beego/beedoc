@@ -3,6 +3,24 @@ name: Release Notes
 sort: 2
 ---
 
+### Feature:
+1. Allow Healthcheck endpoint return JSON for Kubernetes. [4055](https://github.com/astaxie/beego/pull/4055)
+2. Support `ClientAuth` for TLS. [4116](https://github.com/astaxie/beego/pull/4116)
+3. `orm.RawSeter`  support `orm.Fielder`. [4191](https://github.com/astaxie/beego/pull/4191)
+4. Add a new MySQL operator for strict case sensitive query. [4198](https://github.com/astaxie/beego/pull/4198)
+
+### Fix:
+1. Fix reconnection bug in logs/conn.go. [4056](https://github.com/astaxie/beego/pull/4056)
+2. Return 403 when request payload too large. [4058](https://github.com/astaxie/beego/pull/4058)
+3. Fix race condition for Prepare Statement cache. [4061](https://github.com/astaxie/beego/pull/4061)
+4. Fix `index out of range` in session module when `len(sid) < 2`. [4068](https://github.com/astaxie/beego/pull/4068)
+5. Fix concurrent issue of context/input Query method. [4066](https://github.com/astaxie/beego/pull/4066)
+6. Allow using environment variable to specific the config file. [4111](https://github.com/astaxie/beego/pull/4111)
+7. XSRF add secure and http only flag. [4126](https://github.com/astaxie/beego/pull/4126)
+8. Fix temporary create failed on Windows [4244](https://github.com/astaxie/beego/pull/4244)
+9. Session: adds CookieSameSite to ManagerConfig. [4226](https://github.com/astaxie/beego/pull/4226)
+10. Make stmt cache smaller to avoid `too many statement` error. [4261](https://github.com/astaxie/beego/pull/4261)
+
 # beego 1.12.2
 1. Fix old process didn't exist when graceful restart in beego 1.12.0 [#4005](https://github.com/astaxie/beego/pull/4005)
 2. Enhance: Print stack while orm abnormally exit [#3743](https://github.com/astaxie/beego/pull/3743)

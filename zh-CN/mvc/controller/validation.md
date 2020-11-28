@@ -3,27 +3,25 @@ name: 表单数据验证
 sort: 9
 ---
 
-# 表单验证
-
 表单验证是用于数据验证和错误收集的模块。
 
-## 安装及测试
+# 安装及测试
 
 安装：
 
-	go get github.com/astaxie/beego/validation
+	go get github.com/astaxie/beego/core/validation
 
 测试：
 
-	go test github.com/astaxie/beego/validation
+	go test github.com/astaxie/beego/core/validation
 
-## 示例
+# 示例
 
 直接使用示例：
 
 ```go
 import (
-    "github.com/astaxie/beego/validation"
+    "github.com/astaxie/beego/core/validation"
     "log"
 )
 
@@ -65,7 +63,7 @@ import (
     "log"
     "strings"
 
-    "github.com/astaxie/beego/validation"
+    "github.com/astaxie/beego/core/validation"
 )
 
 // 验证函数写在 "valid" tag 的标签里
@@ -93,7 +91,7 @@ func (u *user) Valid(v *validation.Validation) {
 
 func main() {
     valid := validation.Validation{}
-    u := user{Name: "Beego", Age: 2, Email: "dev@beego.me"}
+    u := user{Name: "Beego", Age: 2, Email: "dev@web.me"}
     b, err := valid.Valid(&u)
     if err != nil {
         // handle error
@@ -130,6 +128,17 @@ StructTag 可用的验证函数：
 * `Phone` 手机号或固定电话号，有效类型：`string`，其他类型都将不能通过验证
 * `ZipCode` 邮政编码，有效类型：`string`，其他类型都将不能通过验证
 
-### API 文档
+## 自定义验证
+
+我们允许自己注册验证逻辑。使用方法：
+
+```go
+AddCustomFunc(name string, f CustomFunc) error
+```
+
+注意的是，该方法并不是线程安全的。在我们的设计理念中，注册这种自定义的方法，应该在系统初始化阶段完成。在该阶段，应当不存在竞争问题。
+
+## API 文档
 
 请移步 [Go Walker](http://gowalker.org/github.com/astaxie/beego/validation)。
+

@@ -1,21 +1,23 @@
 ---
-name: toolbox 模块
-sort: 6
+name: governor 模块
+sort: 7
 ---
-
-# 核心工具模块
 
 这个模块主要是参考了 Dropwizard 框架，是一位用户提醒我说有这么一个框架，然后里面实现一些很酷的东西。那个 [issue](https://github.com/astaxie/beego/issues/128) 详细描述了该功能的雏形，然后就在参考该功能的情况下增加了一些额外的很酷的功能，接下来我将一一介绍这个模块中的几个功能：健康检查、性能调试、访问统计、计划任务。
 
+在 v2.x 里面，我们将原本的`toolbox`拆分为两块，一块是`governor`，即治理模块；另外一块是`task`。
+
+我们的设计哲学认为，`task`是一个和`server`,`client`平级的东西。
+
 ## 如何安装
 
-	go get github.com/astaxie/beego/toolbox
+	go get github.com/astaxie/beego/core/governor
 
 ## healthcheck
 
 监控检查是用于当你应用于产品环境中进程，检查当前的状态是否正常，例如你要检查当前数据库是否可用，如下例子所示：
 
-```
+```go
 type DatabaseCheck struct {
 }
 
@@ -30,7 +32,7 @@ func (dc *DatabaseCheck) Check() error {
 然后就可以通过如下方式增加检测项：
 
 ```
-toolbox.AddHealthCheck("database",&DatabaseCheck{})
+governor.AddHealthCheck("database",&DatabaseCheck{})
 ```
 
 加入之后，你可以往你的管理端口 `/healthcheck` 发送GET请求：
@@ -56,10 +58,10 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 			/Users/astaxie/go/src/pkg/runtime/pprof/pprof.go:500 +0x3c
 		runtime/pprof.(*Profile).WriteTo(0x52ebe0, 0x634238, 0xc210000008, 0x2, 0x1, ...)
 			/Users/astaxie/go/src/pkg/runtime/pprof/pprof.go:229 +0xb4
-		_/Users/astaxie/github/beego/toolbox.ProcessInput(0x2c89f0, 0x10, 0x634238, 0xc210000008)
-			/Users/astaxie/github/beego/toolbox/profile.go:26 +0x256
-		_/Users/astaxie/github/beego/toolbox.TestProcessInput(0xc21004e090)
-			/Users/astaxie/github/beego/toolbox/profile_test.go:9 +0x5a
+		_/Users/astaxie/github/beego/governor.ProcessInput(0x2c89f0, 0x10, 0x634238, 0xc210000008)
+			/Users/astaxie/github/beego/governor/profile.go:26 +0x256
+		_/Users/astaxie/github/beego/governor.TestProcessInput(0xc21004e090)
+			/Users/astaxie/github/beego/governor/profile_test.go:9 +0x5a
 		testing.tRunner(0xc21004e090, 0x532320)
 			/Users/astaxie/go/src/pkg/testing/testing.go:391 +0x8b
 		created by testing.RunTests
@@ -71,7 +73,7 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 		testing.Main(0x315668, 0x532320, 0x4, 0x4, 0x537700, ...)
 			/Users/astaxie/go/src/pkg/testing/testing.go:403 +0x84
 		main.main()
-			_/Users/astaxie/github/beego/toolbox/_test/_testmain.go:53 +0x9c
+			_/Users/astaxie/github/beego/governor/_test/_testmain.go:53 +0x9c
 
 - lookup heap
 
@@ -158,26 +160,30 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 
 ## statistics
 
-请先看下面这张效果图，你有什么想法，很酷？是的，很酷，现在 tootlbox 就是支持这样的功能了：
+注意！在 v2.x 里面，我们实际上并不建议直接使用`governor`来收集这种统计信息。只有在你的应用是单机应用，并且只部署少量实例的时候，可以考虑使用这种方式。
+
+我们推荐的是使用专门的中间件来完成统计的功能，例如`opentracing`和`prometheus`。
+
+我们在 web, httplib, orm 上都提供了对应的`Filter`来接入这种中间件。
 
 ![](../images/toolbox.jpg)
 
 如何使用这个统计呢？如下所示添加统计：
 
-	toolbox.StatisticsMap.AddStatistics("POST", "/api/user", "&admin.user", time.Duration(2000))
-	toolbox.StatisticsMap.AddStatistics("POST", "/api/user", "&admin.user", time.Duration(120000))
-	toolbox.StatisticsMap.AddStatistics("GET", "/api/user", "&admin.user", time.Duration(13000))
-	toolbox.StatisticsMap.AddStatistics("POST", "/api/admin", "&admin.user", time.Duration(14000))
-	toolbox.StatisticsMap.AddStatistics("POST", "/api/user/astaxie", "&admin.user", time.Duration(12000))
-	toolbox.StatisticsMap.AddStatistics("POST", "/api/user/xiemengjun", "&admin.user", time.Duration(13000))
-	toolbox.StatisticsMap.AddStatistics("DELETE", "/api/user", "&admin.user", time.Duration(1400))
+	governor.StatisticsMap.AddStatistics("POST", "/api/user", "&admin.user", time.Duration(2000))
+	governor.StatisticsMap.AddStatistics("POST", "/api/user", "&admin.user", time.Duration(120000))
+	governor.StatisticsMap.AddStatistics("GET", "/api/user", "&admin.user", time.Duration(13000))
+	governor.StatisticsMap.AddStatistics("POST", "/api/admin", "&admin.user", time.Duration(14000))
+	governor.StatisticsMap.AddStatistics("POST", "/api/user/astaxie", "&admin.user", time.Duration(12000))
+	governor.StatisticsMap.AddStatistics("POST", "/api/user/xiemengjun", "&admin.user", time.Duration(13000))
+	governor.StatisticsMap.AddStatistics("DELETE", "/api/user", "&admin.user", time.Duration(1400))
 
 获取统计信息
 
-	toolbox.StatisticsMap.GetMap(os.Stdout)
+	governor.StatisticsMap.GetMap(os.Stdout)
 
 输出如下格式的信息：
-
+```bash
 	| requestUrl                                        | method     | times            | used             | max used         | min used         | avg used         |
 	| /api/user                                         | POST       |  2               | 122.00us         | 120.00us         | 2.00us           | 61.00us          |
 	| /api/user                                         | GET        |  1               | 13.00us          | 13.00us          | 13.00us          | 13.00us          |
@@ -185,136 +191,4 @@ toolbox.AddHealthCheck("database",&DatabaseCheck{})
 	| /api/admin                                        | POST       |  1               | 14.00us          | 14.00us          | 14.00us          | 14.00us          |
 	| /api/user/astaxie                                 | POST       |  1               | 12.00us          | 12.00us          | 12.00us          | 12.00us          |
 	| /api/user/xiemengjun                              | POST       |  1               | 13.00us          | 13.00us          | 13.00us          | 13.00us          |
-
-## task
-
-玩过 linux 的用户都知道有一个计划任务的工具 crontab，我们经常利用该工具来定时的做一些任务，但是有些时候我们的进程内也希望定时的来处理一些事情，例如定时的汇报当前进程的内存信息，goroutine 信息等。或者定时的进行手工触发 GC，或者定时的清理一些日志数据等，所以实现了秒级别的定时任务，首先让我们看看如何使用：
-
-1. 初始化一个任务
-
-		tk1 := toolbox.NewTask("tk1", "0 12 * * * *", func() error { fmt.Println("tk1"); return nil })
-
-	函数原型：
-
-	NewTask(tname string, spec string, f TaskFunc) *Task
-	- tname 任务名称
-	- spec 定时任务格式，请参考下面的详细介绍
-	- f 执行的函数 func() error
-
-2. 可以测试开启运行
-
-	可以通过如下的代码运行 TaskFunc，和 spec 无关，用于检测写的函数是否如预期所希望的这样：
-
-		err := tk.Run()
-		if err != nil {
-			t.Fatal(err)
-		}
-
-3. 加入全局的计划任务列表
-
-		toolbox.AddTask("tk1", tk1)
-
-4. 开始执行全局的任务
-
-		toolbox.StartTask()
-		defer toolbox.StopTask()
-
-### spec 详解
-
-spec 格式是参照 crontab 做的，详细的解释如下所示：
-
-
 ```
-//前6个字段分别表示：
-//       秒钟：0-59
-//       分钟：0-59
-//       小时：1-23
-//       日期：1-31
-//       月份：1-12
-//       星期：0-6（0 表示周日）
-
-//还可以用一些特殊符号：
-//       *： 表示任何时刻
-//       ,：　表示分割，如第三段里：2,4，表示 2 点和 4 点执行
-//　　    －：表示一个段，如第三端里： 1-5，就表示 1 到 5 点
-//       /n : 表示每个n的单位执行一次，如第三段里，*/1, 就表示每隔 1 个小时执行一次命令。也可以写成1-23/1.
-/////////////////////////////////////////////////////////
-//	0/30 * * * * *                        每 30 秒 执行
-//	0 43 21 * * *                         21:43 执行
-//	0 15 05 * * * 　　                     05:15 执行
-//	0 0 17 * * *                          17:00 执行
-//	0 0 17 * * 1                          每周一的 17:00 执行
-//	0 0,10 17 * * 0,2,3                   每周日,周二,周三的 17:00和 17:10 执行
-//	0 0-10 17 1 * *                       毎月1日从 17:00 到 7:10 毎隔 1 分钟 执行
-//	0 0 0 1,15 * 1                        毎月1日和 15 日和 一日的 0:00 执行
-//	0 42 4 1 * * 　 　                     毎月1日的 4:42 分 执行
-//	0 0 21 * * 1-6　　                     周一到周六 21:00 执行
-//	0 0,10,20,30,40,50 * * * *　           每隔 10 分 执行
-//	0 */10 * * * * 　　　　　　              每隔 10 分 执行
-//	0 * 1 * * *　　　　　　　　               从 1:0 到 1:59 每隔 1 分钟 执行
-//	0 0 1 * * *　　　　　　　　               1:00 执行
-//	0 0 */1 * * *　　　　　　　               毎时 0 分 每隔 1 小时 执行
-//	0 0 * * * *　　　　　　　　               毎时 0 分 每隔 1 小时 执行
-//	0 2 8-20/3 * * *　　　　　　             8:02,11:02,14:02,17:02,20:02 执行
-//	0 30 5 1,15 * *　　　　　　              1 日 和 15 日的 5:30 执行
-```
-
-## 调试模块(已移动到utils模块)
-
-我们经常需要打印一些参数进行调试，但是默认的参数打印总是不是很完美，也没办法定位代码行之类的，所以 beego 的 toolbox 模块进行了 debug 模块的开发，主要包括了两个函数：
-
-- Display()  直接打印结果到 console
-- GetDisplayString() 返回打印的字符串
-
-两个函数的功能一模一样，第一个是直接打印到 console，第二个是返回字符串，方便用户存储到日志或者其他存储。
-
-使用很方便，是 key/value 串出现的，如下示例：
-
-	Display("v1", 1, "v2", 2, "v3", 3)
-
-打印结果如下：
-
-	2013/12/16 23:48:41 [Debug] at TestPrint() [/Users/astaxie/github/beego/toolbox/debug_test.go:13]
-
-	[Variables]
-	v1 = 1
-	v2 = 2
-	v3 = 3
-
-指针类型的打印如下：
-
-	type mytype struct {
-		next *mytype
-		prev *mytype
-	}
-
-	var v1 = new(mytype)
-	var v2 = new(mytype)
-
-	v1.prev = nil
-	v1.next = v2
-
-	v2.prev = v1
-	v2.next = nil
-
-	Display("v1", v1, "v2", v2)
-
-打印结果如下：
-
-	2013/12/16 23:48:41 [Debug] at TestPrintPoint() [/Users/astaxie/github/beego/toolbox/debug_test.go:26]
-
-	[Variables]
-	v1 = &toolbox.mytype{
-	    next: &toolbox.mytype{
-	        next: nil,
-	        prev: 0x210335420,
-	    },
-	    prev: nil,
-	}
-	v2 = &toolbox.mytype{
-	    next: nil,
-	    prev: &toolbox.mytype{
-	        next: 0x210335430,
-	        prev: nil,
-	    },
-	}

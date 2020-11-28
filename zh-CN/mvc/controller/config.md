@@ -292,6 +292,11 @@ beego 中带有很多可配置的参数，我们来一一认识一下它们，�
 	XSRF 过期时间，默认值是 0，不过期。
 
 	`beego.BConfig.WebConfig.XSRFExpire = 0`
+	
+* CommentRouterPath
+
+    CommentRouterPath 注解路由所在位置。默认值是`controllers`。 Beego 会在启动的时候扫描下面的文件生成了路由。
+    `beego.BConfig.WebConfig.CommentRouterPath = "controllers"`
 
 #### 监听配置
 

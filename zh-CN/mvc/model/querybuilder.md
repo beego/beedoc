@@ -45,6 +45,7 @@ o.Raw(sql, 20).QueryRows(&users)
 ```go
 type QueryBuilder interface {
 	Select(fields ...string) QueryBuilder
+	ForUpdate() QueryBuilder
 	From(tables ...string) QueryBuilder
 	InnerJoin(table string) QueryBuilder
 	LeftJoin(table string) QueryBuilder
@@ -61,7 +62,14 @@ type QueryBuilder interface {
 	Offset(offset int) QueryBuilder
 	GroupBy(fields ...string) QueryBuilder
 	Having(cond string) QueryBuilder
+	Update(tables ...string) QueryBuilder
+	Set(kv ...string) QueryBuilder
+	Delete(tables ...string) QueryBuilder
+	InsertInto(table string, fields ...string) QueryBuilder
+	Values(vals ...string) QueryBuilder
 	Subquery(sub string, alias string) string
 	String() string
 }
 ```
+
+目前支持`Postgress`, `MySQL`和`TiDB`的支持。

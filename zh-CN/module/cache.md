@@ -7,35 +7,41 @@ sort: 2
 
 beego 的 cache 模块是用来做数据缓存的，设计思路来自于 `database/sql`，目前支持 file、memcache、memory 和 redis 四种引擎，安装方式如下：
 
-	go get github.com/astaxie/beego/cache
+	go get github.com/astaxie/beego/client/cache
 
 >>>如果你使用memcache 或者 redis 驱动就需要手工安装引入包
 
-	go get -u github.com/astaxie/beego/cache/memcache
+	go get -u github.com/astaxie/beego/client/cache/memcache
 
 >>>而且需要在使用的地方引入包
 
-    import _ "github.com/astaxie/beego/cache/memcache"
-## 使用入门
+    import _ "github.com/astaxie/beego/client/cache/memcache"
+    
+# 使用入门
 
 首先引入包：
-
-	import (
-		"github.com/astaxie/beego/cache"
-	)
+```go
+import (
+	"github.com/astaxie/beego/client/cache"
+)
+```
 
 然后初始化一个全局变量对象：
-
-	bm, err := cache.NewCache("memory", `{"interval":60}`)
+```go
+bm, err := cache.NewCache("memory", `{"interval":60}`)
+```
 
 然后我们就可以使用bm增删改缓存：
+```go
+bm.Put(context.TODO(), "astaxie", 1, 10*time.Second)
+bm.Get(context.TODO(), "astaxie")
+bm.IsExist(context.TODO(), "astaxie")
+bm.Delete(context.TODO(), "astaxie")
+```
 
-	bm.Put("astaxie", 1, 10*time.Second)
-	bm.Get("astaxie")
-	bm.IsExist("astaxie")
-	bm.Delete("astaxie")
+>>> 第一个参数是 Go 语言的context。我们引入context参数，是为了能够支持可观测性(tracing, metrics)
 
-## 引擎设置
+# 引擎设置
 
 目前支持四种不同的引擎，接下来分别介绍这四种引擎如何设置：
 
@@ -68,24 +74,35 @@ beego 的 cache 模块是用来做数据缓存的，设计思路来自于 `datab
 
 		{"conn":"127.0.0.1:11211"}
 
-## 开发自己的引擎
+# 开发自己的引擎
 
 cache 模块采用了接口的方式实现，因此用户可以很方便的实现接口，然后注册就可以实现自己的 Cache 引擎：
-
-	type Cache interface {
-		Get(key string) interface{}
-        GetMulti(keys []string) []interface{}
-		Put(key string, val interface{}, timeout time.Duration) error
-		Delete(key string) error
-		Incr(key string) error
-		Decr(key string) error
-		IsExist(key string) bool
-		ClearAll() error
-		StartAndGC(config string) error
-	}
+```go
+type Cache interface {
+	// Get a cached value by key.
+	Get(ctx context.Context, key string) (interface{}, error)
+	// GetMulti is a batch version of Get.
+	GetMulti(ctx context.Context, keys []string) ([]interface{}, error)
+	// Set a cached value with key and expire time.
+	Put(ctx context.Context, key string, val interface{}, timeout time.Duration) error
+	// Delete cached value by key.
+	Delete(ctx context.Context, key string) error
+	// Increment a cached int value by key, as a counter.
+	Incr(ctx context.Context, key string) error
+	// Decrement a cached int value by key, as a counter.
+	Decr(ctx context.Context, key string) error
+	// Check if a cached value exists or not.
+	IsExist(ctx context.Context, key string) (bool, error)
+	// Clear all cache.
+	ClearAll(ctx context.Context) error
+	// Start gc routine based on config string settings.
+	StartAndGC(config string) error
+}
+```
 
 用户开发完毕在最后写类似这样的：
-
-	func init() {
-		Register("myowncache", NewOwnCache())
-	}
+```go
+func init() {
+	cache.Register("myowncache", NewOwnCache())
+}
+```
