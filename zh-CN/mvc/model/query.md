@@ -291,6 +291,32 @@ qs.OrderBy("-profile__age", "profile")
 // ORDER BY profile.age DESC, profile_id ASC
 ```
 
+### ForceIndex
+
+强迫走索引。使用该选选项请确认数据库支持该特性。
+
+```go
+qs.ForceIndex(`idx_name1`,`idx_name2`)
+```
+
+### UseIndex
+
+使用索引。使用该特性的时候需要确认数据库是否支持该特性，以及该特性的具体含义。例如，部分数据库对于该选项是当成一种建议来执行的。
+
+即，即便用户使用了`UseIndex`方法，但是数据库在具体执行的时候，也可能不会使用设定的索引。
+
+```go
+qs.UseIndex(`idx_name1`,`idx_name2`)
+```
+
+### IgnoreIndex
+
+忽略索引。请确认数据是否支持该选项。
+
+```go
+qs.IgnoreIndex(`idx_name1`,`idx_name2`)
+```
+
 ### Distinct
 
 对应 sql 的 `distinct` 语句, 返回不重复的值.
@@ -538,7 +564,7 @@ if err == nil {
 
 ## 关系查询
 
-以例子里的[模型定义](orm.md)来看下怎么进行关系查询
+以例子里的[模型定义](/docs.mvc_model_orm)来看下怎么进行关系查询
 
 #### User 和 Profile 是 OneToOne 的关系
 
@@ -780,4 +806,3 @@ if err == nil {
 	fmt.Println("Total Nums: ", nums)
 }
 ```
-

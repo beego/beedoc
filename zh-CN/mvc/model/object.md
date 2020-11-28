@@ -22,7 +22,7 @@ fmt.Println(o.Read(user))
 fmt.Println(o.Delete(user))
 ```
 
-如果需要通过条件查询获取对象，请参见[高级查询](query.md#all)
+如果需要通过条件查询获取对象，请参见[高级查询](/docs/mvc_model_query#al)
 
 ## Read
 
@@ -51,11 +51,13 @@ err = o.Read(&user, "Name")
 
 对象的其他字段值将会是对应类型的默认值
 
-复杂的单个对象查询参见 [One](query.md#one)
+复杂的单个对象查询参见 [One](/docs/mvc_model_query#one)
 
 ## ReadOrCreate
 
-尝试从数据库读取，不存在的话就创建一个
+尝试从数据库读取，不存在的话就创建一个。
+
+它的实现机制，和具体的数据库有关。例如在 MYSQL 中，是使用
 
 默认必须传入一个参数作为条件字段，同时也支持多个参数多个条件字段
 
@@ -141,7 +143,7 @@ o.Update(&user, "Name")
 ...
 ```
 
-根据复杂条件更新字段值参见 [Update](query.md#update)
+根据复杂条件更新字段值参见 [Update](/docs/mvc_model_query#update)
 
 ## Delete
 

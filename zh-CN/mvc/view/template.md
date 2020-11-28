@@ -5,15 +5,15 @@ sort: 2
 
 # 模板函数
 
-beego 支持用户定义模板函数，但是必须在 `beego.Run()` 调用之前，设置如下：
+beego 支持用户定义模板函数，但是必须在 `web.Run()` 调用之前，设置如下：
+```go
+func hello(in string)(out string){
+    out = in + "world"
+    return
+}
 
-	func hello(in string)(out string){
-		out = in + "world"
-		return
-	}
-	
-	beego.AddFuncMap("hi",hello)
-
+web.AddFuncMap("hi",hello)
+```
 定义之后你就可以在模板中这样使用了：
 
 	{{.Content | hi}}
@@ -92,4 +92,4 @@ beego 支持用户定义模板函数，但是必须在 `beego.Run()` 调用之�
      
         {{urlfor "TestController.List"}}
         
-    [详见](zh-CN/mvc/controller/urlbuilding.md#模板中如何使用)
+    [详见](/docs/mvc_controlloer_urlbuilding#模板中如何使用)

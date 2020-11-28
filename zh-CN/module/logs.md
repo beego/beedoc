@@ -5,68 +5,72 @@ sort: 3
 
 # 日志处理
 
-这是一个用来处理日志的库，它的设计思路来自于 `database/sql`，目前支持的引擎有 file、console、net、smtp，可以通过如下方式进行安装：
+这是一个用来处理日志的库，它的设计思路来自于 `database/sql`，目前支持的引擎有 file、console、net、smtp、es、slack，可以通过如下方式进行安装：
 
 	go get github.com/astaxie/beego/logs
 
-## 如何使用
+# 如何使用
 
-### 通用方式
+例子参考[beego-example](https://github.com/beego/beego-example)下的`logs`部分
+
+## 通用方式
 首先引入包：
-
-	import (
-		"github.com/astaxie/beego/logs"
-	)
+```go
+import (
+	"github.com/astaxie/beego/core/logs"
+)
+```
 
 然后添加输出引擎（log 支持同时输出到多个引擎），这里我们以 console 为例，第一个参数是引擎名（包括：console、file、conn、smtp、es、multifile）
 
 	logs.SetLogger("console")
 
-添加输出引擎也支持第二个参数,用来表示配置信息，详细的配置请看下面介绍：
+添加输出引擎也支持第二个参数,用来表示配置信息，对于不同的引擎来说，其配置也是不同的。详细的配置请看下面介绍：
 
     logs.SetLogger(logs.AdapterFile,`{"filename":"project.log","level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10,"color":true}`)
 
 然后我们就可以在我们的逻辑中开始任意的使用了：
+```go
+package main
 
+import (
+	"github.com/astaxie/beego/core/logs"
+)
 
-    package main
+func main() {
+	//an official log.Logger
+	l := logs.GetLogger()
+	l.Println("this is a message of http")
+	//an official log.Logger with prefix ORM
+	logs.GetLogger("ORM").Println("this is a message of orm")
 
-    import (
-    	"github.com/astaxie/beego/logs"
-    )
+	logs.Debug("my book is bought in the year of ", 2016)
+	logs.Info("this %s cat is %v years old", "yellow", 3)
+	logs.Warn("json is a type of kv like", map[string]int{"key": 2016})
+	logs.Error(1024, "is a very", "good game")
+	logs.Critical("oh,crash")
+}
+```
 
-    func main() {
-    	//an official log.Logger
-    	l := logs.GetLogger()
-    	l.Println("this is a message of http")
-    	//an official log.Logger with prefix ORM
-    	logs.GetLogger("ORM").Println("this is a message of orm")
-
-        logs.Debug("my book is bought in the year of ", 2016)
-     	logs.Info("this %s cat is %v years old", "yellow", 3)
-     	logs.Warn("json is a type of kv like", map[string]int{"key": 2016})
-       	logs.Error(1024, "is a very", "good game")
-       	logs.Critical("oh,crash")
-    }
-
-### 多个实例
+## 多个实例
 一般推荐使用通用方式进行日志，但依然支持单独声明来使用独立的日志
+```go
+package main
 
-        package main
+import (
+	"github.com/astaxie/beego/core/logs"
+)
 
-        import (
-        	"github.com/astaxie/beego/logs"
-        )
-
-        func main() {
-        	log := logs.NewLogger()
-        	log.SetLogger(logs.AdapterConsole)
-        	log.Debug("this is a debug message")
-        }
-
+func main() {
+	log := logs.NewLogger()
+	log.SetLogger(logs.AdapterConsole)
+	log.Debug("this is a debug message")
+}
+```
 
 
-## 输出文件名和行号
+
+# 输出文件名和行号
 
 日志默认不输出调用的文件名和文件行号,如果你期望输出调用的文件名和文件行号,可以如下设置
 
@@ -78,17 +82,76 @@ sort: 3
 
 	logs.SetLogFuncCallDepth(3)
 
-## 异步输出日志
+# 异步输出日志
 
 为了提升性能, 可以设置异步输出:
 
-    logs.Async()
+  logs.Async()
 
 异步输出允许设置缓冲 chan 的大小
 
-    logs.Async(1e3)
+  logs.Async(1e3)
+  
+# 自定义日志格式
 
-## 引擎配置设置
+在一些情况下，我们可能需要自己定义自己的日志格式规范。这种时候，可以考虑通过扩展`LogFormatter`。
+
+```go
+type LogFormatter interface {
+	Format(lm *LogMsg) string
+}
+```
+`LogMsg`包含了一条日志的所有部分。需要注意的是，如果你希望输出文件名和行号，那么应该参考**输出文件名和行号**，设置对应的参数。
+
+## 例子：PatternLogFormatter
+
+该实现的设计思路，是希望能够使用类似于占位符的东西来定义一条日志应该如何输出。
+
+例子：
+```go
+
+package main
+
+import (
+	"github.com/astaxie/beego/core/logs"
+)
+
+func main() {
+
+	f := &logs.PatternLogFormatter{
+		Pattern:    "%F:%n|%w%t>> %m",
+		WhenFormat: "2006-01-02",
+	}
+	logs.RegisterFormatter("pattern", f)
+
+	_ = logs.SetGlobalFormatter("pattern")
+
+	logs.Info("hello, world")
+}
+```
+
+我们先初始化了一个`PatternLogFormatter`实例，而后注册为`pattern`。
+
+再然后我们使用`logs.SetGlobalFormatter("pattern")`设置全局所有的引擎都使用这个格式。
+
+最终我们输出日志`/beego-example/logger/formatter/pattern/main.go:31|2020-10-29[I]>> hello, world`
+
+如果我们只希望在某个特定的引擎上使用这个格式，我们可以通过初始化引擎的时候，设置：
+```go
+	_ = logs.SetLogger("console",`{"formatter": "pattern"}`)
+```
+
+`PatternLogFormatter`支持的占位符及其含义：
+- 'w' 时间
+- 'm' 消息
+- 'f' 文件名
+- 'F' 文件全路径 
+- 'n' 行数
+- 'l' 消息级别，数字表示
+- 't' 消息级别，简写，例如`[I]`代表 INFO
+- 'T' 消息级别，全称
+
+# 引擎配置设置
 
 - console
         命令行输出，默认输出到`os.Stdout`：
@@ -163,17 +226,20 @@ sort: 3
 - ElasticSearch
 
     输出到 ElasticSearch:
-
-   		logs.SetLogger(logs.AdapterEs, `{"dsn":"http://localhost:9200/","level":1}`)
+```go
+logs.SetLogger(logs.AdapterEs, `{"dsn":"http://localhost:9200/","level":1}`)
+```
 
 - 简聊
 
     输出到简聊：
-
-    	logs.SetLogger(logs.AdapterJianLiao, `{"authorname":"xxx","title":"beego", "webhookurl":"https://jianliao.com/xxx", "redirecturl":"https://jianliao.com/xxx","imageurl":"https://jianliao.com/xxx","level":1}`)
+```go
+logs.SetLogger(logs.AdapterJianLiao, `{"authorname":"xxx","title":"beego", "webhookurl":"https://jianliao.com/xxx", "redirecturl":"https://jianliao.com/xxx","imageurl":"https://jianliao.com/xxx","level":1}`)
+```
 
 - slack
 
     输出到slack:
-
-        logs.SetLogger(logs.AdapterSlack, `{"webhookurl":"https://slack.com/xxx","level":1}`)
+```go
+logs.SetLogger(logs.AdapterSlack, `{"webhookurl":"https://slack.com/xxx","level":1}`)
+```

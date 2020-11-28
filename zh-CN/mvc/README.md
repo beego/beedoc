@@ -49,4 +49,3 @@ beego 是一个典型的 MVC 框架，它的整个执行逻辑如下图所示：
 - [错误处理](controller/errors.md)
 - [静态文件处理](view/static.md)
 - [参数配置](controller/config.md)
-- [日志处理](controller/logs.md)

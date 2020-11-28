@@ -17,6 +17,8 @@ sort: 8
 
 ## 自定义表名
 
+实现接口`TableNameI`:
+
 ```go
 type User struct {
 	Id int
@@ -30,9 +32,11 @@ func (u *User) TableName() string {
 
 如果[前缀设置](orm.md#registermodelwithprefix)为 `prefix_` 那么表名为：prefix_auth_user
 
+
+
 ## 自定义索引
 
-为单个或多个字段增加索引
+实现接口`TableIndexI`，为单个或多个字段增加索引
 
 ```go
 type User struct {
@@ -58,7 +62,7 @@ func (u *User) TableUnique() [][]string {
 
 ## 自定义引擎
 
-仅支持 MySQL
+仅支持 MySQL。实现接口`TableEngineI`。
 
 默认使用的引擎，为当前数据库的默认引擎，这个是由你的 mysql 配置参数决定的。
 

@@ -218,6 +218,12 @@ beego :1.4.2
 Go    :go version go1.3.3 darwin/amd64
 ```
 
+需要注意的是，目前 `bee version` 会试图输出当前`beego`的版本。
+
+但是目前这个实现有点坑，它是通过读取`$GOPATH/src/astaxie/beego`下的文件来进行的。
+
+这意味着，如果你本地并没有下载`beego`源码，或者放置的位置不对，`bee`都无法输出`beego`的版本信息。
+
 ### `generate` 命令
 这个命令是用来自动化的生成代码的，包含了从数据库一键生成 model，还包含了 scaffold 的，通过这个命令，让大家开发代码不再慢
 

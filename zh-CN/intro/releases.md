@@ -3,6 +3,30 @@ name: 发布版本
 sort: 2
 ---
 
+# beego 2.0.0
+
+
+
+# beego 1.12.3
+
+### Feature:
+1. 健康检查可以返回 JSON 格式数据. [4055](https://github.com/astaxie/beego/pull/4055)
+2. TLS 支持`ClientAuth`选项. [4116](https://github.com/astaxie/beego/pull/4116)
+3. `orm.RawSeter`支持 `orm.Fielder`. [4191](https://github.com/astaxie/beego/pull/4191)
+4. 支持MySQL字符串敏感操作符. [4198](https://github.com/astaxie/beego/pull/4198)
+
+### Fix:
+1. 修复重连BUG logs/conn.go. [4056](https://github.com/astaxie/beego/pull/4056)
+2. 请求过大时返回403错误码. [4058](https://github.com/astaxie/beego/pull/4058)
+3. 修复Prepare Statement中的多线程竞争. [4061](https://github.com/astaxie/beego/pull/4061)
+4. 修复Session中`index out of range`错误. [4068](https://github.com/astaxie/beego/pull/4068)
+5. 修复context/input Query的并发问题. [4066](https://github.com/astaxie/beego/pull/4066)
+6. 允许使用环境变量来指定配置文件. [4111](https://github.com/astaxie/beego/pull/4111)
+7. XSRF添加 secure 和 http only 标志. [4126](https://github.com/astaxie/beego/pull/4126)
+8. 修复Windows下临时文件目录错误问题 [4244](https://github.com/astaxie/beego/pull/4244)
+9. 支持CookieSameSite选项. [4226](https://github.com/astaxie/beego/pull/4226)
+10. 减小`Prepare Statement`缓冲的大小，避免`too many statement`错误. [4261](https://github.com/astaxie/beego/pull/4261)
+
 # beego 1.12.2
 1. Fix: 热更新老进程未能退出问题 [#4005](https://github.com/astaxie/beego/pull/4005)
 2. Enhance: ORM异常退出时打印堆栈 [#3743](https://github.com/astaxie/beego/pull/3743)

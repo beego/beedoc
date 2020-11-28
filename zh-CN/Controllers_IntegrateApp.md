@@ -2,7 +2,7 @@
 
 beego 支持第三方应用的集成，用户可以自定义 `http.Handler`，用户可以通过如下方式进行注册路由：
 
-	beego.RouterHandler("/chat/:info(.*)", sockjshandler)
+	web.RouterHandler("/chat/:info(.*)", sockjshandler)
 
 sockjshandler 实现了接口 `http.Handler`。
 
@@ -13,7 +13,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/server/web"
 	"github.com/fzzy/sockjs-go/sockjs"
 	"strings"
 )
@@ -37,7 +37,7 @@ func chatHandler(s sockjs.Session) {
 }
 
 type MainController struct {
-	beego.Controller
+	web.Controller
 }
 
 func (m *MainController) Get() {
@@ -47,9 +47,9 @@ func (m *MainController) Get() {
 func main() {
 	conf := sockjs.NewConfig()
 	sockjshandler := sockjs.NewHandler("/chat", chatHandler, conf)
-	beego.Router("/", &MainController{})
-	beego.RouterHandler("/chat/:info(.*)", sockjshandler)
-	beego.Run()
+	web.Router("/", &MainController{})
+	web.RouterHandler("/chat/:info(.*)", sockjshandler)
+	web.Run()
 }
 ```
 

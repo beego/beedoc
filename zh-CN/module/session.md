@@ -5,7 +5,9 @@ sort: 1
 
 # 特别注意
 
-*这个文档是 session 独立模块，即你单独拿这个模块应用于其他应用中，如果你想在 beego 中使用 session，请查看文档[session 控制](../mvc/controller/session.md)*
+*这个文档是 session 独立模块，即你单独拿这个模块应用于其他应用中，如果你想在 beego 中使用 session，请查看文档[session 控制](/docs/mvc_controlloer_session)*
+
+例子参考[beego-example](https://github.com/beego/beego-example)下的`session`部分
 
 # session 介绍
 
@@ -15,63 +17,66 @@ session 模块参考了 `database/sql` 的引擎写法，采用了一个接口�
 
 通过下面的方式安装 session：
 
-	go get github.com/astaxie/beego/session
+	go get github.com/astaxie/beego/server/web/session
 
-## session 使用
+# session 使用
 
 首先你必须导入包：
-
-	import (
-		"github.com/astaxie/beego/session"
-	)
+```go
+import (
+	"github.com/astaxie/beego/server/web/session"
+)
+```
 
 然后你初始化一个全局的变量用来存储 session 控制器：
 
 	var globalSessions *session.Manager
 
 接着在你的入口函数中初始化数据：
-
-	func init() {
-	        sessionConfig := &session.ManagerConfig{
-		CookieName:"gosessionid", 
-		EnableSetCookie: true, 
-		Gclifetime:3600,
-		Maxlifetime: 3600, 
-		Secure: false,
-		CookieLifeTime: 3600,
-		ProviderConfig: "./tmp",
-		}
-		globalSessions, _ = session.NewManager("memory",sessionConfig)
-		go globalSessions.GC()
+```go
+func init() {
+	sessionConfig := &session.ManagerConfig{
+	CookieName:"gosessionid", 
+	EnableSetCookie: true, 
+	Gclifetime:3600,
+	Maxlifetime: 3600, 
+	Secure: false,
+	CookieLifeTime: 3600,
+	ProviderConfig: "./tmp",
 	}
+	globalSessions, _ = session.NewManager("memory",sessionConfig)
+	go globalSessions.GC()
+}
+```
 
 NewManager 函数的参数的函数如下所示
 
 1. 引擎名字，可以是 memory、file、mysql 或 redis。
 2. 一个 JSON 字符串,传入 Manager 的配置信息
-	1. cookieName: 客户端存储 cookie 的名字。
-	2. enableSetCookie,omitempty: 是否开启 SetCookie,omitempty 这个设置
-	3. gclifetime: 触发 GC 的时间。
-	4. maxLifetime: 服务器端存储的数据的过期时间
-	5. secure: 是否开启 HTTPS，在 cookie 设置的时候有 cookie.Secure 设置。
-	6. sessionIDHashFunc: sessionID 生产的函数，默认是 sha1 算法。
-	7. sessionIDHashKey: hash 算法中的 key。
-	8. cookieLifeTime: 客户端存储的 cookie 的时间，默认值是 0，即浏览器生命周期。
-	9. providerConfig: 配置信息，根据不同的引擎设置不同的配置信息，详细的配置请看下面的引擎设置
+	* cookieName: 客户端存储 cookie 的名字。
+	* enableSetCookie,omitempty: 是否开启 SetCookie,omitempty 这个设置
+	* gclifetime: 触发 GC 的时间。
+	* maxLifetime: 服务器端存储的数据的过期时间
+	* secure: 是否开启 HTTPS，在 cookie 设置的时候有 cookie.Secure 设置。
+	* sessionIDHashFunc: sessionID 生产的函数，默认是 sha1 算法。
+	* sessionIDHashKey: hash 算法中的 key。
+	* cookieLifeTime: 客户端存储的 cookie 的时间，默认值是 0，即浏览器生命周期。
+	* providerConfig: 配置信息，根据不同的引擎设置不同的配置信息，详细的配置请看下面的引擎设置
 
 最后我们的业务逻辑处理函数中可以这样调用：
-
-	func login(w http.ResponseWriter, r *http.Request) {
-		sess, _ := globalSessions.SessionStart(w, r)
-		defer sess.SessionRelease(w)
-		username := sess.Get("username")
-		if r.Method == "GET" {
-			t, _ := template.ParseFiles("login.gtpl")
-			t.Execute(w, nil)
-		} else {
-			sess.Set("username", r.Form["username"])
-		}
+```go
+func login(w http.ResponseWriter, r *http.Request) {
+	sess, _ := globalSessions.SessionStart(w, r)
+	defer sess.SessionRelease(w)
+	username := sess.Get("username")
+	if r.Method == "GET" {
+		t, _ := template.ParseFiles("login.gtpl")
+		t.Execute(w, nil)
+	} else {
+		sess.Set("username", r.Form["username"])
 	}
+}
+```
 
 globalSessions 有多个函数如下所示：
 
@@ -91,7 +96,7 @@ globalSessions 有多个函数如下所示：
 * SessionRelease()
 * Flush() error
 
-## 引擎设置
+# 引擎设置
 
 上面已经展示了 memory 的设置，接下来我们看一下其他三种引擎的设置方式：
 
@@ -104,7 +109,7 @@ globalSessions 有多个函数如下所示：
 - redis
 
 	配置文件信息如下所示，表示链接的地址，连接池，访问密码，没有保持为空：
-	> 注意：若使用redis等引擎作为session backend，请在使用前导入 < _ "github.com/astaxie/beego/session/redis" >
+	> 注意：若使用redis等引擎作为session backend，请在使用前导入 < _ "github.com/astaxie/beego/server/web/session/redis" >
 	        否则会在运行时发生错误，使用其他引擎时也是同理。
 	        
 		127.0.0.1:6379,100,astaxie
@@ -115,31 +120,37 @@ globalSessions 有多个函数如下所示：
 
 		./tmp
 
-## 如何创建自己的引擎
+# 如何创建自己的引擎
 
 在开发应用中，你可能需要实现自己的 session 引擎，beego 的这个 session 模块设计的时候就是采用了 interface，所以你可以根据接口实现任意的引擎，例如 memcache 的引擎。
 
-	type SessionStore interface {
-		Set(key, value interface{}) error //set session value
-		Get(key interface{}) interface{}  //get session value
-		Delete(key interface{}) error     //delete session value
-		SessionID() string                //back current sessionID
-		SessionRelease()                  // release the resource & save data to provider
-		Flush() error                     //delete all data
-	}
+```go
+// Store contains all data for one session process with specific id.
+type Store interface {
+	Set(ctx context.Context, key, value interface{}) error     //set session value
+	Get(ctx context.Context, key interface{}) interface{}      //get session value
+	Delete(ctx context.Context, key interface{}) error         //delete session value
+	SessionID(ctx context.Context) string                      //back current sessionID
+	SessionRelease(ctx context.Context, w http.ResponseWriter) // release the resource & save data to provider & return the data
+	Flush(ctx context.Context) error                           //delete all data
+}
 
-	type Provider interface {
-		SessionInit(maxlifetime int64, savePath string) error
-		SessionRead(sid string) (SessionStore, error)
-		SessionExist(sid string) bool
-		SessionRegenerate(oldsid, sid string) (SessionStore, error)
-		SessionDestroy(sid string) error
-		SessionAll() int //get all active session
-		SessionGC()
-	}
+// Provider contains global session methods and saved SessionStores.
+// it can operate a SessionStore by its id.
+type Provider interface {
+	SessionInit(ctx context.Context, gclifetime int64, config string) error
+	SessionRead(ctx context.Context, sid string) (Store, error)
+	SessionExist(ctx context.Context, sid string) (bool, error)
+	SessionRegenerate(ctx context.Context, oldsid, sid string) (Store, error)
+	SessionDestroy(ctx context.Context, sid string) error
+	SessionAll(ctx context.Context) int // get all active session
+	SessionGC(ctx context.Context)
+}
+```
 
 最后需要注册自己写的引擎：
-
-	func init() {
-		Register("own", ownadaper)
-	}
+```go
+func init() {
+	Register("own", ownadaper)
+}
+```

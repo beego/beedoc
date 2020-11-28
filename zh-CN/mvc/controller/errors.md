@@ -34,20 +34,20 @@ func (this *MainController) Get() {
 
 ![](../../images/401.png)
 
-beego 框架默认支持 401、403、404、500、503 这几种错误的处理。用户可以自定义相应的错误处理，例如下面重新定义 404 页面：
+web 框架默认支持 401、403、404、500、503 这几种错误的处理。用户可以自定义相应的错误处理，例如下面重新定义 404 页面：
 
 ```go
 func page_not_found(rw http.ResponseWriter, r *http.Request){
-	t,_:= template.New("404.html").ParseFiles(beego.BConfig.WebConfig.ViewsPath+"/404.html")
+	t,_:= template.New("404.html").ParseFiles(web.BConfig.WebConfig.ViewsPath+"/404.html")
 	data :=make(map[string]interface{})
 	data["content"] = "page not found"
 	t.Execute(rw, data)
 }
 
 func main() {
-	beego.ErrorHandler("404",page_not_found)
-	beego.Router("/", &controllers.MainController{})
-	beego.Run()
+	web.ErrorHandler("404",page_not_found)
+	web.Router("/", &controllers.MainController{})
+	web.Run()
 }
 ```
 
@@ -57,16 +57,16 @@ beego 更加人性化的还有一个设计就是支持用户自定义字符串�
 
 ```go
 func dbError(rw http.ResponseWriter, r *http.Request){
-	t,_:= template.New("dberror.html").ParseFiles(beego.BConfig.WebConfig.ViewsPath+"/dberror.html")
+	t,_:= template.New("dberror.html").ParseFiles(web.BConfig.WebConfig.ViewsPath+"/dberror.html")
 	data :=make(map[string]interface{})
 	data["content"] = "database is now down"
 	t.Execute(rw, data)
 }
 
 func main() {
-	beego.ErrorHandler("dbError",dbError)
-	beego.Router("/", &controllers.MainController{})
-	beego.Run()
+	web.ErrorHandler("dbError",dbError)
+	web.Router("/", &controllers.MainController{})
+	web.Run()
 }
 ```
 
@@ -75,15 +75,15 @@ func main() {
 # Controller 定义 Error
 从 1.4.3 版本开始，支持 Controller 方式定义 Error 错误处理函数，这样就可以充分利用系统自带的模板处理，以及 context 等方法。
 
-```
+```go
 package controllers
 
 import (
-	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/server/web"
 )
 
 type ErrorController struct {
-	beego.Controller
+	web.Controller
 }
 
 func (c *ErrorController) Error404() {
@@ -102,24 +102,25 @@ func (c *ErrorController) ErrorDb() {
 	c.TplName = "dberror.tpl"
 }
 ```
+
 通过上面的例子我们可以看到，所有的函数都是有一定规律的，都是 `Error` 开头，后面的名字就是我们调用 `Abort` 的名字，例如 `Error404` 函数其实调用对应的就是 `Abort("404")`
 
 
-我们就只要在 `beego.Run` 之前采用 `beego.ErrorController` 注册这个错误处理函数就可以了
+我们就只要在 `web.Run` 之前采用 `web.ErrorController` 注册这个错误处理函数就可以了
 
-```
+```go
 package main
 
 import (
 	_ "btest/routers"
 	"btest/controllers"
 
-	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/server/web"
 )
 
 func main() {
-	beego.ErrorController(&controllers.ErrorController{})
-	beego.Run()
+	web.ErrorController(&controllers.ErrorController{})
+	web.Run()
 }
 
 ```
