@@ -7,4 +7,4 @@ sort: 12
 
 1. 我的 app 需要支持多类型数据库，如何在使用 Raw SQL 的时候判断当前使用的数据库类型。
 
-使用 Ormer 的 [Driver 方法](/docs/mvc_model_orm#driver) 可以进行判断。
+使用 Ormer 的 [Driver 方法](./models.md) 可以进行判断。

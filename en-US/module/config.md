@@ -7,17 +7,45 @@ sort: 7
 
 The config module is used for parsing configuration files, inspired by `database/sql`. It supports ini, json, xml and yaml files. You can install it by:
 
-	go get github.com/astaxie/beego/config
+	go get github.com/astaxie/beego/core/config
 
 If you want to parse xml or yaml, you should first install:
 
-	go get -u github.com/astaxie/beego/config/xml
+	go get -u github.com/astaxie/beego/core/config/xml
 
 and then import:
 
-	import _ "github.com/astaxie/beego/config/xml"
+	import _ "github.com/astaxie/beego/core/config/xml"
+	
+# Remote configure middleware
 
-## Basic Usage
+Now we support `etcd` as the implementation.
+
+# Usage
+
+## Using package 
+
+In v2.x, Beego create a `globalInstance`, so that users could use `config` module directly.
+
+```go
+val, err := config.String("mykey")
+```
+
+Beego use `ini` implementation and loads config from `config/app.conf`.
+
+If the file not found or got some error, Beego outputs some warning log.
+
+Or you can initialize the `globalInstance` by:
+
+```go
+_ import "github.com/astaxie/beego/core/config/toml"
+err := InitGlobalInstance("toml", "some config")
+// ...
+val, err := config.String("mykey")
+// ...
+```
+
+## Create instance manually 
 
 Initialize a parser object:
 
@@ -33,26 +61,50 @@ Get data from parser:
 ### Parser methods
 
 Here are the parser's methods:
+```go
+// Configer defines how to get and set value from configuration raw data.
+type Configer interface {
+	// support section::key type in given key when using ini type.
+	Set(key, val string) error
 
-* **Setting values:**
-	* `Set(key, val string) error`
-	* `SaveConfigFile(filename string) error`
-* **Getting values:**
-	* `String(key string) string`
-	* `Strings(key string) []string`
-	* `Int(key string) (int, error)`
-	* `Int64(key string) (int64, error)`
-	* `Bool(key string) (bool, error)`
-	* `Float(key string) (float64, error)`
-	* `DIY(key string) (interface{}, error)`
-	* `GetSection(section string) (map[string]string, error)`
-* **Getting values or a default value:**
-	* `DefaultString(key string, defaultval string) string`
-	* `DefaultStrings(key string, defaultval []string) []string`
-	* `DefaultInt(key string, defaultval int) int`
-	* `DefaultInt64(key string, defaultval int64) int64`
-	* `DefaultBool(key string, defaultval bool) bool`
-	* `DefaultFloat(key string, defaultval float64) float64`
+	// support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
+	String(key string) (string, error)
+	// get string slice
+	Strings(key string) ([]string, error)
+	Int(key string) (int, error)
+	Int64(key string) (int64, error)
+	Bool(key string) (bool, error)
+	Float(key string) (float64, error)
+	// support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
+	DefaultString(key string, defaultVal string) string
+	// get string slice
+	DefaultStrings(key string, defaultVal []string) []string
+	DefaultInt(key string, defaultVal int) int
+	DefaultInt64(key string, defaultVal int64) int64
+	DefaultBool(key string, defaultVal bool) bool
+	DefaultFloat(key string, defaultVal float64) float64
+
+	// DIY return the original value
+	DIY(key string) (interface{}, error)
+
+	GetSection(section string) (map[string]string, error)
+
+	Unmarshaler(prefix string, obj interface{}, opt ...DecodeOption) error
+	Sub(key string) (Configer, error)
+	OnChange(key string, fn func(value string))
+	SaveConfigFile(filename string) error
+}
+```
+
+Notice:
+1. All `Default*` methods, default value will be returned if key not found or go some error;
+2. `DIY` returns original value. When you want to use this method, you should be care of value's type. 
+3. `GetSection` returns all configure items under the `section`. `section` has different meaning in different implementation.
+4. `Unmarshaler` try to decode the configs to `obj`. And the parameter `prefix` is similar with `section`.
+5. `Sub` is similar to `GetSection`, but `Sub` will wrap result as an `Configer` instance.
+6. `Onchange` is used to listen change event. But most of file-based implementations don't support this method.
+7. `SaveConfigFile` output configs to a file.
+8. Some implementation support key like `a.b.c.d`, but not all implementations support it and not all of them use `.` as separator. 
 
 ### Configuration sections
 

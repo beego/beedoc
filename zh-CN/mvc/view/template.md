@@ -92,4 +92,4 @@ web.AddFuncMap("hi",hello)
      
         {{urlfor "TestController.List"}}
         
-    [详见](/docs/mvc_controlloer_urlbuilding#模板中如何使用)
+    [详见](../controller/urlbuilding.md#模板中如何使用)

@@ -12,11 +12,11 @@ Beego uses Go's built-in package `html/template` as the template parser.  Upon s
 
 The default template directory for Beego is `views`. Template files can be put into this directory and Beego will parse and cache them automatically. However if the development mode is enabled, Beego parses templates every time without caching. Beego can only have one template directory which can be customized:
 
-	beego.BConfig.WebConfig.ViewsPath = "myviewpath"
+	web.BConfig.WebConfig.ViewsPath = "myviewpath"
 
 You can add alternative template directories by calling 
 	
-	beego.AddViewPath("moreViews")
+	web.AddViewPath("moreViews")
 	
 This will parse and cache template files in this directory and allow you to use them by setting ViewPath on a Controller:
 
@@ -34,7 +34,7 @@ In configuration file:
 
 In main.go:
 
-	beego.BConfig.WebConfig.AutoRender = false
+	web.BConfig.WebConfig.AutoRender = false
 
 ## Template Tags
 
@@ -47,8 +47,8 @@ In configuration file:
 
 Or, add these to the main.go:
 
-	beego.BConfig.WebConfig.TemplateLeft = "<<<"
-	beego.BConfig.WebConfig.TemplateRight = ">>>"
+	web.BConfig.WebConfig.TemplateLeft = "<<<"
+	web.BConfig.WebConfig.TemplateRight = ">>>"
 
 ## Template Data
 
@@ -206,7 +206,7 @@ Here is the logic in the Controller:
 
 ```go
 type BlogsController struct {
-    beego.Controller
+    web.Controller
 }
 
 func (this *BlogsController) Get() {

@@ -56,3 +56,80 @@ sample figure to show you how our branches work:
 ![](../images/git-branch-1.png)
 
 For more information about the branching model: http://nvie.com/posts/a-successful-git-branching-model/
+
+
+## A simple guideline for Git command
+
+You must have a github account, if not, please register one.
+
+### 1.4.1 Fork 代码
+
+1. Click [https://github.com/astaxie/beego](https://github.com/astaxie/beego)
+2. Click "Fork" button which is on top right corner 
+
+### 1.4.2 Clone 代码
+
+We recommend using official repo as `origin` repo, and then add a remote upstream to your repo. 
+
+If you already set SSH key, we recommend use SSH. The difference is that, we don't need to input the username and password to push changes.
+
+Using SSH：
+
+```bash
+git clone git@github.com:astaxie/beego.git
+cd beego
+git remote add upstream 'git@github.com:<your github username>/beego.git'
+```
+
+Using HTTPS：
+
+```bash
+git clone https://github.com/astaxie/beego.git
+cd beego
+git remote add  'https://github.com/<you github username>/beego.git'
+```
+
+The word `upstream` in command could be replaced with any word you like.
+
+### 1.4.3 fetch changes
+
+Every time you want to something, you'd better fetch remote changes: 
+
+```bash
+git fetch
+```
+
+In this command, git only fetch `origin` repo。
+
+If we want to fetch our remote repo changes:
+
+```bash
+git fetch upstream
+```
+
+You can replace `upstream` with your repo name
+
+### 1.4.4 create feature branch
+
+我们在创建新的 feature 分支的时候，要先考虑清楚，从哪个分支切出来。
+Before creating feature branch, we should think about choosing a branch as base branch.
+
+Assume that we want to merge the new feature to develop branch. In such case:
+
+```bash
+git checkout -b feature/my-feature origin/develop
+```
+
+Don't forget to run `git fetch` before you create feature branch.
+
+### 1.4.5 push commit
+
+```bash
+git add .
+git commit
+git push upstream my-feature
+```
+
+### 1.4.6 make PR
+
+Go to [https://github.com/astaxie/beego](https://github.com/astaxie/beego), and make a Pull request

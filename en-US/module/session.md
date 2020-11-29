@@ -15,14 +15,14 @@ It is inspired by `database/sql`, which means: one interface, multiple implement
 
 Install session module:
 
-	go get github.com/astaxie/beego/session
+	go get github.com/astaxie/beego/server/web/session
 
 ## Basic Usage:
 
 Import package first:
 
 	import (
-		"github.com/astaxie/beego/session"
+		"github.com/astaxie/beego/server/web/session"
 	)
 
 Then initialize a global variable as the session manager:
@@ -110,26 +110,29 @@ We've already seen configuration of `memory` provider. Here is the configuration
 
 Sometimes you need to create your own session provider. The Session module uses interfaces, so you can implement this interface to create your own provider easily.
 
+```go
+// Store contains all data for one session process with specific id.
+type Store interface {
+	Set(ctx context.Context, key, value interface{}) error     //set session value
+	Get(ctx context.Context, key interface{}) interface{}      //get session value
+	Delete(ctx context.Context, key interface{}) error         //delete session value
+	SessionID(ctx context.Context) string                      //back current sessionID
+	SessionRelease(ctx context.Context, w http.ResponseWriter) // release the resource & save data to provider & return the data
+	Flush(ctx context.Context) error                           //delete all data
+}
 
-	// SessionStore contains all data for one session process with specific id.
-	type SessionStore interface {
-		Set(key, value interface{}) error     // Set session value
-		Get(key interface{}) interface{}      // Get session value
-		Delete(key interface{}) error         // Delete session value
-		SessionID() string                    // Get current session ID
-		SessionRelease(w http.ResponseWriter) // Release the resource & save data to provider & return the data
-		Flush() error                         // Delete all data
-	}
-
-	type Provider interface {
-		SessionInit(maxlifetime int64, savePath string) error
-		SessionRead(sid string) (SessionStore, error)
-		SessionExist(sid string) bool
-		SessionRegenerate(oldsid, sid string) (SessionStore, error)
-		SessionDestroy(sid string) error
-		SessionAll() int // Get all active session
-		SessionGC()
-	}
+// Provider contains global session methods and saved SessionStores.
+// it can operate a SessionStore by its id.
+type Provider interface {
+	SessionInit(ctx context.Context, gclifetime int64, config string) error
+	SessionRead(ctx context.Context, sid string) (Store, error)
+	SessionExist(ctx context.Context, sid string) (bool, error)
+	SessionRegenerate(ctx context.Context, oldsid, sid string) (Store, error)
+	SessionDestroy(ctx context.Context, sid string) error
+	SessionAll(ctx context.Context) int // get all active session
+	SessionGC(ctx context.Context)
+}
+```
 
 Finally, register your provider:
 

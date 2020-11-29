@@ -284,6 +284,37 @@ qs.OrderBy("-profile__age", "profile")
 // ORDER BY profile.age DESC, profile_id ASC
 ```
 
+### ForceIndex
+
+Forcing DB to use the index.
+
+You need to check your DB whether it support this feature.
+
+```go
+qs.ForceIndex(`idx_name1`,`idx_name2`)
+```
+
+### UseIndex
+
+Suggest DB to user the index.
+
+You need to check your DB whether it support this feature.
+
+```go
+qs.UseIndex(`idx_name1`,`idx_name2`)
+```
+
+### IgnoreIndex
+
+Make DB ignore the index
+
+You need to check your DB whether it support this feature.
+
+```go
+qs.IgnoreIndex(`idx_name1`,`idx_name2`)
+```
+
+
 ### Distinct
 	
 Same as `distinct` statement in sql, return only distinct (different) values

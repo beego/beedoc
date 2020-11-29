@@ -2,7 +2,7 @@
 
 Beego supports to integrate third-party application, you can customize `http.Handler` as follows:
 
-	beego.Handler("/chat/:info(.*)", sockjs.NewHandler("/chat", opt, YouHandlerFunc))
+	web.Handler("/chat/:info(.*)", sockjs.NewHandler("/chat", opt, YouHandlerFunc))
 
 sockjshandler implemented interface `http.Handler`.
 
@@ -51,7 +51,7 @@ func LiveUpdate(session sockjs.Session) {
 }
 
 type MainController struct {
-	beego.Controller
+	web.Controller
 }
 
 func (m *MainController) Get() {
@@ -59,9 +59,9 @@ func (m *MainController) Get() {
 }
 
 func main() {
-	beego.Router("/", &MainController{})
-	beego.Handler("/chat/:info(.*)", sockjs.NewHandler("/chat", sockjs.DefaultOptions, YouHandlerFunc))
-	beego.Run()
+	web.Router("/", &MainController{})
+	web.Handler("/chat/:info(.*)", sockjs.NewHandler("/chat", sockjs.DefaultOptions, YouHandlerFunc))
+	web.Run()
 }
 ```
 JS code:

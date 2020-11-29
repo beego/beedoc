@@ -7,7 +7,7 @@ sort: 2
 
 Beego's cache module is used for caching data, inspired by `database/sql`. It supports four cache providers: file, memcache, memory and redis. You can install it by:
 
-	go get github.com/astaxie/beego/client/cache
+	github.com/astaxie/beego/client/cache
 
 If you use the `memcache` or `redis` provider, you should first install:
 

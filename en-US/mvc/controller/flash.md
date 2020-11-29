@@ -10,7 +10,7 @@ Flash messages are not related to Adobe/Macromedia Flash. They are temporary mes
 ```go
 // Display settings message
 func (c *MainController) Get() {
-    flash := beego.ReadFromRequest(&c.Controller)
+    flash := web.ReadFromRequest(&c.Controller)
     if n, ok := flash.Data["notice"]; ok {
         // Display settings successful
         c.TplNames = "set_success.html"
@@ -26,7 +26,7 @@ func (c *MainController) Get() {
 
 // Process settings messages
 func (c *MainController) Post() {
-    flash := beego.NewFlash()
+    flash := web.NewFlash()
     setting := Settings{}
     valid := Validation{}
     c.ParseForm(&setting)

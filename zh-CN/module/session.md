@@ -5,7 +5,7 @@ sort: 1
 
 # 特别注意
 
-*这个文档是 session 独立模块，即你单独拿这个模块应用于其他应用中，如果你想在 beego 中使用 session，请查看文档[session 控制](/docs/mvc_controlloer_session)*
+*这个文档是 session 独立模块，即你单独拿这个模块应用于其他应用中，如果你想在 beego 中使用 session，请查看文档[session 控制](/zh-CN/mvc/controller/session.md)*
 
 例子参考[beego-example](https://github.com/beego/beego-example)下的`session`部分
 

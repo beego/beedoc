@@ -3,6 +3,8 @@ name: Release Notes
 sort: 2
 ---
 
+# beego 1.12.3
+
 ### Feature:
 1. Allow Healthcheck endpoint return JSON for Kubernetes. [4055](https://github.com/astaxie/beego/pull/4055)
 2. Support `ClientAuth` for TLS. [4116](https://github.com/astaxie/beego/pull/4116)

@@ -11,11 +11,11 @@ The previous section covered user requests to controllers. This section will exp
 package controllers
 
 import (
-        "github.com/astaxie/beego"
+        "github.com/astaxie/beego/server/web"
 )
 
 type MainController struct {
-        beego.Controller
+        web.Controller
 }
 
 func (this *MainController) Get() {
@@ -29,9 +29,9 @@ The following is a breakdown of the different sections of this code.
 
 ## How Beego dispatches requests
 
-The `MainController` is the first thing created. It contains an anonymous struct field of type `beego.Controller`. This is called struct embedding and is the way that Go mimics inheritance. Because of this `MainController` automatically acquires all the methods of `beego.Controller`.
+The `MainController` is the first thing created. It contains an anonymous struct field of type `web.Controller`. This is called struct embedding and is the way that Go mimics inheritance. Because of this `MainController` automatically acquires all the methods of `web.Controller`.
 
-`beego.Controller` has several functions such as `Init`, `Prepare`, `Post`, `Get`, `Delete` and `Head`. These functions can be overwritten by implementing them. In this example the `Get` method was overwritten.
+`web.Controller` has several functions such as `Init`, `Prepare`, `Post`, `Get`, `Delete` and `Head`. These functions can be overwritten by implementing them. In this example the `Get` method was overwritten.
 
 We talked about the fact that Beego is a RESTful framework so our requests will run the related `req.Method` method by default. For example, if the browser sends a `GET` request, it will execute the `Get` method in `MainController`. Therefore the `Get` method and the logic we defined above will be executed.
 
@@ -41,6 +41,6 @@ The logic of the `Get` method only outputs data. This data will be stored in `th
 
 Finally the template will be rendered. `this.TplNames` (v1.6 uses `this.TplName`) specifies the template which will be rendered. In this case it is `index.tpl`.  If a template is not set it will default to `controller/method_name.tpl`. For example, in this case it would try to find `maincontroller/get.tpl`.
 
-There is no need to render manually.  Beego will call the `Render` function (which is implemented in `beego.Controller`) automatically if it is set up in the template.
+There is no need to render manually.  Beego will call the `Render` function (which is implemented in `web.Controller`) automatically if it is set up in the template.
 
 Check the controller section in the [MVC Introduction](../mvc/) to learn more about these functions. [The next section](model.md) will describe model writing.
