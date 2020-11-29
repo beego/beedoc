@@ -3,7 +3,7 @@ name: Response formats
 sort: 8
 ---
 
-# JSON, XML and JSONP
+# JSON, XML, JSONP and YAML
 
 Beego is also designed for the creation of API applications. When we build an API application, we often need to respond with JSON or XML. Beego provides a simple approach:
 

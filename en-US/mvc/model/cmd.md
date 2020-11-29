@@ -60,6 +60,7 @@ if err != nil {
 
 Even if you do not enable `force` mode, ORM also will auto-add new fields and indexes, but you have to deal with delete operations yourself.
 
+
 ## Print SQL Statements
 
 ```bash

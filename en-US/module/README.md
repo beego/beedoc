@@ -13,7 +13,8 @@ Beego is evolving to a "LEGO model" which means becoming a modular system. Each 
 - [Logs Module](./logs.md)
 - [Httplib Module](./httplib.md)
 - [Context Module](./context.md)
-- [Toolbox Module](./toolbox.md)
+- [Task Module](./task.md)
+- [Governor Module](./governor.md)
 - [Config Module](./config.md)
 
 There are also these independent modules, which are available in separate repositories:

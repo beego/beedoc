@@ -5,14 +5,14 @@ sort: 2
 
 # Template Functions
 
-Beego supports custom template functions but it must be set as below before `beego.Run()`:
+Beego supports custom template functions but it must be set as below before `web.Run()`:
 
 	func hello(in string)(out string){
 		out = in + "world"
 		return
 	}
 	
-	beego.AddFuncMap("hi",hello)
+	web.AddFuncMap("hi",hello)
 
 Then you can use these functions in template:
 

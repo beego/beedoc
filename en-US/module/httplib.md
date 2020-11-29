@@ -7,14 +7,14 @@ sort: 4
 
 Similar to Curl, httplib is used to simulate http requests sent by clients. Similar to jQuery, it supports method chaining. It's easy to use and it can be installed by:
 
-	go get github.com/astaxie/beego/httplib
+	go get github.com/astaxie/beego/client/httplib
 
 ## Basic Usage
 
 Import package:
 
 	import (
-		"github.com/astaxie/beego/httplib"
+		"github.com/astaxie/beego/client/httplib"
 	)	
 
 Initialize request method and url:
@@ -134,3 +134,97 @@ The settings above are before sending request, how can we get response after req
 |`req.ToFile(filename string)`   |`error`                  |Save response body into a file.                            |
 |`req.ToJSON(result interface{})`|`error`                  |Parse JSON response into the result object.                |
 |`req.ToXml(result interface{})` |`error`                  |Parse XML response into the result object.                 |
+
+
+# Filter
+
+In order to support some AOP feature, e.g. logs, tracing, we designed `filter-chain` for httplib.
+
+There are two key interfaces:
+
+```go
+type FilterChain func(next Filter) Filter
+
+type Filter func(ctx context.Context, req *BeegoHTTPRequest) (*http.Response, error)
+```
+
+This is a typical usage of `Filter-Chain` pattern. So you must invoke `next(...)` when you want to implement your own logic.
+
+Here is an example：
+```go
+func myFilter(next httplib.Filter) httplib.Filter {
+	return func(ctx context.Context, req *httplib.BeegoHTTPRequest) (*http.Response, error) {
+		r := req.GetRequest()
+		logs.Info("hello, here is the filter: ", r.URL)
+		// Never forget invoke this. Or the request will not be sent
+		return next(ctx, req)
+	}
+}
+```
+
+And we could register this filter as global filter:
+```go
+	httplib.SetDefaultSetting(httplib.BeegoHTTPSettings{
+
+		FilterChains: []httplib.FilterChain{
+			myFilter,
+		},
+
+		UserAgent:        "beegoServer",
+		ConnectTimeout:   60 * time.Second,
+		ReadWriteTimeout: 60 * time.Second,
+		Gzip:             true,
+		DumpBody:         true,
+	})
+```
+
+Sometimes you only want to use the filter for specific requests:
+
+```go
+req.AddFilters(myFilter)
+```
+
+We provide some filters.
+
+## Prometheus Filter
+
+It's used to support `Prometheus` framework to collect metric data.
+
+```go
+	builder := prometheus.FilterChainBuilder{
+		AppName: "My-test",
+		ServerName: "User-server-1",
+		RunMode: "dev",
+	}
+	req := httplib.Get("http://beego.me/")
+	// only work for this request, or using SetDefaultSetting to support all requests
+	req.AddFilters(builder.FilterChain)
+
+	resp, err := req.Response()
+	if err != nil {
+		logs.Error("could not get response: ", err)
+	} else {
+		logs.Info(resp)
+	}
+```
+
+If you don't use Beego's admin service, you must expose `prometheus` port manually.
+
+
+## Opentracing Filter
+
+```go
+	builder := opentracing.FilterChainBuilder{}
+	req := httplib.Get("http://beego.me/")
+	// only work for this request, or using SetDefaultSetting to support all requests
+	req.AddFilters(builder.FilterChain)
+
+	resp, err := req.Response()
+	if err != nil {
+		logs.Error("could not get response: ", err)
+	} else {
+		logs.Info(resp)
+	}
+```
+
+Don't forget to register `Opentracing` real implementation.

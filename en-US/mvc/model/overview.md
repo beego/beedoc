@@ -5,7 +5,7 @@ sort: 1
 
 # Models － Beego ORM
 
-[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego/orm)
+[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego/client/orm)
 
 Beego ORM is a powerful ORM framework written in Go. It is inspired by Django ORM and SQLAlchemy.
 
@@ -32,39 +32,7 @@ You can learn more in this documentation.
 
 **Install ORM:**
 
-	go get github.com/astaxie/beego/orm
-
-## Change log
-
-* 2016-01-18: [Renamed the drivers name](orm.md#RegisterDriver)
-* 2014-03-10: [GetDB](orm.md#getdb) Get *sql.DB from registered databases. [ResetModelCache](orm.md#resetmodelcache) reset registered models.
-* 2014-02-10: beego1.1.0 Change log
-  - About [Timezone](orm.md#时区设置)
-
-  - Add api:
-  Ormer.[InsertMulti](object.md#insertmulti)
-  Ormer.[ReadOrCreate](object.md#readorcreate)
-  RawSeter.[RowsToMap](rawsql.md#rowstomap)
-  RawSeter.[RowsToStruct](rawsql.md#rowstostruct)
-  orm.[NewOrmWithDB](orm.md#newormwithdb)
-
-  - Modify api:
-  RawSeter.[Values](rawsql.md#values) support set columns
-  RawSeter.[ValuesList](rawsql.md#valueslist) support set columns
-  RawSeter.[ValuesFlat](rawsql.md#valuesflat) support set column
-  RawSeter.[QueryRow/QueryRows](rawsql.md#queryrow) changed to map struct field with column name（don't need order by field index）
-
-* 2013-10-14: [Load Related Fields](query.md#load-related-field), [Handling ManyToMany Relation](query.md#handling-manytomany-relation), improved [Relational Queries](query.md#relational-query)
-* 2013-10-09: [Atom operation updating](query.md#update)
-* 2013-09-22: [RegisterDataBase](orm.md#registerdatabase) maxIdle and maxConn are changed to optional params, MySQL [Custom engine](models.md#custom-engine)
-* 2013-09-16: Supports maxIdle and maxConn  [SetMaxIdleConns](orm.md#setmaxidleconns) / [SetMaxOpenConns](orm.md#SetMaxOpenConns)
-* 2013-09-12: [Read](object.md#read) Supports condition fields [Update](object.md#update) / [All](query.md#all) / [One](query.md#one) Supports setting return fields
-* 2013-09-09: Raw SQL [QueryRow/QueryRows](rawsql.md#queryrow)
-* 2013-08-27: Improved [Table auto generating](cmd.md#table-auto-generating)
-* 2013-08-19: Finished [Table auto generating](cmd.md#table-auto-generating)
-* 2013-08-13: Updated database type tests
-* 2013-08-13: Updated Go type support. E.g.: int8, uint8, byte and rune etc
-* 2013-08-13: Improved timezone support for date and datetime
+	go get github.com/astaxie/beego/client/orm
 
 ## Quickstart
 
@@ -75,7 +43,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/client/orm"
 	_ "github.com/go-sql-driver/mysql" // import your required driver
 )
 

@@ -235,6 +235,17 @@ Or it can be set manualy in the configuration file:
 
 	maxmemory = 1<<22
 
+In v2.x, there is another parameter `MaxUploadSize` used to limit the max size of uploading files.
+
+If you upload multiple files in one request, it limits the sum size of those files. 
+
+Usually, `MaxMemory` should be less thant `MaxUploadSize`:
+
+1. if file size < `MaxMemory`, handling file in memory;
+2. `MaxMemory` < file size < `MaxUploadSize`, handling file by using temporary directory.
+3. file size > `MaxUploadSize`, return 413;
+
+
 Beego provides two functions to handle file uploads:
 
 - GetFile(key string) (multipart.File, *multipart.FileHeader, error)
@@ -260,20 +271,20 @@ Data bind lets the user bind the request data to a variable, the request url as 
 
 ```go
 var id int
-ctx.Input.Bind(&id, "id")  //id ==123
+ctx.Input.Bind(&id, "id")  // id ==123
 
 var isok bool
-ctx.Input.Bind(&isok, "isok")  //isok ==true
+ctx.Input.Bind(&isok, "isok")  // isok ==true
 
 var ft float64
-ctx.Input.Bind(&ft, "ft")  //ft ==1.2
+ctx.Input.Bind(&ft, "ft")  // ft ==1.2
 
 ol := make([]int, 0, 2)
-ctx.Input.Bind(&ol, "ol")  //ol ==[1 2]
+ctx.Input.Bind(&ol, "ol")  // ol ==[1 2]
 
 ul := make([]string, 0, 2)
-ctx.Input.Bind(&ul, "ul")  //ul ==[str array]
+ctx.Input.Bind(&ul, "ul")  // ul ==[str array]
 
 user struct{Name}
-ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
+ctx.Input.Bind(&user, "user")  // user =={Name:"astaxie"}
 ```

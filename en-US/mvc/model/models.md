@@ -19,6 +19,8 @@ In other words, all is converted to lower case and `_` is the separator. Every u
 
 ## Custom table name
 
+Using `TableNameI` interface:
+
 ```go
 type User struct {
 	Id int
@@ -33,6 +35,8 @@ func (u *User) TableName() string {
 If you set [prefix](orm.md#registermodelwithprefix) to `prefix_`, the table name will be `prefix_auth_user`.
 
 ## Custom index
+
+Using `TableIndexI` interface:
 
 Add index to one or more fields:
 
@@ -63,7 +67,7 @@ Only supports MySQL database
 
 The default engine is the default engine of the current database engine of your mysql settings.
 
-You can set `TableEngine` function in the model to choose the engine you want to use.
+Using `TableEngineI` interface:
 
 ```go
 type User struct {

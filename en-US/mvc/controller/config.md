@@ -291,6 +291,12 @@ func parseConfig(appConfigPath string) (err error) {
 
 	`beego.BConfig.WebConfig.XSRFExpire = 0`
 
+* CommentRouterPath
+
+    Beego scan `CommentRouterPath` to auto generate router, the default value is `controllers`。
+    `beego.BConfig.WebConfig.CommentRouterPath = "controllers"`
+
+
 #### HTTP Server config
 
 * Graceful

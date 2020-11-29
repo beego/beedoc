@@ -13,7 +13,7 @@ Beego supports a RESTful function router. This basic router includes the URI and
 ### GET router
 
 ```
-beego.Get("/",func(ctx *context.Context){
+web.Get("/",func(ctx *context.Context){
      ctx.Output.Body([]byte("hello world"))
 })
 ```
@@ -21,7 +21,7 @@ beego.Get("/",func(ctx *context.Context){
 ### POST router
 
 ```
-beego.Post("/alice",func(ctx *context.Context){
+web.Post("/alice",func(ctx *context.Context){
      ctx.Output.Body([]byte("bob"))
 })
 ```
@@ -29,29 +29,29 @@ beego.Post("/alice",func(ctx *context.Context){
 ### support all HTTP routers
 
 ```
-beego.Any("/foo",func(ctx *context.Context){
+web.Any("/foo",func(ctx *context.Context){
      ctx.Output.Body([]byte("bar"))
 })
 ```
 
 ### all the functions
 
-* beego.Get(router, beego.FilterFunc)
-* beego.Post(router, beego.FilterFunc)
-* beego.Put(router, beego.FilterFunc)
-* beego.Head(router, beego.FilterFunc)
-* beego.Options(router, beego.FilterFunc)
-* beego.Delete(router, beego.FilterFunc)
-* beego.Any(router, beego.FilterFunc)
+* web.Get(router, web.FilterFunc)
+* web.Post(router, web.FilterFunc)
+* web.Put(router, web.FilterFunc)
+* web.Head(router, web.FilterFunc)
+* web.Options(router, web.FilterFunc)
+* web.Delete(router, web.FilterFunc)
+* web.Any(router, web.FilterFunc)
 
 ### Handler register
-In cases where packages such as `net/http` are already implemented in a system they can be integrated into the Beego API or web system by following this procedure:
+In cases where packages such as `net/http` are already implemented in a system they can be integrated into the web API or web system by following this procedure:
 
 ```
 s := rpc.NewServer()
 s.RegisterCodec(json.NewCodec(), "application/json")
 s.RegisterService(new(HelloService), "")
-beego.Handler("/rpc", s)
+web.Handler("/rpc", s)
 ```
 
 `beego.Handler(router, http.Handler)` the first parameter represents the URI, and the second parameter represents `http.Handler`. When this is registered all requests to `/rpc` will call `http.Handler`.
@@ -66,10 +66,10 @@ RESTful is a popular approach to API development that Beego supports implicitly,
 
 A fixed router is a full matching router, such as:
 
-	beego.Router("/", &controllers.MainController{})
-	beego.Router("/admin", &admin.UserController{})
-	beego.Router("/admin/index", &admin.ArticleController{})
-	beego.Router("/admin/addpkg", &admin.AddController{})
+	web.Router("/", &controllers.MainController{})
+	web.Router("/admin", &admin.UserController{})
+	web.Router("/admin/index", &admin.ArticleController{})
+	web.Router("/admin/addpkg", &admin.AddController{})
 
 The fixed routers above are typical RESTful routers in their most common configuration, with one fixed router and one controller. This results in the execution of a different method based on each request method.
 
@@ -77,37 +77,37 @@ The fixed routers above are typical RESTful routers in their most common configu
 
 To simplify router configuration, Beego uses the router implementation approach found in Sinatra to support many router types.
 
-- beego.Router("/api/?:id", &controllers.RController{})
+- web.Router("/api/?:id", &controllers.RController{})
 
   *default matching* /api/123    :id = 123  *can match* /api/
 
-- beego.Router("/api/:id", &controllers.RController{})
+- web.Router("/api/:id", &controllers.RController{})
 
   *default matching* /api/123    :id = 123  *can't match* /api/
 
-- beego.Router("/api/:id([0-9]+)", &controllers.RController{})
+- web.Router("/api/:id([0-9]+)", &controllers.RController{})
 
   *Customized regex matching* /api/123 :id = 123
 
-- beego.Router("/user/:username([\w]+)", &controllers.RController{})
+- web.Router("/user/:username([\w]+)", &controllers.RController{})
 
   *Regex string matching* /user/astaxie :username = astaxie
 
-- beego.Router("/download/\*.\*", &controllers.RController{})
+- web.Router("/download/\*.\*", &controllers.RController{})
 
   *matching* /download/file/api.xml :path= file/api :ext=xml
 
-- beego.Router("/download/ceshi/*", &controllers.RController{})
+- web.Router("/download/ceshi/*", &controllers.RController{})
 
   *full matching* /download/ceshi/file/api.json :splat=file/api.json
 
-- beego.Router("/:id:int", &controllers.RController{})
+- web.Router("/:id:int", &controllers.RController{})
 
-  *int type matching* :id is int type. Beego implements ([0-9]+) for you
+  *int type matching* :id is int type. web implements ([0-9]+) for you
 
-- beego.Router("/:hello:string", &controllers.RController{})
+- web.Router("/:hello:string", &controllers.RController{})
 
-  *string type matching* :hello is string type. Beego implements ([\w]+) for you
+  *string type matching* :hello is string type. web implements ([\w]+) for you
 
 - beego.Router("/cms_:id([0-9]+).html", &controllers.CmsController{})
 
@@ -125,7 +125,7 @@ The variables can be accessed in the controller like this:
 
 The examples above use default method names, where the request method name is same as the controller method name.  For example as `GET` request executes `Get` method and `POST` request executes `Post` method.  Different controller method names can be set like this:
 
-	beego.Router("/",&IndexController{},"*:Index")
+	web.Router("/",&IndexController{},"*:Index")
 
 Use the third parameter which is the method you want to call in the controller. Here are some rules:
 
@@ -136,18 +136,18 @@ Use the third parameter which is the method you want to call in the controller. 
 
 Below are some examples of RESTful design:
 
-	beego.Router("/api/list",&RestController{},"*:ListFood")
-	beego.Router("/api/create",&RestController{},"post:CreateFood")
-	beego.Router("/api/update",&RestController{},"put:UpdateFood")
-	beego.Router("/api/delete",&RestController{},"delete:DeleteFood")
+	web.Router("/api/list",&RestController{},"*:ListFood")
+	web.Router("/api/create",&RestController{},"post:CreateFood")
+	web.Router("/api/update",&RestController{},"put:UpdateFood")
+	web.Router("/api/delete",&RestController{},"delete:DeleteFood")
 
 Below is an example of multiple HTTP methods mapping to the same controller method:
 
-	beego.Router("/api",&RestController{},"get,post:ApiFunc")
+	web.Router("/api",&RestController{},"get,post:ApiFunc")
 
 Below is an example of different HTTP methods mapping to different controller methods. `;` as the separator:
 
-	beego.Router("/simple",&SimpleController{},"get:GetFunc;post:PostFunc")
+	web.Router("/simple",&SimpleController{},"get:GetFunc;post:PostFunc")
 
 Below are the acceptable HTTP methods:
 
@@ -162,17 +162,17 @@ Below are the acceptable HTTP methods:
 
 If * and other HTTP methods are used together the HTTP method will be executed first. For example:
 
-	beego.Router("/simple",&SimpleController{},"*:AllFunc;post:PostFunc")
+	web.Router("/simple",&SimpleController{},"*:AllFunc;post:PostFunc")
 
 The `PostFunc` rather than the `AllFunc` will be executed for POST requests.
 
-The router of custom methods does not support RESTful behaviour by default which means if you set the router like `beego.Router("/api",&RestController{},"post:ApiFunc")` and the request method is `POST` then the `Post` method won't be executed by default.
+The router of custom methods does not support RESTful behaviour by default which means if you set the router like `web.Router("/api",&RestController{},"post:ApiFunc")` and the request method is `POST` then the `Post` method won't be executed by default.
 
 ## Auto matching
 
 To use auto matching the controller must be registered as an auto-router.
 
-	beego.AutoRouter(&controllers.ObjectController{})
+	web.AutoRouter(&controllers.ObjectController{})
 
 Beego will retrieve all the methods in that controller by reflection. The related methods can be called like this:
 
@@ -200,7 +200,7 @@ Not all routers need to be registered inside `router.go`. Only the controller ne
 ```
 // CMS API
 type CMSController struct {
-    beego.Controller
+    web.Controller
 }
 
 func (c *CMSController) URLMapping() {
@@ -220,7 +220,7 @@ func (this *CMSController) AllBlock() {
 
 The routers can then be registered in `router.go`
 
-    beego.Include(&CMSController{})
+    web.Include(&CMSController{})
 
 Beego will parse the source code automatically when under dev mode.
 
@@ -231,8 +231,8 @@ The following routers will be supported:
 
 This is exactly same as registering by Router functions:
 
-    beego.Router("/staticblock/:key", &CMSController{}, "get:StaticBlock")
-    beego.Router("/all/:key", &CMSController{}, "get:AllBlock")
+    web.Router("/staticblock/:key", &CMSController{}, "get:StaticBlock")
+    web.Router("/all/:key", &CMSController{}, "get:AllBlock")
 
 If you do not use `URLMapping` Beego will find the function by reflection, otherwise Beego will find the function with the must faster `interface`.
 
@@ -260,27 +260,27 @@ For more information, see [Parameters](params.md)
 ```
 //init namespace
 ns :=
-beego.NewNamespace("/v1",
-    beego.NSCond(func(ctx *context.Context) bool {
-        if ctx.Input.Domain() == "api.beego.me" {
+web.NewNamespace("/v1",
+    web.NSCond(func(ctx *context.Context) bool {
+        if ctx.Input.Domain() == "api.web.me" {
             return true
         }
         return false
     }),
-    beego.NSBefore(auth),
-    beego.NSGet("/notallowed", func(ctx *context.Context) {
+    web.NSBefore(auth),
+    web.NSGet("/notallowed", func(ctx *context.Context) {
         ctx.Output.Body([]byte("notAllowed"))
     }),
-    beego.NSRouter("/version", &AdminController{}, "get:ShowAPIVersion"),
-    beego.NSRouter("/changepassword", &UserController{}),
-    beego.NSNamespace("/shop",
-        beego.NSBefore(sentry),
-        beego.NSGet("/:id", func(ctx *context.Context) {
+    web.NSRouter("/version", &AdminController{}, "get:ShowAPIVersion"),
+    web.NSRouter("/changepassword", &UserController{}),
+    web.NSNamespace("/shop",
+        web.NSBefore(sentry),
+        web.NSGet("/:id", func(ctx *context.Context) {
             ctx.Output.Body([]byte("notAllowed"))
         }),
     ),
-    beego.NSNamespace("/cms",
-        beego.NSInclude(
+    web.NSNamespace("/cms",
+        web.NSInclude(
             &controllers.MainController{},
             &controllers.CMSController{},
             &controllers.BlockController{},
@@ -289,7 +289,7 @@ beego.NewNamespace("/v1",
 )
 
 //register namespace
-beego.AddNamespace(ns)
+web.AddNamespace(ns)
 ```
 the code set out above supports the URL:
 
@@ -338,19 +338,19 @@ namespace API:
 
     ```
     ns :=
-    beego.NewNamespace("/v1",
-        beego.NSNamespace("/shop",
-            beego.NSGet("/:id", func(ctx *context.Context) {
+    web.NewNamespace("/v1",
+        web.NSNamespace("/shop",
+            web.NSGet("/:id", func(ctx *context.Context) {
                 ctx.Output.Body([]byte("shopinfo"))
             }),
         ),
-        beego.NSNamespace("/order",
-            beego.NSGet("/:id", func(ctx *context.Context) {
+        web.NSNamespace("/order",
+            web.NSGet("/:id", func(ctx *context.Context) {
                 ctx.Output.Body([]byte("orderinfo"))
             }),
         ),
-        beego.NSNamespace("/crm",
-            beego.NSGet("/:id", func(ctx *context.Context) {
+        web.NSNamespace("/crm",
+            web.NSGet("/:id", func(ctx *context.Context) {
                 ctx.Output.Body([]byte("crminfo"))
             }),
         ),
@@ -390,38 +390,39 @@ The methods below are for the`*Namespace` object and are not recommended. They h
 More functions can be nested:
 
 ```go
+
 //APIS
 ns :=
-	beego.NewNamespace("/api",
+	web.NewNamespace("/api",
 		//It should verify the encrypted request in the production using
-		beego.NSCond(func(ctx *context.Context) bool {
+		web.NSCond(func(ctx *context.Context) bool {
 			if ua := ctx.Input.Request.UserAgent(); ua != "" {
 				return true
 			}
 			return false
 		}),
-		beego.NSNamespace("/ios",
+		web.NSNamespace("/ios",
 			//CRUD Create, Read, Update and Delete
-			beego.NSNamespace("/create",
+			web.NSNamespace("/create",
 				// /api/ios/create/node/
-				beego.NSRouter("/node", &apis.CreateNodeHandler{}),
+				web.NSRouter("/node", &apis.CreateNodeHandler{}),
 				// /api/ios/create/topic/
-				beego.NSRouter("/topic", &apis.CreateTopicHandler{}),
+				web.NSRouter("/topic", &apis.CreateTopicHandler{}),
 			),
-			beego.NSNamespace("/read",
-				beego.NSRouter("/node", &apis.ReadNodeHandler{}),
-				beego.NSRouter("/topic", &apis.ReadTopicHandler{}),
+			web.NSNamespace("/read",
+				web.NSRouter("/node", &apis.ReadNodeHandler{}),
+				web.NSRouter("/topic", &apis.ReadTopicHandler{}),
 			),
-			beego.NSNamespace("/update",
-				beego.NSRouter("/node", &apis.UpdateNodeHandler{}),
-				beego.NSRouter("/topic", &apis.UpdateTopicHandler{}),
+			web.NSNamespace("/update",
+				web.NSRouter("/node", &apis.UpdateNodeHandler{}),
+				web.NSRouter("/topic", &apis.UpdateTopicHandler{}),
 			),
-			beego.NSNamespace("/delete",
-				beego.NSRouter("/node", &apis.DeleteNodeHandler{}),
-				beego.NSRouter("/topic", &apis.DeleteTopicHandler{}),
+			web.NSNamespace("/delete",
+				web.NSRouter("/node", &apis.DeleteNodeHandler{}),
+				web.NSRouter("/topic", &apis.DeleteTopicHandler{}),
 			)
 		),
 	)
 
-beego.AddNamespace(ns)
+web.AddNamespace(ns)
 ```
