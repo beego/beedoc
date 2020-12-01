@@ -18,40 +18,7 @@ bee 工具是一个为了协助快速开发 beego 项目而创建的项目，通
 
 
 
-如果你本机设置了 `GOBIN`，那么上面的`bee`命令就会安装到 `GOBIN` 目录下，所以我们需要在环境变量中添加下列配置信息：
-
-```bash
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin:$GOBIN
-```
-
-
-
-<details>
-  <summary>点击此处可查看配置示例</summary>
-
-**以下是一个完整的环境配置例子可供参考，支持Linux和Mac**
-
-- Mac环境配置是`~/.bashrc`或`~/.bash_profile`文件中
-- 如果你使用了`Zsh` 那么就是`~/.zshrc` 文件中
-- Linux的环境配置是`/etc/profile` 文件中
-
-``` bash
-#go语言安装主根目录
-export GOROOT=/usr/local/go #替换你的目录
-#GOPATH 是自己的go项目路径，自定义设置
-export GOPATH=/Users/ding/go_workspace #替换你的目录
-#GOBIN 当我们使用go install命令编译后二进制程序打包GOBIN目录
-export GOBIN=$GOPATH/bin
-# 启用 Go Modules 功能
-export GO111MODULE=on
-# 配置 GOPROXY 环境变量
-export GOPROXY=https://goproxy.cn,direct
-export PATH=$PATH:$GOROOT/bin:$GOBIN
-```
-**Windows如何添加环境变量，请自行Google搜索教程，配置参数是差不多的。**
-</details>
-
+>>>如果你本机设置了 `GOBIN`，那么上面的`bee`命令就会安装到 `GOBIN` 目录下，所以我们需要在环境变量中添加相关的配置信息，如何添加可以查看这篇文档: [bee 环境变量配置](./env.md)
 ## bee 工具命令详解
 
 我们在命令行输入 `bee`，可以看到如下的信息：

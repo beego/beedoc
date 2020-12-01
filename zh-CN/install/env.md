@@ -48,7 +48,12 @@ export PATH=$PATH:$GOROOT/bin:$GOBIN
 
 ## bee 安装和测试是否安装成功
 
-在你的终端里执行下面命令:
+在你的终端里执行下面命令安装`bee`工具：
 
 `go get github.com/beego/bee`
 
+然后执行`bee version`查看是否安装成功：
+
+![bee_test](../images/bee_test.png)
+
+如果有以上相关提示信息说明安装成功。
