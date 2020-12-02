@@ -41,7 +41,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/client/orm"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
 )
 
@@ -53,7 +53,7 @@ type User struct {
 
 func init() {
 	// set default database
-	orm.RegisterDataBase("default", "mysql", "username:password@tcp(127.0.0.1:3306)/db_name?charset=utf8", 30)
+	orm.RegisterDataBase("default", "mysql", "username:password@tcp(127.0.0.1:3306)/db_name?charset=utf8&loc=Local", 30)
 
 	// register model
 	orm.RegisterModel(new(User))
