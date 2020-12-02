@@ -31,7 +31,6 @@ QuerySeter 中用于描述字段和 sql 操作符，使用简单的 expr 查询�
 qs.Filter("id", 1) // WHERE id = 1
 qs.Filter("profile__age", 18) // WHERE profile.age = 18
 qs.Filter("Profile__Age", 18) // 使用字段名和 Field 名都是允许的
-qs.Filter("profile__age", 18) // WHERE profile.age = 18
 qs.Filter("profile__age__gt", 18) // WHERE profile.age > 18
 qs.Filter("profile__age__gte", 18) // WHERE profile.age >= 18
 qs.Filter("profile__age__in", 18, 20) // WHERE profile.age IN (18, 20)
