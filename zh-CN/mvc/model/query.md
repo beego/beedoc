@@ -15,6 +15,9 @@ o := orm.NewOrm()
 // 获取 QuerySeter 对象，user 为表名
 qs := o.QueryTable("user")
 
+// 也可以直接使用 Model 结构体作为表名
+qs = o.QueryTable(&User)
+
 // 也可以直接使用对象作为表名
 user := new(User)
 qs = o.QueryTable(user) // 返回 QuerySeter
@@ -318,7 +321,7 @@ qs.IgnoreIndex(`idx_name1`,`idx_name2`)
 
 ### Distinct
 
-对应 sql 的 `distinct` 语句, 返回不重复的值.
+对应 sql 的 `distinct` 语句, 返回指定字段不重复的值.
 
 ```go
 qs.Distinct()
