@@ -321,7 +321,7 @@ qs.IgnoreIndex(`idx_name1`,`idx_name2`)
 
 ### Distinct
 
-对应 sql 的 `distinct` 语句, 返回不重复的值.
+对应 sql 的 `distinct` 语句, 返回指定字段不重复的值.
 
 ```go
 qs.Distinct()
