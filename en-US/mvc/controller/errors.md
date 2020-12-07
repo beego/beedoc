@@ -26,7 +26,7 @@ func (this *MainController) Get() {
 		this.SetSession("asta", v.(int)+1)
 		this.Data["Email"] = v.(int)
 	}
-	this.TplNames = "index.tpl"
+	this.TplName = "index.tpl"
 }
 ```
 

@@ -13,14 +13,14 @@ func (c *MainController) Get() {
     flash := web.ReadFromRequest(&c.Controller)
     if n, ok := flash.Data["notice"]; ok {
         // Display settings successful
-        c.TplNames = "set_success.html"
+        c.TplName = "set_success.html"
     } else if n, ok = flash.Data["error"]; ok {
         // Display error messages
-        c.TplNames = "set_error.html"
+        c.TplName = "set_error.html"
     } else {
         // Display default settings page
         this.Data["list"] = GetInfo()
-        c.TplNames = "setting_list.html"
+        c.TplName = "setting_list.html"
     }
 }
 
