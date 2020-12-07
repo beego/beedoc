@@ -83,7 +83,7 @@ web.Handler("/rpc", s)
 
 - web.Router("/api/?:id", &controllers.RController{})
 
-	默认匹配   //例如对于URL"/api/123"可以匹配成功，此时变量":id"值为"123"
+	默认匹配   //例如对于URL"/api/123"可以匹配成功，此时变量":id"值为"123"，URL"/api/"可正常匹配
 
 - web.Router("/api/:id", &controllers.RController{})
 
@@ -185,7 +185,7 @@ web.Handler("/rpc", s)
 除了前缀两个 `/:controller/:method` 的匹配之外，剩下的 url beego 会帮你自动化解析为参数，保存在 `this.Ctx.Input.Params` 当中：
 
 	/object/blog/2013/09/12  调用 ObjectController 中的 Blog 方法，参数如下：map[0:2013 1:09 2:12]
-方法名在内部是保存了用户设置的，例如 Login，url 匹配的时候都会转化为小写，所以，`/object/LOGIN` 这样的 `url` 也一样可以路由到用户定义的 `Login` 方法中。
+方法名在内部是保存了用户设置的，例如 Login，url 匹配的时候都会转化为小写，所以，`/object/LOGIN` 这样的 `url` 也一样可以路由到用户定义的 `Login` 方法中【实际在1.10.1版本中测试，不会转化大小写，即只能匹配`/object/login`，其他均不能正常识别】。
 
 现在已经可以通过自动识别出来下面类似的所有 url，都会把请求分发到 `controller` 的 `simple` 方法：
 
