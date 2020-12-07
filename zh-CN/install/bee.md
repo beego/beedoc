@@ -15,9 +15,10 @@ bee 工具是一个为了协助快速开发 beego 项目而创建的项目，通
 
 安装完之后，`bee` 可执行文件默认存放在 `$GOPATH/bin` 里面，所以您需要把 `$GOPATH/bin` 添加到您的环境变量中，才可以进行下一步。
 
->>> 如何添加环境变量，请自行搜索
->>> 如果你本机设置了 `GOBIN`，那么上面的命令就会安装到 `GOBIN` 下，请添加 GOBIN 到你的环境变量中
 
+
+
+>>>如果你本机设置了 `GOBIN`，那么上面的`bee`命令就会安装到 `GOBIN` 目录下，所以我们需要在环境变量中添加相关的配置信息，如何添加可以查看这篇文档: [bee 环境变量配置](./env.md)
 ## bee 工具命令详解
 
 我们在命令行输入 `bee`，可以看到如下的信息：
@@ -43,7 +44,6 @@ The commands are:
     dockerize   Generates a Dockerfile for your Beego application
     generate    Source code generator
     hprose      Creates an RPC application based on Hprose and Beego frameworks
-    new         Creates a Beego application
     pack        Compresses a Beego application into a single file
     rs          Run customized scripts
     run         Run the application by starting a local development server
@@ -218,6 +218,12 @@ bee   :1.2.2
 beego :1.4.2
 Go    :go version go1.3.3 darwin/amd64
 ```
+
+需要注意的是，目前 `bee version` 会试图输出当前`beego`的版本。
+
+但是目前这个实现有点坑，它是通过读取`$GOPATH/src/astaxie/beego`下的文件来进行的。
+
+这意味着，如果你本地并没有下载`beego`源码，或者放置的位置不对，`bee`都无法输出`beego`的版本信息。
 
 ### `generate` 命令
 这个命令是用来自动化的生成代码的，包含了从数据库一键生成 model，还包含了 scaffold 的，通过这个命令，让大家开发代码不再慢

@@ -38,7 +38,7 @@ sort: 1
 
 ## 定时任务
 
-用户需要在应用中添加了 [task](../module/toolbox.md#task)，才能执行相应的任务检查和手工触发任务。
+用户需要在应用中添加了 [task](../module/task.md#task)，才能执行相应的任务检查和手工触发任务。
 
 - 检查任务状态 URL：`http://localhost:8088/task`
 - 手工执行任务 URL：`http://localhost:8088/task?taskname=任务名`

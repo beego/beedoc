@@ -203,18 +203,22 @@ This command is currently only available to the developer team. It is used to co
 
 This command displays the version of `bee`, `beego`, and `go`.
 
-```
+```shell script
 $ bee version
 bee   :1.2.2
 Beego :1.4.2
 Go    :go version go1.3.3 darwin/amd64
 ```
 
+This command try to output beego's version. It works well for GOPATH mode. Bee finds beego's version from $GOPATH/src/astaxie/beego directory.
+
+So when we use GOMOD mode, and we don't download beego's source code, Bee could not find the version's information.
+
 ### Command `generate`
 This command will generate the routers by analyzing the functions in controllers.
 
 
-```
+```shell script
 bee generate scaffold [scaffoldname] [-fields=""] [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
     The generate scaffold command will do a number of things for you.
     -fields: a list of table fields. Format: field:type, ...
@@ -281,7 +285,7 @@ bee migrate refresh [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
 
 ## bee tool configuration
 
-The file `bee.json` in the bee tool source code folder is the Beego configuration file. This file is still under develpment, but some options are already available to use:
+The file `bee.json` in the bee tool source code folder is the Beego configuration file. This file is still under development, but some options are already available to use:
 
 - `"version": 0`: version of file, for checking incompatible format version.
 - `"go_install": false`: if you use a full import path like `github.com/user/repo/subpkg` you can enable this option to run `go install` and speed up you build processes.

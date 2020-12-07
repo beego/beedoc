@@ -9,13 +9,18 @@ beego/orm 的使用例子
 
 后文例子如无特殊说明都以这个为基础。
 
+注意的是，v2.x和v1.x在 ORM 上有一个极大的不同，即v2.x的`ORM`对象被设计为无状态的，因而天然是线程安全的。
+
+也因此，我们建议在使用过程中，一个数据库应该只存在一个`ORM`对象。
+
+
 ##### models.go:
 
 ```go
 package main
 
 import (
-	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/client/orm"
 )
 
 type User struct {
@@ -41,7 +46,7 @@ type Post struct {
 type Tag struct {
     Id    int
     Name  string
-    Posts []*Post `orm:"reverse(many)"`
+    Posts []*Post `orm:"reverse(many)"` //设置多对多反向关系
 }
 
 func init() {
@@ -57,7 +62,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/client/orm"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -68,8 +73,9 @@ func init() {
 }
 
 func main() {
+
+    // 默认使用 default，你可以指定为其他数据库
 	o := orm.NewOrm()
-	o.Using("default") // 默认使用 default，你可以指定为其他数据库
 
 	profile := new(Profile)
 	profile.Age = 30
@@ -196,7 +202,7 @@ ORM 在进行 RegisterDataBase 的同时，会获取数据库使用的时区，�
 ```go
 package main
 
-import "github.com/astaxie/beego/orm"
+import "github.com/astaxie/beego/client/orm"
 
 type User struct {
 	Id   int
@@ -275,28 +281,15 @@ o = orm.NewOrm() // 创建一个 Ormer
 // NewOrm 的同时会执行 orm.BootStrap (整个 app 只执行一次)，用以验证模型之间的定义并缓存。
 ```
 
-切换数据库，或者，进行事务处理，都会作用于这个 Ormer 对象，以及其进行的任何查询。
+大多数情况下，你可以直接使用这个。
 
-所以：需要 **切换数据库** 和 **事务处理** 的话，不要使用全局保存的 Ormer 对象。
+但是在使用事务的时候，我们会返回`TxOrm`的实例。请参考[orm 事务](transaction.md)
 
-
-* type Ormer interface {
-	* [Read(interface{}, ...string) error](object.md#read)
-	* [ReadOrCreate(interface{}, string, ...string) (bool, int64, error)](object.md#readorcreate)
-	* [Insert(interface{}) (int64, error)](object.md#insert)
-	* [InsertMulti(int, interface{}) (int64, error)](object.md#insertmulti)
-	* [Update(interface{}, ...string) (int64, error)](object.md#update)
-	* [Delete(interface{}) (int64, error)](object.md#delete)
-	* [LoadRelated(interface{}, string, ...interface{}) (int64, error)](query.md#载入关系字段)
-	* [QueryM2M(interface{}, string) QueryM2Mer](query.md#多对多关系操作)
-	* [QueryTable(interface{}) QuerySeter](#querytable)
-	* [Using(string) error](#using)
-	* [Begin() error](transaction.md)
-	* [Commit() error](transaction.md)
-	* [Rollback() error](transaction.md)
-	* [Raw(string, ...interface{}) RawSeter](#raw)
-	* [Driver() Driver](#driver)
-* }
+> 和 v1.x 比起来，我们在事务上重新设计了一番，以规避相当多用户都会犯的错——即复用全局的 orm 对象来操作事务。
+>
+> 这体现了我们的一个新的认知——即，我们认为 orm 对象应该是一种无状态的对象。
+>
+> 在实际应用中，我们现在推荐大家保存全局的 orm 对象。而事务orm 对象，即 TxOrm 的实例，则应该每次使用完毕就丢弃。
 
 
 #### QueryTable
@@ -312,23 +305,18 @@ qs = o.QueryTable("user")
 
 #### Using
 
-切换为其他数据库
+我们的 v2.x 移除了这个方法。因为 v1.x 的一些用户反馈，该方法容易被程序员误用。
 
+在不恰当的切换数据库的时候，会导致使用相同 orm 实例的其余代码崩溃。
+
+想象一下，你有一段代码本来只是想用 A 数据库的，结果另外一段代码切换到了 B 数据库。
+
+我们推荐使用另外一个方法：
 ```go
-orm.RegisterDataBase("db1", "mysql", "root:root@/orm_db2?charset=utf8")
-orm.RegisterDataBase("db2", "sqlite3", "data.db")
-
-o1 := orm.NewOrm()
-o1.Using("db1")
-
-o2 := orm.NewOrm()
-o2.Using("db2")
-
-// 切换为其他数据库以后
-// 这个 Ormer 对象的其下的 api 调用都将使用这个数据库
+o := orm.NewOrmUsingDB("db_name")
 ```
 
-默认使用 `default` 数据库，无需调用 Using
+正如前面提及的，我们希望大家能够尽量复用 orm 实例。
 
 #### Raw
 
@@ -357,14 +345,12 @@ type Driver interface {
 orm.RegisterDataBase("db1", "mysql", "root:root@/orm_db2?charset=utf8")
 orm.RegisterDataBase("db2", "sqlite3", "data.db")
 
-o1 := orm.NewOrm()
-o1.Using("db1")
+o1 := orm.NewOrmUsingDB("db1")
 dr := o1.Driver()
 fmt.Println(dr.Name() == "db1") // true
 fmt.Println(dr.Type() == orm.DRMySQL) // true
 
-o2 := orm.NewOrm()
-o2.Using("db2")
+o2 := orm.NewOrmUsingDB("db2")
 dr = o2.Driver()
 fmt.Println(dr.Name() == "db2") // true
 fmt.Println(dr.Type() == orm.DRSqlite) // true

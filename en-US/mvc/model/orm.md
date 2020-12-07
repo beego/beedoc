@@ -9,13 +9,17 @@ An example of beego/orm is set out below.
 
 All the code samples in this section are based on this example unless otherwise stated.
 
+In v2.x, there is a big big change:
+
+We think ORM instance should stateless, so it's thread safe.
+
 ##### models.go:
 
 ```go
 package main
 
 import (
-	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/client/orm"
 )
 
 type User struct {
@@ -43,7 +47,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/client/orm"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -54,8 +58,9 @@ func init() {
 }
 
 func main() {
+
+// Using default, you can use other database
 	o := orm.NewOrm()
-	o.Using("default") // Using default, you can use other database
 
 	profile := new(Profile)
 	profile.Age = 30
@@ -180,7 +185,7 @@ Mini models.go
 ```go
 package main
 
-import "github.com/astaxie/beego/orm"
+import "github.com/astaxie/beego/client/orm"
 
 type User struct {
 	Id   int
@@ -285,10 +290,14 @@ Let's see how to use Ormer API:
 var o orm.Ormer
 o = orm.NewOrm() // create a Ormer // While running NewOrm, it will run orm.BootStrap (only run once in the whole app lifetime) to validate the definition between models and cache it.
 ```
-Switching database or using transactions will affect Ormer object and all its queries.
 
-So don't use a global Ormer object if you need to switch databases or use transactions.
+If you want to use DB transaction，we will return `TxOrm` instance [ORM Transaction](transaction.md)
 
+Comparing with v1.x, we designed another interface `TxOrm` to handle transaction.
+
+From v1.x, we found that many users reuse global ORM instance to handle transaction. It made unpredictable result.
+
+When you use `TxOrm`, you should drop it after ending transaction. It's stateful object.
 
 * type Ormer interface {
 	* [Read(interface{}, ...string) error](object.md#read)

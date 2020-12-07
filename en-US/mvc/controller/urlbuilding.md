@@ -10,7 +10,7 @@ Here is the controller definition:
 
 ```
 type TestController struct {
-	beego.Controller
+	web.Controller
 }
 
 func (this *TestController) Get() {
@@ -38,24 +38,24 @@ func (this *TestController) GetUrl() {
 This is how you register the router:
 
 ```
-beego.Router("/api/list", &TestController{}, "*:List")
-beego.Router("/person/:last/:first", &TestController{})
-beego.AutoRouter(&TestController{})
+web.Router("/api/list", &TestController{}, "*:List")
+web.Router("/person/:last/:first", &TestController{})
+web.AutoRouter(&TestController{})
 ```
 
 This is how you generate the url:
 
 ```
-beego.URLFor("TestController.List")
+web.URLFor("TestController.List")
 // Output /api/list
 
-beego.URLFor("TestController.Get", ":last", "xie", ":first", "asta")
+web.URLFor("TestController.Get", ":last", "xie", ":first", "asta")
 // Output /person/xie/asta
 
-beego.URLFor("TestController.Myext")
+web.URLFor("TestController.Myext")
 // Output /Test/Myext
 
-beego.URLFor("TestController.GetUrl")
+web.URLFor("TestController.GetUrl")
 // Output /Test/GetUrl
 ```
 

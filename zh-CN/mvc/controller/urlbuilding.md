@@ -8,9 +8,9 @@ sort: 7
 
 下面定义了一个相应的控制器
 
-```
+```go
 type TestController struct {
-	beego.Controller
+	web.Controller
 }
 
 func (this *TestController) Get() {
@@ -37,25 +37,25 @@ func (this *TestController) GetUrl() {
 
 下面是我们注册的路由：
 
-```
-beego.Router("/api/list", &TestController{}, "*:List")
-beego.Router("/person/:last/:first", &TestController{})
-beego.AutoRouter(&TestController{})
+```go
+web.Router("/api/list", &TestController{}, "*:List")
+web.Router("/person/:last/:first", &TestController{})
+web.AutoRouter(&TestController{})
 ```
 
 那么通过方式可以获取相应的URL地址：
 
-```
-beego.URLFor("TestController.List")
+```go
+web.URLFor("TestController.List")
 // 输出 /api/list
 
-beego.URLFor("TestController.Get", ":last", "xie", ":first", "asta")
+web.URLFor("TestController.Get", ":last", "xie", ":first", "asta")
 // 输出 /person/xie/asta
 
-beego.URLFor("TestController.Myext")
+web.URLFor("TestController.Myext")
 // 输出 /Test/Myext
 
-beego.URLFor("TestController.GetUrl")
+web.URLFor("TestController.GetUrl")
 // 输出 /Test/GetUrl
 ```
 

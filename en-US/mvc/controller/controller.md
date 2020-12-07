@@ -51,6 +51,10 @@ Beego's controller needs to be embeded as `beego.Controller`:
 
   This method will be executed if the HTTP request method is OPTIONS. It returns 403 by default. This can be used to handle OPTIONS requests by overwriting them in the struct of subclass.
 
+- Trace() error
+    
+    This method will be executed if the HTTP request method is TRACE. It returns 403 by default. This can be used to handle TRACE requests by overwriting them in the struct of subclass.
+
 - Finish()
 
   This method will be executed after finishing the related HTTP method. It is empty by default. This can be implemented by overwriting it in the struct of subclass. It is used for database closing, data cleaning and so on.
@@ -58,6 +62,109 @@ Beego's controller needs to be embeded as `beego.Controller`:
 - Render() error
 
   This method is used to render templates. It is only executed if `beego.AutoRender` is set to true.
+  
+- Mapping(method string, fn func())
+    
+    Register a method. Generally, the `method` is valid HTTP method name.
+    
+- HandlerFunc(fnname string) bool
+
+    Execute the method that register by `Mapping` method. It return false when `fnname` not found.
+
+- RenderBytes() ([]byte, error)
+    
+    Render the template and output the result as `[]byte`. This method doesn't check `EnableRender` option, and it doesn't output the result to response.
+
+- RenderString() (string, error)
+    
+    Similar with `RenderBytes()`
+    
+- Redirect(url string, code int)
+
+    Redirect the request to `url`
+
+- SetData(data interface{})
+    
+    Store `data` to `controller`. Usually you won't use this method. 
+    
+- Abort(code string)
+    
+    Breaking current method with the code. [errors](errors.md)
+    
+- CustomAbort(status int, body string)
+
+    Breaking current method with the code. [errors](errors.md)
+    
+- StopRun()
+    
+    Trigger panic.
+    
+- ServeXXX(encoding ...bool) error
+    
+    Return response with the specific format. Supporting JSON, JSONP, XML, YAML. [Output](jsonxml.md)
+    
+- ServeFormatted(encoding ...bool) error
+
+    Return response with specific format passed from client's `Accept` option. [Output](jsonxml.md)
+
+- Input() (url.Values, error)
+    
+    Return all parameters.
+    
+- ParseForm(obj interface{}) error
+
+    Deserialize form to obj.
+    
+- GetXXX(key string, def...) XXX, err
+
+    Read value from parameters. If the `def` not empty, return `def` when key not found or error.
+    XXX coule be basic types, string or File.
+    
+- SaveToFile(fromfile, tofile string) error
+    
+    Save the uploading file to file system. `fromfile` is uploading file name. 
+
+- SetSession(name interface{}, value interface{}) error
+
+    Put some value into session.
+    
+- GetSession(name interface{}) interface{}
+
+    Read value from session.
+    
+- DelSession(name interface{}) error
+
+    Delete the value from session.
+    
+- SessionRegenerateID() error
+    
+    Re-generate session id.
+    
+- DestroySession() error
+    
+    Destroy session.
+    
+- IsAjax() bool
+
+    Check whether is ajax request.
+    
+- GetSecureCookie(Secret, key string) (string, bool)
+
+    Read value from cookie. 
+    
+- SetSecureCookie(Secret, name, value string, others ...interface{})
+
+    Put key-value pair into cookie.
+    
+- XSRFToken() string
+    
+    Create `CSRF` token.
+    
+- CheckXSRFCookie() bool
+
+    Check `CSRF` token
+
+## Custom logic
 
 Custom logic can be implemented by overwriting functions in struct. For example:
 
@@ -197,27 +304,3 @@ func (this *RController) Prepare() {
 ```
 
 >>> If you call `StopRun` the `Finish` method won't be run. To free resources call `Finish` manually before calling `StopRun`.
-
-
-## Using PUT method in HTTP form
-
-Since XHTML 1.x forms only support GET and POST these are the only allowed values for the "method" attribute. Optionally, this can be extended as follows:
-
-Add a hidden input in the post form:
-
-```
-<form method="post" ...>
-  <input type="hidden" name="_method" value="put" />
-```
-
-Then add a filter in Beego to check if the requests should be treated as a put request:
-
-```go
-var FilterMethod = func(ctx *context.Context) {
-    if ctx.Input.Query("_method")!="" && ctx.Input.IsPost(){
-          ctx.Request.Method = strings.ToUpper(ctx.Input.Query("_method"))
-    }
-}
-
-beego.InsertFilter("*", beego.BeforeRouter, FilterMethod)
-```

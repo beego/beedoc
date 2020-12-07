@@ -11,11 +11,11 @@ The Form validation module is used for data validation and error collection.
 
 Installing:
 
-	go get github.com/astaxie/beego/validation
+	go get github.com/astaxie/beego/core/validation
 
 Testing:
 
-	go test github.com/astaxie/beego/validation
+	go test github.com/astaxie/beego/core/validation
 
 ## Localization
 
@@ -28,7 +28,7 @@ Default template messages are present in `validation.MessageTmpls` variable.
 Simple message localization for Russian language:
 
 ```go
-import "github.com/astaxie/beego/validation"
+import "github.com/astaxie/beego/core/validation"
 
 func init() {
 	validation.SetDefaultMessage(map[string]string{
@@ -62,7 +62,7 @@ Direct use:
 
 ```go
 import (
-    "github.com/astaxie/beego/validation"
+    "github.com/astaxie/beego/core/validation"
     "log"
 )
 
@@ -103,7 +103,7 @@ import (
     "log"
     "strings"
 
-    "github.com/astaxie/beego/validation"
+    "github.com/astaxie/beego/core/validation"
 )
 
 // Set validation function in "valid" tag
@@ -170,4 +170,4 @@ Available validation functions in StrucTag:
 
 ### API doc
 
-Please see [Go Walker](http://gowalker.org/github.com/astaxie/beego/validation)
+Please see [Go Walker](http://gowalker.org/github.com/astaxie/beego/core/validation)

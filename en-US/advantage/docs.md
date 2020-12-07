@@ -42,38 +42,44 @@ The comments above set the global information. The available settings:
 ## Router Parsing
 Right now automated API documentation only supports `NSNamespace` and `NSInclude` and it only supports two levels of parsing. The first level is the API version and the second level is the modules.
 
+This only works for `dev` environment. We think that, all API must be tested, and if users are able to generate API in non-dev environment, some users may use it in production environment.
+
+In v2.x, a big change is that we scan the directory which is configured by [CommentRouterPath](/en-US/mvc/controller/config.md).
+
+But we only generate router files, you must call `Include` method to use it.
+
 ```
 func init() {
 	ns :=
-		beego.NewNamespace("/v1",
-			beego.NSNamespace("/customer",
-				beego.NSInclude(
+		web.NewNamespace("/v1",
+			web.NSNamespace("/customer",
+				web.NSInclude(
 					&controllers.CustomerController{},
 					&controllers.CustomerCookieCheckerController{},
 				),
 			),
-			beego.NSNamespace("/catalog",
-				beego.NSInclude(
+			web.NSNamespace("/catalog",
+				web.NSInclude(
 					&controllers.CatalogController{},
 				),
 			),
-			beego.NSNamespace("/newsletter",
-				beego.NSInclude(
+			web.NSNamespace("/newsletter",
+				web.NSInclude(
 					&controllers.NewsLetterController{},
 				),
 			),
-			beego.NSNamespace("/cms",
-				beego.NSInclude(
+			web.NSNamespace("/cms",
+				web.NSInclude(
 					&controllers.CMSController{},
 				),
 			),
-			beego.NSNamespace("/suggest",
-				beego.NSInclude(
+			web.NSNamespace("/suggest",
+				web.NSInclude(
 					&controllers.SearchController{},
 				),
 			),
 		)
-	beego.AddNamespace(ns)
+	web.AddNamespace(ns)
 }
 ```
 
@@ -83,11 +89,11 @@ This is the most important part of comment. For example:
 ```
 package controllers
 
-import "github.com/astaxie/beego"
+import "github.com/astaxie/beego/server/web"
 
 // CMS API
 type CMSController struct {
-	beego.Controller
+	web.Controller
 }
 
 func (c *CMSController) URLMapping() {
@@ -197,12 +203,12 @@ Your API documentation is available now. Open your browser and check it out.
 ## Problems You May Have
 1. CORS
 	Two solutions:
-	1. Integrate `swagger` into the application. Download [swagger](https://github.com/beego/swagger/releases) and put it into project folder. (`bee run -downdoc=true` will also download it and put it into project folder)
-	And before 	`beego.Run()` in `func main()` of `main.go`
+	1. Integrate `swagger` into the application. Download [swagger](https://github.com/web/swagger/releases) and put it into project folder. (`bee run -downdoc=true` will also download it and put it into project folder)
+	And before 	`web.Run()` in `func main()` of `main.go`
 		```go
-		if beego.BConfig.RunMode == "dev" {
-			beego.BConfig.WebConfig.DirectoryIndex = true
-			beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
+		if web.BConfig.RunMode == "dev" {
+			web.BConfig.WebConfig.DirectoryIndex = true
+			web.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 		}
 		```
 		And then visit `/swagger` in your project.

@@ -3,7 +3,7 @@ name: 多种格式数据输出
 sort: 8
 ---
 
-# JSON、XML、JSONP
+# JSON、XML、JSONP、YAML
 
 beego 当初设计的时候就考虑了 API 功能的设计，而我们在设计 API 的时候经常是输出 JSON 或者 XML 数据，那么 beego 提供了这样的方式直接输出：
 

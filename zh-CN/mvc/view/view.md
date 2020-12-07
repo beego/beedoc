@@ -23,14 +23,14 @@ beego 中默认的模板目录是 `views`，用户可以把模板文件放到该
 
 main.go 文件中设置如下：
 
-	beego.AutoRender = false
+	web.AutoRender = false
 
 ## 模板标签
 
 Go 语言的默认模板采用了 `{{` 和 `}}` 作为左右标签，但是我们有时候在开发中可能界面是采用了 AngularJS 开发，他的模板也是这个标签，故而引起了冲突。在 beego 中你可以通过配置文件或者直接设置配置变量修改：
 
-	beego.TemplateLeft = "<<<"
-	beego.TemplateRight = ">>>"
+	web.TemplateLeft = "<<<"
+	web.TemplateRight = ">>>"
 
 ## 模板数据
 
@@ -43,12 +43,12 @@ Go 语言的默认模板采用了 `{{` 和 `}}` 作为左右标签，但是我�
 - 结构体
 
 	结构体结构
-
-		type A struct{
-			Name string
-			Age  int
-		}
-
+```go
+type A struct{
+	Name string
+	Age  int
+}
+```
 	控制器数据赋值
 
 		this.Data["a"]=&A{Name:"astaxie",Age:25}
@@ -95,7 +95,7 @@ beego 采用了 Go 语言内置的模板引擎，所有模板的语法和 Go 的
 
 我们看到上面的模板后缀名是 tpl，beego 默认情况下支持 tpl 和 html 后缀名的模板文件，如果你的后缀名不是这两种，请进行如下设置：
 
-	beego.AddTemplateExt("你文件的后缀名")
+	web.AddTemplateExt("你文件的后缀名")
 
 当你设置了自动渲染，然后在你的 Controller 中没有设置任何的 TplName，那么 beego 会自动设置你的模板文件如下：
 
@@ -130,7 +130,7 @@ beego 就会首先解析 TplName 指定的文件，获取内容赋值给 LayoutC
 
 layout_blog.tpl:
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -158,7 +158,7 @@ layout_blog.tpl:
 
 html_head.tpl:
 
-```
+```html
 <style>
      h1 {
         color: red;
@@ -178,45 +178,45 @@ scripts.tpl：
 
 逻辑处理如下所示：
 
-```
+```go
 type BlogsController struct {
-    beego.Controller
+  web.Controller
 }
 
 func (this *BlogsController) Get() {
-    this.Layout = "layout_blog.tpl"
-    this.TplName = "blogs/index.tpl"
-    this.LayoutSections = make(map[string]string)
-    this.LayoutSections["HtmlHead"] = "blogs/html_head.tpl"
-    this.LayoutSections["Scripts"] = "blogs/scripts.tpl"
-    this.LayoutSections["Sidebar"] = ""
+	this.Layout = "layout_blog.tpl"
+	this.TplName = "blogs/index.tpl"
+	this.LayoutSections = make(map[string]string)
+	this.LayoutSections["HtmlHead"] = "blogs/html_head.tpl"
+	this.LayoutSections["Scripts"] = "blogs/scripts.tpl"
+	this.LayoutSections["Sidebar"] = ""
 }
 ```
 
 ## renderform 使用
 
 定义 struct:
-
-	type User struct {
-		Id    int         `form:"-"`
-		Name  interface{} `form:"username"`
-		Age   int         `form:"age,text,年龄："`
-		Sex   string
-		Intro string `form:",textarea"`
-	}
-
+```go
+type User struct {
+	Id    int         `form:"-"`
+	Name  interface{} `form:"username"`
+	Age   int         `form:"age,text,年龄："`
+	Sex   string
+	Intro string `form:",textarea"`
+}
+```
 * StructTag 的定义用的标签用为 `form`，和 [ParseForm 方法](../controller/params.md#%E7%9B%B4%E6%8E%A5%E8%A7%A3%E6%9E%90%E5%88%B0-struct) 共用一个标签，标签后面有三个可选参数，用 `,` 分割。第一个参数为表单中类型的 `name` 的值，如果为空，则以 `struct field name` 为值。第二个参数为表单组件的类型，如果为空，则为 `text`。表单组件的标签默认为 `struct field name` 的值，否则为第三个值。
 * 如果 `form` 标签只有一个值，则为表单中类型 `name` 的值，除了最后一个值可以忽略外，其他位置的必须要有 `,` 号分割，如：`form:",,姓名："`
 * 如果要忽略一个字段，有两种办法，一是：字段名小写开头，二是：`form` 标签的值设置为 `-`
 * 现在的代码版本只能实现固定的格式，用 br 标签实现换行，无法实现 css 和 class 等代码的插入。所以，要实现 form 的高级排版，不能使用 renderform 的方法，而需要手动处理每一个字段。
 
 controller：
-
-	func (this *AddController) Get() {
-	    this.Data["Form"] = &User{}
-	    this.TplName = "index.tpl"
-	}
-
+```go
+func (this *AddController) Get() {
+	this.Data["Form"] = &User{}
+	this.TplName = "index.tpl"
+}
+```
 Form 的参数必须是一个 struct 的指针。
 
 template:
@@ -227,7 +227,7 @@ template:
 
 上面的代码生成的表单为：
 
-```
+```html
 	Name: <input name="username" type="text" value="test"></br>
 	年龄：<input name="age" type="text" value="0"></br>
 	Sex: <input name="Sex" type="text" value=""></br>

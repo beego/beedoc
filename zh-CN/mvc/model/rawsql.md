@@ -10,8 +10,10 @@ sort: 5
 * 查询时的参数，支持使用 Model Struct 和 Slice, Array
 
 ```go
+o := orm.NewOrm()
 ids := []int{1, 2, 3}
-p.Raw("SELECT name FROM user WHERE id IN (?, ?, ?)", ids)
+var r RawSter
+r = o.Raw("SELECT name FROM user WHERE id IN (?, ?, ?)", ids)
 ```
 
 创建一个 **RawSeter**
@@ -63,8 +65,6 @@ var user User
 err := o.Raw("SELECT id, user_name FROM user WHERE id = ?", 1).QueryRow(&user)
 ```
 
-> from beego 1.1.0 取消了多个对象支持 [ISSUE 384](https://github.com/astaxie/beego/issues/384)
-
 #### QueryRows
 
 QueryRows 支持的对象还有 map 规则是和 QueryRow 一样的，但都是 slice
@@ -82,9 +82,6 @@ if err == nil {
 }
 ```
 
-> from beego 1.1.0 取消了多个对象支持 [ISSUE 384](https://github.com/astaxie/beego/issues/384)
-```
-
 #### SetArgs
 
 改变 Raw(sql, args...) 中的 args 参数，返回一个新的 RawSeter
@@ -95,15 +92,13 @@ if err == nil {
 res, err := r.SetArgs("arg1", "arg2").Exec()
 res, err := r.SetArgs("arg1", "arg2").Exec()
 ...
+
 ```
+
 
 #### Values / ValuesList / ValuesFlat
 
 Raw SQL 查询获得的结果集 Value 为 `string` 类型，NULL 字段的值为空 ``
-
-> from beego 1.1.0
-> Values, ValuesList, ValuesFlat 的参数，可以指定返回哪些 Columns 的数据
-> 通常情况下，是无需指定的，因为 sql 语句中你可以自行设置 SELECT 的字段
 
 #### Values
 

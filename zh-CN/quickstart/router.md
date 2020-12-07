@@ -11,11 +11,11 @@ sort: 2
 
 	import (
 		_ "quickstart/routers"
-		"github.com/astaxie/beego"
+		"github.com/astaxie/beego/server/web"
 	)
 
 	func main() {
-		beego.Run()
+		web.Run()
 	}
 
 我们看到 main 函数是入口函数，但是我们知道 Go 的执行过程是如下图所示的方式：
@@ -29,22 +29,22 @@ package routers
 
 import (
 	"quickstart/controllers"
-	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/server/web"
 )
 
 func init() {
-    beego.Router("/", &controllers.MainController{})
+    web.Router("/", &controllers.MainController{})
 }
 
 ```
 
-路由包里面我们看到执行了路由注册 `beego.Router`, 这个函数的功能是映射 URL 到 controller，第一个参数是 URL (用户请求的地址)，这里我们注册的是 `/`，也就是我们访问的不带任何参数的 URL，第二个参数是对应的 Controller，也就是我们即将把请求分发到那个控制器来执行相应的逻辑，我们可以执行类似的方式注册如下路由：
+路由包里面我们看到执行了路由注册 `web.Router`, 这个函数的功能是映射 URL 到 controller，第一个参数是 URL (用户请求的地址)，这里我们注册的是 `/`，也就是我们访问的不带任何参数的 URL，第二个参数是对应的 Controller，也就是我们即将把请求分发到那个控制器来执行相应的逻辑，我们可以执行类似的方式注册如下路由：
 
-	beego.Router("/user", &controllers.UserController{})
+	web.Router("/user", &controllers.UserController{})
 
-这样用户就可以通过访问 `/user` 去执行 `UserController` 的逻辑。这就是我们所谓的路由，更多更复杂的路由规则请查询 [beego 的路由设置](../mvc/controller/router.md)
+这样用户就可以通过访问 `/user` 去执行 `UserController` 的逻辑。这就是我们所谓的路由，更多更复杂的路由规则请查询 [web 的路由设置](../mvc/controller/router.md)
 
-再回来看看 main 函数里面的 `beego.Run`， `beego.Run` 执行之后，我们看到的效果好像只是监听服务端口这个过程，但是它内部做了很多事情：
+再回来看看 main 函数里面的 `web.Run`， `web.Run` 执行之后，我们看到的效果好像只是监听服务端口这个过程，但是它内部做了很多事情：
 
 - 解析配置文件
 

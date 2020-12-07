@@ -11,11 +11,11 @@ The previous section covered creating and running a Beego project.  This section
 	
 	import (
 	        _ "quickstart/routers"
-	        "github.com/astaxie/beego"
+	        "github.com/astaxie/beego/server/web"
 	)
 	
 	func main() {
-	        beego.Run()
+	        web.Run()
 	}
 
 This code imports the package `quickstart/routers`. This file contains the following (routers/router.go):
@@ -24,23 +24,23 @@ This code imports the package `quickstart/routers`. This file contains the follo
 
 	import (
 	        "quickstart/controllers"
-	        "github.com/astaxie/beego"
+	        "github.com/astaxie/beego/server/web"
 	)
 
 	func init() {
-	        beego.Router("/", &controllers.MainController{})
+	        web.Router("/", &controllers.MainController{})
 	}
 
-There are two relevant lines here; `beego.Router` and `beego.Run`.
+There are two relevant lines here; `web.Router` and `web.Run`.
 
-1.  `beego.Router` is used to register a router address. This command accepts two arguments. The first argument specifes the request uri, which is `/` here to indicate that no uri is requested.  The second argument is used to indicate the Controller that will handle requests for this uri. 
+1.  `web.Router` is used to register a router address. This command accepts two arguments. The first argument specifes the request uri, which is `/` here to indicate that no uri is requested.  The second argument is used to indicate the Controller that will handle requests for this uri. 
 
 Alternately, a router can be registered in this format:
 
-		beego.Router("/user", &controllers.UserController{})
+		web.Router("/user", &controllers.UserController{})
 The user can visit `/user` to invoke the logic in UserController. For further information on router usage please see [beego router settings](../mvc/controller/router.md).
 
-2. `beego.Run` will actively listen on the specified port when executed. The following tasks are performed behind the scenes upon execution:
+2. `web.Run` will actively listen on the specified port when executed. The following tasks are performed behind the scenes upon execution:
   - Parse the [configuration file](../mvc/controller/config.md)
     Beego will parse the configuration file `app.conf` in conf folder to change the port, enable session management and set the application's name.
 

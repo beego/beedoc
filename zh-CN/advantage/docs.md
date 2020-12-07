@@ -30,40 +30,48 @@ package routers
 - @LicenseUrl
 
 ## 路由解析须知
+
 目前自动化文档只支持如下的写法的解析，其他写法函数不会自动解析，即 namespace+Include 的写法，而且只支持二级解析，一级版本号，二级分别表示应用模块
+
+注意的是，路由解析只会在`dev`环境下生效。这种限制是因为我们认为，所有的API都应该经过了测试环境的验证之后才能发布。如果允许在非 dev 环境内生成路由，会导致部分用户滥用此功能。
+
+另外一个要注意的点是：v2.x 为了兼容 go mod 机制，所以改成了在项目启动自动扫描文件夹生成路由。
+
+该配置项是`CommentRouterPath`。参考[Config.WebConfig](/zh-CN/mvc/controller/config.md)
+
 
 ```
 func init() {
 	ns :=
-		beego.NewNamespace("/v1",
-			beego.NSNamespace("/customer",
-				beego.NSInclude(
+		web.NewNamespace("/v1",
+			web.NSNamespace("/customer",
+				web.NSInclude(
 					&controllers.CustomerController{},
 					&controllers.CustomerCookieCheckerController{},
 				),
 			),
-			beego.NSNamespace("/catalog",
-				beego.NSInclude(
+			web.NSNamespace("/catalog",
+				web.NSInclude(
 					&controllers.CatalogController{},
 				),
 			),
-			beego.NSNamespace("/newsletter",
-				beego.NSInclude(
+			web.NSNamespace("/newsletter",
+				web.NSInclude(
 					&controllers.NewsLetterController{},
 				),
 			),
-			beego.NSNamespace("/cms",
-				beego.NSInclude(
+			web.NSNamespace("/cms",
+				web.NSInclude(
 					&controllers.CMSController{},
 				),
 			),
-			beego.NSNamespace("/suggest",
-				beego.NSInclude(
+			web.NSNamespace("/suggest",
+				web.NSInclude(
 					&controllers.SearchController{},
 				),
 			),
 		)
-	beego.AddNamespace(ns)
+	web.AddNamespace(ns)
 }
 ```
 
@@ -73,11 +81,11 @@ func init() {
 ```
 package controllers
 
-import "github.com/astaxie/beego"
+import "github.com/astaxie/beego/server/web"
 
 // CMS API
 type CMSController struct {
-	beego.Controller
+	web.Controller
 }
 
 func (c *CMSController) URLMapping() {
@@ -88,13 +96,17 @@ func (c *CMSController) URLMapping() {
 // @Title getStaticBlock
 // @Description get all the staticblock by key
 // @Param	key		path 	string	true		"The email for login"
-// @Success 200 {object} models.ZDTCustomer.Customer
+// @Success 200 {object} models.ZDTCustomer.Customer 
 // @Failure 400 Invalid email supplied
 // @Failure 404 User not found
 // @router /staticblock/:key [get]
 func (c *CMSController) StaticBlock() {
 
 }
+
+注：如果希望model中struct对象的某些字段在接口文档中不显示，可以使用 json:"-" 标记，如下：
+Id         int         `orm:"column(id);auto" json:"-"`
+
 
 // @Title Get Product list
 // @Description Get Product list by some info
@@ -171,9 +183,9 @@ func (c *CMSController) Product() {
 	两种解决方案：
 	- 把 swagger 集成到应用中，下载请到[swagger](https://github.com/beego/swagger/releases),然后放在项目目录下：
 
-			if beego.BConfig.RunMode == "dev" {
-				beego.BConfig.WebConfig.DirectoryIndex = true
-				beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
+			if web.BConfig.RunMode == "dev" {
+				web.BConfig.WebConfig.DirectoryIndex = true
+				web.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 			}
 	- API 增加 CORS 支持
 

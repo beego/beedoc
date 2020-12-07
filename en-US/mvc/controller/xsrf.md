@@ -13,13 +13,13 @@ XSRF, [Cross-Site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_reque
 
 XSRF protection can also be enabled in the main application entry function:
 
-    beego.BConfig.WebConfig.EnableXSRF = true
-    beego.BConfig.WebConfig.XSRFKey = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
-    beego.BConfig.WebConfig.XSRFExpire = 3600
+    web.BConfig.WebConfig.EnableXSRF = true
+    web.BConfig.WebConfig.XSRFKey = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
+    web.BConfig.WebConfig.XSRFExpire = 3600
 
 When XSRF is enabled Beego will set a cookie `_xsrf` for every user. Beego will refuse any `POST`, `PUT`, or `DELETE` request that does not include this cookie. If XSRF protection is enabled a field must be added to provide an `_xsrf` value to every form. This can be added directly in the template with `XSRFFormHTML()`.
 
-A global expiration time should be set using `beego.XSRFExpire`. This value can be also be set for individual logic functions:
+A global expiration time should be set using `web.XSRFExpire`. This value can be also be set for individual logic functions:
 
 ```go
 func (this *HomeController) Get(){
@@ -61,7 +61,7 @@ jQuery.postJSON = function(url, args, callback) {
    args._xsrf = base64_decode(xsrflist[0]);
     $.ajax({url: url, data: $.param(args), dataType: "text", type: "POST",
         success: function(response) {
-        callback(eval("(" + response + ")"));
+        callback(response);
     }});
 };
 ```
@@ -119,7 +119,7 @@ To customize XSRF behavior for different requests, overwrite the CheckXSRFCookie
 
 ```
 type AdminController struct{
-	beego.Controller
+	web.Controller
 }
 
 func (a *AdminController) Prepare() {

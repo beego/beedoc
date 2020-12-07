@@ -10,7 +10,7 @@ sort: 6
 ```go
 // 显示设置信息
 func (c *MainController) Get() {
-	flash:=beego.ReadFromRequest(&c.Controller)
+	flash:=web.ReadFromRequest(&c.Controller)
 	if n,ok:=flash.Data["notice"];ok{
 		// 显示设置成功
 		c.TplName = "set_success.html"
@@ -26,7 +26,7 @@ func (c *MainController) Get() {
 
 // 处理设置信息
 func (c *MainController) Post() {
-	flash:=beego.NewFlash()
+	flash:=web.NewFlash()
 	setting:=Settings{}
 	valid := Validation{}
 	c.ParseForm(&setting)

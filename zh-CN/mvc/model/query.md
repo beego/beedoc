@@ -15,6 +15,9 @@ o := orm.NewOrm()
 // 获取 QuerySeter 对象，user 为表名
 qs := o.QueryTable("user")
 
+// 也可以直接使用 Model 结构体作为表名
+qs = o.QueryTable(&User)
+
 // 也可以直接使用对象作为表名
 user := new(User)
 qs = o.QueryTable(user) // 返回 QuerySeter
@@ -31,7 +34,6 @@ QuerySeter 中用于描述字段和 sql 操作符，使用简单的 expr 查询�
 qs.Filter("id", 1) // WHERE id = 1
 qs.Filter("profile__age", 18) // WHERE profile.age = 18
 qs.Filter("Profile__Age", 18) // 使用字段名和 Field 名都是允许的
-qs.Filter("profile__age", 18) // WHERE profile.age = 18
 qs.Filter("profile__age__gt", 18) // WHERE profile.age > 18
 qs.Filter("profile__age__gte", 18) // WHERE profile.age >= 18
 qs.Filter("profile__age__in", 18, 20) // WHERE profile.age IN (18, 20)
@@ -291,9 +293,35 @@ qs.OrderBy("-profile__age", "profile")
 // ORDER BY profile.age DESC, profile_id ASC
 ```
 
+### ForceIndex
+
+强迫走索引。使用该选选项请确认数据库支持该特性。
+
+```go
+qs.ForceIndex(`idx_name1`,`idx_name2`)
+```
+
+### UseIndex
+
+使用索引。使用该特性的时候需要确认数据库是否支持该特性，以及该特性的具体含义。例如，部分数据库对于该选项是当成一种建议来执行的。
+
+即，即便用户使用了`UseIndex`方法，但是数据库在具体执行的时候，也可能不会使用设定的索引。
+
+```go
+qs.UseIndex(`idx_name1`,`idx_name2`)
+```
+
+### IgnoreIndex
+
+忽略索引。请确认数据是否支持该选项。
+
+```go
+qs.IgnoreIndex(`idx_name1`,`idx_name2`)
+```
+
 ### Distinct
 
-对应 sql 的 `distinct` 语句, 返回不重复的值.
+对应 sql 的 `distinct` 语句, 返回指定字段不重复的值.
 
 ```go
 qs.Distinct()
@@ -538,7 +566,7 @@ if err == nil {
 
 ## 关系查询
 
-以例子里的[模型定义](orm.md)来看下怎么进行关系查询
+以例子里的[模型定义](/docs.mvc_model_orm)来看下怎么进行关系查询
 
 #### User 和 Profile 是 OneToOne 的关系
 
@@ -780,4 +808,3 @@ if err == nil {
 	fmt.Println("Total Nums: ", nums)
 }
 ```
-

@@ -121,18 +121,21 @@ app2.conf
 Beego includes many configurable variables. These can be configured and overwritten in `conf/app.conf`.
 
 #### Basic config
-
-* AppConfigPath
-
+```go
+// now only support ini, next will support json.
+func parseConfig(appConfigPath string) (err error) {
+	AppConfig, err = newAppConfig(appConfigProvider, appConfigPath)
+	if err != nil {
+		return err
+	}
+	return assignConfig(AppConfig)
+}
+```
+* LoadAppConfig
+    The file format of LoadAppConfig. By default this is `ini`. Other valid formats include `xml`, `yaml`, and `json`.
     The application configuration file path. By default this is `conf/app.conf`.  
-  
-    `beego.AppConfigPath = "conf/app2.conf"`
 
-* AppConfigProvider
-
-    The file format of AppConfig. By default this is `ini`. Other valid formats include `xml`, `yaml`, and `json`.
-
-	`beego.AppConfigProvider = "ini"`
+    `beego.LoadAppConfig("yaml", "conf/app.conf")`
 
 #### App config
 
@@ -287,6 +290,12 @@ Beego includes many configurable variables. These can be configured and overwrit
     Set the XSRF expire time. By default this is set to `0`.
 
 	`beego.BConfig.WebConfig.XSRFExpire = 0`
+
+* CommentRouterPath
+
+    Beego scan `CommentRouterPath` to auto generate router, the default value is `controllers`。
+    `beego.BConfig.WebConfig.CommentRouterPath = "controllers"`
+
 
 #### HTTP Server config
 

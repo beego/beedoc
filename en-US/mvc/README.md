@@ -49,4 +49,3 @@ The next sections will detail the first step of Beego's MVC, routing:
 - [Error handling](controller/errors.md)
 - [Handling static files](controller/static.md)
 - [Parameter configuration](controller/config.md)
-- [Logging](controller/logs.md)

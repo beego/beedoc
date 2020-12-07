@@ -7,7 +7,7 @@ sort: 3
 
 The logging module is inspired by `database/sql`. It supports file, console, net and smtp as destination providers by default. It is installed like this:
 
-	go get github.com/astaxie/beego/logs
+	go get github.com/astaxie/beego/core/logs
 
 ## Basic Usage
 
@@ -15,7 +15,7 @@ The logging module is inspired by `database/sql`. It supports file, console, net
 Import package:
 
 	import (
-		"github.com/astaxie/beego/logs"
+		"github.com/astaxie/beego/core/logs"
 	)
 
 Initialize log variable (10000 is the cache size):
@@ -36,7 +36,7 @@ Then we can use it in our code:
     package main
     
     import (
-    	"github.com/astaxie/beego/logs"
+    	"github.com/astaxie/beego/core/logs"
     )
     
     func main() {    
@@ -61,7 +61,7 @@ beego/logs supports to declare a single logger to use
         package main
         
         import (
-        	"github.com/astaxie/beego/logs"
+        	"github.com/astaxie/beego/core/logs"
         )
         
         func main() {
@@ -179,3 +179,56 @@ Each provider supports a set of configuration options.
    Log to Slack
    
    		logs.SetLogger(logs.AdapterSlack, `{"webhookurl":"https://slack.com/xxx","level":1}`)
+
+## Custom format logging
+
+A new feature of the 2.0 release of beego is the ability to have custom formatting applied to your logs before being sent to your preferred adapter. Here is an example of it in use:
+```go
+package main
+
+import (
+	"fmt"
+
+	beego "github.com/astaxie/beego/pkg"
+	"github.com/astaxie/beego/pkg/logs"
+)
+
+type MainController struct {
+	beego.Controller
+}
+
+
+func customFormatter(lm *logs.LogMsg) string {
+	return fmt.Sprintf("[CUSTOM FILE LOGGING] %s", lm.Msg)
+}
+
+func GlobalFormatter(lm *logs.LogMsg) string {
+	return fmt.Sprintf("[GLOBAL] %s", lm.Msg)
+}
+
+func main() {
+
+	beego.BConfig.Log.AccessLogs = true
+
+	// GlobalFormatter only overrides default log adapters. Hierarchy is like this:
+	// adapter specific formatter > global formatter > default formatter
+	logs.SetGlobalFormatter(GlobalFormatter)
+
+	logs.SetLogger("console", "")
+
+	logs.SetLoggerWithOpts("file", []string{`{"filename":"test.json"}`}, customFormatter)
+
+	beego.Run()
+}
+```
+## Global formatter
+With the global formatter you can override and *default* logging formatters. This means that setting a global formatter will override any `logs.SetLogger()` adapters but will not override and `logs.SetLoggerWithOpts()` adapters. Default logging formatters are any adapters set using the following syntax: 
+```go
+logs.SetLogger("adapterName", '{"key":"value"}')
+```
+
+## Adapter Specific formatters
+Apapter specific formatters can be set and will override any default or global formatter that has been set for a given adapter. Adapter specific logging formatters can be set using the following syntax:
+```go
+logs.SetLoggerWithOpts("adapterName", []string{'{"key":"value"}'}, utils.KV{Key:"formatter", Value: formatterFunc})
+```
