@@ -127,6 +127,10 @@ Name string `orm:"null"`
 
 为单个字段增加索引
 
+```go
+Name string `orm:"index"`
+```
+
 #### unique
 
 为单个字段增加 unique 键

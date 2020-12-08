@@ -10,8 +10,10 @@ sort: 5
 * 查询时的参数，支持使用 Model Struct 和 Slice, Array
 
 ```go
+o := orm.NewOrm()
 ids := []int{1, 2, 3}
-p.Raw("SELECT name FROM user WHERE id IN (?, ?, ?)", ids)
+var r RawSter
+r = o.Raw("SELECT name FROM user WHERE id IN (?, ?, ?)", ids)
 ```
 
 创建一个 **RawSeter**
@@ -80,8 +82,6 @@ if err == nil {
 }
 ```
 
-```
-
 #### SetArgs
 
 改变 Raw(sql, args...) 中的 args 参数，返回一个新的 RawSeter
@@ -92,7 +92,9 @@ if err == nil {
 res, err := r.SetArgs("arg1", "arg2").Exec()
 res, err := r.SetArgs("arg1", "arg2").Exec()
 ...
+
 ```
+
 
 #### Values / ValuesList / ValuesFlat
 

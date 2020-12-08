@@ -49,8 +49,6 @@ err = o.Read(&user, "Name")
 ...
 ```
 
-对象的其他字段值将会是对应类型的默认值
-
 复杂的单个对象查询参见 [One](query.md#one)
 
 ## ReadOrCreate

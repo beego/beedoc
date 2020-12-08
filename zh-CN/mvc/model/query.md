@@ -15,6 +15,9 @@ o := orm.NewOrm()
 // 获取 QuerySeter 对象，user 为表名
 qs := o.QueryTable("user")
 
+// 也可以直接使用 Model 结构体作为表名
+qs = o.QueryTable(&User)
+
 // 也可以直接使用对象作为表名
 user := new(User)
 qs = o.QueryTable(user) // 返回 QuerySeter
@@ -31,7 +34,6 @@ QuerySeter 中用于描述字段和 sql 操作符，使用简单的 expr 查询�
 qs.Filter("id", 1) // WHERE id = 1
 qs.Filter("profile__age", 18) // WHERE profile.age = 18
 qs.Filter("Profile__Age", 18) // 使用字段名和 Field 名都是允许的
-qs.Filter("profile__age", 18) // WHERE profile.age = 18
 qs.Filter("profile__age__gt", 18) // WHERE profile.age > 18
 qs.Filter("profile__age__gte", 18) // WHERE profile.age >= 18
 qs.Filter("profile__age__in", 18, 20) // WHERE profile.age IN (18, 20)
@@ -319,7 +321,7 @@ qs.IgnoreIndex(`idx_name1`,`idx_name2`)
 
 ### Distinct
 
-对应 sql 的 `distinct` 语句, 返回不重复的值.
+对应 sql 的 `distinct` 语句, 返回指定字段不重复的值.
 
 ```go
 qs.Distinct()
