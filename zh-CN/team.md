@@ -5,6 +5,11 @@
 - 团队角色：beego 创始人，框架主要开发者。
 - 社交网络：[新浪微博](http://weibo.com/533452688) [GitHub](https://github.com/astaxie) [Twitter](https://twitter.com/astaxie) [Google+](https://plus.google.com/u/0/111292884696033638814)
 
+### Ming Deng
+
+- 团队角色：beego v2 主要维护者
+- [GitHub](https://github.com/flycash)
+
 ### Slene
 
 - 团队角色：ORM 开发者，兼职 beego 示例及官网开发

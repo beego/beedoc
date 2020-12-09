@@ -39,4 +39,4 @@ sort: 5
 
 我们在 Controller 里面把数据赋值给了 data（map 类型），然后我们在模板中就直接通过 key 访问 `.Website` 和 `.Email` 。这样就做到了数据的输出。接下来我们讲解如何让静态文件输出。
 
-[静态文件处理](static.md)
+[静态文件处理](./static.md)

@@ -47,4 +47,4 @@ func (this *MainController) Get() {
 
 至此我们的控制器分析基本完成了，接下来让我们看看如何来编写 model。
 
-[model 逻辑](model.md)
+[model 逻辑](./model.md)

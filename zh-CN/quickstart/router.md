@@ -24,7 +24,7 @@ sort: 2
 
 这里我们就看到了我们引入了一个包 `_ "quickstart/routers"`,这个包只引入执行了里面的 init 函数，那么让我们看看这个里面做了什么事情：
 
-```
+```go
 package routers
 
 import (
