@@ -39,4 +39,4 @@ func LogPV(urls string) bool {
 
 所以如果您的应用足够简单，那么就不需要 Model 了；如果你的模块开始多了，需要复用，需要逻辑分离了，那么 Model 是必不可少的。接下来我们将分析如何编写 View 层的东西。
 
-[view 渲染](view.md)
+[view 渲染](./view.md)
