@@ -186,17 +186,38 @@ If set type as datetime, the field's db type is datetime.
 Created time.Time `orm:"auto_now_add;type(datetime)"`
 ```
 
-#### default
+#### default value
 
-Set default value for field with the same type. (Only support default value of cascade deleting. :TODO
+you could use it like:
 
 ```go
-type User struct {
-	...
-	Status int `orm:"default(1)"`
-	...
+
+import (
+"github.com/astaxie/beego/client/orm/filter/bean"
+"github.com/astaxie/beego/client/orm"
+)
+
+type DefaultValueTestEntity struct {
+Id            int
+Age           int `default:"12"`
+AgeInOldStyle int `orm:"default(13);bee()"`
+AgeIgnore     int
+}
+
+func XXX() {
+    builder := bean.NewDefaultValueFilterChainBuilder(nil, true, true)
+    orm.AddGlobalFilterChain(builder.FilterChain)
+    o := orm.NewOrm()
+    _, _ = o.Insert(&User{
+        ID: 1,
+        Name: "Tom",
+    })
 }
 ```
+
+`NewDefaultValueFilterChainBuilder`will create an instance of `DefaultValueFilterChainBuilder`
+In beego v1.x, the default value config looks like `orm:default(xxxx)`
+But the default value in 2.x is `default:xxx`, so if you want to be compatible with v1.x, please pass true as `compatibleWithOldStyle`
 
 
 #### Comment

@@ -5,7 +5,59 @@ sort: 2
 
 # beego 2.0.0
 
+### Refactor
+1. Support the new project structure.
+2. Add `adapter` module which is used to adapt v1.x to v2.x.
+3. Add `context.Context` for `cache`, `httplib`, `session`, `task`,  `orm` modules' API.
+4. Add `error` as a return value for `cache`, `httplib`, `session`, `task`.
+5. Decouple modules from each other. All modules only depend on `core` package.
 
+### Feature:
+1. Allow Healthcheck endpoint return JSON for Kubernetes (Experimental). [4055](https://github.com/astaxie/beego/pull/4055)
+2. Support `ClientAuth` for TLS. [4116](https://github.com/astaxie/beego/pull/4116)
+3. `orm.RawSeter`  support `orm.Fielder`. [4191](https://github.com/astaxie/beego/pull/4191)
+4. Add a new MySQL operator for strict case sensitive query. [4198](https://github.com/astaxie/beego/pull/4198)
+5. Using `filter-chain` pattern in `orm` module. Support opentracing and prometheus by using filter. [4141](https://github.com/astaxie/beego/pull/4141)
+6. Support `prometheus` filter for `httplib` module. [4145](https://github.com/astaxie/beego/pull/4145)
+7. Add additional options to redis session prov. [4137](https://github.com/astaxie/beego/pull/4137)
+8. Support default value filter for `orm` module. [4156](https://github.com/astaxie/beego/pull/4156)
+9. Add methods `Unmarshaler`, `Sub`, `OnChange` for `Configer` module. [4175](https://github.com/astaxie/beego/pull/4175)
+10. Custom Log Formatter. [4174](https://github.com/astaxie/beego/pull/4174), [4179](https://github.com/astaxie/beego/pull/4179), [4188](https://github.com/astaxie/beego/pull/4188)
+11. Implement the time precison for time.Time type. [4186](https://github.com/astaxie/beego/pull/4186)
+12. Support `etcd`. [4195](https://github.com/astaxie/beego/pull/4195)
+13. Optimize rawSet.QueryRows to avoid many unnecessary calls to parseStructTag. [4210](https://github.com/astaxie/beego/pull/4210)
+14. Allow users to ignore some table when run orm commands. [4211](https://github.com/astaxie/beego/pull/4211)
+15. PostgresQueryBuilder [4205](https://github.com/astaxie/beego/pull/4205)
+16. Provides a quick format method by PatternLogFormatter struct. [4229](https://github.com/astaxie/beego/pull/4229)
+17. Support custom ES index name. [4233](https://github.com/astaxie/beego/pull/4233)
+	18 Support multiple web server. [4234](https://github.com/astaxie/beego/pull/4234)
+19. Support toml config. [4262](https://github.com/astaxie/beego/pull/4262)
+20. Using unmarshaler to parse config in web module. [4266](https://github.com/astaxie/beego/pull/4266)
+21. Add MaxUploadFile to provide more safety uploading control. [4275](https://github.com/astaxie/beego/pull/4275)
+22. Support using json string to init session. [4277](https://github.com/astaxie/beego/pull/4277)
+23. Support global instance for config module. [4278](https://github.com/astaxie/beego/pull/4278)
+
+### Fix:
+1. Fix reconnection bug in logs/conn.go. [4056](https://github.com/astaxie/beego/pull/4056)
+2. Return 403 when request payload too large. [4058](https://github.com/astaxie/beego/pull/4058)
+3. Fix race condition for Prepare Statement cache. [4061](https://github.com/astaxie/beego/pull/4061)
+4. Fix `index out of range` in session module when `len(sid) < 2`. [4068](https://github.com/astaxie/beego/pull/4068)
+5. Fix concurrent issue of context/input Query method. [4066](https://github.com/astaxie/beego/pull/4066)
+6. Allow using environment variable to specific the config file. [4111](https://github.com/astaxie/beego/pull/4111)
+7. XSRF add secure and http only flag. [4126](https://github.com/astaxie/beego/pull/4126)
+8. Fix temporary create failed on Windows [4244](https://github.com/astaxie/beego/pull/4244)
+9. Session: adds CookieSameSite to ManagerConfig. [4226](https://github.com/astaxie/beego/pull/4226)
+10. Make stmt cache smaller to avoid `too many statement` error. [4261](https://github.com/astaxie/beego/pull/4261)
+11. Fix:return error after inserting data when primary key is string. [4150](https://github.com/astaxie/beego/pull/4150)
+	12.Fix the bug that Fielder's SetRaw is not called when calling orm.Raw() to query from database. [4160](https://github.com/astaxie/beego/pull/4160)
+13. Fix: return error when calling ``InsertOrUpdate`` is successful with string primary key. [4158](https://github.com/astaxie/beego/pull/4158)
+14. Fix the problem that the nested structure of queryRow() cannot assign values [4173](https://github.com/astaxie/beego/pull/4173)
+15. Empty field in validator.Error when label struct tag is not declared. [4225](https://github.com/astaxie/beego/pull/4225)
+16. Fix deadlock in task module. [4246](https://github.com/astaxie/beego/pull/4246)
+17. Fix: form entity too large casue run out of memory. [4272](https://github.com/astaxie/beego/pull/4272)
+
+### Doc:
+1. Fix typo. [4251](https://github.com/astaxie/beego/pull/4251), [4135](https://github.com/astaxie/beego/pull/4135), [4107](https://github.com/astaxie/beego/pull/4107)
 
 # beego 1.12.3
 

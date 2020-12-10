@@ -309,7 +309,6 @@ When you use `TxOrm`, you should drop it after ending transaction. It's stateful
 	* [LoadRelated(interface{}, string, ...interface{}) (int64, error)](query.md#载入关系字段)
 	* [QueryM2M(interface{}, string) QueryM2Mer](query.md#多对多关系操作)
 	* [QueryTable(interface{}) QuerySeter](#querytable)
-	* [Using(string) error](#using)
 	* [Begin() error](transaction.md)
 	* [Commit() error](transaction.md)
 	* [Rollback() error](transaction.md)
@@ -329,25 +328,15 @@ qs = o.QueryTable("user")
 // Panics if the table can't be found
 ```
 
-#### Using
+#### NewOrmUsingDB
 
-Switch to  another database:
+We remove `Using` method since some users use this method in wrong way and then met some concurrent problems.
+
+You can use `NewOrmUsingDB`:
 
 ```go
-orm.RegisterDataBase("db1", "mysql", "root:root@/orm_db2?charset=utf8")
-orm.RegisterDataBase("db2", "sqlite3", "data.db")
-
-o1 := orm.NewOrm()
-o1.Using("db1")
-
-o2 := orm.NewOrm()
-o2.Using("db2")
-
-// After switching database
-// The API calls of this Ormer will use the new database
+o := orm.NewOrmUsingDB("db_name")
 ```
-
-Use `default` database, no need to use `Using`
 
 #### Raw
 
@@ -376,14 +365,12 @@ type Driver interface {
 orm.RegisterDataBase("db1", "mysql", "root:root@/orm_db2?charset=utf8")
 orm.RegisterDataBase("db2", "sqlite3", "data.db")
 
-o1 := orm.NewOrm()
-o1.Using("db1")
+o1 := orm.NewOrmUsingDB("db1")
 dr := o1.Driver()
 fmt.Println(dr.Name() == "db1") // true
 fmt.Println(dr.Type() == orm.DRMySQL) // true
 
-o2 := orm.NewOrm()
-o2.Using("db2")
+o2 := orm.NewOrmUsingDB("db2")
 dr = o2.Driver()
 fmt.Println(dr.Name() == "db2") // true
 fmt.Println(dr.Type() == orm.DRSqlite) // true
