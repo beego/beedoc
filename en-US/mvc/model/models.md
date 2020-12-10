@@ -186,6 +186,16 @@ If set type as datetime, the field's db type is datetime.
 Created time.Time `orm:"auto_now_add;type(datetime)"`
 ```
 
+#### Time Precision
+
+```go
+type User struct {
+...
+Created time.Time `orm:"type(datetime);precision(4)"`
+...
+}
+```
+
 #### default value
 
 you could use it like:
@@ -231,8 +241,6 @@ type User struct {
 	...
 }
 ```
-
-
 
 ## Relationships
 
