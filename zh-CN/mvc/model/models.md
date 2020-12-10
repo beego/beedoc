@@ -195,15 +195,34 @@ Created time.Time `orm:"auto_now_add;type(datetime)"`
 
 #### default
 
-为字段设置默认值，类型必须符合（目前仅用于级联删除时的默认值）
+在 v2.x 里面，我们提供了默认值的Filter:
 
 ```go
-type User struct {
-	...
-	Status int `orm:"default(1)"`
-	...
+
+import (
+"github.com/astaxie/beego/client/orm/filter/bean"
+"github.com/astaxie/beego/client/orm"
+)
+
+type DefaultValueTestEntity struct {
+Id            int
+Age           int `default:"12"`
+AgeInOldStyle int `orm:"default(13);bee()"`
+AgeIgnore     int
+}
+
+func XXX() {
+    builder := bean.NewDefaultValueFilterChainBuilder(nil, true, true)
+    orm.AddGlobalFilterChain(builder.FilterChain)
+    o := orm.NewOrm()
+    _, _ = o.Insert(&User{
+        ID: 1,
+        Name: "Tom",
+    })
 }
 ```
+
+我们一个很重要的认识，是认为显式设置值才是更加优雅的实践，所以我们将默认值的功能做成了一种可选的`filter`实现。
 
 #### Comment
 
