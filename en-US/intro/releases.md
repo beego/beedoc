@@ -19,7 +19,7 @@ sort: 2
 7. Introduce `filter-chain` patter to support AOP.
 
 ### Feature:
-1. Allow Healthcheck endpoint return JSON for Kubernetes (Experimental). [4055](https://github.com/astaxie/beego/pull/4055)
+1. Allow Healthcheck endpoint return JSON for Kubernetes. [4055](https://github.com/astaxie/beego/pull/4055)
 2. Support `ClientAuth` for TLS. [4116](https://github.com/astaxie/beego/pull/4116)
 3. `orm.RawSeter` supports `orm.Fielder`. [4191](https://github.com/astaxie/beego/pull/4191)
 4. Add a new MySQL operator for strict case-sensitive query. [4198](https://github.com/astaxie/beego/pull/4198)
@@ -42,25 +42,23 @@ sort: 2
 21. Add MaxUploadFile to provide more safety uploading control. [4275](https://github.com/astaxie/beego/pull/4275)
 22. Support using json string to init session. [4277](https://github.com/astaxie/beego/pull/4277)
 23. Support global instance for config module. [4278](https://github.com/astaxie/beego/pull/4278)
+24. Session: adds CookieSameSite to ManagerConfig. [4226](https://github.com/astaxie/beego/pull/4226)
 
 ### Fix:
 1. Fix reconnection bug in logs/conn.go. [4056](https://github.com/astaxie/beego/pull/4056)
-2. Return 403 when request payload too large. [4058](https://github.com/astaxie/beego/pull/4058)
-3. Fix race condition for Prepare Statement cache. [4061](https://github.com/astaxie/beego/pull/4061)
-4. Fix `index out of range` in session module when `len(sid) < 2`. [4068](https://github.com/astaxie/beego/pull/4068)
-5. Fix concurrent issue of context/input Query method. [4066](https://github.com/astaxie/beego/pull/4066)
-6. Allow using environment variable to specific the config file. [4111](https://github.com/astaxie/beego/pull/4111)
-7. XSRF add secure and http only flag. [4126](https://github.com/astaxie/beego/pull/4126)
-8. Fix temporary create failed on Windows [4244](https://github.com/astaxie/beego/pull/4244)
-9. Session: adds CookieSameSite to ManagerConfig. [4226](https://github.com/astaxie/beego/pull/4226)
-10. Make stmt cache smaller to avoid `too many statement` error. [4261](https://github.com/astaxie/beego/pull/4261)
-11. Fix:return error after inserting data when primary key is string. [4150](https://github.com/astaxie/beego/pull/4150)
-    12.Fix the bug that Fielder's SetRaw is not called when calling orm.Raw() to query from database. [4160](https://github.com/astaxie/beego/pull/4160)
-13. Fix: return error when calling ``InsertOrUpdate`` is successful with string primary key. [4158](https://github.com/astaxie/beego/pull/4158)
-14. Fix the problem that the nested structure of queryRow() cannot assign values [4173](https://github.com/astaxie/beego/pull/4173)
-15. Empty field in validator.Error when label struct tag is not declared. [4225](https://github.com/astaxie/beego/pull/4225)
-16. Fix deadlock in task module. [4246](https://github.com/astaxie/beego/pull/4246)
-17. Fix: form entity too large casue run out of memory. [4272](https://github.com/astaxie/beego/pull/4272)
+2. Return 413 when request payload too large. [4058](https://github.com/astaxie/beego/pull/4058)
+3. Fix `index out of range` in session module when `len(sid) < 2`. [4068](https://github.com/astaxie/beego/pull/4068)
+4. Fix concurrent issue of context/input Query method. [4066](https://github.com/astaxie/beego/pull/4066)
+5. Allow using environment variable to specific the config file. [4111](https://github.com/astaxie/beego/pull/4111)
+6. XSRF add secure and http only flag. [4126](https://github.com/astaxie/beego/pull/4126)
+7. Fix temporary create failed on Windows [4244](https://github.com/astaxie/beego/pull/4244)
+8. Fix:return error after inserting data when primary key is string. [4150](https://github.com/astaxie/beego/pull/4150)
+9. Fix the bug that Fielder's SetRaw is not called when calling orm.Raw() to query from database. [4160](https://github.com/astaxie/beego/pull/4160)
+10. Fix: return error when calling ``InsertOrUpdate`` is successful with string primary key. [4158](https://github.com/astaxie/beego/pull/4158)
+11. Fix the problem that the nested structure of queryRow() cannot assign values [4173](https://github.com/astaxie/beego/pull/4173)
+12. Empty field in validator.Error when label struct tag is not declared. [4225](https://github.com/astaxie/beego/pull/4225)
+13. Fix deadlock in task module. [4246](https://github.com/astaxie/beego/pull/4246)
+14. Fix: form entity too large casue run out of memory. [4272](https://github.com/astaxie/beego/pull/4272)
 
 ### Doc:
 1. Fix typo. [4251](https://github.com/astaxie/beego/pull/4251), [4135](https://github.com/astaxie/beego/pull/4135), [4107](https://github.com/astaxie/beego/pull/4107)
