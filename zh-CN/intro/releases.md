@@ -10,7 +10,7 @@ sort: 2
    1.1 server: 包括web模块.
    1.2 client: 包括ORM, cache, httplib 模块.
    1.3 task: 支持周期任务和定时任务。
-   1.4 core: 包括 validation, config, logs 和 governor 模块.
+   1.4 core: 包括 validation, config, logs 和 admin 模块.
 2. 增加 `adapter` 模块，作为 1.x 升级到 2.x 的适配模块
 3. 为 `cache`, `httplib`, `session`, `task`,  `ORM` 模块的 API 增加 `context.Context` .
 4. 为 `cache`, `httplib`, `session`, `task`的 API增加 `error` 作为返回值.
