@@ -8,7 +8,7 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 
 你需要安装或者升级 Beego 和 [Bee](http://beego.me/docs/install/bee.md) 的开发工具:
 
-	$ go get -u github.com/astaxie/beego
+	$ go get -u github.com/beego/beego/v2
 	$ go get -u github.com/beego/bee
 
 为了更加方便的操作，请将 `$GOPATH/bin` 加入到你的 `$PATH` 变量中。请确保在此之前您已经添加了 `$GOPATH` 变量。
@@ -50,7 +50,7 @@ Windows 平台下输入：
 	package main
 
 	import (
-		"github.com/astaxie/beego"
+		"github.com/beego/beego/v2"
 	)
 
 	type MainController struct {
@@ -75,7 +75,7 @@ Windows 平台下输入：
 
 那么上面的代码到底做了些什么呢？
 
-1. 首先我们导入了包 `github.com/astaxie/beego`。我们知道 Go 语言里面被导入的包会按照深度优先的顺序去执行导入包的初始化（变量和 init 函数，[更多详情](https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/02.3.md#main函数和init函数)），beego 包中会初始化一个 BeeAPP 的应用和一些参数。
+1. 首先我们导入了包 `github.com/beego/beego/v2`。我们知道 Go 语言里面被导入的包会按照深度优先的顺序去执行导入包的初始化（变量和 init 函数，[更多详情](https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/02.3.md#main函数和init函数)），beego 包中会初始化一个 BeeAPP 的应用和一些参数。
 2. 定义 Controller，这里我们定义了一个 struct 为 `MainController`，充分利用了 Go 语言的组合的概念，匿名包含了 `beego.Controller`，这样我们的 `MainController` 就拥有了 `beego.Controller` 的所有方法。
 3. 定义 RESTful 方法，通过匿名组合之后，其实目前的 `MainController` 已经拥有了 `Get`、`Post`、`Delete`、`Put` 等方法，这些方法是分别用来对应用户请求的 Method 函数，如果用户发起的是 POST 请求，那么就执行 `Post` 函数。所以这里我们定义了 `MainController` 的 `Get` 方法用来重写继承的 `Get` 函数，这样当用户发起 GET 请求的时候就会执行该函数。
 4. 定义 main 函数，所有的 Go 应用程序和 C 语言一样都是 main 函数作为入口，所以我们这里定义了我们应用的入口。

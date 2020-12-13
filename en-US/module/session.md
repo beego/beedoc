@@ -15,14 +15,14 @@ It is inspired by `database/sql`, which means: one interface, multiple implement
 
 Install session module:
 
-	go get github.com/astaxie/beego/server/web/session
+	go get github.com/beego/beego/v2/server/web/session
 
 ## Basic Usage:
 
 Import package first:
 
 	import (
-		"github.com/astaxie/beego/server/web/session"
+		"github.com/beego/beego/v2/server/web/session"
 	)
 
 Then initialize a global variable as the session manager:

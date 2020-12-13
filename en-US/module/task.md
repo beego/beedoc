@@ -8,7 +8,7 @@ sort: 6
 
 ## Installation
 
-	go get github.com/astaxie/beego/toolbox
+	go get github.com/beego/beego/v2/toolbox
 
 
 ## Tasks
@@ -18,7 +18,7 @@ Examples include: Reporting memory and goroutine status, periodically triggering
 
 ### Creating a new Task
 
-To initialize a task implement [https://godoc.org/github.com/astaxie/beego/toolbox#NewTask](toolbox.NewTask):
+To initialize a task implement [https://godoc.org/github.com/beego/beego/toolbox#NewTask](toolbox.NewTask):
 
 	tk1 := toolbox.NewTask("tk1", "0 12 * * * *", func() error {
 		fmt.Println("tk1")

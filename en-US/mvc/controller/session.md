@@ -86,11 +86,11 @@ Here are some parameters used in the Session module:
 
 From Beego version 1.1.3 onwards Beego removed all dependencies. Mysql, redis, couchbase, memcache, or postgres should be installed before they can be used.
 
-	go get -u webgithub.com/astaxie/beego/server/web/session/mysql
+	go get -u webgithub.com/beego/beego/v2/server/web/session/mysql
 
 then import them in `main.go`, the same as the `database/sql`:
 
-	import _ "webgithub.com/astaxie/beego/server/web/session/mysql"
+	import _ "webgithub.com/beego/beego/v2/server/web/session/mysql"
 
 When SessionProvider is file, SessionProviderConfig is the save path for session files. For example:
 

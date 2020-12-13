@@ -93,11 +93,11 @@ sess 对象具有如下方法：
 
 从 beego1.1.3 版本开始移除了第三方依赖库,也就是如果你想使用 mysql、redis、couchbase、memcache、postgres 这些引擎,那么你首先需要安装
 
-	go get -u github.com/astaxie/beego/session/mysql
+	go get -u github.com/beego/beego/v2/session/mysql
 
 然后在你的 main 函数中引入该库, 和数据库的驱动引入是一样的:
 ```go
-import _ "github.com/astaxie/beego/session/mysql"
+import _ "github.com/beego/beego/v2/session/mysql"
 ```
 当 SessionProvider 为 file SessionProviderConfig 是指保存文件的目录，如下所示：
 ```go

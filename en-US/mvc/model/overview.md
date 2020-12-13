@@ -5,7 +5,7 @@ sort: 1
 
 # Models － Beego ORM
 
-[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego/client/orm)
+[![Build Status](https://drone.io/github.com/beego/beego/v2/status.png)](https://drone.io/github.com/beego/beego/v2/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/beego/beego/v2/client/orm)
 
 Beego ORM is a powerful ORM framework written in Go. It is inspired by Django ORM and SQLAlchemy.
 
@@ -32,7 +32,7 @@ You can learn more in this documentation.
 
 **Install ORM:**
 
-	go get github.com/astaxie/beego/client/orm
+	go get github.com/beego/beego/v2/client/orm
 
 ## Quickstart
 
@@ -43,7 +43,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/astaxie/beego/client/orm"
+	"github.com/beego/beego/v2/client/orm"
 	_ "github.com/go-sql-driver/mysql" // import your required driver
 )
 

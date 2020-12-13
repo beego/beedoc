@@ -7,7 +7,7 @@ sort: 3
 
 这是一个用来处理日志的库，它的设计思路来自于 `database/sql`，目前支持的引擎有 file、console、net、smtp、es、slack，可以通过如下方式进行安装：
 
-	go get github.com/astaxie/beego/logs
+	go get github.com/beego/beego/v2/logs
 
 # 如何使用
 
@@ -17,7 +17,7 @@ sort: 3
 首先引入包：
 ```go
 import (
-	"github.com/astaxie/beego/core/logs"
+	"github.com/beego/beego/v2/core/logs"
 )
 ```
 
@@ -34,7 +34,7 @@ import (
 package main
 
 import (
-	"github.com/astaxie/beego/core/logs"
+	"github.com/beego/beego/v2/core/logs"
 )
 
 func main() {
@@ -58,7 +58,7 @@ func main() {
 package main
 
 import (
-	"github.com/astaxie/beego/core/logs"
+	"github.com/beego/beego/v2/core/logs"
 )
 
 func main() {
@@ -113,7 +113,7 @@ type LogFormatter interface {
 package main
 
 import (
-	"github.com/astaxie/beego/core/logs"
+	"github.com/beego/beego/v2/core/logs"
 )
 
 func main() {

@@ -79,7 +79,7 @@ func main() {
 package controllers
 
 import (
-	"github.com/astaxie/beego/server/web"
+	"github.com/beego/beego/v2/server/web"
 )
 
 type ErrorController struct {
@@ -115,7 +115,7 @@ import (
 	_ "btest/routers"
 	"btest/controllers"
 
-	"github.com/astaxie/beego/server/web"
+	"github.com/beego/beego/v2/server/web"
 )
 
 func main() {

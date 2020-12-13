@@ -9,7 +9,7 @@ sort: 3
 ```go
 package your_package
 import (
- "github.com/astaxie/beego/server/web"
+ "github.com/beego/beego/v2/server/web"
 )
 type xxxController struct {
 	    web.Controller

@@ -7,15 +7,15 @@ sort: 7
 
 The config module is used for parsing configuration files, inspired by `database/sql`. It supports ini, json, xml and yaml files. You can install it by:
 
-	go get github.com/astaxie/beego/core/config
+	go get github.com/beego/beego/v2/core/config
 
 If you want to parse xml or yaml, you should first install:
 
-	go get -u github.com/astaxie/beego/core/config/xml
+	go get -u github.com/beego/beego/v2/core/config/xml
 
 and then import:
 
-	import _ "github.com/astaxie/beego/core/config/xml"
+	import _ "github.com/beego/beego/v2/core/config/xml"
 	
 # Remote configure middleware
 
@@ -38,7 +38,7 @@ If the file not found or got some error, Beego outputs some warning log.
 Or you can initialize the `globalInstance` by:
 
 ```go
-_ import "github.com/astaxie/beego/core/config/toml"
+_ import "github.com/beego/beego/v2/core/config/toml"
 err := InitGlobalInstance("toml", "some config")
 // ...
 val, err := config.String("mykey")
@@ -124,7 +124,7 @@ After Pull Request "Support get environment variables in config #1636" was merge
 
 The format for this is `${ENVIRONMENTVARIABLE}` within the configuration file which is equivalent to `value = os.Getenv('ENVIRONMENTVARIABLE')`. Beego will only check for environment variables if the value begins with `${` and ends with `}`.
 
-Additionally, a default value can be configured for the case that there is no environment variable set or the environment variable is empty. This is accomplished by using the format `${ENVVAR||defaultvalue}`, for example `${GOPATH||/home/asataxie/workspace/go}`. This `||` is used to split environment values and default values. See `/config/config_test.go` in the [beego repo](https://github.com/astaxie/beego) for more examples and edge cases about how these environment variables and default values are parsed.
+Additionally, a default value can be configured for the case that there is no environment variable set or the environment variable is empty. This is accomplished by using the format `${ENVVAR||defaultvalue}`, for example `${GOPATH||/home/asataxie/workspace/go}`. This `||` is used to split environment values and default values. See `/config/config_test.go` in the [beego repo](https://github.com/beego/beego/v2) for more examples and edge cases about how these environment variables and default values are parsed.
 
 For example:
 

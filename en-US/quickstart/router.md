@@ -11,7 +11,7 @@ The previous section covered creating and running a Beego project.  This section
 	
 	import (
 	        _ "quickstart/routers"
-	        "github.com/astaxie/beego/server/web"
+	        "github.com/beego/beego/v2/server/web"
 	)
 	
 	func main() {
@@ -24,7 +24,7 @@ This code imports the package `quickstart/routers`. This file contains the follo
 
 	import (
 	        "quickstart/controllers"
-	        "github.com/astaxie/beego/server/web"
+	        "github.com/beego/beego/v2/server/web"
 	)
 
 	func init() {

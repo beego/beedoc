@@ -89,7 +89,7 @@ This is the most important part of comment. For example:
 ```
 package controllers
 
-import "github.com/astaxie/beego/server/web"
+import "github.com/beego/beego/v2/server/web"
 
 // CMS API
 type CMSController struct {

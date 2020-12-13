@@ -7,22 +7,22 @@ sort: 2
 
 beego 的 cache 模块是用来做数据缓存的，设计思路来自于 `database/sql`，目前支持 file、memcache、memory 和 redis 四种引擎，安装方式如下：
 
-	go get github.com/astaxie/beego/client/cache
+	go get github.com/beego/beego/v2/client/cache
 
 >>>如果你使用memcache 或者 redis 驱动就需要手工安装引入包
 
-	go get -u github.com/astaxie/beego/client/cache/memcache
+	go get -u github.com/beego/beego/v2/client/cache/memcache
 
 >>>而且需要在使用的地方引入包
 
-    import _ "github.com/astaxie/beego/client/cache/memcache"
+    import _ "github.com/beego/beego/v2/client/cache/memcache"
     
 # 使用入门
 
 首先引入包：
 ```go
 import (
-	"github.com/astaxie/beego/client/cache"
+	"github.com/beego/beego/v2/client/cache"
 )
 ```
 

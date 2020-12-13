@@ -9,7 +9,7 @@ sort: 1
 
 Beego is free and open source software, which means that anyone can contribute
 to its development and progress under the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0.html). Beego's source code is hosted on github
-(https://github.com/astaxie/beego).
+(https://github.com/beego/beego/v2).
 
 ### How can I become a contributor of Beego?
 
@@ -64,7 +64,7 @@ You must have a github account, if not, please register one.
 
 ### 1.4.1 Fork 代码
 
-1. Click [https://github.com/astaxie/beego](https://github.com/astaxie/beego)
+1. Click [https://github.com/beego/beego/v2](https://github.com/beego/beego/v2)
 2. Click "Fork" button which is on top right corner 
 
 ### 1.4.2 Clone 代码
@@ -84,7 +84,7 @@ git remote add upstream 'git@github.com:<your github username>/beego.git'
 Using HTTPS：
 
 ```bash
-git clone https://github.com/astaxie/beego.git
+git clone https://github.com/beego/beego/v2.git
 cd beego
 git remote add  'https://github.com/<you github username>/beego.git'
 ```
@@ -132,4 +132,4 @@ git push upstream my-feature
 
 ### 1.4.6 make PR
 
-Go to [https://github.com/astaxie/beego](https://github.com/astaxie/beego), and make a Pull request
+Go to [https://github.com/beego/beego/v2](https://github.com/beego/beego/v2), and make a Pull request

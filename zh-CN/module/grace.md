@@ -26,7 +26,7 @@ grace 模块是 beego 新增的一个独立支持热重启的模块。主要的�
 	"os"
     "strconv"
 
-   "github.com/astaxie/beego/grace"
+   "github.com/beego/beego/v2/grace"
  )
 
   func handler(w http.ResponseWriter, r *http.Request) {

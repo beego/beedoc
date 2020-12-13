@@ -10,7 +10,7 @@ sort: 2
    1.1 server: 包括web模块.
    1.2 client: 包括ORM, cache, httplib 模块.
    1.3 task: 支持周期任务和定时任务。
-   1.4 core: 包括 validation, config, logs 和 governor 模块.
+   1.4 core: 包括 validation, config, logs 和 admin 模块.
 2. 增加 `adapter` 模块，作为 1.x 升级到 2.x 的适配模块
 3. 为 `cache`, `httplib`, `session`, `task`,  `ORM` 模块的 API 增加 `context.Context` .
 4. 为 `cache`, `httplib`, `session`, `task`的 API增加 `error` 作为返回值.
@@ -19,204 +19,204 @@ sort: 2
 7. 引入 `filter-chain` 模式用于扩展 AOP 业务逻辑.
 
 ### Feature:
-1. 健康检查能够返回json串了. [4055](https://github.com/astaxie/beego/pull/4055)
-2. TLS 支持 `ClientAuth` 选项了. [4116](https://github.com/astaxie/beego/pull/4116)
-3. `orm.RawSeter` 支持 `orm.Fielder` 接口了. [4191](https://github.com/astaxie/beego/pull/4191)
-4. 支持新的，MySQL的大小写敏感(strict case-sensitive)的操作符. [4198](https://github.com/astaxie/beego/pull/4198)
-5. 在 ORM 中支持 `opentracing` 和 `prometheus`. [4141](https://github.com/astaxie/beego/pull/4141)
-6. 在`httplib`中支持 `prometheus`. [4145](https://github.com/astaxie/beego/pull/4145)
-7. 使用新的API来替换部分过期 `redis` API，同时支持了更加丰富的 `redis` 参数 [4137](https://github.com/astaxie/beego/pull/4137)
-8. `orm`全面支持默认值. [4156](https://github.com/astaxie/beego/pull/4156)
-9. 为`config`模块添加 `Unmarshaler`, `Sub`, `OnChange`方法. [4175](https://github.com/astaxie/beego/pull/4175)
-10. 支持自定义日期格式. [4174](https://github.com/astaxie/beego/pull/4174), [4179](https://github.com/astaxie/beego/pull/4179), [4188](https://github.com/astaxie/beego/pull/4188)
-11. 支持时间精度. [4186](https://github.com/astaxie/beego/pull/4186)
-12. 支持 `etcd` 作为配置中心. [4195](https://github.com/astaxie/beego/pull/4195)
-13. 优化 `rawSet.QueryRows`，以避免重复调用`parseStructTag`. [4210](https://github.com/astaxie/beego/pull/4210)
-14. 执行 `ORM` 的命令时，允许忽略部分表. [4211](https://github.com/astaxie/beego/pull/4211)
-15. 支持 `PostgresQueryBuilder` [4205](https://github.com/astaxie/beego/pull/4205)
-16. 强大的自定义日期格式实现`PatternLogFormatter`.[4229](https://github.com/astaxie/beego/pull/4229)
-17. 支持自定义`ES`索引名字. [4233](https://github.com/astaxie/beego/pull/4233)
-18. 支持多server. [4234](https://github.com/astaxie/beego/pull/4234)
-19. 支持 toml. [4262](https://github.com/astaxie/beego/pull/4262)
-20. 使用`unmarshaler`方法以解析`web`中的配置 [4266](https://github.com/astaxie/beego/pull/4266)
-21. 增加`MaxUploadFile`以控制上传文件的内存占用. [4275](https://github.com/astaxie/beego/pull/4275)
-22. 支持使用`json`来初始化`session`实现. [4277](https://github.com/astaxie/beego/pull/4277)
-23. 支持直接使用`config`来读取配置. [4278](https://github.com/astaxie/beego/pull/4278)
-24. `session`支持`CookieSameSite`选项 [4226](https://github.com/astaxie/beego/pull/4226)
+1. 健康检查能够返回json串了. [4055](https://github.com/beego/beego/pull/4055)
+2. TLS 支持 `ClientAuth` 选项了. [4116](https://github.com/beego/beego/pull/4116)
+3. `orm.RawSeter` 支持 `orm.Fielder` 接口了. [4191](https://github.com/beego/beego/pull/4191)
+4. 支持新的，MySQL的大小写敏感(strict case-sensitive)的操作符. [4198](https://github.com/beego/beego/pull/4198)
+5. 在 ORM 中支持 `opentracing` 和 `prometheus`. [4141](https://github.com/beego/beego/pull/4141)
+6. 在`httplib`中支持 `prometheus`. [4145](https://github.com/beego/beego/pull/4145)
+7. 使用新的API来替换部分过期 `redis` API，同时支持了更加丰富的 `redis` 参数 [4137](https://github.com/beego/beego/pull/4137)
+8. `orm`全面支持默认值. [4156](https://github.com/beego/beego/pull/4156)
+9. 为`config`模块添加 `Unmarshaler`, `Sub`, `OnChange`方法. [4175](https://github.com/beego/beego/pull/4175)
+10. 支持自定义日期格式. [4174](https://github.com/beego/beego/pull/4174), [4179](https://github.com/beego/beego/pull/4179), [4188](https://github.com/beego/beego/pull/4188)
+11. 支持时间精度. [4186](https://github.com/beego/beego/pull/4186)
+12. 支持 `etcd` 作为配置中心. [4195](https://github.com/beego/beego/pull/4195)
+13. 优化 `rawSet.QueryRows`，以避免重复调用`parseStructTag`. [4210](https://github.com/beego/beego/pull/4210)
+14. 执行 `ORM` 的命令时，允许忽略部分表. [4211](https://github.com/beego/beego/pull/4211)
+15. 支持 `PostgresQueryBuilder` [4205](https://github.com/beego/beego/pull/4205)
+16. 强大的自定义日期格式实现`PatternLogFormatter`.[4229](https://github.com/beego/beego/pull/4229)
+17. 支持自定义`ES`索引名字. [4233](https://github.com/beego/beego/pull/4233)
+18. 支持多server. [4234](https://github.com/beego/beego/pull/4234)
+19. 支持 toml. [4262](https://github.com/beego/beego/pull/4262)
+20. 使用`unmarshaler`方法以解析`web`中的配置 [4266](https://github.com/beego/beego/pull/4266)
+21. 增加`MaxUploadFile`以控制上传文件的内存占用. [4275](https://github.com/beego/beego/pull/4275)
+22. 支持使用`json`来初始化`session`实现. [4277](https://github.com/beego/beego/pull/4277)
+23. 支持直接使用`config`来读取配置. [4278](https://github.com/beego/beego/pull/4278)
+24. `session`支持`CookieSameSite`选项 [4226](https://github.com/beego/beego/pull/4226)
 
 ### Fix:
-1. 修复`log`重连问题(logs/conn.go). [4056](https://github.com/astaxie/beego/pull/4056)
-2. 请求体过大能正确返回413错误了. [4058](https://github.com/astaxie/beego/pull/4058)
-3. 修复`session`模块`index out of range`错误. [4068](https://github.com/astaxie/beego/pull/4068)
-4. 修复`context/input#Query`方法并发问题. [4066](https://github.com/astaxie/beego/pull/4066)
-5. 允许使用环境变量来指定初始化配置文件. [4111](https://github.com/astaxie/beego/pull/4111)
-6. 为XSRF增加了 httponly 和 secure 的 flag. [4126](https://github.com/astaxie/beego/pull/4126)
-7. 修复了 windows 下创建临时文件的问题 [4244](https://github.com/astaxie/beego/pull/4244)
-8. 主键是非数字类型时，插入时会返回特定的error信息，表明无法生成自增主键. [4150](https://github.com/astaxie/beego/pull/4150)
-9. 修复了`Fielder`在使用`orm.Raw()`的时候，未曾调用`SetRaw`设置值的问题. [4160](https://github.com/astaxie/beego/pull/4160)
-10. 修复在非数字主键下，执行`InsertOrUpdate`方法成功却又返回 error 的问题. [4158](https://github.com/astaxie/beego/pull/4158)
-11. 修复字段是结构体的情况下，`queryRaw`未能正确赋值结果集的问题 [4173](https://github.com/astaxie/beego/pull/4173)
-12. `validator.Error`在缺省tag信息的情况下，会使用字段名字来构建错误信息. [4225](https://github.com/astaxie/beego/pull/4225)
-13. 修复task模块的死锁问题. [4246](https://github.com/astaxie/beego/pull/4246)
-14. 修复http提交表单过大导致OOM的问题. [4272](https://github.com/astaxie/beego/pull/4272)
+1. 修复`log`重连问题(logs/conn.go). [4056](https://github.com/beego/beego/pull/4056)
+2. 请求体过大能正确返回413错误了. [4058](https://github.com/beego/beego/pull/4058)
+3. 修复`session`模块`index out of range`错误. [4068](https://github.com/beego/beego/pull/4068)
+4. 修复`context/input#Query`方法并发问题. [4066](https://github.com/beego/beego/pull/4066)
+5. 允许使用环境变量来指定初始化配置文件. [4111](https://github.com/beego/beego/pull/4111)
+6. 为XSRF增加了 httponly 和 secure 的 flag. [4126](https://github.com/beego/beego/pull/4126)
+7. 修复了 windows 下创建临时文件的问题 [4244](https://github.com/beego/beego/pull/4244)
+8. 主键是非数字类型时，插入时会返回特定的error信息，表明无法生成自增主键. [4150](https://github.com/beego/beego/pull/4150)
+9. 修复了`Fielder`在使用`orm.Raw()`的时候，未曾调用`SetRaw`设置值的问题. [4160](https://github.com/beego/beego/pull/4160)
+10. 修复在非数字主键下，执行`InsertOrUpdate`方法成功却又返回 error 的问题. [4158](https://github.com/beego/beego/pull/4158)
+11. 修复字段是结构体的情况下，`queryRaw`未能正确赋值结果集的问题 [4173](https://github.com/beego/beego/pull/4173)
+12. `validator.Error`在缺省tag信息的情况下，会使用字段名字来构建错误信息. [4225](https://github.com/beego/beego/pull/4225)
+13. 修复task模块的死锁问题. [4246](https://github.com/beego/beego/pull/4246)
+14. 修复http提交表单过大导致OOM的问题. [4272](https://github.com/beego/beego/pull/4272)
 
 ### Doc:
-1. 修复一些错别字。[4251](https://github.com/astaxie/beego/pull/4251), [4135](https://github.com/astaxie/beego/pull/4135), [4107](https://github.com/astaxie/beego/pull/4107)
+1. 修复一些错别字。[4251](https://github.com/beego/beego/pull/4251), [4135](https://github.com/beego/beego/pull/4135), [4107](https://github.com/beego/beego/pull/4107)
 
 # beego 1.12.3
 
 ### Feature:
-1. 健康检查可以返回 JSON 格式数据. [4055](https://github.com/astaxie/beego/pull/4055)
-2. TLS 支持`ClientAuth`选项. [4116](https://github.com/astaxie/beego/pull/4116)
-3. `orm.RawSeter`支持 `orm.Fielder`. [4191](https://github.com/astaxie/beego/pull/4191)
-4. 支持MySQL字符串敏感操作符. [4198](https://github.com/astaxie/beego/pull/4198)
+1. 健康检查可以返回 JSON 格式数据. [4055](https://github.com/beego/beego/pull/4055)
+2. TLS 支持`ClientAuth`选项. [4116](https://github.com/beego/beego/pull/4116)
+3. `orm.RawSeter`支持 `orm.Fielder`. [4191](https://github.com/beego/beego/pull/4191)
+4. 支持MySQL字符串敏感操作符. [4198](https://github.com/beego/beego/pull/4198)
 
 ### Fix:
-1. 修复重连BUG logs/conn.go. [4056](https://github.com/astaxie/beego/pull/4056)
-2. 请求过大时返回403错误码. [4058](https://github.com/astaxie/beego/pull/4058)
-3. 修复Prepare Statement中的多线程竞争. [4061](https://github.com/astaxie/beego/pull/4061)
-4. 修复Session中`index out of range`错误. [4068](https://github.com/astaxie/beego/pull/4068)
-5. 修复context/input Query的并发问题. [4066](https://github.com/astaxie/beego/pull/4066)
-6. 允许使用环境变量来指定配置文件. [4111](https://github.com/astaxie/beego/pull/4111)
-7. XSRF添加 secure 和 http only 标志. [4126](https://github.com/astaxie/beego/pull/4126)
-8. 修复Windows下临时文件目录错误问题 [4244](https://github.com/astaxie/beego/pull/4244)
-9. 支持CookieSameSite选项. [4226](https://github.com/astaxie/beego/pull/4226)
-10. 减小`Prepare Statement`缓冲的大小，避免`too many statement`错误. [4261](https://github.com/astaxie/beego/pull/4261)
+1. 修复重连BUG logs/conn.go. [4056](https://github.com/beego/beego/pull/4056)
+2. 请求过大时返回403错误码. [4058](https://github.com/beego/beego/pull/4058)
+3. 修复Prepare Statement中的多线程竞争. [4061](https://github.com/beego/beego/pull/4061)
+4. 修复Session中`index out of range`错误. [4068](https://github.com/beego/beego/pull/4068)
+5. 修复context/input Query的并发问题. [4066](https://github.com/beego/beego/pull/4066)
+6. 允许使用环境变量来指定配置文件. [4111](https://github.com/beego/beego/pull/4111)
+7. XSRF添加 secure 和 http only 标志. [4126](https://github.com/beego/beego/pull/4126)
+8. 修复Windows下临时文件目录错误问题 [4244](https://github.com/beego/beego/pull/4244)
+9. 支持CookieSameSite选项. [4226](https://github.com/beego/beego/pull/4226)
+10. 减小`Prepare Statement`缓冲的大小，避免`too many statement`错误. [4261](https://github.com/beego/beego/pull/4261)
 
 # beego 1.12.2
-1. Fix: 热更新老进程未能退出问题 [#4005](https://github.com/astaxie/beego/pull/4005)
-2. Enhance: ORM异常退出时打印堆栈 [#3743](https://github.com/astaxie/beego/pull/3743)
-3. Enhance: GetMapData使用读锁 [#3803](https://github.com/astaxie/beego/pull/3803)
-4. Fix: 正确读取符号路径目录下的文件 [#3818](https://github.com/astaxie/beego/pull/3818)
-5. Fix: Cache, context, session使用锁来保护变量 [#3922](https://github.com/astaxie/beego/pull/3922)
-6. Fix: URL编码的路径被错误解码导致匹配路径错误 [#3943](https://github.com/astaxie/beego/pull/3943)
-7. Fix: genRouterCode生成错误代码 [#3981](https://github.com/astaxie/beego/pull/3981)
-8. Enhance: 静态文件缓存使用LRU算法，并且限制文件数量和文件大小 [#3984](https://github.com/astaxie/beego/pull/3984)
-9. Fix: 设置最大连接数失效问题 [#3985](https://github.com/astaxie/beego/pull/3985)
-10. Fix: SQLite 不支持SELECT ... FOR UPDATE [#3992](https://github.com/astaxie/beego/pull/3992)
-11. Enhance: 为`httplib`的`PostFile`方法添加`Transfer-Encoding` [#3993](https://github.com/astaxie/beego/pull/3993)
-12. Enhance: ORM支持位操作 [#3994](https://github.com/astaxie/beego/pull/3994)
-13. Fix: `BConfig.Listen.Graceful`为`true`的时候`RunWithMiddleware`,`App.Run(middleware)`不起效 [#3995](https://github.com/astaxie/beego/pull/3995)
-14. Fix: 错误信息中带上`label` [#4001](https://github.com/astaxie/beego/pull/4001)
-15. Fix: 关闭`logger`之后依旧发送关闭信号，造成 panic [#4004](https://github.com/astaxie/beego/pull/4004)
-16. Enhance: 在`beforeFilter`执行之前设置好`RouterPattern` [#4007](https://github.com/astaxie/beego/pull/4007)
-17. Fix: 使用`HTMLEscapeString`以避免 XSS 攻击 [#4018](https://github.com/astaxie/beego/pull/4018)
-18. Fix: 进程未能退出 [#4005](https://github.com/astaxie/beego/pull/4005)
-19. Enhance: 使用`scan`指令取代`keys` [#4016](https://github.com/astaxie/beego/pull/4016)
-20. Feature: 支持`prometheus` [#4021](https://github.com/astaxie/beego/pull/4021)
-21. Fix: `Prepare Statement`数量超出数据库上限 [#4025](https://github.com/astaxie/beego/pull/4025)
-22. Enhance: 支持全网段手机号码校验 [#4027](https://github.com/astaxie/beego/pull/4027)
-23. Fix: 无法设置`section`的名字 [#4027](https://github.com/astaxie/beego/pull/4027)
-24. Fix: 当`multi`为 0 时`orm/db.go`中`strings.Repeat`会 panic  [#4032](https://github.com/astaxie/beego/pull/4032)
-25. Enhance: `redis`的 `idle timeout`可配置化 [#4033](https://github.com/astaxie/beego/pull/4033)
+1. Fix: 热更新老进程未能退出问题 [#4005](https://github.com/beego/beego/pull/4005)
+2. Enhance: ORM异常退出时打印堆栈 [#3743](https://github.com/beego/beego/pull/3743)
+3. Enhance: GetMapData使用读锁 [#3803](https://github.com/beego/beego/pull/3803)
+4. Fix: 正确读取符号路径目录下的文件 [#3818](https://github.com/beego/beego/pull/3818)
+5. Fix: Cache, context, session使用锁来保护变量 [#3922](https://github.com/beego/beego/pull/3922)
+6. Fix: URL编码的路径被错误解码导致匹配路径错误 [#3943](https://github.com/beego/beego/pull/3943)
+7. Fix: genRouterCode生成错误代码 [#3981](https://github.com/beego/beego/pull/3981)
+8. Enhance: 静态文件缓存使用LRU算法，并且限制文件数量和文件大小 [#3984](https://github.com/beego/beego/pull/3984)
+9. Fix: 设置最大连接数失效问题 [#3985](https://github.com/beego/beego/pull/3985)
+10. Fix: SQLite 不支持SELECT ... FOR UPDATE [#3992](https://github.com/beego/beego/pull/3992)
+11. Enhance: 为`httplib`的`PostFile`方法添加`Transfer-Encoding` [#3993](https://github.com/beego/beego/pull/3993)
+12. Enhance: ORM支持位操作 [#3994](https://github.com/beego/beego/pull/3994)
+13. Fix: `BConfig.Listen.Graceful`为`true`的时候`RunWithMiddleware`,`App.Run(middleware)`不起效 [#3995](https://github.com/beego/beego/pull/3995)
+14. Fix: 错误信息中带上`label` [#4001](https://github.com/beego/beego/pull/4001)
+15. Fix: 关闭`logger`之后依旧发送关闭信号，造成 panic [#4004](https://github.com/beego/beego/pull/4004)
+16. Enhance: 在`beforeFilter`执行之前设置好`RouterPattern` [#4007](https://github.com/beego/beego/pull/4007)
+17. Fix: 使用`HTMLEscapeString`以避免 XSS 攻击 [#4018](https://github.com/beego/beego/pull/4018)
+18. Fix: 进程未能退出 [#4005](https://github.com/beego/beego/pull/4005)
+19. Enhance: 使用`scan`指令取代`keys` [#4016](https://github.com/beego/beego/pull/4016)
+20. Feature: 支持`prometheus` [#4021](https://github.com/beego/beego/pull/4021)
+21. Fix: `Prepare Statement`数量超出数据库上限 [#4025](https://github.com/beego/beego/pull/4025)
+22. Enhance: 支持全网段手机号码校验 [#4027](https://github.com/beego/beego/pull/4027)
+23. Fix: 无法设置`section`的名字 [#4027](https://github.com/beego/beego/pull/4027)
+24. Fix: 当`multi`为 0 时`orm/db.go`中`strings.Repeat`会 panic  [#4032](https://github.com/beego/beego/pull/4032)
+25. Enhance: `redis`的 `idle timeout`可配置化 [#4033](https://github.com/beego/beego/pull/4033)
 
 # beego 1.10.0
-1. Update log.go add GetLevel Function to Log [#2970](https://github.com/astaxie/beego/pull/2970)
-2. Fix a typo "conflict" [#2971](https://github.com/astaxie/beego/pull/2971)
-3. Bug on private fields [#2978](https://github.com/astaxie/beego/pull/2978)
-4. Fix access log console unexpected '\n' at end of each log. [#2976](https://github.com/astaxie/beego/pull/2976)
-5. Fix Documentation for HTTP status codes descriptions. [#2992](https://github.com/astaxie/beego/pull/2992)
-6. Redis cache: make MaxIdle configurable [#3004](https://github.com/astaxie/beego/pull/3004)
-7. Update: Fix migration generate SQL [#3017](https://github.com/astaxie/beego/pull/3017)
-8. Handle pointer validation [#3046](https://github.com/astaxie/beego/pull/3046)
-9. Fix the issue TaseCase TestFormatHeader_0 is failed [#3066](https://github.com/astaxie/beego/pull/3066)
-10. Fix BEEGO_RUNMODE [#3064](https://github.com/astaxie/beego/pull/3064)
-11. Swagger: Allow example values with different types, allow example for enum. [#3085](https://github.com/astaxie/beego/pull/3085)
-12. Fix the bug: unable to add column with ALTER TABLE [#2999](https://github.com/astaxie/beego/pull/2999)
-13. Set default Beego RunMode to production [#3076](https://github.com/astaxie/beego/pull/3076)
-14. Fix typo [#3103](https://github.com/astaxie/beego/pull/3103)
-15. In dev mode, template parse error cause program lock [#3126](https://github.com/astaxie/beego/pull/3126)
-16. Amend a very minor typo in a variable name [#3115](https://github.com/astaxie/beego/pull/3115)
-17. When log maxSize set big int，FileWrite Init fail [#3109](https://github.com/astaxie/beego/pull/3109)
-18. Change github.com/garyburd/redigo to newest branch github.com/gomodul… [#3100](https://github.com/astaxie/beego/pull/3100)
-19. ExecElem.FieldByName as local variable [#3039](https://github.com/astaxie/beego/pull/3039)
-20. Allow log prefix [#3145](https://github.com/astaxie/beego/pull/3145)
-21. Refactor yaml config for support multilevel [#3127](https://github.com/astaxie/beego/pull/3127)
-22. Create redis_cluster.go [#3175](https://github.com/astaxie/beego/pull/3175)
-23. Add field comment on create table [#3190](https://github.com/astaxie/beego/pull/3190)
-24. Update: use PathEscape replace QueryEscape [#3200](https://github.com/astaxie/beego/pull/3200)
-25. Update gofmt [#3206](https://github.com/astaxie/beego/pull/3206)
-26. Update: Htmlquote Htmlunquote [#3202](https://github.com/astaxie/beego/pull/3202)
-27. Add 'FOR UPDATE' support for querySet [#3208](https://github.com/astaxie/beego/pull/3208)
-28. Debug stringsToJSON [#3171](https://github.com/astaxie/beego/pull/3171)
-29. Fix defaut value bug, and add config for maxfiles [#3185](https://github.com/astaxie/beego/pull/3185)
-30. Fix: correct MaxIdleConnsPerHost value to net/http default 100. [#3230](https://github.com/astaxie/beego/pull/3230)
-31. Fix: When multiply comment routers on one func [#3217](https://github.com/astaxie/beego/pull/3217)
-32. Send ErrNoRows if the query returns zero rows ... in method orm_query… [#3247](https://github.com/astaxie/beego/pull/3247)
-33. Fix typo [#3245](https://github.com/astaxie/beego/pull/3245)
-34. Add session redis IdleTimeout config [#3239](https://github.com/astaxie/beego/pull/3239)
-35. Fix the wrong status code in prod [#3226](https://github.com/astaxie/beego/pull/3226)
-36. Add method to set the data depending on the accepted [#3182](https://github.com/astaxie/beego/pull/3182)
-37. Fix Unexpected EOF bug in staticfile [#3152](https://github.com/astaxie/beego/pull/3152)
-38. Add code style for logs README [#3146](https://github.com/astaxie/beego/pull/3146)
-39. Fix response http code [#3142](https://github.com/astaxie/beego/pull/3142)
-40. Improve access log [#3141](https://github.com/astaxie/beego/pull/3141)
-41. Auto create log dir [#3105](https://github.com/astaxie/beego/pull/3105)
-42. Html escape before display path, avoid xss [#3022](https://github.com/astaxie/beego/pull/3022)
-43. Acquire lock when access config data [#3250](https://github.com/astaxie/beego/pull/3250)
-44. Fix orm fields SetRaw function error judge problem [#2985](https://github.com/astaxie/beego/pull/2985)
-45. Fix template rendering with automatic mapped parameters (see #2979) [#2981](https://github.com/astaxie/beego/pull/2981)
-46. Fix the model can not be registered correctly on Ubuntu 32bit [#2997](https://github.com/astaxie/beego/pull/2997)
-47. Feature/yaml [#3181](https://github.com/astaxie/beego/pull/3181)
-48. Feature/autocert [#3249](https://github.com/astaxie/beego/pull/3249)
+1. Update log.go add GetLevel Function to Log [#2970](https://github.com/beego/beego/pull/2970)
+2. Fix a typo "conflict" [#2971](https://github.com/beego/beego/pull/2971)
+3. Bug on private fields [#2978](https://github.com/beego/beego/pull/2978)
+4. Fix access log console unexpected '\n' at end of each log. [#2976](https://github.com/beego/beego/pull/2976)
+5. Fix Documentation for HTTP status codes descriptions. [#2992](https://github.com/beego/beego/pull/2992)
+6. Redis cache: make MaxIdle configurable [#3004](https://github.com/beego/beego/pull/3004)
+7. Update: Fix migration generate SQL [#3017](https://github.com/beego/beego/pull/3017)
+8. Handle pointer validation [#3046](https://github.com/beego/beego/pull/3046)
+9. Fix the issue TaseCase TestFormatHeader_0 is failed [#3066](https://github.com/beego/beego/pull/3066)
+10. Fix BEEGO_RUNMODE [#3064](https://github.com/beego/beego/pull/3064)
+11. Swagger: Allow example values with different types, allow example for enum. [#3085](https://github.com/beego/beego/pull/3085)
+12. Fix the bug: unable to add column with ALTER TABLE [#2999](https://github.com/beego/beego/pull/2999)
+13. Set default Beego RunMode to production [#3076](https://github.com/beego/beego/pull/3076)
+14. Fix typo [#3103](https://github.com/beego/beego/pull/3103)
+15. In dev mode, template parse error cause program lock [#3126](https://github.com/beego/beego/pull/3126)
+16. Amend a very minor typo in a variable name [#3115](https://github.com/beego/beego/pull/3115)
+17. When log maxSize set big int，FileWrite Init fail [#3109](https://github.com/beego/beego/pull/3109)
+18. Change github.com/garyburd/redigo to newest branch github.com/gomodul… [#3100](https://github.com/beego/beego/pull/3100)
+19. ExecElem.FieldByName as local variable [#3039](https://github.com/beego/beego/pull/3039)
+20. Allow log prefix [#3145](https://github.com/beego/beego/pull/3145)
+21. Refactor yaml config for support multilevel [#3127](https://github.com/beego/beego/pull/3127)
+22. Create redis_cluster.go [#3175](https://github.com/beego/beego/pull/3175)
+23. Add field comment on create table [#3190](https://github.com/beego/beego/pull/3190)
+24. Update: use PathEscape replace QueryEscape [#3200](https://github.com/beego/beego/pull/3200)
+25. Update gofmt [#3206](https://github.com/beego/beego/pull/3206)
+26. Update: Htmlquote Htmlunquote [#3202](https://github.com/beego/beego/pull/3202)
+27. Add 'FOR UPDATE' support for querySet [#3208](https://github.com/beego/beego/pull/3208)
+28. Debug stringsToJSON [#3171](https://github.com/beego/beego/pull/3171)
+29. Fix defaut value bug, and add config for maxfiles [#3185](https://github.com/beego/beego/pull/3185)
+30. Fix: correct MaxIdleConnsPerHost value to net/http default 100. [#3230](https://github.com/beego/beego/pull/3230)
+31. Fix: When multiply comment routers on one func [#3217](https://github.com/beego/beego/pull/3217)
+32. Send ErrNoRows if the query returns zero rows ... in method orm_query… [#3247](https://github.com/beego/beego/pull/3247)
+33. Fix typo [#3245](https://github.com/beego/beego/pull/3245)
+34. Add session redis IdleTimeout config [#3239](https://github.com/beego/beego/pull/3239)
+35. Fix the wrong status code in prod [#3226](https://github.com/beego/beego/pull/3226)
+36. Add method to set the data depending on the accepted [#3182](https://github.com/beego/beego/pull/3182)
+37. Fix Unexpected EOF bug in staticfile [#3152](https://github.com/beego/beego/pull/3152)
+38. Add code style for logs README [#3146](https://github.com/beego/beego/pull/3146)
+39. Fix response http code [#3142](https://github.com/beego/beego/pull/3142)
+40. Improve access log [#3141](https://github.com/beego/beego/pull/3141)
+41. Auto create log dir [#3105](https://github.com/beego/beego/pull/3105)
+42. Html escape before display path, avoid xss [#3022](https://github.com/beego/beego/pull/3022)
+43. Acquire lock when access config data [#3250](https://github.com/beego/beego/pull/3250)
+44. Fix orm fields SetRaw function error judge problem [#2985](https://github.com/beego/beego/pull/2985)
+45. Fix template rendering with automatic mapped parameters (see #2979) [#2981](https://github.com/beego/beego/pull/2981)
+46. Fix the model can not be registered correctly on Ubuntu 32bit [#2997](https://github.com/beego/beego/pull/2997)
+47. Feature/yaml [#3181](https://github.com/beego/beego/pull/3181)
+48. Feature/autocert [#3249](https://github.com/beego/beego/pull/3249)
 
 # beego 1.9.0
-1. Fix the new repo address for casbin [#2654](https://github.com/astaxie/beego/pull/2654)
-2. Fix cache/memory fatal error: concurrent map iteration and map write [#2726](https://github.com/astaxie/beego/pull/2726)
-3. AddAPPStartHook func modify [#2724](https://github.com/astaxie/beego/pull/2724)
-4. Fix panic: sync: negative WaitGroup counter [#2717](https://github.com/astaxie/beego/pull/2717)
-5. incorrect error rendering (wrong status) [#2712](https://github.com/astaxie/beego/pull/2712)
-6. validation: support int64 int32 int16 and int8 type [#2728](https://github.com/astaxie/beego/pull/2728)
-7. validation: support required option for some struct tag valids [#2741](https://github.com/astaxie/beego/pull/2741)
-8. Fix big form parse issue [#2725](https://github.com/astaxie/beego/pull/2725)
-9. File log add RotatePerm [#2683](https://github.com/astaxie/beego/pull/2683)
-10. Fix Oracle placehold [#2749](https://github.com/astaxie/beego/pull/2749)
-11. Supported gzip for req.Header has Content-Encoding: gzip [#2754](https://github.com/astaxie/beego/pull/2754)
-12. Add new Database Migrations [#2744](https://github.com/astaxie/beego/pull/2744)
-13. Beego auto generate sort ControllerComments [#2766](https://github.com/astaxie/beego/pull/2766)
-14. added statusCode and pattern to FilterMonitorFunc [#2692](https://github.com/astaxie/beego/pull/2692)
-15. fix the bugs in the "ParseBool" function in the file of config.go [#2740](https://github.com/astaxie/beego/pull/2740)
+1. Fix the new repo address for casbin [#2654](https://github.com/beego/beego/pull/2654)
+2. Fix cache/memory fatal error: concurrent map iteration and map write [#2726](https://github.com/beego/beego/pull/2726)
+3. AddAPPStartHook func modify [#2724](https://github.com/beego/beego/pull/2724)
+4. Fix panic: sync: negative WaitGroup counter [#2717](https://github.com/beego/beego/pull/2717)
+5. incorrect error rendering (wrong status) [#2712](https://github.com/beego/beego/pull/2712)
+6. validation: support int64 int32 int16 and int8 type [#2728](https://github.com/beego/beego/pull/2728)
+7. validation: support required option for some struct tag valids [#2741](https://github.com/beego/beego/pull/2741)
+8. Fix big form parse issue [#2725](https://github.com/beego/beego/pull/2725)
+9. File log add RotatePerm [#2683](https://github.com/beego/beego/pull/2683)
+10. Fix Oracle placehold [#2749](https://github.com/beego/beego/pull/2749)
+11. Supported gzip for req.Header has Content-Encoding: gzip [#2754](https://github.com/beego/beego/pull/2754)
+12. Add new Database Migrations [#2744](https://github.com/beego/beego/pull/2744)
+13. Beego auto generate sort ControllerComments [#2766](https://github.com/beego/beego/pull/2766)
+14. added statusCode and pattern to FilterMonitorFunc [#2692](https://github.com/beego/beego/pull/2692)
+15. fix the bugs in the "ParseBool" function in the file of config.go [#2740](https://github.com/beego/beego/pull/2740)
 
 ## bee 1.9.0 
-1. Added MySQL year data type [#443](https://github.com/astaxie/beego/pull/443)
-2. support multiple http methods [#445](https://github.com/astaxie/beego/pull/445)
-3. The DDL migration can now be generated by adding a -ddl and a proper "alter" or "create" as argument value. [#455](https://github.com/astaxie/beego/pull/455)
-4. Fix: docs generator skips everything containing 'vendor' [#454](https://github.com/astaxie/beego/pull/454)
-5. get these tables information in custom the option [#441](https://github.com/astaxie/beego/pull/441)
-6. read ref(pk) [#444](https://github.com/astaxie/beego/pull/444)
+1. Added MySQL year data type [#443](https://github.com/beego/beego/pull/443)
+2. support multiple http methods [#445](https://github.com/beego/beego/pull/445)
+3. The DDL migration can now be generated by adding a -ddl and a proper "alter" or "create" as argument value. [#455](https://github.com/beego/beego/pull/455)
+4. Fix: docs generator skips everything containing 'vendor' [#454](https://github.com/beego/beego/pull/454)
+5. get these tables information in custom the option [#441](https://github.com/beego/beego/pull/441)
+6. read ref(pk) [#444](https://github.com/beego/beego/pull/444)
 7. Add command bee server to server static folder. 
 
 # beego 1.7.1
 新增功能:
-1. access log 增加 IP [#2156](https://github.com/astaxie/beego/pull/2156)
-2. orm 增加新接口 ReadForUpdate [#2158](https://github.com/astaxie/beego/pull/2158)
-3. 参数 bind 支持数组 form，columns[0].Data=foo&columns[1].Data=bar&columns[2].Data=baz [#2111](https://github.com/astaxie/beego/pull/2111)
-4. 自定义 recover 函数，增加配置 `beego.BConfig.RecoverFunc`，默认和原来保持一致，但是用户可以自己定义 [#2004](https://github.com/astaxie/beego/issues/2004)
-5. memcache cache 同时支持 byte 和 string 的存储，这样就可以通过 gob 保存 struct [#1521](https://github.com/astaxie/beego/issues/1521)
-6. ORM delete 支持按照指定条件删除 [#1802](https://github.com/astaxie/beego/issues/1802)
-7. swagger 的支持输出 yaml [#2162](https://github.com/astaxie/beego/pull/2162)
-8. 增加 RunController 和 RunMethod,让用户自定义路由规则 [#2017](https://github.com/astaxie/beego/issues/2017)
+1. access log 增加 IP [#2156](https://github.com/beego/beego/pull/2156)
+2. orm 增加新接口 ReadForUpdate [#2158](https://github.com/beego/beego/pull/2158)
+3. 参数 bind 支持数组 form，columns[0].Data=foo&columns[1].Data=bar&columns[2].Data=baz [#2111](https://github.com/beego/beego/pull/2111)
+4. 自定义 recover 函数，增加配置 `beego.BConfig.RecoverFunc`，默认和原来保持一致，但是用户可以自己定义 [#2004](https://github.com/beego/beego/issues/2004)
+5. memcache cache 同时支持 byte 和 string 的存储，这样就可以通过 gob 保存 struct [#1521](https://github.com/beego/beego/issues/1521)
+6. ORM delete 支持按照指定条件删除 [#1802](https://github.com/beego/beego/issues/1802)
+7. swagger 的支持输出 yaml [#2162](https://github.com/beego/beego/pull/2162)
+8. 增加 RunController 和 RunMethod,让用户自定义路由规则 [#2017](https://github.com/beego/beego/issues/2017)
 
 修复 bug:
-1. 静态目录如果已经存在 index.html,当访问目录的时候不会自动添加 /, 例如访问 /swagger 不会跳转到 /swagger/，这样会导致相对的 css 和 js 访问不存在 [#2142](https://github.com/astaxie/beego/issues/2142)
-2. beego admin ui 里面访问时间排序没有按照 us, ms 排序，而是按照字符排序 [#1877](https://github.com/astaxie/beego/issues/1877)
-3. captcha 生产图片的时候，自定义 height 和 width crash [#2161](https://github.com/astaxie/beego/issues/2161)
-4. DELETE 请求下开启了 CopyBody 情况下，如果 body 为空 panic [#1656](https://github.com/astaxie/beego/issues/1656)
+1. 静态目录如果已经存在 index.html,当访问目录的时候不会自动添加 /, 例如访问 /swagger 不会跳转到 /swagger/，这样会导致相对的 css 和 js 访问不存在 [#2142](https://github.com/beego/beego/issues/2142)
+2. beego admin ui 里面访问时间排序没有按照 us, ms 排序，而是按照字符排序 [#1877](https://github.com/beego/beego/issues/1877)
+3. captcha 生产图片的时候，自定义 height 和 width crash [#2161](https://github.com/beego/beego/issues/2161)
+4. DELETE 请求下开启了 CopyBody 情况下，如果 body 为空 panic [#1656](https://github.com/beego/beego/issues/1656)
 
 
 # beego 1.7.0
 新增改进功能：
-1. Filter 访问速度提升 7.5 倍以上 [#1799](https://github.com/astaxie/beego/pull/1799)
-2. Gzip 压缩的时候支持不同的 level [#1808](https://github.com/astaxie/beego/pull/1808)
-3. ORM PK 支持负数 [#1810](https://github.com/astaxie/beego/pull/1810)
-4. ORM 支持自定义自增 ID 的值 [#1826](https://github.com/astaxie/beego/pull/1826)
-5. Context 下载文件函数改进：下载文件之前先检查是否存在 [#1827](https://github.com/astaxie/beego/pull/1827)
-6. log增加 `GetLogger` 函数，可以增加相应的前缀 [#1832](https://github.com/astaxie/beego/pull/1832)
+1. Filter 访问速度提升 7.5 倍以上 [#1799](https://github.com/beego/beego/pull/1799)
+2. Gzip 压缩的时候支持不同的 level [#1808](https://github.com/beego/beego/pull/1808)
+3. ORM PK 支持负数 [#1810](https://github.com/beego/beego/pull/1810)
+4. ORM 支持自定义自增 ID 的值 [#1826](https://github.com/beego/beego/pull/1826)
+5. Context 下载文件函数改进：下载文件之前先检查是否存在 [#1827](https://github.com/beego/beego/pull/1827)
+6. log增加 `GetLogger` 函数，可以增加相应的前缀 [#1832](https://github.com/beego/beego/pull/1832)
 
 ```
 package main
 
-import "github.com/astaxie/beego/logs"
+import "github.com/beego/beego/v2/logs"
 
 func main() {
     logs.Warn("this is a warn message")
@@ -233,18 +233,18 @@ func main() {
 }
 ```
 ![](https://cloud.githubusercontent.com/assets/707691/14017109/f608b658-f1ff-11e5-8d57-72030cfe4f5d.png)
-7. session 增加 Log，一旦错误发生可以记录日志. [#1833](https://github.com/astaxie/beego/pull/1833)
-8. logs 包添加两个 public 函数,`EnableFuncCallDepth` 和 `SetLogFuncCallDepth`, 用来设置函数的调用层级. [#1837](https://github.com/astaxie/beego/pull/1837)
-9. 支持 `go run` 运行 beego 的项目代码 [#1840](https://github.com/astaxie/beego/pull/1840)
-10. 添加 `ExecuteTemplate` 函数，这样用户就可以通过这种方式访问 template，而不是直接访问 map，因为 map 有并发读写问题 [#1848](https://github.com/astaxie/beego/pull/1848)
-11. ORM 字段支持 `time` 类型 [#1856](https://github.com/astaxie/beego/pull/1856)
-12. ORM One 接口只获取一条 [#1874](https://github.com/astaxie/beego/pull/1874)
-13. ORM 支持 json jsonb 类型   [#1875](https://github.com/astaxie/beego/pull/1875)
-14. ORM 默认使用 text 类型 [#1879](https://github.com/astaxie/beego/pull/1879)
+7. session 增加 Log，一旦错误发生可以记录日志. [#1833](https://github.com/beego/beego/pull/1833)
+8. logs 包添加两个 public 函数,`EnableFuncCallDepth` 和 `SetLogFuncCallDepth`, 用来设置函数的调用层级. [#1837](https://github.com/beego/beego/pull/1837)
+9. 支持 `go run` 运行 beego 的项目代码 [#1840](https://github.com/beego/beego/pull/1840)
+10. 添加 `ExecuteTemplate` 函数，这样用户就可以通过这种方式访问 template，而不是直接访问 map，因为 map 有并发读写问题 [#1848](https://github.com/beego/beego/pull/1848)
+11. ORM 字段支持 `time` 类型 [#1856](https://github.com/beego/beego/pull/1856)
+12. ORM One 接口只获取一条 [#1874](https://github.com/beego/beego/pull/1874)
+13. ORM 支持 json jsonb 类型   [#1875](https://github.com/beego/beego/pull/1875)
+14. ORM 默认使用 text 类型 [#1879](https://github.com/beego/beego/pull/1879)
 15. session 配置三个配置，`EnableSidInHttpHeader` `EnableSidInUrlQuery` `SessionNameInHttpHeader`,
-    允许用户可以在 http 头和 URL 中带 sid [#1897](https://github.com/astaxie/beego/pull/1897)
-16. 自动化路由改进生成的文件名，之前太长了 [#1924](https://github.com/astaxie/beego/pull/1924)
-17. 支持复杂的模板引擎. ace jade [#1940](https://github.com/astaxie/beego/pull/1940)
+    允许用户可以在 http 头和 URL 中带 sid [#1897](https://github.com/beego/beego/pull/1897)
+16. 自动化路由改进生成的文件名，之前太长了 [#1924](https://github.com/beego/beego/pull/1924)
+17. 支持复杂的模板引擎. ace jade [#1940](https://github.com/beego/beego/pull/1940)
 ```
 beego.AddTemplateEngine("ace", func(root, path string, funcs template.FuncMap) (*template.Template, error) {
         aceOptions := &ace.Options{DynamicReload: true, FuncMap: funcs}
@@ -259,37 +259,37 @@ beego.AddTemplateEngine("ace", func(root, path string, funcs template.FuncMap) (
         return tpl, nil
     })
 ```
-[#1940](https://github.com/astaxie/beego/pull/1940)
-18. session 引擎支持 ssdb [#1953](https://github.com/astaxie/beego/pull/1953)
-19. RenderForm 支持输出 required [#1993](https://github.com/astaxie/beego/pull/1993)
-20. 让打印的 beego 日志更加美观 [#1997](https://github.com/astaxie/beego/pull/1997)
+[#1940](https://github.com/beego/beego/pull/1940)
+18. session 引擎支持 ssdb [#1953](https://github.com/beego/beego/pull/1953)
+19. RenderForm 支持输出 required [#1993](https://github.com/beego/beego/pull/1993)
+20. 让打印的 beego 日志更加美观 [#1997](https://github.com/beego/beego/pull/1997)
 ![](https://cloud.githubusercontent.com/assets/1248967/16153054/f654b08e-34a4-11e6-894d-24f16ab847a7.png)
-21. ORM 支持 struct 中带有 `time.Time` 指针 [#2006](https://github.com/astaxie/beego/pull/2006)
-22. Controller 中增加 `TplPrefix` 这样就可以在 baseController 制定读取模板的前缀目录 [#2030](https://github.com/astaxie/beego/pull/2030)
-23. jsonb 函数中增加 js 函数的判断，避免函数不存在时候出错.  [#2045](https://github.com/astaxie/beego/pull/2045)
-24. ORM 增加 `InsertOrUpdate` 函数 [#2053](https://github.com/astaxie/beego/pull/2053)
+21. ORM 支持 struct 中带有 `time.Time` 指针 [#2006](https://github.com/beego/beego/pull/2006)
+22. Controller 中增加 `TplPrefix` 这样就可以在 baseController 制定读取模板的前缀目录 [#2030](https://github.com/beego/beego/pull/2030)
+23. jsonb 函数中增加 js 函数的判断，避免函数不存在时候出错.  [#2045](https://github.com/beego/beego/pull/2045)
+24. ORM 增加 `InsertOrUpdate` 函数 [#2053](https://github.com/beego/beego/pull/2053)
 25. Filter 函数增加重置参数的参数. 因为 `beego.InsertFilter("*", beego.BeforeStatic, RedirectHTTP)`
 的时候，参数会赋值给 `:splat`,从而影响后续如果路由里面也有想用的路由，
-那么就会引起冲突，因此增加这样的函数以方便用户重置。 [#2085](https://github.com/astaxie/beego/pull/2085)
-26. session 包配置采用对象初始化，而抛弃传递 json 的方式. 如果独立使用session包的可能会引起兼容性问题 [#2096](https://github.com/astaxie/beego/pull/2096)
+那么就会引起冲突，因此增加这样的函数以方便用户重置。 [#2085](https://github.com/beego/beego/pull/2085)
+26. session 包配置采用对象初始化，而抛弃传递 json 的方式. 如果独立使用session包的可能会引起兼容性问题 [#2096](https://github.com/beego/beego/pull/2096)
 27. Swagger 迁移到2.0版本，现在生产的代码无需依赖 API，直接生产 swagger.json
 
 bugfix:
-1. 静态路由中 `/m` 自动跳转到 `/m/` [#1792](https://github.com/astaxie/beego/pull/1792)
-2. test 的时候解析配置文件出错 [#1794](https://github.com/astaxie/beego/pull/1794)
-3. 文件 rotato 的时候产生 race condition [#1803](https://github.com/astaxie/beego/pull/1803)
-4. 修复 multiple response.WriteHeader calls 的错误 [#1805](https://github.com/astaxie/beego/pull/1805)
-5. ORM 如果主键是 uint 的时候 panic [#1828](https://github.com/astaxie/beego/pull/1828)
+1. 静态路由中 `/m` 自动跳转到 `/m/` [#1792](https://github.com/beego/beego/pull/1792)
+2. test 的时候解析配置文件出错 [#1794](https://github.com/beego/beego/pull/1794)
+3. 文件 rotato 的时候产生 race condition [#1803](https://github.com/beego/beego/pull/1803)
+4. 修复 multiple response.WriteHeader calls 的错误 [#1805](https://github.com/beego/beego/pull/1805)
+5. ORM 如果主键是 uint 的时候 panic [#1828](https://github.com/beego/beego/pull/1828)
 6. 日志 rotate 的时候如果当前时间小于 2000 panic [#]()
-7. context 重用导致 XSRF 重用[#1863](https://github.com/astaxie/beego/pull/1863)
-8. ORM InsertMulti 的时候当是 * 类型时 panic [#1882](https://github.com/astaxie/beego/pull/1882)
-9. task 中任务在很微小的时间内可能存在执行多次的情况 [#1909](https://github.com/astaxie/beego/pull/1909)
-10. IE 浏览器下载文件名混乱 [#1912](https://github.com/astaxie/beego/pull/1912)
-11. ORM DISTINCT 实现 [#1938](https://github.com/astaxie/beego/pull/1938)
-12. Logs 包里面设置文件的 permit 时候，int 无法设置. [#1948](https://github.com/astaxie/beego/pull/1948) [#2003](https://github.com/astaxie/beego/pull/2003)
-13. QueryRow 和 QueryRows 查询获取数据后外键字段不填充值 [#1964](https://github.com/astaxie/beego/pull/1964)
-14. 当 beego 应用跑在代理之后的时候，scheme 通过 `X-Forwarded-Proto` 获取 [#2050](https://github.com/astaxie/beego/pull/2050)
-15. 静态文件访问目录时候跳转到 `目录/` 的时候自动带上参数 [#2064](https://github.com/astaxie/beego/pull/2064)
+7. context 重用导致 XSRF 重用[#1863](https://github.com/beego/beego/pull/1863)
+8. ORM InsertMulti 的时候当是 * 类型时 panic [#1882](https://github.com/beego/beego/pull/1882)
+9. task 中任务在很微小的时间内可能存在执行多次的情况 [#1909](https://github.com/beego/beego/pull/1909)
+10. IE 浏览器下载文件名混乱 [#1912](https://github.com/beego/beego/pull/1912)
+11. ORM DISTINCT 实现 [#1938](https://github.com/beego/beego/pull/1938)
+12. Logs 包里面设置文件的 permit 时候，int 无法设置. [#1948](https://github.com/beego/beego/pull/1948) [#2003](https://github.com/beego/beego/pull/2003)
+13. QueryRow 和 QueryRows 查询获取数据后外键字段不填充值 [#1964](https://github.com/beego/beego/pull/1964)
+14. 当 beego 应用跑在代理之后的时候，scheme 通过 `X-Forwarded-Proto` 获取 [#2050](https://github.com/beego/beego/pull/2050)
+15. 静态文件访问目录时候跳转到 `目录/` 的时候自动带上参数 [#2064](https://github.com/beego/beego/pull/2064)
 
 # beego 1.6.1
 新增功能：
@@ -302,7 +302,7 @@ bugfix:
 
 bugfix：
 1. cookie 时间设置
-2. 路由规则里面的匹配 [#1580](https://github.com/astaxie/beego/issues/1580)
+2. 路由规则里面的匹配 [#1580](https://github.com/beego/beego/issues/1580)
 3. 在 beego.Run() 之前没有 log 输出
 4. config 获取 []string 为空的时候返回为空，应该返回 nil
 5. ini 接口保存的时候需要注释不正确
@@ -324,35 +324,35 @@ bugfix：
 # beego 1.6.0
 新功能：
 
-1. 文件 log 支持 rotate 支持类似 `xx.2013-01-01.2.log` 这样的输出 [#1265](https://github.com/astaxie/beego/pull/1265)
+1. 文件 log 支持 rotate 支持类似 `xx.2013-01-01.2.log` 这样的输出 [#1265](https://github.com/beego/beego/pull/1265)
 2. context.response 支持了原生的 Flush，Hijack，CloseNotify
-3. ORM 支持 Distinct 操作 [#1276](https://github.com/astaxie/beego/pull/1276)
-4. 新增加模板函数 map_get [#1305](https://github.com/astaxie/beego/pull/1305)
-5. ORM 支持 tidb 引擎 [#1366](https://github.com/astaxie/beego/pull/1366)
-6. httplib 请求参数支持 []string [#1308](https://github.com/astaxie/beego/pull/1308)
-7. ORM querySeter 添加 GroupBy 方法 [#1345](https://github.com/astaxie/beego/pull/1345)
-8. Session 的 MySQL 引擎支持自定义表名 [#1348](https://github.com/astaxie/beego/pull/1348)
-9. log 的 file 引擎性能提升 30%，同时支持自定义创建的文件权限 [#1560](https://github.com/astaxie/beego/pull/1560)
-10. session 支持通过 query 获取 [#1507](https://github.com/astaxie/beego/pull/1507)
+3. ORM 支持 Distinct 操作 [#1276](https://github.com/beego/beego/pull/1276)
+4. 新增加模板函数 map_get [#1305](https://github.com/beego/beego/pull/1305)
+5. ORM 支持 tidb 引擎 [#1366](https://github.com/beego/beego/pull/1366)
+6. httplib 请求参数支持 []string [#1308](https://github.com/beego/beego/pull/1308)
+7. ORM querySeter 添加 GroupBy 方法 [#1345](https://github.com/beego/beego/pull/1345)
+8. Session 的 MySQL 引擎支持自定义表名 [#1348](https://github.com/beego/beego/pull/1348)
+9. log 的 file 引擎性能提升 30%，同时支持自定义创建的文件权限 [#1560](https://github.com/beego/beego/pull/1560)
+10. session 支持通过 query 获取 [#1507](https://github.com/beego/beego/pull/1507)
 11. Cache 模块支持多个 Cache 对象，之前调用 NewCache 获取的是同一个 Cache，现在会初始化不同的 Cache 对象。
 12. validation 支持自定义验证函数
 
 bugfix:
 
-1. context 里面 bind 函数如果参数为空 crash [#1245](https://github.com/astaxie/beego/issues/1245)
-2. ORM 中 manytomany 获取 reverse 的时候出错。[#671](https://github.com/astaxie/beego/issues/671)
-3. http: multiple response.WriteHeader calls [#1329](https://github.com/astaxie/beego/pull/1329)
-4. ParseForm 解析日期使用当前的 timezone [#1343](https://github.com/astaxie/beego/pull/1343)
+1. context 里面 bind 函数如果参数为空 crash [#1245](https://github.com/beego/beego/issues/1245)
+2. ORM 中 manytomany 获取 reverse 的时候出错。[#671](https://github.com/beego/beego/issues/671)
+3. http: multiple response.WriteHeader calls [#1329](https://github.com/beego/beego/pull/1329)
+4. ParseForm 解析日期使用当前的 timezone [#1343](https://github.com/beego/beego/pull/1343)
 5. log 引擎里面 Smtp 发送邮件无法认证
-6. 修复路由规则的一些 issue: `/topic/:id/?:auth`, `/topic/:id/?:auth:int` [#1349](https://github.com/astaxie/beego/pull/1349)
-7. 修复注释文档解析的时候 nil 引起 crash [#1367](https://github.com/astaxie/beego/pull/1367)
-8. static 目录下的 index.html 无法读取[#1508](https://github.com/astaxie/beego/pull/1508)
-9. dbBase.Update 失败不返回 err [#1384](https://github.com/astaxie/beego/pull/1384)
+6. 修复路由规则的一些 issue: `/topic/:id/?:auth`, `/topic/:id/?:auth:int` [#1349](https://github.com/beego/beego/pull/1349)
+7. 修复注释文档解析的时候 nil 引起 crash [#1367](https://github.com/beego/beego/pull/1367)
+8. static 目录下的 index.html 无法读取[#1508](https://github.com/beego/beego/pull/1508)
+9. dbBase.Update 失败不返回 err [#1384](https://github.com/beego/beego/pull/1384)
 10. validation 里面设置的 Required 只对 int 有效，int64 无效
-11. ORM 创建外键是 string 类型的主键时创建 varchar(0) 的字符问题 [#1379](https://github.com/astaxie/beego/pull/1379)
-12. graceful 同时开启 http 和 https 的时候出错 [#1414](https://github.com/astaxie/beego/pull/1414)
+11. ORM 创建外键是 string 类型的主键时创建 varchar(0) 的字符问题 [#1379](https://github.com/beego/beego/pull/1379)
+12. graceful 同时开启 http 和 https 的时候出错 [#1414](https://github.com/beego/beego/pull/1414)
 13. ListenTCP4 开启之后如果 httpaddr 为空还是监控 TCP6
-14. migration 不支持 postgres [#1434](https://github.com/astaxie/beego/pull/1434)
+14. migration 不支持 postgres [#1434](https://github.com/beego/beego/pull/1434)
 15. ORM text、bool 等默认值问题导致创建表出错
 16. graceful 导致 panic 问题 negative WaitGroup counter
 
@@ -362,7 +362,7 @@ bugfix:
 2. 所有代码符合 golint 规范
 3. 重写路由树底层，性能提升三倍左右
 4. 每次请求的 context 采用 sync.Pool 复用，内存和性能提升
-5. 模板编译优化速度，按需编译 [#1298](https://github.com/astaxie/beego/pull/1298)
+5. 模板编译优化速度，按需编译 [#1298](https://github.com/beego/beego/pull/1298)
 6. 优化了 beego 的配置管理，采用统一的 BConfig，更易读易管理
 7. 优化了 beego 的整体结构代码，使得代码更易读维护
 8. 所有初始化的信息统一到 AddAPPStartHook 函数中去，易于管理
@@ -599,8 +599,8 @@ bugfix:
 
 9. 增加和简化 plugins 功能：
 
-	auth 支持 basicauth，详细使用请看 https://godoc.org/github.com/astaxie/beego/plugins/auth
-	cors 支持跨站调用，详细使用请看 https://godoc.org/github.com/astaxie/beego/plugins/cors
+	auth 支持 basicauth，详细使用请看 https://godoc.org/github.com/beego/beego/plugins/auth
+	cors 支持跨站调用，详细使用请看 https://godoc.org/github.com/beego/beego/plugins/cors
 
 10. 新增了 AdminUI，用户在 EnableAdmin 的情况下，可以通过界面简单地获取当前应用的各种状态，同时可以很容易的调试性能，监控系统，执行任务，获取配置等
 
@@ -914,8 +914,8 @@ func (a *AdminController) Prepare(){
 
 	```
 	import (
-	     "github.com/astaxie/beego"
-	   _ "github.com/astaxie/beego/session/mysql"
+	     "github.com/beego/beego/v2"
+	   _ "github.com/beego/beego/v2/session/mysql"
 	)
 	```
 4. 修改部分导出的函数为 private,因为外部不需要调用
