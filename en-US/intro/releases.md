@@ -10,7 +10,7 @@ sort: 2
    1.1 server: including web module.
    1.2 client: including ORM, cache, httplib modules.
    1.3 task: supporting timed tasks and other cyclic tasks.
-   1.4 core: including validation, config, logs and governor modules.
+   1.4 core: including validation, config, logs and admin modules.
 2. Add `adapter` module which is used to reduce the effort of upgrading Beego from v1.x to v2.x
 3. Add `context.Context` for `cache`, `httplib`, `session`, `task`,  `ORM` modules' API.
 4. Add `error` as a return value for `cache`, `httplib`, `session`, `task`. Now users are able to know more info about what happen inside Beego.
