@@ -2,30 +2,108 @@
 name: Release Notes
 sort: 2
 ---
+
+# beego 1.12.2
+1. Fix old process didn't exist when graceful restart in beego 1.12.0 [#4005](https://github.com/astaxie/beego/pull/4005)
+2. Enhance: Print stack while orm abnormally exit [#3743](https://github.com/astaxie/beego/pull/3743)
+3. Enhance: Replacing lock with read lock in GetMapData [#3803](https://github.com/astaxie/beego/pull/3803)
+4. Fix: Get the real location of the log directory if the path is symbolic path [#3818](https://github.com/astaxie/beego/pull/3818)
+5. Fix: Cache, context, session: add lock to fix inconsistent field protection [#3922](https://github.com/astaxie/beego/pull/3922)
+6. Fix: Encoded url(with slash) router mismatch problem [#3943](https://github.com/astaxie/beego/pull/3943)
+7. Fix: genRouterCode method generate wrong codes [#3981](https://github.com/astaxie/beego/pull/3981)
+8. Enhance: Using LRU algorithm, ignoring big file and using max cache size to reduce the memory usage of file cache [#3984](https://github.com/astaxie/beego/pull/3984)
+9. Fix: Set max DB connections [#3985](https://github.com/astaxie/beego/pull/3985)
+10. Fix: SQLite don't support SELECT ... FOR UPDATE [#3992](https://github.com/astaxie/beego/pull/3992)
+11. Enhance: Add Transfer-Encoding header in httplib's PostFile method [#3993](https://github.com/astaxie/beego/pull/3993)
+12. Enhance: Support bit operation in ORM [#3994](https://github.com/astaxie/beego/pull/3994)
+13. Fix: net/http Middleware set via RunWithMiddleware or App.Run(middleware) doesn't work when "BConfig.Listen.Graceful" is set to true [#3995](https://github.com/astaxie/beego/pull/3995)
+14. Fix: Empty field in validator.Error when label struct tag is not declared [#4001](https://github.com/astaxie/beego/pull/4001)
+15. Fix: panic: send on closed channel after closing logger [#4004](https://github.com/astaxie/beego/pull/4004)
+16. Enhance: Store RouterPattern before filter execute [#4007](https://github.com/astaxie/beego/pull/4007)
+17. Fix: Using HTMLEscapeString in adminui.go to avoid XSS attack [#4018](https://github.com/astaxie/beego/pull/4018)
+18. Fix: Process not closed when graceful set to true [#4005](https://github.com/astaxie/beego/pull/4005)
+19. Enhance: Use scan instead of keys in redis [#4016](https://github.com/astaxie/beego/pull/4016)
+20. Feature: Support prometheus [#4021](https://github.com/astaxie/beego/pull/4021)
+21. Fix: Can't create more than max_prepared_stmt_count statements [#4025](https://github.com/astaxie/beego/pull/4025)
+22. Enhance: Support more mobile number pattern [#4027](https://github.com/astaxie/beego/pull/4027)
+23. Fix: Can't set section name [#4027](https://github.com/astaxie/beego/pull/4027)
+24. Fix: strings.Repeat panic in orm/db.go [#4032](https://github.com/astaxie/beego/pull/4032)
+25. Enhance: Make redis client idle timeout configurable [#4033](https://github.com/astaxie/beego/pull/4033)
+
+# beego 1.10.0
+1. Update log.go add GetLevel Function to Log [#2970](https://github.com/astaxie/beego/pull/2970)
+2. Fix a typo "conflict" [#2971](https://github.com/astaxie/beego/pull/2971)
+3. Bug on private fields [#2978](https://github.com/astaxie/beego/pull/2978)
+4. Fix access log console unexpected '\n' at end of each log. [#2976](https://github.com/astaxie/beego/pull/2976)
+5. Fix Documentation for HTTP status codes descriptions. [#2992](https://github.com/astaxie/beego/pull/2992)
+6. Redis cache: make MaxIdle configurable [#3004](https://github.com/astaxie/beego/pull/3004)
+7. Update: Fix migration generate SQL [#3017](https://github.com/astaxie/beego/pull/3017)
+8. Handle pointer validation [#3046](https://github.com/astaxie/beego/pull/3046)
+9. Fix the issue TaseCase TestFormatHeader_0 is failed [#3066](https://github.com/astaxie/beego/pull/3066)
+10. Fix BEEGO_RUNMODE [#3064](https://github.com/astaxie/beego/pull/3064)
+11. Swagger: Allow example values with different types, allow example for enum. [#3085](https://github.com/astaxie/beego/pull/3085)
+12. Fix the bug: unable to add column with ALTER TABLE [#2999](https://github.com/astaxie/beego/pull/2999)
+13. Set default Beego RunMode to production [#3076](https://github.com/astaxie/beego/pull/3076)
+14. Fix typo [#3103](https://github.com/astaxie/beego/pull/3103)
+15. In dev mode, template parse error cause program lock [#3126](https://github.com/astaxie/beego/pull/3126)
+16. Amend a very minor typo in a variable name [#3115](https://github.com/astaxie/beego/pull/3115)
+17. When log maxSize set big int，FileWrite Init fail [#3109](https://github.com/astaxie/beego/pull/3109)
+18. Change github.com/garyburd/redigo to newest branch github.com/gomodul… [#3100](https://github.com/astaxie/beego/pull/3100)
+19. ExecElem.FieldByName as local variable [#3039](https://github.com/astaxie/beego/pull/3039)
+20. Allow log prefix [#3145](https://github.com/astaxie/beego/pull/3145)
+21. Refactor yaml config for support multilevel [#3127](https://github.com/astaxie/beego/pull/3127)
+22. Create redis_cluster.go [#3175](https://github.com/astaxie/beego/pull/3175)
+23. Add field comment on create table [#3190](https://github.com/astaxie/beego/pull/3190)
+24. Update: use PathEscape replace QueryEscape [#3200](https://github.com/astaxie/beego/pull/3200)
+25. Update gofmt [#3206](https://github.com/astaxie/beego/pull/3206)
+26. Update: Htmlquote Htmlunquote [#3202](https://github.com/astaxie/beego/pull/3202)
+27. Add 'FOR UPDATE' support for querySet [#3208](https://github.com/astaxie/beego/pull/3208)
+28. Debug stringsToJSON [#3171](https://github.com/astaxie/beego/pull/3171)
+29. Fix defaut value bug, and add config for maxfiles [#3185](https://github.com/astaxie/beego/pull/3185)
+30. Fix: correct MaxIdleConnsPerHost value to net/http default 100. [#3230](https://github.com/astaxie/beego/pull/3230)
+31. Fix: When multiply comment routers on one func [#3217](https://github.com/astaxie/beego/pull/3217)
+32. Send ErrNoRows if the query returns zero rows ... in method orm_query… [#3247](https://github.com/astaxie/beego/pull/3247)
+33. Fix typo [#3245](https://github.com/astaxie/beego/pull/3245)
+34. Add session redis IdleTimeout config [#3239](https://github.com/astaxie/beego/pull/3239)
+35. Fix the wrong status code in prod [#3226](https://github.com/astaxie/beego/pull/3226)
+36. Add method to set the data depending on the accepted [#3182](https://github.com/astaxie/beego/pull/3182)
+37. Fix Unexpected EOF bug in staticfile [#3152](https://github.com/astaxie/beego/pull/3152)
+38. Add code style for logs README [#3146](https://github.com/astaxie/beego/pull/3146)
+39. Fix response http code [#3142](https://github.com/astaxie/beego/pull/3142)
+40. Improve access log [#3141](https://github.com/astaxie/beego/pull/3141)
+41. Auto create log dir [#3105](https://github.com/astaxie/beego/pull/3105)
+42. Html escape before display path, avoid xss [#3022](https://github.com/astaxie/beego/pull/3022)
+43. Acquire lock when access config data [#3250](https://github.com/astaxie/beego/pull/3250)
+44. Fix orm fields SetRaw function error judge problem [#2985](https://github.com/astaxie/beego/pull/2985)
+45. Fix template rendering with automatic mapped parameters (see #2979) [#2981](https://github.com/astaxie/beego/pull/2981)
+46. Fix the model can not be registered correctly on Ubuntu 32bit [#2997](https://github.com/astaxie/beego/pull/2997)
+47. Feature/yaml [#3181](https://github.com/astaxie/beego/pull/3181)
+48. Feature/autocert [#3249](https://github.com/astaxie/beego/pull/3249)
+
 # beego 1.9.0
-1. Fix the new repo address for casbin #2654
-2. Fix cache/memory fatal error: concurrent map iteration and map write #2726
-3. AddAPPStartHook func modify #2724
-4. Fix panic: sync: negative WaitGroup counter #2717
-5. incorrect error rendering (wrong status) #2712
-6. validation: support int64 int32 int16 and int8 type #2728
-7. validation: support required option for some struct tag valids #2741
-8. Fix big form parse issue #2725
-9. File log add RotatePerm #2683
-10. Fix Oracle placehold #2749
-11. Supported gzip for req.Header has Content-Encoding: gzip #2754
-12. Add new Database Migrations #2744
-13. Beego auto generate sort ControllerComments #2766
-14. added statusCode and pattern to FilterMonitorFunc #2692
-15. fix the bugs in the "ParseBool" function in the file of config.go #2740
+1. Fix the new repo address for casbin [#2654](https://github.com/astaxie/beego/pull/2654)
+2. Fix cache/memory fatal error: concurrent map iteration and map write [#2726](https://github.com/astaxie/beego/pull/2726)
+3. AddAPPStartHook func modify [#2724](https://github.com/astaxie/beego/pull/2724)
+4. Fix panic: sync: negative WaitGroup counter [#2717](https://github.com/astaxie/beego/pull/2717)
+5. incorrect error rendering (wrong status) [#2712](https://github.com/astaxie/beego/pull/2712)
+6. validation: support int64 int32 int16 and int8 type [#2728](https://github.com/astaxie/beego/pull/2728)
+7. validation: support required option for some struct tag valids [#2741](https://github.com/astaxie/beego/pull/2741)
+8. Fix big form parse issue [#2725](https://github.com/astaxie/beego/pull/2725)
+9. File log add RotatePerm [#2683](https://github.com/astaxie/beego/pull/2683)
+10. Fix Oracle placehold [#2749](https://github.com/astaxie/beego/pull/2749)
+11. Supported gzip for req.Header has Content-Encoding: gzip [#2754](https://github.com/astaxie/beego/pull/2754)
+12. Add new Database Migrations [#2744](https://github.com/astaxie/beego/pull/2744)
+13. Beego auto generate sort ControllerComments [#2766](https://github.com/astaxie/beego/pull/2766)
+14. added statusCode and pattern to FilterMonitorFunc [#2692](https://github.com/astaxie/beego/pull/2692)
+15. fix the bugs in the "ParseBool" function in the file of config.go [#2740](https://github.com/astaxie/beego/pull/2740)
 
 ## bee 1.9.0 
-1. Added MySQL year data type #443
-2. support multiple http methods #445
-3. The DDL migration can now be generated by adding a -ddl and a proper "alter" or "create" as argument value. #455
-4. Fix: docs generator skips everything containing 'vendor' #454
-5. get these tables information in custom the option #441
-6. read ref(pk) #444
+1. Added MySQL year data type [#443](https://github.com/astaxie/beego/pull/443)
+2. support multiple http methods [#445](https://github.com/astaxie/beego/pull/445)
+3. The DDL migration can now be generated by adding a -ddl and a proper "alter" or "create" as argument value. [#455](https://github.com/astaxie/beego/pull/455)
+4. Fix: docs generator skips everything containing 'vendor' [#454](https://github.com/astaxie/beego/pull/454)
+5. get these tables information in custom the option [#441](https://github.com/astaxie/beego/pull/441)
+6. read ref(pk) [#444](https://github.com/astaxie/beego/pull/444)
 7. Add command bee server to server static folder. 
 
 # beego 1.7.1

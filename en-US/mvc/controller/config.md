@@ -121,18 +121,21 @@ app2.conf
 Beego includes many configurable variables. These can be configured and overwritten in `conf/app.conf`.
 
 #### Basic config
-
-* AppConfigPath
-
+```go
+// now only support ini, next will support json.
+func parseConfig(appConfigPath string) (err error) {
+	AppConfig, err = newAppConfig(appConfigProvider, appConfigPath)
+	if err != nil {
+		return err
+	}
+	return assignConfig(AppConfig)
+}
+```
+* LoadAppConfig
+    The file format of LoadAppConfig. By default this is `ini`. Other valid formats include `xml`, `yaml`, and `json`.
     The application configuration file path. By default this is `conf/app.conf`.  
-  
-    `beego.AppConfigPath = "conf/app2.conf"`
 
-* AppConfigProvider
-
-    The file format of AppConfig. By default this is `ini`. Other valid formats include `xml`, `yaml`, and `json`.
-
-	`beego.AppConfigProvider = "ini"`
+    `beego.LoadAppConfig("yaml", "conf/app.conf")`
 
 #### App config
 
@@ -156,7 +159,7 @@ Beego includes many configurable variables. These can be configured and overwrit
    
 * ServerName
 
-    The Beego server name.  By defalt this name is `beego`.
+    The Beego server name.  By default this name is `beego`.
 
 	`beego.BConfig.ServerName = "beego"`
 	
@@ -230,7 +233,7 @@ Beego includes many configurable variables. These can be configured and overwrit
 
 * DirectoryIndex
 
-    Enable listing of the static directory. By defalt this is False and will return a 403 error.
+    Enable listing of the static directory. By default this is False and will return a 403 error.
 
 	`beego.BConfig.WebConfig.DirectoryIndex = false`
 
@@ -364,7 +367,7 @@ Beego includes many configurable variables. These can be configured and overwrit
 
 * AdminAddr
 
-    Set the address the admin app listens to. By defalt this is blank and the app will listen to any IP.
+    Set the address the admin app listens to. By default this is blank and the app will listen to any IP.
     
     `beego.BConfig.Listen.AdminAddr = ""`
 
@@ -390,7 +393,7 @@ Beego includes many configurable variables. These can be configured and overwrit
 
 * SessionOn
 
-    Enable session. By defalt this is False.
+    Enable session. By default this is False.
     
 	`beego.BConfig.WebConfig.Session.SessionOn = false`
 

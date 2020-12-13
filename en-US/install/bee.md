@@ -281,7 +281,7 @@ bee migrate refresh [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
 
 ## bee tool configuration
 
-The file `bee.json` in the bee tool source code folder is the Beego configuration file. This file is still under develpment, but some options are already available to use:
+The file `bee.json` in the bee tool source code folder is the Beego configuration file. This file is still under development, but some options are already available to use:
 
 - `"version": 0`: version of file, for checking incompatible format version.
 - `"go_install": false`: if you use a full import path like `github.com/user/repo/subpkg` you can enable this option to run `go install` and speed up you build processes.

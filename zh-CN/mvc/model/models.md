@@ -204,7 +204,7 @@ type User struct {
 ```go
 type User struct {
 	...
-	Status int `orm:"default(1)" description:(这是状态字段)`
+	Status int `orm:"default(1);description(这是状态字段)"`
 	...
 }
 ```
