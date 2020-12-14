@@ -238,6 +238,16 @@ type User struct {
 
 注意: 注释中禁止包含引号
 
+#### Precision
+
+为`datetime`字段设置精度值位数，不同DB支持最大精度值位数也不一致。
+
+type User struct {
+	...
+	Created time.Time `orm:"type(datetime);precision(4)"`
+	...
+}
+
 ## 表关系设置
 
 #### rel / reverse
