@@ -1,14 +1,14 @@
 ---
-name: Toolbox Module
+name: task Module
 sort: 6
 ---
 
-# Core Toolbox Module
+# Core task Module
 
 
 ## Installation
 
-	go get github.com/beego/beego/v2/toolbox
+	go get github.com/beego/beego/v2/task
 
 
 ## Tasks
@@ -18,9 +18,9 @@ Examples include: Reporting memory and goroutine status, periodically triggering
 
 ### Creating a new Task
 
-To initialize a task implement [https://godoc.org/github.com/beego/beego/toolbox#NewTask](toolbox.NewTask):
+To initialize a task implement :
 
-	tk1 := toolbox.NewTask("tk1", "0 12 * * * *", func() error {
+	tk1 := task.NewTask("tk1", "0 12 * * * *", func() error {
 		fmt.Println("tk1")
 		return nil
 	})
@@ -35,9 +35,9 @@ The NewTask signature:
 
 To implement this task, add it to the global task list and start it.
 
-	toolbox.AddTask("tk1", tk1)
-	toolbox.StartTask()
-	defer toolbox.StopTask()
+	task.AddTask("tk1", tk1)
+	task.StartTask()
+	defer task.StopTask()
 
 ### Testing the TaskFunc
 
@@ -101,7 +101,7 @@ It print key/value pairs. The following code:
 	
 will output:
 
-	2013/12/16 23:48:41 [Debug] at TestPrint() [/Users/astaxie/github/beego/toolbox/debug_test.go:13]
+	2013/12/16 23:48:41 [Debug] at TestPrint() [/Users/astaxie/github/beego/task/debug_test.go:13]
 	
 	[Variables]
 	v1 = 1
@@ -128,19 +128,19 @@ For pointer type:
 
 The output result
 
-	2013/12/16 23:48:41 [Debug] at TestPrintPoint() [/Users/astaxie/github/beego/toolbox/debug_test.go:26]
+	2013/12/16 23:48:41 [Debug] at TestPrintPoint() [/Users/astaxie/github/beego/task/debug_test.go:26]
 
 	[Variables]
-	v1 = &toolbox.mytype{
-	    next: &toolbox.mytype{
+	v1 = &task.mytype{
+	    next: &task.mytype{
 	        next: nil,
 	        prev: 0x210335420,
 	    },
 	    prev: nil,
 	}
-	v2 = &toolbox.mytype{
+	v2 = &task.mytype{
 	    next: nil,
-	    prev: &toolbox.mytype{
+	    prev: &task.mytype{
 	        next: 0x210335430,
 	        prev: nil,
 	    },
