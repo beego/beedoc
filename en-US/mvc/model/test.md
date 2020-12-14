@@ -7,8 +7,8 @@ sort: 10
 
 Testing code:
 
-* Model definition [models_test.go](https://github.com/beego/beego/blob/master/orm/models_test.go)
-* Test cases [orm_test.go](https://github.com/beego/beego/blob/master/orm/orm_test.go)
+* Model definition [models_test.go](https://github.com/beego/beego/blob/develop/client/orm/models_test.go)
+* Test cases [orm_test.go](https://github.com/beego/beego/blob/develop/client/orm/orm_test.go)
 
 #### MySQL
 

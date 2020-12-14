@@ -61,11 +61,11 @@ The following example prints `Hello world` to your browser, it shows how easy it
 package main
 
 import (
-	"github.com/beego/beego/v2"
+	"github.com/beego/beego/v2/server/web"
 )
 
 type MainController struct {
-	beego.Controller
+	web.Controller
 }
 
 func (this *MainController) Get() {
@@ -73,8 +73,8 @@ func (this *MainController) Get() {
 }
 
 func main() {
-	beego.Router("/", &MainController{})
-	beego.Run()
+	web.Router("/", &MainController{})
+	web.Run()
 }
 ```
 
@@ -87,9 +87,9 @@ Open [http://127.0.0.1:8080](http://127.0.0.1:8080) in your browser and you will
 
 What is happening in the scenes of the above example?
 
-1. We import package `github.com/beego/beego/v2`. As we know, Go initializes packages and runs init() in every package ([more details](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/02.3.md#main-function-and-init-function)), so Beego initializes the `BeeApp` application at this time.
-2. Define the controller. We define a struct called `MainController` with an anonymous field `beego.Controller`, so the `MainController` has all methods that `beego.Controller` has.
-3. Define some RESTful methods. Due to the anonymous field above, `MainController` already has `Get`, `Post`, `Delete`, `Put` and other methods, these methods will be called when user sends a corresponding request (e.g. the `Post` method is called to handle requests using POST. Therefore, after we overloaded the `Get` method in `MainController`, all GET requests will use that method in `MainController` instead of in `beego.Controller`.
+1. We import package `github.com/beego/beego/v2/server/web`. As we know, Go initializes packages and runs init() in every package ([more details](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/02.3.md#main-function-and-init-function)), so Beego initializes the `BeeApp` application at this time.
+2. Define the controller. We define a struct called `MainController` with an anonymous field `web.Controller`, so the `MainController` has all methods that `web.Controller` has.
+3. Define some RESTful methods. Due to the anonymous field above, `MainController` already has `Get`, `Post`, `Delete`, `Put` and other methods, these methods will be called when user sends a corresponding request (e.g. the `Post` method is called to handle requests using POST. Therefore, after we overloaded the `Get` method in `MainController`, all GET requests will use that method in `MainController` instead of in `web.Controller`.
 4. Define the main function. All applications in Go use `main` as their entry point like C does.
 5. Register routers. This tells Beego which controller is responsible for specific requests. Here we register `MainController` for `/`, so all requests to `/` will be handed by `MainController`. Be aware that the first argument is the path and the second one is pointer to the controller you want to register.
 6. Run the application on port 8080 as default, press `Ctrl+c` to exit.

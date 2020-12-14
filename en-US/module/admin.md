@@ -1,5 +1,5 @@
 ---
-name: admin 模块
+name: Admin module
 sort: 7
 ---
 
@@ -7,7 +7,7 @@ This module is based on the [Dropwizard framework](https://github.com/dropwizard
 
 In v2.x, we plit `toolbox` into two pars, `admin` and `task`.
 
-## 如何安装
+## How to install
 
 	go get github.com/beego/beego/v2/core/admin
 

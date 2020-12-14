@@ -7,8 +7,8 @@ sort: 10
 
 测试代码参见
 
-* 表定义 [models_test.go](https://github.com/beego/beego/blob/master/orm/models_test.go)
-* 测试用例 [orm_test.go](https://github.com/beego/beego/blob/master/orm/orm_test.go)
+* 表定义 [models_test.go](https://github.com/beego/beego/blob/develop/client/orm/models_test.go)
+* 测试用例 [orm_test.go](https://github.com/beego/beego/blob/develop/client/orm/orm_test.go)
 
 #### MySQL
 

@@ -4,6 +4,8 @@
 
 Это руководство документирует BeeGo App Framework.
 
+This only work for Beego 1.x. If you are using Beego 2.x, please change language to EN-US.
+
 ### Новичок в BeeGo?
 
 Читай о [Быстром старте](quickstart).

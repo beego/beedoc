@@ -15,7 +15,7 @@ Before you can use the paginator in the view you have to set it in your controll
     package controllers
 
     type PostsController struct {
-      beego.Controller
+      web.Controller
     }
     
     func (this *PostsController) ListAllPosts() {

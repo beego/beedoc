@@ -4,6 +4,8 @@
 
 This manual documents aspects of Beego app framework.
 
+This only work for Beego 1.x. If you are using Beego 2.x, please change language to EN-US. 
+
 ### New to Beego? 
 
 Read about the [Quick Start](quickstart).

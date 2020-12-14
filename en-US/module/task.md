@@ -1,5 +1,5 @@
 ---
-name: task Module
+name: Task Module
 sort: 6
 ---
 

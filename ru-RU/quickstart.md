@@ -1,5 +1,7 @@
 # Быстрый старт
 
+This only work for Beego 1.x. If you are using Beego 2.x, please change language to EN-US.
+
 ## Установка
 
 BeeGo содержит тестовое приложение на котором вы можете изучить как использовать BeeGo app framework.

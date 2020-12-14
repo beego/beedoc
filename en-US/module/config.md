@@ -61,40 +61,40 @@ Get data from parser:
 ### Parser methods
 
 Here are the parser's methods:
-```go
-// Configer defines how to get and set value from configuration raw data.
-type Configer interface {
-	// support section::key type in given key when using ini type.
-	Set(key, val string) error
 
-	// support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
-	String(key string) (string, error)
-	// get string slice
-	Strings(key string) ([]string, error)
-	Int(key string) (int, error)
-	Int64(key string) (int64, error)
-	Bool(key string) (bool, error)
-	Float(key string) (float64, error)
-	// support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
-	DefaultString(key string, defaultVal string) string
-	// get string slice
-	DefaultStrings(key string, defaultVal []string) []string
-	DefaultInt(key string, defaultVal int) int
-	DefaultInt64(key string, defaultVal int64) int64
-	DefaultBool(key string, defaultVal bool) bool
-	DefaultFloat(key string, defaultVal float64) float64
+    // Configer defines how to get and set value from configuration raw data.
+    type Configer interface {
+        // support section::key type in given key when using ini type.
+        Set(key, val string) error
+    
+        // support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
+        String(key string) (string, error)
+        // get string slice
+        Strings(key string) ([]string, error)
+        Int(key string) (int, error)
+        Int64(key string) (int64, error)
+        Bool(key string) (bool, error)
+        Float(key string) (float64, error)
+        // support section::key type in key string when using ini and json type; Int,Int64,Bool,Float,DIY are same.
+        DefaultString(key string, defaultVal string) string
+        // get string slice
+        DefaultStrings(key string, defaultVal []string) []string
+        DefaultInt(key string, defaultVal int) int
+        DefaultInt64(key string, defaultVal int64) int64
+        DefaultBool(key string, defaultVal bool) bool
+        DefaultFloat(key string, defaultVal float64) float64
+    
+        // DIY return the original value
+        DIY(key string) (interface{}, error)
+    
+        GetSection(section string) (map[string]string, error)
+    
+        Unmarshaler(prefix string, obj interface{}, opt ...DecodeOption) error
+        Sub(key string) (Configer, error)
+        OnChange(key string, fn func(value string))
+        SaveConfigFile(filename string) error
+    }
 
-	// DIY return the original value
-	DIY(key string) (interface{}, error)
-
-	GetSection(section string) (map[string]string, error)
-
-	Unmarshaler(prefix string, obj interface{}, opt ...DecodeOption) error
-	Sub(key string) (Configer, error)
-	OnChange(key string, fn func(value string))
-	SaveConfigFile(filename string) error
-}
-```
 
 Notice:
 1. All `Default*` methods, default value will be returned if key not found or go some error;
@@ -124,7 +124,7 @@ After Pull Request "Support get environment variables in config #1636" was merge
 
 The format for this is `${ENVIRONMENTVARIABLE}` within the configuration file which is equivalent to `value = os.Getenv('ENVIRONMENTVARIABLE')`. Beego will only check for environment variables if the value begins with `${` and ends with `}`.
 
-Additionally, a default value can be configured for the case that there is no environment variable set or the environment variable is empty. This is accomplished by using the format `${ENVVAR||defaultvalue}`, for example `${GOPATH||/home/asataxie/workspace/go}`. This `||` is used to split environment values and default values. See `/config/config_test.go` in the [beego repo](https://github.com/beego/beego/v2) for more examples and edge cases about how these environment variables and default values are parsed.
+Additionally, a default value can be configured for the case that there is no environment variable set or the environment variable is empty. This is accomplished by using the format `${ENVVAR||defaultvalue}`, for example `${GOPATH||/home/asataxie/workspace/go}`. This `||` is used to split environment values and default values. See `/config/config_test.go` in the [beego repo](https://github.com/beego/beego) for more examples and edge cases about how these environment variables and default values are parsed.
 
 For example:
 

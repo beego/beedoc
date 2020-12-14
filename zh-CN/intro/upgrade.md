@@ -2,9 +2,18 @@
 name: 升级指南
 sort: 3
 ---
-## beego 1.6.0 升级指南
+
+## beego 2.0.0 升级指南
+
 获取最新版本的 bee 工具 `go get -u github.com/beego/bee`
 更新 beego 框架 `go get -u github.com/beego/beego/v2`
+
+然后进入项目，执行: `bee fix -t 2`
+
+## beego 1.6.0 升级指南
+
+获取最新版本的 bee 工具 `go get -u github.com/beego/bee`
+更新 beego 框架 `go get -u github.com/astaxie/beego@v1.6.0`
 
 然后进入项目，执行: `bee fix`
 
