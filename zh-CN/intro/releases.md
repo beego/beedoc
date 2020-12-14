@@ -3,6 +3,10 @@ name: 发布版本
 sort: 2
 ---
 
+# beego 2.0.1
+
+发布2.0.0的时候，因为go mod的一些错误，导致我们 checksum 不再正确，所以发了2.0.1。
+
 # beego 2.0.0
 
 ### Refactor
