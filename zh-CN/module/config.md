@@ -7,15 +7,15 @@ sort: 7
 
 这是一个用来解析文件的库，它的设计思路来自于 `database/sql`，目前支持解析的文件格式有 ini、json、xml、yaml，可以通过如下方式进行安装：
 
-	go get github.com/astaxie/beego/core/config
+	go get github.com/beego/beego/v2/core/config
 
 >>>如果你使用xml 或者 yaml 驱动就需要手工安装引入包
 
-	go get -u github.com/astaxie/beego/core/config/xml
+	go get -u github.com/beego/beego/v2/core/config/xml
 
 >>>而且需要在使用的地方引入包
 
-    import _ "github.com/astaxie/beego/core/config/xml"
+    import _ "github.com/beego/beego/v2/core/config/xml"
 
 # 远程配置
 
@@ -39,7 +39,7 @@ val, err := config.String("mykey")
 
 当然，用户也可以主动初始化。例如，当我们想用`toml`作为默认实现的时候，我们可以：
 ```go
-_ import "github.com/astaxie/beego/core/config/toml"
+_ import "github.com/beego/beego/v2/core/config/toml"
 err := InitGlobalInstance("toml", "some config")
 // ...
 val, err := config.String("mykey")

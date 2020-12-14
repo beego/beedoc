@@ -7,8 +7,8 @@ sort: 10
 
 测试代码参见
 
-* 表定义 [models_test.go](https://github.com/astaxie/beego/blob/master/orm/models_test.go)
-* 测试用例 [orm_test.go](https://github.com/astaxie/beego/blob/master/orm/orm_test.go)
+* 表定义 [models_test.go](https://github.com/beego/beego/blob/master/orm/models_test.go)
+* 测试用例 [orm_test.go](https://github.com/beego/beego/blob/master/orm/orm_test.go)
 
 #### MySQL
 
@@ -16,7 +16,7 @@ sort: 10
 mysql -u root -e 'create database orm_test;'
 export ORM_DRIVER=mysql
 export ORM_SOURCE="root:@/orm_test?charset=utf8"
-go test -v github.com/astaxie/beego/orm
+go test -v github.com/beego/beego/v2/core/client/orm
 ```
 
 
@@ -26,7 +26,7 @@ go test -v github.com/astaxie/beego/orm
 touch /path/to/orm_test.db
 export ORM_DRIVER=sqlite3
 export ORM_SOURCE=/path/to/orm_test.db
-go test -v github.com/astaxie/beego/orm
+go test -v github.com/beego/beego/v2/core/client/orm
 ```
 
 
@@ -36,5 +36,5 @@ go test -v github.com/astaxie/beego/orm
 psql -c 'create database orm_test;' -U postgres
 export ORM_DRIVER=postgres
 export ORM_SOURCE="user=postgres dbname=orm_test sslmode=disable"
-go test -v github.com/astaxie/beego/orm
+go test -v github.com/beego/beego/v2/core/client/orm
 ```

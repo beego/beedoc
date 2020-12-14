@@ -28,7 +28,7 @@ pull request 的处理过程对于新特性和 bug 是不一样的。在你发�
 
 ### 1.4.1 Fork 代码
 
-1. 访问 [https://github.com/astaxie/beego](https://github.com/astaxie/beego)
+1. 访问 [https://github.com/beego/beego](https://github.com/beego/beego)
 2. 点击 "Fork" 按钮 (位于页面的右上方)
 
 ### 1.4.2 Clone 代码
@@ -47,7 +47,7 @@ git remote add upstream 'git@github.com:<your github username>/beego.git'
 使用HTTPS：
 
 ```bash
-git clone https://github.com/astaxie/beego.git
+git clone https://github.com/beego/beego/v2.git
 cd beego
 git remote add  'https://github.com/<you github username>/beego.git'
 ```
@@ -91,7 +91,7 @@ git push upstream my-feature
 ### 1.4.6 提交 PR
 
 ```bash
-访问 https://github.com/astaxie/beego, 
+访问 https://github.com/beego/beego/v2, 
 
 点击 "Compare" 比较变更并点击 "Pull request" 提交 PR
 ```

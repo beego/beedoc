@@ -3,13 +3,13 @@ name: admin 模块
 sort: 7
 ---
 
-This module is based on the [Dropwizard framework](https://github.com/dropwizard/dropwizard) for Java. One user told me about this framework and it's cool stuff. [Issue 128](https://github.com/astaxie/beego/issues/128) talked about this feature. I added more cool features. Here are the features: healthcheck, profiling, statistics and tasks.
+This module is based on the [Dropwizard framework](https://github.com/dropwizard/dropwizard) for Java. One user told me about this framework and it's cool stuff. [Issue 128](https://github.com/beego/beego/issues/128) talked about this feature. I added more cool features. Here are the features: healthcheck, profiling, statistics and tasks.
 
 In v2.x, we plit `toolbox` into two pars, `admin` and `task`.
 
 ## 如何安装
 
-	go get github.com/astaxie/beego/core/admin
+	go get github.com/beego/beego/v2/core/admin
 
 ## Healthcheck
 

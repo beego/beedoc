@@ -203,8 +203,8 @@ you could use it like:
 ```go
 
 import (
-"github.com/astaxie/beego/client/orm/filter/bean"
-"github.com/astaxie/beego/client/orm"
+"github.com/beego/beego/v2/client/orm/filter/bean"
+"github.com/beego/beego/v2/client/orm"
 )
 
 type DefaultValueTestEntity struct {

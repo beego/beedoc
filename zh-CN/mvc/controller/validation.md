@@ -9,11 +9,11 @@ sort: 9
 
 安装：
 
-	go get github.com/astaxie/beego/core/validation
+	go get github.com/beego/beego/v2/core/validation
 
 测试：
 
-	go test github.com/astaxie/beego/core/validation
+	go test github.com/beego/beego/v2/core/validation
 
 # 示例
 
@@ -21,7 +21,7 @@ sort: 9
 
 ```go
 import (
-    "github.com/astaxie/beego/core/validation"
+    "github.com/beego/beego/v2/core/validation"
     "log"
 )
 
@@ -63,7 +63,7 @@ import (
     "log"
     "strings"
 
-    "github.com/astaxie/beego/core/validation"
+    "github.com/beego/beego/v2/core/validation"
 )
 
 // 验证函数写在 "valid" tag 的标签里
@@ -140,5 +140,5 @@ AddCustomFunc(name string, f CustomFunc) error
 
 ## API 文档
 
-请移步 [Go Walker](http://gowalker.org/github.com/astaxie/beego/validation)。
+请移步 [Go Walker](http://gowalker.org/github.com/beego/beego/validation)。
 

@@ -30,7 +30,7 @@ beego ORM 是一个强大的 Go 语言 ORM 框架。她的灵感主要来自 Dja
 
 **安装 ORM：**
 
-	go get github.com/astaxie/beego/client/orm
+	go get github.com/beego/beego/v2/client/orm
 
 ## 快速入门
 
@@ -41,7 +41,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/astaxie/beego/client/orm"
+	"github.com/beego/beego/v2/client/orm"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
 )
 

@@ -11,7 +11,7 @@ sort: 2
 
 	import (
 		_ "quickstart/routers"
-		"github.com/astaxie/beego/server/web"
+		"github.com/beego/beego/v2/server/web"
 	)
 
 	func main() {
@@ -29,7 +29,7 @@ package routers
 
 import (
 	"quickstart/controllers"
-	"github.com/astaxie/beego/server/web"
+	"github.com/beego/beego/v2/server/web"
 )
 
 func init() {

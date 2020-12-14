@@ -7,14 +7,14 @@ sort: 4
 
 Similar to Curl, httplib is used to simulate http requests sent by clients. Similar to jQuery, it supports method chaining. It's easy to use and it can be installed by:
 
-	go get github.com/astaxie/beego/client/httplib
+	go get github.com/beego/beego/v2/client/httplib
 
 ## Basic Usage
 
 Import package:
 
 	import (
-		"github.com/astaxie/beego/client/httplib"
+		"github.com/beego/beego/v2/client/httplib"
 	)	
 
 Initialize request method and url:

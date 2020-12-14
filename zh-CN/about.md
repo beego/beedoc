@@ -1,6 +1,6 @@
 # 关于
 
-[![Build Status](https://drone.io/github.com/astaxie/beego/status.png)](https://drone.io/github.com/astaxie/beego/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/astaxie/beego)
+[![Build Status](https://drone.io/github.com/beego/beego/v2/status.png)](https://drone.io/github.com/beego/beego/v2/latest) [![Go Walker](http://gowalker.org/api/v1/badge)](http://gowalker.org/github.com/beego/beego/v2)
 
 本网站文档页面详细描述了 beego 应用框架的各个方面。
 
@@ -18,7 +18,7 @@
 
 ### 问题提交
 
-如果您在使用过程中发现 beego 有潜在的问题，请通过 [Github](https://github.com/astaxie/beego/issues) 上的问题列表提交。
+如果您在使用过程中发现 beego 有潜在的问题，请通过 [Github](https://github.com/beego/beego/v2/issues) 上的问题列表提交。
 
 ### 完善文档
 

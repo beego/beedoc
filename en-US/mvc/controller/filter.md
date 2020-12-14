@@ -38,7 +38,7 @@ type FilterFunc func(*context.Context)
 The *context* must be imported if this has not already been done:
 
 ```go
-import "github.com/astaxie/beego/server/web/context"
+import "github.com/beego/beego/v2/server/web/context"
 ```
 
 InsertFilter's four parameters:
@@ -137,9 +137,9 @@ Here is a simple example:
 package main
 
 import (
-	"github.com/astaxie/beego/core/logs"
-	"github.com/astaxie/beego/server/web"
-	"github.com/astaxie/beego/server/web/context"
+	"github.com/beego/beego/v2/core/logs"
+	"github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web/context"
 )
 
 func main() {
@@ -166,8 +166,8 @@ package main
 import (
 	"time"
 
-	"github.com/astaxie/beego/server/web"
-	"github.com/astaxie/beego/server/web/filter/prometheus"
+	"github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web/filter/prometheus"
 )
 
 func main() {
@@ -212,8 +212,8 @@ package main
 import (
 	"time"
 
-	"github.com/astaxie/beego/server/web"
-	"github.com/astaxie/beego/server/web/filter/opentracing"
+	"github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web/filter/opentracing"
 )
 
 func main() {

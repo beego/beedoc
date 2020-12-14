@@ -20,7 +20,7 @@ beego/orm 的使用例子
 package main
 
 import (
-	"github.com/astaxie/beego/client/orm"
+	"github.com/beego/beego/v2/client/orm"
 )
 
 type User struct {
@@ -62,7 +62,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/astaxie/beego/client/orm"
+	"github.com/beego/beego/v2/client/orm"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -202,7 +202,7 @@ ORM 在进行 RegisterDataBase 的同时，会获取数据库使用的时区，�
 ```go
 package main
 
-import "github.com/astaxie/beego/client/orm"
+import "github.com/beego/beego/v2/client/orm"
 
 type User struct {
 	Id   int

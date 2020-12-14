@@ -63,7 +63,7 @@ var user User
 err := o.Raw("SELECT id, name FROM user WHERE id = ?", 1).QueryRow(&user)
 ```
 
-> from Beego 1.1.0 remove multiple struct support [ISSUE 384](https://github.com/astaxie/beego/issues/384)
+> from Beego 1.1.0 remove multiple struct support [ISSUE 384](https://github.com/beego/beego/issues/384)
 
 #### QueryRows
 
@@ -82,7 +82,7 @@ if err == nil {
 }
 ```
 
-> from Beego 1.1.0 remove multiple struct support [ISSUE 384](https://github.com/astaxie/beego/issues/384)
+> from Beego 1.1.0 remove multiple struct support [ISSUE 384](https://github.com/beego/beego/issues/384)
 
 #### SetArgs
 

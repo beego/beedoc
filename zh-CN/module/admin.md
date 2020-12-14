@@ -3,7 +3,7 @@ name: admin 模块
 sort: 7
 ---
 
-这个模块主要是参考了 Dropwizard 框架，是一位用户提醒我说有这么一个框架，然后里面实现一些很酷的东西。那个 [issue](https://github.com/astaxie/beego/issues/128) 详细描述了该功能的雏形，然后就在参考该功能的情况下增加了一些额外的很酷的功能，接下来我将一一介绍这个模块中的几个功能：健康检查、性能调试、访问统计、计划任务。
+这个模块主要是参考了 Dropwizard 框架，是一位用户提醒我说有这么一个框架，然后里面实现一些很酷的东西。那个 [issue](https://github.com/beego/beego/issues/128) 详细描述了该功能的雏形，然后就在参考该功能的情况下增加了一些额外的很酷的功能，接下来我将一一介绍这个模块中的几个功能：健康检查、性能调试、访问统计、计划任务。
 
 在 v2.x 里面，我们将原本的`toolbox`拆分为两块，一块是`admin`，即治理模块；另外一块是`task`。
 
@@ -11,7 +11,7 @@ sort: 7
 
 ## 如何安装
 
-	go get github.com/astaxie/beego/core/admin
+	go get github.com/beego/beego/v2/core/admin
 
 ## healthcheck
 

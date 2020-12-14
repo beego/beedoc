@@ -200,8 +200,8 @@ Created time.Time `orm:"auto_now_add;type(datetime)"`
 ```go
 
 import (
-"github.com/astaxie/beego/client/orm/filter/bean"
-"github.com/astaxie/beego/client/orm"
+"github.com/beego/beego/v2/client/orm/filter/bean"
+"github.com/beego/beego/v2/client/orm"
 )
 
 type DefaultValueTestEntity struct {

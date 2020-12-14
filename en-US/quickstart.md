@@ -9,7 +9,7 @@ You will need a [Go](https://golang.org) 1.1+ installation for this to work.
 You will need to install or upgrade [Beego](http://beego.me/docs/install/bee.md) and the [Bee](http://beego.me/docs/install/bee.md) dev tool:
 
 ```
-go get -u github.com/astaxie/beego
+go get -u github.com/beego/beego/v2
 go get -u github.com/beego/bee
 ```
 
@@ -61,7 +61,7 @@ The following example prints `Hello world` to your browser, it shows how easy it
 package main
 
 import (
-	"github.com/astaxie/beego"
+	"github.com/beego/beego/v2"
 )
 
 type MainController struct {
@@ -87,7 +87,7 @@ Open [http://127.0.0.1:8080](http://127.0.0.1:8080) in your browser and you will
 
 What is happening in the scenes of the above example?
 
-1. We import package `github.com/astaxie/beego`. As we know, Go initializes packages and runs init() in every package ([more details](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/02.3.md#main-function-and-init-function)), so Beego initializes the `BeeApp` application at this time.
+1. We import package `github.com/beego/beego/v2`. As we know, Go initializes packages and runs init() in every package ([more details](https://github.com/Unknwon/build-web-application-with-golang_EN/blob/master/eBook/02.3.md#main-function-and-init-function)), so Beego initializes the `BeeApp` application at this time.
 2. Define the controller. We define a struct called `MainController` with an anonymous field `beego.Controller`, so the `MainController` has all methods that `beego.Controller` has.
 3. Define some RESTful methods. Due to the anonymous field above, `MainController` already has `Get`, `Post`, `Delete`, `Put` and other methods, these methods will be called when user sends a corresponding request (e.g. the `Post` method is called to handle requests using POST. Therefore, after we overloaded the `Get` method in `MainController`, all GET requests will use that method in `MainController` instead of in `beego.Controller`.
 4. Define the main function. All applications in Go use `main` as their entry point like C does.

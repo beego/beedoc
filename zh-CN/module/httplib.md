@@ -8,7 +8,7 @@ sort: 4
 httplib 库主要用来模拟客户端发送 HTTP 请求，类似于 Curl 工具，支持 JQuery 类似的链式操作。使用起来相当的方便；通过如下方式进行安装：
 
 ```bash
-go get github.com/astaxie/beego/client/httplib
+go get github.com/beego/beego/v2/client/httplib
 ```
 
 在[beego-example](https://github.com/beego/beego-example/)下的`httplib`包中有对应的例子。
@@ -18,7 +18,7 @@ go get github.com/astaxie/beego/client/httplib
 首先导入包
 ```go
 import (
-	"github.com/astaxie/beego/client/httplib"
+	"github.com/beego/beego/v2/client/httplib"
 )
 ```
 

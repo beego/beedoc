@@ -7,7 +7,7 @@ sort: 3
 
 The logging module is inspired by `database/sql`. It supports file, console, net and smtp as destination providers by default. It is installed like this:
 
-	go get github.com/astaxie/beego/core/logs
+	go get github.com/beego/beego/v2/core/logs
 
 ## Basic Usage
 
@@ -15,7 +15,7 @@ The logging module is inspired by `database/sql`. It supports file, console, net
 Import package:
 
 	import (
-		"github.com/astaxie/beego/core/logs"
+		"github.com/beego/beego/v2/core/logs"
 	)
 
 Initialize log variable (10000 is the cache size):
@@ -36,7 +36,7 @@ Then we can use it in our code:
     package main
     
     import (
-    	"github.com/astaxie/beego/core/logs"
+    	"github.com/beego/beego/v2/core/logs"
     )
     
     func main() {    
@@ -61,7 +61,7 @@ beego/logs supports to declare a single logger to use
         package main
         
         import (
-        	"github.com/astaxie/beego/core/logs"
+        	"github.com/beego/beego/v2/core/logs"
         )
         
         func main() {
@@ -189,8 +189,8 @@ package main
 import (
 	"fmt"
 
-	beego "github.com/astaxie/beego/pkg"
-	"github.com/astaxie/beego/pkg/logs"
+	beego "github.com/beego/beego/v2/pkg"
+	"github.com/beego/beego/v2/pkg/logs"
 )
 
 type MainController struct {

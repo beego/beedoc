@@ -93,9 +93,9 @@ type FilterChain func(next FilterFunc) FilterFunc
 package main
 
 import (
-	"github.com/astaxie/beego/core/logs"
-	"github.com/astaxie/beego/server/web"
-	"github.com/astaxie/beego/server/web/context"
+	"github.com/beego/beego/v2/core/logs"
+	"github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web/context"
 )
 
 func main() {
@@ -124,8 +124,8 @@ package main
 import (
 	"time"
 
-	"github.com/astaxie/beego/server/web"
-	"github.com/astaxie/beego/server/web/filter/prometheus"
+	"github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web/filter/prometheus"
 )
 
 func main() {
@@ -170,8 +170,8 @@ package main
 import (
 	"time"
 
-	"github.com/astaxie/beego/server/web"
-	"github.com/astaxie/beego/server/web/filter/opentracing"
+	"github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web/filter/opentracing"
 )
 
 func main() {

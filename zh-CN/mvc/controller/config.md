@@ -23,7 +23,7 @@ beego 默认会解析当前应用下的 `conf/app.conf` 文件。
 
 它们都维护在结构体 `beego/server/web#Config` 。
 
-上面这些参数会替换 beego 默认的一些参数, beego 的参数主要有哪些呢？请参考https://godoc.org/github.com/astaxie/beego#pkg-constants 。
+上面这些参数会替换 beego 默认的一些参数, beego 的参数主要有哪些呢？请参考https://godoc.org/github.com/beego/beego#pkg-constants 。
 
 BConfig 就是 beego 里面的默认的配置，也是结构体 `beego/server/web#Config` 的实例。
 
