@@ -1,5 +1,5 @@
 ---
-name: admin 模块
+name: Admin 模块
 sort: 7
 ---
 

@@ -107,7 +107,7 @@ When SessionProvider is redis, SessionProviderConfig is the connection address u
 	web.BConfig.WebConfig.Session.SessionProvider = "redis"
 	web.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
 
-When SessionProvider is memcache，SessionProviderConfig is the connection address using [memcache](https://github.com/web/memcache). For example
+When SessionProvider is memcache，SessionProviderConfig is the connection address using [memcache](https://github.com/beego/memcache). For example
 
 	web.BConfig.WebConfig.Session.SessionProvider = "memcache"
 	web.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:7080"

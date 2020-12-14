@@ -51,7 +51,7 @@ InsertFilter's four parameters:
 	- web.AfterExec: After executing Controller.
 	- web.FinishRouter: After finishing router.
 - `filter`: filter function type FilterFunc func(*context.Context)
-- opts
+- `opts`:
   1. web.WithReturnOnOutput: whether to continue running if has output. default is false.
   2. web.WithResetParams: whether to reset parameters to their previous values after the filter has completed.
   3. web.WithCaseSensitive: whether case sensitive

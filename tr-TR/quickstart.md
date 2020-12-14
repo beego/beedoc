@@ -1,5 +1,7 @@
 # Getting started
 
+This only work for Beego 1.x. If you are using Beego 2.x, please change language to EN-US.
+
 ## Installation
 
 Beego contains sample applications to help you learn and use the Beego app framework.

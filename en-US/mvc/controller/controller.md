@@ -10,10 +10,10 @@ sort: 3
 Beego's controller needs to be embeded as `beego.Controller`:
 
 	type xxxController struct {
-	    beego.Controller
+	    web.Controller
 	}
 
-`beego.Controller` implements interface `beego.ControllerInterface`.  `beego.ControllerInterface` defines these functions:
+`web.Controller` implements interface `web.ControllerInterface`.  `web.ControllerInterface` defines these functions:
 
 - Init(ct *context.Context, controllerName, actionName string, app interface{})
 
@@ -61,7 +61,7 @@ Beego's controller needs to be embeded as `beego.Controller`:
 
 - Render() error
 
-  This method is used to render templates. It is only executed if `beego.AutoRender` is set to true.
+  This method is used to render templates. It is only executed if `web.AutoRender` is set to true.
   
 - Mapping(method string, fn func())
     
@@ -170,7 +170,7 @@ Custom logic can be implemented by overwriting functions in struct. For example:
 
 ```
 type AddController struct {
-    beego.Controller
+    web.Controller
 }
 
 func (this *AddController) Prepare() {
@@ -214,7 +214,7 @@ type NestPreparer interface {
 
 // baseRouter implements global settings for all other routers.
 type baseRouter struct {
-        beego.Controller
+        web.Controller
         i18n.Locale
         user    models.User
         isLogin bool
@@ -293,7 +293,7 @@ To stop the execution logic of a request and return the response immediately use
 
 ```
 type RController struct {
-    beego.Controller
+    web.Controller
 }
 
 func (this *RController) Prepare() {

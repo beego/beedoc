@@ -4,6 +4,8 @@
 
 このドキュメントはbeegoフレームワークについての概要です。
 
+This only work for Beego 1.x. If you are using Beego 2.x, please change language to EN-US.
+
 ### beegoについての新着情報は？
 
 [クイックスタート](quickstart)を御覧ください。

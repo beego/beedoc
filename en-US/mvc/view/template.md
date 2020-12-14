@@ -89,4 +89,4 @@ Here are Beego's built-in template functions:
    
         {{urlfor "TestController.List"}}
         
-    [详见](zh-CN/mvc/controller/urlbuilding.md#how-to-use-in-template)
+    [more details](/en-US/mvc/controller/urlbuilding.md)

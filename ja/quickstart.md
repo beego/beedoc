@@ -1,5 +1,7 @@
 # はじめに
 
+This only work for Beego 1.x. If you are using Beego 2.x, please change language to EN-US.
+
 ## インストール
 
 beegoは、学習やbeegoアプリフレームワークを使用するのに役立つサンプルのアプリケーションが含まれています。

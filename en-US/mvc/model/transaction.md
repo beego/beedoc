@@ -7,21 +7,21 @@ sort: 7
 
 There are two ways to handle transaction in Beego. One is closure:
 ```go
-	// Beego will manage the transaction's lifecycle
-	// if the @param task return error, the transaction will be rollback
-	// or the transaction will be committed
-	err := o.DoTx(func(ctx context.Context, txOrm orm.TxOrmer) error {
-		// data
-		user := new(User)
-		user.Name = "test_transaction"
+// Beego will manage the transaction's lifecycle
+// if the @param task return error, the transaction will be rollback
+// or the transaction will be committed
+err := o.DoTx(func(ctx context.Context, txOrm orm.TxOrmer) error {
+	// data
+	user := new(User)
+	user.Name = "test_transaction"
 
-		// insert data
-		// Using txOrm to execute SQL
-		_, e := txOrm.Insert(user)
-		// if e != nil the transaction will be rollback
-		// or it will be committed
-		return e
-	})
+	// insert data
+	// Using txOrm to execute SQL
+	_, e := txOrm.Insert(user)
+	// if e != nil the transaction will be rollback
+	// or it will be committed
+	return e
+})
 ```
 
 In this way, the first parameter is `task`, all DB operation should be inside the task. 
