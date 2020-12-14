@@ -3,6 +3,12 @@ name: Release Notes
 sort: 2
 ---
 
+# beego 2.0.1
+
+When we release v2.0.0, something wrong and then we re-release v2.0.0.
+
+But the checksum in sum.golang.cn is immutable, so we release this version
+
 # beego 2.0.0
 
 ### Refactor
