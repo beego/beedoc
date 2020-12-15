@@ -11,9 +11,7 @@ sort: 4
 package models
 
 import (
-	"loggo/utils"
 	"path/filepath"
-	"strconv"
 	"strings"
 )
 
