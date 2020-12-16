@@ -16,7 +16,7 @@ Testing code:
 mysql -u root -e 'create database orm_test;'
 export ORM_DRIVER=mysql
 export ORM_SOURCE="root:@/orm_test?charset=utf8"
-go test -v github.com/beego/beego/core/client/orm
+go test -v github.com/beego/beego/v2/core/client/orm
 ```
 
 
@@ -36,5 +36,5 @@ go test -v github.com/beego/beego/v2/core/client/orm
 psql -c 'create database orm_test;' -U postgres
 export ORM_DRIVER=postgres
 export ORM_SOURCE="user=postgres dbname=orm_test sslmode=disable"
-go test -v github.com/beego/beego/core/client/orm
+go test -v github.com/beego/beego/v2/core/client/orm
 ```
