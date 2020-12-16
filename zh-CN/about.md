@@ -18,7 +18,7 @@
 
 ### 问题提交
 
-如果您在使用过程中发现 beego 有潜在的问题，请通过 [Github](https://github.com/beego/beego/v2/issues) 上的问题列表提交。
+如果您在使用过程中发现 beego 有潜在的问题，请通过 [Github](https://github.com/beego/beego/issues) 上的问题列表提交。
 
 ### 完善文档
 

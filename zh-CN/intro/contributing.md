@@ -47,7 +47,7 @@ git remote add upstream 'git@github.com:<your github username>/beego.git'
 使用HTTPS：
 
 ```bash
-git clone https://github.com/beego/beego/v2.git
+git clone https://github.com/beego/beego.git
 cd beego
 git remote add  'https://github.com/<you github username>/beego.git'
 ```

@@ -220,7 +220,7 @@ sort: 2
 ```
 package main
 
-import "github.com/beego/beego/v2/logs"
+import "github.com/astaxie/beego/logs"
 
 func main() {
     logs.Warn("this is a warn message")

@@ -9,7 +9,7 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 你需要安装或者升级 Beego 和 [Bee](http://beego.me/docs/install/bee.md) 的开发工具:
 
 	$ go get -u github.com/beego/beego/v2
-	$ go get -u github.com/beego/bee
+	$ go get -u github.com/beego/bee/v2
 
 为了更加方便的操作，请将 `$GOPATH/bin` 加入到你的 `$PATH` 变量中。请确保在此之前您已经添加了 `$GOPATH` 变量。
 

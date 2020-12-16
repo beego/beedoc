@@ -50,7 +50,7 @@ export PATH=$PATH:$GOROOT/bin:$GOBIN
 
 在你的终端里执行下面命令安装`bee`工具：
 
-`go get github.com/beego/bee`
+`go get -u github.com/beego/bee/v2`
 
 然后执行`bee version`查看是否安装成功：
 

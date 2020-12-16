@@ -5,7 +5,7 @@ sort: 3
 
 ## Upgrade beego 2.0.0
 
-Install the latest bee tool `go get -u github.com/beego/bee`
+Install the latest bee tool `go get -u github.com/beego/bee/v2`
 Upgrading Beego `go get -u github.com/beego/beego/v2`
 
 Running: `bee fix -t 2`

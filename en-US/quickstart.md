@@ -10,7 +10,7 @@ You will need to install or upgrade [Beego](http://beego.me/docs/install/bee.md)
 
 ```
 go get -u github.com/beego/beego/v2
-go get -u github.com/beego/bee
+go get -u github.com/beego/bee/v2
 ```
 
 For convenience, you should add `$GOPATH/bin` to your `$PATH` environment variable. Please make sure you have already set the `$GOPATH` environment variable. 
