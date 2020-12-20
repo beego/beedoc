@@ -227,11 +227,11 @@ func (this *ObjectController) Post() {
 
 To upload files with Beego set attribute `enctype="multipart/form-data"` in your form.
 
-Usually an uploaded file is stored in the system memory, but if the file size is larger than the memory size limitation in the configuration file, the file will be stored in a temporary file. The default memory size is 64M but can be changed using:
+Usually an uploaded file is stored in the system memory, but if the file size is larger than the memory size limitation in the configuration file, the file will be stored in a temporary file. The default memory size is 64M but can be changed using (bit shift):
 
 	beego.MaxMemory = 1<<22
 
-Or it can be set manualy in the configuration file:
+Or it can be set manualy in the configuration file (bit shift):
 
 	maxmemory = 1<<22
 
@@ -239,18 +239,32 @@ In v2.x, there is another parameter `MaxUploadSize` used to limit the max size o
 
 If you upload multiple files in one request, it limits the sum size of those files. 
 
-Usually, `MaxMemory` should be less thant `MaxUploadSize`:
+Usually, `web.BConfig.MaxMemory` should be less than `web.BConfig.MaxUploadSize`:
 
 1. if file size < `MaxMemory`, handling file in memory;
 2. `MaxMemory` < file size < `MaxUploadSize`, handling file by using temporary directory.
 3. file size > `MaxUploadSize`, return 413;
 
 
-Beego provides two functions to handle file uploads:
+Beego provides three functions to handle file uploads:
 
 - GetFile(key string) (multipart.File, *multipart.FileHeader, error)
 
 This method is used to read the file name `the_file` from form and return the information. The uploaded file can then be processed based on this information, such as filter or save the file.
+
+- GetFiles(key string) ([]*multipart.FileHeader, error)
+
+This method returns all the multi-upload files:
+
+```go
+func (m *MainController) Post() {
+	// 'files' is the name of the multipart form input
+	files, err := m.GetFiles("files")
+	if err != nil {
+		logger.Error(err.Error())
+	}
+	... do something with files
+```
 
 - SaveToFile(fromfile, tofile string) error
 
