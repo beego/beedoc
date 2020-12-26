@@ -6,14 +6,19 @@ sort: 3
 # 控制器介绍
 
 基于 beego 的 Controller 设计，只需要匿名组合 `beego.Controller` 就可以了，如下所示：
+
 ```go
+
 package your_package
+
 import (
- "github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web"
 )
+
 type xxxController struct {
 	    web.Controller
 }
+
 ```
 
 ## 控制器方法
