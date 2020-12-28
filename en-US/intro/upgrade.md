@@ -1,5 +1,5 @@
 ---
-name: 升级指南
+name: Upgrade Beego
 sort: 3
 ---
 
