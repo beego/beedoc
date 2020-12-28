@@ -72,7 +72,7 @@ var FilterUser = func(ctx *context.Context) {
     }
 }
 
-web.InsertFilter("/*", beego.BeforeRouter, FilterUser)
+web.InsertFilter("/*", web.BeforeRouter, FilterUser)
 ```
 
 >Filters which use session must be executed after `BeforeRouter` because session is not initialized before that. web session module must be enabled first. (see [Session control](../controller/session.md))
