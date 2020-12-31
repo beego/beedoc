@@ -33,91 +33,15 @@ func (this *HomeController) Get(){
 }
 ```
 
-## 在表单中使用
+在 Beego 2.x 里面有一个很大的不同，就是 Beego 2.x 的XSRF只支持 HTTPS 协议。
 
-在 Controller 中这样设置数据：
+这是因为，在 2.x 的时候，我们给存储 XSRF token的 cookie 加上了 [secure](https://en.wikipedia.org/wiki/Secure_cookie), [http-only](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies).
+两个设置，所以只能通过 HTTPS 协议运作。
 
-```go
-func (this *HomeController) Get(){
-    this.Data["xsrfdata"]=template.HTML(this.XSRFFormHTML())
-}
-```
+与此同时，你也无法通过 JS 获取到 XSRF token。
 
-然后在模板中这样设置：
-```html
-<form action="/new_message" method="post">
-    {{ .xsrfdata }}
-    <input type="text" name="message"/>
-    <input type="submit" value="Post"/>
-</form>
-```
-## 在 JavaScript 中使用
+这个改进，一个很重要的原因是，在 1.x 的时候，缺乏这两个选项，会导致攻击者可以从 cookie 中拿到 XSRF token，导致 XSRF 失效。
 
-如果你提交的是 AJAX 的 POST 请求，你还是需要在每一个请求中通过脚本添加上 _xsrf 这个值。下面是在 AJAX 的 POST 请求，使用了 jQuery 函数来为所有请求都添加 _xsrf 值：
-
-jQuery cookie插件：https://github.com/carhartl/jquery-cookie
-base64 插件：http://phpjs.org/functions/base64_decode/
-
-```js
-jQuery.postJSON = function(url, args, callback) {
-   var xsrf, xsrflist;
-   xsrf = $.cookie("_xsrf");
-   xsrflist = xsrf.split("|");
-   args._xsrf = base64_decode(xsrflist[0]);
-    $.ajax({url: url, data: $.param(args), dataType: "text", type: "POST",
-        success: function(response) {
-        callback(eval("(" + response + ")"));
-    }});
-};
-```
-
-### 扩展 jQuery
-
-通过扩展 ajax 给每个请求加入 xsrf 的 header
-
-需要你在 html 里保存一个 `_xsrf` 值
-
-```go
-func (this *HomeController) Get(){
-    this.Data["xsrf_token"] = this.XSRFToken()
-}
-```
-
-放在你的 head 中
-
-```html
-<head>
-    <meta name="_xsrf" content="{{.xsrf_token}}" />
-</head>
-```
-
-扩展 ajax 方法，将 `_xsrf` 值加入 header，扩展后支持 jquery post/get 等内部使用了 ajax 的方法
-
-```js
-var ajax = $.ajax;
-$.extend({
-    ajax: function(url, options) {
-        if (typeof url === 'object') {
-            options = url;
-            url = undefined;
-        }
-        options = options || {};
-        url = options.url;
-        var xsrftoken = $('meta[name=_xsrf]').attr('content');
-        var headers = options.headers || {};
-        var domain = document.domain.replace(/\./ig, '\\.');
-        if (!/^(http:|https:).*/.test(url) || eval('/^(http:|https:)\\/\\/(.+\\.)*' + domain + '.*/').test(url)) {
-            headers = $.extend(headers, {'X-Xsrftoken':xsrftoken});
-        }
-        options.headers = headers;
-        return ajax(url, options);
-    }
-});
-```
-
-对于 PUT 和 DELETE 请求（以及不使用将 form 内容作为参数的 POST 请求）来说，你也可以在 HTTP 头中以 X-XSRFToken 这个参数传递 XSRF token。
-
-如果你需要针对每一个请求处理器定制 XSRF 行为，你可以重写 Controller 的 CheckXSRFCookie 方法。例如你需要使用一个不支持 cookie 的 API， 你可以通过将 `CheckXSRFCookie()` 函数设空来禁用 XSRF 保护机制。然而如果 你需要同时支持 cookie 和非 cookie 认证方式，那么只要当前请求是通过 cookie 进行认证的，你就应该对其使用 XSRF 保护机制，这一点至关重要。
 
 # 支持controller 级别的屏蔽
 
