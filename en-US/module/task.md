@@ -20,7 +20,7 @@ Examples include: Reporting memory and goroutine status, periodically triggering
 
 To initialize a task implement :
 
-	tk1 := task.NewTask("tk1", "0 12 * * * *", func() error {
+	tk1 := task.NewTask("tk1", "0 12 * * * *", func(ctx context.Context) error {
 		fmt.Println("tk1")
 		return nil
 	})
