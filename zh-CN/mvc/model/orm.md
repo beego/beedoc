@@ -143,7 +143,7 @@ orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8")
 // 参数5(可选)  设置最大数据库连接 (go >= 1.2)
 maxIdle := 30
 maxConn := 30
-orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8", maxIdle, maxConn)
+orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8", orm.MaxIdleConnections(maxIdle), orm.MaxOpenConnections(maxConn))
 ```
 
 #### SetMaxIdleConns
