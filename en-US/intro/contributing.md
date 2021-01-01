@@ -62,12 +62,12 @@ For more information about the branching model: http://nvie.com/posts/a-successf
 
 You must have a github account, if not, please register one.
 
-### 1.4.1 Fork 代码
+### Fork 代码
 
 1. Click [https://github.com/beego/beego/v2](https://github.com/beego/beego)
 2. Click "Fork" button which is on top right corner 
 
-### 1.4.2 Clone 代码
+### Clone 代码
 
 We recommend using official repo as `origin` repo, and then add a remote upstream to your repo. 
 
@@ -91,7 +91,7 @@ git remote add  'https://github.com/<you github username>/beego.git'
 
 The word `upstream` in command could be replaced with any word you like.
 
-### 1.4.3 fetch changes
+### fetch changes
 
 Every time you want to something, you'd better fetch remote changes: 
 
@@ -109,7 +109,7 @@ git fetch upstream
 
 You can replace `upstream` with your repo name
 
-### 1.4.4 create feature branch
+### create feature branch
 
 我们在创建新的 feature 分支的时候，要先考虑清楚，从哪个分支切出来。
 Before creating feature branch, we should think about choosing a branch as base branch.
@@ -122,7 +122,7 @@ git checkout -b feature/my-feature origin/develop
 
 Don't forget to run `git fetch` before you create feature branch.
 
-### 1.4.5 push commit
+### push commit
 
 ```bash
 git add .
@@ -130,6 +130,6 @@ git commit
 git push upstream my-feature
 ```
 
-### 1.4.6 make PR
+### make PR
 
 Go to [https://github.com/beego/beego](https://github.com/beego/beego), and make a Pull request
