@@ -38,6 +38,7 @@ func (c *BaseController) Prepare() {
 
 All other controllers should embed `BaseController` instead of `web.Controller`:
 ```go
+// app_root/controllers/default.go
 package controllers
 
 type DefaultController struct {
