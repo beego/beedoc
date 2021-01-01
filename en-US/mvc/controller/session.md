@@ -84,43 +84,158 @@ Here are some parameters used in the Session module:
 - SessionCookieLifeTime
   Sets the cookie expire time. The cookie is used to store data in client.
 
-From Beego version 1.1.3 onwards Beego removed all dependencies. Mysql, redis, couchbase, memcache, or postgres should be installed before they can be used.
+## Package Installation
 
-	go get -u webgithub.com/beego/beego/v2/server/web/session/mysql
+If you are not using Go modules, manual installation may be required.
 
-then import them in `main.go`, the same as the `database/sql`:
+*Note: Beego >= 1.1.3 removed all dependencies*
 
-	import _ "webgithub.com/beego/beego/v2/server/web/session/mysql"
+```bash
+# Couchbase
+go get -u github.com/beego/beego/v2/server/web/session/couchbase
 
-When SessionProvider is file, SessionProviderConfig is the save path for session files. For example:
+# Ledis
+go get -u github.com/beego/beego/v2/server/web/session/ledis
 
-	web.BConfig.WebConfig.Session.SessionProvider = "file"
-	web.BConfig.WebConfig.Session.SessionProviderConfig = "./tmp"
+# Memcache
+go get -u github.com/beego/beego/v2/server/web/session/memcache
 
-When SessionProvider is mysql, SessionProviderConfig is the connection address using [go-sql-driver](https://github.com/go-sql-driver/mysql). For example:
+# MySQL
+go get -u github.com/beego/beego/v2/server/web/session/mysql
 
-	web.BConfig.WebConfig.Session.SessionProvider = "mysql"
-	web.BConfig.WebConfig.Session.SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
+# Postgres
+go get -u github.com/beego/beego/v2/server/web/session/postgres
 
-When SessionProvider is redis, SessionProviderConfig is the connection address using [redigo](https://github.com/garyburd/redigo). For example:
+# Redis
+go get -u github.com/beego/beego/v2/server/web/session/redis
 
-	web.BConfig.WebConfig.Session.SessionProvider = "redis"
-	web.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
+# Redis (cluster mode)
+go get -u github.com/beego/beego/v2/server/web/session/redis_cluster
 
-When SessionProvider is memcache，SessionProviderConfig is the connection address using [memcache](https://github.com/beego/memcache). For example
+# Redis (sentinel)
+go get -u github.com/beego/beego/v2/server/web/session/redis_sentinel
 
-	web.BConfig.WebConfig.Session.SessionProvider = "memcache"
-	web.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:7080"
+# SSDB
+go get -u github.com/beego/beego/v2/server/web/session/ssdb
+```
 
-When SessionProvider is postgres，SessionProviderConfig is the connection address using [postgres](https://github.com/lib/pq). For example：
+## Example Usage
 
-	web.BConfig.WebConfig.Session.SessionProvider = "postgresql"
-	web.BConfig.WebConfig.Session.SessionProviderConfig = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
+### Couchbase
 
-When SessionProvider is couchbase，SessionProviderConfig is connection address using [couchbase](https://github.com/couchbaselabs/go-couchbase). For example：
+SessionProviderConfig is connection address using [couchbase](https://github.com/couchbaselabs/go-couchbase).
 
-	web.BConfig.WebConfig.Session.SessionProvider = "couchbase"
-	web.BConfig.WebConfig.Session.SessionProviderConfig = "http://bucketname:bucketpass@myserver:8091/"
+```go
+// main.go
+package main
+
+import (
+  "github.com/beego/beego/v2/server/web"
+  _ "github.com/beego/beego/v2/server/web/session/couchbase"
+)
+
+func init() {
+  web.BConfig.WebConfig.Session.SessionOn = true
+  web.BConfig.WebConfig.Session.SessionProvider = "couchbase"
+  web.BConfig.WebConfig.Session.SessionProviderConfig = "http://bucketname:bucketpass@myserver:8091/"
+}
+```
+
+### File
+```go
+// main.go
+package main
+
+import (
+  "github.com/beego/beego/v2/server/web"
+)
+
+func init() {
+  web.BConfig.WebConfig.Session.SessionOn = true
+  web.BConfig.WebConfig.Session.SessionProvider = "file"
+  web.BConfig.WebConfig.Session.SessionProviderConfig = "/tmp"
+}
+```
+
+### Memcache
+
+SessionProviderConfig is the connection address using [memcache](https://github.com/beego/memcache).
+
+```go
+// main.go
+package main
+
+import (
+  "github.com/beego/beego/v2/server/web"
+  _ "github.com/beego/beego/v2/server/web/session/memcache"
+)
+
+func init() {
+  web.BConfig.WebConfig.Session.SessionOn = true
+  web.BConfig.WebConfig.Session.SessionProvider = "memcache"
+  web.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:7080"
+}
+```
+
+### MySQL
+
+SessionProviderConfig is the connection address using [go-sql-driver](https://github.com/go-sql-driver/mysql).
+
+```go
+// main.go
+package main
+
+import (
+  "github.com/beego/beego/v2/server/web"
+  _ "github.com/beego/beego/v2/server/web/session/mysql"
+)
+
+func init() {
+  web.BConfig.WebConfig.Session.SessionOn = true
+  web.BConfig.WebConfig.Session.SessionProvider = "mysql"
+  web.BConfig.WebConfig.Session.SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
+}
+```
+
+### Postgres
+
+SessionProviderConfig is the connection address using [postgres](https://github.com/lib/pq).
+
+```go
+// main.go
+package main
+
+import (
+  "github.com/beego/beego/v2/server/web"
+  _ "github.com/beego/beego/v2/server/web/session/postgres"
+)
+
+func init() {
+  web.BConfig.WebConfig.Session.SessionOn = true
+  web.BConfig.WebConfig.Session.SessionProvider = "postgresql"
+  web.BConfig.WebConfig.Session.SessionProviderConfig = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
+}
+```
+
+### Redis
+
+SessionProviderConfig is the connection address using [redigo](https://github.com/garyburd/redigo).
+
+```go
+// main.go
+package main
+
+import (
+  "github.com/beego/beego/v2/server/web"
+  _ "github.com/beego/beego/v2/server/web/session/redis"
+)
+
+func init() {
+  web.BConfig.WebConfig.Session.SessionOn = true
+  web.BConfig.WebConfig.Session.SessionProvider = "redis"
+  web.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
+}
+```
 	
 ## Note:
 Session uses `gob` to register objects. When using a session engine other than `memory`, objects must be registered in session before they can be used. Use `gob.Register()` to register them in `init()` function. 
