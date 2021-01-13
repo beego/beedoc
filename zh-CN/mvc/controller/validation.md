@@ -9,11 +9,11 @@ sort: 9
 
 安装：
 
-	go get github.com/beego/beego/v2/core/validation
+	go get github.com/beego/beego/v2/validation
 
 测试：
 
-	go test github.com/beego/beego/v2/core/validation
+	go test github.com/beego/beego/v2/validation
 
 # 示例
 
@@ -21,7 +21,7 @@ sort: 9
 
 ```go
 import (
-    "github.com/beego/beego/v2/core/validation"
+    "github.com/beego/beego/v2/validation"
     "log"
 )
 
@@ -63,7 +63,8 @@ import (
     "log"
     "strings"
 
-    "github.com/beego/beego/v2/core/validation"
+    "github.com/beego/beego/v2/validation"
+    
 )
 
 // 验证函数写在 "valid" tag 的标签里
