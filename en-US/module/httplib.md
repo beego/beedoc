@@ -23,7 +23,7 @@ Initialize request method and url:
 
 Send the request and retrieve the data in the response:
 
-	str, err := res.String()
+	str, err := req.String()
 	if err != nil {
 		t.Fatal(err)
 	}
