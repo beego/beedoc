@@ -38,6 +38,7 @@ val, err := config.String("mykey")
 ```
 
 当然，用户也可以主动初始化。例如，当我们想用`toml`作为默认实现的时候，我们可以：
+
 ```go
 _ import "github.com/beego/beego/v2/core/config/toml"
 err := InitGlobalInstance("toml", "some config")
@@ -51,6 +52,7 @@ val, err := config.String("mykey")
 ## 手动创建实例
 
 首先初始化一个解析器对象
+
 ```go
 iniconf, err := NewConfig("ini", "testini.conf")
 if err != nil {
