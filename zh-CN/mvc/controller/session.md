@@ -42,6 +42,7 @@ session 有几个方便的方法：
 session 操作主要有设置 session、获取 session、删除 session。
 
 当然你可以通过下面的方式自己控制这些逻辑：
+
 ```go
 sess:=this.StartSession()
 defer sess.SessionRelease()
@@ -96,15 +97,20 @@ sess 对象具有如下方法：
 	go get -u github.com/beego/beego/v2/session/mysql
 
 然后在你的 main 函数中引入该库, 和数据库的驱动引入是一样的:
+
 ```go
 import _ "github.com/beego/beego/v2/session/mysql"
 ```
+
 当 SessionProvider 为 file SessionProviderConfig 是指保存文件的目录，如下所示：
+
 ```go
 web.BConfig.WebConfig.Session.SessionProvider="file"
 web.BConfig.WebConfig.Session.SessionProviderConfig = "./tmp"
 ```
+
 当 SessionProvider 为 mysql 时，SessionProviderConfig 是链接地址，采用 [go-sql-driver](https://github.com/go-sql-driver/mysql)，如下所示：
+
 ```go
 web.BConfig.WebConfig.Session.SessionProvider = "mysql"
 web.BConfig.WebConfig.Session.SessionProviderConfig = "username:password@protocol(address)/dbname?param=value"
@@ -122,24 +128,33 @@ CREATE TABLE `session` (
 ```
 
 当 SessionProvider 为 redis 时，SessionProviderConfig 是 redis 的链接地址，采用了 [redigo](https://github.com/garyburd/redigo)，如下所示：
+
 ```go
 web.BConfig.WebConfig.Session.SessionProvider = "redis"
 web.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
 ```
+
 当 SessionProvider 为 memcache 时，SessionProviderConfig 是 memcache 的链接地址，采用了 [memcache](https://github.com/beego/memcache)，如下所示：
+
 ```go
 web.BConfig.WebConfig.Session.SessionProvider = "memcache"
 web.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:7080"
 ```
+
 当 SessionProvider 为 postgres 时，SessionProviderConfig 是 postgres 的链接地址，采用了 [postgres](https://github.com/lib/pq)，如下所示：
+
 ```go
 web.BConfig.WebConfig.Session.SessionProvider = "postgresql"
 web.BConfig.WebConfig.Session.SessionProviderConfig = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
 ```
+
 当 SessionProvider 为 couchbase 时，SessionProviderConfig 是 couchbase 的链接地址，采用了 [couchbase](https://github.com/couchbaselabs/go-couchbase)，如下所示：
+
 ```go
 web.BConfig.WebConfig.Session.SessionProvider = "couchbase"
 web.BConfig.WebConfig.Session.SessionProviderConfig = "http://bucketname:bucketpass@myserver:8091"
 ```
+
 # 特别注意点
+
 因为 session 内部采用了 gob 来注册存储的对象，例如 struct，所以如果你采用了非 memory 的引擎，请自己在 main.go 的 init 里面注册需要保存的这些结构体，不然会引起应用重启之后出现无法解析的错误
