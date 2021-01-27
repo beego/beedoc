@@ -203,7 +203,7 @@ This command is currently only available to the developer team. It is used to co
 
 This command displays the version of `bee`, `beego`, and `go`.
 
-```shell script
+```shell
 $ bee version
 bee   :1.2.2
 Beego :1.4.2
@@ -218,7 +218,7 @@ So when we use GOMOD mode, and we don't download beego's source code, Bee could 
 This command will generate the routers by analyzing the functions in controllers.
 
 
-```shell script
+```shell
 bee generate scaffold [scaffoldname] [-fields=""] [-driver=mysql] [-conn="root:@tcp(127.0.0.1:3306)/test"]
     The generate scaffold command will do a number of things for you.
     -fields: a list of table fields. Format: field:type, ...
