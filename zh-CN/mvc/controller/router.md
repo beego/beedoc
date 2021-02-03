@@ -244,6 +244,52 @@ web 自动会进行源码分析，注意只会在 dev 模式下进行生成，�
 
 同时大家注意到新版本里面增加了 URLMapping 这个函数，这是新增加的函数，用户如果没有进行注册，那么就会通过反射来执行对应的函数，如果注册了就会通过 interface 来进行执行函数，性能上面会提升很多。
 
+## 方法表达式路由
+方法表达式路由与上面的RESTful基本相似，区别是无需在传入http method和controller方法（如：`"get:StaticBlock"`）。
+只需要通过golang的method expression进行传入方法表达式。如果方法是receiver是非指针，则直接使用 `包名.Controller.Method` 方法 传入，
+如果receiver是指针，则使用 `(*包名.Controller).Method` 进行传参。假如在同包下，包名可进行省略。
+
+````golang
+type BaseController struct {
+	web.Controller
+}
+
+func (b BaseController) Ping() {
+	b.Data["json"] = "pong"
+	b.ServeJSON()
+}
+
+func (b *BaseController) PingPointer() {
+	b.Data["json"] = "pong_pointer"
+	b.ServeJSON()
+}
+
+func main() {
+	web.RouterGet("/ping", BaseController.Ping)
+	web.RouterGet("/ping_pointer", (*BaseController).PingPointer)
+	web.Run()
+}
+````
+
+共有以下几种函数：
+
+* web.RouterGet(router, pkg.controller.method)
+* web.RouterPost(router, pkg.controller.method)
+* web.RouterPut(router, pkg.controller.method)
+* web.RouterPatch(router, pkg.controller.method)
+* web.RouterHead(router, pkg.controller.method)
+* web.RouterOptions(router, pkg.controller.method)
+* web.RouterDelete(router, pkg.controller.method)
+* web.RouterAny(router, pkg.controller.method)
+
+
+同时也支持namespace的使用：
+
+* web.NSRouterGet
+* web.NSRouterPost
+* ......
+
+
 ## namespace
 
 ```

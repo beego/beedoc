@@ -255,6 +255,54 @@ will automatically route the http parameters id and field (i.e. `/tasks/5?field=
 If the parameter does not exist in the http request it will be passed to the method as the zero value for that parameter, unless that parameter is marked as 'required' using annotations.  This will return an error without calling the method.
 For more information, see [Parameters](params.md)
 
+## Method Expression Router
+The method expression router is to register routers by providing a controller method expresion. If the receiver of 
+the controller method is a non-pointer type, then you can pass method expression as `pkg.controller.method`. If the receiver
+of method is a pointer, then you need to pass method expression as `(*pkg.controller).method`. However, if you register router in
+the same package as controller, then you don't need to provide `pkg`.
+
+````golang
+// Here are some examples:
+
+type BaseController struct {
+	web.Controller
+}
+
+func (b BaseController) Ping() {
+	b.Data["json"] = "pong"
+	b.ServeJSON()
+}
+
+func (b *BaseController) PingPointer() {
+	b.Data["json"] = "pong_pointer"
+	b.ServeJSON()
+}
+
+func main() {
+	web.RouterGet("/ping", BaseController.Ping)
+	web.RouterGet("/ping_pointer", (*BaseController).PingPointer)
+	web.Run()
+}
+````
+
+There are many other Method Expression Routers：
+
+* web.RouterGet(router, pkg.controller.method)
+* web.RouterPost(router, pkg.controller.method)
+* web.RouterPut(router, pkg.controller.method)
+* web.RouterPatch(router, pkg.controller.method)
+* web.RouterHead(router, pkg.controller.method)
+* web.RouterOptions(router, pkg.controller.method)
+* web.RouterDelete(router, pkg.controller.method)
+* web.RouterAny(router, pkg.controller.method)
+
+
+It also provides namespace functions：
+
+* web.NSRouterGet
+* web.NSRouterPost
+* ......
+
 ## namespace
 
 ```
