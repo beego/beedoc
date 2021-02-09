@@ -252,6 +252,14 @@ bee generate migration [migrationfile] [-fields=""]
 
 bee generate docs
     generate swagger doc file
+    
+bee generate routers [-ctrlDir=/path/to/controller/directory] [-routersFile=/path/to/routers/file.go] [-routersPkg=myPackage]
+    -ctrlDir: the directory contains controllers definition. Bee scans this directory and its subdirectory to generate routers info
+    -routersFile: output file. All generated routers info will be output into this file. 
+              If file not found, Bee create new one, or Bee truncates it.
+              The default value is "routers/commentRouters.go"
+    -routersPkg: package declaration.The default value is "routers". 
+              When you pass routersFile parameter, you'd better pass this parameter
 
 bee generate test [routerfile]
     generate testcase
