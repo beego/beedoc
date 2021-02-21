@@ -22,6 +22,7 @@ session 模块参考了 `database/sql` 的引擎写法，采用了一个接口�
 # session 使用
 
 首先你必须导入包：
+
 ```go
 import (
 	"github.com/beego/beego/v2/server/web/session"
@@ -33,6 +34,7 @@ import (
 	var globalSessions *session.Manager
 
 接着在你的入口函数中初始化数据：
+
 ```go
 func init() {
 	sessionConfig := &session.ManagerConfig{
@@ -64,6 +66,7 @@ NewManager 函数的参数的函数如下所示
 	* providerConfig: 配置信息，根据不同的引擎设置不同的配置信息，详细的配置请看下面的引擎设置
 
 最后我们的业务逻辑处理函数中可以这样调用：
+
 ```go
 func login(w http.ResponseWriter, r *http.Request) {
 	sess, _ := globalSessions.SessionStart(w, r)
@@ -149,6 +152,7 @@ type Provider interface {
 ```
 
 最后需要注册自己写的引擎：
+
 ```go
 func init() {
 	Register("own", ownadaper)
