@@ -171,6 +171,7 @@ qs.Filter("profile__isnull", false)
 ## 高级查询接口使用
 
 QuerySeter 是高级查询使用的接口，我们来熟悉下他的接口方法
+
 ```go
 type QuerySeter interface {
 // add condition expression to QuerySeter.
