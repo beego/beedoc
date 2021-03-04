@@ -21,3 +21,12 @@ sort: 99
 4. Will Beego keep developing?
 
     Many people are worried about open source projects that stop developing. We have four people who are contributing to the code. We can keep making Beego better and better.
+
+5. Why I got "github.com/beego/beego/v2" package not found error?
+
+    In BeegoV2, we are using go mod. So you must enable go module feature in your environment. In general, you should set `GO111MODULE=on`.
+
+6. Why I always got i/o timeout when I run `go get github.com/beego/beego/v2`?
+
+    It means that your network has some problem. Sometimes it was caused by the firewall. If you are in China, this is a common case,
+    and you could set `GOPROXY`, for example: `export GORPOXY=https://goproxy.cn"`
