@@ -1,5 +1,6 @@
 ---
-name: 为 beego 贡献 sort: 1
+name: 为 beego 贡献
+sort: 1
 ---
 
 # 为 beego 做贡献
