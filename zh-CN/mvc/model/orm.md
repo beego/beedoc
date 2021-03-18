@@ -105,25 +105,28 @@ import (
 
 #### RegisterDriver
 
-三种默认数据库类型
+默认数据库类型
 
 ```go
-// For version 1.6
+
 orm.DRMySQL
 orm.DRSqlite
 orm.DRPostgres
+orm.DROracle
+orm.DRTiDB
 
 // < 1.6
 orm.DR_MySQL
 orm.DR_Sqlite
 orm.DR_Postgres
+
 ```
 
 ```go
 // 参数1   driverName
 // 参数2   数据库类型
 // 这个用来设置 driverName 对应的数据库类型
-// mysql / sqlite3 / postgres 这三种是默认已经注册过的，所以可以无需设置
+// mysql / sqlite3 / postgres / oracle / tidb 这几种是默认已经注册过的，所以可以无需设置
 orm.RegisterDriver("mysql", orm.DRMySQL)
 ```
 
@@ -145,6 +148,25 @@ maxIdle := 30
 maxConn := 30
 orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8", orm.MaxIdleConnections(maxIdle), orm.MaxOpenConnections(maxConn))
 ```
+##### Oracle
+需要注意的是，使用`Oracle`要复杂很多。这种复杂不是因为`Beego`带来的，而是因为`Oracle`要求连接的客户端需要安装一些东西，并且配置一些东西。
+
+`Oracle`有多种注册方式：
+
+使用 `orcale` 或者 `oci8` :
+
+```go
+// 匿名引入 "github.com/mattn/go-oci8"。注意，使用 Oracle 要求安装 Oracle Cli和设置一些配置，参考 github.com/mattn/go-oci8
+orm.RegisterDataBase("default", "oracle", "your dsn")
+orm.RegisterDataBase("default", "oci8", "your dsn")
+```
+
+使用 `ora`：
+```go
+// 匿名引入 github.com/rana/ora，同样需要参考 https://github.com/rana/ora 中如何设置开发环境的内容
+orm.RegisterDataBase("default", "ora", "your dsn")
+```
+
 
 #### SetMaxIdleConns
 
