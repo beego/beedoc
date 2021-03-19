@@ -94,7 +94,6 @@ Default databases:
 orm.DRMySQL
 orm.DRSqlite
 orm.DRPostgres
-orm.DROracle
 orm.DRTiDB
 
 // < 1.6
@@ -107,7 +106,7 @@ orm.DR_Postgres
 // param 1: driverName
 // param 2: database type
 // This mapping driverName and database type
-// mysql / sqlite3 / postgres / Oracle / TiDB registered by default already
+// mysql / sqlite3 / postgres / TiDB registered by default already
 orm.RegisterDriver("mysql", orm.DRMySQL)
 ```
 
@@ -129,29 +128,6 @@ maxIdle := 30
 maxConn := 30
 orm.RegisterDataBase("default", "mysql", "root:root@/orm_test?charset=utf8", maxIdle, maxConn)
 ```
-##### Oracle
-However, using `Oracle` is more complicated because database `Oracle` requires installing client on your computer.
-
-We use support different `Oracle` goland library:
-
-Using `orcale` or `oci8` as driver name:
-
-```go
-// import _ "github.com/mattn/go-oci8"
-// You must read github.com/mattn/go-oci8 README
-// It tells you how to install and configure your computer
-orm.RegisterDataBase("default", "oracle", "your dsn")
-orm.RegisterDataBase("default", "oci8", "your dsn")
-```
-
-Using `ora`：
-```go
-// import _ "github.com/rana/ora"
-// You must read github.com/rana/ora README
-// It tells you how to install and configure your computer
-orm.RegisterDataBase("default", "ora", "your dsn")
-```
-
 
 See [Test.md](https://beego.me/docs/mvc/model/test.md) for more information on database connection strings.
 
