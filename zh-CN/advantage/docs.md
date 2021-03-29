@@ -37,7 +37,7 @@ package routers
 
 另外一个要注意的点是：v2.x 为了兼容 go mod 机制，所以改成了在项目启动自动扫描文件夹生成路由。
 
-该配置项是`CommentRouterPath`。参考[Config.WebConfig](/zh-CN/mvc/controller/config.md)
+该配置项是`CommentRouterPath`。参考[Config.WebConfig](/docs/mvc/controller/config.md)
 
 
 ```
