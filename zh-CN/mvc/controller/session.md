@@ -84,10 +84,6 @@ sess 对象具有如下方法：
 
 	默认值为 sha1，采用 sha1 加密算法生产 sessionid
 
-- web.BConfig.WebConfig.Session.SessionHashKey
-
-	默认的 key 是 beegoserversessionkey，建议用户使用的时候修改该参数
-
 - web.BConfig.WebConfig.Session.SessionCookieLifeTime
 
 	设置 cookie 的过期时间，cookie 是用来存储保存在客户端的数据。
