@@ -1,7 +1,7 @@
 
 This project is the source for http://beego.me/docs
 
-If yuo are using beego v1.x, please change to v1.x tag.
+If you are using beego v1.x, please change to v1.x tag.
 
 [More examples](https://github.com/beego/beego-example)
 

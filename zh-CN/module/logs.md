@@ -7,7 +7,7 @@ sort: 3
 
 这是一个用来处理日志的库，它的设计思路来自于 `database/sql`，目前支持的引擎有 file、console、net、smtp、es、slack，可以通过如下方式进行安装：
 
-	go get github.com/beego/beego/v2/logs
+	go get github.com/beego/beego/v2/core/logs
 
 # 如何使用
 

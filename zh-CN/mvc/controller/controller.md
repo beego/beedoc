@@ -311,3 +311,6 @@ func (this *RController) Prepare() {
 ```
 
 >>> 调用 StopRun 之后，如果你还定义了 Finish 函数就不会再执行，如果需要释放资源，那么请自己在调用 StopRun 之前手工调用 Finish 函数。
+
+
+[回到顶部](#控制器介绍)

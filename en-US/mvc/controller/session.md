@@ -77,10 +77,7 @@ Here are some parameters used in the Session module:
 
 - SessionHashFunc
   Sets the function used to generate sessionid.  The default value is `sha1`.
-
-- SessionHashKey
-  Sets the session hash key.  The default key is beegoserversessionkey. This value should be changed.
-
+  
 - SessionCookieLifeTime
   Sets the cookie expire time. The cookie is used to store data in client.
 

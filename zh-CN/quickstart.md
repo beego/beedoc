@@ -10,6 +10,7 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 
 	$ go get -u github.com/beego/beego/v2
 	$ go get -u github.com/beego/bee/v2
+*如果go get时出现`package github.com/beego/beego/v2: cannot find package "github.com/beego/beego/v2" in any of:`的报错，请先`export GO111MODULE=on`*
 
 为了更加方便的操作，请将 `$GOPATH/bin` 加入到你的 `$PATH` 变量中。请确保在此之前您已经添加了 `$GOPATH` 变量。
 

@@ -91,7 +91,7 @@ func main() {
 
 ## 数据库的设置
 
-目前 ORM 支持三种数据库，以下为测试过的 driver
+目前 ORM 支持多种数据库，以下为测试过的 driver
 
 将你需要使用的 driver 加入 import 中
 
@@ -105,25 +105,27 @@ import (
 
 #### RegisterDriver
 
-三种默认数据库类型
+默认数据库类型
 
 ```go
-// For version 1.6
+
 orm.DRMySQL
 orm.DRSqlite
 orm.DRPostgres
+orm.DRTiDB
 
 // < 1.6
 orm.DR_MySQL
 orm.DR_Sqlite
 orm.DR_Postgres
+
 ```
 
 ```go
 // 参数1   driverName
 // 参数2   数据库类型
 // 这个用来设置 driverName 对应的数据库类型
-// mysql / sqlite3 / postgres 这三种是默认已经注册过的，所以可以无需设置
+// mysql / sqlite3 / postgres / tidb 这几种是默认已经注册过的，所以可以无需设置
 orm.RegisterDriver("mysql", orm.DRMySQL)
 ```
 

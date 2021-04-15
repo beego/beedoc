@@ -88,13 +88,13 @@ import (
 
 #### RegisterDriver
 
-Three default databases:
+Default databases:
 
 ```go
-// For version 1.6
 orm.DRMySQL
 orm.DRSqlite
 orm.DRPostgres
+orm.DRTiDB
 
 // < 1.6
 orm.DR_MySQL
@@ -106,7 +106,7 @@ orm.DR_Postgres
 // param 1: driverName
 // param 2: database type
 // This mapping driverName and database type
-// mysql / sqlite3 / postgres registered by default already
+// mysql / sqlite3 / postgres / TiDB registered by default already
 orm.RegisterDriver("mysql", orm.DRMySQL)
 ```
 

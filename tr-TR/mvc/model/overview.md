@@ -90,7 +90,7 @@ func init() {
 	orm.RegisterModel(new(User))
 
 	// set default database
-	orm.RegisterDataBase("default", "mysql", "root:root@/my_db?charset=utf8", 30)
+	orm.RegisterDataBase("default", "mysql", "root:root@/my_db?charset=utf8")
 }
 
 func main() {
