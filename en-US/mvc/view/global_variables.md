@@ -1,5 +1,5 @@
 ---
-name: Pagination
+name: Global Variables
 sort: 5
 ---
 
