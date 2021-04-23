@@ -43,5 +43,15 @@ Beego is also designed for the creation of API applications. When we build an AP
 	}
 	```
   ServeJsonp will set `content-type` to `application/javascript` , JSONify the data and respond to jsonp based on the request parameter `callback`.
+  
+- Renspond based on Accept Header in request
+
+	```go
+	func (this *AddController) Get() {
+		mystruct := { ... }
+		this.Resp(mystruct)
+	}
+	```
+	Based on the Accept Header value response will be either JSON, XML or YAML. If Accept header is none of the above by default response will be in JSON format
 
 In version 1.6 names of methods were changed, it is ServeJSON(), ServeXML(), ServeJSONP() from now on.
