@@ -15,6 +15,7 @@ sort: 3
 
 ## 通用方式
 首先引入包：
+
 ```go
 import (
 	"github.com/beego/beego/v2/core/logs"
@@ -30,6 +31,8 @@ import (
     logs.SetLogger(logs.AdapterFile,`{"filename":"project.log","level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10,"color":true}`)
 
 然后我们就可以在我们的逻辑中开始任意的使用了：
+
+
 ```go
 package main
 
@@ -54,6 +57,7 @@ func main() {
 
 ## 多个实例
 一般推荐使用通用方式进行日志，但依然支持单独声明来使用独立的日志
+
 ```go
 package main
 
@@ -108,6 +112,7 @@ type LogFormatter interface {
 该实现的设计思路，是希望能够使用类似于占位符的东西来定义一条日志应该如何输出。
 
 例子：
+
 ```go
 
 package main
@@ -137,6 +142,7 @@ func main() {
 最终我们输出日志`/beego-example/logger/formatter/pattern/main.go:31|2020-10-29[I]>> hello, world`
 
 如果我们只希望在某个特定的引擎上使用这个格式，我们可以通过初始化引擎的时候，设置：
+
 ```go
 	_ = logs.SetLogger("console",`{"formatter": "pattern"}`)
 ```
@@ -233,6 +239,7 @@ logs.SetLogger(logs.AdapterEs, `{"dsn":"http://localhost:9200/","level":1}`)
 - 简聊
 
     输出到简聊：
+    
 ```go
 logs.SetLogger(logs.AdapterJianLiao, `{"authorname":"xxx","title":"beego", "webhookurl":"https://jianliao.com/xxx", "redirecturl":"https://jianliao.com/xxx","imageurl":"https://jianliao.com/xxx","level":1}`)
 ```
@@ -240,6 +247,7 @@ logs.SetLogger(logs.AdapterJianLiao, `{"authorname":"xxx","title":"beego", "webh
 - slack
 
     输出到slack:
+    
 ```go
 logs.SetLogger(logs.AdapterSlack, `{"webhookurl":"https://slack.com/xxx","level":1}`)
 ```
