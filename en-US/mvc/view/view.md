@@ -285,7 +285,7 @@ Define struct:
 ```go
 type User struct {
 	Id    int         `form:"-"`
-	Name  interface{} `form:"username"`
+	Name  interface{} `form:"username" class:"form-control" id:"nameform"`
 	Age   int         `form:"age,text,age:"`
 	Sex   string
 	Intro string `form:",textarea"`
