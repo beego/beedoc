@@ -279,28 +279,28 @@ func (b *BaseController) PingPointer() {
 }
 
 func main() {
-	web.RouterGet("/ping", BaseController.Ping)
-	web.RouterGet("/ping_pointer", (*BaseController).PingPointer)
+	web.CtrlGet("/ping", BaseController.Ping)
+	web.CtrlGet("/ping_pointer", (*BaseController).PingPointer)
 	web.Run()
 }
 ````
 
 There are many other Method Expression Routers：
 
-* web.RouterGet(router, pkg.controller.method)
-* web.RouterPost(router, pkg.controller.method)
-* web.RouterPut(router, pkg.controller.method)
-* web.RouterPatch(router, pkg.controller.method)
-* web.RouterHead(router, pkg.controller.method)
-* web.RouterOptions(router, pkg.controller.method)
-* web.RouterDelete(router, pkg.controller.method)
-* web.RouterAny(router, pkg.controller.method)
+* web.CtrlGet(router, pkg.controller.method)
+* web.CtrlPost(router, pkg.controller.method)
+* web.CtrlPut(router, pkg.controller.method)
+* web.CtrlPatch(router, pkg.controller.method)
+* web.CtrlHead(router, pkg.controller.method)
+* web.CtrlOptions(router, pkg.controller.method)
+* web.CtrlDelete(router, pkg.controller.method)
+* web.CtrlAny(router, pkg.controller.method)
 
 
 It also provides namespace functions：
 
-* web.NSRouterGet
-* web.NSRouterPost
+* web.NSCtrlGet
+* web.NSCtrlPost
 * ......
 
 ## namespace

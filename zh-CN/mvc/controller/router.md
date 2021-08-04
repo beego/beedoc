@@ -37,14 +37,14 @@ web.Any("/foo",func(ctx *context.Context){
 
 ### 所有的支持的基础函数如下所示
 
-* web.Get(router, web.FilterFunc)
-* web.Post(router, web.FilterFunc)
-* web.Put(router, web.FilterFunc)
-* web.Patch(router, web.FilterFunc)
-* web.Head(router, web.FilterFunc)
-* web.Options(router, web.FilterFunc)
-* web.Delete(router, web.FilterFunc)
-* web.Any(router, web.FilterFunc)
+* web.Get(router, web.HandleFunc)
+* web.Post(router, web.HandleFunc)
+* web.Put(router, web.HandleFunc)
+* web.Patch(router, web.HandleFunc)
+* web.Head(router, web.HandleFunc)
+* web.Options(router, web.HandleFunc)
+* web.Delete(router, web.HandleFunc)
+* web.Any(router, web.HandleFunc)
 
 ### 支持自定义的 handler 实现
 有些时候我们已经实现了一些 rpc 的应用,但是想要集成到 beego 中,或者其他的 httpserver 应用,集成到 beego 中来.现在可以很方便的集成:
@@ -265,28 +265,28 @@ func (b *BaseController) PingPointer() {
 }
 
 func main() {
-	web.RouterGet("/ping", BaseController.Ping)
-	web.RouterGet("/ping_pointer", (*BaseController).PingPointer)
+	web.CtrlGet("/ping", BaseController.Ping)
+	web.CtrlGet("/ping_pointer", (*BaseController).PingPointer)
 	web.Run()
 }
 ````
 
 共有以下几种函数：
 
-* web.RouterGet(router, pkg.controller.method)
-* web.RouterPost(router, pkg.controller.method)
-* web.RouterPut(router, pkg.controller.method)
-* web.RouterPatch(router, pkg.controller.method)
-* web.RouterHead(router, pkg.controller.method)
-* web.RouterOptions(router, pkg.controller.method)
-* web.RouterDelete(router, pkg.controller.method)
-* web.RouterAny(router, pkg.controller.method)
+* web.CtrlGet(router, pkg.controller.method)
+* web.CtrlPost(router, pkg.controller.method)
+* web.CtrlPut(router, pkg.controller.method)
+* web.CtrlPatch(router, pkg.controller.method)
+* web.CtrlHead(router, pkg.controller.method)
+* web.CtrlOptions(router, pkg.controller.method)
+* web.CtrlDelete(router, pkg.controller.method)
+* web.CtrlAny(router, pkg.controller.method)
 
 
 同时也支持namespace的使用：
 
-* web.NSRouterGet
-* web.NSRouterPost
+* web.NSCtrlGet
+* web.NSCtrlPost
 * ......
 
 
@@ -353,14 +353,14 @@ namespace 的接口如下:
 
 - NSInclude(cList ...ControllerInterface)
 - NSRouter(rootpath string, c ControllerInterface, mappingMethods ...string)
-- NSGet(rootpath string, f FilterFunc)
-- NSPost(rootpath string, f FilterFunc)
-- NSDelete(rootpath string, f FilterFunc)
-- NSPut(rootpath string, f FilterFunc)
-- NSHead(rootpath string, f FilterFunc)
-- NSOptions(rootpath string, f FilterFunc)
-- NSPatch(rootpath string, f FilterFunc)
-- NSAny(rootpath string, f FilterFunc)
+- NSGet(rootpath string, f HandleFunc)
+- NSPost(rootpath string, f HandleFunc)
+- NSDelete(rootpath string, f HandleFunc)
+- NSPut(rootpath string, f HandleFunc)
+- NSHead(rootpath string, f HandleFunc)
+- NSOptions(rootpath string, f HandleFunc)
+- NSPatch(rootpath string, f HandleFunc)
+- NSAny(rootpath string, f HandleFunc)
 - NSHandler(rootpath string, h http.Handler)
 - NSAutoRouter(c ControllerInterface)
 - NSAutoPrefix(prefix string, c ControllerInterface)
@@ -408,14 +408,14 @@ namespace 的接口如下:
 
 - AutoRouter(c ControllerInterface)
 - AutoPrefix(prefix string, c ControllerInterface)
-- Get(rootpath string, f FilterFunc)
-- Post(rootpath string, f FilterFunc)
-- Delete(rootpath string, f FilterFunc)
-- Put(rootpath string, f FilterFunc)
-- Head(rootpath string, f FilterFunc)
-- Options(rootpath string, f FilterFunc)
-- Patch(rootpath string, f FilterFunc)
-- Any(rootpath string, f FilterFunc)
+- Get(rootpath string, f HandleFunc)
+- Post(rootpath string, f HandleFunc)
+- Delete(rootpath string, f HandleFunc)
+- Put(rootpath string, f HandleFunc)
+- Head(rootpath string, f HandleFunc)
+- Options(rootpath string, f HandleFunc)
+- Patch(rootpath string, f HandleFunc)
+- Any(rootpath string, f HandleFunc)
 - Handler(rootpath string, h http.Handler)
 
 	上面这些都是设置路由的函数,详细的使用和上面 beego 的对应函数是一样的
