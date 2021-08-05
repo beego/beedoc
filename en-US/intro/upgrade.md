@@ -10,6 +10,8 @@ Upgrading Beego `go get -u github.com/beego/beego/v2`
 
 Running: `bee fix -t 2`
 
+If you are working on Windows platform, please run this command in WSL.
+
 ## Upgrade to beego 1.6.0
 
 Install the latest bee tool `go get -u github.com/beego/bee`

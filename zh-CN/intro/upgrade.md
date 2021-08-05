@@ -10,6 +10,8 @@ sort: 3
 
 然后进入项目，执行: `bee fix -t 2`
 
+需要注意的是，如果你是 windows 用户，那么你需要在 WSL 内部运行该命令。
+
 ## beego 1.6.0 升级指南
 
 获取最新版本的 bee 工具 `go get github.com/beego/bee@v1.12.3`
