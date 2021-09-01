@@ -20,7 +20,7 @@ context 对象是 Filter 函数的参数对象，这样你就可以通过 filter
 
 ## Input 对象
 
-Input 对象是针对 request 的封装，里面通过 reqeust 实现很多方便的方法，具体如下：
+Input 对象是针对 request 的封装，里面通过 request 实现很多方便的方法，具体如下：
 
 - Protocol
 
