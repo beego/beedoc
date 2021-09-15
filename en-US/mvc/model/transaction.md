@@ -6,6 +6,7 @@ sort: 7
 # Transaction
 
 There are two ways to handle transaction in Beego. One is closure:
+
 ```go
 // Beego will manage the transaction's lifecycle
 // if the @param task return error, the transaction will be rollback
