@@ -6,6 +6,7 @@ sort: 7
 ORM 可以简单的进行事务操作
 
 ORM 操作事务，支持两种范式。一种通过闭包的方式，由 Beego 本身来管理事务的生命周期。
+
 ```go
 	// Beego will manage the transaction's lifecycle
 	// if the @param task return error, the transaction will be rollback
