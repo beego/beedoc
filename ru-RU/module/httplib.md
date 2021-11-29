@@ -19,7 +19,7 @@ sort: 4
 
 Инициализируйте request метод и путь:
 
-	req := httplib.Get("http://beego.me/")
+	req := httplib.Get("http://beego.vip/")
 
 Отправьте запрос и извлеките данные из запроса:
 
@@ -47,11 +47,11 @@ httplib поддерживает следующие методы:
 
 Затем это должно вывести отладочную информацию:
 
-	httplib.Get("http://beego.me/").Debug(true).Response()
+	httplib.Get("http://beego.vip/").Debug(true).Response()
 
 	// Output
 	GET / HTTP/0.0
-	Host: beego.me
+	Host: beego.vip
 	User-Agent: beegoServer
 
 ## HTTPS запрос
@@ -70,13 +70,13 @@ httplib поддерживает следующие методы:
 
 Это функция работает с объектом запроса, а значит мы можем сделать так:
 
-	httplib.Get("http://beego.me/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
+	httplib.Get("http://beego.vip/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
 	
 ## Установить параметры запроса
 
 Для PUT или POST запросов, мы можем отправить параметры. Параметры могут быть установлены так:
 
-	req := httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.vip/")
 	req.Param("username","astaxie")
 	req.Param("password","123456")
 
@@ -84,7 +84,7 @@ httplib поддерживает следующие методы:
 
 Чтобы симулировать загрузку файлов или отправить большые данные вы можете использовать `Body` функцию:
 
-	req := httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.vip/")
 	bt,err:=ioutil.ReadFile("hello.txt")
 	if err!=nil{
 		log.Fatal("read file err:",err)
@@ -96,14 +96,14 @@ httplib поддерживает следующие методы:
 Вы можете эмулировать HEADER заголовки, например:
 
 	Accept-Encoding:gzip,deflate,sdch
-	Host:beego.me
+	Host:beego.vip
 	User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36
 
 Можете использовать `Header` функцию:
 
-	req := httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.vip/")
 	req.Header("Accept-Encoding","gzip,deflate,sdch")
-	req.Header("Host","beego.me")
+	req.Header("Host","beego.vip")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
 
 ## Загрузка файла
@@ -111,7 +111,7 @@ httplib поддерживает следующие методы:
 У PostFile функции первый параметр является имя формы, второй параметр имя файла или путь до файла который вы собираетесь отправить. 
 
 ```
-b:=httplib.Post("http://beego.me/")
+b:=httplib.Post("http://beego.vip/")
 b.Param("username","astaxie")
 b.Param("password","123456")
 b.PostFile("uploadfile1", "httplib.pdf")

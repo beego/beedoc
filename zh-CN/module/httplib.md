@@ -24,7 +24,7 @@ import (
 
 然后初始化请求方法，返回对象
 ```go
-req := httplib.Get("http://beego.me/")
+req := httplib.Get("http://beego.vip/")
 ```
 然后我们就可以获取数据了
 ```go
@@ -53,11 +53,11 @@ httplib 包里面支持如下的方法返回 request 对象：
 
 这样就可以看到请求数据的详细输出
 
-	httplib.Get("http://beego.me/").Debug(true).Response()
+	httplib.Get("http://beego.vip/").Debug(true).Response()
 
 	//输出数据如下
 	GET / HTTP/0.0
-	Host: beego.me
+	Host: beego.vip
 	User-Agent: beegoServer
 
 # 支持 HTTPS 请求
@@ -76,13 +76,13 @@ httplib 包里面支持如下的方法返回 request 对象：
 
 以上方法都是针对 request 对象的，所以你第一步必须是返回 request 对象，然后链式操作，类似这样的代码：
 
-	httplib.Get("http://beego.me/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
+	httplib.Get("http://beego.vip/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
 
 # 设置请求参数
 
 对于 Put 或者 Post 请求，需要发送参数，那么可以通过 Param 发送 k/v 数据，如下所示：
 ```go
-req := httplib.Post("http://beego.me/")
+req := httplib.Post("http://beego.vip/")
 req.Param("username","astaxie")
 req.Param("password","123456")
 ```
@@ -91,7 +91,7 @@ req.Param("password","123456")
 
 有时候需要上传文件之类的模拟，那么如何发送这个文件数据呢？可以通过 Body 函数来操作，举例如下：
 ```go
-req := httplib.Post("http://beego.me/")
+req := httplib.Post("http://beego.vip/")
 bt,err:=ioutil.ReadFile("hello.txt")
 if err!=nil{
 	log.Fatal("read file err:",err)
@@ -104,14 +104,14 @@ req.Body(bt)
 除了请求参数之外，我们有些时候需要模拟一些头信息，例如
 
 	Accept-Encoding:gzip,deflate,sdch
-	Host:beego.me
+	Host:beego.vip
 	User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36
 
 可以通过 Header 函数来设置，如下所示：
 ```go
-req := httplib.Post("http://beego.me/")
+req := httplib.Post("http://beego.vip/")
 req.Header("Accept-Encoding","gzip,deflate,sdch")
-req.Header("Host","beego.me")
+req.Header("Host","beego.vip")
 req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
 ```
 
@@ -130,7 +130,7 @@ var tp http.RoundTripper = &http.Transport{
 	ExpectContinueTimeout: 1 * time.Second,
 }
 
-req := httplib.Post("http://beego.me/")
+req := httplib.Post("http://beego.vip/")
 req.SetTransport(tp)
 ```
 
@@ -139,7 +139,7 @@ req.SetTransport(tp)
 PostFile 第一个参数是 form 表单的字段名,第二个是需要发送的文件名或者文件路径
 
 ```go
-b:=httplib.Post("http://beego.me/")
+b:=httplib.Post("http://beego.vip/")
 b.Param("username","astaxie")
 b.Param("password","123456")
 b.PostFile("uploadfile1", "httplib.pdf")
@@ -235,7 +235,7 @@ req.AddFilters(myFilter)
 		ServerName: "User-server-1",
 		RunMode: "dev",
 	}
-	req := httplib.Get("http://beego.me/")
+	req := httplib.Get("http://beego.vip/")
 	// only work for this request, or using SetDefaultSetting to support all requests
 	req.AddFilters(builder.FilterChain)
 
@@ -254,7 +254,7 @@ req.AddFilters(myFilter)
 
 ```go
 	builder := opentracing.FilterChainBuilder{}
-	req := httplib.Get("http://beego.me/")
+	req := httplib.Get("http://beego.vip/")
 	// only work for this request, or using SetDefaultSetting to support all requests
 	req.AddFilters(builder.FilterChain)
 

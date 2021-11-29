@@ -37,7 +37,7 @@ admin.AddHealthCheck("database",&DatabaseCheck{})
 
 加入之后，你可以往你的管理端口 `/healthcheck` 发送GET请求：
 
-	$ curl http://beego.me:8088/healthcheck
+	$ curl http://beego.vip:8088/healthcheck
 	* deadlocks: OK
 	* database: OK
 

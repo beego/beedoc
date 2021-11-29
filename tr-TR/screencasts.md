@@ -40,5 +40,5 @@ https://github.com/beego/tutorial
 
     <iframe width="640" height="360" src="//www.youtube.com/embed/w7RziV_Sn-g" frameborder="0" allowfullscreen></iframe>
     
-    blog: [Building Web API with Auto Generated API Document Support](http://beego.me/blog/beego_api)
+    blog: [Building Web API with Auto Generated API Document Support](http://beego.vip/blog/beego_api)
 

@@ -32,11 +32,11 @@ sort: 5
 	
 - Url
 
-  URL запроса. Например: `http://beego.me/about?username=astaxie`
+  URL запроса. Например: `http://beego.vip/about?username=astaxie`
 	
 - Site
 
-  Комбинация протокола и домена. Например: `http://beego.me`
+  Комбинация протокола и домена. Например: `http://beego.vip`
 
 - Scheme
   
@@ -44,7 +44,7 @@ sort: 5
 	
 - Domain
 
-  Домен. Например: `beego.me`
+  Домен. Например: `beego.vip`
 	
 - Host
 
@@ -88,7 +88,7 @@ sort: 5
 	
 - SubDomains
 
-  Вернет родительский домен из запроса. Например, домен в запросе `blog.beego.me`, тогда функция вернет `beego.me`.
+  Вернет родительский домен из запроса. Например, домен в запросе `blog.beego.vip`, тогда функция вернет `beego.vip`.
 	
 - Port
 

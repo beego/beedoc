@@ -411,7 +411,7 @@ bugfix:
 6. UrlFor 支持任意类型的参数
 7. controller 中 GetInt/GetString 等 Get 系列函数支持默认值, 例如：GetInt("a",12)
 8. 增加 CompareNot/NotNil 模板函数
-9. 支持 Controller 定义错误处理，更多请参考 [controller Error](http://beego.me/docs/mvc/controller/errors.md#controller%E5%AE%9A%E4%B9%89error)
+9. 支持 Controller 定义错误处理，更多请参考 [controller Error](http://beego.vip/docs/mvc/controller/errors.md#controller%E5%AE%9A%E4%B9%89error)
 10. ParseForm 增加支持 slices
 11. 改进 ORM interface，可以模拟 interface
 
@@ -631,7 +631,7 @@ bugfix:
 9. 修复 geturl 函数当参数多个时不带?的问题
 
 # beego 1.3.0
-经过了一个多月的开发，我们很高兴的宣布，beego 1.3.0来了，这个版本我们做了非常多好玩并且有用的功能，升级请看[升级指南](http://beego.me/docs/intro/upgrade.md)
+经过了一个多月的开发，我们很高兴的宣布，beego 1.3.0来了，这个版本我们做了非常多好玩并且有用的功能，升级请看[升级指南](http://beego.vip/docs/intro/upgrade.md)
 
 ## 路由重写
 这一次路由进行了全部改造，从之前的三个路由模式，改成了 tree 路由，第一性能得到了提升，第二路由支持的格式更加丰富，第三路由更加符合我们的思考方式，
@@ -666,7 +666,7 @@ beego.NewNamespace("/v1",
     ),
 )
 ```
-更多详细信息请参考文档：[namespace](http://beego.me/docs/mvc/controller/router.md#namespace)
+更多详细信息请参考文档：[namespace](http://beego.vip/docs/mvc/controller/router.md#namespace)
 
 ## 注解路由
 ```
@@ -689,7 +689,7 @@ func (this *CMSController) StaticBlock() {
 func (this *CMSController) AllBlock() {
 }
 ```
-更多请参考文档：[注解路由](http://beego.me/docs/mvc/controller/router.md#%E6%B3%A8%E8%A7%A3%E8%B7%AF%E7%94%B1)
+更多请参考文档：[注解路由](http://beego.vip/docs/mvc/controller/router.md#%E6%B3%A8%E8%A7%A3%E8%B7%AF%E7%94%B1)
 
 ## 自动化文档
 自动化文档一直是我梦想中的一个功能，这次借着公司的项目终于实现了出来，我说过 beego 不仅仅要让开发 API 快，而且让使用 API 的用户也能快速的使用我们开发的 API，这个就是我开发这个项目的初衷。
@@ -702,7 +702,7 @@ func (this *CMSController) AllBlock() {
 
 ![](../images/doc_test.png)
 
-更多请参考文档：[自动化文档](http://beego.me/docs/advantage/docs.md)
+更多请参考文档：[自动化文档](http://beego.vip/docs/advantage/docs.md)
 ## config 支持不同模式的配置
 在配置文件里面支持 section，可以有不同的 Runmode 的配置，默认优先读取 runmode 下的配置信息，例如下面的配置文件：
 
@@ -869,7 +869,7 @@ ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
 #### 8. httplib 支持文件直接上传接口
 
 ```
-b:=httplib.Post("http://beego.me/")
+b:=httplib.Post("http://beego.vip/")
 b.Param("username","astaxie")
 b.Param("password","123456")
 b.PostFile("uploadfile1", "httplib.pdf")

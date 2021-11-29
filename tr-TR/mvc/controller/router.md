@@ -262,7 +262,7 @@ For more information, see [Parameters](params.md)
 ns :=
 beego.NewNamespace("/v1",
     beego.NSCond(func(ctx *context.Context) bool {
-        if ctx.Input.Domain() == "api.beego.me" {
+        if ctx.Input.Domain() == "api.beego.vip" {
             return true
         }
         return false

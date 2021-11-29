@@ -19,7 +19,7 @@ Import package:
 
 Initialize request method and url:
 
-	req := httplib.Get("http://beego.me/")
+	req := httplib.Get("http://beego.vip/")
 
 Send the request and retrieve the data in the response:
 
@@ -47,11 +47,11 @@ Enable debug information output:
 
 Then it will output debug information:
 
-	httplib.Get("http://beego.me/").Debug(true).Response()
+	httplib.Get("http://beego.vip/").Debug(true).Response()
 
 	// Output
 	GET / HTTP/0.0
-	Host: beego.me
+	Host: beego.vip
 	User-Agent: beegoServer
 
 ## HTTPS Request
@@ -70,13 +70,13 @@ Can set request timeout and data reading timeout by:
 
 It is a function of request object. So it can be done like this:
 
-	httplib.Get("http://beego.me/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
+	httplib.Get("http://beego.vip/").SetTimeout(100 * time.Second, 30 * time.Second).Response()
 	
 ## Set Request Params
 
 For Put or Post requests, we may need to send parameters. Parameters can be set like:
 
-	req := httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.vip/")
 	req.Param("username","astaxie")
 	req.Param("password","123456")
 
@@ -84,7 +84,7 @@ For Put or Post requests, we may need to send parameters. Parameters can be set 
 
 To simulate file uploading or to send big data, one can use the `Body` function:
 
-	req := httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.vip/")
 	bt,err:=ioutil.ReadFile("hello.txt")
 	if err!=nil{
 		log.Fatal("read file err:",err)
@@ -96,14 +96,14 @@ To simulate file uploading or to send big data, one can use the `Body` function:
 To simulate header values, e.g.:
 
 	Accept-Encoding:gzip,deflate,sdch
-	Host:beego.me
+	Host:beego.vip
 	User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36
 
 Can use `Header` function:
 
-	req := httplib.Post("http://beego.me/")
+	req := httplib.Post("http://beego.vip/")
 	req.Header("Accept-Encoding","gzip,deflate,sdch")
-	req.Header("Host","beego.me")
+	req.Header("Host","beego.vip")
 	req.Header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36")
 
 ## Upload file
@@ -111,7 +111,7 @@ Can use `Header` function:
 PostFile function the first params is the name of form, the second param is the filename or filepath you want to send. 
 
 ```
-b:=httplib.Post("http://beego.me/")
+b:=httplib.Post("http://beego.vip/")
 b.Param("username","astaxie")
 b.Param("password","123456")
 b.PostFile("uploadfile1", "httplib.pdf")

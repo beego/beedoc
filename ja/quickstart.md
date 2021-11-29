@@ -8,7 +8,7 @@ beegoは、学習やbeegoアプリフレームワークを使用するのに役�
 
 これが動作するために機能するGo 1.1のインストールが必要になります。
 
-beegoと[Bee](http://beego.me/docs/install/bee.md)の開発ツールをインストールする必要があります:
+beegoと[Bee](http://beego.vip/docs/install/bee.md)の開発ツールをインストールする必要があります:
 	
 	$ go get github.com/astaxie/beego
 	$ go get github.com/beego/bee

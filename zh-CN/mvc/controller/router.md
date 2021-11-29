@@ -297,7 +297,7 @@ func main() {
 ns :=
 web.NewNamespace("/v1",
 	web.NSCond(func(ctx *context.Context) bool {
-		if ctx.Input.Domain() == "api.beego.me" {
+		if ctx.Input.Domain() == "api.beego.vip" {
 			return true
 		}
 		return false

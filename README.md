@@ -1,5 +1,5 @@
 
-This project is the source for http://beego.me/docs
+This project is the source for http://beego.vip/docs
 
 If you are using beego v1.x, please change to v1.x tag.
 
