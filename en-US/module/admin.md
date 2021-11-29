@@ -35,7 +35,7 @@ admin.AddHealthCheck("database",&DatabaseCheck{})
 
 After this you can send get request to `/healthcheck`:
 
-	$ curl http://beego.me:8088/healthcheck
+	$ curl http://beego.vip:8088/healthcheck
 	* deadlocks: OK
 	* database: OK
 

@@ -32,11 +32,11 @@ Input object is the encapsulation of request. Here are the implemented methods:
 	
 - Url
 
-  The URL of request. E.g.: `http://beego.me/about?username=astaxie`
+  The URL of request. E.g.: `http://beego.vip/about?username=astaxie`
 	
 - Site
 
-  The combination of scheme and domain. E.g.: `http://beego.me`
+  The combination of scheme and domain. E.g.: `http://beego.vip`
 
 - Scheme
   
@@ -44,7 +44,7 @@ Input object is the encapsulation of request. Here are the implemented methods:
 	
 - Domain
 
-  The request domain. E.g.: `beego.me`
+  The request domain. E.g.: `beego.vip`
 	
 - Host
 
@@ -88,7 +88,7 @@ Input object is the encapsulation of request. Here are the implemented methods:
 	
 - SubDomains
 
-  Return the root domain of request. For example, request domain is `blog.beego.me`, then this function returns `beego.me`.
+  Return the root domain of request. For example, request domain is `blog.beego.vip`, then this function returns `beego.vip`.
 	
 - Port
 

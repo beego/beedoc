@@ -8,7 +8,7 @@ BeeGo содержит тестовое приложение на котором
 
 Вам нужен установленный Go 1.1 для того что бы запустить BeeGo.
 
-Вам нужно установить BeeGo и иснтрумент разработчика [Bee](http://beego.me/docs/install/bee.md):
+Вам нужно установить BeeGo и иснтрумент разработчика [Bee](http://beego.vip/docs/install/bee.md):
 
 	$ go get -u github.com/astaxie/beego
 	$ go get -u github.com/beego/bee
