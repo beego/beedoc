@@ -3,6 +3,10 @@ name: Release Notes
 sort: 2
 ---
 
+# beego 2.0.2
+
+[Change Log](https://github.com/beego/beego/releases/tag/v2.0.2-beta.1)
+
 # beego 2.0.1
 
 When we release v2.0.0, something wrong and then we re-release v2.0.0.

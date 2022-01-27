@@ -2,6 +2,9 @@
 name: 发布版本
 sort: 2
 ---
+# beego 2.0.2
+
+[Change Log](https://github.com/beego/beego/releases/tag/v2.0.2-beta.1)
 
 # beego 2.0.1
 
