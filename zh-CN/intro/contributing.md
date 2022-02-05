@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 name: 为 beego 贡献
+=======
+name: 为 beego 贡献 
+>>>>>>> c378e83dfb7834276850c6a74456fe5cd27924c6
 sort: 1
 ---
 
