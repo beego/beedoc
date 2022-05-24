@@ -11,7 +11,11 @@ bee 工具是一个为了协助快速开发 beego 项目而创建的项目，通
 
 您可以通过如下的方式安装 bee 工具：
 
+	# go 1.16 以前的版本
 	go get -u github.com/beego/bee/v2
+	
+	# go 1.16及以后的版本
+	go install github.com/beego/bee/v2@latest
 
 安装完之后，`bee` 可执行文件默认存放在 `$GOPATH/bin` 里面，所以您需要把 `$GOPATH/bin` 添加到您的环境变量中，才可以进行下一步。
 
