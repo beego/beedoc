@@ -3,11 +3,19 @@ name: 发布版本
 sort: 2
 ---
 
+# beego 2.0.4
+
+注意：现在
+
+[Change Log](https://github.com/beego/beego/releases/tag/v2.0.4)
+
 # beego 2.0.3
 
 [Change Log](https://github.com/beego/beego/releases/tag/v2.0.3)
 
 # beego 2.0.2
+
+注意：在 2.0.2 里面我们将注释路由挪到了 bee 命令里面。
 
 [Change Log](https://github.com/beego/beego/releases/tag/v2.0.2-beta.1)
 

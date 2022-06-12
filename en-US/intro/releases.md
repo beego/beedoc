@@ -3,6 +3,12 @@ name: Release Notes
 sort: 2
 ---
 
+# beego 2.0.4
+
+Note: now we force the web admin service serving HTTP only.
+
+[Change Log](https://github.com/beego/beego/releases/tag/v2.0.4)
+
 # beego 2.0.3
 
 [Change Log](https://github.com/beego/beego/releases/tag/v2.0.3)
