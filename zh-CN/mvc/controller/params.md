@@ -24,9 +24,9 @@ func (this *MainController) Post() {
 	}
 }
 ```
-## 获取GET 方法, params 所有参数
+## 获取GET 方法中的params 参数
 
-- 请使用 this.Input() 
+- 请使用 this.Ctx.Input(), 上下文的Input方法 
 
 如果你需要的数据可能是其他类型的，例如是 int 类型而不是 int64，那么你需要这样处理：
 
