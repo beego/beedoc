@@ -1,6 +1,6 @@
 ---
 name: FAQ
-sort: 12
+sort: 13
 ---
 
 # FAQ
