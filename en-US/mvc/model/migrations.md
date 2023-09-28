@@ -82,9 +82,9 @@ describe users;
 ## Atlas Integration
 [Atlas](https://atlasgo.io/) is an open-source database migration tool that has an official integration with Beego.
 
-While Beego’s `migrations` feature works in most cases,
-the problem with creating migrations is that the `Up()` and `Down()` functions need to be filled with SQL statements,
- usually written by hand in a very specific DSL, which is error-prone and time consuming.
+While Beego’s [migrations](#migrations) feature works in most cases,
+the problem with creating migrations is that the `Up()` and `Down()` functions need to be filled with raw SQL statements,
+written by hand, which is error-prone and time consuming.
 
 Atlas can automatically plan database schema migrations for developers using the official [Beego Provider](https://github.com/ariga/atlas-provider-beego).
 
