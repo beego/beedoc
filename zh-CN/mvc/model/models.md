@@ -48,14 +48,14 @@ type User struct {
 // 多字段索引
 func (u *User) TableIndex() [][]string {
 	return [][]string{
-		[]string{"Id", "Name"},
+		{"Id", "Name"},
 	}
 }
 
 // 多字段唯一键
 func (u *User) TableUnique() [][]string {
 	return [][]string{
-		[]string{"Name", "Email"},
+		{"Name", "Email"},
 	}
 }
 ```
