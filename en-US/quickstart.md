@@ -9,8 +9,8 @@ You will need a [Go](https://golang.org) 1.1+ installation for this to work.
 You will need to install or upgrade [Beego](http://beego.vip/docs/install/bee.md) and the [Bee](http://beego.vip/docs/install/bee.md) dev tool:
 
 ```
-go get -u github.com/beego/beego/v2
-go get -u github.com/beego/bee/v2
+go install github.com/beego/beego/v2@latest
+go install github.com/beego/bee/v2@latest
 ```
 
 For convenience, you should add `$GOPATH/bin` to your `$PATH` environment variable. Please make sure you have already set the `$GOPATH` environment variable. 
