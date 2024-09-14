@@ -24,6 +24,9 @@ func (this *MainController) Post() {
 	}
 }
 ```
+## 获取GET 方法中的params 参数
+
+- 请使用 this.Ctx.Input(), 上下文的Input方法 
 
 如果你需要的数据可能是其他类型的，例如是 int 类型而不是 int64，那么你需要这样处理：
 
@@ -82,7 +85,7 @@ func (this *MainController) Post() {
 
 在 API 的开发中，我们经常会用到 `JSON` 或 `XML` 来作为数据交互的格式，如何在 beego 中获取 Request Body 里的 JSON 或 XML 的数据呢？
 
-1. 在配置文件里设置 `copyrequestbody = true`
+1. 在配置文件里设置 `copyrequestbody = true` 或者 直接设置 `web.Bconfig.CopyRequestBody = true`
 2. 在 Controller 中
 
 ```go
