@@ -244,7 +244,7 @@ type User struct {
 
 ## Relationships
 
-#### One to one
+### One to one
 
 **RelOneToOne**:
 
@@ -266,9 +266,9 @@ type Profile struct {
 }
 ```
 
-#### One to many
+### One to many
 
-**RelForeignKey**:
+The initial referenced foreign key, `RelForeignKey`:
 
 ```go
 type Post struct {
@@ -278,7 +278,7 @@ type Post struct {
 }
 ```
 
-The reverse relationship **RelReverseMany**:
+The reversed relationship, `RelReverseMany`:
 
 ```go
 type User struct {
