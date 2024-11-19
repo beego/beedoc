@@ -94,7 +94,7 @@ git push upstream my-feature
 ### 提交 PR
 
 ```bash
-访问 https://github.com/beego/beego/v2, 
+访问 https://github.com/beego/beego, 
 
 点击 "Compare" 比较变更并点击 "Pull request" 提交 PR
 ```
