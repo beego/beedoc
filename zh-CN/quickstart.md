@@ -7,9 +7,14 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 您需要安装 Go 1.1+ 以确保所有功能的正常使用。
 
 你需要安装或者升级 Beego 和 [Bee](http://beego.vip/docs/install/bee.md) 的开发工具:
-
 	$ go get -u github.com/beego/beego/v2
-	$ go get -u github.com/beego/bee/v2
+	
+        # 请先确保 GOBIN 环境变量已设置，bee执行命令将安装在 GOBIN 环境变量指向的路径里。
+	# 设置命令（此命令依赖 GOPATH 环境变量）：
+	$ echo 'export GOBIN="$GOPATH/bin"' >> ~/.profile 或者 ~/.zshrc, ~/.cshrc, 您所使用的sh对应的配置文件
+        $ echo $GOBIN
+	$ go get -u github.com/beego/bee/v2 && ls -l $GOBIN/bee
+	
 *如果go get时出现`package github.com/beego/beego/v2: cannot find package "github.com/beego/beego/v2" in any of:`的报错，请先`export GO111MODULE=on`*
 
 为了更加方便的操作，请将 `$GOPATH/bin` 加入到你的 `$PATH` 变量中。请确保在此之前您已经添加了 `$GOPATH` 变量。
