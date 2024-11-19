@@ -171,7 +171,7 @@ web.Handler("/rpc", s)
 	web.Router("/simple",&SimpleController{},"*:AllFunc;post:PostFunc")
 那么执行 `POST` 请求的时候，执行 `PostFunc` 而不执行 `AllFunc`。
 
->>>自定义函数的路由默认不支持 RESTful 的方法，也就是如果你设置了 `web.Router("/api",&RestController{},"post:ApiFunc")` 这样的路由，如果请求的方法是 `POST`，那么不会默认去执行 `Post` 函数。
+>>>自定义函数的路由默认不支持 RESTful 的方法，也就是如果你设置了 `web.Router("/api",&RestController{},"post:ApiFunc")` 这样的路由，如果请求的方法是 `POST`，那么不会默认去执行 `Post` 函数，而是执行`ApiFunc` 函数。
 
 ## 自动匹配
 
