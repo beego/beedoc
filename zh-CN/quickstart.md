@@ -16,7 +16,7 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 
 	# 如果您还没添加 $GOPATH 变量
 	$ echo 'export GOPATH="$HOME/go"' >> ~/.profile # 或者 ~/.zshrc, ~/.cshrc, 您所使用的sh对应的配置文件
-	
+
 	# 如果您已经添加了 $GOPATH 变量
 	$ echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile # 或者 ~/.zshrc, ~/.cshrc, 您所使用的sh对应的配置文件
 	$ exec $SHELL
@@ -26,6 +26,7 @@ beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架�
 	$ cd $GOPATH/src
 	$ bee new hello
 	$ cd hello
+	$ go mod tidy
 	$ bee run
 
 Windows 平台下输入：
@@ -33,6 +34,7 @@ Windows 平台下输入：
     >cd %GOPATH%/src
     >bee new hello
     >cd hello
+    >go mod tidy
     >bee run
 
 这些指令帮助您：
